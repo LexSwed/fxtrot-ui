@@ -1,0 +1,24 @@
+---
+name: Box
+---
+
+import { Playground } from 'dokz';
+import { Box } from '../../dist';
+
+# Box
+
+`Box` is the main building block of the component library. It doesn't have any styles by itself,
+but provides a way to pass any styles thanks to [`stitches`](https://stitches.dev/).
+
+<Playground>
+  <Box
+    css={{
+      display: 'grid',
+      gridTemplate: '100px / 100px 100px',
+      gap: '$4',
+    }}
+  >
+    <Box css={{ bc: '$gray200', textAlign: 'center' }}>Styled</Box>
+    <Box css={{ bc: '$indigo600', textAlign: 'center', color: 'white' }}>boxes</Box>
+  </Box>
+</Playground>
