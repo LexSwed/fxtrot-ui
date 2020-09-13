@@ -203,7 +203,7 @@ export const { styled, css } = createStyled({
       borderRadius: value,
     }),
 
-    font: () => (value: keyof typeof theme['fontSizes']) => ({
+    textSize: () => (value: keyof typeof theme['fontSizes']) => ({
       fontSize: value,
       lineHeight: theme.lineHeights[value],
     }),

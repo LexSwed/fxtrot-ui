@@ -1,0 +1,20 @@
+---
+name: Button
+---
+
+import { Playground } from 'dokz';
+import { Box, Button } from '../../build';
+
+# Button
+
+<Playground>
+  <Box css={{ p: '$8', display: 'flex', gap: '$3' }}>
+    <Button onPress={() => alert('Wow')}>Make Wow</Button>
+    <Button variant="pill" onPress={() => alert('Wow')}>
+      Make Wow
+    </Button>
+    <Button variant="outline" onPress={() => alert('Wow')}>
+      Make Wow
+    </Button>
+  </Box>
+</Playground>

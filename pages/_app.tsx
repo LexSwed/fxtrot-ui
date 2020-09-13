@@ -15,9 +15,6 @@ export default function App(props: AppProps) {
         headerItems={[<GithubLink key="0" url="https://github.com/remorses/dokz" />, <ColorModeSwitch key="1" />]}
         sidebarOrdering={{
           'index.mdx': true,
-          'Documents_Group': {
-            'another.mdx': true,
-          },
         }}
       >
         <Component {...pageProps} />
