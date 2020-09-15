@@ -1,0 +1,50 @@
+---
+name: Palette
+---
+
+import { Box } from '../../build';
+import colors from '../../lib/theme/colors';
+
+# Palette
+
+export const styles = {
+  wrapper: {
+    display: 'grid',
+    gridAutoFlow: 'row',
+    gridTemplateColumns: 'repeat(auto-fill, 220px)',
+    gap: '$2',
+  },
+  swatch: {
+    display: 'flex',
+    gap: '$3',
+    alignItems: 'center',
+  },
+  text: {
+    textSize: '$sm',
+    fontWeight: '600',
+  },
+  text2: {
+    textSize: '$sm',
+    fontFamily: '$mono',
+    color: '$gray700',
+  },
+  colorItem: {
+    flexShrink: 0,
+    size: '50px',
+    borderRadius: '$round',
+    transition: '0.2s',
+    cursor: 'pointer',
+  },
+};
+
+<Box css={styles.wrapper}>
+  {Object.entries(colors).map(([title, color]) => (
+    <Box css={styles.swatch} key={title}>
+      <Box css={{ ...styles.colorItem, bc: title }} />
+      <div>
+        <Box css={styles.text}>{title}</Box>
+        <Box css={styles.text2}>{color}</Box>
+      </div>
+    </Box>
+  ))}
+</Box>
