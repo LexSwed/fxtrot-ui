@@ -5,39 +5,42 @@ import { styled } from '../stitches.config';
 import { useForkRef } from '../utils';
 
 const ButtonRoot = styled('button', {
-  py: '$2',
-  px: '$3',
-  color: 'white',
-  fontSize: '14px',
-  fontWeight: 'bold',
-  transition: '0.2s ease-in-out',
+  'py': '$2',
+  'px': '$3',
+  'color': 'white',
+  'textSize': '$base',
+  'fontWeight': 500,
+  'transition': '0.2s ease-in-out',
+  '$outline': 'default',
+  'font': '$default',
 
-  variants: {
+  ':disabled': {
+    cursor: 'default',
+  },
+
+  'variants': {
     variant: {
-      default: {
+      primary: {
         'bc': '$blue500',
         'color': 'white',
         'br': '$md',
-        '&:hover': {
+        ':hover': {
           bc: '$blue600',
         },
-        '&:active': {
+        ':active': {
           bc: '$blue700',
         },
-        '&:focus': {
-          outlineColor: '$blue100',
-        },
-        '&:disabled': {
+        ':disabled': {
           color: '$gray600',
-          bc: '$gray100',
+          bc: '$gray200',
         },
       },
-      outline: {
+      secondary: {
         'bc': 'transparent',
         'color': '$blue500',
         'border': '1px solid $blue500',
         'br': '$md',
-        '&:hover': {
+        ':hover': {
           bc: '$blue700',
           borderColor: 'transparent',
           color: 'white',
@@ -50,7 +53,7 @@ const ButtonRoot = styled('button', {
 type ButtonProps = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
 type Props = React.ComponentPropsWithRef<typeof ButtonRoot> & ButtonProps;
 
-const Button = React.forwardRef<HTMLButtonElement, Props>(({ as, variant = 'default', css, ...props }, propRef) => {
+const Button = React.forwardRef<HTMLButtonElement, Props>(({ as, variant = 'primary', css, ...props }, propRef) => {
   const innerRef = useRef<HTMLButtonElement>(null);
   const { buttonProps } = useButton({ isDisabled: props.disabled, ...props } as any, innerRef);
   const ref = useForkRef(innerRef, propRef);

@@ -25,7 +25,8 @@ const scales = {
 export const theme = {
   colors,
   fonts: {
-    $default: 'Source Sans Pro, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif',
+    $default:
+      '14px/20px 500 Source Sans Pro, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif',
     $mono: 'Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;',
   },
   space: scales,
@@ -170,6 +171,32 @@ export const { styled, css } = createStyled({
 
     shadow: () => (value: keyof Theme['shadows'] | (string & {})) => ({
       boxShadow: value,
+    }),
+
+    $outline: () => (value: string) => ({
+      ':not(:disabled)': {
+        'position': 'relative',
+        'outline': 'none',
+
+        '::before': {
+          content: `''`,
+          display: 'block',
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          transitionProperty: 'box-shadow',
+          transitionDuration: '0.2s',
+          transitionTimingFunction: 'ease-in-out',
+          pointerEvents: 'none',
+          br: 'inherit',
+        },
+
+        ':focus-visible::before': {
+          boxShadow: '0 0 0 2px $text',
+        },
+      },
     }),
   },
 });

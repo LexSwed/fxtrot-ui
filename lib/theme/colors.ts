@@ -1,4 +1,4 @@
-export default {
+const palette = {
   // Gray
   $gray050: '#F9FAFB',
   $gray100: '#F4F5F7',
@@ -95,16 +95,16 @@ export default {
   $green900: '#06513F',
 
   // Teal
-  $Teal050: '#EDFDF9',
-  $Teal100: '#D1FAF1',
-  $Teal200: '#A7F5E6',
-  $Teal300: '#67E8D4',
-  $Teal400: '#2DD4BF',
-  $Teal500: '#14B3A2',
-  $Teal600: '#0E9185',
-  $Teal700: '#12746C',
-  $Teal800: '#175A55',
-  $Teal900: '#184B47',
+  $teal050: '#EDFDF9',
+  $teal100: '#D1FAF1',
+  $teal200: '#A7F5E6',
+  $teal300: '#67E8D4',
+  $teal400: '#2DD4BF',
+  $teal500: '#14B3A2',
+  $teal600: '#0E9185',
+  $teal700: '#12746C',
+  $teal800: '#175A55',
+  $teal900: '#184B47',
 
   // Cyan
   $cyan050: '#ECFEFF',
@@ -205,4 +205,14 @@ export default {
   $rose700: '#B41B48',
   $rose800: '#951A3A',
   $rose900: '#7C1833',
+};
+
+const mainColors = {
+  $text: palette['$gray900'],
+  $surface: '#fff',
+};
+
+export default {
+  ...palette,
+  ...mainColors,
 };
