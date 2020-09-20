@@ -19,8 +19,8 @@ export const HiBadgeCheck = icons.HiBadgeCheck;
 export const Grid = styled('div', {
   display: 'grid',
   gridAutoFlow: 'row',
-  gridTemplateColumns: 'repeat(auto-fill, 200px)',
-  gap: '$4',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(150px, auto))',
+  gap: '$2',
   py: '$4',
 });
 
@@ -53,7 +53,7 @@ export const IconsWithFilter = () => {
         onChange={(e) => setText(e.target.value)}
         placeholder="Search for icon"
       />
-      <Box>
+      <Box css={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '$3' }}>
         {Object.entries(icons)
           .filter(([name]) => name.toLowerCase().includes(filterText.toLowerCase()))
           .reduce(
@@ -64,7 +64,7 @@ export const IconsWithFilter = () => {
           )
           .map((icons, i) =>
             icons.length > 0 ? (
-              <>
+              <Box>
                 <Text size="xl" as="h2">
                   {i === 0 ? 'Solid' : 'Outline'}
                 </Text>
@@ -81,7 +81,7 @@ export const IconsWithFilter = () => {
                     </IconBox>
                   ))}
                 </Grid>
-              </>
+              </Box>
             ) : null
           )}
       </Box>
