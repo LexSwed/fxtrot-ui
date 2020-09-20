@@ -15,8 +15,8 @@
     "node": ">=12"
   },
   "scripts": {
-    "build": "microbundle --compress --jsx React.createElement",
-    "start": "microbundle watch --no-compress --jsx React.createElement",
+    "build": "microbundle --compress --jsx React.createElement --entry lib/index.ts --output build/index.js --no-pkg-main --tsconfig tsconfig.lib.json",
+    "start": "microbundle watch --no-compress --jsx React.createElement --entry lib/index.ts --output build/index.js --no-pkg-main --format modern --tsconfig tsconfig.lib.json",
     "dev": "run-p start dokz:dev",
     "lint": "eslint .",
     "dokz:dev": "next dev",
@@ -32,10 +32,12 @@
     "dokz": "*",
     "next": "latest",
     "react": "16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-icons": "^3.11.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.13",
+    "@types/node": "^14.11.1",
     "@types/react": "^16.9.49",
     "jest": "^26.4.2",
     "microbundle": "^0.12.3",

@@ -70,7 +70,21 @@ export const theme = {
     $4: '400',
     $max: '9999',
   },
+  shadows: {
+    'xs': 'box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05)',
+    'sm': 'box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+    'base': '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+    'md': 'box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    'lg': 'box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+    'xl': 'box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+    '2xl': 'box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+    // 'inner': 'box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
+    // 'outline': 'box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5)',
+    'none': 'box-shadow: none',
+  },
 };
+
+type Theme = typeof theme;
 
 export const { styled, css } = createStyled({
   tokens: theme,
@@ -81,77 +95,81 @@ export const { styled, css } = createStyled({
     screen: (rule) => `@media (min-width: 1280px) { ${rule} }`,
   },
   utils: {
-    p: () => (value: keyof typeof theme['space'] | (string & {})) => ({
+    p: () => (value: keyof Theme['space'] | (string & {})) => ({
       paddingTop: value,
       paddingBottom: value,
       paddingLeft: value,
       paddingRight: value,
     }),
-    pt: () => (value: keyof typeof theme['space'] | (string & {})) => ({
+    pt: () => (value: keyof Theme['space'] | (string & {})) => ({
       paddingTop: value,
     }),
-    pr: () => (value: keyof typeof theme['space'] | (string & {})) => ({
+    pr: () => (value: keyof Theme['space'] | (string & {})) => ({
       paddingRight: value,
     }),
-    pb: () => (value: keyof typeof theme['space'] | (string & {})) => ({
+    pb: () => (value: keyof Theme['space'] | (string & {})) => ({
       paddingBottom: value,
     }),
-    pl: () => (value: keyof typeof theme['space'] | (string & {})) => ({
+    pl: () => (value: keyof Theme['space'] | (string & {})) => ({
       paddingLeft: value,
     }),
-    px: () => (value: keyof typeof theme['space'] | (string & {})) => ({
+    px: () => (value: keyof Theme['space'] | (string & {})) => ({
       paddingLeft: value,
       paddingRight: value,
     }),
-    py: () => (value: keyof typeof theme['space'] | (string & {})) => ({
+    py: () => (value: keyof Theme['space'] | (string & {})) => ({
       paddingTop: value,
       paddingBottom: value,
     }),
-    m: () => (value: keyof typeof theme['space'] | (string & {})) => ({
+    m: () => (value: keyof Theme['space'] | (string & {})) => ({
       marginTop: value,
       marginBottom: value,
       marginLeft: value,
       marginRight: value,
     }),
-    mt: () => (value: keyof typeof theme['space'] | (string & {})) => ({
+    mt: () => (value: keyof Theme['space'] | (string & {})) => ({
       marginTop: value,
     }),
-    mr: () => (value: keyof typeof theme['space'] | (string & {})) => ({
+    mr: () => (value: keyof Theme['space'] | (string & {})) => ({
       marginRight: value,
     }),
-    mb: () => (value: keyof typeof theme['space'] | (string & {})) => ({
+    mb: () => (value: keyof Theme['space'] | (string & {})) => ({
       marginBottom: value,
     }),
-    ml: () => (value: keyof typeof theme['space'] | (string & {})) => ({
+    ml: () => (value: keyof Theme['space'] | (string & {})) => ({
       marginLeft: value,
     }),
-    mx: () => (value: keyof typeof theme['space'] | (string & {})) => ({
+    mx: () => (value: keyof Theme['space'] | (string & {})) => ({
       marginLeft: value,
       marginRight: value,
     }),
-    my: () => (value: keyof typeof theme['space'] | (string & {})) => ({
+    my: () => (value: keyof Theme['space'] | (string & {})) => ({
       marginTop: value,
       marginBottom: value,
     }),
 
-    bg: () => (value: keyof typeof theme['colors'] | (string & {})) => ({
+    bg: () => (value: keyof Theme['colors'] | (string & {})) => ({
       background: value,
     }),
-    bc: () => (value: keyof typeof theme['colors'] | (string & {})) => ({
+    bc: () => (value: keyof Theme['colors'] | (string & {})) => ({
       backgroundColor: value,
     }),
-    br: () => (value: keyof typeof theme['radii'] | (string & {})) => ({
+    br: () => (value: keyof Theme['radii'] | (string & {})) => ({
       borderRadius: value,
     }),
 
-    textSize: () => (value: keyof typeof theme['fontSizes']) => ({
+    textSize: () => (value: keyof Theme['fontSizes']) => ({
       fontSize: value,
       lineHeight: theme.lineHeights[value],
     }),
 
-    size: () => (value: keyof typeof theme['sizes'] | (string & {})) => ({
+    size: () => (value: keyof Theme['sizes'] | (string & {})) => ({
       width: value,
       height: value,
+    }),
+
+    shadow: () => (value: keyof Theme['shadows'] | (string & {})) => ({
+      boxShadow: value,
     }),
   },
 });
@@ -162,3 +180,6 @@ css.global({
     boxSizing: 'border-box',
   },
 });
+
+export type Scale = 'xs' | 'sm' | 'base' | 'md' | 'lg' | 'xl' | '2xl' | 'none';
+export type Size = keyof typeof scales;

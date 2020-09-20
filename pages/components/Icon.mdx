@@ -1,0 +1,32 @@
+---
+name: Icon
+---
+
+import { Playground } from 'dokz';
+import { Icon, Box, Text, Stack } from '../../build';
+import * as icons from 'react-icons/hi';
+
+<Box
+  css={{
+    display: 'grid',
+    gridAutoFlow: 'row',
+    gridTemplateColumns: 'repeat(auto-fill, 120px)',
+    gap: '$4',
+    py: '$4',
+  }}
+>
+  {Object.entries(icons).map(([name, icon]) => (
+    <Stack
+      css={{
+        p: '$3',
+        shadow: 'base',
+      }}
+      space="base"
+      align="center"
+      key={name}
+    >
+      <Icon as={icon} size="base" />
+      <Text size="xs">{name}</Text>
+    </Stack>
+  ))}
+</Box>

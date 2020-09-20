@@ -1,4 +1,5 @@
-export const gray = {
+export default {
+  // Gray
   $gray050: '#F9FAFB',
   $gray100: '#F4F5F7',
   $gray200: '#E5E7EB',
@@ -9,9 +10,7 @@ export const gray = {
   $gray700: '#374151',
   $gray800: '#252F3F',
   $gray900: '#161E2E',
-};
 
-export default {
   // Red
   $red050: '#FDF2F2',
   $red100: '#FDE8E8',
