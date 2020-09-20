@@ -1,9 +1,10 @@
 import { createStyled } from '@stitches/react';
 import colors from './theme/colors';
+import { isServer } from './utils';
 
 const scales = {
   $0: '0px',
-  $1: '4x',
+  $1: '4px',
   $2: '8px',
   $3: '12px',
   $4: '16px',
@@ -25,16 +26,16 @@ const scales = {
 export const theme = {
   colors,
   fonts: {
-    $default:
-      '14px/20px 500 Source Sans Pro, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif',
+    $default: '"Quicksand", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif',
     $mono: 'Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;',
   },
   space: scales,
   sizes: scales,
   fontSizes: {
+    $base: '16px',
     $xs: '12px',
     $sm: '14px',
-    $base: '16px',
+    $md: '16px',
     $lg: '18px',
     $xl: '20px',
     $2xl: '34px',
@@ -44,9 +45,10 @@ export const theme = {
     $6xl: '64px',
   },
   lineHeights: {
+    $base: '26px',
     $xs: '19.5px',
     $sm: '22.75px',
-    $base: '26px',
+    $md: '26px',
     $lg: '29.25px',
     $xl: '32.5px',
     $2xl: '39px',
@@ -72,9 +74,9 @@ export const theme = {
     $max: '9999',
   },
   shadows: {
+    $base: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
     $xs: '0 0 0 1px rgba(0, 0, 0, 0.05)',
     $sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
-    $base: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
     $md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
     $lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
     $xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
@@ -173,7 +175,7 @@ export const { styled, css } = createStyled({
       boxShadow: value,
     }),
 
-    $outline: () => (value: string) => ({
+    $outline: () => (offset: number) => ({
       ':not(:disabled)': {
         'position': 'relative',
         'outline': 'none',
@@ -182,10 +184,10 @@ export const { styled, css } = createStyled({
           content: `''`,
           display: 'block',
           position: 'absolute',
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
+          top: `calc(-1 * ${offset}px)`,
+          right: `calc(-1 * ${offset}px)`,
+          bottom: `calc(-1 * ${offset}px)`,
+          left: `calc(-1 * ${offset}px)`,
           transitionProperty: 'box-shadow',
           transitionDuration: '0.2s',
           transitionTimingFunction: 'ease-in-out',
@@ -198,15 +200,47 @@ export const { styled, css } = createStyled({
         },
       },
     }),
+
+    $inputBorder: () => () => ({
+      'br': '$md',
+      'border': '2px solid $borderDefault',
+      ':focus': {
+        borderColor: '$borderFocus',
+      },
+      ':disabled': {
+        bc: '$gray200',
+        color: '$textDisabled',
+        borderColor: 'transparent',
+      },
+      ':active': {
+        borderColor: '$borderFocus',
+      },
+    }),
   },
 });
 
 css.global({
   'body': { margin: '0' },
   '*': {
-    boxSizing: 'border-box',
+    'boxSizing': 'border-box',
+    'fontFamily': '$default',
+    '::before,::after': {
+      boxSizing: 'border-box',
+    },
   },
 });
 
 export type Scale = 'xs' | 'sm' | 'base' | 'md' | 'lg' | 'xl' | '2xl' | 'none';
 export type Size = keyof typeof scales;
+
+(function addFont() {
+  if (isServer) {
+    return;
+  }
+  const link = document.createElement('link');
+
+  link.href = 'https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap';
+  link.rel = 'stylesheet';
+
+  document.head.appendChild(link);
+})();

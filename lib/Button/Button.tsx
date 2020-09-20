@@ -5,14 +5,16 @@ import { styled } from '../stitches.config';
 import { useForkRef } from '../utils';
 
 const ButtonRoot = styled('button', {
-  'py': '$2',
   'px': '$3',
+  'height': '$8',
   'color': 'white',
-  'textSize': '$base',
+  'textSize': '$sm',
   'fontWeight': 500,
   'transition': '0.2s ease-in-out',
-  '$outline': 'default',
+  '$outline': 2,
   'font': '$default',
+  'border': '2px solid transparent',
+  'br': '$md',
 
   ':disabled': {
     cursor: 'default',
@@ -23,28 +25,25 @@ const ButtonRoot = styled('button', {
       primary: {
         'bc': '$blue500',
         'color': 'white',
-        'br': '$md',
+        'borderColor': '$blue500',
         ':hover': {
+          borderColor: '$blue600',
           bc: '$blue600',
         },
         ':active': {
+          borderColor: '$blue700',
           bc: '$blue700',
         },
         ':disabled': {
+          borderColor: '$gray200',
           color: '$gray600',
           bc: '$gray200',
         },
       },
       secondary: {
-        'bc': 'transparent',
-        'color': '$blue500',
-        'border': '1px solid $blue500',
-        'br': '$md',
-        ':hover': {
-          bc: '$blue700',
-          borderColor: 'transparent',
-          color: 'white',
-        },
+        bc: '$surface',
+        color: '$text',
+        $inputBorder: 'apply',
       },
     },
   },

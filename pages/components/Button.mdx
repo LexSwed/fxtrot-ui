@@ -8,8 +8,16 @@ import { Box, Button } from '../../build';
 # Button
 
 <Playground>
-  <Box css={{ p: '$8', display: 'flex', gap: '$3' }}>
-    <Button>Make Wow</Button>
-    <Button disabled>Make Wow</Button>
-  </Box>
+  <>
+    <Box css={{ p: '$8', display: 'flex', gap: '$3' }}>
+      <Button>Primary</Button>
+      <Button disabled>Primary (disabled)</Button>
+    </Box>
+    <Box css={{ p: '$8', display: 'flex', gap: '$3' }}>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="secondary" disabled>
+        Secondary (disabled)
+      </Button>
+    </Box>
+  </>
 </Playground>

@@ -22,3 +22,5 @@ function setRef<T = unknown>(ref: PossibleRef<T>, value: T | null) {
     (ref as any).current = value;
   }
 }
+
+export const isServer = typeof document === 'undefined';
