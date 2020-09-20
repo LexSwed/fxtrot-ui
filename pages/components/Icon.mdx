@@ -3,30 +3,90 @@ name: Icon
 ---
 
 import { Playground } from 'dokz';
-import { Icon, Box, Text, Stack } from '../../build';
+import { Icon, Box, Text, Stack, styled } from '../../build';
 import * as icons from 'react-icons/hi';
 
-<Box
-  css={{
-    display: 'grid',
-    gridAutoFlow: 'row',
-    gridTemplateColumns: 'repeat(auto-fill, 120px)',
-    gap: '$4',
-    py: '$4',
-  }}
->
-  {Object.entries(icons).map(([name, icon]) => (
-    <Stack
-      css={{
-        p: '$3',
-        shadow: 'base',
-      }}
-      space="base"
-      align="center"
-      key={name}
-    >
-      <Icon as={icon} size="base" />
-      <Text size="xs">{name}</Text>
+```tsx
+import { HiBadgeCheck } from 'react-icons/hi';
+```
+
+export const HiBadgeCheck = icons.HiBadgeCheck;
+
+<Playground>
+  <Icon as={HiBadgeCheck} size="xl" />
+</Playground>
+
+export const Grid = styled('div', {
+  display: 'grid',
+  gridAutoFlow: 'row',
+  gridTemplateColumns: 'repeat(auto-fill, 200px)',
+  gap: '$4',
+  py: '$4',
+});
+
+export const IconBox = styled(Stack, {
+  'p': '$3',
+  'shadow': '$base',
+  'transition': '0.2s ease-in-out',
+  'cursor': 'pointer',
+  '&:hover': {
+    shadow: '$lg',
+  },
+});
+
+export function copy(text) {
+  navigator.permissions.query({ name: 'clipboard-write' }).then((result) => {
+    if (result.state == 'granted' || result.state == 'prompt') {
+      navigator.clipboard.writeText(text);
+    }
+  });
+}
+
+export const IconsWithFilter = () => {
+  const [filterText, setText] = React.useState('');
+  return (
+    <Stack space="md">
+      <Box
+        as="input"
+        css={{ p: '$2', border: '1px solid $gray200', br: '$md' }}
+        value={filterText}
+        onChange={(e) => setText(e.target.value)}
+        placeholder="Search for icon"
+      />
+      <Box>
+        {Object.entries(icons)
+          .filter(([name]) => name.toLowerCase().includes(filterText.toLowerCase()))
+          .reduce(
+            (res, [name, icon]) => (
+              name.includes('Outline') ? res[1].push([name, icon]) : res[0].push([name, icon]), res
+            ),
+            [[], []]
+          )
+          .map((icons, i) =>
+            icons.length > 0 ? (
+              <>
+                <Text size="xl" as="h2">
+                  {i === 0 ? 'Solid' : 'Outline'}
+                </Text>
+                <Grid>
+                  {icons.map(([name, icon]) => (
+                    <IconBox
+                      space="base"
+                      align="center"
+                      key={name}
+                      onClick={() => copy(`import { ${name} } from 'react-icons/hi`)}
+                    >
+                      <Icon as={icon} size="base" />
+                      <Text size="xs">{name}</Text>
+                    </IconBox>
+                  ))}
+                </Grid>
+              </>
+            ) : null
+          )}
+      </Box>
     </Stack>
-  ))}
-</Box>
+  );
+};
+
+<IconsWithFilter />
