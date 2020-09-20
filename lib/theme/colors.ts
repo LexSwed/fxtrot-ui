@@ -211,8 +211,9 @@ const mainColors = {
   $text: palette['$gray900'],
   $textDisabled: palette['$gray600'],
   $surface: '#fff',
-  $borderDefault: palette['$gray500'],
-  $borderFocus: palette['$gray700'],
+  $borderDefault: palette['$gray400'],
+  $borderHover: palette['$gray500'],
+  $borderFocus: palette['$gray600'],
 };
 
 export default {

@@ -201,11 +201,11 @@ export const { styled, css } = createStyled({
       },
     }),
 
-    $inputBorder: () => ({
-      'br': '$md',
-      'border': '2px solid $borderDefault',
-      ':focus': {
-        borderColor: '$borderFocus',
+    $inputStyles: () => ({
+      'border': '1px solid $borderDefault',
+      '&:hover': {
+        borderColor: '$borderHover',
+        bc: '$gray100',
       },
       ':disabled': {
         bc: '$gray200',
@@ -214,6 +214,7 @@ export const { styled, css } = createStyled({
       },
       ':active': {
         borderColor: '$borderFocus',
+        bc: '$gray200',
       },
     }),
   },

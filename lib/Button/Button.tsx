@@ -14,9 +14,9 @@ const ButtonRoot = styled('button', {
   'color': 'white',
   'fontWeight': 500,
   'transition': '0.2s ease-in-out',
-  '$outline': 2,
+  '$outline': 1,
   'font': '$default',
-  'border': '2px solid transparent',
+  'border': '1px solid transparent',
   'br': '$md',
 
   ':disabled': {
@@ -33,10 +33,6 @@ const ButtonRoot = styled('button', {
           borderColor: '$blue600',
           bc: '$blue600',
         },
-        ':focus': {
-          borderColor: '$blue700',
-          bc: '$blue700',
-        },
         ':active': {
           borderColor: '$blue700',
           bc: '$blue700',
@@ -50,17 +46,13 @@ const ButtonRoot = styled('button', {
       secondary: {
         bc: '$surface',
         color: '$text',
-        $inputBorder: 'apply',
-        $outline: 1,
+        $inputStyles: 'apply',
       },
       text: {
         'bc': 'transparent',
         'color': '$text',
         ':hover': {
           bc: '$gray100',
-        },
-        ':focus': {
-          bc: '$gray200',
         },
         ':active': {
           bc: '$gray200',
@@ -77,10 +69,6 @@ const ButtonRoot = styled('button', {
         'cursor': 'pointer',
         ':not([aria-disabled="true"]):hover': {
           color: '$blue600',
-          textDecoration: 'underline',
-        },
-        ':not([aria-disabled="true"]):focus': {
-          color: '$blue700',
           textDecoration: 'underline',
         },
         ':not([aria-disabled="true"]):active': {

@@ -3,29 +3,29 @@ name: Button
 ---
 
 import { Playground } from 'dokz';
-import { Box, Button } from '../../build';
+import { Box, Stack, Button } from '../../build';
 
 # Button
 
 <Playground>
-  <>
-    <Box css={{ p: '$8', display: 'flex', gap: '$3' }}>
+  <Stack space="xl" css={{ py: '$8', bc: '$gray050' }}>
+    <Box css={{ px: '$8', display: 'flex', gap: '$3' }}>
       <Button>Primary</Button>
       <Button disabled>Primary (disabled)</Button>
     </Box>
-    <Box css={{ p: '$8', display: 'flex', gap: '$3' }}>
+    <Box css={{ px: '$8', display: 'flex', gap: '$3' }}>
       <Button variant="secondary">Secondary</Button>
       <Button variant="secondary" disabled>
         Secondary (disabled)
       </Button>
     </Box>
-    <Box css={{ p: '$8', display: 'flex', gap: '$3' }}>
+    <Box css={{ px: '$8', display: 'flex', gap: '$3' }}>
       <Button variant="text">Text</Button>
       <Button variant="text" disabled>
         Text (disabled)
       </Button>
     </Box>
-    <Box css={{ p: '$8', display: 'flex', gap: '$3' }}>
+    <Box css={{ px: '$8', display: 'flex', gap: '$3' }}>
       <Button variant="link" as="a" href="#">
         Link
       </Button>
@@ -33,5 +33,5 @@ import { Box, Button } from '../../build';
         Link (disabled)
       </Button>
     </Box>
-  </>
+  </Stack>
 </Playground>

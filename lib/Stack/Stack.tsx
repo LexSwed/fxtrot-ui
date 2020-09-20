@@ -1,4 +1,3 @@
-import React from 'react';
 import { styled, Scale, Size } from '../stitches.config';
 
 const space: { [T in Scale]: { gap: Size } } = {
@@ -12,19 +11,19 @@ const space: { [T in Scale]: { gap: Size } } = {
     gap: '$2',
   },
   'md': {
-    gap: '$3',
+    gap: '$6',
   },
   'base': {
-    gap: '$3',
+    gap: '$6',
   },
   'lg': {
-    gap: '$4',
+    gap: '$8',
   },
   'xl': {
-    gap: '$5',
+    gap: '$10',
   },
   '2xl': {
-    gap: '$6',
+    gap: '$16',
   },
 };
 
