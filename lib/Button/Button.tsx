@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { useButton } from '@react-aria/button';
 
 import { styled } from '../stitches.config';
+import { useForkRef } from '../utils';
 
 const ButtonRoot = styled('button', {
   py: '$2',
@@ -18,15 +19,17 @@ const ButtonRoot = styled('button', {
         'color': 'white',
         'br': '$md',
         '&:hover': {
+          bc: '$blue600',
+        },
+        '&:active': {
           bc: '$blue700',
         },
-      },
-      pill: {
-        'bc': '$blue500',
-        'color': 'white',
-        'br': '$pill',
-        '&:hover': {
-          bc: '$blue700',
+        '&:focus': {
+          outlineColor: '$blue100',
+        },
+        '&:disabled': {
+          color: '$gray600',
+          bc: '$gray100',
         },
       },
       outline: {
@@ -44,17 +47,19 @@ const ButtonRoot = styled('button', {
   },
 });
 
-type Props = React.ComponentProps<typeof ButtonRoot>;
+type ButtonProps = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
+type Props = React.ComponentPropsWithRef<typeof ButtonRoot> & ButtonProps;
 
-const Button: React.FC<Props> = ({ as, variant = 'default', ...props }) => {
-  const ref = useRef<HTMLButtonElement>(null);
-  const { buttonProps } = useButton(props as any, ref);
+const Button = React.forwardRef<HTMLButtonElement, Props>(({ as, variant = 'default', css, ...props }, propRef) => {
+  const innerRef = useRef<HTMLButtonElement>(null);
+  const { buttonProps } = useButton({ isDisabled: props.disabled, ...props } as any, innerRef);
+  const ref = useForkRef(innerRef, propRef);
 
   return (
-    <ButtonRoot {...buttonProps} variant={variant} as={as} ref={ref}>
+    <ButtonRoot {...buttonProps} css={css} variant={variant} as={as} ref={ref}>
       {props.children}
     </ButtonRoot>
   );
-};
+});
 
 export default Button;
