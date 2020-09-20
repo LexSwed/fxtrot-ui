@@ -19,5 +19,19 @@ import { Box, Button } from '../../build';
         Secondary (disabled)
       </Button>
     </Box>
+    <Box css={{ p: '$8', display: 'flex', gap: '$3' }}>
+      <Button variant="text">Text</Button>
+      <Button variant="text" disabled>
+        Text (disabled)
+      </Button>
+    </Box>
+    <Box css={{ p: '$8', display: 'flex', gap: '$3' }}>
+      <Button variant="link" as="a" href="#">
+        Link
+      </Button>
+      <Button variant="link" as="a" href="#" disabled>
+        Link (disabled)
+      </Button>
+    </Box>
   </>
 </Playground>

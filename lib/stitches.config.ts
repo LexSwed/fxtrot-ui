@@ -98,84 +98,84 @@ export const { styled, css } = createStyled({
     screen: (rule) => `@media (min-width: 1280px) { ${rule} }`,
   },
   utils: {
-    p: () => (value: keyof Theme['space'] | (string & {})) => ({
+    p: (value: keyof Theme['space'] | (string & {})) => ({
       paddingTop: value,
       paddingBottom: value,
       paddingLeft: value,
       paddingRight: value,
     }),
-    pt: () => (value: keyof Theme['space'] | (string & {})) => ({
+    pt: (value: keyof Theme['space'] | (string & {})) => ({
       paddingTop: value,
     }),
-    pr: () => (value: keyof Theme['space'] | (string & {})) => ({
+    pr: (value: keyof Theme['space'] | (string & {})) => ({
       paddingRight: value,
     }),
-    pb: () => (value: keyof Theme['space'] | (string & {})) => ({
+    pb: (value: keyof Theme['space'] | (string & {})) => ({
       paddingBottom: value,
     }),
-    pl: () => (value: keyof Theme['space'] | (string & {})) => ({
+    pl: (value: keyof Theme['space'] | (string & {})) => ({
       paddingLeft: value,
     }),
-    px: () => (value: keyof Theme['space'] | (string & {})) => ({
+    px: (value: keyof Theme['space'] | (string & {})) => ({
       paddingLeft: value,
       paddingRight: value,
     }),
-    py: () => (value: keyof Theme['space'] | (string & {})) => ({
+    py: (value: keyof Theme['space'] | (string & {})) => ({
       paddingTop: value,
       paddingBottom: value,
     }),
-    m: () => (value: keyof Theme['space'] | (string & {})) => ({
+    m: (value: keyof Theme['space'] | (string & {})) => ({
       marginTop: value,
       marginBottom: value,
       marginLeft: value,
       marginRight: value,
     }),
-    mt: () => (value: keyof Theme['space'] | (string & {})) => ({
+    mt: (value: keyof Theme['space'] | (string & {})) => ({
       marginTop: value,
     }),
-    mr: () => (value: keyof Theme['space'] | (string & {})) => ({
+    mr: (value: keyof Theme['space'] | (string & {})) => ({
       marginRight: value,
     }),
-    mb: () => (value: keyof Theme['space'] | (string & {})) => ({
+    mb: (value: keyof Theme['space'] | (string & {})) => ({
       marginBottom: value,
     }),
-    ml: () => (value: keyof Theme['space'] | (string & {})) => ({
+    ml: (value: keyof Theme['space'] | (string & {})) => ({
       marginLeft: value,
     }),
-    mx: () => (value: keyof Theme['space'] | (string & {})) => ({
+    mx: (value: keyof Theme['space'] | (string & {})) => ({
       marginLeft: value,
       marginRight: value,
     }),
-    my: () => (value: keyof Theme['space'] | (string & {})) => ({
+    my: (value: keyof Theme['space'] | (string & {})) => ({
       marginTop: value,
       marginBottom: value,
     }),
 
-    bg: () => (value: keyof Theme['colors'] | (string & {})) => ({
+    bg: (value: keyof Theme['colors'] | (string & {})) => ({
       background: value,
     }),
-    bc: () => (value: keyof Theme['colors'] | (string & {})) => ({
+    bc: (value: keyof Theme['colors'] | (string & {})) => ({
       backgroundColor: value,
     }),
-    br: () => (value: keyof Theme['radii'] | (string & {})) => ({
+    br: (value: keyof Theme['radii'] | (string & {})) => ({
       borderRadius: value,
     }),
 
-    textSize: () => (value: keyof Theme['fontSizes']) => ({
+    textSize: (value: keyof Theme['fontSizes']) => ({
       fontSize: value,
       lineHeight: theme.lineHeights[value],
     }),
 
-    size: () => (value: keyof Theme['sizes'] | (string & {})) => ({
+    size: (value: keyof Theme['sizes'] | (string & {})) => ({
       width: value,
       height: value,
     }),
 
-    shadow: () => (value: keyof Theme['shadows'] | (string & {})) => ({
+    shadow: (value: keyof Theme['shadows'] | (string & {})) => ({
       boxShadow: value,
     }),
 
-    $outline: () => (offset: number) => ({
+    $outline: (offset: number) => ({
       ':not(:disabled)': {
         'position': 'relative',
         'outline': 'none',
@@ -201,7 +201,7 @@ export const { styled, css } = createStyled({
       },
     }),
 
-    $inputBorder: () => () => ({
+    $inputBorder: () => ({
       'br': '$md',
       'border': '2px solid $borderDefault',
       ':focus': {
