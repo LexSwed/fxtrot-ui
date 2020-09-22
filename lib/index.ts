@@ -4,4 +4,6 @@ export { default as Icon } from './Icon';
 export { default as Stack } from './Stack';
 export { default as Text } from './Text';
 
+export { default as ThemeProvider } from './ThemeProvider';
 export { theme, styled, css } from './stitches.config';
+export { themes } from './theme/themes';

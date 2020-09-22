@@ -26,16 +26,16 @@ const ButtonRoot = styled('button', {
   'variants': {
     variant: {
       primary: {
-        'bc': '$blue500',
+        'bc': '$primary',
         'color': 'white',
-        'borderColor': '$blue500',
+        'borderColor': '$primary',
         ':hover': {
-          borderColor: '$blue600',
-          bc: '$blue600',
+          borderColor: '$hover',
+          bc: '$hover',
         },
         ':active': {
-          borderColor: '$blue700',
-          bc: '$blue700',
+          borderColor: '$active',
+          bc: '$active',
         },
         ':disabled': {
           borderColor: '$gray200',
@@ -59,25 +59,25 @@ const ButtonRoot = styled('button', {
         },
         ':disabled': {
           borderColor: 'transparent',
-          color: '$gray600',
+          color: '$gray500',
           bc: 'transparent',
         },
       },
       link: {
         'bc': 'transparent',
-        'color': '$blue500',
+        'color': '$primary',
         'cursor': 'pointer',
         ':not([aria-disabled="true"]):hover': {
-          color: '$blue600',
+          color: '$hover',
           textDecoration: 'underline',
         },
         ':not([aria-disabled="true"]):active': {
-          color: '$blue700',
+          color: '$active',
           textDecoration: 'underline',
         },
         '&[aria-disabled="true"]': {
           borderColor: 'transparent',
-          color: '$gray600',
+          color: '$gray500',
           cursor: 'default',
         },
       },
@@ -85,8 +85,8 @@ const ButtonRoot = styled('button', {
   },
 });
 
-type ButtonProps = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
-type Props = React.ComponentPropsWithRef<typeof ButtonRoot> & ButtonProps;
+// type ButtonProps = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
+type Props = React.ComponentPropsWithRef<typeof ButtonRoot>;
 
 const Button = React.forwardRef<HTMLButtonElement, Props>(({ as, variant = 'primary', css, ...props }, propRef) => {
   const innerRef = useRef<HTMLButtonElement>(null);

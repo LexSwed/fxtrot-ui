@@ -3,7 +3,7 @@ name: Palette
 ---
 
 import { Box } from '../../build';
-import colors from '../../lib/theme/colors';
+import { groupPalette } from './helpers';
 
 # Palette
 
@@ -34,17 +34,27 @@ export const styles = {
     borderRadius: '$round',
     transition: '0.2s',
     cursor: 'pointer',
+    boxShadow: '$sm',
   },
 };
 
-<Box css={styles.wrapper}>
-  {Object.entries(colors).map(([title, color]) => (
-    <Box css={styles.swatch} key={title}>
-      <Box css={{ ...styles.colorItem, bc: title }} />
-      <div>
-        <Box css={styles.text}>{title}</Box>
-        <Box css={styles.text2}>{color}</Box>
-      </div>
-    </Box>
+export const groupedColors = groupPalette();
+
+<Box>
+  {Object.entries(groupedColors).map(([title, colors]) => (
+    <React.Fragment key={title}>
+      <h2>{title}</h2>
+      <Box css={styles.wrapper}>
+        {Object.entries(colors).map(([name, color]) => (
+          <Box css={styles.swatch} key={name}>
+            <Box css={{ ...styles.colorItem, bc: name }} />
+            <div>
+              <Box css={styles.text}>{name}</Box>
+              <Box css={styles.text2}>{color}</Box>
+            </div>
+          </Box>
+        ))}
+      </Box>
+    </React.Fragment>
   ))}
 </Box>
