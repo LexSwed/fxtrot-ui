@@ -1,5 +1,5 @@
 {
-  "name": "example",
+  "name": "@fxtrot/ui",
   "version": "0.0.1",
   "private": true,
   "source": "lib/index.ts",
