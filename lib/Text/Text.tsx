@@ -1,4 +1,4 @@
-import { styled, theme } from '../stitches.config';
+import { styled } from '../stitches.config';
 
 const Text = styled('span', {
   variants: {
@@ -44,5 +44,10 @@ const Text = styled('span', {
     },
   },
 });
+
+Text.defaultProps = {
+  font: 'default',
+  size: 'base',
+};
 
 export default Text;

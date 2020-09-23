@@ -1,50 +1,37 @@
-import { styled, Scale, Size } from '../stitches.config';
-
-const space: { [T in Scale]: { gap: Size } } = {
-  'none': {
-    gap: '$0',
-  },
-  'xs': {
-    gap: '$1',
-  },
-  'sm': {
-    gap: '$2',
-  },
-  'md': {
-    gap: '$6',
-  },
-  'base': {
-    gap: '$6',
-  },
-  'lg': {
-    gap: '$8',
-  },
-  'xl': {
-    gap: '$10',
-  },
-  '2xl': {
-    gap: '$16',
-  },
-};
+import { styled } from '../stitches.config';
+import { gaps } from '../theme/space';
 
 const Stack = styled('div', {
   display: 'flex',
-  flexFlow: 'column',
 
   variants: {
-    space,
+    space: gaps,
     align: {
-      start: {
+      left: {
         alignItems: 'flex-start',
       },
       center: {
         alignItems: 'center',
       },
-      end: {
+      right: {
         alignItems: 'flex-end',
+      },
+    },
+    flow: {
+      initial: {
+        flexDirection: 'column',
+      },
+      reverse: {
+        flexDirection: 'column-reverse',
       },
     },
   },
 });
+
+Stack.defaultProps = {
+  space: 'none',
+  flow: 'initial',
+  wrap: 'nowrap',
+};
 
 export default Stack;

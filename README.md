@@ -1,1 +1,1 @@
-# A repository for @complete/core
+# A repository for @fxtrot/ui

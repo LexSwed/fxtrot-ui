@@ -12,7 +12,7 @@ export default function App(props: AppProps) {
         <link href="https://fonts.googleapis.com/css?family=Fira+Code" rel="stylesheet" key="google-font-Fira" />
       </Head>
       <DokzProvider
-        headerItems={[<GithubLink key="0" url="https://github.com/remorses/dokz" />, <ColorModeSwitch key="1" />]}
+        headerItems={[<GithubLink key="0" url="https://github.com/LexSwed/fxtrot-ui" />, <ColorModeSwitch key="1" />]}
         sidebarOrdering={{
           'index.mdx': true,
         }}

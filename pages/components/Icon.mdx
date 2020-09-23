@@ -65,7 +65,7 @@ export const IconsWithFilter = () => {
           )
           .map((icons, i) =>
             icons.length > 0 ? (
-              <Box>
+              <Box key={i}>
                 <Text size="xl" as="h2">
                   {i === 0 ? 'Solid' : 'Outline'}
                 </Text>
