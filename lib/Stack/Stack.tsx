@@ -25,6 +25,14 @@ const Stack = styled('div', {
         flexDirection: 'column-reverse',
       },
     },
+    display: {
+      block: {
+        display: 'flex',
+      },
+      inline: {
+        display: 'inline-flex',
+      },
+    },
   },
 });
 

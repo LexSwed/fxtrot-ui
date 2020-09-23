@@ -42,6 +42,14 @@ const Inline = styled('div', {
         flexWrap: 'wrap-reverse',
       },
     },
+    display: {
+      block: {
+        display: 'flex',
+      },
+      inline: {
+        display: 'inline-flex',
+      },
+    },
   },
 });
 
