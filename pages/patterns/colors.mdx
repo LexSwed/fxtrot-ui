@@ -3,7 +3,7 @@ name: Palette
 ---
 
 import { Box } from '../../build';
-import { groupPalette } from './helpers';
+import * as palette from '../../lib/theme/palette';
 
 # Palette
 
@@ -38,10 +38,8 @@ export const styles = {
   },
 };
 
-export const groupedColors = groupPalette();
-
 <Box>
-  {Object.entries(groupedColors).map(([title, colors]) => (
+  {Object.entries(palette).map(([title, colors]) => (
     <React.Fragment key={title}>
       <h2>{title}</h2>
       <Box css={styles.wrapper}>

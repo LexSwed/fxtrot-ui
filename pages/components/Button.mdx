@@ -14,6 +14,12 @@ import { Box, Stack, Button, ThemeProvider } from '../../build';
       <Button disabled>Primary (disabled)</Button>
     </Box>
     <Box css={{ px: '$8', display: 'flex', gap: '$3' }}>
+      <Button variant="outline">Outline</Button>
+      <Button variant="outline" disabled>
+        Outline (disabled)
+      </Button>
+    </Box>
+    <Box css={{ px: '$8', display: 'flex', gap: '$3' }}>
       <Button variant="secondary">Secondary</Button>
       <Button variant="secondary" disabled>
         Secondary (disabled)
@@ -47,6 +53,12 @@ Use `ThemeProvider` component to change the primary color of the button
       <Box css={{ px: '$8', display: 'flex', gap: '$3' }}>
         <Button>Primary</Button>
         <Button disabled>Primary (disabled)</Button>
+      </Box>
+      <Box css={{ px: '$8', display: 'flex', gap: '$3' }}>
+        <Button variant="outline">Outline</Button>
+        <Button variant="outline" disabled>
+          Outline (disabled)
+        </Button>
       </Box>
       <Box css={{ px: '$8', display: 'flex', gap: '$3' }}>
         <Button variant="secondary">Secondary</Button>

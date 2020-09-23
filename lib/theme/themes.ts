@@ -4,31 +4,47 @@ import colors from './colors';
 
 const filtered = ['grey'];
 
-export const themes = Object.fromEntries(
-  Object.entries(palette)
-    .filter(([name]) => !filtered.includes(name))
-    .map(([name, colors]) => [
-      name,
-      css.theme({
+const swatches: Array<readonly [string, Swatch]> = Object.entries(palette)
+  .filter(([name]) => !filtered.includes(name))
+  .map(([name, colors]): readonly [string, Swatch] => [
+    name,
+    {
+      colors: {
+        $primaryStill: colors[`$${name}500` as keyof typeof colors],
+        $primaryHover: colors[`$${name}600` as keyof typeof colors],
+        $primaryActive: colors[`$${name}700` as keyof typeof colors],
+        $primaryLight: colors[`$${name}050` as keyof typeof colors],
+        $primaryLightActive: colors[`$${name}100` as keyof typeof colors],
+      },
+    },
+  ])
+  .concat([
+    [
+      'black',
+      {
         colors: {
-          $primary: colors[`$${name}500` as keyof typeof colors],
-          $hover: colors[`$${name}600` as keyof typeof colors],
-          $active: colors[`$${name}700` as keyof typeof colors],
+          $primaryStill: colors['$gray800'],
+          $primaryHover: colors['$gray900'],
+          $primaryActive: 'black',
+          $primaryLight: colors['$gray100'],
+          $primaryLightActive: colors['$gray200'],
         },
-      }),
-    ])
-    .concat([
-      [
-        'black',
-        css.theme({
-          colors: {
-            $primary: colors['$gray800'],
-            $hover: colors['$gray900'],
-            $active: 'black',
-          },
-        }),
-      ],
-    ])
-) as Themes;
+      },
+    ],
+  ]);
+
+export const themesColors = Object.fromEntries(swatches);
+
+export const themes = Object.fromEntries(swatches.map(([name, swatch]) => [name, css.theme(swatch)])) as Themes;
 
 type Themes = { [Shade in keyof typeof palette]: string };
+
+type Swatch = {
+  colors: {
+    $primaryStill: string;
+    $primaryHover: string;
+    $primaryActive: string;
+    $primaryLight: string;
+    $primaryLightActive: string;
+  };
+};

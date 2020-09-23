@@ -1,16 +1,28 @@
 import palette from './palette';
 
+export const border = {
+  $default: palette['$gray400'],
+  $hover: palette['$gray500'],
+  $active: palette['$gray600'],
+};
+
+export const primary = {
+  $default: '$primaryStill',
+  $hover: '$primaryHover',
+  $active: '$primaryActive',
+  $light: '$primaryLight',
+};
+
 export const mainColors = {
   $text: palette['$gray900'],
   $textDisabled: palette['$gray600'],
   $surface: '#fff',
-  $borderDefault: palette['$gray400'],
-  $borderHover: palette['$gray500'],
-  $borderFocus: palette['$gray600'],
 
-  $primary: palette['$blue500'],
-  $hover: palette['$blue600'],
-  $active: palette['$blue700'],
+  $primaryStill: palette['$blue500'],
+  $primaryHover: palette['$blue600'],
+  $primaryActive: palette['$blue700'],
+  $primaryLight: palette['$blue050'],
+  $primaryLightActive: palette['$blue100'],
 };
 
 export default {

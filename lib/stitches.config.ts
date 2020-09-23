@@ -1,5 +1,5 @@
 import { createStyled } from '@stitches/react';
-import colors from './theme/colors';
+import colors, { border, primary } from './theme/colors';
 import { isServer } from './utils';
 
 const scales = {
@@ -201,22 +201,26 @@ export const { styled, css } = createStyled({
       },
     }),
 
-    $inputStyles: () => ({
-      'border': '1px solid $borderDefault',
-      '&:hover': {
-        borderColor: '$borderHover',
-        bc: '$gray100',
-      },
-      ':disabled': {
-        bc: '$gray200',
-        color: '$textDisabled',
-        borderColor: 'transparent',
-      },
-      ':active': {
-        borderColor: '$borderFocus',
-        bc: '$gray200',
-      },
-    }),
+    $inputStyles: (style: 'default' | 'primary') => {
+      const colors = style === 'default' ? border : primary;
+      return {
+        'border': '1px solid $borderDefault',
+        'borderColor': colors.$default,
+        '&:hover': {
+          borderColor: colors.$hover,
+          bc: '$gray100',
+        },
+        ':disabled': {
+          bc: '$gray200',
+          color: '$textDisabled',
+          borderColor: 'transparent',
+        },
+        ':active': {
+          borderColor: colors.$active,
+          bc: '$gray200',
+        },
+      };
+    },
   },
 });
 

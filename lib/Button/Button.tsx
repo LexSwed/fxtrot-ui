@@ -26,27 +26,40 @@ const ButtonRoot = styled('button', {
   'variants': {
     variant: {
       primary: {
-        'bc': '$primary',
+        'bc': '$primaryStill',
         'color': 'white',
-        'borderColor': '$primary',
+        'borderColor': '$primaryStill',
         ':hover': {
-          borderColor: '$hover',
-          bc: '$hover',
+          borderColor: '$primaryHover',
+          bc: '$primaryHover',
         },
         ':active': {
-          borderColor: '$active',
-          bc: '$active',
+          borderColor: '$primaryActive',
+          bc: '$primaryActive',
         },
         ':disabled': {
           borderColor: '$gray200',
-          color: '$gray600',
+          color: '$textDisabled',
           bc: '$gray200',
         },
       },
       secondary: {
         bc: '$surface',
         color: '$text',
-        $inputStyles: 'apply',
+        $inputStyles: 'default',
+      },
+      outline: {
+        'bc': '$surface',
+        'color': '$primaryStill',
+        '$inputStyles': 'primary',
+        ':hover': {
+          bc: '$primaryLight',
+          color: '$primaryHover',
+        },
+        ':active': {
+          bc: '$primaryLightActive',
+          color: '$primaryActive',
+        },
       },
       text: {
         'bc': 'transparent',
@@ -59,7 +72,7 @@ const ButtonRoot = styled('button', {
         },
         ':disabled': {
           borderColor: 'transparent',
-          color: '$gray500',
+          color: '$textDisabled',
           bc: 'transparent',
         },
       },
@@ -77,7 +90,7 @@ const ButtonRoot = styled('button', {
         },
         '&[aria-disabled="true"]': {
           borderColor: 'transparent',
-          color: '$gray500',
+          color: '$textDisabled',
           cursor: 'default',
         },
       },
