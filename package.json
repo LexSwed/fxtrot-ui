@@ -28,6 +28,7 @@
     "start": "microbundle watch --no-compress --jsx React.createElement --entry lib/index.ts --output build/index.js --no-pkg-main --format modern --tsconfig tsconfig.lib.json",
     "dev": "yarn run dokz:dev",
     "lint": "eslint lib pages",
+    "typecheck": "tsc --noEmit",
     "dokz:dev": "next dev",
     "dokz:build": "next build",
     "dokz:start": "next start"
@@ -61,6 +62,7 @@
     "husky": "^4.3.0",
     "jest": "^26.4.2",
     "microbundle": "^0.12.3",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.1.2",
     "pretty-quick": "^3.0.2",
     "typescript": "^4.0.3"
@@ -71,7 +73,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --pattern \"lib/**/*.*\" --staged && yarn lint && tsc --noEmit"
+      "pre-commit": "pretty-quick --pattern \"lib/**/*.*\" --staged && run-p lint typecheck"
     }
   }
 }
