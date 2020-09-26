@@ -1,4 +1,4 @@
-import { Box, styled } from '@fxtrot/ui';
+import { Box, styled } from '../lib';
 
 export const ExampleBox = styled(Box, {
   bc: '$gray050',

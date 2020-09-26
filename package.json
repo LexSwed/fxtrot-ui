@@ -3,7 +3,7 @@
   "description": "UI library for Fxtrot initiatives",
   "license": "Apache-2.0",
   "version": "0.0.1",
-  "source": "lib/index.ts",
+  "source": "src/lib/index.ts",
   "main": "build/index.js",
   "module": "build/index.module.js",
   "unpkg": "build/index.umd.js",
@@ -24,10 +24,10 @@
     "access": "public"
   },
   "scripts": {
-    "build": "microbundle --compress --jsx React.createElement --entry lib/index.ts --output build/index.js --no-pkg-main --tsconfig tsconfig.lib.json",
-    "start": "microbundle watch --no-compress --jsx React.createElement --entry lib/index.ts --output build/index.js --no-pkg-main --format modern --tsconfig tsconfig.lib.json",
+    "build": "microbundle --compress --external react --jsx React.createElement --entry src/lib/index.ts --output build/index.js --no-pkg-main --tsconfig tsconfig.lib.json",
+    "start": "microbundle watch --no-compress --external react --jsx React.createElement --entry src/lib/index.ts --output build/index.js --no-pkg-main --format modern --tsconfig tsconfig.lib.json",
     "dev": "yarn run dokz:dev",
-    "lint": "eslint lib src",
+    "lint": "eslint src",
     "typecheck": "tsc --noEmit",
     "dokz:dev": "next dev",
     "dokz:build": "next build",
@@ -68,7 +68,6 @@
     "typescript": "^4.0.3"
   },
   "peerDependencies": {
-    "@stitches/react": "*",
     "react": "^16.8.0"
   },
   "husky": {

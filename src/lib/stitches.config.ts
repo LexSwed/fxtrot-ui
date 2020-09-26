@@ -1,6 +1,6 @@
 import { createStyled } from '@stitches/react';
 import colors, { border, primary } from './theme/colors';
-import { scales } from './theme/space';
+import { scales } from './theme/scales';
 import { isServer } from './utils';
 
 export const theme = {

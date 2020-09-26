@@ -4,15 +4,14 @@ import { useButton } from '@react-aria/button';
 import { styled } from '../stitches.config';
 import { useForkRef } from '../utils';
 import Inline from '../Inline';
+import Icon from '../Icon';
 
-const ButtonRoot = styled('button', {
+const ButtonRoot = styled(Inline, {
   px: '$3',
   fontSize: '$sm',
   lineHeight: 1,
-  display: 'inline-block',
-  alignItems: 'center',
+  display: 'inline-flex',
   height: '$8',
-  color: 'white',
   fontWeight: 500,
   transition: '0.2s ease-in-out',
   $outline: 1,
@@ -20,6 +19,13 @@ const ButtonRoot = styled('button', {
   border: '1px solid transparent',
   br: '$md',
   cursor: 'default',
+
+  [`${Icon}:first-child`]: {
+    ml: '-$1',
+  },
+  [`${Icon}:last-child`]: {
+    mr: '-$1',
+  },
 
   variants: {
     variant: {
@@ -99,16 +105,18 @@ const ButtonRoot = styled('button', {
 // type ButtonProps = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
 type Props = React.ComponentPropsWithRef<typeof ButtonRoot>;
 
-const Button = React.forwardRef<HTMLButtonElement, Props>(({ as, variant = 'primary', css, ...props }, propRef) => {
-  const innerRef = useRef<HTMLButtonElement>(null);
-  const { buttonProps } = useButton({ isDisabled: props.disabled, elementType: as, ...props } as any, innerRef);
-  const ref = useForkRef(innerRef, propRef);
+const Button = React.forwardRef<HTMLButtonElement, Props>(
+  ({ as = 'button', variant = 'primary', css, ...props }, propRef) => {
+    const innerRef = useRef<HTMLButtonElement>(null);
+    const { buttonProps } = useButton({ isDisabled: props.disabled, elementType: as, ...props } as any, innerRef);
+    const ref = useForkRef(innerRef, propRef);
 
-  return (
-    <ButtonRoot {...buttonProps} css={css} variant={variant} as={as} ref={ref}>
-      <Inline space="$2">{props.children}</Inline>
-    </ButtonRoot>
-  );
-});
+    return (
+      <ButtonRoot {...buttonProps} css={css} space="$2" variant={variant} as={as} ref={ref}>
+        {props.children}
+      </ButtonRoot>
+    );
+  }
+);
 
 export default Button;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Inline } from '..';
+import Inline from '../Inline';
 import { styled } from '../stitches.config';
 
 const Main = styled('span', {

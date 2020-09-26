@@ -1,5 +1,5 @@
 import { styled } from '../stitches.config';
-import { gaps } from '../theme/space';
+import { gaps } from '../theme/scales';
 
 const Inline = styled('div', {
   display: 'flex',

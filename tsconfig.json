@@ -17,9 +17,9 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@fxtrot/ui": ["./lib"]
+      "@fxtrot/ui": ["src/lib"]
     }
   },
-  "include": ["next-env.d.ts", "src/**/*", "lib/**/*"],
+  "include": ["next-env.d.ts", "src/**/*"],
   "exclude": ["node_modules"]
 }
