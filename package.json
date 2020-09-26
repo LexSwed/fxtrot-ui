@@ -1,18 +1,27 @@
 {
   "name": "@fxtrot/ui",
+  "description": "UI library for Fxtrot initiatives",
+  "license": "Apache-2.0",
   "version": "0.0.1",
-  "private": true,
   "source": "lib/index.ts",
   "main": "build/index.js",
   "module": "build/index.module.js",
   "unpkg": "build/index.umd.js",
   "typings": "build/index.d.ts",
   "files": [
-    "dist"
+    "build",
+    "lib"
   ],
   "sideEffects": false,
   "engines": {
     "node": ">=12"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LexSwed/fxtrot-ui"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "build": "microbundle --compress --jsx React.createElement --entry lib/index.ts --output build/index.js --no-pkg-main --tsconfig tsconfig.lib.json",
@@ -58,7 +67,7 @@
   },
   "peerDependencies": {
     "@stitches/react": "*",
-    "react": ">=16.0.0"
+    "react": "^16.8.0"
   },
   "husky": {
     "hooks": {
