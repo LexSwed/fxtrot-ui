@@ -27,7 +27,7 @@
     "build": "microbundle --compress --jsx React.createElement --entry lib/index.ts --output build/index.js --no-pkg-main --tsconfig tsconfig.lib.json",
     "start": "microbundle watch --no-compress --jsx React.createElement --entry lib/index.ts --output build/index.js --no-pkg-main --format modern --tsconfig tsconfig.lib.json",
     "dev": "yarn run dokz:dev",
-    "lint": "eslint lib pages",
+    "lint": "eslint lib src",
     "typecheck": "tsc --noEmit",
     "dokz:dev": "next dev",
     "dokz:build": "next build",

@@ -14,8 +14,12 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@fxtrot/ui": ["./lib"]
+    }
   },
-  "include": ["next-env.d.ts", "pages/**/*", "lib/**/*"],
+  "include": ["next-env.d.ts", "src/**/*", "lib/**/*"],
   "exclude": ["node_modules"]
 }
