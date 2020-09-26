@@ -17,8 +17,8 @@
   "scripts": {
     "build": "microbundle --compress --jsx React.createElement --entry lib/index.ts --output build/index.js --no-pkg-main --tsconfig tsconfig.lib.json",
     "start": "microbundle watch --no-compress --jsx React.createElement --entry lib/index.ts --output build/index.js --no-pkg-main --format modern --tsconfig tsconfig.lib.json",
-    "dev": "run-p start dokz:dev",
-    "lint": "eslint .",
+    "dev": "yarn run dokz:dev",
+    "lint": "eslint lib pages",
     "dokz:dev": "next dev",
     "dokz:build": "next build",
     "dokz:start": "next start"
@@ -49,9 +49,11 @@
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.21.2",
     "eslint-plugin-react-hooks": "^4.1.2",
+    "husky": "^4.3.0",
     "jest": "^26.4.2",
     "microbundle": "^0.12.3",
-    "npm-run-all": "^4.1.5",
+    "prettier": "^2.1.2",
+    "pretty-quick": "^3.0.2",
     "typescript": "^4.0.3"
   },
   "peerDependencies": {
@@ -60,7 +62,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --pattern \"src/**/*.*\" --staged && yarn lint && tsc --noEmit"
+      "pre-commit": "pretty-quick --pattern \"lib/**/*.*\" --staged && yarn lint && tsc --noEmit"
     }
   }
 }

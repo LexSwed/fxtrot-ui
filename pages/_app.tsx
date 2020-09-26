@@ -1,4 +1,4 @@
-import { DokzProvider, GithubLink, ColorModeSwitch } from 'dokz';
+import { DokzProvider, GithubLink } from 'dokz';
 import React, { Fragment } from 'react';
 import Head from 'next/head';
 import { AppProps } from 'next/dist/next-server/lib/router/router';
@@ -12,10 +12,14 @@ export default function App(props: AppProps) {
         <link href="https://fonts.googleapis.com/css?family=Fira+Code" rel="stylesheet" key="google-font-Fira" />
       </Head>
       <DokzProvider
-        headerItems={[<GithubLink key="0" url="https://github.com/LexSwed/fxtrot-ui" />, <ColorModeSwitch key="1" />]}
+        headerItems={[<GithubLink key="0" url="https://github.com/LexSwed/fxtrot-ui" />]}
         sidebarOrdering={{
           'index.mdx': true,
         }}
+        docsRootPath="pages"
+        githubUrl="LexSwed/fxtrot-ui"
+        branch="master"
+        headerLogo="Fxtrot UI"
       >
         <Component {...pageProps} />
       </DokzProvider>
