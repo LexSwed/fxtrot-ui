@@ -173,11 +173,15 @@ export const { styled, css } = createStyled({
           transitionTimingFunction: 'ease-in-out',
           pointerEvents: 'none',
           br: 'inherit',
+          willChange: 'box-shadow',
         },
-
-        ':focus-visible::before': {
-          boxShadow: '0 0 0 2px $text',
-        },
+      },
+      ':focus': {
+        outline: 'none',
+        boxShadow: 'none',
+      },
+      ':focus-visible::before': {
+        boxShadow: '0 0 0 2px $text',
       },
     }),
 

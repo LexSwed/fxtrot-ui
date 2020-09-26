@@ -49,12 +49,12 @@ export const IconsWithFilter = () => {
     <Stack space="md">
       <Box
         as="input"
-        css={{ p: '$2', border: '1px solid $gray200', br: '$md' }}
+        css={{ p: '$2', border: '1px solid $gray200', br: '$md', width: '100%' }}
         value={filterText}
         onChange={(e) => setText(e.target.value)}
-        placeholder="Search for icon"
+        placeholder="Search for an icon"
       />
-      <Box css={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '$3' }}>
+      <Box css={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '$3', width: '100%' }}>
         {Object.entries(icons)
           .filter(([name]) => name.toLowerCase().includes(filterText.toLowerCase()))
           .reduce(

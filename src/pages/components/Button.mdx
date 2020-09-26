@@ -91,9 +91,13 @@ Use `ThemeProvider` component to change the primary color of the button
   <Stack space="xl" css={{ p: '$8', bc: '$gray050' }}>
     <Button>
       <Icon as={HiDotsVertical} />
-      Primary
+      <span>Wrapped</span>
     </Button>
     <Button>
+      <Icon as={HiDotsVertical} />
+      Not wrapped
+    </Button>
+    <Button variant="outline">
       <Icon as={HiDotsVertical} variant="secondary" />
     </Button>
   </Stack>

@@ -24,8 +24,8 @@
     "access": "public"
   },
   "scripts": {
-    "build": "microbundle --compress --external react --jsx React.createElement --entry src/lib/index.ts --output build/index.js --no-pkg-main --tsconfig tsconfig.lib.json",
-    "start": "microbundle watch --no-compress --external react --jsx React.createElement --entry src/lib/index.ts --output build/index.js --no-pkg-main --format modern --tsconfig tsconfig.lib.json",
+    "build": "microbundle --compress --external react,react-dom --jsx React.createElement --entry src/lib/index.ts --output build/index.js --no-pkg-main --tsconfig tsconfig.lib.json",
+    "start": "microbundle watch --no-compress --external react,react-dom --jsx React.createElement --entry src/lib/index.ts --output build/index.js --no-pkg-main --format modern --tsconfig tsconfig.lib.json",
     "dev": "yarn run dokz:dev",
     "lint": "eslint src",
     "typecheck": "tsc --noEmit",
@@ -37,7 +37,9 @@
     "@chakra-ui/core": "0.x",
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
+    "@popperjs/core": "^2.5.2",
     "@react-aria/button": "^3.2.1",
+    "@react-aria/focus": "^3.2.1",
     "@stitches/react": "^0.0.3-canary.1",
     "dokz": "*",
     "next": "latest",
@@ -68,7 +70,8 @@
     "typescript": "^4.0.3"
   },
   "peerDependencies": {
-    "react": "^16.8.0"
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
   },
   "husky": {
     "hooks": {

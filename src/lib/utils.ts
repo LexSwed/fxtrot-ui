@@ -24,3 +24,7 @@ function setRef<T = unknown>(ref: PossibleRef<T>, value: T | null) {
 }
 
 export const isServer = typeof document === 'undefined';
+
+export function joinNonEmpty(...strings: Array<string | undefined>) {
+  return strings.filter(Boolean).join(' ');
+}

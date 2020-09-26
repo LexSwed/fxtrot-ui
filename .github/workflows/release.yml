@@ -7,34 +7,34 @@ jobs:
       - name: Begin CI...
         uses: actions/checkout@v2
 
-      - name: Use Node 12
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
+      # - name: Use Node 12
+      #   uses: actions/setup-node@v1
+      #   with:
+      #     node-version: 12.x
 
-      - name: Cache node_modules
-        uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      # - name: Cache node_modules
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: '**/node_modules'
+      #     key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-        env:
-          CI: true
+      # - name: Install dependencies
+      #   run: yarn install --frozen-lockfile
+      #   env:
+      #     CI: true
 
-      - name: Lint
-        run: yarn lint
-        env:
-          CI: true
+      # - name: Lint
+      #   run: yarn lint
+      #   env:
+      #     CI: true
 
-      - name: Build
-        run: yarn build
-        env:
-          CI: true
+      # - name: Build
+      #   run: yarn build
+      #   env:
+      #     CI: true
 
-      - name: Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release
+      # - name: Release
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      #   run: npx semantic-release

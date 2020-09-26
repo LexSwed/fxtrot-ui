@@ -1596,6 +1596,11 @@
     os-homedir "^1.0.1"
     regexpu-core "^4.5.4"
 
+"@popperjs/core@^2.5.2":
+  version "2.5.2"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.5.2.tgz#d3217d5f630766c0c92fbd55cf285ba64de0578b"
+  integrity sha512-tVkIU9JQw5fYPxLQgok/a7I6J1eEZ79svwQGpe2mb3jlVsPADOleefOnQBiS/takK7jQuNeswCUicMH1VWVziA==
+
 "@reach/alert@^0.1.2":
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/@reach/alert/-/alert-0.1.5.tgz#4da79add0055fa4295f51e5295ed3b80257e9153"
@@ -1644,7 +1649,7 @@
     "@react-stately/toggle" "^3.2.0"
     "@react-types/button" "^3.2.0"
 
-"@react-aria/focus@^3.2.0":
+"@react-aria/focus@^3.2.0", "@react-aria/focus@^3.2.1":
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/@react-aria/focus/-/focus-3.2.1.tgz#c51c91472737468a0633e34aaa76459f6df1aa8a"
   integrity sha512-tceyh8DZOV79KSoE/c/Hm/HAf3ezoaUL0cd8M8e4G+SWxO+bE2EIB0MEH2CzAIgeQ79cvexKv4T/Gms8PgnMIw==

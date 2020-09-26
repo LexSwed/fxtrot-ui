@@ -1,6 +1,7 @@
 import React from 'react';
 import Box from '../Box';
 import { themes } from '../theme/themes';
+import { joinNonEmpty } from '../utils';
 
 type Props = {
   theme: keyof typeof themes;
@@ -24,7 +25,3 @@ const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
 };
 
 export default ThemeProvider;
-
-function joinNonEmpty(...strings: Array<string | undefined>) {
-  return strings.filter(Boolean).join(' ');
-}
