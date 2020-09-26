@@ -19,32 +19,32 @@ export const scales = {
   $64: '256px',
 };
 
-export const gaps: { [T in Scale]: { gap: Size } } = {
-  'none': {
-    gap: '$0',
-  },
-  'xs': {
-    gap: '$1',
-  },
-  'sm': {
-    gap: '$2',
-  },
-  'md': {
-    gap: '$6',
-  },
-  'base': {
-    gap: '$6',
-  },
-  'lg': {
-    gap: '$8',
-  },
-  'xl': {
-    gap: '$10',
-  },
-  '2xl': {
-    gap: '$16',
-  },
+export const namedMap = {
+  'none': '$0',
+  'xs': '$1',
+  'sm': '$2',
+  'md': '$6',
+  'base': '$6',
+  'lg': '$8',
+  'xl': '$10',
+  '2xl': '$16',
 };
 
-export type Scale = 'xs' | 'sm' | 'base' | 'md' | 'lg' | 'xl' | '2xl' | 'none';
+export const gaps = new Proxy(Object.assign({}, scales, namedMap), {
+  get(target, key: Scale, receiver) {
+    if (key in scales) {
+      return {
+        gap: key,
+      };
+    } else if (key in namedMap) {
+      return {
+        gap: namedMap[key as keyof typeof namedMap],
+      };
+    }
+
+    return Reflect.get(target, key, receiver);
+  },
+});
+
 export type Size = keyof typeof scales;
+export type Scale = Size | 'xs' | 'sm' | 'base' | 'md' | 'lg' | 'xl' | '2xl' | 'none';

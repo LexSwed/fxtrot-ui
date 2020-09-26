@@ -3,27 +3,25 @@ import { useButton } from '@react-aria/button';
 
 import { styled } from '../stitches.config';
 import { useForkRef } from '../utils';
+import Inline from '../Inline';
 
 const ButtonRoot = styled('button', {
-  'px': '$3',
-  'fontSize': '$sm',
-  'lineHeight': 1,
-  'display': 'flex',
-  'alignItems': 'center',
-  'height': '$8',
-  'color': 'white',
-  'fontWeight': 500,
-  'transition': '0.2s ease-in-out',
-  '$outline': 1,
-  'font': '$default',
-  'border': '1px solid transparent',
-  'br': '$md',
+  px: '$3',
+  fontSize: '$sm',
+  lineHeight: 1,
+  display: 'inline-block',
+  alignItems: 'center',
+  height: '$8',
+  color: 'white',
+  fontWeight: 500,
+  transition: '0.2s ease-in-out',
+  $outline: 1,
+  font: '$default',
+  border: '1px solid transparent',
+  br: '$md',
+  cursor: 'default',
 
-  ':disabled': {
-    cursor: 'default',
-  },
-
-  'variants': {
+  variants: {
     variant: {
       primary: {
         'bc': '$primaryStill',
@@ -108,7 +106,7 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(({ as, variant = 'prim
 
   return (
     <ButtonRoot {...buttonProps} css={css} variant={variant} as={as} ref={ref}>
-      {props.children}
+      <Inline space="$2">{props.children}</Inline>
     </ButtonRoot>
   );
 });

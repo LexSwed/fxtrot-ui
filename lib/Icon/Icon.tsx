@@ -4,13 +4,13 @@ const IconBox = styled('i', {
   variants: {
     size: {
       'xs': {
-        size: '$4',
+        size: '$2',
       },
       'sm': {
-        size: '$5',
+        size: '$3',
       },
       'md': {
-        size: '$6',
+        size: '$4',
       },
       'base': {
         size: '$6',
@@ -39,5 +39,9 @@ const IconBox = styled('i', {
     },
   },
 });
+
+IconBox.defaultProps = {
+  size: 'md',
+};
 
 export default IconBox;

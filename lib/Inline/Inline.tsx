@@ -20,6 +20,17 @@ const Inline = styled('div', {
         justifyContent: 'flex-end',
       },
     },
+    alignY: {
+      top: {
+        alignItems: 'flex-start',
+      },
+      center: {
+        alignItems: 'center',
+      },
+      bottom: {
+        alignItems: 'flex-end',
+      },
+    },
     flow: {
       initial: {
         flexDirection: 'row',
@@ -56,6 +67,8 @@ const Inline = styled('div', {
 Inline.defaultProps = {
   space: 'none',
   flow: 'initial',
+  align: 'left',
+  alignY: 'center',
 };
 
 export default Inline;

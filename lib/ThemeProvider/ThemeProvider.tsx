@@ -7,7 +7,24 @@ type Props = {
 };
 
 const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
-  return <Box className={themes[theme]}>{children}</Box>;
+  const themeClass = theme in themes ? themes[theme] : theme;
+  return (
+    <>
+      {React.Children.map(children, (child) =>
+        React.isValidElement(child) ? (
+          React.cloneElement(child, { className: joinNonEmpty(child.props.className, themeClass) })
+        ) : (
+          <Box className={themeClass} as="span">
+            {child}
+          </Box>
+        )
+      )}
+    </>
+  );
 };
 
 export default ThemeProvider;
+
+function joinNonEmpty(...strings: Array<string | undefined>) {
+  return strings.filter(Boolean).join(' ');
+}

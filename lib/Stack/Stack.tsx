@@ -40,6 +40,7 @@ Stack.defaultProps = {
   space: 'none',
   flow: 'initial',
   wrap: 'nowrap',
+  align: 'left',
 };
 
 export default Stack;
