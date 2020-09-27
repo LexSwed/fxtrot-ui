@@ -7,7 +7,6 @@ type MenuStaticContextValue = ReturnType<typeof usePopper> & {
 };
 
 const menuContext = createContext<MenuStaticContextValue>({} as any);
-const menuStateContext = createContext<{ isOpen: boolean } & ReturnType<typeof useOpenState>[1]>({} as any);
 
 const options: Options = {
   placement: 'bottom-start',
@@ -49,18 +48,16 @@ export const MenuProvider: React.FC = ({ children }) => {
   );
 };
 
+const menuStateContext = createContext(false);
+const menuStateControlsContext = createContext<ReturnType<typeof useOpenState>[1]>({} as any);
+
 export const MenuStateProvider: React.FC = ({ children }) => {
   const [isOpen, controls] = useOpenState();
 
   return (
-    <menuStateContext.Provider
-      value={{
-        isOpen,
-        ...controls,
-      }}
-    >
-      {children}
-    </menuStateContext.Provider>
+    <menuStateControlsContext.Provider value={controls}>
+      <menuStateContext.Provider value={isOpen}>{children}</menuStateContext.Provider>
+    </menuStateControlsContext.Provider>
   );
 };
 
@@ -68,8 +65,12 @@ export function useMenu() {
   return useContext(menuContext);
 }
 
-export function useMenuState() {
+export function useMenuOpenState() {
   return useContext(menuStateContext);
+}
+
+export function useMenuControlState() {
+  return useContext(menuStateControlsContext);
 }
 
 function usePopper(
@@ -116,21 +117,45 @@ function usePopper(
   }, [triggerRef, popoverRef, instantiatePopper]);
 }
 
-function useOpenState(): [
-  isOpen: boolean,
-  controls: {
-    open: () => void;
-    close: () => void;
-    toggle: () => void;
-  }
-] {
+type InternalState = { lastKey: string | null };
+type MenuControlFunctions = {
+  stateRef: {
+    readonly current: InternalState;
+  };
+  open: () => void;
+  close: () => void;
+  toggle: () => void;
+  update: (state?: Partial<InternalState>) => void;
+};
+const initialState = { lastKey: null };
+function useOpenState(): [isOpen: boolean, controls: MenuControlFunctions] {
   const [isOpen, setOpen] = useState(false);
+  const internalStateRef = useRef<InternalState>(initialState);
 
-  const controls = useMemo(
+  const controls = useMemo<MenuControlFunctions>(
     () => ({
-      open: () => setOpen(true),
-      close: () => setOpen(false),
-      toggle: () => setOpen((open) => !open),
+      stateRef: internalStateRef,
+      open: () => {
+        setOpen(true);
+      },
+      close: () => {
+        internalStateRef.current = initialState;
+        setOpen(false);
+      },
+      toggle: () => {
+        setOpen((open) => {
+          if (open) {
+            internalStateRef.current = initialState;
+          }
+          return !open;
+        });
+      },
+      update: (state) => {
+        internalStateRef.current = {
+          ...internalStateRef.current,
+          ...state,
+        };
+      },
     }),
     []
   );

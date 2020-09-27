@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import Button from '../Button';
 import { useAllHandlers, useForkRef, useKeyboardHandles } from '../utils';
-import { useMenu, useMenuState } from './utils';
+import { useMenu, useMenuControlState, useMenuOpenState } from './utils';
 
 type ButtonProps = React.ComponentProps<typeof Button>;
 
@@ -15,18 +15,24 @@ const MenuButton = React.forwardRef<HTMLButtonElement, ButtonProps>((buttonProps
 export default MenuButton;
 
 function useTriggerProps(props: ButtonProps) {
-  const { isOpen, close, open, toggle } = useMenuState();
+  const isOpen = useMenuOpenState();
+  const { open, toggle, update } = useMenuControlState();
   const { seed, triggerRef } = useMenu();
   const onPress = useAllHandlers(props.onPress, toggle);
 
   const handleKeyDown = useKeyboardHandles(
     useMemo(
       () => ({
-        ArrowDown: open,
-        ArrowUp: open,
-        Escape: close,
+        ArrowDown: () => {
+          open();
+          update({ lastKey: 'ArrowDown' });
+        },
+        ArrowUp: () => {
+          open();
+          update({ lastKey: 'ArrowUp' });
+        },
       }),
-      [close, open]
+      [open, update]
     )
   );
 

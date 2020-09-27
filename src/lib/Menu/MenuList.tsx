@@ -1,15 +1,14 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import Portal from '../Portal';
-import { useMenu, useMenuState } from './utils';
-import { FocusScope, useFocusManager } from '@react-aria/focus';
-import useOnClickOutside, { useAllHandlers, useForkRef, useKeyboardHandles } from '../utils';
+import { useMenu, useMenuControlState, useMenuOpenState } from './utils';
+import { FocusManagerOptions, FocusScope, useFocusManager } from '@react-aria/focus';
+import useOnClickOutside, { useAllHandlers, useKeyboardHandles } from '../utils';
 import { styled } from '../stitches.config';
 
 const List = styled('ul', {
   maxHeight: '240px',
   overflowY: 'auto',
   bc: '$surfaceStill',
-  p: '$1',
   boxShadow: '$xl',
   br: '$md',
   border: '1px solid $gray200',
@@ -23,7 +22,7 @@ const UlList: React.FC<UlListProps> = (ulProps) => {
 };
 
 const MenuList: React.FC<UlListProps> = (props) => {
-  const { isOpen } = useMenuState();
+  const isOpen = useMenuOpenState();
 
   if (!isOpen) {
     return null;
@@ -40,24 +39,41 @@ const MenuList: React.FC<UlListProps> = (props) => {
 
 export default MenuList;
 
+const focusOptions: FocusManagerOptions = { wrap: true };
 function useMenuProps(props: UlListProps): UlListProps {
   const { popoverRef, seed } = useMenu();
-  const { close } = useMenuState();
+  const { close, stateRef } = useMenuControlState();
   const focusManager = useFocusManager();
 
   useOnClickOutside(popoverRef, close);
 
+  useEffect(() => {
+    if (stateRef.current.lastKey === 'ArrowUp') {
+      focusManager.focusPrevious(focusOptions);
+    } else {
+      focusManager.focusNext(focusOptions);
+    }
+  }, [focusManager, popoverRef, stateRef]);
+
   const handleKeyDown = useKeyboardHandles(
     useMemo(
       () => ({
-        'ArrowDown': () => focusManager.focusNext({ wrap: true }),
-        'ArrowUp': () => focusManager.focusPrevious({ wrap: true }),
-        'Enter': close,
-        ' ': close,
-        'Escape': close,
-        'Tab': (e) => {
-          console.log(e);
-          e.preventDefault();
+        'ArrowDown': () => focusManager.focusNext(focusOptions),
+        'ArrowUp': () => focusManager.focusPrevious(focusOptions),
+        'Enter': (event) => {
+          if (event.defaultPrevented) return;
+          close();
+        },
+        ' ': (event) => {
+          if (event.defaultPrevented) return;
+          close();
+        },
+        'Escape': (event) => {
+          if (event.defaultPrevented) return;
+          close();
+        },
+        'Tab': (event) => {
+          if (event.defaultPrevented) return;
           close();
         },
       }),

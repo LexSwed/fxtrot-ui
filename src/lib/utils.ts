@@ -73,14 +73,13 @@ export function useKeyboardHandles(handlers: KeyboardHandlers): KeyboardHandler 
 const MOUSEDOWN = 'mousedown';
 const TOUCHSTART = 'touchstart';
 
-type HandledEvents = [typeof MOUSEDOWN, typeof TOUCHSTART];
-type HandledEventsType = HandledEvents[number];
+type HandledEventsType = typeof TOUCHSTART | typeof MOUSEDOWN;
 type PossibleEvent = {
   [Type in HandledEventsType]: HTMLElementEventMap[Type];
 }[HandledEventsType];
 type Handler = (event: PossibleEvent) => void;
 
-const events: HandledEvents = [MOUSEDOWN, TOUCHSTART];
+const events: HandledEventsType[] = [MOUSEDOWN, TOUCHSTART];
 
 export default function useOnClickOutside(ref: React.RefObject<HTMLElement>, handler: Handler | null) {
   const handlerRef = useLatest(handler);
