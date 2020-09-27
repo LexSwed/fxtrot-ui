@@ -24,8 +24,8 @@
     "access": "public"
   },
   "scripts": {
-    "build": "microbundle --no-compress --external react,react-dom --jsx React.createElement --entry src/lib/index.ts --output build/index.js --no-pkg-main --tsconfig tsconfig.lib.json",
-    "start": "microbundle watch --no-compress --external react,react-dom --jsx React.createElement --entry src/lib/index.ts --output build/index.js --no-pkg-main --format modern --tsconfig tsconfig.lib.json",
+    "build": "microbundle build --jsx React.createElement --no-compress --entry src/lib/index.ts --output build/index.js --no-pkg-main --tsconfig tsconfig.lib.json",
+    "start": "microbundle watch --jsx React.createElement --no-compress --entry src/lib/index.ts --output build/index.js --no-pkg-main --tsconfig tsconfig.lib.json --format modern",
     "dev": "yarn run dokz:dev",
     "lint": "eslint src",
     "typecheck": "tsc --noEmit",
@@ -34,27 +34,23 @@
     "dokz:start": "next start"
   },
   "dependencies": {
-    "@chakra-ui/core": "0.x",
-    "@emotion/core": "^10.0.28",
-    "@emotion/styled": "^10.0.27",
     "@popperjs/core": "^2.5.2",
     "@react-aria/button": "^3.2.1",
     "@react-aria/focus": "^3.2.1",
     "@stitches/react": "^0.0.3-canary.1",
-    "dokz": "*",
-    "next": "latest",
-    "react": "16.13.1",
-    "react-dom": "^16.13.1",
-    "react-icons": "^3.11.0",
     "react-uid": "^2.3.0"
   },
   "devDependencies": {
+    "@chakra-ui/core": "^0.8.0",
+    "@emotion/core": "^10.0.35",
+    "@emotion/styled": "^10.0.27",
     "@types/jest": "^26.0.14",
     "@types/node": "^14.11.2",
     "@types/react": "^16.9.49",
     "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/parser": "^4.2.0",
     "babel-eslint": "^10.1.0",
+    "dokz": "^1.0.77",
     "eslint": "^7.10.0",
     "eslint-config-react-app": "^5.2.1",
     "eslint-plugin-flowtype": "^5.2.0",
@@ -65,9 +61,13 @@
     "husky": "^4.3.0",
     "jest": "^26.4.2",
     "microbundle": "^0.12.3",
+    "next": "^9.5.3",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.1.2",
     "pretty-quick": "^3.0.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-icons": "^3.11.0",
     "typescript": "^4.0.3"
   },
   "resolutions": {
