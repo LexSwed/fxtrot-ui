@@ -24,7 +24,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "microbundle --compress --external react,react-dom --jsx React.createElement --entry src/lib/index.ts --output build/index.js --no-pkg-main --tsconfig tsconfig.lib.json",
+    "build": "microbundle --no-compress --external react,react-dom --jsx React.createElement --entry src/lib/index.ts --output build/index.js --no-pkg-main --tsconfig tsconfig.lib.json",
     "start": "microbundle watch --no-compress --external react,react-dom --jsx React.createElement --entry src/lib/index.ts --output build/index.js --no-pkg-main --format modern --tsconfig tsconfig.lib.json",
     "dev": "yarn run dokz:dev",
     "lint": "eslint src",
@@ -55,7 +55,7 @@
     "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/parser": "^4.2.0",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.9.0",
+    "eslint": "^7.10.0",
     "eslint-config-react-app": "^5.2.1",
     "eslint-plugin-flowtype": "^5.2.0",
     "eslint-plugin-import": "^2.22.0",
@@ -68,6 +68,9 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^2.1.2",
     "pretty-quick": "^3.0.2",
+    "typescript": "^4.0.3"
+  },
+  "resolutions": {
     "typescript": "^4.0.3"
   },
   "peerDependencies": {
