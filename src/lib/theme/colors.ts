@@ -16,7 +16,10 @@ export const primary = {
 export const mainColors = {
   $text: palette['$gray900'],
   $textDisabled: palette['$gray600'],
-  $surface: '#fff',
+
+  $surfaceStill: '#fff',
+  $surfaceHover: palette['$gray100'],
+  $surfaceActive: palette['$gray200'],
 
   $primaryStill: palette['$blue500'],
   $primaryHover: palette['$blue600'],

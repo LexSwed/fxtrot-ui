@@ -1,0 +1,25 @@
+---
+name: Menu
+---
+
+import { Playground } from 'dokz';
+import { Button, Menu, Icon } from '@fxtrot/ui';
+import { HiChevronDown } from 'react-icons/hi';
+
+## Menu
+
+<Playground>
+  <Menu>
+    <Menu.Button>
+      <span>Open menu</span>
+      <Icon as={HiChevronDown} size="lg" />
+    </Menu.Button>
+    <Menu.List>
+      {Array(1000)
+        .fill(null)
+        .map((el, i) => (
+          <Menu.Item key={i}>Item {i}</Menu.Item>
+        ))}
+    </Menu.List>
+  </Menu>
+</Playground>

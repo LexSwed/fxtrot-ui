@@ -180,7 +180,7 @@ export const { styled, css } = createStyled({
         outline: 'none',
         boxShadow: 'none',
       },
-      ':focus-visible::before': {
+      ':focus:focus-visible::before': {
         boxShadow: '0 0 0 2px $text',
       },
     }),

@@ -48,12 +48,12 @@ const ButtonRoot = styled(Inline, {
         },
       },
       secondary: {
-        bc: '$surface',
+        bc: '$surfaceStill',
         color: '$text',
         $inputStyles: 'default',
       },
       outline: {
-        'bc': '$surface',
+        'bc': '$surfaceStill',
         'color': '$primaryStill',
         '$inputStyles': 'primary',
         ':hover': {
@@ -102,8 +102,8 @@ const ButtonRoot = styled(Inline, {
   },
 });
 
-// type ButtonProps = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
-type Props = React.ComponentPropsWithRef<typeof ButtonRoot>;
+type ButtonProps = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
+type Props = React.ComponentPropsWithRef<typeof ButtonRoot> & ButtonProps;
 
 const Button = React.forwardRef<HTMLButtonElement, Props>(
   ({ as = 'button', variant = 'primary', css, ...props }, propRef) => {

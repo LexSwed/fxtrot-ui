@@ -15,6 +15,10 @@ const swatches: Array<readonly [string, Swatch]> = Object.entries(palette)
         $primaryActive: colors[`$${name}700` as keyof typeof colors],
         $primaryLight: colors[`$${name}050` as keyof typeof colors],
         $primaryLightActive: colors[`$${name}100` as keyof typeof colors],
+
+        $surfaceStill: '#fff',
+        $surfaceHover: palette.gray['$gray100'],
+        $surfaceActive: palette.gray['$gray200'],
       },
     },
   ])
@@ -28,6 +32,10 @@ const swatches: Array<readonly [string, Swatch]> = Object.entries(palette)
           $primaryActive: 'black',
           $primaryLight: colors['$gray100'],
           $primaryLightActive: colors['$gray200'],
+
+          $surfaceStill: colors['$gray800'],
+          $surfaceHover: colors['$gray700'],
+          $surfaceActive: colors['$gray600'],
         },
       },
     ],
@@ -46,5 +54,9 @@ type Swatch = {
     $primaryActive: string;
     $primaryLight: string;
     $primaryLightActive: string;
+
+    $surfaceStill: string;
+    $surfaceHover: string;
+    $surfaceActive: string;
   };
 };

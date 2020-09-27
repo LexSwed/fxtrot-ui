@@ -5,6 +5,7 @@ export { default as Inline } from './Inline';
 export { default as Label } from './Label';
 export { default as Stack } from './Stack';
 export { default as Text } from './Text';
+export * from './Menu';
 
 export { default as ThemeProvider } from './ThemeProvider';
 export { theme, styled, css } from './stitches.config';

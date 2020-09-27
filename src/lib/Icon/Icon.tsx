@@ -13,13 +13,13 @@ const IconBox = styled('i', {
         size: '$4',
       },
       'base': {
-        size: '$6',
+        size: '$4',
       },
       'lg': {
-        size: '$8',
+        size: '$5',
       },
       'xl': {
-        size: '$10',
+        size: '$6',
       },
       '2xl': {
         size: '$12',
