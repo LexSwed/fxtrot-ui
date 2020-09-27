@@ -5,8 +5,12 @@ import MenuButton from './MenuButton';
 import MenuList from './MenuList';
 import MenuItem from './MenuItem';
 
-const Menu: React.FC & { Button: typeof MenuButton; List: typeof MenuList; Item: typeof MenuItem } = ({ children }) => {
-  return <MenuProvider>{children}</MenuProvider>;
+const Menu: React.FC<React.ComponentProps<typeof MenuProvider>> & {
+  Button: typeof MenuButton;
+  List: typeof MenuList;
+  Item: typeof MenuItem;
+} = (props) => {
+  return <MenuProvider {...props} />;
 };
 
 Menu.Button = MenuButton;

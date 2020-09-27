@@ -4,6 +4,7 @@ import { useUIDSeed } from 'react-uid';
 
 type MenuStaticContextValue = ReturnType<typeof usePopper> & {
   seed: ReturnType<typeof useUIDSeed>;
+  onAction?: (key: string) => void;
 };
 
 const menuContext = createContext<MenuStaticContextValue>({} as any);
@@ -29,20 +30,23 @@ const options: Options = {
     },
   ],
 };
-export const MenuProvider: React.FC = ({ children }) => {
+export const MenuProvider: React.FC<{
+  onAction?: (key: string) => void;
+}> = ({ children, onAction }) => {
   const seed = useUIDSeed();
   const refs = usePopper(options);
 
-  const value = useMemo(
+  const menuContextValue = useMemo(
     () => ({
       ...refs,
       seed,
+      onAction,
     }),
-    [refs, seed]
+    [refs, onAction, seed]
   );
 
   return (
-    <menuContext.Provider value={value}>
+    <menuContext.Provider value={menuContextValue}>
       <MenuStateProvider>{children}</MenuStateProvider>
     </menuContext.Provider>
   );
@@ -117,7 +121,7 @@ function usePopper(
   }, [triggerRef, popoverRef, instantiatePopper]);
 }
 
-type InternalState = { lastKey: string | null };
+type InternalState = { lastKey: string | null; items: Map<HTMLLIElement, { action: string }> };
 type MenuControlFunctions = {
   stateRef: {
     readonly current: InternalState;
@@ -127,7 +131,7 @@ type MenuControlFunctions = {
   toggle: () => void;
   update: (state?: Partial<InternalState>) => void;
 };
-const initialState = { lastKey: null };
+const initialState: InternalState = { lastKey: null, items: new Map() };
 function useOpenState(): [isOpen: boolean, controls: MenuControlFunctions] {
   const [isOpen, setOpen] = useState(false);
   const internalStateRef = useRef<InternalState>(initialState);

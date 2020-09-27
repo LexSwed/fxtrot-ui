@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import Portal from '../Portal';
 import { useMenu, useMenuControlState, useMenuOpenState } from './utils';
 import { FocusManagerOptions, FocusScope, useFocusManager } from '@react-aria/focus';
@@ -41,11 +41,21 @@ export default MenuList;
 
 const focusOptions: FocusManagerOptions = { wrap: true };
 function useMenuProps(props: UlListProps): UlListProps {
-  const { popoverRef, seed } = useMenu();
+  const { popoverRef, seed, onAction } = useMenu();
   const { close, stateRef } = useMenuControlState();
   const focusManager = useFocusManager();
 
   useOnClickOutside(popoverRef, close);
+
+  const selectItem = useCallback(
+    (li: HTMLLIElement) => {
+      if (!onAction) return;
+      console.log(stateRef.current.items.get(li));
+      const action = stateRef.current.items.get(li)?.action;
+      action && onAction(action);
+    },
+    [onAction, stateRef]
+  );
 
   useEffect(() => {
     if (stateRef.current.lastKey === 'ArrowUp') {
@@ -61,10 +71,12 @@ function useMenuProps(props: UlListProps): UlListProps {
         'ArrowDown': () => focusManager.focusNext(focusOptions),
         'ArrowUp': () => focusManager.focusPrevious(focusOptions),
         'Enter': (event) => {
+          selectItem(event.target as HTMLLIElement);
           if (event.defaultPrevented) return;
           close();
         },
         ' ': (event) => {
+          selectItem(event.target as HTMLLIElement);
           if (event.defaultPrevented) return;
           close();
         },
@@ -77,7 +89,7 @@ function useMenuProps(props: UlListProps): UlListProps {
           close();
         },
       }),
-      [close, focusManager]
+      [close, focusManager, selectItem]
     )
   );
 
