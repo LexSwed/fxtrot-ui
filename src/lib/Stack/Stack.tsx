@@ -1,7 +1,8 @@
+import Box from '../Box';
 import { styled } from '../stitches.config';
-import { gaps } from '../theme/scales';
+import { gaps } from '../theme/variants';
 
-const Stack = styled('div', {
+const Stack = styled(Box, {
   display: 'flex',
 
   variants: {

@@ -1,7 +1,8 @@
+import Box from '../Box';
 import { styled } from '../stitches.config';
-import { gaps } from '../theme/scales';
+import { gaps } from '../theme/variants';
 
-const Inline = styled('div', {
+const Inline = styled(Box, {
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'flex-start',
