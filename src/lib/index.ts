@@ -1,5 +1,6 @@
 export { default as Box } from './Box';
 export { default as Button } from './Button';
+export { default as Heading } from './Heading';
 export { default as Icon } from './Icon';
 export { default as Inline } from './Inline';
 export { default as Label } from './Label';

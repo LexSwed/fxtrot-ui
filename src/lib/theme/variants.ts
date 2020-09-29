@@ -1,4 +1,3 @@
-import { theme } from '../stitches.config';
 import { CssWithBreakpoints } from '../types/helpers';
 import { scales } from './scales';
 
