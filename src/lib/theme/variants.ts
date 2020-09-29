@@ -18,7 +18,12 @@ const createScalesVariant = (property: string, customScales: ScalesMap) =>
   Object.fromEntries(
     Object.keys(scales)
       .map((scale) => [scale, { [property]: scale }])
-      .concat(Object.keys(customScales).map((scale) => [scale, { [property]: scale }]))
+      .concat(
+        Object.keys(customScales).map((scale) => [
+          scale,
+          { [property]: customScales[scale as keyof typeof customScales] },
+        ])
+      )
   );
 
 export const gaps = createScalesVariant('gap', gapScale);
