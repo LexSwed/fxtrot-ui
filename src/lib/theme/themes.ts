@@ -49,7 +49,7 @@ export const themes = Object.fromEntries(swatches.map(([name, swatch]) => [name,
 
 type Themes = { [Shade in keyof typeof palette]: string };
 
-type Swatch = {
+export type Swatch = {
   colors: {
     $text: string;
     $primaryStill: string;

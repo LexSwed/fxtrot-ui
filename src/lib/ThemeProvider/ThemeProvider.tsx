@@ -1,22 +1,29 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useMemo } from 'react';
 import Box from '../Box';
-import { themes } from '../theme/themes';
+import { themes, Swatch } from '../theme/themes';
+import { css } from '../stitches.config';
 
-type Theme = keyof typeof themes;
+type ThemeName = keyof typeof themes;
 
 type Props = {
-  theme?: Theme;
+  theme?: ThemeName | Swatch;
 };
 
 const themeContext = createContext<Props['theme']>('blue');
 
-const css = {
+const styles = {
   display: 'contents',
 };
 
-const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
+const ThemeProvider: React.FC<Props> = ({ theme = 'blue', children }) => {
   const contextTheme = useContext(themeContext);
-  const themeClass = themes[(theme as Theme) || (contextTheme as Theme)];
+  const themeClass = useMemo(() => {
+    if (typeof theme === 'string') {
+      return themes[(theme as ThemeName) || (contextTheme as ThemeName)];
+    }
+
+    return css.theme(theme);
+  }, [contextTheme, theme]);
 
   if (!themeClass) {
     return <>{children}</>;
@@ -24,7 +31,7 @@ const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
 
   return (
     <themeContext.Provider value={theme}>
-      <Box className={themeClass} css={css} as="span">
+      <Box className={themeClass} css={styles} as="span">
         {children}
       </Box>
     </themeContext.Provider>
