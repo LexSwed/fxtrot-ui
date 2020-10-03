@@ -5,13 +5,15 @@
   "version": "0.0.1",
   "source": "src/lib/index.ts",
   "main": "build/index.js",
-  "module": "build/index.module.js",
+  "module": "build/index.es.js",
+  "jsnext:main": "build/index.es.js",
   "unpkg": "build/index.umd.js",
   "typings": "build/index.d.ts",
   "files": [
     "build",
-    "lib"
+    "src/lib"
   ],
+  "types": "build/index.d.ts",
   "sideEffects": false,
   "engines": {
     "node": ">=12"
@@ -24,8 +26,8 @@
     "access": "public"
   },
   "scripts": {
-    "build": "microbundle build --jsx React.createElement --compress --entry src/lib/index.ts --output build/index.js --no-pkg-main --tsconfig tsconfig.lib.json",
-    "start": "microbundle watch --jsx React.createElement --no-compress --entry src/lib/index.ts --output build/index.js --no-pkg-main --tsconfig tsconfig.lib.json --format modern",
+    "build": "NODE_ENV=production BABEL_ENV=production rollup -c",
+    "start": "NODE_ENV=development BABEL_ENV=development rollup -c -w",
     "dev": "yarn run dokz:dev",
     "lint": "eslint src",
     "typecheck": "tsc --noEmit",
@@ -41,15 +43,25 @@
     "react-uid": "^2.3.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-transform-runtime": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
     "@chakra-ui/core": "^0.8.0",
     "@emotion/core": "^10.0.35",
     "@emotion/styled": "^10.0.27",
+    "@rollup/plugin-babel": "^5.2.1",
+    "@rollup/plugin-commonjs": "^15.1.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "@rollup/plugin-url": "^5.0.1",
+    "@svgr/rollup": "^5.4.0",
     "@types/jest": "^26.0.14",
     "@types/node": "^14.11.2",
     "@types/react": "^16.9.50",
     "@typescript-eslint/eslint-plugin": "^4.3.0",
     "@typescript-eslint/parser": "^4.3.0",
     "babel-eslint": "^10.1.0",
+    "babel-preset-react-app": "^9.1.2",
     "dokz": "^1.0.79",
     "eslint": "^7.10.0",
     "eslint-config-react-app": "^5.2.1",
@@ -60,7 +72,6 @@
     "eslint-plugin-react-hooks": "^4.1.2",
     "husky": "^4.3.0",
     "jest": "^26.4.2",
-    "microbundle": "^0.12.4",
     "next": "^9.5.3",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.1.2",
@@ -68,6 +79,10 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-icons": "^3.11.0",
+    "rollup": "^2.28.2",
+    "rollup-plugin-peer-deps-external": "^2.2.3",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.27.3",
     "typescript": "^4.0.3"
   },
   "resolutions": {

@@ -1,5 +1,4 @@
-import React, { useContext, createContext, useEffect, useMemo, useRef, useCallback, useState } from 'react';
-import { Options, createPopper, Instance, VirtualElement } from '@popperjs/core';
+import React, { useContext, createContext, useMemo, useRef, useState } from 'react';
 import { useUIDSeed } from 'react-uid';
 
 type MenuStaticContextValue = {
@@ -11,34 +10,12 @@ type MenuStaticContextValue = {
 
 const menuContext = createContext<MenuStaticContextValue>({} as any);
 
-const options: Options = {
-  placement: 'bottom-start',
-  strategy: 'fixed',
-  modifiers: [
-    { name: 'offset', options: { offset: [0, 8] } },
-    {
-      name: 'minWidth',
-      enabled: true,
-      phase: 'beforeWrite',
-      requires: ['computeStyles'],
-      fn({ state }) {
-        const { width } = state.rects.reference;
-        state.styles.popper.minWidth = `${width}px`;
-      },
-      effect({ state }) {
-        const { width } = state.elements.reference.getBoundingClientRect();
-        state.elements.popper.style.minWidth = `${width}px`;
-      },
-    },
-  ],
-};
-
 export const MenuProvider: React.FC<{
   onAction?: (key: string) => void;
 }> = ({ children, onAction }) => {
   const seed = useUIDSeed();
   const triggerRef = useRef<HTMLElement>(null);
-  const popoverRef = usePopper(triggerRef, options);
+  const popoverRef = useRef<HTMLElement>(null);
 
   const menuContextValue = useMemo(
     () => ({
@@ -82,39 +59,6 @@ export function useMenuOpenState() {
 
 export function useMenuControlState() {
   return useContext(menuStateControlsContext);
-}
-
-function usePopper(
-  triggerRef: React.RefObject<Element | VirtualElement>,
-  options?: Partial<Options>
-): React.RefObject<HTMLElement> {
-  const popoverRef = useRef<HTMLElement>(null);
-  const popperInstanceRef = useRef<Instance>();
-
-  const instantiatePopper = useCallback(() => {
-    if (!triggerRef.current || !popoverRef.current) return;
-
-    popperInstanceRef.current?.destroy();
-    popperInstanceRef.current = createPopper(triggerRef.current, popoverRef.current, options);
-  }, [triggerRef, options]);
-
-  useEffect(() => {
-    return () => {
-      popperInstanceRef.current?.destroy();
-    };
-  }, []);
-
-  return useMemo(() => {
-    return {
-      get current() {
-        return popoverRef.current;
-      },
-      set current(node) {
-        (popoverRef as React.MutableRefObject<any>).current = node;
-        instantiatePopper();
-      },
-    };
-  }, [popoverRef, instantiatePopper]);
 }
 
 type InternalState = { lastKey: string | null; items: Map<HTMLLIElement, { action: string }> };

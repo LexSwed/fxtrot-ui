@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useLayoutEffect, useRef } from 'react';
+import { createPopper, Instance, Options, VirtualElement } from '@popperjs/core';
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 
 type PossibleRef<T> = React.Ref<T> | ((instance: T | null) => void) | null | undefined;
 
@@ -81,7 +82,7 @@ type Handler = (event: PossibleEvent) => void;
 
 const events: HandledEventsType[] = [MOUSEDOWN, TOUCHSTART];
 
-export default function useOnClickOutside(ref: React.RefObject<HTMLElement>, handler: Handler | null) {
+export function useOnClickOutside(ref: React.RefObject<HTMLElement>, handler: Handler | null) {
   const handlerRef = useLatest(handler);
 
   useEffect(() => {
@@ -107,4 +108,37 @@ export default function useOnClickOutside(ref: React.RefObject<HTMLElement>, han
       });
     };
   }, [handlerRef, ref]);
+}
+
+export function usePopper(
+  triggerRef: React.RefObject<Element | VirtualElement>,
+  options?: Partial<Options>
+): React.RefObject<HTMLElement> {
+  const popoverRef = useRef<HTMLElement>(null);
+  const popperInstanceRef = useRef<Instance>();
+
+  const instantiatePopper = useCallback(() => {
+    if (!triggerRef.current || !popoverRef.current) return;
+
+    popperInstanceRef.current?.destroy();
+    popperInstanceRef.current = createPopper(triggerRef.current, popoverRef.current, options);
+  }, [triggerRef, options]);
+
+  useEffect(() => {
+    return () => {
+      popperInstanceRef.current?.destroy();
+    };
+  }, []);
+
+  return useMemo(() => {
+    return {
+      get current() {
+        return popoverRef.current;
+      },
+      set current(node) {
+        (popoverRef as React.MutableRefObject<any>).current = node;
+        instantiatePopper();
+      },
+    };
+  }, [popoverRef, instantiatePopper]);
 }

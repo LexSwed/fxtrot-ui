@@ -2,8 +2,9 @@ import React, { useCallback, useEffect, useMemo } from 'react';
 import Portal from '../Portal';
 import { useMenu, useMenuControlState, useMenuOpenState } from './utils';
 import { FocusManagerOptions, FocusScope, useFocusManager } from '@react-aria/focus';
-import useOnClickOutside, { useAllHandlers, useKeyboardHandles } from '../utils';
+import { useAllHandlers, useOnClickOutside, useForkRef, useKeyboardHandles, usePopper } from '../utils';
 import { styled } from '../stitches.config';
+import type { Options } from '@popperjs/core';
 
 const List = styled('ul', {
   maxHeight: '240px',
@@ -17,13 +18,19 @@ const List = styled('ul', {
   paddingInlineStart: 0,
 });
 
-const UlList: React.FC<UlListProps> = (ulProps) => {
+type UlListProps = React.ComponentProps<typeof List>;
+type Props = UlListProps & {
+  offset: number;
+  placement: Options['placement'];
+};
+
+const UlList: React.FC<Props> = (ulProps) => {
   const props = useMenuProps(ulProps);
 
   return <List {...props} />;
 };
 
-const MenuList: React.FC<UlListProps> = (props) => {
+const MenuList: React.FC<Props> = (props) => {
   const isOpen = useMenuOpenState();
 
   if (!isOpen) {
@@ -43,10 +50,37 @@ export default MenuList;
 
 const focusOptions: FocusManagerOptions = { wrap: true };
 
-function useMenuProps(props: UlListProps): UlListProps {
-  const { popoverRef, seed, onAction } = useMenu();
+function useMenuProps({ placement = 'bottom-start', offset = 8, ...props }: Props): UlListProps {
+  const { triggerRef, popoverRef, seed, onAction } = useMenu();
   const { close, stateRef } = useMenuControlState();
   const focusManager = useFocusManager();
+  const popperRef = usePopper(
+    triggerRef,
+    useMemo<Options>(
+      () => ({
+        placement,
+        strategy: 'fixed',
+        modifiers: [
+          { name: 'offset', options: { offset: [0, offset] } },
+          {
+            name: 'minWidth',
+            enabled: true,
+            phase: 'beforeWrite',
+            requires: ['computeStyles'],
+            fn({ state }) {
+              const { width } = state.rects.reference;
+              state.styles.popper.minWidth = `${width}px`;
+            },
+            effect({ state }) {
+              const { width } = state.elements.reference.getBoundingClientRect();
+              state.elements.popper.style.minWidth = `${width}px`;
+            },
+          },
+        ],
+      }),
+      [placement, offset]
+    )
+  );
 
   useOnClickOutside(popoverRef, close);
 
@@ -100,14 +134,14 @@ function useMenuProps(props: UlListProps): UlListProps {
 
   const onKeyDown = useAllHandlers(props.onKeyDown, handleKeyDown);
 
+  const ref = useForkRef(popperRef, popoverRef);
+
   return {
     ...props,
     'role': 'menu',
     'id': seed('menu'),
     'aria-labelledby': seed('button'),
-    'ref': popoverRef,
+    ref,
     onKeyDown,
   };
 }
-
-type UlListProps = React.ComponentProps<typeof List>;

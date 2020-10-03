@@ -8,7 +8,11 @@ type Props = {
   theme?: Theme;
 };
 
-const themeContext = createContext<Props['theme']>('default');
+const themeContext = createContext<Props['theme']>('blue');
+
+const css = {
+  display: 'contents',
+};
 
 const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
   const contextTheme = useContext(themeContext);
@@ -20,7 +24,7 @@ const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
 
   return (
     <themeContext.Provider value={theme}>
-      <Box className={themeClass} as="span">
+      <Box className={themeClass} css={css} as="span">
         {children}
       </Box>
     </themeContext.Provider>

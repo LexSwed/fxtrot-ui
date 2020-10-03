@@ -2,7 +2,7 @@ import * as palette from './palette';
 import { css } from '../stitches.config';
 import colors from './colors';
 
-const filtered = ['grey'];
+const filtered = ['grey', 'default'];
 
 const swatches: Array<readonly [string, Swatch]> = Object.entries(palette)
   .filter(([name]) => !filtered.includes(name))
