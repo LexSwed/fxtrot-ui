@@ -87,7 +87,6 @@ function useMenuProps({ placement = 'bottom-start', offset = 8, ...props }: Prop
   const selectItem = useCallback(
     (li: HTMLLIElement) => {
       if (!onAction) return;
-      console.log(stateRef.current.items.get(li));
       const action = stateRef.current.items.get(li)?.action;
       if (action) {
         onAction(action);
