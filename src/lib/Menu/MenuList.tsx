@@ -20,8 +20,8 @@ const List = styled('ul', {
 
 type UlListProps = React.ComponentProps<typeof List>;
 type Props = UlListProps & {
-  offset: number;
-  placement: Options['placement'];
+  offset?: number;
+  placement?: Options['placement'];
 };
 
 const UlList: React.FC<Props> = (ulProps) => {
