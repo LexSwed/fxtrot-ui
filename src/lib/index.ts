@@ -8,7 +8,7 @@ export { default as Stack } from './Stack';
 export { default as Text } from './Text';
 export { default as TextLink } from './TextLink';
 
-export * from './Menu';
+export { default as Menu } from './Menu';
 
 export { default as ThemeProvider } from './ThemeProvider';
 export { theme, styled, css } from './stitches.config';

@@ -11,6 +11,7 @@ const Item = styled(Inline, {
   'fontSize': '$sm',
   'lineHeight': 1,
   'display': 'flex',
+  'alignItems': 'center',
   'height': '$8',
   'cursor': 'pointer',
   'br': '$sm',
@@ -61,7 +62,7 @@ const MenuItem = React.forwardRef<HTMLLIElement, Props>(({ action, ...props }, r
   );
 
   return (
-    <Item {...props} onClick={onClick} as="li" tabIndex={props.disabled ? undefined : -1} role="menuitem" ref={refs} />
+    <Item as="li" {...props} onClick={onClick} tabIndex={props.disabled ? undefined : -1} role="menuitem" ref={refs} />
   );
 });
 

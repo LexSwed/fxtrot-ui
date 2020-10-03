@@ -1,26 +1,29 @@
-import React from 'react';
+import React, { createContext, useContext } from 'react';
 import Box from '../Box';
 import { themes } from '../theme/themes';
-import { joinNonEmpty } from '../utils';
+
+type Theme = keyof typeof themes;
 
 type Props = {
-  theme: keyof typeof themes;
+  theme?: Theme;
 };
 
+const themeContext = createContext<Props['theme']>('default');
+
 const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
-  const themeClass = theme in themes ? themes[theme] : theme;
+  const contextTheme = useContext(themeContext);
+  const themeClass = themes[(theme as Theme) || (contextTheme as Theme)];
+
+  if (!themeClass) {
+    return <>{children}</>;
+  }
+
   return (
-    <>
-      {React.Children.map(children, (child) =>
-        React.isValidElement(child) ? (
-          React.cloneElement(child, { className: joinNonEmpty(child.props.className, themeClass) })
-        ) : (
-          <Box className={themeClass} as="span">
-            {child}
-          </Box>
-        )
-      )}
-    </>
+    <themeContext.Provider value={theme}>
+      <Box className={themeClass} as="span">
+        {children}
+      </Box>
+    </themeContext.Provider>
   );
 };
 

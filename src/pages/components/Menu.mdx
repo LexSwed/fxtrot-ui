@@ -3,7 +3,7 @@ name: Menu
 ---
 
 import { Playground } from 'dokz';
-import { Box, Button, Menu, Icon } from '@fxtrot/ui';
+import { Box, Button, Menu, Icon, ThemeProvider } from '@fxtrot/ui';
 import { HiChevronDown } from 'react-icons/hi';
 
 ## Menu
@@ -18,7 +18,7 @@ For big lists use `action` prop on `Menu.Item` and `onAction` callback to handle
         <Icon as={HiChevronDown} size="lg" />
       </Menu.Button>
       <Menu.List>
-        {Array(1000)
+        {Array(100)
           .fill(null)
           .map((el, i) => (
             <Menu.Item key={i} action={`Item ${i}`}>
@@ -28,4 +28,26 @@ For big lists use `action` prop on `Menu.Item` and `onAction` callback to handle
       </Menu.List>
     </Menu>
   </Box>
+</Playground>
+
+<Playground>
+  <ThemeProvider theme="teal">
+    <Box css={{ p: '$8' }}>
+      <Menu onAction={typeof window !== 'undefined' ? window.alert : null}>
+        <Menu.Button>
+          <span>Open menu</span>
+          <Icon as={HiChevronDown} size="lg" />
+        </Menu.Button>
+        <Menu.List>
+          {Array(100)
+            .fill(null)
+            .map((el, i) => (
+              <Menu.Item key={i} action={`Item ${i}`}>
+                Item {i}
+              </Menu.Item>
+            ))}
+        </Menu.List>
+      </Menu>
+    </Box>
+  </ThemeProvider>
 </Playground>

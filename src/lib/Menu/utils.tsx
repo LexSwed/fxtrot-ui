@@ -2,7 +2,9 @@ import React, { useContext, createContext, useEffect, useMemo, useRef, useCallba
 import { Options, createPopper, Instance, VirtualElement } from '@popperjs/core';
 import { useUIDSeed } from 'react-uid';
 
-type MenuStaticContextValue = ReturnType<typeof usePopper> & {
+type MenuStaticContextValue = {
+  triggerRef: React.RefObject<HTMLElement>;
+  popoverRef: React.RefObject<HTMLElement>;
   seed: ReturnType<typeof useUIDSeed>;
   onAction?: (key: string) => void;
 };
@@ -30,24 +32,29 @@ const options: Options = {
     },
   ],
 };
+
 export const MenuProvider: React.FC<{
   onAction?: (key: string) => void;
 }> = ({ children, onAction }) => {
   const seed = useUIDSeed();
-  const refs = usePopper(options);
+  const triggerRef = useRef<HTMLElement>(null);
+  const popoverRef = usePopper(triggerRef, options);
 
   const menuContextValue = useMemo(
     () => ({
-      ...refs,
+      triggerRef,
+      popoverRef,
       seed,
       onAction,
     }),
-    [refs, onAction, seed]
+    [triggerRef, popoverRef, seed, onAction]
   );
 
   return (
     <menuContext.Provider value={menuContextValue}>
-      <MenuStateProvider>{children}</MenuStateProvider>
+      <MenuStateProvider>
+        <>{children}</>
+      </MenuStateProvider>
     </menuContext.Provider>
   );
 };
@@ -78,9 +85,9 @@ export function useMenuControlState() {
 }
 
 function usePopper(
+  triggerRef: React.RefObject<Element | VirtualElement>,
   options?: Partial<Options>
-): { triggerRef: React.RefObject<Element | VirtualElement>; popoverRef: React.RefObject<HTMLElement> } {
-  const triggerRef = useRef<Element | VirtualElement>(null);
+): React.RefObject<HTMLElement> {
   const popoverRef = useRef<HTMLElement>(null);
   const popperInstanceRef = useRef<Instance>();
 
@@ -89,7 +96,7 @@ function usePopper(
 
     popperInstanceRef.current?.destroy();
     popperInstanceRef.current = createPopper(triggerRef.current, popoverRef.current, options);
-  }, [options]);
+  }, [triggerRef, options]);
 
   useEffect(() => {
     return () => {
@@ -99,26 +106,15 @@ function usePopper(
 
   return useMemo(() => {
     return {
-      triggerRef: {
-        get current() {
-          return triggerRef.current;
-        },
-        set current(node) {
-          (triggerRef as React.MutableRefObject<any>).current = node;
-          instantiatePopper();
-        },
+      get current() {
+        return popoverRef.current;
       },
-      popoverRef: {
-        get current() {
-          return popoverRef.current;
-        },
-        set current(node) {
-          (popoverRef as React.MutableRefObject<any>).current = node;
-          instantiatePopper();
-        },
+      set current(node) {
+        (popoverRef as React.MutableRefObject<any>).current = node;
+        instantiatePopper();
       },
     };
-  }, [triggerRef, popoverRef, instantiatePopper]);
+  }, [popoverRef, instantiatePopper]);
 }
 
 type InternalState = { lastKey: string | null; items: Map<HTMLLIElement, { action: string }> };

@@ -24,7 +24,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "microbundle build --jsx React.createElement --no-compress --entry src/lib/index.ts --output build/index.js --no-pkg-main --tsconfig tsconfig.lib.json",
+    "build": "microbundle build --jsx React.createElement --compress --entry src/lib/index.ts --output build/index.js --no-pkg-main --tsconfig tsconfig.lib.json",
     "start": "microbundle watch --jsx React.createElement --no-compress --entry src/lib/index.ts --output build/index.js --no-pkg-main --tsconfig tsconfig.lib.json --format modern",
     "dev": "yarn run dokz:dev",
     "lint": "eslint src",
@@ -35,9 +35,9 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.5.3",
-    "@react-aria/button": "^3.2.1",
-    "@react-aria/focus": "^3.2.1",
-    "@stitches/react": "^0.0.3-canary.1",
+    "@react-aria/button": "^3.2.2",
+    "@react-aria/focus": "^3.2.2",
+    "@stitches/react": "^0.0.3-canary.3",
     "react-uid": "^2.3.0"
   },
   "devDependencies": {
@@ -46,17 +46,17 @@
     "@emotion/styled": "^10.0.27",
     "@types/jest": "^26.0.14",
     "@types/node": "^14.11.2",
-    "@types/react": "^16.9.49",
+    "@types/react": "^16.9.50",
     "@typescript-eslint/eslint-plugin": "^4.3.0",
     "@typescript-eslint/parser": "^4.3.0",
     "babel-eslint": "^10.1.0",
-    "dokz": "^1.0.77",
+    "dokz": "^1.0.79",
     "eslint": "^7.10.0",
     "eslint-config-react-app": "^5.2.1",
     "eslint-plugin-flowtype": "^5.2.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-react": "^7.21.2",
+    "eslint-plugin-react": "^7.21.3",
     "eslint-plugin-react-hooks": "^4.1.2",
     "husky": "^4.3.0",
     "jest": "^26.4.2",

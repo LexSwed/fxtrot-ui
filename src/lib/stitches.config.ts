@@ -79,55 +79,55 @@ export const { styled, css } = createStyled({
     screen: (rule) => `@media (min-width: 1280px) { ${rule} }`,
   },
   utils: {
-    p: (value: keyof Theme['space'] | (string & {})) => ({
+    p: (value: keyof Theme['space'] | (number | (string & {}))) => ({
       paddingTop: value,
       paddingBottom: value,
       paddingLeft: value,
       paddingRight: value,
     }),
-    pt: (value: keyof Theme['space'] | (string & {})) => ({
+    pt: (value: keyof Theme['space'] | (number | (string & {}))) => ({
       paddingTop: value,
     }),
-    pr: (value: keyof Theme['space'] | (string & {})) => ({
+    pr: (value: keyof Theme['space'] | (number | (string & {}))) => ({
       paddingRight: value,
     }),
-    pb: (value: keyof Theme['space'] | (string & {})) => ({
+    pb: (value: keyof Theme['space'] | (number | (string & {}))) => ({
       paddingBottom: value,
     }),
-    pl: (value: keyof Theme['space'] | (string & {})) => ({
+    pl: (value: keyof Theme['space'] | (number | (string & {}))) => ({
       paddingLeft: value,
     }),
-    px: (value: keyof Theme['space'] | (string & {})) => ({
+    px: (value: keyof Theme['space'] | (number | (string & {}))) => ({
       paddingLeft: value,
       paddingRight: value,
     }),
-    py: (value: keyof Theme['space'] | (string & {})) => ({
+    py: (value: keyof Theme['space'] | (number | (string & {}))) => ({
       paddingTop: value,
       paddingBottom: value,
     }),
-    m: (value: keyof Theme['space'] | (string & {})) => ({
+    m: (value: keyof Theme['space'] | (number | (string & {}))) => ({
       marginTop: value,
       marginBottom: value,
       marginLeft: value,
       marginRight: value,
     }),
-    mt: (value: keyof Theme['space'] | (string & {})) => ({
+    mt: (value: keyof Theme['space'] | (number | (string & {}))) => ({
       marginTop: value,
     }),
-    mr: (value: keyof Theme['space'] | (string & {})) => ({
+    mr: (value: keyof Theme['space'] | (number | (string & {}))) => ({
       marginRight: value,
     }),
-    mb: (value: keyof Theme['space'] | (string & {})) => ({
+    mb: (value: keyof Theme['space'] | (number | (string & {}))) => ({
       marginBottom: value,
     }),
-    ml: (value: keyof Theme['space'] | (string & {})) => ({
+    ml: (value: keyof Theme['space'] | (number | (string & {}))) => ({
       marginLeft: value,
     }),
-    mx: (value: keyof Theme['space'] | (string & {})) => ({
+    mx: (value: keyof Theme['space'] | (number | (string & {}))) => ({
       marginLeft: value,
       marginRight: value,
     }),
-    my: (value: keyof Theme['space'] | (string & {})) => ({
+    my: (value: keyof Theme['space'] | (number | (string & {}))) => ({
       marginTop: value,
       marginBottom: value,
     }),

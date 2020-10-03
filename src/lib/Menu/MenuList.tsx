@@ -13,6 +13,8 @@ const List = styled('ul', {
   br: '$md',
   border: '1px solid $gray200',
   outline: 'none',
+  pl: 0,
+  paddingInlineStart: 0,
 });
 
 const UlList: React.FC<UlListProps> = (ulProps) => {
@@ -40,6 +42,7 @@ const MenuList: React.FC<UlListProps> = (props) => {
 export default MenuList;
 
 const focusOptions: FocusManagerOptions = { wrap: true };
+
 function useMenuProps(props: UlListProps): UlListProps {
   const { popoverRef, seed, onAction } = useMenu();
   const { close, stateRef } = useMenuControlState();
@@ -82,6 +85,8 @@ function useMenuProps(props: UlListProps): UlListProps {
         },
         'Escape': (event) => {
           if (event.defaultPrevented) return;
+          event.preventDefault();
+          event.stopPropagation();
           close();
         },
         'Tab': (event) => {
