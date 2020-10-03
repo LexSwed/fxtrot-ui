@@ -16,6 +16,7 @@ const Item = styled(Inline, {
   'cursor': 'pointer',
   'br': '$sm',
   'outline': 'none',
+  'color': '$text',
 
   ':hover': {
     bc: '$surfaceHover',

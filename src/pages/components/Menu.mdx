@@ -33,7 +33,7 @@ For big lists use `action` prop on `Menu.Item` and `onAction` callback to handle
 You can modify `offset` and [`placement`](https://popper.js.org/docs/v2/constructors/#options) of the dropdown menu.
 
 <Playground>
-  <ThemeProvider theme="teal">
+  <ThemeProvider theme="black">
     <Box css={{ p: '$8' }}>
       <Menu onAction={typeof window !== 'undefined' ? window.alert : null}>
         <Menu.Button>

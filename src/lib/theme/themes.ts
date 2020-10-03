@@ -10,6 +10,7 @@ const swatches: Array<readonly [string, Swatch]> = Object.entries(palette)
     name,
     {
       colors: {
+        $text: palette.gray['$gray900'],
         $primaryStill: colors[`$${name}500` as keyof typeof colors],
         $primaryHover: colors[`$${name}600` as keyof typeof colors],
         $primaryActive: colors[`$${name}700` as keyof typeof colors],
@@ -27,13 +28,14 @@ const swatches: Array<readonly [string, Swatch]> = Object.entries(palette)
       'black',
       {
         colors: {
+          $text: '#fff',
           $primaryStill: colors['$gray800'],
           $primaryHover: colors['$gray900'],
           $primaryActive: 'black',
           $primaryLight: colors['$gray100'],
           $primaryLightActive: colors['$gray200'],
 
-          $surfaceStill: colors['$gray800'],
+          $surfaceStill: colors['$gray900'],
           $surfaceHover: colors['$gray700'],
           $surfaceActive: colors['$gray600'],
         },
@@ -49,6 +51,7 @@ type Themes = { [Shade in keyof typeof palette]: string };
 
 type Swatch = {
   colors: {
+    $text: string;
     $primaryStill: string;
     $primaryHover: string;
     $primaryActive: string;
