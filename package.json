@@ -6,14 +6,11 @@
   "source": "src/lib/index.ts",
   "main": "build/index.js",
   "module": "build/index.es.js",
-  "jsnext:main": "build/index.es.js",
-  "unpkg": "build/index.umd.js",
-  "typings": "build/index.d.ts",
+  "types": "build/index.d.ts",
   "files": [
     "build",
     "src/lib"
   ],
-  "types": "build/index.d.ts",
   "sideEffects": false,
   "engines": {
     "node": ">=12"
