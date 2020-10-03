@@ -89,7 +89,11 @@ function useMenuProps({ placement = 'bottom-start', offset = 8, ...props }: Prop
       if (!onAction) return;
       console.log(stateRef.current.items.get(li));
       const action = stateRef.current.items.get(li)?.action;
-      action && onAction(action);
+      if (action) {
+        onAction(action);
+      } else {
+        li.click();
+      }
     },
     [onAction, stateRef]
   );
