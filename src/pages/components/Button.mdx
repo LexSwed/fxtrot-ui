@@ -27,9 +27,9 @@ import { Box, Stack, Inline, Button, ThemeProvider, Icon } from '@fxtrot/ui';
       </Button>
     </Inline>
     <Inline space="sm" css={{ px: '$10' }}>
-      <Button variant="text">Text</Button>
-      <Button variant="text" disabled>
-        Text (disabled)
+      <Button variant="flat">Flat</Button>
+      <Button variant="flat" disabled>
+        Flat (disabled)
       </Button>
     </Inline>
     <Inline space="sm" css={{ px: '$10' }}>
@@ -49,16 +49,10 @@ Use `ThemeProvider` component to change the primary color of the button.
 
 <Playground>
   <ThemeProvider theme="black">
-    <Stack space="xl" css={{ py: '$8', bc: '$gray050' }}>
+    <Stack space="xl" css={{ py: '$8', bc: '$surfaceStill' }}>
       <Inline space="sm" css={{ px: '$10' }}>
         <Button>Primary</Button>
         <Button disabled>Primary (disabled)</Button>
-      </Inline>
-      <Inline space="sm" css={{ px: '$10' }}>
-        <Button variant="outline">Outline</Button>
-        <Button variant="outline" disabled>
-          Outline (disabled)
-        </Button>
       </Inline>
       <Inline space="sm" css={{ px: '$10' }}>
         <Button variant="secondary">Secondary</Button>
@@ -67,9 +61,9 @@ Use `ThemeProvider` component to change the primary color of the button.
         </Button>
       </Inline>
       <Inline space="sm" css={{ px: '$10' }}>
-        <Button variant="text">Text</Button>
-        <Button variant="text" disabled>
-          Text (disabled)
+        <Button variant="flat">Flat</Button>
+        <Button variant="flat" disabled>
+          Flat (disabled)
         </Button>
       </Inline>
       <Inline space="sm" css={{ px: '$10' }}>

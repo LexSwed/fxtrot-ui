@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useMemo } from 'react';
 import Box from '../Box';
-import { themes, Swatch } from '../theme/themes';
+import { themes } from '../theme/themes';
 import { css } from '../stitches.config';
+import { Swatch } from '../theme/colors';
 
 type ThemeName = keyof typeof themes;
 
@@ -15,14 +16,15 @@ const styles = {
   display: 'contents',
 };
 
-const ThemeProvider: React.FC<Props> = ({ theme = 'blue', children }) => {
+const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
   const contextTheme = useContext(themeContext);
+
   const themeClass = useMemo(() => {
-    if (typeof theme === 'string') {
-      return themes[(theme as ThemeName) || (contextTheme as ThemeName)];
+    if (typeof theme === 'object') {
+      return css.theme(theme as Swatch);
     }
 
-    return css.theme(theme);
+    return themes[(theme as ThemeName) || (contextTheme as ThemeName)];
   }, [contextTheme, theme]);
 
   if (!themeClass) {

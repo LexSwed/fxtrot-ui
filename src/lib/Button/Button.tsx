@@ -7,18 +7,18 @@ import Inline from '../Inline';
 import Icon from '../Icon';
 
 const ButtonRoot = styled(Inline, {
-  px: '$3',
-  fontSize: '$sm',
-  lineHeight: 1,
-  display: 'inline-flex',
-  height: '$8',
-  fontWeight: 500,
-  transition: '0.2s ease-in-out',
-  $outline: 1,
-  font: '$default',
-  border: '1px solid transparent',
-  br: '$md',
-  cursor: 'default',
+  'px': '$3',
+  'fontSize': '$sm',
+  'lineHeight': 1,
+  'display': 'inline-flex',
+  'height': '$8',
+  'fontWeight': 500,
+  'transition': '0.2s ease-in-out',
+  '$outline': 1,
+  'font': '$default',
+  'border': '1px solid transparent',
+  'br': '$md',
+  'cursor': 'default',
 
   [`${Icon}:first-child`]: {
     ml: '-$1',
@@ -27,7 +27,13 @@ const ButtonRoot = styled(Inline, {
     mr: '-$1',
   },
 
-  variants: {
+  ':disabled': {
+    color: '$textDisabled',
+    borderColor: '$surfaceDisabled',
+    bc: '$surfaceDisabled',
+  },
+
+  'variants': {
     variant: {
       primary: {
         'bc': '$primaryStill',
@@ -41,11 +47,6 @@ const ButtonRoot = styled(Inline, {
           borderColor: '$primaryActive',
           bc: '$primaryActive',
         },
-        ':disabled': {
-          borderColor: '$gray200',
-          color: '$textDisabled',
-          bc: '$gray200',
-        },
       },
       secondary: {
         bc: '$surfaceStill',
@@ -53,7 +54,6 @@ const ButtonRoot = styled(Inline, {
         $inputStyles: 'default',
       },
       outline: {
-        'bc': '$surfaceStill',
         'color': '$primaryStill',
         '$inputStyles': 'primary',
         ':hover': {
@@ -65,24 +65,23 @@ const ButtonRoot = styled(Inline, {
           color: '$primaryActive',
         },
       },
-      text: {
+      flat: {
         'bc': 'transparent',
         'color': '$text',
         ':hover': {
-          bc: '$gray100',
+          bc: '$surfaceHover',
         },
         ':active': {
-          bc: '$gray200',
+          bc: '$surfaceActive',
         },
         ':disabled': {
           borderColor: 'transparent',
-          color: '$textDisabled',
           bc: 'transparent',
         },
       },
       link: {
         'bc': 'transparent',
-        'color': '$primary',
+        'color': '$accent',
         'cursor': 'pointer',
         ':not([aria-disabled="true"]):hover': {
           color: '$hover',
@@ -94,8 +93,8 @@ const ButtonRoot = styled(Inline, {
         },
         '&[aria-disabled="true"]': {
           borderColor: 'transparent',
-          color: '$textDisabled',
           cursor: 'default',
+          color: '$textDisabled',
         },
       },
     },

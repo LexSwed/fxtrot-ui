@@ -1,5 +1,5 @@
 import { createStyled } from '@stitches/react';
-import colors, { border, primary } from './theme/colors';
+import colors from './theme/colors';
 import { scales } from './theme/scales';
 import { isServer } from './utils';
 
@@ -187,22 +187,34 @@ export const { styled, css } = createStyled({
     }),
 
     $inputStyles: (style: 'default' | 'primary') => {
-      const colors = style === 'default' ? border : primary;
+      const borderColors: Record<string, keyof typeof colors> =
+        style === 'default'
+          ? {
+              $default: '$borderStill',
+              $hover: '$borderHover',
+              $active: '$borderActive',
+            }
+          : {
+              $default: '$primaryStill',
+              $hover: '$primaryHover',
+              $active: '$primaryActive',
+            };
+
       return {
         'border': '1px solid $borderDefault',
-        'borderColor': colors.$default,
+        'borderColor': borderColors.$default,
         '&:hover': {
-          borderColor: colors.$hover,
-          bc: '$gray100',
+          borderColor: borderColors.$hover,
+          bc: '$surfaceHover',
         },
         ':disabled': {
-          bc: '$gray200',
+          bc: '$surfaceDisabled',
           color: '$textDisabled',
-          borderColor: 'transparent',
+          borderColor: '$surfaceDisabled',
         },
         ':active': {
-          borderColor: colors.$active,
-          bc: '$gray200',
+          borderColor: borderColors.$active,
+          bc: '$surfaceActive',
         },
       };
     },

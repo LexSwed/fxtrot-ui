@@ -21,15 +21,9 @@ const Item = styled(Inline, {
   ':hover': {
     bc: '$surfaceHover',
   },
-  ':focus': {
+  ':focus, :active': {
     bc: '$surfaceActive',
-    borderLeftColor: '$primaryStill',
-    borderTopLeftRadius: 0,
-    borderBottomLeftRadius: 0,
-  },
-  ':active': {
-    bc: '$surfaceActive',
-    borderLeftColor: '$primaryStill',
+    borderLeftColor: '$accent',
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0,
   },

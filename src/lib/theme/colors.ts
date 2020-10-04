@@ -1,34 +1,87 @@
-import palette from './palette';
+import * as paletteColors from './palette';
 
-export const border = {
-  $default: palette['$gray400'],
-  $hover: palette['$gray500'],
-  $active: palette['$gray600'],
-};
+const { gray, default: allColors, ...palette } = paletteColors;
 
-export const primary = {
-  $default: '$primaryStill',
-  $hover: '$primaryHover',
-  $active: '$primaryActive',
-  $light: '$primaryLight',
-};
+export const swatches: Array<readonly [string, Swatch]> = Object.entries(palette)
+  .map(([name, colors]): readonly [string, Swatch] => [
+    name,
+    {
+      colors: {
+        $text: gray['$gray900'],
+        $textDisabled: gray['$gray500'],
+        $accent: colors[`$${name}600` as keyof typeof colors],
 
-export const mainColors = {
-  $text: palette['$gray900'],
-  $textDisabled: palette['$gray600'],
+        $primaryStill: colors[`$${name}500` as keyof typeof colors],
+        $primaryHover: colors[`$${name}600` as keyof typeof colors],
+        $primaryActive: colors[`$${name}700` as keyof typeof colors],
+        $primaryLight: colors[`$${name}050` as keyof typeof colors],
+        $primaryLightActive: colors[`$${name}100` as keyof typeof colors],
 
-  $surfaceStill: '#fff',
-  $surfaceHover: palette['$gray100'],
-  $surfaceActive: palette['$gray200'],
+        $surfaceStill: '#fff',
+        $surfaceHover: gray['$gray100'],
+        $surfaceActive: gray['$gray200'],
+        $surfaceDisabled: gray['$gray200'],
 
-  $primaryStill: palette['$blue500'],
-  $primaryHover: palette['$blue600'],
-  $primaryActive: palette['$blue700'],
-  $primaryLight: palette['$blue050'],
-  $primaryLightActive: palette['$blue100'],
-};
+        $borderStill: gray['$gray400'],
+        $borderHover: gray['$gray500'],
+        $borderActive: gray['$gray600'],
+      },
+    },
+  ])
+  .concat([
+    [
+      'black',
+      {
+        colors: {
+          $text: '#fff',
+          $textDisabled: gray['$gray400'],
+          $accent: '#fff',
+
+          $primaryStill: gray['$gray800'],
+          $primaryHover: gray['$gray900'],
+          $primaryActive: 'black',
+          $primaryLight: gray['$gray500'],
+          $primaryLightActive: gray['$gray400'],
+
+          $surfaceStill: gray['$gray600'],
+          $surfaceHover: gray['$gray500'],
+          $surfaceActive: gray['$gray600'],
+          $surfaceDisabled: 'rgba(0,0,0,0.2)',
+
+          $borderStill: gray['$gray200'],
+          $borderHover: gray['$gray300'],
+          $borderActive: gray['$gray100'],
+        },
+      },
+    ],
+  ]);
+
+const mainColors = Object.fromEntries(swatches).blue.colors;
 
 export default {
-  ...palette,
+  ...allColors,
   ...mainColors,
+};
+
+export type Swatch = {
+  colors: {
+    $text: string;
+    $textDisabled: string;
+    $accent: string;
+
+    $primaryStill: string;
+    $primaryHover: string;
+    $primaryActive: string;
+    $primaryLight: string;
+    $primaryLightActive: string;
+
+    $surfaceStill: string;
+    $surfaceHover: string;
+    $surfaceActive: string;
+    $surfaceDisabled: string;
+
+    $borderStill: string;
+    $borderHover: string;
+    $borderActive: string;
+  };
 };
