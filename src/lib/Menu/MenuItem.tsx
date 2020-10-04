@@ -61,6 +61,8 @@ const MenuItem = React.forwardRef<HTMLLIElement, Props>(({ action, ...props }, r
       as="li"
       {...props}
       flow="row"
+      alignY="center"
+      display="inline"
       onClick={onClick}
       tabIndex={props.disabled ? undefined : -1}
       role="menuitem"

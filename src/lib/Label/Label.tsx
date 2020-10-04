@@ -27,7 +27,7 @@ type Props = React.DetailedHTMLProps<React.LabelHTMLAttributes<HTMLLabelElement>
 
 const Label: React.FC<Props> = ({ label, children: _ignore, secondary, ref, ...props }) => {
   return (
-    <Wrapper {...props} flow="row" space="xs" display="inline" as="label" ref={ref as any}>
+    <Wrapper {...props} flow="row" alignY="center" space="xs" display="inline" as="label" ref={ref as any}>
       <Main>{label}</Main>
       {secondary && <Secondary>{secondary}</Secondary>}
     </Wrapper>

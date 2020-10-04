@@ -9,7 +9,6 @@ import Icon from '../Icon';
 const ButtonRoot = styled(Stack, {
   'px': '$3',
   'fontSize': '$sm',
-  'display': 'inline-flex',
   'height': '$base',
   'lineHeight': '$base',
   'fontWeight': 500,
@@ -126,7 +125,17 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
     const ref = useForkRef(innerRef, propRef);
 
     return (
-      <ButtonRoot {...buttonProps} flow="row" css={css} space="$2" variant={variant} as={as} ref={ref}>
+      <ButtonRoot
+        {...buttonProps}
+        flow="row"
+        alignY="center"
+        display="inline"
+        css={css}
+        space="$2"
+        variant={variant}
+        as={as}
+        ref={ref}
+      >
         {props.children}
       </ButtonRoot>
     );
