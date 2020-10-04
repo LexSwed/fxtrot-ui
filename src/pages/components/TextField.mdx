@@ -1,0 +1,66 @@
+---
+name: TextField
+---
+
+import { Playground } from 'dokz';
+import { Box, Stack, TextField } from '@fxtrot/ui';
+
+## TextField
+
+<Playground>
+  <Box css={{ p: '$6' }}>
+    <TextField label="Enter your name" placeholder="John Doe" />
+  </Box>
+</Playground>
+
+## Types
+
+<Playground>
+  <Box css={{ p: '$6' }}>
+    <Stack space="md" align="stretch" display="inline">
+      <TextField label="Email address" secondaryLabel="(required)" type="email" />
+      <TextField label="Password" secondaryLabel="(required)" type="password" />
+      <TextField label="Your birth day" type="date" />
+      <TextField label="Your age" onChange={(str) => console.log(str)} type="number" min="18" />
+    </Stack>
+  </Box>
+</Playground>
+
+## Validity
+
+<Playground>
+  {() => {
+    const [value, setValue] = React.useState('me@email.com');
+    const isValid = React.useMemo(() => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value), [value]);
+    return (
+      <Box css={{ p: '$6' }}>
+        <Stack space="md">
+          <TextField
+            validity={isValid ? 'valid' : 'invalid'}
+            placeholder="Enter your email"
+            value={value}
+            onChange={setValue}
+            label="Email"
+          />
+        </Stack>
+      </Box>
+    );
+  }}
+</Playground>
+
+## Label alignment
+
+Since input is wrapped in `Stack` component, you can easily pass any props `Stack` supports,
+for example to specify flow direction:
+
+<Playground>
+  <Box css={{ p: '$6' }}>
+    <TextField
+      label="Enter your name"
+      flow={{ desktop: 'row', initial: 'column' }}
+      space={{ desktop: '$6', initial: '$1' }}
+      align={{ desktop: 'center', initial: 'left' }}
+      placeholder="John Doe"
+    />
+  </Box>
+</Playground>

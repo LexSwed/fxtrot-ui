@@ -11,7 +11,7 @@ export const theme = {
     $mono: 'Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;',
   },
   space: scales,
-  sizes: scales,
+  sizes: { ...scales, $base: scales['$8'] },
   fontSizes: {
     $base: '16px',
     $xs: '12px',
@@ -73,10 +73,10 @@ type Theme = typeof theme;
 export const { styled, css } = createStyled({
   tokens: theme,
   breakpoints: {
-    tablet: (rule) => `@media (min-width: 640px) { ${rule} }`,
-    laptop: (rule) => `@media (min-width: 768px) { ${rule} }`,
+    mobile: (rule) => `@media (min-width: 320px) { ${rule} }`,
+    tablet: (rule) => `@media (min-width: 768px) { ${rule} }`,
     desktop: (rule) => `@media (min-width: 1024px) { ${rule} }`,
-    screen: (rule) => `@media (min-width: 1280px) { ${rule} }`,
+    fullscreen: (rule) => `@media (min-width: 1280px) { ${rule} }`,
   },
   utils: {
     p: (value: keyof Theme['space'] | (number | (string & {}))) => ({
@@ -185,39 +185,6 @@ export const { styled, css } = createStyled({
         boxShadow: '0 0 0 2px $text',
       },
     }),
-
-    $inputStyles: (style: 'default' | 'primary') => {
-      const borderColors: Record<string, keyof typeof colors> =
-        style === 'default'
-          ? {
-              $default: '$borderStill',
-              $hover: '$borderHover',
-              $active: '$borderActive',
-            }
-          : {
-              $default: '$primaryStill',
-              $hover: '$primaryHover',
-              $active: '$primaryActive',
-            };
-
-      return {
-        'border': '1px solid $borderDefault',
-        'borderColor': borderColors.$default,
-        '&:hover': {
-          borderColor: borderColors.$hover,
-          bc: '$surfaceHover',
-        },
-        ':disabled': {
-          bc: '$surfaceDisabled',
-          color: '$textDisabled',
-          borderColor: '$surfaceDisabled',
-        },
-        ':active': {
-          borderColor: borderColors.$active,
-          bc: '$surfaceActive',
-        },
-      };
-    },
   },
 });
 

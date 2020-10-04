@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react';
-import Inline from '../Inline';
+import Stack from '../Stack';
 import { styled } from '../stitches.config';
 import { useAllHandlers, useForkRef } from '../utils';
 import { useMenu, useMenuControlState } from './utils';
 
-const Item = styled(Inline, {
+const Item = styled(Stack, {
   'pr': '$3',
   'pl': '$2',
   'borderLeft': '2px solid transparent',
@@ -57,7 +57,15 @@ const MenuItem = React.forwardRef<HTMLLIElement, Props>(({ action, ...props }, r
   );
 
   return (
-    <Item as="li" {...props} onClick={onClick} tabIndex={props.disabled ? undefined : -1} role="menuitem" ref={refs} />
+    <Item
+      as="li"
+      {...props}
+      flow="row"
+      onClick={onClick}
+      tabIndex={props.disabled ? undefined : -1}
+      role="menuitem"
+      ref={refs}
+    />
   );
 });
 

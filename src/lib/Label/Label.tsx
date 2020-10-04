@@ -1,29 +1,36 @@
 import React from 'react';
-import Inline from '../Inline';
+import Stack from '../Stack';
 import { styled } from '../stitches.config';
 
 const Main = styled('span', {
-  textSize: '$md',
+  fontSize: '$xs',
+  lineHeight: 1,
   fontWeight: 600,
 });
 
 const Secondary = styled('span', {
-  textSize: '$md',
+  fontSize: '$xs',
+  lineHeight: 1,
   color: '$gray600',
   fontWeight: 400,
 });
 
+const Wrapper = styled(Stack, {
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+});
+
 type Props = React.DetailedHTMLProps<React.LabelHTMLAttributes<HTMLLabelElement>, HTMLLabelElement> & {
-  label: React.ElementType;
-  secondary: React.ElementType;
+  label: React.ReactNode;
+  secondary?: React.ReactNode;
 };
 
 const Label: React.FC<Props> = ({ label, children: _ignore, secondary, ref, ...props }) => {
   return (
-    <Inline {...props} space="xs" display="inline" as="label" ref={ref as any}>
+    <Wrapper {...props} flow="row" space="xs" display="inline" as="label" ref={ref as any}>
       <Main>{label}</Main>
-      <Secondary>{secondary}</Secondary>
-    </Inline>
+      {secondary && <Secondary>{secondary}</Secondary>}
+    </Wrapper>
   );
 };
 

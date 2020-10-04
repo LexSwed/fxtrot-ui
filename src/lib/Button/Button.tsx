@@ -3,15 +3,15 @@ import { useButton } from '@react-aria/button';
 
 import { styled } from '../stitches.config';
 import { useForkRef } from '../utils';
-import Inline from '../Inline';
+import Stack from '../Stack';
 import Icon from '../Icon';
 
-const ButtonRoot = styled(Inline, {
+const ButtonRoot = styled(Stack, {
   'px': '$3',
   'fontSize': '$sm',
-  'lineHeight': 1,
   'display': 'inline-flex',
-  'height': '$8',
+  'height': '$base',
+  'lineHeight': '$base',
   'fontWeight': 500,
   'transition': '0.2s ease-in-out',
   '$outline': 1,
@@ -49,20 +49,35 @@ const ButtonRoot = styled(Inline, {
         },
       },
       secondary: {
-        bc: '$surfaceStill',
-        color: '$text',
-        $inputStyles: 'default',
+        'bc': '$surfaceStill',
+        'color': '$text',
+        'borderColor': '$borderStill',
+        ':hover': {
+          borderColor: '$borderHover',
+          bc: '$surfaceHover',
+        },
+        ':disabled': {
+          borderColor: '$surfaceDisabled',
+          bc: '$surfaceDisabled',
+        },
+        ':active, :focus': {
+          borderColor: '$borderActive',
+          bc: '$surfaceActive',
+        },
       },
       outline: {
         'color': '$primaryStill',
-        '$inputStyles': 'primary',
+        'bc': 'transparent',
+        'borderColor': '$primaryStill',
         ':hover': {
           bc: '$primaryLight',
           color: '$primaryHover',
+          borderColor: '$primaryHover',
         },
         ':active': {
           bc: '$primaryLightActive',
           color: '$primaryActive',
+          borderColor: '$primaryActive',
         },
       },
       flat: {
@@ -111,7 +126,7 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
     const ref = useForkRef(innerRef, propRef);
 
     return (
-      <ButtonRoot {...buttonProps} css={css} space="$2" variant={variant} as={as} ref={ref}>
+      <ButtonRoot {...buttonProps} flow="row" css={css} space="$2" variant={variant} as={as} ref={ref}>
         {props.children}
       </ButtonRoot>
     );

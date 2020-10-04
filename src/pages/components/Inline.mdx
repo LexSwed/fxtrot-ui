@@ -3,9 +3,17 @@ name: Inline
 ---
 
 import { Playground } from 'dokz';
-import { Box, Inline, Text, styled } from '@fxtrot/ui';
+import { Box, Stack, Text, styled } from '@fxtrot/ui';
 
 import { ExampleBox } from '../../pages-helpers';
+
+# Stack
+
+`Stack` can also be used to align items in a row.
+
+```tsx
+import { Stack } from '@fxtrot/ui';
+```
 
 ## Space
 
@@ -14,71 +22,71 @@ Define gap between elements via `space` prop:
 `space="none"`:
 
 <Playground>
-  <Inline space="none">
+  <Stack flow="row" space="none">
     <ExampleBox />
     <ExampleBox />
     <ExampleBox />
-  </Inline>
+  </Stack>
 </Playground>
 
 `space="xs"`:
 
 <Playground>
-  <Inline space="xs">
+  <Stack flow="row" space="xs">
     <ExampleBox />
     <ExampleBox />
     <ExampleBox />
-  </Inline>
+  </Stack>
 </Playground>
 
 `space="sm"`:
 
 <Playground>
-  <Inline space="sm">
+  <Stack flow="row" space="sm">
     <ExampleBox />
     <ExampleBox />
     <ExampleBox />
-  </Inline>
+  </Stack>
 </Playground>
 
 `space="md"`:
 
 <Playground>
-  <Inline space="md">
+  <Stack flow="row" space="md">
     <ExampleBox />
     <ExampleBox />
     <ExampleBox />
-  </Inline>
+  </Stack>
 </Playground>
 
 `space="lg"`:
 
 <Playground>
-  <Inline space="lg">
+  <Stack flow="row" space="lg">
     <ExampleBox />
     <ExampleBox />
     <ExampleBox />
-  </Inline>
+  </Stack>
 </Playground>
 
 `space="xl"`:
 
 <Playground>
-  <Inline space="xl">
+  <Stack flow="row" space="xl">
     <ExampleBox />
     <ExampleBox />
     <ExampleBox />
-  </Inline>
+  </Stack>
 </Playground>
 
 `space="2xl"`:
 
 <Playground>
-  <Inline space="2xl">
+  <Stack flow="row" space="2xl">
     <ExampleBox />
     <ExampleBox />
     <ExampleBox />
-  </Inline>
+  </Stack>
 </Playground>
 
 ## Alignment
@@ -86,31 +94,31 @@ Define gap between elements via `space` prop:
 `align="left"`
 
 <Playground>
-  <Inline css={{ width: '400px' }} space="md" align="left">
+  <Stack flow="row" css={{ width: '400px' }} space="md" align="left">
     <ExampleBox css={{ width: '$16' }} />
     <ExampleBox css={{ width: '$12' }} />
     <ExampleBox css={{ width: '$20' }} />
-  </Inline>
+  </Stack>
 </Playground>
 
 `align="center"`
 
 <Playground>
-  <Inline css={{ width: '400px' }} space="md" align="center">
+  <Stack flow="row" css={{ width: '400px' }} space="md" align="center">
     <ExampleBox css={{ width: '$16' }} />
     <ExampleBox css={{ width: '$12' }} />
     <ExampleBox css={{ width: '$20' }} />
-  </Inline>
+  </Stack>
 </Playground>
 
 `align="right"`
 
 <Playground>
-  <Inline css={{ width: '400px' }} space="md" align="right">
+  <Stack flow="row" css={{ width: '400px' }} space="md" align="right">
     <ExampleBox css={{ width: '$16' }} />
     <ExampleBox css={{ width: '$12' }} />
     <ExampleBox css={{ width: '$20' }} />
-  </Inline>
+  </Stack>
 </Playground>
 
 ## Wrap
@@ -119,13 +127,13 @@ Control content wrapping via `wrap` property:
 
 <Playground>
   <Box css={{ width: 50 * 4 + (4 - 1) * 8 }}>
-    <Inline wrap="wrap-reverse" flow="reverse" space="sm">
+    <Stack flow="row-reverse" wrap="wrap-reverse" space="sm">
       {Array(16)
         .fill(0)
         .map((el, i) => (
           <ExampleBox key={i}>{i + 1}</ExampleBox>
         ))}
-    </Inline>
+    </Stack>
   </Box>
 </Playground>
 
@@ -134,9 +142,9 @@ Control content wrapping via `wrap` property:
 You can reverse the components render using `flow="reverse"`
 
 <Playground>
-  <Inline flow="reverse" space="md">
-    <ExampleBox>1</ExampleBox>
-    <ExampleBox>2</ExampleBox>
-    <ExampleBox>3</ExampleBox>
-  </Inline>
+  <Stack flow="row" alignY="center" align="right" flow="row-reverse" space="md">
+    <ExampleBox css={{ height: '24px' }}>1</ExampleBox>
+    <ExampleBox css={{ height: '44px' }}>2</ExampleBox>
+    <ExampleBox css={{ height: '64px' }}>3</ExampleBox>
+  </Stack>
 </Playground>
