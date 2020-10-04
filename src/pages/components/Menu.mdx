@@ -35,16 +35,16 @@ You can modify `offset` and [`placement`](https://popper.js.org/docs/v2/construc
 <Playground>
   <ThemeProvider theme="black">
     <Box css={{ p: '$8' }}>
-      <Menu onAction={typeof window !== 'undefined' ? window.alert : null}>
+      <Menu>
         <Menu.Button>
           <span>Open menu</span>
           <Icon as={HiChevronDown} size="lg" />
         </Menu.Button>
         <Menu.List offset={0} placement="right-start">
-          {Array(500)
+          {Array(20)
             .fill(null)
             .map((el, i) => (
-              <Menu.Item key={i} action={`Item ${i}`}>
+              <Menu.Item key={i} onClick={() => window.alert(i)}>
                 Item {i}
               </Menu.Item>
             ))}
