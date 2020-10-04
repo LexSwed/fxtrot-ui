@@ -10,7 +10,7 @@ type Props = {
   theme?: ThemeName | Swatch;
 };
 
-const themeContext = createContext('blue');
+const themeContext = createContext<string | null>(null);
 
 const styles = {
   display: 'contents',
@@ -24,16 +24,18 @@ const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
       return css.theme(theme as Swatch);
     }
 
-    return themes[(theme as ThemeName) || (contextTheme as ThemeName)];
-  }, [contextTheme, theme]);
+    return themes[theme as ThemeName];
+  }, [theme]);
 
-  if (!themeClass) {
+  const className = themeClass || contextTheme;
+
+  if (!className) {
     return <>{children}</>;
   }
 
   return (
-    <themeContext.Provider value={themeClass}>
-      <Box className={themeClass} css={styles} as="span">
+    <themeContext.Provider value={className}>
+      <Box className={className} css={styles} as="span">
         {children}
       </Box>
     </themeContext.Provider>
@@ -41,3 +43,5 @@ const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
 };
 
 export default ThemeProvider;
+
+export const useTheme = () => useContext(themeContext);
