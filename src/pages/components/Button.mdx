@@ -4,42 +4,42 @@ name: Button
 
 import { Playground } from 'dokz';
 import { HiDotsVertical } from 'react-icons/hi';
-import { Box, Stack, Inline, Button, ThemeProvider, Icon } from '@fxtrot/ui';
+import { Box, Stack, Button, ThemeProvider, Icon } from '@fxtrot/ui';
 
 ## Variant
 
 <Playground>
   <Stack space="xl" css={{ py: '$8', bc: '$gray050' }}>
-    <Inline space="sm" css={{ px: '$10' }}>
+    <Stack flow="row" space="sm" css={{ px: '$10' }}>
       <Button>Primary</Button>
       <Button disabled>Primary (disabled)</Button>
-    </Inline>
-    <Inline space="sm" css={{ px: '$10' }}>
+    </Stack>
+    <Stack flow="row" space="sm" css={{ px: '$10' }}>
       <Button variant="outline">Outline</Button>
       <Button variant="outline" disabled>
         Outline (disabled)
       </Button>
-    </Inline>
-    <Inline space="sm" css={{ px: '$10' }}>
+    </Stack>
+    <Stack flow="row" space="sm" css={{ px: '$10' }}>
       <Button variant="secondary">Secondary</Button>
       <Button variant="secondary" disabled>
         Secondary (disabled)
       </Button>
-    </Inline>
-    <Inline space="sm" css={{ px: '$10' }}>
+    </Stack>
+    <Stack flow="row" space="sm" css={{ px: '$10' }}>
       <Button variant="flat">Flat</Button>
       <Button variant="flat" disabled>
         Flat (disabled)
       </Button>
-    </Inline>
-    <Inline space="sm" css={{ px: '$10' }}>
+    </Stack>
+    <Stack flow="row" space="sm" css={{ px: '$10' }}>
       <Button variant="link" as="a" href="#">
         Link
       </Button>
       <Button variant="link" as="a" href="#" disabled>
         Link (disabled)
       </Button>
-    </Inline>
+    </Stack>
   </Stack>
 </Playground>
 
@@ -50,30 +50,30 @@ Use `ThemeProvider` component to change the primary color of the button.
 <Playground>
   <ThemeProvider theme="black">
     <Stack space="xl" css={{ py: '$8', bc: '$surfaceStill' }}>
-      <Inline space="sm" css={{ px: '$10' }}>
+      <Stack flow="row" space="sm" css={{ px: '$10' }}>
         <Button>Primary</Button>
         <Button disabled>Primary (disabled)</Button>
-      </Inline>
-      <Inline space="sm" css={{ px: '$10' }}>
+      </Stack>
+      <Stack flow="row" space="sm" css={{ px: '$10' }}>
         <Button variant="secondary">Secondary</Button>
         <Button variant="secondary" disabled>
           Secondary (disabled)
         </Button>
-      </Inline>
-      <Inline space="sm" css={{ px: '$10' }}>
+      </Stack>
+      <Stack flow="row" space="sm" css={{ px: '$10' }}>
         <Button variant="flat">Flat</Button>
         <Button variant="flat" disabled>
           Flat (disabled)
         </Button>
-      </Inline>
-      <Inline space="sm" css={{ px: '$10' }}>
+      </Stack>
+      <Stack flow="row" space="sm" css={{ px: '$10' }}>
         <Button variant="link" as="a" href="#">
           Link
         </Button>
         <Button variant="link" as="a" href="#" disabled>
           Link (disabled)
         </Button>
-      </Inline>
+      </Stack>
     </Stack>
   </ThemeProvider>
 </Playground>
