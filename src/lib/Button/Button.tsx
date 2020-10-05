@@ -3,10 +3,10 @@ import { useButton } from '@react-aria/button';
 
 import { styled } from '../stitches.config';
 import { useForkRef } from '../utils';
-import Stack from '../Stack';
+import Flex from '../Flex';
 import Icon from '../Icon';
 
-const ButtonRoot = styled(Stack, {
+const ButtonRoot = styled(Flex, {
   'px': '$3',
   'fontSize': '$sm',
   'height': '$base',
@@ -128,7 +128,7 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
       <ButtonRoot
         {...buttonProps}
         flow="row"
-        alignY="center"
+        alignAxisCross="center"
         display="inline"
         css={css}
         space="$2"

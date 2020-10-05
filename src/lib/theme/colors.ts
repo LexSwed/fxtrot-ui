@@ -43,9 +43,9 @@ export const swatches: Array<readonly [string, Swatch]> = Object.entries(palette
           $primaryLight: gray['$gray500'],
           $primaryLightActive: gray['$gray400'],
 
-          $surfaceStill: gray['$gray600'],
-          $surfaceHover: gray['$gray500'],
-          $surfaceActive: gray['$gray600'],
+          $surfaceStill: gray['$gray700'],
+          $surfaceHover: gray['$gray600'],
+          $surfaceActive: gray['$gray500'],
           $surfaceDisabled: 'rgba(0,0,0,0.2)',
 
           $borderStill: gray['$gray200'],

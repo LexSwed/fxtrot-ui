@@ -3,7 +3,7 @@ name: Icon
 ---
 
 import { Playground } from 'dokz';
-import { Icon, Box, Text, Stack, styled } from '@fxtrot/ui';
+import { Icon, Box, Text, Flex, styled } from '@fxtrot/ui';
 import * as icons from 'react-icons/hi';
 
 ```tsx
@@ -25,7 +25,7 @@ export const Grid = styled('div', {
   py: '$4',
 });
 
-export const IconBox = styled(Stack, {
+export const IconBox = styled(Flex, {
   'p': '$3',
   'shadow': '$base',
   'transition': '0.2s ease-in-out',
@@ -46,7 +46,7 @@ export function copy(text) {
 export const IconsWithFilter = () => {
   const [filterText, setText] = React.useState('');
   return (
-    <Stack space="md">
+    <Flex space="md">
       <Box
         as="input"
         css={{ p: '$2', border: '1px solid $gray200', br: '$md', width: '100%' }}
@@ -86,7 +86,7 @@ export const IconsWithFilter = () => {
             ) : null
           )}
       </Box>
-    </Stack>
+    </Flex>
   );
 };
 

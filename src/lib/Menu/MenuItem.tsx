@@ -1,13 +1,14 @@
 import React, { useCallback } from 'react';
-import Stack from '../Stack';
+import { usePress } from '@react-aria/interactions';
+
+import Flex from '../Flex';
 import { styled } from '../stitches.config';
 import { useAllHandlers, useForkRef } from '../utils';
 import { useMenu, useMenuControlState } from './utils';
 
-const Item = styled(Stack, {
+const Item = styled(Flex, {
   'pr': '$3',
   'pl': '$2',
-  'borderLeft': '2px solid transparent',
   'fontSize': '$sm',
   'lineHeight': 1,
   'display': 'flex',
@@ -17,53 +18,53 @@ const Item = styled(Stack, {
   'br': '$sm',
   'outline': 'none',
   'color': '$text',
-
-  ':hover': {
-    bc: '$surfaceHover',
-  },
   ':focus, :active': {
     bc: '$surfaceActive',
-    borderLeftColor: '$accent',
-    borderTopLeftRadius: 0,
-    borderBottomLeftRadius: 0,
   },
 });
 
-type Props = React.ComponentProps<typeof Item> & { action: string };
+type Props = React.ComponentProps<typeof Item> & { act: string };
 
-const MenuItem = React.forwardRef<HTMLLIElement, Props>(({ action, ...props }, ref) => {
+const MenuItem = React.forwardRef<HTMLLIElement, Props>(({ act, ...props }, ref) => {
   const { onAction } = useMenu();
   const { close, stateRef } = useMenuControlState();
+
+  const onPress = useAllHandlers(
+    props.onPress,
+    useCallback(
+      (event) => {
+        console.log(act);
+        act && onAction?.(act);
+        if (event.defaultPrevented) return;
+        close();
+      },
+      [act, close, onAction]
+    )
+  );
+  const { pressProps } = usePress({ onPress });
   const elementRef = useCallback(
     (node: HTMLLIElement) => {
       const { items } = stateRef.current;
 
-      items.set(node, { action });
+      items.set(node, { act });
     },
-    [action, stateRef]
+    [act, stateRef]
   );
   const refs = useForkRef(elementRef, ref);
 
-  const onClick = useAllHandlers(
-    props.onClick,
-    useCallback(
-      (event) => {
-        action && onAction?.(action);
-        if (event.defaultPrevented) return;
-        close();
-      },
-      [action, close, onAction]
-    )
-  );
+  const onMouseEnter = useAllHandlers(props.onMouseEnter, (e) => {
+    e.currentTarget.focus();
+  });
 
   return (
     <Item
       as="li"
       {...props}
+      {...pressProps}
       flow="row"
       alignY="center"
       display="inline"
-      onClick={onClick}
+      onMouseEnter={onMouseEnter}
       tabIndex={props.disabled ? undefined : -1}
       role="menuitem"
       ref={refs}

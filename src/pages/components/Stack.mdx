@@ -1,13 +1,13 @@
 ---
-name: Stack
+name: Flex
 ---
 
 import { Playground } from 'dokz';
-import { Stack, Text, styled } from '@fxtrot/ui';
+import { Box, Flex, Text, styled } from '@fxtrot/ui';
 
 import { ExampleBox } from '../../pages-helpers';
 
-# Stack
+# Flex
 
 ## Space
 
@@ -16,113 +16,202 @@ Define gap between elements via `space` prop:
 `space="none"`:
 
 <Playground>
-  <Stack space="none">
+  <Flex space="none">
     <ExampleBox />
     <ExampleBox />
     <ExampleBox />
-  </Stack>
+  </Flex>
 </Playground>
 
 `space="xs"`:
 
 <Playground>
-  <Stack space="xs">
+  <Flex space="xs">
     <ExampleBox />
     <ExampleBox />
     <ExampleBox />
-  </Stack>
+  </Flex>
 </Playground>
 
 `space="sm"`:
 
 <Playground>
-  <Stack space="sm">
+  <Flex space="sm">
     <ExampleBox />
     <ExampleBox />
     <ExampleBox />
-  </Stack>
+  </Flex>
 </Playground>
 
 `space="md"`:
 
 <Playground>
-  <Stack space="md">
+  <Flex space="md">
     <ExampleBox />
     <ExampleBox />
     <ExampleBox />
-  </Stack>
+  </Flex>
 </Playground>
 
 `space="lg"`:
 
 <Playground>
-  <Stack space="lg">
+  <Flex space="lg">
     <ExampleBox />
     <ExampleBox />
     <ExampleBox />
-  </Stack>
+  </Flex>
 </Playground>
 
 `space="xl"`:
 
 <Playground>
-  <Stack space="xl">
+  <Flex space="xl">
     <ExampleBox />
     <ExampleBox />
     <ExampleBox />
-  </Stack>
+  </Flex>
 </Playground>
 
 `space="2xl"`:
 
 <Playground>
-  <Stack space="2xl">
+  <Flex space="2xl">
     <ExampleBox />
     <ExampleBox />
     <ExampleBox />
-  </Stack>
+  </Flex>
 </Playground>
 
 ## Alignment
 
-`align="left"`
+Since `Flex` can be used for rows and columns, use `alignAxisMain` and `alignAxisCross` to align items inside `Flex`
+across main axis or cross axis.
+
+`alignAxisMain="start"` (default)
 
 <Playground>
-  <Stack css={{ width: '400px' }} space="md" align="left">
-    <ExampleBox css={{ width: '$16' }} />
-    <ExampleBox css={{ width: '$12' }} />
-    <ExampleBox css={{ width: '$20' }} />
-  </Stack>
+  <>
+    <Flex css={{ width: '400px', bc: '$lightBlue050' }} space="md" alignAxisMain="start">
+      <ExampleBox css={{ width: '$16' }} />
+      <ExampleBox css={{ width: '$12' }} />
+      <ExampleBox css={{ width: '$20' }} />
+    </Flex>
+    <Flex css={{ width: '400px', bc: '$lightBlue050', mt: '$8' }} space="md" flow="row" alignAxisMain="start">
+      <ExampleBox css={{ width: '$16' }} />
+      <ExampleBox css={{ width: '$12' }} />
+      <ExampleBox css={{ width: '$20' }} />
+    </Flex>
+  </>
 </Playground>
 
-`align="center"`
+`alignAxisMain="center"`
 
 <Playground>
-  <Stack css={{ width: '400px' }} space="md" align="center">
-    <ExampleBox css={{ width: '$16' }} />
-    <ExampleBox css={{ width: '$12' }} />
-    <ExampleBox css={{ width: '$20' }} />
-  </Stack>
+  <>
+    <Flex css={{ width: '400px', bc: '$lightBlue050' }} space="md" alignAxisMain="start">
+      <ExampleBox css={{ width: '$16' }} />
+      <ExampleBox css={{ width: '$12' }} />
+      <ExampleBox css={{ width: '$20' }} />
+    </Flex>
+    <Flex css={{ width: '400px', bc: '$lightBlue050', mt: '$8' }} space="md" flow="row" alignAxisMain="start">
+      <ExampleBox css={{ width: '$16' }} />
+      <ExampleBox css={{ width: '$12' }} />
+      <ExampleBox css={{ width: '$20' }} />
+    </Flex>
+  </>
 </Playground>
 
-`align="right"`
+`alignAxisMain="end"`
 
 <Playground>
-  <Stack css={{ width: '400px' }} space="md" align="right">
-    <ExampleBox css={{ width: '$16' }} />
-    <ExampleBox css={{ width: '$12' }} />
-    <ExampleBox css={{ width: '$20' }} />
-  </Stack>
+  <>
+    <Flex css={{ width: '400px', height: '240px', bc: '$lightBlue050' }} space="md" alignAxisMain="end">
+      <ExampleBox css={{ width: '$16' }} />
+      <ExampleBox css={{ width: '$12' }} />
+      <ExampleBox css={{ width: '$20' }} />
+    </Flex>
+    <Flex css={{ width: '400px', bc: '$lightBlue050', mt: '$8' }} space="md" flow="row" alignAxisMain="end">
+      <ExampleBox css={{ width: '$16' }} />
+      <ExampleBox css={{ width: '$12' }} />
+      <ExampleBox css={{ width: '$20' }} />
+    </Flex>
+  </>
+</Playground>
+
+`alignAxisMain="spread"` – spacing between items is now controlled by the container size:
+
+<Playground>
+  <>
+    <Flex css={{ width: '400px', height: '240px', bc: '$lightBlue050' }} alignAxisMain="spread">
+      <ExampleBox css={{ width: '$16' }} />
+      <ExampleBox css={{ width: '$12' }} />
+      <ExampleBox css={{ width: '$20' }} />
+    </Flex>
+    <Flex css={{ width: '400px', bc: '$lightBlue050', mt: '$8' }} flow="row" alignAxisMain="spread">
+      <ExampleBox css={{ width: '$16' }} />
+      <ExampleBox css={{ width: '$12' }} />
+      <ExampleBox css={{ width: '$20' }} />
+    </Flex>
+  </>
+</Playground>
+
+`alignAxisMain="spread" alignAxisCross="center"`
+
+<Playground>
+  <>
+    <Flex css={{ width: '400px', height: '240px', bc: '$lightBlue050' }} alignAxisCross="center" alignAxisMain="spread">
+      <ExampleBox css={{ width: '$16' }} />
+      <ExampleBox css={{ width: '$12' }} />
+      <ExampleBox css={{ width: '$20' }} />
+    </Flex>
+    <Flex
+      css={{ width: '400px', bc: '$lightBlue050', height: '100px', mt: '$8' }}
+      flow="row"
+      alignAxisCross="center"
+      alignAxisMain="spread"
+    >
+      <ExampleBox css={{ width: '$16' }} />
+      <ExampleBox css={{ width: '$12' }} />
+      <ExampleBox css={{ width: '$20' }} />
+    </Flex>
+  </>
 </Playground>
 
 ## Flow
 
-You can reverse the components render using `flow="reverse"`
+You can reverse the components render using `flow="column-reverse"`
 
 <Playground>
-  <Stack flow="reverse" space="md">
+  <Flex flow="column-reverse" space="md">
     <ExampleBox>1</ExampleBox>
     <ExampleBox>2</ExampleBox>
     <ExampleBox>3</ExampleBox>
-  </Stack>
+  </Flex>
+</Playground>
+
+And `row-reverse`
+
+<Playground>
+  <Flex flow="row" alignY="center" align="right" flow="row-reverse" space="md">
+    <ExampleBox css={{ height: '24px' }}>1</ExampleBox>
+    <ExampleBox css={{ height: '44px' }}>2</ExampleBox>
+    <ExampleBox css={{ height: '64px' }}>3</ExampleBox>
+  </Flex>
+</Playground>
+
+## Wrap
+
+Control content wrapping via `wrap` property:
+
+<Playground>
+  <Box css={{ width: 50 * 4 + (4 - 1) * 8 }}>
+    <Flex flow="row-reverse" wrap="wrap-reverse" space="sm">
+      {Array(16)
+        .fill(0)
+        .map((el, i) => (
+          <ExampleBox key={i}>{i + 1}</ExampleBox>
+        ))}
+    </Flex>
+  </Box>
 </Playground>

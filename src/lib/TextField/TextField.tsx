@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useUID } from 'react-uid';
 import Label from '../Label';
-import Stack from '../Stack';
+import Flex from '../Flex';
 import { styled } from '../stitches.config';
 import { HiOutlineCalendar, HiCheck, HiOutlineExclamationCircle } from 'react-icons/hi';
 import Icon from '../Icon';
@@ -111,7 +111,8 @@ const icons: Record<string, React.ElementType> = {
 const TextField: React.FC<Props> = ({
   label,
   secondaryLabel,
-  align,
+  alignAxisMain,
+  alignAxisCross,
   flow,
   display = 'inline',
   space = 'xs',
@@ -146,7 +147,16 @@ const TextField: React.FC<Props> = ({
   const iconRight = icons[validity || type];
 
   return (
-    <Stack align={align} flow={flow} display={display} space={space} css={css} style={style} className={className}>
+    <Flex
+      alignAxisMain={alignAxisMain}
+      alignAxisCross={alignAxisCross}
+      flow={flow}
+      display={display}
+      space={space}
+      css={css}
+      style={style}
+      className={className}
+    >
       {label && <Label htmlFor={inputId} label={label} secondary={secondaryLabel} />}
       <InputWrapper validity={validity}>
         <Input {...props} onChange={handleChange} id={inputId} hasIcon={Boolean(iconRight)} type={type} />
@@ -156,7 +166,7 @@ const TextField: React.FC<Props> = ({
           </IconWrapper>
         )}
       </InputWrapper>
-    </Stack>
+    </Flex>
   );
 };
 
@@ -166,4 +176,4 @@ type Props = {
   label: string;
   validity: 'valid' | 'invalid';
 } & React.ComponentProps<typeof Input> &
-  React.ComponentProps<typeof Stack>;
+  React.ComponentProps<typeof Flex>;

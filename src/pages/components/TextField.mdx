@@ -3,7 +3,7 @@ name: TextField
 ---
 
 import { Playground } from 'dokz';
-import { Box, Stack, TextField } from '@fxtrot/ui';
+import { Box, Flex, TextField } from '@fxtrot/ui';
 
 ## TextField
 
@@ -17,12 +17,12 @@ import { Box, Stack, TextField } from '@fxtrot/ui';
 
 <Playground>
   <Box css={{ p: '$6' }}>
-    <Stack space="md" align="stretch" display="inline">
+    <Flex space="md" align="stretch" display="inline">
       <TextField label="Email address" secondaryLabel="(required)" type="email" />
       <TextField label="Password" secondaryLabel="(required)" type="password" />
       <TextField label="Your birth day" type="date" />
       <TextField label="Your age" onChange={(str) => console.log(str)} type="number" min="18" />
-    </Stack>
+    </Flex>
   </Box>
 </Playground>
 
@@ -34,7 +34,7 @@ import { Box, Stack, TextField } from '@fxtrot/ui';
     const isValid = React.useMemo(() => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value), [value]);
     return (
       <Box css={{ p: '$6' }}>
-        <Stack space="md">
+        <Flex space="md">
           <TextField
             validity={isValid ? 'valid' : 'invalid'}
             placeholder="Enter your email"
@@ -42,7 +42,7 @@ import { Box, Stack, TextField } from '@fxtrot/ui';
             onChange={setValue}
             label="Email"
           />
-        </Stack>
+        </Flex>
       </Box>
     );
   }}
@@ -50,7 +50,7 @@ import { Box, Stack, TextField } from '@fxtrot/ui';
 
 ## Label alignment
 
-Since input is wrapped in `Stack` component, you can easily pass any props `Stack` supports,
+Since input is wrapped in `Flex` component, you can easily pass any props `Flex` supports,
 for example to specify flow direction:
 
 <Playground>
@@ -59,7 +59,7 @@ for example to specify flow direction:
       label="Enter your name"
       flow={{ desktop: 'row', initial: 'column' }}
       space={{ desktop: '$6', initial: '$1' }}
-      align={{ desktop: 'center', initial: 'left' }}
+      alignAxisCross={{ desktop: 'center', initial: 'start' }}
       placeholder="John Doe"
     />
   </Box>

@@ -1,5 +1,5 @@
 import React from 'react';
-import Stack from '../Stack';
+import Flex from '../Flex';
 import { styled } from '../stitches.config';
 
 const Main = styled('span', {
@@ -15,7 +15,7 @@ const Secondary = styled('span', {
   fontWeight: 400,
 });
 
-const Wrapper = styled(Stack, {
+const Wrapper = styled(Flex, {
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
 });
@@ -27,7 +27,7 @@ type Props = React.DetailedHTMLProps<React.LabelHTMLAttributes<HTMLLabelElement>
 
 const Label: React.FC<Props> = ({ label, children: _ignore, secondary, ref, ...props }) => {
   return (
-    <Wrapper {...props} flow="row" alignY="center" space="xs" display="inline" as="label" ref={ref as any}>
+    <Wrapper {...props} flow="row" alignAxisCross="center" space="xs" display="inline" as="label" ref={ref as any}>
       <Main>{label}</Main>
       {secondary && <Secondary>{secondary}</Secondary>}
     </Wrapper>

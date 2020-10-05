@@ -61,7 +61,7 @@ export function useMenuControlState() {
   return useContext(menuStateControlsContext);
 }
 
-type InternalState = { lastKey: string | null; items: Map<HTMLLIElement, { action: string }> };
+type InternalState = { lastKey: string | null; items: Map<HTMLLIElement, { act: string }> };
 type MenuControlFunctions = {
   stateRef: {
     readonly current: InternalState;

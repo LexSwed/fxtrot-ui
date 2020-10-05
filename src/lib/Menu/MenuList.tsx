@@ -14,8 +14,7 @@ const List = styled('ul', {
   br: '$md',
   border: '1px solid $gray200',
   outline: 'none',
-  pl: 0,
-  paddingInlineStart: 0,
+  p: '$1',
 });
 
 type UlListProps = React.ComponentProps<typeof List>;
@@ -87,7 +86,7 @@ function useMenuProps({ placement = 'bottom-start', offset = 8, ...props }: Prop
   const selectItem = useCallback(
     (li: HTMLLIElement) => {
       if (onAction) {
-        const action = stateRef.current.items.get(li)?.action;
+        const action = stateRef.current.items.get(li)?.act;
         if (action) {
           return onAction(action);
         }
