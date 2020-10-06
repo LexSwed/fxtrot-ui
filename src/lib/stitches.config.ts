@@ -1,4 +1,5 @@
 import { createStyled } from '@stitches/react';
+import { attribute } from './FocusRing/focus-visible';
 import colors from './theme/colors';
 import { scales } from './theme/scales';
 import { isServer } from './utils';
@@ -158,8 +159,8 @@ export const { styled, css } = createStyled({
 
     $outline: (offset: number) => ({
       ':not(:disabled)': {
-        'position': 'relative',
         'outline': 'none',
+        'position': 'relative',
 
         '::before': {
           content: `''`,
@@ -179,9 +180,8 @@ export const { styled, css } = createStyled({
       },
       ':focus': {
         outline: 'none',
-        boxShadow: 'none',
       },
-      ':focus:focus-visible::before': {
+      [`:focus[${attribute}]:before`]: {
         boxShadow: '0 0 0 2px $text',
       },
     }),

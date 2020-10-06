@@ -13,7 +13,7 @@ const ButtonRoot = styled(Flex, {
   'lineHeight': '$base',
   'fontWeight': 500,
   'transition': '0.2s ease-in-out',
-  '$outline': 1,
+  '$outline': 0,
   'font': '$default',
   'border': '1px solid transparent',
   'br': '$md',
