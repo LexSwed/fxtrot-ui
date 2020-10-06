@@ -3,12 +3,27 @@ name: Text
 ---
 
 import { Playground } from 'dokz';
-import { Text } from '@fxtrot/ui';
+import { Flex, Text } from '@fxtrot/ui';
 
 ## Text
 
 <Playground>
-  <Text>Some text</Text>
+  <Text as="p">This is a normal text rendered as paragraph</Text>
 </Playground>
 
-## Secondary text
+## Text variants
+
+<Playground>
+  <Flex space="sm">
+    <Text size="xs">Some text</Text>
+    <Text tone="light" size="xs">
+      Some text
+    </Text>
+    <Text tone="success" size="xs">
+      Some text
+    </Text>
+    <Text tone="danger" size="xs">
+      Some text
+    </Text>
+  </Flex>
+</Playground>

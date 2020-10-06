@@ -9,6 +9,7 @@ export const swatches: Array<readonly [string, Swatch]> = Object.entries(palette
       colors: {
         $text: gray['$gray900'],
         $textDisabled: gray['$gray500'],
+        $textLight: gray['$gray600'],
         $accent: colors[`$${name}600` as keyof typeof colors],
 
         $primaryStill: colors[`$${name}500` as keyof typeof colors],
@@ -35,6 +36,7 @@ export const swatches: Array<readonly [string, Swatch]> = Object.entries(palette
         colors: {
           $text: '#fff',
           $textDisabled: gray['$gray400'],
+          $textLight: gray['$gray100'],
           $accent: '#fff',
 
           $primaryStill: gray['$gray800'],
@@ -67,6 +69,7 @@ export type Swatch = {
   colors: {
     $text: string;
     $textDisabled: string;
+    $textLight: string;
     $accent: string;
 
     $primaryStill: string;

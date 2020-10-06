@@ -2,9 +2,22 @@ import { styled } from '../stitches.config';
 import { textSize, font } from '../theme/variants';
 
 const Text = styled('span', {
+  p: 0,
+  m: 0,
   variants: {
     font,
     size: textSize,
+    tone: {
+      light: {
+        color: '$textLight',
+      },
+      success: {
+        color: '$lightGreen600',
+      },
+      danger: {
+        color: '$red600',
+      },
+    },
   },
 });
 

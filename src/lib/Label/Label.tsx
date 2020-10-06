@@ -1,17 +1,15 @@
 import React from 'react';
-import Flex from '../Flex';
 import { styled } from '../stitches.config';
+import Flex from '../Flex';
+import Text from '../Text';
 
-const Main = styled('span', {
-  fontSize: '$xs',
+const Main = styled(Text, {
   lineHeight: 1,
   fontWeight: 600,
 });
 
-const Secondary = styled('span', {
-  fontSize: '$xs',
+const Secondary = styled(Text, {
   lineHeight: 1,
-  color: '$gray600',
   fontWeight: 400,
 });
 
@@ -28,8 +26,12 @@ type Props = React.DetailedHTMLProps<React.LabelHTMLAttributes<HTMLLabelElement>
 const Label: React.FC<Props> = ({ label, children: _ignore, secondary, ref, ...props }) => {
   return (
     <Wrapper {...props} flow="row" alignAxisCross="center" space="xs" display="inline" as="label" ref={ref as any}>
-      <Main>{label}</Main>
-      {secondary && <Secondary>{secondary}</Secondary>}
+      <Main size="xs">{label}</Main>
+      {secondary && (
+        <Secondary size="xs" tone="light">
+          {secondary}
+        </Secondary>
+      )}
     </Wrapper>
   );
 };
