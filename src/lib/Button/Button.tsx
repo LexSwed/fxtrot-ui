@@ -7,11 +7,6 @@ import Flex from '../Flex';
 import Icon from '../Icon';
 
 const ButtonRoot = styled(Flex, {
-  'px': '$3',
-  'fontSize': '$sm',
-  'height': '$base',
-  'lineHeight': '$base',
-  'fontWeight': 500,
   'transition': '0.2s ease-in-out',
   '$outline': 0,
   'font': '$default',
@@ -112,6 +107,29 @@ const ButtonRoot = styled(Flex, {
         },
       },
     },
+    size: {
+      sm: {
+        height: '$6',
+        lineHeight: '$6',
+        fontSize: '$xs',
+        fontWeight: 400,
+        px: '$2',
+      },
+      md: {
+        height: '$base',
+        lineHeight: '$base',
+        fontSize: '$sm',
+        fontWeight: 500,
+        px: '$3',
+      },
+      lg: {
+        height: '$10',
+        lineHeight: '$10',
+        fontSize: '$md',
+        fontWeight: 500,
+        px: '$3',
+      },
+    },
   },
 });
 
@@ -119,7 +137,7 @@ type ButtonProps = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButton
 type Props = React.ComponentPropsWithRef<typeof ButtonRoot> & ButtonProps;
 
 const Button = React.forwardRef<HTMLButtonElement, Props>(
-  ({ as = 'button', variant = 'primary', css, ...props }, propRef) => {
+  ({ as = 'button', variant = 'primary', size = 'md', css, ...props }, propRef) => {
     const innerRef = useRef<HTMLButtonElement>(null);
     const { buttonProps } = useButton({ isDisabled: props.disabled, elementType: as, ...props } as any, innerRef);
     const ref = useForkRef(innerRef, propRef);
@@ -135,6 +153,7 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
         variant={variant}
         as={as}
         ref={ref}
+        size={size}
       >
         {props.children}
       </ButtonRoot>

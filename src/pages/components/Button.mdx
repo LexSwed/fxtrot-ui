@@ -43,6 +43,58 @@ import { Box, Flex, Button, ThemeProvider, Icon } from '@fxtrot/ui';
   </Flex>
 </Playground>
 
+## Size
+
+<Playground>
+  <Flex space="xl" css={{ py: '$8', bc: '$gray050' }}>
+    <Flex flow="row" space="sm" css={{ px: '$10' }}>
+      <Button size="sm">Primary</Button>
+      <Button size="sm" variant="outline">
+        Outline
+      </Button>
+      <Button size="sm" variant="secondary">
+        Secondary
+      </Button>
+      <Button size="sm" variant="flat">
+        Flat
+      </Button>
+      <Button size="sm" variant="link" as="a" href="#">
+        Link
+      </Button>
+    </Flex>
+    <Flex flow="row" space="sm" css={{ px: '$10' }}>
+      <Button size="md">Primary</Button>
+      <Button size="md" variant="outline">
+        Outline
+      </Button>
+      <Button size="md" variant="secondary">
+        Secondary
+      </Button>
+      <Button size="md" variant="flat">
+        Flat
+      </Button>
+      <Button size="md" variant="link" as="a" href="#">
+        Link
+      </Button>
+    </Flex>
+    <Flex flow="row" space="sm" css={{ px: '$10' }}>
+      <Button size="lg">Primary</Button>
+      <Button size="lg" variant="outline">
+        Outline
+      </Button>
+      <Button size="lg" variant="secondary">
+        Secondary
+      </Button>
+      <Button size="lg" variant="flat">
+        Flat
+      </Button>
+      <Button size="lg" variant="link" as="a" href="#">
+        Link
+      </Button>
+    </Flex>
+  </Flex>
+</Playground>
+
 ## Theming
 
 Use `ThemeProvider` component to change the primary color of the button.

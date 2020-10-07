@@ -10,7 +10,6 @@ const Heading = styled('h1', {
     as: {
       h1: {
         textSize: '$3xl',
-
         textTransform: 'uppercase',
       },
       h2: {

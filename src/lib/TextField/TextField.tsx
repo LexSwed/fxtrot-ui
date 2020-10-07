@@ -23,6 +23,7 @@ const Input = styled('input', {
   'height': '$base',
   'transition': '0.2s ease-in-out',
   'border': '1px solid $borderStill',
+  'bc': '$surfaceStill',
   'br': '$md',
   'outline': 'none',
   '::placeholder': {
