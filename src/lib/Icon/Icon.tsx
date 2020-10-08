@@ -1,6 +1,6 @@
 import { styled } from '../stitches.config';
 
-const IconBox = styled('i', {
+const Icon = styled('svg', {
   variants: {
     size: {
       'xs': {
@@ -40,8 +40,8 @@ const IconBox = styled('i', {
   },
 });
 
-IconBox.defaultProps = {
+Icon.defaultProps = {
   size: 'md',
 };
 
-export default IconBox;
+export default Icon;

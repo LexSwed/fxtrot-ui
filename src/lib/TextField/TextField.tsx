@@ -5,7 +5,6 @@ import { styled } from '../stitches.config';
 import { HiOutlineCalendar, HiCheck, HiOutlineExclamationCircle } from 'react-icons/hi';
 import Icon from '../Icon';
 import { StylesObject } from '../types/helpers';
-import { attribute } from '../FocusRing/focus-visible';
 
 const iconStyles: StylesObject = {
   position: 'absolute',
