@@ -43,7 +43,7 @@ const Flex = styled(Box, {
         flexDirection: 'column-reverse',
       },
     },
-    alignAxisMain: {
+    main: {
       start: {
         justifyContent: 'flex-start',
       },
@@ -60,7 +60,7 @@ const Flex = styled(Box, {
         justifyContent: 'space-between',
       },
     },
-    alignAxisCross: {
+    cross: {
       start: {
         alignItems: 'flex-start',
       },
@@ -81,8 +81,8 @@ Flex.defaultProps = {
   space: 'none',
   flow: 'column',
   wrap: 'nowrap',
-  alignAxisMain: 'start',
-  alignAxisCross: 'start',
+  main: 'start',
+  cross: 'start',
 };
 
 export default Flex;

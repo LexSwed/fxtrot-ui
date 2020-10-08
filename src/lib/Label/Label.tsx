@@ -6,6 +6,17 @@ import Text from '../Text';
 const Main = styled(Text, {
   lineHeight: 1,
   fontWeight: 600,
+
+  variants: {
+    disabled: {
+      true: {
+        color: '$textDisabled',
+      },
+      false: {
+        color: '$text',
+      },
+    },
+  },
 });
 
 const Secondary = styled(Text, {
@@ -21,12 +32,16 @@ const Wrapper = styled(Flex, {
 type Props = React.DetailedHTMLProps<React.LabelHTMLAttributes<HTMLLabelElement>, HTMLLabelElement> & {
   label: React.ReactNode;
   secondary?: React.ReactNode;
+  disabled?: boolean;
+  as?: React.ComponentProps<typeof Wrapper>['as'];
 };
 
-const Label: React.FC<Props> = ({ label, children: _ignore, secondary, ref, ...props }) => {
+const Label: React.FC<Props> = ({ label, children: _ignore, secondary, ref, as = 'label', disabled, ...props }) => {
   return (
-    <Wrapper {...props} flow="row" alignAxisCross="center" space="xs" display="inline" as="label" ref={ref as any}>
-      <Main size="xs">{label}</Main>
+    <Wrapper {...props} flow="row" cross="center" space="xs" display="inline" as={as} ref={ref as any}>
+      <Main size="xs" disabled={disabled}>
+        {label}
+      </Main>
       {secondary && (
         <Secondary size="xs" tone="light">
           {secondary}

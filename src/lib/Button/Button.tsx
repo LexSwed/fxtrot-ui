@@ -76,9 +76,10 @@ const ButtonRoot = styled(Flex, {
       },
       flat: {
         'bc': 'transparent',
-        'color': '$text',
+        'color': '$textLight',
         ':hover': {
           bc: '$surfaceHover',
+          color: '$text',
         },
         ':active': {
           bc: '$surfaceActive',
@@ -133,11 +134,12 @@ const ButtonRoot = styled(Flex, {
   },
 });
 
-type ButtonProps = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
-type Props = React.ComponentPropsWithRef<typeof ButtonRoot> & ButtonProps;
+type Props = React.ComponentPropsWithRef<typeof ButtonRoot> & {
+  space?: React.ComponentProps<typeof Flex>['space'];
+};
 
 const Button = React.forwardRef<HTMLButtonElement, Props>(
-  ({ as = 'button', variant = 'primary', size = 'md', css, ...props }, propRef) => {
+  ({ as = 'button', variant = 'primary', size = 'md', space = '$2', css, ...props }, propRef) => {
     const innerRef = useRef<HTMLButtonElement>(null);
     const { buttonProps } = useButton({ isDisabled: props.disabled, elementType: as, ...props } as any, innerRef);
     const ref = useForkRef(innerRef, propRef);
@@ -146,10 +148,10 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
       <ButtonRoot
         {...buttonProps}
         flow="row"
-        alignAxisCross="center"
+        cross="center"
         display="inline"
         css={css}
-        space="$2"
+        space={space}
         variant={variant}
         as={as}
         ref={ref}

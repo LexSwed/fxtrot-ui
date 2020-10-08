@@ -8,9 +8,10 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
 ## TextField
 
 <Playground>
-  <Box css={{ p: '$6', bc: '$gray050' }}>
+  <Flex flow="row" space="md" css={{ p: '$6', bc: '$gray050' }}>
     <TextField label="Enter your name" placeholder="John Doe" />
-  </Box>
+    <TextField label="Enter your name" placeholder="John Doe" disabled />
+  </Flex>
 </Playground>
 
 ## Types
@@ -59,7 +60,7 @@ for example to specify flow direction:
       label="Enter your name"
       flow={{ desktop: 'row', initial: 'column' }}
       space={{ desktop: '$6', initial: '$1' }}
-      alignAxisCross={{ desktop: 'center', initial: 'start' }}
+      cross={{ desktop: 'center', initial: 'start' }}
       placeholder="John Doe"
     />
   </Box>

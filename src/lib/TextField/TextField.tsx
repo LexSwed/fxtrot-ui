@@ -1,5 +1,4 @@
-import React, { useCallback } from 'react';
-import { useUID } from 'react-uid';
+import React, { useMemo } from 'react';
 import Label from '../Label';
 import Flex from '../Flex';
 import { styled } from '../stitches.config';
@@ -112,28 +111,27 @@ const icons: Record<string, React.ElementType> = {
 const TextField: React.FC<Props> = ({
   label,
   secondaryLabel,
-  alignAxisMain,
-  alignAxisCross,
+  main,
+  cross,
   flow,
   display = 'inline',
   space = 'xs',
-  id: propId,
   css,
   style,
   className,
   type,
   onChange,
   validity,
+  value,
+  disabled,
   ...props
 }) => {
-  const id = useUID();
-  const inputId = propId || id;
+  const handleChange = useMemo(() => {
+    if (typeof onChange !== 'function') {
+      return undefined;
+    }
 
-  const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (typeof onChange !== 'function') {
-        return undefined;
-      }
+    return (e: React.ChangeEvent<HTMLInputElement>) => {
       if (type === 'number') {
         onChange(e.target.valueAsNumber, e);
       } else if (type === 'date') {
@@ -141,26 +139,33 @@ const TextField: React.FC<Props> = ({
       } else {
         onChange(e.target.value, e);
       }
-    },
-    [onChange, type]
-  );
+    };
+  }, [onChange, type]);
 
   const iconRight = icons[validity || type];
 
   return (
     <Flex
-      alignAxisMain={alignAxisMain}
-      alignAxisCross={alignAxisCross}
+      main={main}
+      cross={cross}
       flow={flow}
       display={display}
       space={space}
       css={css}
       style={style}
       className={className}
+      as="label"
     >
-      {label && <Label htmlFor={inputId} label={label} secondary={secondaryLabel} />}
+      {label && <Label label={label} secondary={secondaryLabel} as="span" disabled={disabled} />}
       <InputWrapper validity={validity}>
-        <Input {...props} onChange={handleChange} id={inputId} hasIcon={Boolean(iconRight)} type={type} />
+        <Input
+          {...props}
+          disabled={disabled}
+          value={value}
+          onChange={handleChange}
+          hasIcon={Boolean(iconRight)}
+          type={type}
+        />
         {iconRight && (
           <IconWrapper>
             <Icon as={iconRight} size="md" />
@@ -174,7 +179,7 @@ const TextField: React.FC<Props> = ({
 export default TextField;
 
 type Props = {
-  label: string;
-  validity: 'valid' | 'invalid';
+  label?: string;
+  validity?: 'valid' | 'invalid';
 } & React.ComponentProps<typeof Input> &
   React.ComponentProps<typeof Flex>;

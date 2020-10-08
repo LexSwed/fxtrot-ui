@@ -85,19 +85,19 @@ Define gap between elements via `space` prop:
 
 ## Alignment
 
-Since `Flex` can be used for rows and columns, use `alignAxisMain` and `alignAxisCross` to align items inside `Flex`
+Since `Flex` can be used for rows and columns, use `main` and `cross` to align items inside `Flex`
 across main axis or cross axis.
 
-`alignAxisMain="start"` (default)
+`main="start"` (default)
 
 <Playground>
   <>
-    <Flex css={{ width: '400px', bc: '$lightBlue050' }} space="md" alignAxisMain="start">
+    <Flex css={{ width: '400px', bc: '$lightBlue050' }} space="md" main="start">
       <ExampleBox css={{ width: '$16' }} />
       <ExampleBox css={{ width: '$12' }} />
       <ExampleBox css={{ width: '$20' }} />
     </Flex>
-    <Flex css={{ width: '400px', bc: '$lightBlue050', mt: '$8' }} space="md" flow="row" alignAxisMain="start">
+    <Flex css={{ width: '400px', bc: '$lightBlue050', mt: '$8' }} space="md" flow="row" main="start">
       <ExampleBox css={{ width: '$16' }} />
       <ExampleBox css={{ width: '$12' }} />
       <ExampleBox css={{ width: '$20' }} />
@@ -105,16 +105,16 @@ across main axis or cross axis.
   </>
 </Playground>
 
-`alignAxisMain="center"`
+`main="center"`
 
 <Playground>
   <>
-    <Flex css={{ width: '400px', bc: '$lightBlue050' }} space="md" alignAxisMain="start">
+    <Flex css={{ width: '400px', bc: '$lightBlue050' }} space="md" main="start">
       <ExampleBox css={{ width: '$16' }} />
       <ExampleBox css={{ width: '$12' }} />
       <ExampleBox css={{ width: '$20' }} />
     </Flex>
-    <Flex css={{ width: '400px', bc: '$lightBlue050', mt: '$8' }} space="md" flow="row" alignAxisMain="start">
+    <Flex css={{ width: '400px', bc: '$lightBlue050', mt: '$8' }} space="md" flow="row" main="start">
       <ExampleBox css={{ width: '$16' }} />
       <ExampleBox css={{ width: '$12' }} />
       <ExampleBox css={{ width: '$20' }} />
@@ -122,16 +122,16 @@ across main axis or cross axis.
   </>
 </Playground>
 
-`alignAxisMain="end"`
+`main="end"`
 
 <Playground>
   <>
-    <Flex css={{ width: '400px', height: '240px', bc: '$lightBlue050' }} space="md" alignAxisMain="end">
+    <Flex css={{ width: '400px', height: '240px', bc: '$lightBlue050' }} space="md" main="end">
       <ExampleBox css={{ width: '$16' }} />
       <ExampleBox css={{ width: '$12' }} />
       <ExampleBox css={{ width: '$20' }} />
     </Flex>
-    <Flex css={{ width: '400px', bc: '$lightBlue050', mt: '$8' }} space="md" flow="row" alignAxisMain="end">
+    <Flex css={{ width: '400px', bc: '$lightBlue050', mt: '$8' }} space="md" flow="row" main="end">
       <ExampleBox css={{ width: '$16' }} />
       <ExampleBox css={{ width: '$12' }} />
       <ExampleBox css={{ width: '$20' }} />
@@ -139,16 +139,16 @@ across main axis or cross axis.
   </>
 </Playground>
 
-`alignAxisMain="spread"` – spacing between items is now controlled by the container size:
+`main="spread"` – spacing between items is now controlled by the container size:
 
 <Playground>
   <>
-    <Flex css={{ width: '400px', height: '240px', bc: '$lightBlue050' }} alignAxisMain="spread">
+    <Flex css={{ width: '400px', height: '240px', bc: '$lightBlue050' }} main="spread">
       <ExampleBox css={{ width: '$16' }} />
       <ExampleBox css={{ width: '$12' }} />
       <ExampleBox css={{ width: '$20' }} />
     </Flex>
-    <Flex css={{ width: '400px', bc: '$lightBlue050', mt: '$8' }} flow="row" alignAxisMain="spread">
+    <Flex css={{ width: '400px', bc: '$lightBlue050', mt: '$8' }} flow="row" main="spread">
       <ExampleBox css={{ width: '$16' }} />
       <ExampleBox css={{ width: '$12' }} />
       <ExampleBox css={{ width: '$20' }} />
@@ -156,11 +156,11 @@ across main axis or cross axis.
   </>
 </Playground>
 
-`alignAxisMain="spread" alignAxisCross="center"`
+`main="spread" cross="center"`
 
 <Playground>
   <>
-    <Flex css={{ width: '400px', height: '240px', bc: '$lightBlue050' }} alignAxisCross="center" alignAxisMain="spread">
+    <Flex css={{ width: '400px', height: '240px', bc: '$lightBlue050' }} cross="center" main="spread">
       <ExampleBox css={{ width: '$16' }} />
       <ExampleBox css={{ width: '$12' }} />
       <ExampleBox css={{ width: '$20' }} />
@@ -168,8 +168,8 @@ across main axis or cross axis.
     <Flex
       css={{ width: '400px', bc: '$lightBlue050', height: '100px', mt: '$8' }}
       flow="row"
-      alignAxisCross="center"
-      alignAxisMain="spread"
+      cross="center"
+      main="spread"
     >
       <ExampleBox css={{ width: '$16' }} />
       <ExampleBox css={{ width: '$12' }} />

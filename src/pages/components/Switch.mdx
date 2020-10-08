@@ -1,0 +1,45 @@
+---
+name: Switch
+---
+
+import { Playground } from 'dokz';
+import { ThemeProvider, Flex, Switch } from '@fxtrot/ui';
+
+## Switch
+
+<Playground>
+  <Flex space="xl" flow="row" css={{ py: '$8', bc: '$surfaceStill' }}>
+    <Switch label="Default" />
+    <Switch label="Disabled" disabled />
+    <Switch label="Checked disabled" disabled defaultChecked />
+  </Flex>
+</Playground>
+
+## Secondary text
+
+<Playground>
+  <Flex space="xl" css={{ py: '$8', bc: '$surfaceStill' }}>
+    <Switch label="Format on save" secondaryLabel="(required)" />
+  </Flex>
+</Playground>
+
+## Theming
+
+Use `ThemeProvider` component to change the primary color of the button.
+
+<Playground>
+  <Flex space="xl" css={{ py: '$8', bc: '$surfaceStill' }}>
+    <Flex flow="row" space="md" css={{ px: '$10' }}>
+      <ThemeProvider theme="rose">
+        <Switch label="Format on save" />
+        <Switch label="Format on save (disabled)" disabled />
+      </ThemeProvider>
+    </Flex>
+    <Flex flow="row" space="md" css={{ px: '$10' }}>
+      <ThemeProvider theme="green">
+        <Switch label="Format on save" />
+        <Switch label="Format on save (disabled)" disabled />
+      </ThemeProvider>
+    </Flex>
+  </Flex>
+</Playground>

@@ -6,9 +6,11 @@ export { default as Heading } from './Heading';
 export { default as Icon } from './Icon';
 export { default as Label } from './Label';
 export { default as Flex } from './Flex';
+export { default as Switch } from './Switch';
 export { default as Text } from './Text';
 export { default as TextField } from './TextField';
 export { default as TextLink } from './TextLink';
+export { default as VisuallyHidden } from './VisuallyHidden';
 
 export { default as Menu } from './Menu';
 

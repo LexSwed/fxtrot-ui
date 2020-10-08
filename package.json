@@ -37,6 +37,7 @@
     "@react-aria/button": "^3.2.2",
     "@react-aria/focus": "^3.2.2",
     "@react-aria/interactions": "^3.2.1",
+    "@react-aria/visually-hidden": "^3.2.1",
     "@stitches/react": "^0.0.3-canary.3",
     "react-uid": "^2.3.0"
   },
