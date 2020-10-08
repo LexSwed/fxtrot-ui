@@ -27,6 +27,21 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
   </Box>
 </Playground>
 
+## Variants
+
+<Playground>
+  <Flex space="lg" css={{ p: '$6', bc: '$gray050' }}>
+    <Flex flow="row" space="md">
+      <TextField label="Enter your name" placeholder="John Doe" />
+      <TextField label="Enter your name" placeholder="John Doe" disabled />
+    </Flex>
+    <Flex flow="row" space="md">
+      <TextField variant="underlined" label="Enter your name" placeholder="John Doe" />
+      <TextField variant="underlined" label="Enter your name" placeholder="John Doe" disabled />
+    </Flex>
+  </Flex>
+</Playground>
+
 ## Validity
 
 <Playground>

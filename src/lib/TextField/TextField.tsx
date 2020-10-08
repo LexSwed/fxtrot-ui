@@ -5,6 +5,7 @@ import { styled } from '../stitches.config';
 import { HiOutlineCalendar, HiCheck, HiOutlineExclamationCircle } from 'react-icons/hi';
 import Icon from '../Icon';
 import { StylesObject } from '../types/helpers';
+import { attribute } from '../FocusRing/focus-visible';
 
 const iconStyles: StylesObject = {
   position: 'absolute',
@@ -21,24 +22,15 @@ const Input = styled('input', {
   'display': 'inline-flex',
   'height': '$base',
   'transition': '0.2s ease-in-out',
-  'border': '1px solid $borderStill',
   'bc': '$surfaceStill',
-  'br': '$md',
   'outline': 'none',
   '::placeholder': {
     color: '$borderStill',
-  },
-  ':hover': {
-    borderColor: '$borderHover',
   },
   ':disabled': {
     color: '$textDisabled',
     borderColor: '$surfaceDisabled',
     bc: '$surfaceDisabled',
-  },
-  ':focus': {
-    borderColor: '$borderActive',
-    boxShadow: '0 0 0 1px $borderActive inset',
   },
 
   '&[type="number"]::-webkit-inner-spin-button, &[type="number"]::-webkit-outer-spin-button': {
@@ -57,6 +49,30 @@ const Input = styled('input', {
   },
 
   'variants': {
+    variant: {
+      boxed: {
+        'border': '1px solid $borderStill',
+        'br': '$md',
+        ':hover': {
+          borderColor: '$borderHover',
+        },
+        ':focus': {
+          borderColor: '$borderActive',
+          boxShadow: '0 0 0 1px $borderActive inset',
+        },
+      },
+      underlined: {
+        'borderBottom': '1px solid $borderStill',
+        'borderRadius': '$md $md 0 0',
+        ':hover': {
+          borderColor: '$borderHover',
+        },
+        ':focus': {
+          borderColor: '$primaryActive',
+          backgroundImage: 'linear-gradient(0deg, $primaryActive 0%, $primaryActive 2%, $surfaceStill 3%)',
+        },
+      },
+    },
     hasIcon: {
       true: {
         pr: '$8',
@@ -124,6 +140,7 @@ const TextField: React.FC<Props> = ({
   validity,
   value,
   disabled,
+  variant = 'boxed',
   ...props
 }) => {
   const handleChange = useMemo(() => {
@@ -165,6 +182,7 @@ const TextField: React.FC<Props> = ({
           onChange={handleChange}
           hasIcon={Boolean(iconRight)}
           type={type}
+          variant={variant}
         />
         {iconRight && (
           <IconWrapper>
