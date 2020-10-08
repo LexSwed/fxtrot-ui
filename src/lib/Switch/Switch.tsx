@@ -11,19 +11,20 @@ const Wrapper = styled(Flex, {
 
 const Toggle = styled(Flex, {
   'br': '$pill',
-  'bc': '$surfaceStill',
+  'bc': '$borderStill',
   'border': '1px solid $borderStill',
   'height': '$4',
   'width': '$6',
   'position': 'relative',
   'transition': '0.24s ease-in-out',
+  'boxShadow': '$inner',
 
   '::before': {
     content: `''`,
     display: 'block',
     position: 'absolute',
     size: '$3',
-    bc: '$borderHover',
+    bc: '#fff',
     br: '$round',
     transition: '0.24s ease-in-out',
     top: '1px',
@@ -49,15 +50,14 @@ const Input = styled('input', {
   transition: '0.24s ease-in-out',
 
   [`&:hover:not(:checked) + ${Toggle}`]: {
-    'boxShadow': '$inner',
     '&::before': {
-      bc: '$borderActive',
+      boxShadow: '$sm',
     },
   },
 
   [`&:focus:not(:checked) + ${Toggle}`]: {
     '::before': {
-      bc: '$borderActive',
+      boxShadow: '$md',
     },
   },
 
@@ -71,16 +71,15 @@ const Input = styled('input', {
   },
 
   [`&:focus:not(:checked)[${attribute}] + ${Toggle}`]: {
-    'bc': '$surfaceStill',
     '::before': {
-      boxShadow: '0 0 0 1px $surfaceStill, 0 0 0 2px $borderActive',
+      boxShadow: '0 0 0 1px $borderStill , 0 0 0 3px $borderActive',
     },
   },
 
   [`&:focus:checked[${attribute}] + ${Toggle}`]: {
     '::before': {
       borderColor: 'transparent',
-      boxShadow: '0 0 0 1px $primaryStill, 0 0 0 2px $borderActive',
+      boxShadow: '0 0 0 1px $primaryStill, 0 0 0 3px $borderActive',
     },
   },
 
@@ -95,7 +94,6 @@ const Input = styled('input', {
   [`&:checked:hover + ${Toggle}, &:checked:focus + ${Toggle}`]: {
     bc: '$primaryHover',
     borderColor: '$primaryHover',
-    boxShadow: '$base',
   },
 });
 
