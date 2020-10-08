@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo } from 'react';
 import Portal from '../Portal';
 import { useMenu, useMenuControlState, useMenuOpenState } from './utils';
 import { FocusManagerOptions, FocusScope, useFocusManager } from '@react-aria/focus';
-import { useAllHandlers, useOnClickOutside, useForkRef, useKeyboardHandles, usePopper } from '../utils';
+import { useAllHandlers, useOnClickOutside, useForkRef, useKeyboardHandles, usePopper, sameWidth } from '../utils';
 import { styled } from '../stitches.config';
 import type { Options } from '@popperjs/core';
 
@@ -52,30 +52,14 @@ const focusOptions: FocusManagerOptions = { wrap: true };
 function useMenuProps({ placement = 'bottom-start', offset = 8, ...props }: Props): UlListProps {
   const { triggerRef, popoverRef, seed, onAction } = useMenu();
   const { close, stateRef } = useMenuControlState();
-  const focusManager = useFocusManager();
+  const { focusNext, focusPrevious } = useFocusManager();
   const popperRef = usePopper(
     triggerRef,
     useMemo<Options>(
       () => ({
         placement,
         strategy: 'fixed',
-        modifiers: [
-          { name: 'offset', options: { offset: [0, offset] } },
-          {
-            name: 'minWidth',
-            enabled: true,
-            phase: 'beforeWrite',
-            requires: ['computeStyles'],
-            fn({ state }) {
-              const { width } = state.rects.reference;
-              state.styles.popper.minWidth = `${width}px`;
-            },
-            effect({ state }) {
-              const { width } = state.elements.reference.getBoundingClientRect();
-              state.elements.popper.style.minWidth = `${width}px`;
-            },
-          },
-        ],
+        modifiers: [{ name: 'offset', options: { offset: [0, offset] } }, sameWidth],
       }),
       [placement, offset]
     )
@@ -98,39 +82,29 @@ function useMenuProps({ placement = 'bottom-start', offset = 8, ...props }: Prop
 
   useEffect(() => {
     if (stateRef.current.lastKey === 'ArrowUp') {
-      focusManager.focusPrevious(focusOptions);
+      focusPrevious(focusOptions);
     } else {
-      focusManager.focusNext(focusOptions);
+      focusNext(focusOptions);
     }
-  }, [focusManager, popoverRef, stateRef]);
+  }, [focusNext, focusPrevious, popoverRef, stateRef]);
 
   const handleKeyDown = useKeyboardHandles(
     useMemo(
       () => ({
-        'ArrowDown': () => focusManager.focusNext(focusOptions),
-        'ArrowUp': () => focusManager.focusPrevious(focusOptions),
+        'ArrowDown': () => focusNext(focusOptions),
+        'ArrowUp': () => focusPrevious(focusOptions),
         'Enter': (event) => {
           selectItem(event.target as HTMLLIElement);
-          if (event.defaultPrevented) return;
           close();
         },
         ' ': (event) => {
           selectItem(event.target as HTMLLIElement);
-          if (event.defaultPrevented) return;
           close();
         },
-        'Escape': (event) => {
-          if (event.defaultPrevented) return;
-          event.preventDefault();
-          event.stopPropagation();
-          close();
-        },
-        'Tab': (event) => {
-          if (event.defaultPrevented) return;
-          close();
-        },
+        'Escape': close,
+        'Tab': close,
       }),
-      [close, focusManager, selectItem]
+      [close, focusNext, focusPrevious, selectItem]
     )
   );
 

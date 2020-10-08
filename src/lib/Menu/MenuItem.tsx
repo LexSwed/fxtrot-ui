@@ -33,7 +33,6 @@ const MenuItem = React.forwardRef<HTMLLIElement, Props>(({ act, ...props }, ref)
     props.onPress,
     useCallback(
       (event) => {
-        console.log(act);
         act && onAction?.(act);
         if (event.defaultPrevented) return;
         close();

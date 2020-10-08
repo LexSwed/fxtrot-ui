@@ -1,5 +1,5 @@
-import { createPopper, Instance, Options, VirtualElement } from '@popperjs/core';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
+import { createPopper, Instance, Modifier, Options, VirtualElement } from '@popperjs/core';
 
 type PossibleRef<T> = React.Ref<T> | ((instance: T | null) => void) | null | undefined;
 
@@ -59,16 +59,23 @@ export function useAllHandlers<E extends React.SyntheticEvent<any, Event>>(
 type KeyboardHandler = ((event: React.KeyboardEvent<any>) => void) | undefined;
 type KeyboardHandlers = { [Key in React.KeyboardEvent<any>['key']]: KeyboardHandler };
 
-export function useKeyboardHandles(handlers: KeyboardHandlers): KeyboardHandler {
+export function useKeyboardHandles(handlers: KeyboardHandlers, preventDefault = true): KeyboardHandler {
   const handlersRef = useRef(handlers);
 
   useEffect(() => {
     handlersRef.current = handlers;
   }, [handlers]);
 
-  return useCallback<(event: React.KeyboardEvent<any>) => void>((event) => {
-    handlersRef.current[event.key]?.(event);
-  }, []);
+  return useCallback<(event: React.KeyboardEvent<any>) => void>(
+    (event) => {
+      if (preventDefault) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      handlersRef.current[event.key]?.(event);
+    },
+    [preventDefault]
+  );
 }
 
 const MOUSEDOWN = 'mousedown';
@@ -143,3 +150,16 @@ export function usePopper(
     };
   }, [popoverRef, instantiatePopper]);
 }
+
+export const sameWidth: Modifier<'sameWidth', {}> = {
+  name: 'sameWidth',
+  enabled: true,
+  phase: 'beforeWrite',
+  requires: ['computeStyles'],
+  fn: ({ state }) => {
+    state.styles.popper.width = `${state.rects.reference.width}px`;
+  },
+  effect: ({ state }) => {
+    state.elements.popper.style.width = `${state.elements.reference.getBoundingClientRect().width}px`;
+  },
+};
