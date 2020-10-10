@@ -8,7 +8,7 @@ import { ThemeProvider, Flex, Switch } from '@fxtrot/ui';
 ## Switch
 
 <Playground>
-  <Flex space="xl" flow="row" css={{ py: '$8', bc: '$surfaceStill' }}>
+  <Flex space="xl" flow="row" css={{ p: '$8', bc: '$surfaceStill' }}>
     <Switch label="Default" />
     <Switch label="Disabled" disabled />
     <Switch label="Checked disabled" disabled defaultChecked />
@@ -18,8 +18,8 @@ import { ThemeProvider, Flex, Switch } from '@fxtrot/ui';
 ## Secondary text
 
 <Playground>
-  <Flex space="xl" css={{ py: '$8', bc: '$surfaceStill' }}>
-    <Switch label="Format on save" secondaryLabel="(required)" />
+  <Flex space="xl" css={{ p: '$8', bc: '$surfaceStill' }}>
+    <Switch label="Format on save" secondaryLabel="(required)" required />
   </Flex>
 </Playground>
 
@@ -28,14 +28,14 @@ import { ThemeProvider, Flex, Switch } from '@fxtrot/ui';
 Use `ThemeProvider` component to change the primary color of the button.
 
 <Playground>
-  <Flex space="xl" css={{ py: '$8', bc: '$surfaceStill' }}>
-    <Flex flow="row" space="md" css={{ px: '$10' }}>
+  <Flex space="xl" css={{ p: '$8', bc: '$surfaceStill' }}>
+    <Flex flow="row" space="md">
       <ThemeProvider theme="rose">
         <Switch label="Format on save" />
         <Switch label="Format on save (disabled)" disabled />
       </ThemeProvider>
     </Flex>
-    <Flex flow="row" space="md" css={{ px: '$10' }}>
+    <Flex flow="row" space="md">
       <ThemeProvider theme="green">
         <Switch label="Format on save" />
         <Switch label="Format on save (disabled)" disabled />

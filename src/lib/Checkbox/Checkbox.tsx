@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react';
-
+import { HiCheck } from 'react-icons/hi';
 import Flex from '../Flex';
 import { attribute } from '../FocusRing/focus-visible';
+import Icon from '../Icon';
 import Label from '../Label';
 import { styled } from '../stitches.config';
 
@@ -9,26 +10,21 @@ const Wrapper = styled(Flex, {
   position: 'relative',
 });
 
-const Toggle = styled('div', {
-  'br': '$pill',
-  'bc': '$borderStill',
-  'border': '1px solid $borderStill',
-  'height': '$4',
-  'width': '$6',
-  'position': 'relative',
-  'transition': '0.24s ease-in-out',
-  'boxShadow': '$inner',
+const CheckMark = styled('div', {
+  br: '$md',
+  bc: 'transparent',
+  border: '1px solid $borderStill',
+  size: '$4',
+  position: 'relative',
+  transition: '0.24s ease-in-out',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
 
-  '::before': {
-    content: `''`,
-    display: 'block',
-    position: 'absolute',
+  [`& > ${Icon}`]: {
+    transition: '0.14s ease-in-out',
     size: '$3',
-    bc: '#fff',
-    br: '$round',
-    transition: '0.24s ease-in-out',
-    top: '1px',
-    transform: 'translateX(1px)',
+    opacity: 0,
   },
 });
 
@@ -49,51 +45,56 @@ const Input = styled('input', {
   cursor: 'default',
   transition: '0.24s ease-in-out',
 
-  [`&:hover:not(:checked) + ${Toggle}`]: {
-    '&::before': {
-      boxShadow: '$sm',
+  [`:hover:not(:checked) + ${CheckMark}`]: {
+    borderColor: '$borderHover',
+    [`& > ${Icon}`]: {
+      opacity: 0.7,
     },
   },
 
-  [`&:focus:not(:checked) + ${Toggle}`]: {
-    '::before': {
-      boxShadow: '$md',
-    },
-  },
-
-  [`&:disabled + ${Toggle}`]: {
-    'bc': '$primaryLightActive',
-    'borderColor': '$primaryLightActive',
-
-    '&::before': {
-      bc: '$surfaceStill',
-    },
-  },
-
-  [`&:focus:not(:checked)[${attribute}] + ${Toggle}`]: {
-    '::before': {
-      boxShadow: '0 0 0 1px $borderStill , 0 0 0 3px $borderActive',
-    },
-  },
-
-  [`&:focus:checked[${attribute}] + ${Toggle}`]: {
-    '::before': {
-      borderColor: 'transparent',
-      boxShadow: '0 0 0 1px $primaryStill, 0 0 0 3px $borderActive',
-    },
-  },
-
-  [`&:checked + ${Toggle}`]: {
-    'bc': '$primaryStill',
+  [`:checked + ${CheckMark}`]: {
     'borderColor': '$primaryStill',
-    '::before': {
-      transform: 'translateX(9px)',
-      bc: '$surfaceStill',
+    'bc': '$primaryStill',
+    [`& > ${Icon}`]: {
+      opacity: 1,
+    },
+    '& svg': {
+      fill: '#fff',
     },
   },
-  [`&:checked:hover + ${Toggle}, &:checked:focus + ${Toggle}`]: {
-    bc: '$primaryHover',
-    borderColor: '$primaryHover',
+  [`:checked:hover + ${CheckMark}`]: {
+    'borderColor': '$primaryHover',
+    'bc': '$primaryHover',
+    '& svg': {
+      fill: '#fff',
+    },
+  },
+
+  [`:focus[${attribute}] + ${CheckMark}`]: {
+    borderColor: '$borderActive',
+    boxShadow: '0 0 0 1px $borderActive',
+  },
+
+  [`:focus[${attribute}]:checked + ${CheckMark}`]: {
+    borderColor: '$primaryStill',
+    $boxOutline: '$primaryStill',
+  },
+
+  [`:disabled + ${CheckMark}`]: {
+    borderColor: '$surfaceDisabled',
+    bc: '$surfaceDisabled',
+    [`& > ${Icon}`]: {
+      opacity: 0,
+    },
+  },
+
+  [`:disabled:checked + ${CheckMark}`]: {
+    [`& > ${Icon}`]: {
+      opacity: 1,
+    },
+    '& svg': {
+      fill: '$textDisabled',
+    },
   },
 });
 
@@ -102,7 +103,7 @@ type InputProps = React.ComponentProps<typeof Input>;
 
 type Props = InputProps & WrapperProps & { label?: string; secondaryLabel?: string };
 
-const Switch: React.FC<Props> = ({
+const Checkbox: React.FC<Props> = ({
   checked,
   onChange,
   css,
@@ -139,14 +140,15 @@ const Switch: React.FC<Props> = ({
         checked={checked}
         {...props}
         type="checkbox"
-        role="switch"
         disabled={disabled}
         onChange={handleChange}
       />
-      <Toggle />
+      <CheckMark>
+        <Icon as={HiCheck} />
+      </CheckMark>
       {label && <Label label={label} secondary={secondaryLabel} disabled={disabled} as="span" />}
     </Wrapper>
   );
 };
 
-export default Switch;
+export default Checkbox;

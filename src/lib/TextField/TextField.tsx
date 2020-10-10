@@ -156,7 +156,7 @@ const TextField: React.FC<Props> = ({
   css,
   style,
   className,
-  type,
+  type = 'text',
   onChange,
   validity,
   value,

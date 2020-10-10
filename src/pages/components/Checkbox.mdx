@@ -1,0 +1,25 @@
+---
+name: Checkbox
+---
+
+import { Playground } from 'dokz';
+import { Flex, Checkbox } from '@fxtrot/ui';
+
+# Checkbox
+
+<Playground>
+  <Flex space="md" css={{ p: '$8', bc: '$surfaceStill' }}>
+    <Checkbox label="Accept conditions" />
+    <Checkbox label="Accept conditions" defaultChecked />
+    <Checkbox label="Accept conditions (disabled)" disabled />
+    <Checkbox label="Accept conditions (disabled)" disabled defaultChecked />
+  </Flex>
+</Playground>
+
+## Secondary text
+
+<Playground>
+  <Flex space="md" css={{ p: '$8', bc: '$surfaceStill' }}>
+    <Checkbox label="Accept conditions" secondaryLabel="(required)" required />
+  </Flex>
+</Playground>
