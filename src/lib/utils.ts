@@ -94,10 +94,6 @@ export function useOnClickOutside(ref: React.RefObject<HTMLElement>, handler: Ha
   const handlerRef = useLatest(handler);
 
   useEffect(() => {
-    if (!handlerRef.current) {
-      return;
-    }
-
     const listener = (event: PossibleEvent) => {
       if (ref.current?.contains?.(event.target as Node)) {
         return;

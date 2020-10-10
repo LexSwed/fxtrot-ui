@@ -2,9 +2,11 @@ import React, { useMemo } from 'react';
 import Label from '../Label';
 import Flex from '../Flex';
 import { styled } from '../stitches.config';
-import { HiOutlineCalendar, HiCheck, HiOutlineExclamationCircle } from 'react-icons/hi';
+import { HiOutlineCalendar, HiCheck, HiOutlineExclamationCircle, HiX } from 'react-icons/hi';
 import Icon from '../Icon';
+import Text from '../Text';
 import { StylesObject } from '../types/helpers';
+import { useUID } from 'react-uid';
 
 const iconStyles: StylesObject = {
   position: 'absolute',
@@ -12,6 +14,15 @@ const iconStyles: StylesObject = {
   right: 0,
   size: '$base',
 };
+
+const IconWrapper = styled('div', {
+  ...iconStyles,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  pointerEvents: 'none',
+  transition: '0.1s ease-in',
+});
 
 const Input = styled('input', {
   'fontSize': '$sm',
@@ -44,6 +55,18 @@ const Input = styled('input', {
       m: 0,
       p: 0,
       ...iconStyles,
+    },
+  },
+
+  '&[type="search"]': {
+    '::-webkit-search-cancel-button': {
+      appearance: 'none',
+      m: 0,
+      p: 0,
+      ...iconStyles,
+    },
+    [`&:placeholder-shown + ${IconWrapper}`]: {
+      opacity: 0,
     },
   },
 
@@ -109,23 +132,22 @@ const InputWrapper = styled('div', {
   },
 });
 
-const IconWrapper = styled('div', {
-  ...iconStyles,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  pointerEvents: 'none',
-});
-
 const icons: Record<string, React.ElementType> = {
   date: HiOutlineCalendar,
   valid: HiCheck,
   invalid: HiOutlineExclamationCircle,
+  search: HiX,
+};
+
+const tonesMap: Record<NonNullable<Props['validity']>, React.ComponentProps<typeof Text>['tone']> = {
+  valid: 'success',
+  invalid: 'danger',
 };
 
 const TextField: React.FC<Props> = ({
   label,
   secondaryLabel,
+  hint,
   main,
   cross,
   flow,
@@ -140,8 +162,12 @@ const TextField: React.FC<Props> = ({
   value,
   disabled,
   variant = 'boxed',
+  id: propsId,
   ...props
 }) => {
+  let id = useUID();
+  id = propsId ?? id;
+
   const handleChange = useMemo(() => {
     if (typeof onChange !== 'function') {
       return undefined;
@@ -158,6 +184,15 @@ const TextField: React.FC<Props> = ({
     };
   }, [onChange, type]);
 
+  const ariaProps: InputProps = {};
+
+  if (hint) {
+    ariaProps['aria-describedby'] = `${id}-hint`;
+  }
+  if (label) {
+    ariaProps['aria-labelledby'] = `${id}-label`;
+  }
+
   const iconRight = icons[validity || type];
 
   return (
@@ -170,12 +205,15 @@ const TextField: React.FC<Props> = ({
       css={css}
       style={style}
       className={className}
-      as="label"
     >
-      {label && <Label label={label} secondary={secondaryLabel} as="span" disabled={disabled} />}
+      {label && (
+        <Label label={label} secondary={secondaryLabel} id={ariaProps['aria-labelledby']} disabled={disabled} />
+      )}
       <InputWrapper validity={validity}>
         <Input
           {...props}
+          {...ariaProps}
+          id={id}
           disabled={disabled}
           value={value}
           onChange={handleChange}
@@ -189,14 +227,22 @@ const TextField: React.FC<Props> = ({
           </IconWrapper>
         )}
       </InputWrapper>
+      {hint && (
+        <Text size="xs" id={ariaProps['aria-labelledby']} tone={validity && tonesMap[validity]}>
+          {hint}
+        </Text>
+      )}
     </Flex>
   );
 };
 
 export default TextField;
 
-type Props = {
-  label?: string;
-  validity?: 'valid' | 'invalid';
-} & React.ComponentProps<typeof Input> &
-  React.ComponentProps<typeof Flex>;
+type InputProps = React.ComponentProps<typeof Input>;
+type Props = InputProps &
+  React.ComponentProps<typeof Flex> & {
+    label?: string;
+    secondaryLabel?: string;
+    hint?: string;
+    validity?: 'valid' | 'invalid';
+  };

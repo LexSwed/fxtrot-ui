@@ -18,11 +18,12 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
 
 <Playground>
   <Box css={{ p: '$6', bc: '$gray050' }}>
-    <Flex space="md" align="stretch" display="inline">
+    <Flex space="md" cross="stretch" display="inline">
       <TextField label="Email address" secondaryLabel="(required)" type="email" />
       <TextField label="Password" secondaryLabel="(required)" type="password" />
       <TextField label="Your birth day" type="date" />
-      <TextField label="Your age" onChange={(str) => console.log(str)} type="number" min="18" />
+      <TextField label="Your age" type="number" min="18" />
+      <TextField label="City" type="search" placeholder="Tartu" />
     </Flex>
   </Box>
 </Playground>
@@ -50,10 +51,11 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
     const isValid = React.useMemo(() => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value), [value]);
     return (
       <Box css={{ p: '$6', bc: '$gray050' }}>
-        <Flex space="md">
+        <Flex space="md" css={{ width: '$24' }}>
           <TextField
             validity={isValid ? 'valid' : 'invalid'}
-            placeholder="Enter your email"
+            hint={!isValid && 'Check that your email is typed correctly'}
+            placeholder="john.doe@mail.com"
             value={value}
             onChange={setValue}
             label="Email"
