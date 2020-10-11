@@ -109,7 +109,7 @@ export function useOnClickOutside(handler: Handler | null, ...refs: React.RefObj
         document.removeEventListener(event, listener);
       });
     };
-  }, [handlerRef, ...refs]);
+  }, [handlerRef, ...refs]); //eslint-disable-line react-hooks/exhaustive-deps
 }
 
 export function usePopper(

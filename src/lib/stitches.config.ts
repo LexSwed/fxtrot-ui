@@ -73,10 +73,10 @@ type Theme = typeof theme;
 export const { styled, css } = createStyled({
   tokens: theme,
   breakpoints: {
-    mobile: (rule) => `@media (min-width: 320px) { ${rule} }`,
-    tablet: (rule) => `@media (min-width: 768px) { ${rule} }`,
-    desktop: (rule) => `@media (min-width: 1024px) { ${rule} }`,
-    fullscreen: (rule) => `@media (min-width: 1280px) { ${rule} }`,
+    mobile: (rule) => `@media (max-width: 320px) { ${rule} }`,
+    tablet: (rule) => `@media (max-width: 768px) { ${rule} }`,
+    desktop: (rule) => `@media (max-width: 1024px) { ${rule} }`,
+    fullscreen: (rule) => `@media (max-width: 1280px) { ${rule} }`,
   },
   utils: {
     p: (value: keyof Theme['space'] | (number | (string & {}))) => ({

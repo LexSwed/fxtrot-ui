@@ -1,10 +1,11 @@
 import React, { useMemo, useEffect } from 'react';
 import Portal from '../Portal';
-import { useMenu, useMenuControlState, useMenuOpenState } from './utils';
+import { useMenu } from './utils';
 import { useAllHandlers, useOnClickOutside, useForkRef, useKeyboardHandles, usePopper, sameWidth } from '../utils';
 import { styled } from '../stitches.config';
 import type { Options } from '@popperjs/core';
 import ListBox from '../ListBox/ListBox';
+import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 
 const List = styled(ListBox, {
   boxShadow: '$xl',
@@ -19,7 +20,7 @@ type Props = UlListProps & {
 
 const UlList: React.FC<Props> = ({ placement = 'bottom-start', offset = 8, ...props }) => {
   const { triggerRef, popoverRef, seed } = useMenu();
-  const { close } = useMenuControlState();
+  const { close } = useOpenStateControls();
   const popperRef = usePopper(
     triggerRef,
     useMemo<Options>(
@@ -64,7 +65,7 @@ const UlList: React.FC<Props> = ({ placement = 'bottom-start', offset = 8, ...pr
 };
 
 const MenuList: React.FC<Props> = (props) => {
-  const isOpen = useMenuOpenState();
+  const isOpen = useOpenState();
 
   if (!isOpen) {
     return null;

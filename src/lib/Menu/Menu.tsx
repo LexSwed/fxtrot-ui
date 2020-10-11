@@ -1,16 +1,40 @@
-import React from 'react';
-import { MenuProvider } from './utils';
+import React, { useMemo, useRef } from 'react';
+import { useUIDSeed } from 'react-uid';
+import { OpenStateProvider } from '../utils/OpenStateProvider';
 
 import MenuButton from './MenuButton';
 import MenuList from './MenuList';
 import MenuItem from './MenuItem';
+import { MenuProvider } from './utils';
 
-const Menu: React.FC<React.ComponentProps<typeof MenuProvider>> & {
+const Menu: React.FC<{
+  onAction?: (key: string) => void;
+}> & {
   Button: typeof MenuButton;
   List: typeof MenuList;
   Item: typeof MenuItem;
-} = (props) => {
-  return <MenuProvider {...props} />;
+} = ({ onAction, children }) => {
+  const seed = useUIDSeed();
+  const triggerRef = useRef<HTMLElement>(null);
+  const popoverRef = useRef<HTMLElement>(null);
+
+  const menuContextValue = useMemo(
+    () => ({
+      triggerRef,
+      popoverRef,
+      seed,
+      onAction,
+    }),
+    [triggerRef, popoverRef, seed, onAction]
+  );
+
+  return (
+    <MenuProvider value={menuContextValue}>
+      <OpenStateProvider>
+        <>{children}</>
+      </OpenStateProvider>
+    </MenuProvider>
+  );
 };
 
 Menu.Button = MenuButton;
