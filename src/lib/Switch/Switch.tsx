@@ -120,7 +120,7 @@ const Switch: React.FC<Props> = ({
   const handleChange = useMemo(() => {
     if (typeof onChange !== 'function') return;
 
-    return (ev: React.ChangeEvent<HTMLInputElement>) => ev.target.checked;
+    return (ev: React.ChangeEvent<HTMLInputElement>) => onChange(ev.target.checked);
   }, [onChange]);
 
   return (

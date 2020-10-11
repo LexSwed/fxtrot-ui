@@ -19,6 +19,15 @@ const Text = styled('span', {
         color: '$red600',
       },
     },
+    ellipsis: {
+      true: {
+        flexShrink: 1,
+        minWidth: 0,
+        overflow: 'hidden',
+        whiteSpace: 'nowrap',
+        textOverflow: 'ellipsis',
+      },
+    },
   },
 });
 

@@ -1,6 +1,7 @@
 import { styled } from '../stitches.config';
 
 const Icon = styled('svg', {
+  flexShrink: 0,
   variants: {
     size: {
       'xs': {

@@ -3,7 +3,7 @@ name: Icon
 ---
 
 import { Playground } from 'dokz';
-import { Icon, Box, Text, Flex, styled } from '@fxtrot/ui';
+import { Icon, Box, Text, TextField, Flex, Switch, styled } from '@fxtrot/ui';
 import * as icons from 'react-icons/hi';
 
 ```tsx
@@ -26,10 +26,13 @@ export const Grid = styled('div', {
 });
 
 export const IconBox = styled(Flex, {
-  'p': '$3',
   'shadow': '$base',
+  'px': '$3',
+  'py': '$5',
   'transition': '0.2s ease-in-out',
   'cursor': 'pointer',
+  'minWidth': 0,
+  'overflow': 'hidden',
   '&:hover': {
     shadow: '$lg',
   },
@@ -43,49 +46,39 @@ export function copy(text) {
   });
 }
 
+export const sortedIcons = Object.entries(icons).reduce(
+  (res, [name, icon]) => (name.includes('Outline') ? res[1].push([name, icon]) : res[0].push([name, icon]), res),
+  [[], []]
+);
+
 export const IconsWithFilter = () => {
   const [filterText, setText] = React.useState('');
+  const [isOutline, setOutline] = React.useState(false);
   return (
-    <Flex space="md">
-      <Box
-        as="input"
-        css={{ p: '$2', border: '1px solid $gray200', br: '$md', width: '100%' }}
-        value={filterText}
-        onChange={(e) => setText(e.target.value)}
-        placeholder="Search for an icon"
-      />
-      <Box css={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '$3', width: '100%' }}>
-        {Object.entries(icons)
+    <Flex cross="stretch" space="md">
+      <Flex flow="row" space="md" main="spread" cross="center">
+        <TextField css={{ flexBasis: '50%' }} value={filterText} onChange={setText} placeholder="Search for an icon" />
+        <Switch checked={isOutline} onChange={setOutline} label="Show outline icons" />
+      </Flex>
+      <Grid>
+        {sortedIcons[isOutline ? 1 : 0]
           .filter(([name]) => name.toLowerCase().includes(filterText.toLowerCase()))
-          .reduce(
-            (res, [name, icon]) => (
-              name.includes('Outline') ? res[1].push([name, icon]) : res[0].push([name, icon]), res
-            ),
-            [[], []]
-          )
-          .map((icons, i) =>
-            icons.length > 0 ? (
-              <Box key={i}>
-                <Text size="xl" as="h2">
-                  {i === 0 ? 'Solid' : 'Outline'}
-                </Text>
-                <Grid>
-                  {icons.map(([name, icon]) => (
-                    <IconBox
-                      space="base"
-                      main="center"
-                      key={name}
-                      onClick={() => copy(`import { ${name} } from 'react-icons/hi'`)}
-                    >
-                      <Icon as={icon} size="base" />
-                      <Text size="xs">{name}</Text>
-                    </IconBox>
-                  ))}
-                </Grid>
-              </Box>
-            ) : null
-          )}
-      </Box>
+          .map(([name, icon]) => (
+            <IconBox
+              space="sm"
+              cross="center"
+              main="center"
+              key={name}
+              size="md"
+              onClick={() => copy(`import { ${name} } from 'react-icons/hi'`)}
+            >
+              <Icon as={icon} size="xl" />
+              <Text size="xs" ellipsis>
+                {name}
+              </Text>
+            </IconBox>
+          ))}
+      </Grid>
     </Flex>
   );
 };
