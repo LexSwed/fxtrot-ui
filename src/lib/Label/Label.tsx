@@ -6,6 +6,7 @@ import Text from '../Text';
 const Main = styled(Text, {
   lineHeight: 1,
   fontWeight: 600,
+  flexShrink: 0,
 
   variants: {
     disabled: {

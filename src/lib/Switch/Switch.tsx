@@ -1,11 +1,12 @@
 import React, { useMemo } from 'react';
+import Box from '../Box';
 
-import Flex from '../Flex';
 import { attribute } from '../FocusRing/focus-visible';
+import { FormField } from '../FormField/FormField';
 import Label from '../Label';
 import { styled } from '../stitches.config';
 
-const Wrapper = styled(Flex, {
+const SwitchWrapper = styled(Box, {
   position: 'relative',
 });
 
@@ -97,7 +98,7 @@ const Input = styled('input', {
   },
 });
 
-type WrapperProps = React.ComponentProps<typeof Wrapper>;
+type WrapperProps = React.ComponentProps<typeof FormField>;
 type InputProps = React.ComponentProps<typeof Input>;
 
 type Props = InputProps & WrapperProps & { label?: string; secondaryLabel?: string };
@@ -124,7 +125,7 @@ const Switch: React.FC<Props> = ({
   }, [onChange]);
 
   return (
-    <Wrapper
+    <FormField
       as="label"
       display={display}
       className={className}
@@ -134,18 +135,20 @@ const Switch: React.FC<Props> = ({
       flow={flow}
       cross={cross}
     >
-      <Input
-        aria-checked={checked}
-        checked={checked}
-        {...props}
-        type="checkbox"
-        role="switch"
-        disabled={disabled}
-        onChange={handleChange}
-      />
-      <Toggle />
+      <SwitchWrapper>
+        <Input
+          aria-checked={checked}
+          checked={checked}
+          {...props}
+          type="checkbox"
+          role="switch"
+          disabled={disabled}
+          onChange={handleChange}
+        />
+        <Toggle />
+      </SwitchWrapper>
       {label && <Label label={label} secondary={secondaryLabel} disabled={disabled} as="span" />}
-    </Wrapper>
+    </FormField>
   );
 };
 

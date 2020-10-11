@@ -1,12 +1,13 @@
 import React, { useMemo } from 'react';
 import { HiCheck } from 'react-icons/hi';
-import Flex from '../Flex';
+import Box from '../Box';
 import { attribute } from '../FocusRing/focus-visible';
+import { FormField } from '../FormField/FormField';
 import Icon from '../Icon';
 import Label from '../Label';
 import { styled } from '../stitches.config';
 
-const Wrapper = styled(Flex, {
+const CheckboxWrapper = styled(Box, {
   position: 'relative',
 });
 
@@ -98,7 +99,7 @@ const Input = styled('input', {
   },
 });
 
-type WrapperProps = React.ComponentProps<typeof Wrapper>;
+type WrapperProps = React.ComponentProps<typeof CheckboxWrapper>;
 type InputProps = React.ComponentProps<typeof Input>;
 
 type Props = InputProps & WrapperProps & { label?: string; secondaryLabel?: string };
@@ -109,13 +110,14 @@ const Checkbox: React.FC<Props> = ({
   css,
   style,
   className,
-  flow = 'row',
+  flow = 'row-reverse',
   label,
   secondaryLabel,
-  space = 'xs',
+  space = 'sm',
   display = 'inline',
   cross = 'center',
   disabled,
+  id,
   ...props
 }) => {
   const handleChange = useMemo(() => {
@@ -125,7 +127,7 @@ const Checkbox: React.FC<Props> = ({
   }, [onChange]);
 
   return (
-    <Wrapper
+    <FormField
       as="label"
       display={display}
       className={className}
@@ -135,19 +137,21 @@ const Checkbox: React.FC<Props> = ({
       flow={flow}
       cross={cross}
     >
-      <Input
-        aria-checked={checked}
-        checked={checked}
-        {...props}
-        type="checkbox"
-        disabled={disabled}
-        onChange={handleChange}
-      />
-      <CheckMark>
-        <Icon as={HiCheck} />
-      </CheckMark>
       {label && <Label label={label} secondary={secondaryLabel} disabled={disabled} as="span" />}
-    </Wrapper>
+      <CheckboxWrapper>
+        <Input
+          aria-checked={checked}
+          checked={checked}
+          {...props}
+          type="checkbox"
+          disabled={disabled}
+          onChange={handleChange}
+        />
+        <CheckMark>
+          <Icon as={HiCheck} />
+        </CheckMark>
+      </CheckboxWrapper>
+    </FormField>
   );
 };
 

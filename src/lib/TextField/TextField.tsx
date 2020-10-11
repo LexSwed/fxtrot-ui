@@ -1,12 +1,11 @@
 import React, { useMemo } from 'react';
-import Label from '../Label';
 import Flex from '../Flex';
 import { styled } from '../stitches.config';
 import { HiOutlineCalendar, HiCheck, HiOutlineExclamationCircle, HiX } from 'react-icons/hi';
 import Icon from '../Icon';
-import Text from '../Text';
 import { StylesObject } from '../types/helpers';
-import { useUID } from 'react-uid';
+import Label from '../Label';
+import { FormField, HintBox, Hint, useFormField } from '../FormField/FormField';
 
 const iconStyles: StylesObject = {
   position: 'absolute',
@@ -139,11 +138,6 @@ const icons: Record<string, React.ElementType> = {
   search: HiX,
 };
 
-const tonesMap: Record<NonNullable<Props['validity']>, React.ComponentProps<typeof Text>['tone']> = {
-  valid: 'success',
-  invalid: 'danger',
-};
-
 const TextField: React.FC<Props> = ({
   label,
   secondaryLabel,
@@ -151,8 +145,8 @@ const TextField: React.FC<Props> = ({
   main,
   cross,
   flow,
-  display = 'inline',
-  space = 'xs',
+  display,
+  space,
   css,
   style,
   className,
@@ -162,11 +156,10 @@ const TextField: React.FC<Props> = ({
   value,
   disabled,
   variant = 'boxed',
-  id: propsId,
+  id,
   ...props
 }) => {
-  let id = useUID();
-  id = propsId ?? id;
+  const ariaProps = useFormField({ id, hint });
 
   const handleChange = useMemo(() => {
     if (typeof onChange !== 'function') {
@@ -184,19 +177,10 @@ const TextField: React.FC<Props> = ({
     };
   }, [onChange, type]);
 
-  const ariaProps: InputProps = {};
-
-  if (hint) {
-    ariaProps['aria-describedby'] = `${id}-hint`;
-  }
-  if (label) {
-    ariaProps['aria-labelledby'] = `${id}-label`;
-  }
-
   const iconRight = icons[validity || type];
 
   return (
-    <Flex
+    <FormField
       main={main}
       cross={cross}
       flow={flow}
@@ -205,34 +189,35 @@ const TextField: React.FC<Props> = ({
       css={css}
       style={style}
       className={className}
+      hasHint={!!hint}
     >
-      {label && (
-        <Label label={label} secondary={secondaryLabel} id={ariaProps['aria-labelledby']} disabled={disabled} />
-      )}
-      <InputWrapper validity={validity}>
-        <Input
-          {...props}
-          {...ariaProps}
-          id={id}
-          disabled={disabled}
-          value={value}
-          onChange={handleChange}
-          hasIcon={Boolean(iconRight)}
-          type={type}
-          variant={variant}
-        />
-        {iconRight && (
-          <IconWrapper>
-            <Icon as={iconRight} size="md" />
-          </IconWrapper>
+      {label && <Label label={label} secondary={secondaryLabel} htmlFor={ariaProps.inputId} />}
+      <HintBox>
+        <InputWrapper validity={validity}>
+          <Input
+            {...props}
+            {...ariaProps}
+            id={ariaProps.inputId}
+            disabled={disabled}
+            value={value}
+            onChange={handleChange}
+            hasIcon={Boolean(iconRight)}
+            type={type}
+            variant={variant}
+          />
+          {iconRight && (
+            <IconWrapper>
+              <Icon as={iconRight} size="md" />
+            </IconWrapper>
+          )}
+        </InputWrapper>
+        {hint && (
+          <Hint id={ariaProps['aria-describedby']} validity={validity}>
+            {hint}
+          </Hint>
         )}
-      </InputWrapper>
-      {hint && (
-        <Text size="xs" id={ariaProps['aria-labelledby']} tone={validity && tonesMap[validity]}>
-          {hint}
-        </Text>
-      )}
-    </Flex>
+      </HintBox>
+    </FormField>
   );
 };
 

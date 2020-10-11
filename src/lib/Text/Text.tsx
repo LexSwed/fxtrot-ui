@@ -21,7 +21,6 @@ const Text = styled('span', {
     },
     ellipsis: {
       true: {
-        flexShrink: 1,
         minWidth: 0,
         overflow: 'hidden',
         whiteSpace: 'nowrap',

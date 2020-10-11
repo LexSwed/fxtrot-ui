@@ -55,4 +55,6 @@ const TextLink = React.forwardRef<HTMLAnchorElement, Props>(
   }
 );
 
+TextLink.displayName = 'TextLink';
+
 export default TextLink;
