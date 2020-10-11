@@ -1,74 +1,27 @@
-import React, { useCallback } from 'react';
-import { usePress } from '@react-aria/interactions';
+import React from 'react';
 
-import Flex from '../Flex';
-import { styled } from '../stitches.config';
-import { useAllHandlers, useForkRef } from '../utils';
+import { useAllHandlers } from '../utils';
 import { useMenu, useMenuControlState } from './utils';
+import ListItem from '../ListItem';
 
-const Item = styled(Flex, {
-  'pr': '$3',
-  'pl': '$2',
-  'fontSize': '$sm',
-  'lineHeight': 1,
-  'display': 'flex',
-  'alignItems': 'center',
-  'height': '$8',
-  'cursor': 'pointer',
-  'br': '$sm',
-  'outline': 'none',
-  'color': '$text',
-  ':focus, :active': {
-    bc: '$surfaceActive',
-  },
-});
+type Props = React.ComponentProps<typeof ListItem> & { act: string };
 
-type Props = React.ComponentProps<typeof Item> & { act: string };
-
-const MenuItem = React.forwardRef<HTMLLIElement, Props>(({ act, ...props }, ref) => {
+const MenuItem = React.forwardRef<HTMLLIElement, Props>(({ act, disabled, ...props }, ref) => {
   const { onAction } = useMenu();
-  const { close, stateRef } = useMenuControlState();
+  const { close } = useMenuControlState();
 
-  const onPress = useAllHandlers(
-    props.onPress,
-    useCallback(
-      (event) => {
-        act && onAction?.(act);
-        if (event.defaultPrevented) return;
-        close();
-      },
-      [act, close, onAction]
-    )
-  );
-  const { pressProps } = usePress({ onPress });
-  const elementRef = useCallback(
-    (node: HTMLLIElement) => {
-      const { items } = stateRef.current;
-
-      items.set(node, { act });
-    },
-    [act, stateRef]
-  );
-  const refs = useForkRef(elementRef, ref);
+  const onPress = useAllHandlers(() => {
+    act && onAction?.(act);
+    close();
+  }, props.onPress);
 
   const onMouseEnter = useAllHandlers(props.onMouseEnter, (e) => {
-    e.currentTarget.focus();
+    e.currentTarget.focus({
+      preventScroll: true,
+    });
   });
 
-  return (
-    <Item
-      as="li"
-      {...props}
-      {...pressProps}
-      flow="row"
-      alignY="center"
-      display="inline"
-      onMouseEnter={onMouseEnter}
-      tabIndex={props.disabled ? undefined : -1}
-      role="menuitem"
-      ref={refs}
-    />
-  );
+  return <ListItem {...props} onPress={onPress} onMouseEnter={onMouseEnter} role="menuitem" ref={ref} />;
 });
 
 MenuItem.displayName = 'MenuItem';

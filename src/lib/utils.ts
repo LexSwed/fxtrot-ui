@@ -59,23 +59,21 @@ export function useAllHandlers<E extends React.SyntheticEvent<any, Event>>(
 type KeyboardHandler = ((event: React.KeyboardEvent<any>) => void) | undefined;
 type KeyboardHandlers = { [Key in React.KeyboardEvent<any>['key']]: KeyboardHandler };
 
-export function useKeyboardHandles(handlers: KeyboardHandlers, preventDefault = true): KeyboardHandler {
+export function useKeyboardHandles(handlers: KeyboardHandlers): KeyboardHandler {
   const handlersRef = useRef(handlers);
 
   useEffect(() => {
     handlersRef.current = handlers;
   }, [handlers]);
 
-  return useCallback<(event: React.KeyboardEvent<any>) => void>(
-    (event) => {
-      if (preventDefault) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-      handlersRef.current[event.key]?.(event);
-    },
-    [preventDefault]
-  );
+  return useCallback<(event: React.KeyboardEvent<any>) => void>((event) => {
+    const handler = handlersRef.current[event.key];
+    if (typeof handler === 'function') {
+      event.preventDefault();
+      event.stopPropagation();
+      handler(event);
+    }
+  }, []);
 }
 
 const MOUSEDOWN = 'mousedown';
@@ -90,12 +88,12 @@ type Handler = (event: PossibleEvent) => void;
 
 const events: HandledEventsType[] = [MOUSEDOWN, TOUCHSTART, POINTERDOWN];
 
-export function useOnClickOutside(ref: React.RefObject<HTMLElement>, handler: Handler | null) {
+export function useOnClickOutside(handler: Handler | null, ...refs: React.RefObject<HTMLElement>[]) {
   const handlerRef = useLatest(handler);
 
   useEffect(() => {
     const listener = (event: PossibleEvent) => {
-      if (ref.current?.contains?.(event.target as Node)) {
+      if (refs.some((ref) => ref.current?.contains?.(event.target as Node))) {
         return;
       }
 
@@ -111,7 +109,7 @@ export function useOnClickOutside(ref: React.RefObject<HTMLElement>, handler: Ha
         document.removeEventListener(event, listener);
       });
     };
-  }, [handlerRef, ref]);
+  }, [handlerRef, ...refs]);
 }
 
 export function usePopper(
@@ -153,9 +151,9 @@ export const sameWidth: Modifier<'sameWidth', {}> = {
   phase: 'beforeWrite',
   requires: ['computeStyles'],
   fn: ({ state }) => {
-    state.styles.popper.width = `${state.rects.reference.width}px`;
+    state.styles.popper.minWidth = `${state.rects.reference.width}px`;
   },
   effect: ({ state }) => {
-    state.elements.popper.style.width = `${state.elements.reference.getBoundingClientRect().width}px`;
+    state.elements.popper.style.minWidth = `${state.elements.reference.getBoundingClientRect().width}px`;
   },
 };

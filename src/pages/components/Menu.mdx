@@ -34,7 +34,7 @@ You can modify `offset` and [`placement`](https://popper.js.org/docs/v2/construc
 
 <Playground>
   <ThemeProvider theme="black">
-    <Box css={{ p: '$8' }}>
+    <Box css={{ p: '$8', bc: '$surfaceStill' }}>
       <Menu>
         <Menu.Button>
           <span>Open menu</span>
@@ -44,7 +44,7 @@ You can modify `offset` and [`placement`](https://popper.js.org/docs/v2/construc
           {Array(20)
             .fill(null)
             .map((el, i) => (
-              <Menu.Item key={i} onClick={() => window.alert(i)}>
+              <Menu.Item key={i} onPress={() => window.alert(i)}>
                 Item {i}
               </Menu.Item>
             ))}

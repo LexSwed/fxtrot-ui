@@ -157,7 +157,7 @@ export const { styled, css } = createStyled({
     }),
 
     $outline: (offset: number) => ({
-      ':not(:disabled)': {
+      [`:not(:disabled)[${attribute}]`]: {
         'outline': 'none',
         'position': 'relative',
 

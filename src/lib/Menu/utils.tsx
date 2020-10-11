@@ -61,44 +61,26 @@ export function useMenuControlState() {
   return useContext(menuStateControlsContext);
 }
 
-type InternalState = { lastKey: string | null; items: Map<HTMLLIElement, { act: string }> };
 type MenuControlFunctions = {
-  stateRef: {
-    readonly current: InternalState;
-  };
   open: () => void;
   close: () => void;
   toggle: () => void;
-  update: (state?: Partial<InternalState>) => void;
 };
-const initialState: InternalState = { lastKey: null, items: new Map() };
 function useOpenState(): [isOpen: boolean, controls: MenuControlFunctions] {
   const [isOpen, setOpen] = useState(false);
-  const internalStateRef = useRef<InternalState>(initialState);
 
   const controls = useMemo<MenuControlFunctions>(
     () => ({
-      stateRef: internalStateRef,
       open: () => {
         setOpen(true);
       },
       close: () => {
-        internalStateRef.current = initialState;
         setOpen(false);
       },
       toggle: () => {
         setOpen((open) => {
-          if (open) {
-            internalStateRef.current = initialState;
-          }
           return !open;
         });
-      },
-      update: (state) => {
-        internalStateRef.current = {
-          ...internalStateRef.current,
-          ...state,
-        };
       },
     }),
     []

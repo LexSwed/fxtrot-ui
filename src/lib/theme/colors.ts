@@ -39,9 +39,9 @@ export const swatches: Array<readonly [string, Swatch]> = Object.entries(palette
           $textLight: gray['$gray100'],
           $accent: '#fff',
 
-          $primaryStill: gray['$gray600'],
-          $primaryHover: gray['$gray500'],
-          $primaryActive: '$gray400',
+          $primaryStill: gray['$gray500'],
+          $primaryHover: gray['$gray600'],
+          $primaryActive: gray['$gray700'],
           $primaryLight: gray['$gray500'],
           $primaryLightActive: gray['$gray400'],
 

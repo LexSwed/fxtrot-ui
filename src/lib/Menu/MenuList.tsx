@@ -1,20 +1,14 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import Portal from '../Portal';
 import { useMenu, useMenuControlState, useMenuOpenState } from './utils';
-import { FocusManagerOptions, FocusScope, useFocusManager } from '@react-aria/focus';
 import { useAllHandlers, useOnClickOutside, useForkRef, useKeyboardHandles, usePopper, sameWidth } from '../utils';
 import { styled } from '../stitches.config';
 import type { Options } from '@popperjs/core';
+import ListBox from '../ListBox/ListBox';
 
-const List = styled('ul', {
-  maxHeight: '240px',
-  overflowY: 'auto',
-  bc: '$surfaceStill',
+const List = styled(ListBox, {
   boxShadow: '$xl',
-  br: '$md',
-  border: '1px solid $gray200',
-  outline: 'none',
-  p: '$1',
+  maxHeight: '240px',
 });
 
 type UlListProps = React.ComponentProps<typeof List>;
@@ -23,36 +17,9 @@ type Props = UlListProps & {
   placement?: Options['placement'];
 };
 
-const UlList: React.FC<Props> = (ulProps) => {
-  const props = useMenuProps(ulProps);
-
-  return <List {...props} />;
-};
-
-const MenuList: React.FC<Props> = (props) => {
-  const isOpen = useMenuOpenState();
-
-  if (!isOpen) {
-    return null;
-  }
-
-  return (
-    <Portal>
-      <FocusScope contain restoreFocus autoFocus>
-        <UlList {...props} />
-      </FocusScope>
-    </Portal>
-  );
-};
-
-export default MenuList;
-
-const focusOptions: FocusManagerOptions = { wrap: true };
-
-function useMenuProps({ placement = 'bottom-start', offset = 8, ...props }: Props): UlListProps {
-  const { triggerRef, popoverRef, seed, onAction } = useMenu();
-  const { close, stateRef } = useMenuControlState();
-  const { focusNext, focusPrevious } = useFocusManager();
+const UlList: React.FC<Props> = ({ placement = 'bottom-start', offset = 8, ...props }) => {
+  const { triggerRef, popoverRef, seed } = useMenu();
+  const { close } = useMenuControlState();
   const popperRef = usePopper(
     triggerRef,
     useMemo<Options>(
@@ -65,46 +32,25 @@ function useMenuProps({ placement = 'bottom-start', offset = 8, ...props }: Prop
     )
   );
 
-  useOnClickOutside(popoverRef, close);
-
-  const selectItem = useCallback(
-    (li: HTMLLIElement) => {
-      if (onAction) {
-        const action = stateRef.current.items.get(li)?.act;
-        if (action) {
-          return onAction(action);
-        }
-      }
-      li.click();
-    },
-    [onAction, stateRef]
-  );
+  useOnClickOutside(close, popoverRef, triggerRef);
 
   useEffect(() => {
-    if (stateRef.current.lastKey === 'ArrowUp') {
-      focusPrevious(focusOptions);
+    const option = popoverRef.current?.querySelector('[role="menuitem"]');
+
+    if (option) {
+      (option as HTMLLIElement | undefined)?.focus?.();
     } else {
-      focusNext(focusOptions);
+      popoverRef.current?.focus();
     }
-  }, [focusNext, focusPrevious, popoverRef, stateRef]);
+  }, [popoverRef]);
 
   const handleKeyDown = useKeyboardHandles(
     useMemo(
       () => ({
-        'ArrowDown': () => focusNext(focusOptions),
-        'ArrowUp': () => focusPrevious(focusOptions),
-        'Enter': (event) => {
-          selectItem(event.target as HTMLLIElement);
-          close();
-        },
-        ' ': (event) => {
-          selectItem(event.target as HTMLLIElement);
-          close();
-        },
-        'Escape': close,
-        'Tab': close,
+        Escape: close,
+        Tab: close,
       }),
-      [close, focusNext, focusPrevious, selectItem]
+      [close]
     )
   );
 
@@ -112,12 +58,23 @@ function useMenuProps({ placement = 'bottom-start', offset = 8, ...props }: Prop
 
   const ref = useForkRef(popperRef, popoverRef);
 
-  return {
-    ...props,
-    'role': 'menu',
-    'id': seed('menu'),
-    'aria-labelledby': seed('button'),
-    ref,
-    onKeyDown,
-  };
-}
+  return (
+    <List {...props} role={'menu'} id={seed('menu')} aria-labelledby={seed('button')} ref={ref} onKeyDown={onKeyDown} />
+  );
+};
+
+const MenuList: React.FC<Props> = (props) => {
+  const isOpen = useMenuOpenState();
+
+  if (!isOpen) {
+    return null;
+  }
+
+  return (
+    <Portal>
+      <UlList {...props} />
+    </Portal>
+  );
+};
+
+export default MenuList;
