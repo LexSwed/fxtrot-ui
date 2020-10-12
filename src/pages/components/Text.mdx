@@ -15,15 +15,26 @@ import { Flex, Text } from '@fxtrot/ui';
 
 <Playground>
   <Flex space="sm">
-    <Text size="xs">Some text</Text>
+    <Text size="xs">Default text</Text>
     <Text tone="light" size="xs">
-      Some text
+      Light text
     </Text>
     <Text tone="success" size="xs">
-      Some text
+      Success text
     </Text>
     <Text tone="danger" size="xs">
-      Some text
+      Error text
     </Text>
+  </Flex>
+</Playground>
+
+## Alignments
+
+<Playground>
+  <Flex space="sm" cross="stretch">
+    <Text>Default align</Text>
+    <Text align="start">Start align</Text>
+    <Text align="center">Center align</Text>
+    <Text align="end">End align</Text>
   </Flex>
 </Playground>

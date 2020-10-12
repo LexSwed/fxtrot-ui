@@ -20,6 +20,17 @@ const Text = styled('span', {
         color: '$red600',
       },
     },
+    align: {
+      start: {
+        textAlign: 'start',
+      },
+      center: {
+        textAlign: 'center',
+      },
+      end: {
+        textAlign: 'end',
+      },
+    },
     ellipsis: {
       true: {
         minWidth: 0,
