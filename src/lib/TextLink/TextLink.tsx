@@ -40,7 +40,7 @@ const Link = styled(Flex, {
 
 type AnchorProps = React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>;
 type LinkProps = React.ComponentProps<typeof Link>;
-type Props = AnchorProps & { external?: boolean; font: LinkProps['font']; size: LinkProps['size'] };
+type Props = AnchorProps & LinkProps & { external?: boolean };
 
 const TextLink = React.forwardRef<HTMLAnchorElement, Props>(
   ({ font = 'default', size = 'base', external, children, ...props }, ref) => {
