@@ -2,9 +2,11 @@ import * as paletteColors from './palette';
 
 const { gray, default: allColors, ...palette } = paletteColors;
 
-export const swatches: Array<readonly [string, Swatch]> = Object.entries(palette)
-  .map(([name, colors]): readonly [string, Swatch] => [
-    name,
+export type ColorName = keyof typeof palette | 'black';
+
+export const swatches: Array<readonly [ColorName, Swatch]> = Object.entries(palette)
+  .map(([name, colors]): readonly [ColorName, Swatch] => [
+    name as ColorName,
     {
       colors: {
         $text: gray['$gray900'],

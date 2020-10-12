@@ -2,12 +2,10 @@ import React, { createContext, useContext, useMemo } from 'react';
 import Box from '../Box';
 import { themes } from '../theme/themes';
 import { css } from '../stitches.config';
-import { Swatch } from '../theme/colors';
-
-type ThemeName = keyof typeof themes;
+import { Swatch, ColorName } from '../theme/colors';
 
 type Props = {
-  theme?: ThemeName | Swatch;
+  theme?: ColorName | Swatch;
 };
 
 const themeContext = createContext<string | null>(null);
@@ -24,7 +22,7 @@ const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
       return css.theme(theme as Swatch);
     }
 
-    return themes[theme as ThemeName];
+    return themes[theme as ColorName];
   }, [theme]);
 
   const className = themeClass || contextTheme;
