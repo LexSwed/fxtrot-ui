@@ -2,9 +2,18 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import { HiCheck } from 'react-icons/hi';
 import Icon from '../Icon';
 import ListItem from '../ListItem';
+import { styled } from '../stitches.config';
 import { useForkRef } from '../utils';
 import { useOpenStateControls } from '../utils/OpenStateProvider';
 import { usePicker } from './utils';
+
+const SelectedIcon = styled(Icon, {});
+
+const Option = styled(ListItem, {
+  [` > ${SelectedIcon}`]: {
+    color: '$primaryStill',
+  },
+});
 
 type Props = Omit<React.ComponentProps<typeof ListItem>, 'children'> & {
   value: string;
@@ -31,10 +40,10 @@ const Item = React.forwardRef<HTMLLIElement, Props>(({ value, label, ...props },
   const refs = useForkRef(innerRef, ref);
 
   return (
-    <ListItem {...props} aria-selected={isSelected} onPress={onPress} main="spread" ref={refs}>
+    <Option {...props} aria-selected={isSelected} onPress={onPress} main="spread" ref={refs}>
       {label}
-      {isSelected ? <Icon as={HiCheck} size="md" /> : null}
-    </ListItem>
+      {isSelected ? <SelectedIcon as={HiCheck} size="md" /> : null}
+    </Option>
   );
 });
 

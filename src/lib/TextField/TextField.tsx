@@ -5,25 +5,7 @@ import { HiOutlineCalendar, HiCheck, HiOutlineExclamationCircle, HiX } from 'rea
 import Icon from '../Icon';
 import Label from '../Label';
 import { FormField, HintBox, Hint, useFormField } from '../FormField/FormField';
-import { InteractiveBox, validityVariant } from './shared';
-import { StylesObject } from '../types/helpers';
-
-const iconStyles: StylesObject = {
-  position: 'absolute',
-  top: 0,
-  right: 0,
-  bottom: 0,
-  width: '$base',
-};
-
-const IconWrapper = styled('div', {
-  ...iconStyles,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  pointerEvents: 'none',
-  transition: '0.1s ease-in',
-});
+import { InteractiveBox, validityVariant, IconWrapper, iconStyles } from './shared';
 
 const Input = styled(InteractiveBox, {
   '::placeholder': {
@@ -46,7 +28,7 @@ const Input = styled(InteractiveBox, {
       backgroundImage: 'none',
       m: 0,
       p: 0,
-      ...(iconStyles as any),
+      ...iconStyles,
     },
   },
 
@@ -55,7 +37,7 @@ const Input = styled(InteractiveBox, {
       appearance: 'none',
       m: 0,
       p: 0,
-      ...(iconStyles as any),
+      ...iconStyles,
     },
     [`&:placeholder-shown + ${IconWrapper}`]: {
       opacity: 0,

@@ -16,7 +16,11 @@ const Item = styled(Flex, {
   'cursor': 'default',
   'userSelect': 'none',
   'flexShrink': 0,
-  ':focus, :active': {
+  'transition': '0.1s ease-in-out',
+  ':focus:not(:active)': {
+    bc: '$surfaceHover',
+  },
+  ':active': {
     bc: '$surfaceActive',
   },
 
@@ -67,10 +71,10 @@ const ListItem = React.forwardRef<HTMLLIElement, Props>(
         role="option"
         tabIndex={disabled ? undefined : -1}
         {...props}
-        {...pressProps}
         flow={flow}
         cross={cross}
         space={space}
+        {...pressProps}
         aria-disabled={disabled}
         ref={refs}
         as="li"

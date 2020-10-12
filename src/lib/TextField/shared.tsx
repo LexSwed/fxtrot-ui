@@ -2,7 +2,22 @@ import { styled } from '../stitches.config';
 import { StylesObject } from '../types/helpers';
 import { createVariant } from '../theme/variants';
 
-export const boxStyles: StylesObject = {};
+export const iconStyles: StylesObject = {
+  position: 'absolute',
+  top: 0,
+  right: 0,
+  bottom: 0,
+  width: '$base',
+};
+
+export const IconWrapper = styled('div', {
+  ...iconStyles,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  pointerEvents: 'none',
+  transition: '0.1s ease-in',
+});
 
 export const InteractiveBox = styled('input', {
   fontSize: '$sm',
@@ -45,13 +60,13 @@ export const InteractiveBox = styled('input', {
 
 export const validityVariant = createVariant({
   valid: {
-    svg: {
-      fill: '$lightGreen600',
+    [`& ${IconWrapper}`]: {
+      color: '$lightGreen600',
     },
   },
   invalid: {
-    svg: {
-      stroke: '$red600',
+    [`& ${IconWrapper}`]: {
+      color: '$red600',
     },
     [`${InteractiveBox}`]: {
       'borderColor': '$red600',

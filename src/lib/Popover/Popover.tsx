@@ -6,6 +6,7 @@ import { sameWidth, useKeyboardHandles, useOnClickOutside, usePopper } from '../
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 
 const Popper = styled('div', {
+  zIndex: '$2',
   position: 'absolute',
   bc: '$surfaceStill',
   br: '$md',
