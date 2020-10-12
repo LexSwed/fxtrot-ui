@@ -114,7 +114,7 @@ const Switch: React.FC<Props> = ({
   secondaryLabel,
   space = 'sm',
   display = 'inline',
-  cross = 'center',
+  cross,
   disabled,
   ...props
 }) => {

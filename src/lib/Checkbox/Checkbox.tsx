@@ -110,12 +110,12 @@ const Checkbox: React.FC<Props> = ({
   css,
   style,
   className,
-  flow = 'row-reverse',
+  flow = 'row',
   label,
   secondaryLabel,
   space = 'sm',
-  display = 'inline',
-  cross = 'center',
+  display,
+  cross,
   disabled,
   id,
   ...props
@@ -137,7 +137,6 @@ const Checkbox: React.FC<Props> = ({
       flow={flow}
       cross={cross}
     >
-      {label && <Label label={label} secondary={secondaryLabel} disabled={disabled} as="span" />}
       <CheckboxWrapper>
         <Input
           aria-checked={checked}
@@ -151,6 +150,7 @@ const Checkbox: React.FC<Props> = ({
           <Icon as={HiCheck} />
         </CheckMark>
       </CheckboxWrapper>
+      {label && <Label label={label} secondary={secondaryLabel} disabled={disabled} as="span" />}
     </FormField>
   );
 };

@@ -45,7 +45,7 @@ export const FormField: React.FC<Props> = ({
   main = 'stretch',
   cross = 'stretch',
   flow,
-  display,
+  display = 'inline',
   space = 'xs',
   css,
   style,
