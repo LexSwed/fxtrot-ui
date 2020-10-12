@@ -24,8 +24,8 @@
     "access": "public"
   },
   "scripts": {
-    "build": "microbundle build --jsx React.createElement --entry src/lib/index.ts --tsconfig tsconfig.lib.json --compress",
-    "start": "microbundle watch --jsx React.createElement --entry src/lib/index.ts --tsconfig tsconfig.lib.json --format modern --no-compress",
+    "build": "microbundle build --jsx React.createElement --entry src/lib/index.ts --jsxFragment React.Fragment --tsconfig tsconfig.lib.json --compress",
+    "start": "microbundle watch --jsx React.createElement --entry src/lib/index.ts --jsxFragment React.Fragment --tsconfig tsconfig.lib.json --format modern --no-compress",
     "dev": "yarn run dokz:dev",
     "lint": "eslint src",
     "typecheck": "tsc --noEmit",
