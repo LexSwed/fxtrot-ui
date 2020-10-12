@@ -6,7 +6,7 @@ import { useMenu } from './utils';
 
 type ButtonProps = React.ComponentProps<typeof Button>;
 
-const MenuButton = React.forwardRef<HTMLButtonElement, ButtonProps>((buttonProps, propsRef) => {
+const MenuButton: React.FC<ButtonProps> = (buttonProps) => {
   const isOpen = useOpenState();
   const { open, toggle } = useOpenStateControls();
   const { seed, triggerRef } = useMenu();
@@ -19,7 +19,7 @@ const MenuButton = React.forwardRef<HTMLButtonElement, ButtonProps>((buttonProps
 
   const onKeyDown = useAllHandlers(buttonProps.onKeyDown, handleKeyDown);
 
-  const refs = useForkRef(triggerRef as React.RefObject<HTMLButtonElement>, propsRef);
+  const refs = useForkRef(triggerRef as React.RefObject<HTMLButtonElement>);
 
   return (
     <Button
@@ -33,6 +33,6 @@ const MenuButton = React.forwardRef<HTMLButtonElement, ButtonProps>((buttonProps
       ref={refs}
     />
   );
-});
+};
 
 export default MenuButton;

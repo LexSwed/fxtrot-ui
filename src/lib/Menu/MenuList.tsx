@@ -6,7 +6,7 @@ import Popover from '../Popover';
 
 type UlListProps = React.ComponentProps<typeof ListBox>;
 
-const MenuList: React.FC<UlListProps> = ({ placement, offset, ...props }) => {
+const MenuList: React.FC<UlListProps> = (props) => {
   const { seed } = useMenu();
 
   const listRef = useInitialFocus();

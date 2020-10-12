@@ -1,6 +1,6 @@
 import * as paletteColors from './palette';
 
-const { gray, default: allColors, ...palette } = paletteColors;
+export const { gray, default: allColors, ...palette } = paletteColors;
 
 export type ColorName = keyof typeof palette | 'black';
 

@@ -12,7 +12,7 @@ const List = styled('ul', {
 
 const focusOptions: FocusManagerOptions = { wrap: true };
 
-const ListInner: React.FC = (props, ref) => {
+const ListInner: React.FC = (props) => {
   const { focusNext, focusPrevious } = useFocusManager();
 
   const handleKeyDown = useKeyboardHandles({
@@ -25,7 +25,10 @@ const ListInner: React.FC = (props, ref) => {
 
 ListInner.displayName = 'ListBox.Inner';
 
-const ListBox = React.forwardRef<HTMLUListElement, React.ComponentProps<typeof List>>(({ children, ...props }, ref) => {
+const ListBox = React.forwardRef<
+  HTMLUListElement,
+  React.DetailedHTMLProps<React.HTMLAttributes<HTMLUListElement>, HTMLUListElement>
+>(({ children, ...props }, ref) => {
   return (
     <List role="listbox" tabIndex={-1} {...props} as="ul" ref={ref}>
       <FocusScope contain restoreFocus>
