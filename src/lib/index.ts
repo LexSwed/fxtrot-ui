@@ -1,4 +1,4 @@
-import type { StylesWithVariants } from './types/helpers';
+import { StylesWithVariants } from './utils';
 
 export { default as Box } from './Box';
 export { default as Button } from './Button';

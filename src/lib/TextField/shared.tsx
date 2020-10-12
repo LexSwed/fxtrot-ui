@@ -1,6 +1,6 @@
 import { styled } from '../stitches.config';
-import { StylesObject } from '../types/helpers';
 import { createVariant } from '../theme/variants';
+import { StylesObject } from '../utils';
 
 export const iconStyles: StylesObject = {
   position: 'absolute',
