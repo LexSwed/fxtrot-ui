@@ -7,6 +7,7 @@ const Main = styled(Text, {
   lineHeight: 1,
   fontWeight: 600,
   flexShrink: 0,
+  cursor: 'default',
 
   variants: {
     disabled: {

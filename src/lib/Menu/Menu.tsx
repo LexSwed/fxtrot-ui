@@ -16,16 +16,16 @@ const Menu: React.FC<{
 } = ({ onAction, children }) => {
   const seed = useUIDSeed();
   const triggerRef = useRef<HTMLElement>(null);
-  const popoverRef = useRef<HTMLElement>(null);
+  const listRef = useRef<HTMLElement>(null);
 
   const menuContextValue = useMemo(
     () => ({
       triggerRef,
-      popoverRef,
+      listRef,
       seed,
       onAction,
     }),
-    [triggerRef, popoverRef, seed, onAction]
+    [triggerRef, listRef, seed, onAction]
   );
 
   return (

@@ -12,7 +12,7 @@ const gapScale: ScalesMap = {
   '2xl': '$16',
 };
 
-const createVariant = <Variants extends string>(config: { [K in Variants]: CssWithBreakpoints }) => config;
+export const createVariant = <Variants extends string>(config: { [K in Variants]: CssWithBreakpoints }) => config;
 
 const createScalesVariant = (property: string, customScales: ScalesMap) =>
   Object.fromEntries(

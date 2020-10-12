@@ -1,81 +1,48 @@
-import React, { useMemo, useEffect } from 'react';
-import Portal from '../Portal';
+import React, { useEffect, useRef } from 'react';
 import { useMenu } from './utils';
-import { useAllHandlers, useOnClickOutside, useForkRef, useKeyboardHandles, usePopper, sameWidth } from '../utils';
-import { styled } from '../stitches.config';
 import type { Options } from '@popperjs/core';
 import ListBox from '../ListBox/ListBox';
-import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
+import Popover from '../Popover';
 
-const List = styled(ListBox, {
-  boxShadow: '$xl',
-  maxHeight: '240px',
-});
+type UlListProps = React.ComponentProps<typeof ListBox>;
 
-type UlListProps = React.ComponentProps<typeof List>;
-type Props = UlListProps & {
-  offset?: number;
-  placement?: Options['placement'];
+const MenuList: React.FC<UlListProps> = ({ placement, offset, ...props }) => {
+  const { seed } = useMenu();
+
+  const listRef = useInitialFocus();
+
+  return <ListBox {...props} role={'menu'} id={seed('menu')} aria-labelledby={seed('button')} ref={listRef} />;
 };
 
-const UlList: React.FC<Props> = ({ placement = 'bottom-start', offset = 8, ...props }) => {
-  const { triggerRef, popoverRef, seed } = useMenu();
-  const { close } = useOpenStateControls();
-  const popperRef = usePopper(
-    triggerRef,
-    useMemo<Options>(
-      () => ({
-        placement,
-        strategy: 'fixed',
-        modifiers: [{ name: 'offset', options: { offset: [0, offset] } }, sameWidth],
-      }),
-      [placement, offset]
-    )
-  );
+const MenuPopper: React.FC<
+  UlListProps & {
+    offset?: number;
+    placement?: Options['placement'];
+  }
+> = ({ placement, offset, ...props }) => {
+  const { triggerRef } = useMenu();
 
-  useOnClickOutside(close, popoverRef, triggerRef);
+  return (
+    <Popover triggerRef={triggerRef} placement={placement} offset={offset}>
+      <MenuList {...props} />
+    </Popover>
+  );
+};
+
+export default MenuPopper;
+
+function useInitialFocus() {
+  const listRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
-    const option = popoverRef.current?.querySelector('[role="menuitem"]');
+    const option = listRef.current?.querySelector('[role="menuitem"]');
 
     if (option) {
       (option as HTMLLIElement | undefined)?.focus?.();
     } else {
-      popoverRef.current?.focus();
+      listRef.current?.focus();
     }
-  }, [popoverRef]);
+  }, [listRef]);
 
-  const handleKeyDown = useKeyboardHandles(
-    useMemo(
-      () => ({
-        Escape: close,
-        Tab: close,
-      }),
-      [close]
-    )
-  );
-
-  const onKeyDown = useAllHandlers(props.onKeyDown, handleKeyDown);
-
-  const ref = useForkRef(popperRef, popoverRef);
-
-  return (
-    <List {...props} role={'menu'} id={seed('menu')} aria-labelledby={seed('button')} ref={ref} onKeyDown={onKeyDown} />
-  );
-};
-
-const MenuList: React.FC<Props> = (props) => {
-  const isOpen = useOpenState();
-
-  if (!isOpen) {
-    return null;
-  }
-
-  return (
-    <Portal>
-      <UlList {...props} />
-    </Portal>
-  );
-};
-
-export default MenuList;
+  return listRef;
+}

@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { useButton } from '@react-aria/button';
+import { FocusableProps, PressEvents } from '@react-types/shared';
 
 import { styled } from '../stitches.config';
 import { useForkRef } from '../utils';
@@ -9,15 +10,15 @@ import Icon from '../Icon';
 const ButtonRoot = styled(Flex, {
   'transition': '0.2s ease-in-out',
   '$outline': 0,
-  'font': '$default',
+  'fontFamily': '$default',
   'border': '1px solid transparent',
   'br': '$md',
   'cursor': 'default',
 
-  [`${Icon}:first-child`]: {
+  [`& > ${Icon}:first-child`]: {
     ml: '-$1',
   },
-  [`${Icon}:last-child`]: {
+  [`& > ${Icon}:last-child`]: {
     mr: '-$1',
   },
 
@@ -134,9 +135,11 @@ const ButtonRoot = styled(Flex, {
   },
 });
 
-type Props = React.ComponentPropsWithRef<typeof ButtonRoot> & {
-  space?: React.ComponentProps<typeof Flex>['space'];
-};
+type Props = React.ComponentPropsWithRef<typeof ButtonRoot> &
+  FocusableProps &
+  PressEvents & {
+    space?: React.ComponentProps<typeof Flex>['space'];
+  };
 
 const Button = React.forwardRef<HTMLButtonElement, Props>(
   ({ as = 'button', variant = 'primary', size = 'md', space = '$2', css, ...props }, propRef) => {

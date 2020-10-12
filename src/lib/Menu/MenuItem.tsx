@@ -16,13 +16,7 @@ const MenuItem = React.forwardRef<HTMLLIElement, Props>(({ act, disabled, ...pro
     close();
   }, props.onPress);
 
-  const onMouseEnter = useAllHandlers(props.onMouseEnter, (e) => {
-    e.currentTarget.focus({
-      preventScroll: true,
-    });
-  });
-
-  return <ListItem {...props} onPress={onPress} onMouseEnter={onMouseEnter} role="menuitem" ref={ref} />;
+  return <ListItem {...props} onPress={onPress} role="menuitem" ref={ref} />;
 });
 
 MenuItem.displayName = 'MenuItem';

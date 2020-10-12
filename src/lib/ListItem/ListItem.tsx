@@ -2,15 +2,13 @@ import { PressHookProps, usePress } from '@react-aria/interactions';
 import React, { useRef } from 'react';
 import Flex from '../Flex';
 import { styled } from '../stitches.config';
-import { useForkRef } from '../utils';
+import Text from '../Text';
+import { useAllHandlers, useForkRef } from '../utils';
 
 const Item = styled(Flex, {
-  'pr': '$3',
-  'pl': '$2',
+  'px': '$2',
   'fontSize': '$sm',
   'lineHeight': 1,
-  'display': 'flex',
-  'alignItems': 'center',
   'height': '$8',
   'br': '$sm',
   'outline': 'none',
@@ -21,6 +19,11 @@ const Item = styled(Flex, {
   ':focus, :active': {
     bc: '$surfaceActive',
   },
+
+  [`> ${Text}`]: {
+    fontSize: 'inherit',
+    lineHeight: 'inherit',
+  },
 });
 
 type Props = { disabled?: boolean } & React.ComponentProps<typeof Flex> & PressHookProps;
@@ -29,8 +32,8 @@ const ListItem = React.forwardRef<HTMLLIElement, Props>(
   (
     {
       flow = 'row',
-      display = 'inline',
       cross = 'center',
+      space = '$2',
       disabled,
       onPress,
       onPressStart,
@@ -53,19 +56,25 @@ const ListItem = React.forwardRef<HTMLLIElement, Props>(
     });
     const refs = useForkRef(innerRef, propRef);
 
+    const onMouseEnter = useAllHandlers(props.onMouseEnter, (e) => {
+      e.currentTarget.focus({
+        preventScroll: true,
+      });
+    });
+
     return (
       <Item
-        aria-selected="false"
         role="option"
         tabIndex={disabled ? undefined : -1}
         {...props}
         {...pressProps}
         flow={flow}
-        display={display}
         cross={cross}
+        space={space}
         aria-disabled={disabled}
         ref={refs}
         as="li"
+        onMouseEnter={onMouseEnter}
       />
     );
   }

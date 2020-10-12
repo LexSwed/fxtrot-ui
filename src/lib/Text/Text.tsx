@@ -5,6 +5,7 @@ const Text = styled('span', {
   p: 0,
   m: 0,
   color: '$text',
+  fontFamily: '$default',
   variants: {
     font,
     size: textSize,

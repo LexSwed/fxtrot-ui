@@ -3,7 +3,6 @@ import { useUIDSeed } from 'react-uid';
 
 type MenuStaticContextValue = {
   triggerRef: React.RefObject<HTMLElement>;
-  popoverRef: React.RefObject<HTMLElement>;
   seed: ReturnType<typeof useUIDSeed>;
   onAction?: (key: string) => void;
 };

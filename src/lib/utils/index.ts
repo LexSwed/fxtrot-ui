@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { createPopper, Instance, Modifier, Options, VirtualElement } from '@popperjs/core';
+import { useUID } from 'react-uid';
 
 type PossibleRef<T> = React.Ref<T> | ((instance: T | null) => void) | null | undefined;
 
@@ -157,3 +158,9 @@ export const sameWidth: Modifier<'sameWidth', {}> = {
     state.elements.popper.style.minWidth = `${state.elements.reference.getBoundingClientRect().width}px`;
   },
 };
+
+export function useId(id?: string) {
+  let newId = useUID();
+
+  return id || newId;
+}

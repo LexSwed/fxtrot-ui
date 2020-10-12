@@ -112,7 +112,7 @@ const Switch: React.FC<Props> = ({
   flow = 'row',
   label,
   secondaryLabel,
-  space = 'xs',
+  space = 'sm',
   display = 'inline',
   cross = 'center',
   disabled,

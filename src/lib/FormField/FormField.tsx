@@ -7,6 +7,7 @@ import Box from '../Box';
 
 const Wrapper = styled(Flex, {
   position: 'relative',
+  width: '100%',
   variants: {
     hasHint: {
       true: {
@@ -51,6 +52,7 @@ export const FormField: React.FC<Props> = ({
   className,
   children,
   hasHint,
+  as,
 }) => {
   return (
     <Wrapper
@@ -63,6 +65,7 @@ export const FormField: React.FC<Props> = ({
       style={style}
       className={className}
       hasHint={hasHint}
+      as={as}
     >
       {children}
     </Wrapper>
@@ -87,21 +90,23 @@ export const Hint: React.FC<React.ComponentProps<typeof Text> & { validity?: Pro
   );
 };
 
-export function useFormField({ id, hint }: { id?: string; hint?: string }): InputAriaProps {
+export function useFormField({ id, hint, label }: { id?: string; hint?: string; label?: string }): InputAriaProps {
   let newId = useUID();
 
   newId = id ?? newId;
 
   return useMemo(
     () => ({
-      'inputId': newId,
+      'id': newId,
       'aria-describedby': hint ? `${newId}-hint` : undefined,
+      'aria-labelledby': label ? `${label}-label` : undefined,
     }),
-    [hint, newId]
+    [hint, newId, label]
   );
 }
 
 type InputAriaProps = {
-  'inputId': string;
+  'id': string;
   'aria-describedby'?: string;
+  'aria-labelledby'?: string;
 };

@@ -3,15 +3,17 @@ import Flex from '../Flex';
 import { styled } from '../stitches.config';
 import { HiOutlineCalendar, HiCheck, HiOutlineExclamationCircle, HiX } from 'react-icons/hi';
 import Icon from '../Icon';
-import { StylesObject } from '../types/helpers';
 import Label from '../Label';
 import { FormField, HintBox, Hint, useFormField } from '../FormField/FormField';
+import { InteractiveBox, validityVariant } from './shared';
+import { StylesObject } from '../types/helpers';
 
 const iconStyles: StylesObject = {
   position: 'absolute',
   top: 0,
   right: 0,
-  size: '$base',
+  bottom: 0,
+  width: '$base',
 };
 
 const IconWrapper = styled('div', {
@@ -23,16 +25,7 @@ const IconWrapper = styled('div', {
   transition: '0.1s ease-in',
 });
 
-const Input = styled('input', {
-  'fontSize': '$sm',
-  'lineHeight': '$base',
-  'width': '100%',
-  'px': '$2',
-  'display': 'inline-flex',
-  'height': '$base',
-  'transition': '0.2s ease-in-out',
-  'bc': '$surfaceStill',
-  'outline': 'none',
+const Input = styled(InteractiveBox, {
   '::placeholder': {
     color: '$borderStill',
   },
@@ -53,7 +46,7 @@ const Input = styled('input', {
       backgroundImage: 'none',
       m: 0,
       p: 0,
-      ...iconStyles,
+      ...(iconStyles as any),
     },
   },
 
@@ -62,7 +55,7 @@ const Input = styled('input', {
       appearance: 'none',
       m: 0,
       p: 0,
-      ...iconStyles,
+      ...(iconStyles as any),
     },
     [`&:placeholder-shown + ${IconWrapper}`]: {
       opacity: 0,
@@ -70,30 +63,6 @@ const Input = styled('input', {
   },
 
   'variants': {
-    variant: {
-      boxed: {
-        'border': '1px solid $borderStill',
-        'br': '$md',
-        ':hover': {
-          borderColor: '$borderHover',
-        },
-        ':focus': {
-          borderColor: '$borderActive',
-          boxShadow: '0 0 0 1px $borderActive inset',
-        },
-      },
-      underlined: {
-        'borderBottom': '1px solid $borderStill',
-        'borderRadius': '$md $md 0 0',
-        ':hover': {
-          borderColor: '$borderHover',
-        },
-        ':focus': {
-          borderColor: '$primaryActive',
-          backgroundImage: 'linear-gradient(0deg, $primaryActive 0%, $primaryActive 2%, $surfaceStill 3%)',
-        },
-      },
-    },
     hasIcon: {
       true: {
         pr: '$8',
@@ -107,27 +76,7 @@ const InputWrapper = styled('div', {
   width: '100%',
 
   variants: {
-    validity: {
-      valid: {
-        svg: {
-          fill: '$lightGreen600',
-        },
-      },
-      invalid: {
-        svg: {
-          stroke: '$red600',
-        },
-        [`${Input}`]: {
-          'borderColor': '$red600',
-          ':hover': {
-            borderColor: '$red700',
-          },
-          ':focus': {
-            borderColor: '$borderDefault',
-          },
-        },
-      },
-    },
+    validity: validityVariant,
   },
 });
 
@@ -191,13 +140,12 @@ const TextField: React.FC<Props> = ({
       className={className}
       hasHint={!!hint}
     >
-      {label && <Label label={label} secondary={secondaryLabel} htmlFor={ariaProps.inputId} />}
+      {label && <Label label={label} secondary={secondaryLabel} htmlFor={ariaProps.id} disabled={disabled} />}
       <HintBox>
         <InputWrapper validity={validity}>
           <Input
             {...props}
             {...ariaProps}
-            id={ariaProps.inputId}
             disabled={disabled}
             value={value}
             onChange={handleChange}

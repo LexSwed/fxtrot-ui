@@ -1,0 +1,63 @@
+---
+name: Picker
+---
+
+import { Playground } from 'dokz';
+import { Box, Flex, Picker, TextLink } from '@fxtrot/ui';
+
+# Picker
+
+Picker is a component that mimics default `<select>` element.
+
+<Playground>
+  <Box css={{ p: '$8', bc: '$surfaceStill' }}>
+    <Flex space="md" css={{ width: '$40' }} cross="stretch">
+      <Picker label="Item index" placeholder="1 number">
+        {Array(100)
+          .fill(null)
+          .map((el, i) => (
+            <Picker.Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
+          ))}
+      </Picker>
+    </Flex>
+  </Box>
+</Playground>
+
+## Controlled
+
+<Playground>
+  {() => {
+    const [value, setValue] = React.useState('12');
+    return (
+      <Box css={{ p: '$8', bc: '$surfaceStill' }}>
+        <Flex space="md" css={{ width: '$40' }}>
+          <Picker label="Item index" value={value} onChange={setValue}>
+            {Array(20)
+              .fill(null)
+              .map((el, i) => (
+                <Picker.Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
+              ))}
+          </Picker>
+        </Flex>
+      </Box>
+    );
+  }}
+</Playground>
+
+## Variants
+
+Supports same `variant`s as `TextField` component.
+
+<Playground>
+  <Box css={{ p: '$8', bc: '$surfaceStill' }}>
+    <Flex space="md" css={{ width: '$40' }} cross="stretch">
+      <Picker label="Item index" variant="underlined" placeholder="1 number">
+        {Array(20)
+          .fill(null)
+          .map((el, i) => (
+            <Picker.Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
+          ))}
+      </Picker>
+    </Flex>
+  </Box>
+</Playground>

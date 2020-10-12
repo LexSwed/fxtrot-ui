@@ -55,7 +55,7 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
           <TextField
             cross="stretch"
             validity={isValid ? 'valid' : 'invalid'}
-            hint={!isValid && 'Check that your email is typed correctly'}
+            hint={!isValid ? 'Check that your email is typed correctly' : ' '}
             placeholder="john.doe@mail.com"
             value={value}
             onChange={setValue}
