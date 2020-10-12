@@ -77,10 +77,9 @@ const ButtonRoot = styled(Flex, {
       },
       flat: {
         'bc': 'transparent',
-        'color': '$textLight',
+        'color': '$text',
         ':hover': {
           bc: '$surfaceHover',
-          color: '$text',
         },
         ':active': {
           bc: '$surfaceActive',
