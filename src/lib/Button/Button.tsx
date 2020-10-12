@@ -141,7 +141,7 @@ type Props = React.ComponentPropsWithRef<typeof ButtonRoot> &
   };
 
 const Button = React.forwardRef<HTMLButtonElement, Props>(
-  ({ as = 'button', variant = 'primary', size = 'md', space = '$2', css, ...props }, propRef) => {
+  ({ as = 'button', variant = 'primary', size = 'md', space = '$2', css, style, className, ...props }, propRef) => {
     const innerRef = useRef<HTMLButtonElement>(null);
     const { buttonProps } = useButton({ isDisabled: props.disabled, elementType: as, ...props } as any, innerRef);
     const ref = useForkRef(innerRef, propRef);
@@ -157,6 +157,8 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
         variant={variant}
         as={as}
         ref={ref}
+        style={style}
+        className={className}
         size={size}
       >
         {props.children}
