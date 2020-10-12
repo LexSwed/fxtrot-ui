@@ -10,7 +10,7 @@ const Popper = styled('div', {
   position: 'absolute',
   bc: '$surfaceStill',
   br: '$md',
-  border: '1px solid $gray200',
+  border: '1px solid $borderStill',
   outline: 'none',
   boxShadow: '$xl',
 });
