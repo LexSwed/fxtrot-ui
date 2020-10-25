@@ -1,6 +1,6 @@
 import { styled } from '../stitches.config';
 
-const Heading = styled('h1', {
+const HeadingText = styled('h1', {
   fontFamily: '$heading',
   margin: 0,
   lineHeight: 1,
@@ -41,7 +41,7 @@ const Heading = styled('h1', {
   },
 });
 
-Heading.compoundVariant(
+HeadingText.compoundVariant(
   {
     as: 'h1',
     variant: 'default',
@@ -51,9 +51,8 @@ Heading.compoundVariant(
   }
 );
 
-Heading.defaultProps = {
-  as: 'h1',
-  variant: 'default',
+const Heading = ({ variant = 'default', ...props }) => {
+  return <HeadingText variant={variant} {...props} />;
 };
 
 export default Heading;

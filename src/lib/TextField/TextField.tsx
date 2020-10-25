@@ -1,11 +1,12 @@
 import React, { useMemo } from 'react';
-import Flex from '../Flex';
+import type { FlexVariants } from '../Flex';
 import { styled } from '../stitches.config';
 import { HiOutlineCalendar, HiCheck, HiOutlineExclamationCircle, HiX } from 'react-icons/hi';
 import Icon from '../Icon';
 import Label from '../Label';
 import { FormField, HintBox, Hint, useFormField } from '../FormField/FormField';
 import { InteractiveBox, validityVariant, IconWrapper, iconStyles } from './shared';
+import { StitchesProps } from '@stitches/react';
 
 const Input = styled(InteractiveBox, {
   '::placeholder': {
@@ -69,6 +70,17 @@ const icons: Record<string, React.ElementType> = {
   search: HiX,
 };
 
+const inputMode: Record<NonNullable<Props['type']>, InputProps['inputMode']> = {
+  number: 'numeric',
+  tel: 'tel',
+  text: 'text',
+  url: 'url',
+  email: 'email',
+  search: 'search',
+  date: undefined,
+  password: undefined,
+};
+
 const TextField: React.FC<Props> = ({
   label,
   secondaryLabel,
@@ -88,6 +100,7 @@ const TextField: React.FC<Props> = ({
   disabled,
   variant = 'boxed',
   id,
+  defaultValue,
   ...props
 }) => {
   const ariaProps = useFormField({ id, hint });
@@ -98,12 +111,13 @@ const TextField: React.FC<Props> = ({
     }
 
     return (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (type === 'number') {
-        onChange(e.target.valueAsNumber, e);
-      } else if (type === 'date') {
-        onChange(e.target.valueAsDate, e);
-      } else {
-        onChange(e.target.value, e);
+      switch (type) {
+        case 'number':
+          return (onChange as NumberChange)(e.target.valueAsNumber, e);
+        case 'date':
+          return (onChange as DateChange)(e.target.valueAsDate, e);
+        default:
+          return (onChange as StringChange)(e.target.value, e);
       }
     };
   }, [onChange, type]);
@@ -128,10 +142,12 @@ const TextField: React.FC<Props> = ({
           <Input
             {...props}
             {...ariaProps}
+            defaultValue={`${defaultValue}`}
             disabled={disabled}
-            value={value}
+            value={`${value}`}
             onChange={handleChange}
             hasIcon={Boolean(iconRight)}
+            inputMode={inputMode[type]}
             type={type}
             variant={variant}
           />
@@ -153,11 +169,41 @@ const TextField: React.FC<Props> = ({
 
 export default TextField;
 
-type InputProps = React.ComponentProps<typeof Input>;
-type Props = InputProps &
-  React.ComponentProps<typeof Flex> & {
+type InputProps = StitchesProps<typeof Input>;
+type Props = Omit<InputProps, 'onChange' | 'type' | 'value' | 'defaultValue'> &
+  FlexVariants & {
     label?: string;
     secondaryLabel?: string;
     hint?: string;
     validity?: 'valid' | 'invalid';
-  };
+  } & OnChange;
+
+type OnChange =
+  | {
+      type: 'text' | 'url' | 'tel' | 'search' | 'password' | 'email';
+      value?: string;
+      defaultValue?: string;
+      onChange?: StringChange;
+    }
+  | {
+      type: 'number';
+      defaultValue?: number;
+      value?: number;
+      onChange?: NumberChange;
+    }
+  | {
+      type: 'date';
+      value?: Date;
+      defaultValue?: Date;
+      onChange?: DateChange;
+    }
+  | {
+      type?: undefined;
+      value?: string;
+      defaultValue?: string;
+      onChange?: StringChange;
+    };
+
+type NumberChange = (value: number, event: React.ChangeEvent<HTMLInputElement>) => void;
+type DateChange = (value: Date | null, event: React.ChangeEvent<HTMLInputElement>) => void;
+type StringChange = (value: string, event: React.ChangeEvent<HTMLInputElement>) => void;

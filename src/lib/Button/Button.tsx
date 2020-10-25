@@ -6,6 +6,7 @@ import { styled } from '../stitches.config';
 import { useForkRef } from '../utils';
 import Flex from '../Flex';
 import Icon from '../Icon';
+import { StitchesProps } from '@stitches/react';
 
 const ButtonRoot = styled(Flex, {
   'transition': '0.2s ease-in-out',
@@ -29,6 +30,29 @@ const ButtonRoot = styled(Flex, {
   },
 
   'variants': {
+    size: {
+      sm: {
+        height: '$6',
+        lineHeight: '$6',
+        fontSize: '$xs',
+        fontWeight: 400,
+        px: '$2',
+      },
+      md: {
+        height: '$base',
+        lineHeight: '$base',
+        fontSize: '$sm',
+        fontWeight: 500,
+        px: '$3',
+      },
+      lg: {
+        height: '$10',
+        lineHeight: '$10',
+        fontSize: '$md',
+        fontWeight: 500,
+        px: '$3',
+      },
+    },
     variant: {
       primary: {
         'bc': '$primaryStill',
@@ -108,44 +132,14 @@ const ButtonRoot = styled(Flex, {
         },
       },
     },
-    size: {
-      sm: {
-        height: '$6',
-        lineHeight: '$6',
-        fontSize: '$xs',
-        fontWeight: 400,
-        px: '$2',
-      },
-      md: {
-        height: '$base',
-        lineHeight: '$base',
-        fontSize: '$sm',
-        fontWeight: 500,
-        px: '$3',
-      },
-      lg: {
-        height: '$10',
-        lineHeight: '$10',
-        fontSize: '$md',
-        fontWeight: 500,
-        px: '$3',
-      },
-    },
   },
 });
 
-type Props = React.ComponentPropsWithRef<typeof ButtonRoot> &
-  FocusableProps &
-  PressEvents & {
-    space?: React.ComponentProps<typeof Flex>['space'];
-  };
-
 const Button = React.forwardRef<HTMLButtonElement, Props>(
-  ({ as = 'button', variant = 'primary', size = 'md', space = '$2', css, style, className, ...props }, propRef) => {
+  ({ variant = 'primary', size = 'md', space = '$2', css, style, className, as = 'button', ...props }, propRef) => {
     const innerRef = useRef<HTMLButtonElement>(null);
     const { buttonProps } = useButton({ isDisabled: props.disabled, elementType: as, ...props } as any, innerRef);
     const ref = useForkRef(innerRef, propRef);
-
     return (
       <ButtonRoot
         {...buttonProps}
@@ -155,14 +149,12 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
         css={css}
         space={space}
         variant={variant}
-        as={as}
+        as={as as any}
         ref={ref}
         style={style}
         className={className}
         size={size}
-      >
-        {props.children}
-      </ButtonRoot>
+      />
     );
   }
 );
@@ -170,3 +162,7 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
 Button.displayName = 'Button';
 
 export default Button;
+
+type RootProps = StitchesProps<typeof ButtonRoot> & FocusableProps & PressEvents;
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
+type Props = RootProps & ButtonProps;

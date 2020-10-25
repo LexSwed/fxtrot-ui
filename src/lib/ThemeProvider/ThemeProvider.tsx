@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useMemo } from 'react';
 import Box from '../Box';
 import { themes } from '../theme/themes';
-import { css } from '../stitches.config';
+import { css, styled } from '../stitches.config';
 import { Swatch, ColorName } from '../theme/colors';
 
 type Props = {
@@ -10,9 +10,9 @@ type Props = {
 
 const themeContext = createContext<string | null>(null);
 
-const styles = {
+const ThemeWrapper = styled(Box, {
   display: 'contents',
-};
+});
 
 const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
   const contextTheme = useContext(themeContext);
@@ -33,9 +33,9 @@ const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
 
   return (
     <themeContext.Provider value={className}>
-      <Box className={className} css={styles} as="span">
+      <ThemeWrapper className={className} as="span">
         {children}
-      </Box>
+      </ThemeWrapper>
     </themeContext.Provider>
   );
 };

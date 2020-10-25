@@ -1,9 +1,10 @@
 import React from 'react';
-import Flex from '../Flex';
+import Flex, { FlexVariants } from '../Flex';
 import Icon from '../Icon';
 import { HiOutlineExternalLink } from 'react-icons/hi';
 import { styled } from '../stitches.config';
 import { textSize, font } from '../theme/variants';
+import { StitchesProps } from '@stitches/react';
 
 const Link = styled(Flex, {
   'color': '$primaryStill',
@@ -38,16 +39,27 @@ const Link = styled(Flex, {
   },
 });
 
-type AnchorProps = React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>;
-type LinkProps = React.ComponentProps<typeof Link>;
-type Props = AnchorProps & LinkProps & { external?: boolean };
+type Props = StitchesProps<typeof Link> & FlexVariants & { external?: boolean };
 
 const TextLink = React.forwardRef<HTMLAnchorElement, Props>(
-  ({ font = 'default', size = 'base', external, children, ...props }, ref) => {
+  (
+    { font = 'default', size = 'base', external, children, flow = 'row', main = 'start', space = '$1', ...props },
+    ref
+  ) => {
     const additionalProps = external ? { target: '_blank', rel: 'noopener' } : null;
 
     return (
-      <Link flow="row" space="$1" as="a" font={font} size={size} {...additionalProps} {...props} ref={ref}>
+      <Link
+        {...additionalProps}
+        {...props}
+        flow={flow}
+        main={main}
+        space={space}
+        as="a"
+        font={font}
+        size={size}
+        ref={ref as any}
+      >
         {children}
         {external ? <Icon as={HiOutlineExternalLink} /> : null}
       </Link>

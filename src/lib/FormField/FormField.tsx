@@ -32,11 +32,12 @@ const HintText = styled(Text, {
   maxWidth: '-webkit-fill-available',
 });
 
-type Props = React.ComponentProps<typeof Flex> & {
+type Props = React.ComponentProps<typeof Wrapper> & {
   hasHint?: boolean;
+  validity?: keyof typeof tonesMap;
 };
 
-const tonesMap: Record<NonNullable<Props['validity']>, React.ComponentProps<typeof Text>['tone']> = {
+const tonesMap: Record<string, React.ComponentProps<typeof Text>['tone']> = {
   valid: 'success',
   invalid: 'danger',
 };
@@ -71,12 +72,9 @@ export const FormField: React.FC<Props> = ({
     </Wrapper>
   );
 };
+type HintProps = React.ComponentProps<typeof Text> & { validity?: Props['validity'] };
 
-export const Hint: React.FC<React.ComponentProps<typeof Text> & { validity?: Props['validity'] }> = ({
-  validity,
-  children,
-  ...props
-}) => {
+export const Hint: React.FC<HintProps> = ({ validity, children, ...props }) => {
   return (
     <HintText
       ellipsis

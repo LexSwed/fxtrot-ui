@@ -1,8 +1,11 @@
+import React from 'react';
+
+import { StitchesProps, StitchesVariants } from '@stitches/react';
 import Box from '../Box';
 import { styled } from '../stitches.config';
 import { gaps } from '../theme/variants';
 
-const Flex = styled(Box, {
+const FlexBox = styled(Box, {
   display: 'flex',
 
   variants: {
@@ -77,12 +80,14 @@ const Flex = styled(Box, {
   },
 });
 
-Flex.defaultProps = {
-  space: 'none',
-  flow: 'column',
-  wrap: 'nowrap',
-  main: 'start',
-  cross: 'start',
-};
+const Flex = React.forwardRef<
+  HTMLDivElement,
+  React.ComponentProps<typeof FlexBox> & { as?: keyof JSX.IntrinsicElements }
+>(({ space = 'none', flow = 'column', wrap = 'nowrap', main = 'start', cross = 'start', ...props }, ref) => (
+  <FlexBox space={space} flow={flow} wrap={wrap} main={main} cross={cross} {...props} ref={ref} />
+));
 
 export default Flex;
+
+export type FlexVariants = StitchesVariants<typeof FlexBox>;
+export type FlexProps = StitchesProps<typeof FlexBox>;

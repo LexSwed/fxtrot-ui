@@ -1,3 +1,4 @@
+import { StitchesVariants } from '@stitches/react';
 import React, { useMemo } from 'react';
 import { HiCheck } from 'react-icons/hi';
 import Box from '../Box';
@@ -101,8 +102,9 @@ const Input = styled('input', {
 
 type WrapperProps = React.ComponentProps<typeof CheckboxWrapper>;
 type InputProps = React.ComponentProps<typeof Input>;
+type FormFieldProps = StitchesVariants<typeof FormField>;
 
-type Props = InputProps & WrapperProps & { label?: string; secondaryLabel?: string };
+type Props = FormFieldProps & InputProps & WrapperProps & { label?: string; secondaryLabel?: string };
 
 const Checkbox: React.FC<Props> = ({
   checked,
