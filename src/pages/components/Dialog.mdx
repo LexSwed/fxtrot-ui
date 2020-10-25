@@ -1,0 +1,24 @@
+---
+name: Dialog
+---
+
+import { Playground } from 'dokz';
+import { Dialog, Button, Heading, TextField, Box } from '@fxtrot/ui';
+
+## Dialog
+
+<Playground>
+  <Dialog.Trigger>
+    <Button>New workspace</Button>
+    {(close) => (
+      <Dialog.Modal>
+        <Heading>Create new workspace</Heading>
+        <Box py="$4" as="form">
+          <TextField placeholder="Carefive" />
+          <Box pb="$2" />
+          <Button type="submit">Create</Button>
+        </Box>
+      </Dialog.Modal>
+    )}
+  </Dialog.Trigger>
+</Playground>

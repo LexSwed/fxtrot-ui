@@ -5,9 +5,9 @@ import type { CssProperties } from '../utils';
 
 const Div = styled('div', {});
 
-type Props = StitchesProps<typeof Div> &
+type Props = Omit<StitchesProps<typeof Div>, 'as'> &
   CssProperties & {
-    as?: JSX.IntrinsicElements | React.ReactElement;
+    as?: keyof JSX.IntrinsicElements | React.ReactElement;
   };
 
 const Box: React.FC<Props> = ({ children, css, ...props }) => {

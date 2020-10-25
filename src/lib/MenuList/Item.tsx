@@ -18,7 +18,7 @@ const MenuItem = styled(ListItem, {
       true: {
         'bc': '$surfaceActive',
         '::after': {
-          bc: '$primaryActive',
+          bc: '$accent',
         },
       },
       false: {

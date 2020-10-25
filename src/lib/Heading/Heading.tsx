@@ -1,6 +1,7 @@
+import { useDialog } from '../Dialog/utils';
 import { styled } from '../stitches.config';
 
-const HeadingText = styled('h1', {
+export const HeadingText = styled('h1', {
   fontFamily: '$heading',
   margin: 0,
   lineHeight: 1,
@@ -55,7 +56,8 @@ const Heading: React.FC<React.ComponentPropsWithRef<typeof HeadingText>> = ({
   as = 'h1',
   ...props
 }) => {
-  return <HeadingText variant={variant} as={as} {...props} />;
+  const { seed } = useDialog() || {};
+  return <HeadingText variant={variant} as={as} id={seed?.('heading')} {...props} />;
 };
 
 export default Heading;
