@@ -1,23 +1,24 @@
 import React from 'react';
 import { useUID } from 'react-uid';
-import Flex from '../Flex';
+import Flex, { FlexProps } from '../Flex';
 import { styled } from '../stitches.config';
 import Text from '../Text';
-import MenuList from './index';
 
 const Heading = styled(Text, {
   pr: '$2',
   textTransform: 'uppercase',
 });
 
-const Section: React.FC<{ label: string; children: React.ReactElement<typeof MenuList> }> = ({ label, children }) => {
+const Section: React.FC<{ title: string } & FlexProps> = ({ title, children, ...props }) => {
   const id = useUID();
   return (
-    <Flex flow="column" space="xs">
+    <Flex cross="stretch" flow="column" space="xs" {...props}>
       <Heading id={id} font="mono" size="xs" tone="light">
-        {label}
+        {title}
       </Heading>
-      {React.cloneElement(children, { 'aria-labelledby': id })}
+      <div role="group" aria-labelledby={id}>
+        {children}
+      </div>
     </Flex>
   );
 };

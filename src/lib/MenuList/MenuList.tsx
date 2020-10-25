@@ -3,7 +3,6 @@ import { getFocusableTreeWalker } from '@react-aria/focus';
 import Item from './Item';
 import { useAllHandlers, useKeyboardHandles } from '../utils';
 import { styled } from '../stitches.config';
-import Section from './Section';
 
 const List = styled('ul', {
   m: 0,
@@ -11,11 +10,9 @@ const List = styled('ul', {
   $outline: -1,
 });
 
-type Props = React.ComponentProps<typeof List> & {
-  label?: string;
-};
+type Props = React.ComponentProps<typeof List>;
 
-const MenuList: React.FC<Props> & { Item: typeof Item } = ({ label, ...props }) => {
+const MenuList: React.FC<Props> & { Item: typeof Item } = (props) => {
   const ref = useRef<HTMLUListElement>(null);
 
   const focusElement = useCallback((fn: (walker: TreeWalker) => Node | null) => {
@@ -41,12 +38,7 @@ const MenuList: React.FC<Props> & { Item: typeof Item } = ({ label, ...props }) 
   });
   const handleHeyDown = useAllHandlers(props.onKeyDown, handleNavigation);
 
-  const list = <List {...props} onKeyDown={handleHeyDown} ref={ref} />;
-
-  if (label) {
-    return <Section label={label}>{list}</Section>;
-  }
-  return list;
+  return <List {...props} onKeyDown={handleHeyDown} ref={ref} />;
 };
 
 MenuList.Item = Item;

@@ -3,7 +3,7 @@ name: MenuList
 ---
 
 import { Playground } from 'dokz';
-import { Box, MenuList, ListItem, Icon, Text, Label } from '@fxtrot/ui';
+import { Box, MenuList, ListItem, Icon, Text, Section } from '@fxtrot/ui';
 import { HiOutlineUsers, HiOutlineAdjustments, HiOutlineGlobe } from 'react-icons/hi';
 
 ## MenuList
@@ -12,27 +12,29 @@ import { HiOutlineUsers, HiOutlineAdjustments, HiOutlineGlobe } from 'react-icon
   {() => {
     const [selected, setSelected] = React.useState('Appearance');
     return (
-      <Box width="$56" p="$2">
-        <MenuList label="Settings" role="navigation">
-          {[
-            {
-              icon: HiOutlineUsers,
-              label: 'Profiles',
-            },
-            {
-              icon: HiOutlineAdjustments,
-              label: 'Appearance',
-            },
-            {
-              icon: HiOutlineGlobe,
-              label: 'Language',
-            },
-          ].map(({ icon, label }) => (
-            <MenuList.Item key={label} selected={selected === label} onClick={() => setSelected(label)}>
-              <Icon as={icon} />
-              <Text>{label}</Text>
-            </MenuList.Item>
-          ))}
+      <Box width="$56" p="$4">
+        <MenuList role="navigation">
+          <Section title="Settings">
+            {[
+              {
+                icon: HiOutlineUsers,
+                label: 'Profiles',
+              },
+              {
+                icon: HiOutlineAdjustments,
+                label: 'Appearance',
+              },
+              {
+                icon: HiOutlineGlobe,
+                label: 'Language',
+              },
+            ].map(({ icon, label }) => (
+              <MenuList.Item key={label} selected={selected === label} onClick={() => setSelected(label)}>
+                <Icon as={icon} />
+                <Text>{label}</Text>
+              </MenuList.Item>
+            ))}
+          </Section>
         </MenuList>
       </Box>
     );
