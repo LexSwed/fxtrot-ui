@@ -142,9 +142,9 @@ const TextField: React.FC<Props> = ({
           <Input
             {...props}
             {...ariaProps}
-            defaultValue={`${defaultValue}`}
+            defaultValue={defaultValue ? `${defaultValue}` : defaultValue}
             disabled={disabled}
-            value={`${value}`}
+            value={value ? `${value}` : value}
             onChange={handleChange}
             hasIcon={Boolean(iconRight)}
             inputMode={inputMode[type]}

@@ -1,6 +1,6 @@
 import { styled } from '../stitches.config';
 
-const IconBox = styled('svg', {
+export const IconBox = styled('svg', {
   flexShrink: 0,
   variants: {
     size: {

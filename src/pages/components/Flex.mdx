@@ -91,7 +91,7 @@ across main axis or cross axis.
 `main="start"` (default)
 
 <Playground>
-  <>
+  <React.Fragment>
     <Flex css={{ width: '400px', bc: '$lightBlue050' }} space="md" main="start">
       <ExampleBox css={{ width: '$16' }} />
       <ExampleBox css={{ width: '$12' }} />
@@ -102,30 +102,30 @@ across main axis or cross axis.
       <ExampleBox css={{ width: '$12' }} />
       <ExampleBox css={{ width: '$20' }} />
     </Flex>
-  </>
+  </React.Fragment>
 </Playground>
 
 `main="center"`
 
 <Playground>
-  <>
-    <Flex css={{ width: '400px', bc: '$lightBlue050' }} space="md" main="start">
+  <React.Fragment>
+    <Flex css={{ height: '220px', bc: '$lightBlue050' }} space="md" main="center">
       <ExampleBox css={{ width: '$16' }} />
       <ExampleBox css={{ width: '$12' }} />
       <ExampleBox css={{ width: '$20' }} />
     </Flex>
-    <Flex css={{ width: '400px', bc: '$lightBlue050', mt: '$8' }} space="md" flow="row" main="start">
+    <Flex css={{ width: '400px', bc: '$lightBlue050', mt: '$8' }} space="md" flow="row" main="center">
       <ExampleBox css={{ width: '$16' }} />
       <ExampleBox css={{ width: '$12' }} />
       <ExampleBox css={{ width: '$20' }} />
     </Flex>
-  </>
+  </React.Fragment>
 </Playground>
 
 `main="end"`
 
 <Playground>
-  <>
+  <React.Fragment>
     <Flex css={{ width: '400px', height: '240px', bc: '$lightBlue050' }} space="md" main="end">
       <ExampleBox css={{ width: '$16' }} />
       <ExampleBox css={{ width: '$12' }} />
@@ -136,13 +136,13 @@ across main axis or cross axis.
       <ExampleBox css={{ width: '$12' }} />
       <ExampleBox css={{ width: '$20' }} />
     </Flex>
-  </>
+  </React.Fragment>
 </Playground>
 
 `main="spread"` – spacing between items is now controlled by the container size:
 
 <Playground>
-  <>
+  <React.Fragment>
     <Flex css={{ width: '400px', height: '240px', bc: '$lightBlue050' }} main="spread">
       <ExampleBox css={{ width: '$16' }} />
       <ExampleBox css={{ width: '$12' }} />
@@ -153,13 +153,13 @@ across main axis or cross axis.
       <ExampleBox css={{ width: '$12' }} />
       <ExampleBox css={{ width: '$20' }} />
     </Flex>
-  </>
+  </React.Fragment>
 </Playground>
 
 `main="spread" cross="center"`
 
 <Playground>
-  <>
+  <React.Fragment>
     <Flex css={{ width: '400px', height: '240px', bc: '$lightBlue050' }} cross="center" main="spread">
       <ExampleBox css={{ width: '$16' }} />
       <ExampleBox css={{ width: '$12' }} />
@@ -175,7 +175,7 @@ across main axis or cross axis.
       <ExampleBox css={{ width: '$12' }} />
       <ExampleBox css={{ width: '$20' }} />
     </Flex>
-  </>
+  </React.Fragment>
 </Playground>
 
 ## Flow

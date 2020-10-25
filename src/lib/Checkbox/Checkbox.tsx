@@ -148,7 +148,7 @@ const Checkbox: React.FC<Props> = ({
           onChange={handleChange}
         />
         <CheckMark>
-          <Icon as={HiCheck} />
+          <Icon as={HiCheck} size="sm" />
         </CheckMark>
       </CheckboxWrapper>
       {label && <Label label={label} secondary={secondaryLabel} disabled={disabled} as="span" />}

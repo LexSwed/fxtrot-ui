@@ -2,7 +2,7 @@ import React from 'react';
 import Flex, { FlexType } from '../Flex';
 import { styled } from '../stitches.config';
 import Text from '../Text';
-import { useAllHandlers } from '../utils';
+import { useAllHandlers, useKeyboardHandles } from '../utils';
 
 const Item = styled(Flex as FlexType<HTMLLIElement>, {
   'px': '$2',
@@ -39,6 +39,12 @@ const ListItem = React.forwardRef<HTMLLIElement, Props>(
       });
     });
 
+    const onKeyDown = useKeyboardHandles({
+      'Enter': (e) => e.currentTarget.click?.(),
+      ' ': (e) => e.currentTarget.click?.(),
+    });
+    const handleKeyDown = useAllHandlers(props.onKeyDown, onKeyDown);
+
     return (
       <Item
         role="option"
@@ -51,6 +57,7 @@ const ListItem = React.forwardRef<HTMLLIElement, Props>(
         ref={ref}
         as="li"
         onMouseEnter={onMouseEnter}
+        onKeyDown={handleKeyDown}
       />
     );
   }

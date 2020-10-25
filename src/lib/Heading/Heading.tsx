@@ -9,21 +9,20 @@ const HeadingText = styled('h1', {
   variants: {
     as: {
       h1: {
-        textSize: '$3xl',
+        textSize: '$2xl',
         textTransform: 'uppercase',
       },
       h2: {
         textSize: '$2xl',
       },
       h3: {
-        textSize: '$2xl',
+        textSize: '$xl',
       },
       h4: {
         textSize: '$lg',
-        textTransform: 'uppercase',
       },
       h5: {
-        textSize: '$md',
+        textSize: '$lg',
         textTransform: 'uppercase',
       },
       h6: {
@@ -51,8 +50,12 @@ HeadingText.compoundVariant(
   }
 );
 
-const Heading: React.FC<React.ComponentPropsWithRef<typeof HeadingText>> = ({ variant = 'default', ...props }) => {
-  return <HeadingText variant={variant} {...props} />;
+const Heading: React.FC<React.ComponentPropsWithRef<typeof HeadingText>> = ({
+  variant = 'default',
+  as = 'h1',
+  ...props
+}) => {
+  return <HeadingText variant={variant} as={as} {...props} />;
 };
 
 export default Heading;

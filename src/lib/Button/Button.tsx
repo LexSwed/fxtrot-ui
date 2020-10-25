@@ -2,7 +2,7 @@ import React from 'react';
 
 import { styled } from '../stitches.config';
 import Flex, { FlexType } from '../Flex';
-import Icon from '../Icon';
+import { IconBox } from '../Icon/Icon';
 import { StitchesProps } from '@stitches/react';
 
 const ButtonRoot = styled(Flex as FlexType<HTMLButtonElement>, {
@@ -13,10 +13,8 @@ const ButtonRoot = styled(Flex as FlexType<HTMLButtonElement>, {
   'br': '$md',
   'cursor': 'default',
 
-  [`& > ${Icon}:first-child`]: {
+  [`& > ${IconBox}:first-child:last-child`]: {
     ml: '-$1',
-  },
-  [`& > ${Icon}:last-child`]: {
     mr: '-$1',
   },
 
