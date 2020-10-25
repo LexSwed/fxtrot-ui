@@ -26,7 +26,7 @@ const List: React.FC<Props> = ({ triggerId, children, ...props }) => {
   }, [value]);
 
   return (
-    <ListBox id={`${triggerId}-listbox`} aria-labelledby={triggerId} {...props} ref={ref}>
+    <ListBox {...props} id={`${triggerId}-listbox`} aria-labelledby={triggerId} restoreFocus contain wrap ref={ref}>
       {children}
     </ListBox>
   );

@@ -1,4 +1,4 @@
-import { FocusManagerOptions, FocusScope, useFocusManager } from '@react-aria/focus';
+import { FocusScope, useFocusManager } from '@react-aria/focus';
 import React from 'react';
 import { styled } from '../stitches.config';
 import { useKeyboardHandles } from '../utils';
@@ -8,16 +8,15 @@ const List = styled('ul', {
   p: '$1',
   overflowY: 'auto',
   maxHeight: '240px',
+  $outline: -1,
 });
 
-const focusOptions: FocusManagerOptions = { wrap: true };
-
-const ListInner: React.FC = (props) => {
+const ListInner: React.FC<{ wrap?: boolean }> = ({ wrap, ...props }) => {
   const { focusNext, focusPrevious } = useFocusManager();
 
   const handleKeyDown = useKeyboardHandles({
-    ArrowDown: () => focusNext(focusOptions),
-    ArrowUp: () => focusPrevious(focusOptions),
+    ArrowDown: () => focusNext({ wrap }),
+    ArrowUp: () => focusPrevious({ wrap }),
   });
 
   return <div onKeyDown={handleKeyDown} {...props} />;
@@ -27,12 +26,16 @@ ListInner.displayName = 'ListBox.Inner';
 
 const ListBox = React.forwardRef<
   HTMLUListElement,
-  React.DetailedHTMLProps<React.HTMLAttributes<HTMLUListElement>, HTMLUListElement>
->(({ children, ...props }, ref) => {
+  React.DetailedHTMLProps<React.HTMLAttributes<HTMLUListElement>, HTMLUListElement> & {
+    restoreFocus?: boolean;
+    contain?: boolean;
+    wrap?: boolean;
+  }
+>(({ children, restoreFocus, contain, wrap, ...props }, ref) => {
   return (
     <List role="listbox" tabIndex={-1} {...props} as="ul" ref={ref}>
-      <FocusScope contain restoreFocus>
-        <ListInner>{children}</ListInner>
+      <FocusScope contain={contain} restoreFocus={restoreFocus}>
+        <ListInner wrap={wrap}>{children}</ListInner>
       </FocusScope>
     </List>
   );

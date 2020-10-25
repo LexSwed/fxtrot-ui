@@ -71,7 +71,6 @@ export function useKeyboardHandles(handlers: KeyboardHandlers): KeyboardHandler 
     const handler = handlersRef.current[event.key];
     if (typeof handler === 'function') {
       event.preventDefault();
-      event.stopPropagation();
       handler(event);
     }
   }, []);

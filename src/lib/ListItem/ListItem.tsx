@@ -23,7 +23,7 @@ const Item = styled(Flex as FlexType<HTMLLIElement>, {
     bc: '$surfaceActive',
   },
 
-  [`> ${Text}`]: {
+  [`& ${Text}`]: {
     fontSize: 'inherit',
     lineHeight: 'inherit',
   },
@@ -32,7 +32,7 @@ const Item = styled(Flex as FlexType<HTMLLIElement>, {
 type Props = { disabled?: boolean } & React.ComponentProps<typeof Item>;
 
 const ListItem = React.forwardRef<HTMLLIElement, Props>(
-  ({ flow = 'row', cross = 'center', space = '$2', disabled, ...props }, ref) => {
+  ({ flow = 'row', cross = 'center', space = '$2', disabled, as = 'li', ...props }, ref) => {
     const onMouseEnter = useAllHandlers(props.onMouseEnter, (e) => {
       e.currentTarget.focus({
         preventScroll: true,
@@ -49,13 +49,13 @@ const ListItem = React.forwardRef<HTMLLIElement, Props>(
       <Item
         role="option"
         tabIndex={disabled ? undefined : -1}
-        {...props}
+        as={as}
         flow={flow}
         cross={cross}
         space={space}
+        {...props}
         aria-disabled={disabled}
         ref={ref}
-        as="li"
         onMouseEnter={onMouseEnter}
         onKeyDown={handleKeyDown}
       />

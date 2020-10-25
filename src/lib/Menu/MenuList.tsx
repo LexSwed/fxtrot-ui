@@ -11,7 +11,18 @@ const MenuList: React.FC<UlListProps> = (props) => {
 
   const listRef = useInitialFocus();
 
-  return <ListBox {...props} role={'menu'} id={seed('menu')} aria-labelledby={seed('button')} ref={listRef} />;
+  return (
+    <ListBox
+      {...props}
+      restoreFocus
+      contain
+      wrap
+      role={'menu'}
+      id={seed('menu')}
+      aria-labelledby={seed('button')}
+      ref={listRef}
+    />
+  );
 };
 
 const MenuPopper: React.FC<
