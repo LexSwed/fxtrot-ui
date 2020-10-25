@@ -30,11 +30,12 @@ export const InteractiveBox = styled('input', {
   transition: '0.2s ease-in-out',
   bc: '$surfaceStill',
   outline: 'none',
+  border: '1px solid transparent',
 
   variants: {
     variant: {
       boxed: {
-        'border': '1px solid $borderStill',
+        'borderColor': '$borderStill',
         'br': '$md',
         ':hover': {
           borderColor: '$borderHover',
@@ -45,14 +46,21 @@ export const InteractiveBox = styled('input', {
         },
       },
       underlined: {
-        'borderBottom': '1px solid $borderStill',
         'borderRadius': '$md $md 0 0',
+        'backgroundImage': 'linear-gradient(to top, $primaryStill 0px, $primaryStill 2px, $surfaceStill 2px)',
+        'backgroundSize': '100% calc(100% + 4px)',
+        'backgroundPosition': '0 calc(100% + 3px)',
         ':hover': {
-          borderColor: '$borderHover',
+          backgroundPosition: '0 calc(100% + 2px)',
+          backgroundImage: 'linear-gradient(to top, $primaryHover 0px, $primaryHover 2px, $surfaceStill 2px)',
         },
         ':focus, &[aria-expanded="true"]': {
-          borderColor: '$primaryActive',
-          backgroundImage: 'linear-gradient(0deg, $primaryActive 0%, $primaryActive 2%, $surfaceStill 3%)',
+          backgroundPosition: '0 calc(100% + 1px)',
+          backgroundImage: 'linear-gradient(to top, $primaryActive 0px, $primaryActive 2px, $surfaceStill 2px)',
+        },
+        ':disabled': {
+          backgroundImage: 'none',
+          bc: '$surfaceDisabled',
         },
       },
     },

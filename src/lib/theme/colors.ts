@@ -22,7 +22,7 @@ export const swatches: Array<readonly [ColorName, Swatch]> = Object.entries(pale
 
         $surfaceStill: '#fff',
         $surfaceHover: gray['$gray100'],
-        $surfaceActive: gray['$gray200'],
+        $surfaceActive: gray['$gray050'],
         $surfaceDisabled: gray['$gray200'],
 
         $borderLight: gray['$gray200'],
