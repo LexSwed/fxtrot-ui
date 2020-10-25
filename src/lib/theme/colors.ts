@@ -25,6 +25,7 @@ export const swatches: Array<readonly [ColorName, Swatch]> = Object.entries(pale
         $surfaceActive: gray['$gray200'],
         $surfaceDisabled: gray['$gray200'],
 
+        $borderLight: gray['$gray200'],
         $borderStill: gray['$gray400'],
         $borderHover: gray['$gray500'],
         $borderActive: gray['$gray600'],
@@ -52,6 +53,7 @@ export const swatches: Array<readonly [ColorName, Swatch]> = Object.entries(pale
           $surfaceActive: gray['$gray600'],
           $surfaceDisabled: 'rgba(0,0,0,0.2)',
 
+          $borderLight: gray['$gray400'],
           $borderStill: gray['$gray200'],
           $borderHover: gray['$gray300'],
           $borderActive: gray['$gray100'],
@@ -62,10 +64,12 @@ export const swatches: Array<readonly [ColorName, Swatch]> = Object.entries(pale
 
 const mainColors = Object.fromEntries(swatches).blue.colors;
 
-export default {
+const colors = {
   ...allColors,
   ...mainColors,
 };
+
+export default colors;
 
 export type Swatch = {
   colors: {
@@ -85,6 +89,7 @@ export type Swatch = {
     $surfaceActive: string;
     $surfaceDisabled: string;
 
+    $borderLight: string;
     $borderStill: string;
     $borderHover: string;
     $borderActive: string;

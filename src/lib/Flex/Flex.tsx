@@ -1,11 +1,10 @@
 import React from 'react';
 
 import { StitchesProps, StitchesVariants } from '@stitches/react';
-import Box from '../Box';
 import { styled } from '../stitches.config';
 import { gaps } from '../theme/variants';
 
-const FlexBox = styled(Box, {
+const FlexBox = styled('div', {
   display: 'flex',
 
   variants: {
