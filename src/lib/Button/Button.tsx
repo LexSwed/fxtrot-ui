@@ -1,14 +1,11 @@
-import React, { useRef } from 'react';
-import { useButton } from '@react-aria/button';
-import { FocusableProps, PressEvents } from '@react-types/shared';
+import React from 'react';
 
 import { styled } from '../stitches.config';
-import { useForkRef } from '../utils';
-import Flex from '../Flex';
+import Flex, { FlexType } from '../Flex';
 import Icon from '../Icon';
 import { StitchesProps } from '@stitches/react';
 
-const ButtonRoot = styled(Flex, {
+const ButtonRoot = styled(Flex as FlexType<HTMLButtonElement>, {
   'transition': '0.2s ease-in-out',
   '$outline': 0,
   'fontFamily': '$default',
@@ -136,13 +133,10 @@ const ButtonRoot = styled(Flex, {
 });
 
 const Button = React.forwardRef<HTMLButtonElement, Props>(
-  ({ variant = 'primary', size = 'md', space = '$2', css, style, className, as = 'button', ...props }, propRef) => {
-    const innerRef = useRef<HTMLButtonElement>(null);
-    const { buttonProps } = useButton({ isDisabled: props.disabled, elementType: as, ...props } as any, innerRef);
-    const ref = useForkRef(innerRef, propRef);
+  ({ variant = 'primary', size = 'md', space = '$2', css, style, className, as = 'button', ...props }, ref) => {
     return (
       <ButtonRoot
-        {...buttonProps}
+        {...props}
         flow="row"
         cross="center"
         display="inline"
@@ -163,6 +157,6 @@ Button.displayName = 'Button';
 
 export default Button;
 
-type RootProps = StitchesProps<typeof ButtonRoot> & FocusableProps & PressEvents;
+type RootProps = StitchesProps<typeof ButtonRoot>;
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 type Props = RootProps & ButtonProps;

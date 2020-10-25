@@ -37,7 +37,7 @@ type Props = React.ComponentProps<typeof Wrapper> & {
   validity?: keyof typeof tonesMap;
 };
 
-const tonesMap: Record<string, React.ComponentProps<typeof Text>['tone']> = {
+const tonesMap: Record<'valid' | 'invalid', React.ComponentProps<typeof Text>['tone']> = {
   valid: 'success',
   invalid: 'danger',
 };

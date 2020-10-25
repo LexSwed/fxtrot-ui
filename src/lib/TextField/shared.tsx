@@ -1,3 +1,4 @@
+import { StitchesVariants } from '@stitches/react';
 import { styled } from '../stitches.config';
 import { createVariant } from '../theme/variants';
 import { StylesObject } from '../utils';
@@ -57,6 +58,11 @@ export const InteractiveBox = styled('input', {
     },
   },
 });
+
+export type InteractiveBoxType<T = HTMLInputElement> = React.ForwardRefExoticComponent<
+  React.DetailedHTMLProps<React.HTMLAttributes<T>, T> &
+    StitchesVariants<typeof InteractiveBox> & { as: keyof JSX.IntrinsicElements | React.ElementType }
+>;
 
 export const validityVariant = createVariant({
   valid: {

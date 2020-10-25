@@ -11,12 +11,12 @@ const MenuItem = React.forwardRef<HTMLLIElement, Props>(({ act, disabled, ...pro
   const { onAction } = useMenu();
   const { close } = useOpenStateControls();
 
-  const onPress = useAllHandlers(() => {
+  const onClick = useAllHandlers(() => {
     act && onAction?.(act);
     close();
-  }, props.onPress);
+  }, props.onClick);
 
-  return <ListItem {...props} onPress={onPress} role="menuitem" ref={ref} />;
+  return <ListItem {...props} onClick={onClick} role="menuitem" ref={ref} />;
 });
 
 MenuItem.displayName = 'MenuItem';

@@ -10,7 +10,7 @@ const MenuButton: React.FC<ButtonProps> = (buttonProps) => {
   const isOpen = useOpenState();
   const { open, toggle } = useOpenStateControls();
   const { seed, triggerRef } = useMenu();
-  const onPress = useAllHandlers(buttonProps.onPress, toggle);
+  const onClick = useAllHandlers(buttonProps.onClick, toggle);
 
   const handleKeyDown = useKeyboardHandles({
     ArrowDown: open,
@@ -28,7 +28,7 @@ const MenuButton: React.FC<ButtonProps> = (buttonProps) => {
       aria-haspopup="true"
       aria-controls={isOpen ? seed('menu') : undefined}
       id={seed('button')}
-      onPress={onPress}
+      onClick={onClick}
       onKeyDown={onKeyDown}
       ref={refs}
     />

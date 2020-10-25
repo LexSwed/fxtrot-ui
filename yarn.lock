@@ -1866,19 +1866,6 @@
   resolved "https://registry.yarnpkg.com/@reach/visually-hidden/-/visually-hidden-0.1.4.tgz#0dc4ecedf523004337214187db70a46183bd945b"
   integrity sha512-QHbzXjflSlCvDd6vJwdwx16mSB+vUCCQMiU/wK/CgVNPibtpEiIbisyxkpZc55DyDFNUIqP91rSUsNae+ogGDQ==
 
-"@react-aria/button@^3.2.2":
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/@react-aria/button/-/button-3.2.2.tgz#b10c1700e6b085a48b5a2ff4ffa46feb9931c34c"
-  integrity sha512-iXJo58ST06wnh2zNpnyVgEHY8QulVGDO9LQRfBg/v3ZIIu0FAzag7dTzSijeZpppFuWM197YrFYTEouPXzhk4w==
-  dependencies:
-    "@babel/runtime" "^7.6.2"
-    "@react-aria/focus" "^3.2.2"
-    "@react-aria/i18n" "^3.1.2"
-    "@react-aria/interactions" "^3.2.1"
-    "@react-aria/utils" "^3.3.0"
-    "@react-stately/toggle" "^3.2.1"
-    "@react-types/button" "^3.2.1"
-
 "@react-aria/focus@^3.2.2":
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/@react-aria/focus/-/focus-3.2.2.tgz#39fe763bc8b675331a8d4b1652589d3dd494a52d"
@@ -1889,16 +1876,6 @@
     "@react-aria/utils" "^3.3.0"
     "@react-types/shared" "^3.2.1"
     clsx "^1.1.1"
-
-"@react-aria/i18n@^3.1.2":
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/@react-aria/i18n/-/i18n-3.1.2.tgz#a59fcd14f985aaa9047fcf3ff0d17fedfa26521e"
-  integrity sha512-JFEeIQjiwgima2Ipz1s07puMujBMrlRXF4tUaKALR3851SM5zLbckePuNGHI4KMVK1ZfO5Br9jbUT60Mdotk3A==
-  dependencies:
-    "@babel/runtime" "^7.6.2"
-    "@react-aria/ssr" "^3.0.1"
-    "@react-types/shared" "^3.2.1"
-    intl-messageformat "^2.2.0"
 
 "@react-aria/interactions@^3.2.1":
   version "3.2.1"
@@ -1935,37 +1912,6 @@
     "@react-aria/interactions" "^3.2.1"
     "@react-aria/utils" "^3.3.0"
     clsx "^1.1.1"
-
-"@react-stately/toggle@^3.2.1":
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/@react-stately/toggle/-/toggle-3.2.1.tgz#8b10b5eb99c3c4df2c36d17a5f23b77773ed7722"
-  integrity sha512-gZVuJ8OYoATUoXzdprsyx6O1w3wCrN+J0KnjhrjjKTrBG68n3pZH0p6dM0XpsaCzlSv0UgNa4fhHS3dYfr/ovw==
-  dependencies:
-    "@babel/runtime" "^7.6.2"
-    "@react-stately/utils" "^3.1.1"
-    "@react-types/checkbox" "^3.2.1"
-    "@react-types/shared" "^3.2.1"
-
-"@react-stately/utils@^3.1.1":
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@react-stately/utils/-/utils-3.1.1.tgz#e2f2c3ef81cfc6850a3418cb0f050c33d123620a"
-  integrity sha512-htG4TicI4SKxfD5sEKYGxlMeQ5/+TuWPtnhRMbRqdmqnfkVxO/PoaQeEF+xUMWM9VCZc69ZFH6Qen1eZ/JfFcQ==
-  dependencies:
-    "@babel/runtime" "^7.6.2"
-
-"@react-types/button@^3.2.1":
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/@react-types/button/-/button-3.2.1.tgz#47170f8d7107115380dfd54ee3f699d3bef121de"
-  integrity sha512-k4pyQ01Unkr+Jx5tGESSsbqDXID7s/sEXZbrT+JPx/3Ot4Du86mGjlDIOChd7Iq1koGBirJuGY8X5nk4zCUvdg==
-  dependencies:
-    "@react-types/shared" "^3.2.1"
-
-"@react-types/checkbox@^3.2.1":
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/@react-types/checkbox/-/checkbox-3.2.1.tgz#971dfd8428e43ce34b063388d1c742bbba0a8dc6"
-  integrity sha512-nm/j8JQWAayFEvs5Hicf9/DBrdnc/CwbXQtN3dC+ehERFu9BtxP6Bt6p7qmhvAJtuUnTh85+zY148BITiyQYtQ==
-  dependencies:
-    "@react-types/shared" "^3.2.1"
 
 "@react-types/shared@^3.2.1":
   version "3.2.1"
@@ -6175,18 +6121,6 @@ internal-slot@^1.0.2:
     es-abstract "^1.17.0-next.1"
     has "^1.0.3"
     side-channel "^1.0.2"
-
-intl-messageformat-parser@1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/intl-messageformat-parser/-/intl-messageformat-parser-1.4.0.tgz#b43d45a97468cadbe44331d74bb1e8dea44fc075"
-  integrity sha1-tD1FqXRoytvkQzHXS7Ho3qRPwHU=
-
-intl-messageformat@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/intl-messageformat/-/intl-messageformat-2.2.0.tgz#345bcd46de630b7683330c2e52177ff5eab484fc"
-  integrity sha1-NFvNRt5jC3aDMwwuUhd/9eq0hPw=
-  dependencies:
-    intl-messageformat-parser "1.4.0"
 
 invariant@^2.2.2:
   version "2.2.4"
@@ -10961,11 +10895,6 @@ typescript@^3.9.5, typescript@^4.0.3:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.0.3.tgz#153bbd468ef07725c1df9c77e8b453f8d36abba5"
   integrity sha512-tEu6DGxGgRJPb/mVPIZ48e69xCn2yRmCgYmDugAVwmJ6o+0u1RI18eO7E7WBTLYLaEVVOhwQmcdhQHweux/WPg==
-
-typescript@^4.1.0-dev.20201024:
-  version "4.1.0-dev.20201024"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.1.0-dev.20201024.tgz#03ebc594361ae5047828606ec8b1de5535dc0eda"
-  integrity sha512-HKsmWNtG4b+LfwAtA+7d7QBylNzX+F6p8CnhSzOQn5wbD0OElSX1RM7QyxA56nQcTgDaiXPhFDu2PQZw0eRlog==
 
 ua-parser-js@^0.7.18:
   version "0.7.22"

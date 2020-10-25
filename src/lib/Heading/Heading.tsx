@@ -51,7 +51,7 @@ HeadingText.compoundVariant(
   }
 );
 
-const Heading = ({ variant = 'default', ...props }) => {
+const Heading: React.FC<React.ComponentPropsWithRef<typeof HeadingText>> = ({ variant = 'default', ...props }) => {
   return <HeadingText variant={variant} {...props} />;
 };
 

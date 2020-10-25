@@ -26,7 +26,7 @@ const Item = React.forwardRef<HTMLLIElement, Props>(({ value, label, ...props },
   const { close } = useOpenStateControls();
   const isSelected = dropdownValue === value;
 
-  const onPress = useCallback(() => {
+  const onClick = useCallback(() => {
     onChange?.(value);
     close();
   }, [close, onChange, value]);
@@ -40,7 +40,7 @@ const Item = React.forwardRef<HTMLLIElement, Props>(({ value, label, ...props },
   const refs = useForkRef(innerRef, ref);
 
   return (
-    <Option {...props} aria-selected={isSelected} onPress={onPress} main="spread" ref={refs}>
+    <Option {...props} aria-selected={isSelected} onClick={onClick} main="spread" ref={refs}>
       {label}
       {isSelected ? <SelectedIcon as={HiCheck} size="md" /> : null}
     </Option>

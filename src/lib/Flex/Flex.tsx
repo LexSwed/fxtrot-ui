@@ -91,3 +91,7 @@ export default Flex;
 
 export type FlexVariants = StitchesVariants<typeof FlexBox>;
 export type FlexProps = StitchesProps<typeof FlexBox>;
+export type FlexType<T = HTMLDivElement> = React.ForwardRefExoticComponent<
+  React.DetailedHTMLProps<React.HTMLAttributes<T>, T> &
+    FlexVariants & { as: keyof JSX.IntrinsicElements | React.ElementType }
+>;

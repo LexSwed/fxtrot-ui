@@ -101,7 +101,12 @@ const Input = styled('input', {
 type WrapperProps = React.ComponentProps<typeof FormField>;
 type InputProps = React.ComponentProps<typeof Input>;
 
-type Props = InputProps & WrapperProps & { label?: string; secondaryLabel?: string };
+type Props = Omit<InputProps, 'onChange'> &
+  WrapperProps & {
+    label?: string;
+    secondaryLabel?: string;
+    onChange: (checked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
+  };
 
 const Switch: React.FC<Props> = ({
   checked,
@@ -121,7 +126,7 @@ const Switch: React.FC<Props> = ({
   const handleChange = useMemo(() => {
     if (typeof onChange !== 'function') return;
 
-    return (ev: React.ChangeEvent<HTMLInputElement>) => onChange(ev.target.checked);
+    return (ev: React.ChangeEvent<HTMLInputElement>) => onChange(ev.target.checked, ev);
   }, [onChange]);
 
   return (

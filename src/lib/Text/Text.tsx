@@ -6,6 +6,7 @@ const Text = styled('span', {
   m: 0,
   color: '$text',
   fontFamily: '$default',
+  textSize: '$base',
   variants: {
     font,
     size: textSize,
@@ -41,10 +42,5 @@ const Text = styled('span', {
     },
   },
 });
-
-Text.defaultProps = {
-  font: 'default',
-  size: 'base',
-};
 
 export default Text;

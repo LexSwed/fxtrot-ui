@@ -1,11 +1,10 @@
-import { PressHookProps, usePress } from '@react-aria/interactions';
-import React, { useRef } from 'react';
-import Flex from '../Flex';
+import React from 'react';
+import Flex, { FlexType } from '../Flex';
 import { styled } from '../stitches.config';
 import Text from '../Text';
-import { useAllHandlers, useForkRef } from '../utils';
+import { useAllHandlers } from '../utils';
 
-const Item = styled(Flex, {
+const Item = styled(Flex as FlexType<HTMLLIElement>, {
   'px': '$2',
   'fontSize': '$sm',
   'lineHeight': 1,
@@ -30,36 +29,10 @@ const Item = styled(Flex, {
   },
 });
 
-type Props = { disabled?: boolean } & React.ComponentProps<typeof Flex> & PressHookProps;
+type Props = { disabled?: boolean } & React.ComponentProps<typeof Item>;
 
 const ListItem = React.forwardRef<HTMLLIElement, Props>(
-  (
-    {
-      flow = 'row',
-      cross = 'center',
-      space = '$2',
-      disabled,
-      onPress,
-      onPressStart,
-      onPressEnd,
-      onPressChange,
-      onPressUp,
-      ...props
-    },
-    propRef
-  ) => {
-    const innerRef = useRef<HTMLLIElement>(null);
-    const { pressProps } = usePress({
-      isDisabled: disabled,
-      ref: innerRef as any,
-      onPress,
-      onPressStart,
-      onPressEnd,
-      onPressChange,
-      onPressUp,
-    });
-    const refs = useForkRef(innerRef, propRef);
-
+  ({ flow = 'row', cross = 'center', space = '$2', disabled, ...props }, ref) => {
     const onMouseEnter = useAllHandlers(props.onMouseEnter, (e) => {
       e.currentTarget.focus({
         preventScroll: true,
@@ -74,9 +47,8 @@ const ListItem = React.forwardRef<HTMLLIElement, Props>(
         flow={flow}
         cross={cross}
         space={space}
-        {...pressProps}
         aria-disabled={disabled}
-        ref={refs}
+        ref={ref}
         as="li"
         onMouseEnter={onMouseEnter}
       />

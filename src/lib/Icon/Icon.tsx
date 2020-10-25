@@ -1,6 +1,6 @@
 import { styled } from '../stitches.config';
 
-const Icon = styled('svg', {
+const IconBox = styled('svg', {
   flexShrink: 0,
   variants: {
     size: {
@@ -41,8 +41,9 @@ const Icon = styled('svg', {
   },
 });
 
-Icon.defaultProps = {
-  size: 'md',
-};
+const Icon: React.FC<React.ComponentPropsWithRef<typeof IconBox> & { as: React.ElementType }> = ({
+  size = 'md',
+  ...props
+}) => <IconBox size={size} {...props} />;
 
 export default Icon;

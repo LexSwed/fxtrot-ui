@@ -1,6 +1,6 @@
 import React from 'react';
 import { styled } from '../stitches.config';
-import Flex from '../Flex';
+import Flex, { FlexType } from '../Flex';
 import Text from '../Text';
 
 const Main = styled(Text, {
@@ -26,7 +26,7 @@ const Secondary = styled(Text, {
   fontWeight: 400,
 });
 
-const Wrapper = styled(Flex, {
+const Wrapper = styled(Flex as FlexType<HTMLLabelElement>, {
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
 });
@@ -35,7 +35,7 @@ type Props = React.DetailedHTMLProps<React.LabelHTMLAttributes<HTMLLabelElement>
   label: React.ReactNode;
   secondary?: React.ReactNode;
   disabled?: boolean;
-  as?: React.ComponentProps<typeof Wrapper>['as'];
+  as?: keyof JSX.IntrinsicElements;
 };
 
 const Label: React.FC<Props> = ({ label, children: _ignore, secondary, ref, as = 'label', disabled, ...props }) => {

@@ -49,7 +49,7 @@ You can modify `offset` and [`placement`](https://popper.js.org/docs/v2/construc
           {Array(20)
             .fill(null)
             .map((el, i) => (
-              <Menu.Item key={i} onPress={() => window.alert(i)}>
+              <Menu.Item key={i} onClick={() => window.alert(i)}>
                 Item {i}
               </Menu.Item>
             ))}
