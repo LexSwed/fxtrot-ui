@@ -66,7 +66,7 @@ const DialogWindow = styled('section', {
   outline: 'none',
   maxHeight: '90vh',
   maxWidth: '90vw',
-  minWidth: 320,
+  minWidth: 480,
   br: '$md',
   pointerEvents: 'auto',
   position: 'relative',
@@ -116,12 +116,12 @@ export const Modal: React.FC<StitchesProps<typeof DialogWindow>> = ({ children, 
 
   return (
     <DialogWindow {...props} onKeyDown={handleKeyDown} role="dialog" tabIndex={-1} aria-labelledby={seed('heading')}>
+      {children}
       <CloseButtonContainer>
         <Button variant="flat" onClick={close} aria-label="Dismiss">
           <Icon as={HiOutlineX} />
         </Button>
       </CloseButtonContainer>
-      {children}
     </DialogWindow>
   );
 };

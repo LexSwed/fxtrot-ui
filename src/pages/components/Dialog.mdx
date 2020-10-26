@@ -3,22 +3,36 @@ name: Dialog
 ---
 
 import { Playground } from 'dokz';
-import { Dialog, Button, Heading, TextField, Box } from '@fxtrot/ui';
+import { Dialog, Button, Heading, TextField, Flex, Box } from '@fxtrot/ui';
 
 ## Dialog
 
 <Playground>
-  <Dialog.Trigger>
-    <Button>New workspace</Button>
-    {(close) => (
-      <Dialog.Modal>
-        <Heading>Create new workspace</Heading>
-        <Box py="$4" as="form">
-          <TextField placeholder="Carefive" />
-          <Box pb="$2" />
-          <Button type="submit">Create</Button>
-        </Box>
-      </Dialog.Modal>
-    )}
-  </Dialog.Trigger>
+  <Box p="$8">
+    <Dialog.Trigger>
+      <Button>New workspace</Button>
+      {(close) => (
+        <Dialog.Modal>
+          <Heading>Create new workspace</Heading>
+          <Box
+            pt="$4"
+            as="form"
+            onSubmit={(e) => {
+              e.preventDefault();
+              window.alert(e.currentTarget['workspace-name'].value);
+            }}
+          >
+            <TextField placeholder="Carefive" name="workspace-name" label="Workspace name" />
+            <Box pb="$10" />
+            <Flex flow="row-reverse" space="sm">
+              <Button type="submit">Create</Button>
+              <Button onClick={close} variant="flat">
+                Cancel
+              </Button>
+            </Flex>
+          </Box>
+        </Dialog.Modal>
+      )}
+    </Dialog.Trigger>
+  </Box>
 </Playground>
