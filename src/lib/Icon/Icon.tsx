@@ -1,3 +1,4 @@
+import React from 'react';
 import { styled } from '../stitches.config';
 
 export const IconBox = styled('svg', {
@@ -44,6 +45,8 @@ export const IconBox = styled('svg', {
 const Icon: React.FC<React.ComponentPropsWithRef<typeof IconBox> & { as: React.ElementType }> = ({
   size = 'md',
   ...props
-}) => <IconBox size={size} {...props} />;
+}) => {
+  return <IconBox size={size} {...props} />;
+};
 
 export default Icon;

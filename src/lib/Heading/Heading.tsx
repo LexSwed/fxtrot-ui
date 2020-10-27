@@ -1,3 +1,4 @@
+import React from 'react';
 import { useDialog } from '../Dialog/utils';
 import { styled } from '../stitches.config';
 

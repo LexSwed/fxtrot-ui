@@ -15,7 +15,7 @@ import { OpenStateProvider, useOpenState, useOpenStateControls } from '../utils/
 import { DialogContext, DialogProvider, useDialog } from './utils';
 
 export const DialogTrigger: React.FC<{
-  children: [React.ReactElement<typeof Button>, DialogContext['render']];
+  children: [React.ReactElement, DialogContext['render']];
   defaultOpen?: boolean;
 }> = ({ defaultOpen, children }) => {
   const [trigger, fn] = children;
@@ -28,7 +28,7 @@ export const DialogTrigger: React.FC<{
   );
 };
 
-const Trigger: React.FC<{ children: React.ReactElement<typeof Button> }> = ({ children }) => {
+const Trigger: React.FC<{ children: React.ReactElement }> = ({ children }) => {
   const { open } = useOpenStateControls();
 
   return React.cloneElement(children, {
