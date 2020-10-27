@@ -6,7 +6,9 @@ type PickerContext = {
   onChange?: (newValue: string) => void;
 };
 
-const context = createContext({} as PickerContext);
+const context = createContext({
+  triggerRef: { current: null },
+} as PickerContext);
 
 export const PickerProvider = context.Provider;
 

@@ -11,8 +11,11 @@ import { usePicker } from './utils';
 
 type FormFieldProps = React.ComponentProps<typeof FormField>;
 
+type ButtonProps = InteractiveBoxType<
+  React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
+>;
 type Props = FormFieldProps &
-  React.ComponentProps<typeof TriggerButton> & {
+  React.ComponentProps<ButtonProps> & {
     id?: string;
     placeholder?: string;
     label?: string;
@@ -21,7 +24,7 @@ type Props = FormFieldProps &
     disabled?: boolean;
   };
 
-const TriggerButton = styled((InteractiveBox as unknown) as InteractiveBoxType<HTMLButtonElement>, {
+const TriggerButton = styled((InteractiveBox as unknown) as ButtonProps, {
   position: 'relative',
   display: 'flex',
   alignItems: 'center',

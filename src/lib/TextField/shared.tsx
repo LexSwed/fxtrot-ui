@@ -67,10 +67,14 @@ export const InteractiveBox = styled('input', {
   },
 });
 
-export type InteractiveBoxType<T = HTMLInputElement> = React.ForwardRefExoticComponent<
-  React.DetailedHTMLProps<React.HTMLAttributes<T>, T> &
-    StitchesVariants<typeof InteractiveBox> & { as: keyof JSX.IntrinsicElements | React.ElementType }
->;
+export type InteractiveBoxType<T = HTMLInputElement> = T extends HTMLElement
+  ? React.ForwardRefExoticComponent<
+      React.DetailedHTMLProps<React.HTMLAttributes<T>, T> &
+        StitchesVariants<typeof InteractiveBox> & { as: keyof JSX.IntrinsicElements | React.ElementType }
+    >
+  : React.ForwardRefExoticComponent<
+      T & StitchesVariants<typeof InteractiveBox> & { as: keyof JSX.IntrinsicElements | React.ElementType }
+    >;
 
 export const validityVariant = createVariant({
   valid: {

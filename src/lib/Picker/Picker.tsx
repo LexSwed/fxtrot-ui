@@ -10,6 +10,7 @@ import { PickerProvider } from './utils';
 type Props = React.ComponentProps<typeof Trigger> & {
   value?: string;
   onChange?: (newValue: string) => void;
+  children: React.ElementType<typeof Item>[] | React.ElementType<typeof Item>;
 };
 
 const Picker: React.FC<Props> & {
@@ -45,20 +46,31 @@ const Picker: React.FC<Props> & {
 
 Picker.Item = Item;
 
+Picker.propTypes = {
+  children: (props, propName, componentName) => {
+    if (props[propName]?.some?.((el: React.ReactNode) => !isOption(el))) {
+      return new Error(
+        `Invalid child supplied to ${componentName}. ${componentName} only accepts ${Item.displayName} as children`
+      );
+    }
+    return null;
+  },
+};
+
 export default Picker;
 
 function isOption(el: React.ReactNode): el is React.ReactElement<React.ComponentProps<typeof Item>> {
   return React.isValidElement(el) && el.type === Item;
 }
 
-function useTitle({ children, value }: { children: React.ReactNode; value?: string }) {
+function useTitle({ children, value }: { children: Props['children']; value?: string }) {
   const [title, setTitle] = useState<string>('');
 
   useEffect(() => {
     if (!value) return;
     let label = null;
     React.Children.forEach(children, (el) => {
-      if (isOption(el) && el.props.value === value) {
+      if (el.props.value === value) {
         label = el.props.label;
       }
     });
