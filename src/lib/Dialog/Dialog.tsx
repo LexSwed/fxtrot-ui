@@ -16,11 +16,12 @@ import { DialogContext, DialogProvider, useDialog } from './utils';
 
 export const DialogTrigger: React.FC<{
   children: [React.ReactElement<typeof Button>, DialogContext['render']];
-}> = ({ children }) => {
+  defaultOpen?: boolean;
+}> = ({ defaultOpen, children }) => {
   const [trigger, fn] = children;
 
   return (
-    <OpenStateProvider>
+    <OpenStateProvider defaultOpen={defaultOpen}>
       <Trigger>{trigger}</Trigger>
       <DialogMain render={fn} />
     </OpenStateProvider>
@@ -63,6 +64,7 @@ const ModalWrapper = styled(Flex, {
 const DialogWindow = styled('section', {
   bc: '$surfaceStill',
   p: '$8',
+  pt: '$10',
   outline: 'none',
   maxHeight: '90vh',
   maxWidth: '90vw',
@@ -72,7 +74,7 @@ const DialogWindow = styled('section', {
   position: 'relative',
 
   [`& ${HeadingText}`]: {
-    fontSize: '$md',
+    textSize: '$md',
   },
 });
 

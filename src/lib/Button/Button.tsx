@@ -12,6 +12,7 @@ const ButtonRoot = styled(Flex as FlexType<HTMLButtonElement>, {
   'border': '1px solid transparent',
   'br': '$md',
   'cursor': 'default',
+  'whiteSpace': 'nowrap',
 
   [`& > ${IconBox}:first-child:last-child`]: {
     ml: '-$1',

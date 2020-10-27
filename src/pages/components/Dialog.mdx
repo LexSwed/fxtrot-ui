@@ -3,7 +3,7 @@ name: Dialog
 ---
 
 import { Playground } from 'dokz';
-import { Dialog, Button, Heading, TextField, Flex, Box } from '@fxtrot/ui';
+import { Dialog, Button, Heading, TextField, Flex, Box, Switch } from '@fxtrot/ui';
 
 ## Dialog
 
@@ -35,4 +35,48 @@ import { Dialog, Button, Heading, TextField, Flex, Box } from '@fxtrot/ui';
       )}
     </Dialog.Trigger>
   </Box>
+</Playground>
+
+## Default Open
+
+<Playground>
+  {() => {
+    const [defaultOpen, setDefaultOpen] = React.useState(false);
+    return (
+      <Box p="$8">
+        <Flex flow="row" cross="center" main="start" space="sm">
+          <Box>
+            <Switch label="Default open" value={defaultOpen} onChange={setDefaultOpen} />
+          </Box>
+          {defaultOpen && (
+            <Dialog.Trigger defaultOpen={defaultOpen}>
+              <Button>New workspace</Button>
+              {(close) => (
+                <Dialog.Modal>
+                  <Heading>Create new workspace</Heading>
+                  <Box
+                    pt="$4"
+                    as="form"
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      window.alert(e.currentTarget['workspace-name'].value);
+                    }}
+                  >
+                    <TextField placeholder="Carefive" name="workspace-name" label="Workspace name" />
+                    <Box pb="$10" />
+                    <Flex flow="row-reverse" space="sm">
+                      <Button type="submit">Create</Button>
+                      <Button onClick={close} variant="flat">
+                        Cancel
+                      </Button>
+                    </Flex>
+                  </Box>
+                </Dialog.Modal>
+              )}
+            </Dialog.Trigger>
+          )}
+        </Flex>
+      </Box>
+    );
+  }}
 </Playground>

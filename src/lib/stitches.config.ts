@@ -196,7 +196,7 @@ css.global({
       boxSizing: 'border-box',
     },
   },
-});
+})();
 
 (function addFont() {
   if (isServer) {
