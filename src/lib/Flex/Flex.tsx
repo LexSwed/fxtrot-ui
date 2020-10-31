@@ -3,8 +3,9 @@ import React from 'react';
 import { StitchesProps, StitchesVariants } from '@stitches/react';
 import { styled } from '../stitches.config';
 import { gaps } from '../theme/variants';
+import Box from '../Box';
 
-const FlexBox = styled('div', {
+const FlexBox = styled(Box, {
   display: 'flex',
 
   variants: {
@@ -81,7 +82,7 @@ const FlexBox = styled('div', {
 
 const Flex = React.forwardRef<
   HTMLDivElement,
-  React.ComponentProps<typeof FlexBox> & { as?: keyof JSX.IntrinsicElements }
+  React.ComponentProps<typeof FlexBox> & { as?: keyof JSX.IntrinsicElements | React.ReactElement }
 >(({ space = 'none', flow = 'column', wrap = 'nowrap', main = 'start', cross = 'start', ...props }, ref) => (
   <FlexBox space={space} flow={flow} wrap={wrap} main={main} cross={cross} {...props} ref={ref} />
 ));

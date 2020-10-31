@@ -27,7 +27,6 @@ const Box: React.FC<Props> = ({ children, css, ...props }) => {
       ),
     Object.values(props) //eslint-disable-line
   );
-
   return <Div css={Object.assign(style, css)} {...attrs} children={children} />;
 };
 
