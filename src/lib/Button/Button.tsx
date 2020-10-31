@@ -3,7 +3,6 @@ import React from 'react';
 import { styled } from '../stitches.config';
 import { FlexBox, FlexType } from '../Flex';
 import { IconBox } from '../Icon/Icon';
-import { StitchesProps } from '@stitches/react';
 
 const ButtonRoot = styled(FlexBox as FlexType<'button'>, {
   'transition': '0.2s ease-in-out',
@@ -131,8 +130,8 @@ const ButtonRoot = styled(FlexBox as FlexType<'button'>, {
   },
 });
 
-const Button = React.forwardRef<HTMLButtonElement, StitchesProps<typeof ButtonRoot>>(
-  ({ variant = 'primary', size = 'md', space = '$2', css, style, className, as = 'button', ...props }, ref) => {
+const Button = React.forwardRef<HTMLButtonElement, React.ComponentProps<typeof ButtonRoot>>(
+  ({ variant = 'primary', size = 'md', space = '$2', css, style, className, ...props }, ref) => {
     return (
       <ButtonRoot
         {...props}
@@ -142,7 +141,7 @@ const Button = React.forwardRef<HTMLButtonElement, StitchesProps<typeof ButtonRo
         css={css}
         space={space}
         variant={variant}
-        as={as}
+        as="button"
         ref={ref}
         style={style}
         className={className}
