@@ -2,7 +2,7 @@ import type { TCssWithBreakpoints, TCssProp, BreakPointsKeys } from '@stitches/r
 import type { TCssProperties, TCss } from '@stitches/core';
 import { css } from '../stitches.config';
 
-type Config = GetConfig<typeof css>;
+export interface Config extends GetConfig<typeof css> {}
 export type CssWithBreakpoints = TCssWithBreakpoints<Config>;
 export type StylesObject = TCssProperties<Config>;
 export type StylesWithVariants = TCssProperties<Config>;

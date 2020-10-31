@@ -1,11 +1,10 @@
 import React from 'react';
 
-import { StitchesProps, StitchesVariants } from '@stitches/react';
+import type { IStyledComponent, StitchesProps, StitchesVariants } from '@stitches/react';
 import { styled } from '../stitches.config';
 import { gaps } from '../theme/variants';
-import Box from '../Box';
 
-const FlexBox = styled(Box, {
+export const FlexBox = styled('div', {
   display: 'flex',
 
   variants: {
@@ -80,22 +79,20 @@ const FlexBox = styled(Box, {
   },
 });
 
-const Flex = React.forwardRef<
-  HTMLDivElement,
-  React.ComponentProps<typeof FlexBox> & { as?: keyof JSX.IntrinsicElements | React.ReactElement }
->(({ space = 'none', flow = 'column', wrap = 'nowrap', main = 'start', cross = 'start', ...props }, ref) => (
-  <FlexBox space={space} flow={flow} wrap={wrap} main={main} cross={cross} {...props} ref={ref} />
-));
+const Flex = React.forwardRef<unknown, StitchesProps<typeof FlexBox>>(
+  ({ space = 'none', flow = 'column', wrap = 'nowrap', main = 'start', cross = 'start', ...props }, ref) => {
+    return <FlexBox space={space} flow={flow} wrap={wrap} main={main} cross={cross} {...props} ref={ref as any} />;
+  }
+);
 
 export default Flex;
 
 export type FlexVariants = StitchesVariants<typeof FlexBox>;
 export type FlexProps = StitchesProps<typeof FlexBox>;
-
-type ExoticComponent<T> = React.ForwardRefExoticComponent<
-  React.DetailedHTMLProps<React.HTMLAttributes<T>, T> &
-    FlexVariants & {
-      as?: keyof JSX.IntrinsicElements | React.ReactElement;
-    }
->;
-export interface FlexType<T = HTMLDivElement> extends ExoticComponent<T> {}
+export type FlexType<C extends React.ElementType = 'div'> = typeof FlexBox extends IStyledComponent<
+  any,
+  any,
+  infer Config
+>
+  ? IStyledComponent<C, FlexVariants, Config>
+  : never;

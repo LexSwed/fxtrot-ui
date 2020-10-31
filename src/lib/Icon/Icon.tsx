@@ -1,3 +1,4 @@
+import { StitchesProps } from '@stitches/react';
 import React from 'react';
 import { styled } from '../stitches.config';
 
@@ -42,7 +43,7 @@ export const IconBox = styled('svg', {
   },
 });
 
-const Icon: React.FC<React.ComponentPropsWithRef<typeof IconBox> & { as: React.ElementType }> = ({
+const Icon: React.FC<Omit<StitchesProps<typeof IconBox>, 'as'> & { as: React.ElementType }> = ({
   size = 'md',
   ...props
 }) => {

@@ -1,10 +1,11 @@
+import { StitchesProps } from '@stitches/react';
 import React from 'react';
-import Flex, { FlexType } from '../Flex';
+import { FlexBox, FlexType } from '../Flex';
 import { styled } from '../stitches.config';
 import Text from '../Text';
 import { useAllHandlers, useKeyboardHandles } from '../utils';
 
-const Item = styled(Flex as FlexType<HTMLLIElement>, {
+const Item = styled(FlexBox as FlexType<'li'>, {
   'px': '$2',
   'fontSize': '$sm',
   'lineHeight': 1,
@@ -29,7 +30,7 @@ const Item = styled(Flex as FlexType<HTMLLIElement>, {
   },
 });
 
-type Props = { disabled?: boolean } & React.ComponentProps<typeof Item>;
+type Props = { disabled?: boolean } & StitchesProps<typeof Item>;
 
 const ListItem = React.forwardRef<HTMLLIElement, Props>(
   ({ flow = 'row', cross = 'center', space = '$2', disabled, as = 'li', ...props }, ref) => {

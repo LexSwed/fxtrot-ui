@@ -5,9 +5,10 @@ import type { CssProperties } from '../utils';
 
 const Div = styled('div', {});
 
-type Props = Omit<StitchesProps<typeof Div>, 'as'> &
-  CssProperties & {
-    as?: keyof JSX.IntrinsicElements | React.ReactElement;
+/** Not all properties supported */
+type Props = StitchesProps<typeof Div> &
+  {
+    [prop in typeof acceptedProperties[number]]?: CssProperties[prop];
   };
 
 const Box: React.FC<Props> = ({ children, css, ...props }) => {
@@ -32,7 +33,7 @@ const Box: React.FC<Props> = ({ children, css, ...props }) => {
 
 export default Box;
 
-const VALID_ITEMS = new Set<keyof CssProperties>([
+const acceptedProperties: (keyof CssProperties)[] = [
   'tablet',
   'mobile',
   'desktop',
@@ -102,4 +103,6 @@ const VALID_ITEMS = new Set<keyof CssProperties>([
   'borderRight',
   'borderBottom',
   'borderLeft',
-]);
+];
+
+const VALID_ITEMS = new Set<keyof CssProperties>(acceptedProperties);

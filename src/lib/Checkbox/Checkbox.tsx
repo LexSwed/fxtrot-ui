@@ -129,7 +129,7 @@ const Checkbox: React.FC<Props> = ({
 
   return (
     <FormField
-      as="label"
+      as={'label' as any}
       display={display}
       className={className}
       style={style}
@@ -151,7 +151,7 @@ const Checkbox: React.FC<Props> = ({
           <Icon as={HiCheck} size="sm" />
         </CheckMark>
       </CheckboxWrapper>
-      {label && <Label label={label} secondary={secondaryLabel} disabled={disabled} as="span" />}
+      {label && <Label label={label} secondary={secondaryLabel} disabled={disabled} as={'span' as any} />}
     </FormField>
   );
 };

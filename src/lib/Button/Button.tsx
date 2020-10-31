@@ -1,11 +1,11 @@
 import React from 'react';
 
 import { styled } from '../stitches.config';
-import Flex, { FlexType } from '../Flex';
+import { FlexBox, FlexType } from '../Flex';
 import { IconBox } from '../Icon/Icon';
 import { StitchesProps } from '@stitches/react';
 
-const ButtonRoot = styled(Flex as FlexType<HTMLButtonElement>, {
+const ButtonRoot = styled(FlexBox as FlexType<'button'>, {
   'transition': '0.2s ease-in-out',
   '$outline': 0,
   'fontFamily': '$default',
@@ -131,7 +131,7 @@ const ButtonRoot = styled(Flex as FlexType<HTMLButtonElement>, {
   },
 });
 
-const Button = React.forwardRef<HTMLButtonElement, Props>(
+const Button = React.forwardRef<HTMLButtonElement, StitchesProps<typeof ButtonRoot>>(
   ({ variant = 'primary', size = 'md', space = '$2', css, style, className, as = 'button', ...props }, ref) => {
     return (
       <ButtonRoot
@@ -142,7 +142,7 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
         css={css}
         space={space}
         variant={variant}
-        as={as as any}
+        as={as}
         ref={ref}
         style={style}
         className={className}
@@ -152,10 +152,4 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
   }
 );
 
-Button.displayName = 'Button';
-
 export default Button;
-
-type RootProps = StitchesProps<typeof ButtonRoot>;
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
-type Props = RootProps & ButtonProps;

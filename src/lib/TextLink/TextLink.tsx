@@ -1,12 +1,12 @@
 import React from 'react';
-import Flex, { FlexVariants } from '../Flex';
+import { FlexBox, FlexType } from '../Flex';
 import Icon from '../Icon';
 import { HiOutlineExternalLink } from 'react-icons/hi';
 import { styled } from '../stitches.config';
 import { textSize, font } from '../theme/variants';
 import { StitchesProps } from '@stitches/react';
 
-const Link = styled(Flex, {
+const Link = styled(FlexBox as FlexType<'a'>, {
   'color': '$primaryStill',
   'textDecoration': 'none',
   'boxSizing': 'border-box',
@@ -39,7 +39,7 @@ const Link = styled(Flex, {
   },
 });
 
-type Props = StitchesProps<typeof Link> & FlexVariants & { external?: boolean };
+type Props = StitchesProps<typeof Link> & { external?: boolean };
 
 const TextLink = React.forwardRef<HTMLAnchorElement, Props>(
   (

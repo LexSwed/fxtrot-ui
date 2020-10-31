@@ -131,7 +131,7 @@ const Switch: React.FC<Props> = ({
 
   return (
     <FormField
-      as="label"
+      as={'label' as any}
       display={display}
       className={className}
       style={style}
@@ -152,7 +152,7 @@ const Switch: React.FC<Props> = ({
         />
         <Toggle />
       </SwitchWrapper>
-      {label && <Label label={label} secondary={secondaryLabel} disabled={disabled} as="span" />}
+      {label && <Label label={label} secondary={secondaryLabel} disabled={disabled} as={'span' as any} />}
     </FormField>
   );
 };

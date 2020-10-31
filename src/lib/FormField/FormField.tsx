@@ -4,6 +4,7 @@ import { styled } from '../stitches.config';
 import Text from '../Text';
 import { useUID } from 'react-uid';
 import Box from '../Box';
+import { StitchesProps } from '@stitches/react';
 
 const Wrapper = styled(Flex, {
   position: 'relative',
@@ -32,7 +33,7 @@ const HintText = styled(Text, {
   maxWidth: '-webkit-fill-available',
 });
 
-type Props = React.ComponentProps<typeof Wrapper> & {
+type Props = StitchesProps<typeof Wrapper> & {
   hasHint?: boolean;
   validity?: keyof typeof tonesMap;
 };
