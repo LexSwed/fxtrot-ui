@@ -18,7 +18,7 @@ const Box: React.FC<Props> = ({ children, css, ...props }) => {
     () =>
       Object.entries(props).reduce(
         (res, [key, value]: [any, any]) => {
-          if (VALID_ITEMS.has(key) && value) {
+          if (VALID_ITEMS.has(key)) {
             res[0][key] = value;
           } else {
             res[1][key] = value;
