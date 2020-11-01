@@ -91,8 +91,8 @@ export type FlexVariants = StitchesVariants<typeof FlexBox>;
 export type FlexProps = StitchesProps<typeof FlexBox>;
 export type FlexType<C extends React.ElementType = 'div'> = typeof FlexBox extends IStyledComponent<
   any,
-  any,
+  infer Variants,
   infer Config
 >
-  ? IStyledComponent<C, FlexVariants, Config>
+  ? IStyledComponent<C, Variants, Config>
   : never;
