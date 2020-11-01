@@ -1,9 +1,13 @@
+import { StitchesProps } from '@stitches/react';
 import React from 'react';
 import ListItem from '../ListItem';
 import { styled } from '../stitches.config';
 
 const MenuItem = styled(ListItem, {
   'position': 'relative',
+  'textDecoration': 'none',
+  'color': 'inherit',
+  'cursor': 'default',
   '::after': {
     position: 'absolute',
     left: 0,
@@ -30,12 +34,12 @@ const MenuItem = styled(ListItem, {
   },
 });
 
-type Props = React.ComponentProps<typeof MenuItem> & {
+type Props = StitchesProps<typeof MenuItem> & {
   selected?: boolean;
 };
 
-const Item: React.FC<Props> = ({ selected, ...props }) => {
-  return <MenuItem {...props} role="treeitem" aria-selected={selected} tabIndex={selected ? 0 : -1} />;
-};
+const Item = React.forwardRef<HTMLLIElement, Props>(({ selected, ...props }, ref) => {
+  return <MenuItem {...props} role="treeitem" aria-selected={selected} tabIndex={selected ? 0 : -1} ref={ref} />;
+});
 
 export default Item;
