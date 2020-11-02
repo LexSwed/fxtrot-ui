@@ -13,6 +13,7 @@ import { useAllHandlers, useKeyboardHandles } from '../utils';
 
 import { OpenStateProvider, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { DialogContext, DialogProvider, useDialog } from './utils';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export const DialogTrigger: React.FC<{
   children: [React.ReactElement, DialogContext['render']];
@@ -23,7 +24,9 @@ export const DialogTrigger: React.FC<{
   return (
     <OpenStateProvider defaultOpen={defaultOpen}>
       <Trigger>{trigger}</Trigger>
-      <DialogMain render={fn} />
+      <AnimatePresence>
+        <DialogMain render={fn} />
+      </AnimatePresence>
     </OpenStateProvider>
   );
 };
@@ -39,7 +42,7 @@ const Trigger: React.FC<{ children: React.ReactElement }> = ({ children }) => {
   });
 };
 
-const Underlay = styled('div', {
+const Underlay = styled(motion.div, {
   backgroundColor: 'rgba(0,0,0,0.6)',
   position: 'fixed',
   top: 0,
@@ -84,19 +87,42 @@ const DialogMain: React.FC<{ render: DialogContext['render'] }> = ({ render }) =
   const seed = useUIDSeed();
   const context = useMemo<DialogContext>(() => ({ seed, render }), [seed, render]);
 
-  if (!isOpen || !render) return null;
-
   return (
-    <DialogProvider value={context}>
-      <Portal>
-        <Underlay aria-hidden="true" onClick={close} />
-        <ModalWrapper main="center" cross="center">
-          <FocusScope contain autoFocus restoreFocus>
-            {render(close)}
-          </FocusScope>
-        </ModalWrapper>
-      </Portal>
-    </DialogProvider>
+    <AnimatePresence>
+      {isOpen && render && (
+        <DialogProvider value={context}>
+          <Portal>
+            <Underlay
+              key="underlay"
+              aria-hidden="true"
+              onClick={close}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3, type: 'tween' }}
+            />
+            <ModalWrapper
+              main="center"
+              cross="center"
+              as={motion.div as any}
+              initial={{ opacity: 0, y: 5 }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                transition: { opacity: { duration: 0.2 }, y: { duration: 0.2 } },
+              }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.1, type: 'tween' }}
+              key="dialog"
+            >
+              <FocusScope contain autoFocus restoreFocus>
+                {render(close)}
+              </FocusScope>
+            </ModalWrapper>
+          </Portal>
+        </DialogProvider>
+      )}
+    </AnimatePresence>
   );
 };
 

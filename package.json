@@ -39,6 +39,7 @@
     "@react-aria/interactions": "^3.3.0",
     "@react-aria/visually-hidden": "^3.2.1",
     "@stitches/react": "^0.0.3-canary.4",
+    "framer-motion": "^2.9.4",
     "react-uid": "^2.3.0"
   },
   "devDependencies": {
