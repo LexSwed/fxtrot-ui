@@ -88,15 +88,17 @@ type Handler = (event: PossibleEvent) => void;
 
 const events: HandledEventsType[] = [MOUSEDOWN, TOUCHSTART, POINTERDOWN];
 
-export function useOnClickOutside(handler: Handler | null, ...refs: React.RefObject<HTMLElement>[]) {
+export function useOnClickOutside(handler: Handler | null, isActive: boolean, ...refs: React.RefObject<HTMLElement>[]) {
   const handlerRef = useLatest(handler);
 
   useEffect(() => {
+    if (!isActive) {
+      return;
+    }
     const listener = (event: PossibleEvent) => {
       if (refs.some((ref) => ref.current?.contains?.(event.target as Node))) {
         return;
       }
-
       handlerRef.current?.(event);
     };
 
@@ -109,7 +111,7 @@ export function useOnClickOutside(handler: Handler | null, ...refs: React.RefObj
         document.removeEventListener(event, listener);
       });
     };
-  }, [handlerRef, ...refs]); //eslint-disable-line react-hooks/exhaustive-deps
+  }, [handlerRef, isActive, ...refs]); //eslint-disable-line react-hooks/exhaustive-deps
 }
 
 export function usePopper(

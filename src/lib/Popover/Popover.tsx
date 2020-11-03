@@ -1,4 +1,5 @@
 import { Options } from '@popperjs/core';
+import { AnimatePresence, motion } from 'framer-motion';
 import React, { useMemo } from 'react';
 import Portal from '../Portal';
 import { styled } from '../stitches.config';
@@ -8,6 +9,9 @@ import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 const Popper = styled('div', {
   zIndex: '$2',
   position: 'absolute',
+});
+
+const PopperBox = styled(motion.div, {
   bc: '$surfaceStill',
   br: '$md',
   border: '1px solid $borderLight',
@@ -36,7 +40,7 @@ const Popover: React.FC<Props> = ({ children, triggerRef, offset = 8, placement 
     )
   );
 
-  useOnClickOutside(close, popperRef, triggerRef);
+  useOnClickOutside(close, isOpen, popperRef, triggerRef);
 
   const handleKeyDown = useKeyboardHandles(
     useMemo(
@@ -48,16 +52,27 @@ const Popover: React.FC<Props> = ({ children, triggerRef, offset = 8, placement 
     )
   );
 
-  if (!isOpen) {
-    return null;
-  }
-
   return (
-    <Portal>
-      <Popper ref={popperRef as any} onKeyDown={handleKeyDown}>
-        {children}
-      </Popper>
-    </Portal>
+    <AnimatePresence>
+      {isOpen && (
+        <Portal>
+          <Popper ref={popperRef as any} onKeyDown={handleKeyDown}>
+            <PopperBox
+              initial={{ opacity: 0, y: -5 }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.15, opacity: { duration: 0.1 } },
+              }}
+              exit={{ opacity: 0, y: -5 }}
+              transition={{ duration: 0.1, type: 'tween' }}
+            >
+              {children}
+            </PopperBox>
+          </Popper>
+        </Portal>
+      )}
+    </AnimatePresence>
   );
 };
 
