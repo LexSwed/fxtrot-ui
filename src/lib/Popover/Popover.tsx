@@ -1,5 +1,5 @@
-import { Options } from '@popperjs/core';
-import { AnimatePresence, motion } from 'framer-motion';
+import { Options, Placement } from '@popperjs/core';
+import { AnimatePresence, motion, Variants } from 'framer-motion';
 import React, { useMemo } from 'react';
 import Portal from '../Portal';
 import { styled } from '../stitches.config';
@@ -19,6 +19,49 @@ const PopperBox = styled(motion.div, {
   boxShadow: '$xl',
 });
 
+const animations: Record<string, Variants> = {
+  top: {
+    initial: {
+      opacity: 0,
+      y: 5,
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+    },
+  },
+  bottom: {
+    initial: {
+      opacity: 0,
+      y: -5,
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+    },
+  },
+  right: {
+    initial: {
+      opacity: 0,
+      x: -5,
+    },
+    animate: {
+      opacity: 1,
+      x: 0,
+    },
+  },
+  left: {
+    initial: {
+      opacity: 0,
+      x: 5,
+    },
+    animate: {
+      opacity: 1,
+      x: 0,
+    },
+  },
+};
+
 type Props = {
   triggerRef: React.RefObject<HTMLElement>;
   offset?: number;
@@ -28,7 +71,7 @@ type Props = {
 const Popover: React.FC<Props> = ({ children, triggerRef, offset = 8, placement = 'bottom-start' }) => {
   const isOpen = useOpenState();
   const { close } = useOpenStateControls();
-  const popperRef = usePopper(
+  const [popperRef, state] = usePopper(
     triggerRef,
     useMemo<Options>(
       () => ({
@@ -58,13 +101,10 @@ const Popover: React.FC<Props> = ({ children, triggerRef, offset = 8, placement 
         <Portal>
           <Popper ref={popperRef as any} onKeyDown={handleKeyDown}>
             <PopperBox
-              initial={{ opacity: 0, y: -5 }}
-              animate={{
-                opacity: 1,
-                y: 0,
-                transition: { duration: 0.15, opacity: { duration: 0.1 } },
-              }}
-              exit={{ opacity: 0, y: -5 }}
+              variants={state?.placement ? animations[state?.placement.split('-')[0]] : animations.bottom}
+              initial="initial"
+              animate="animate"
+              exit="initial"
               transition={{ duration: 0.1, type: 'tween' }}
             >
               {children}

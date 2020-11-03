@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
-import { createPopper, Instance, Modifier, Options, VirtualElement } from '@popperjs/core';
+import { createPopper, Instance, Modifier, Options, State, VirtualElement } from '@popperjs/core';
 import { useUID } from 'react-uid';
 
 type PossibleRef<T> = React.Ref<T> | ((instance: T | null) => void) | null | undefined;
@@ -117,7 +117,7 @@ export function useOnClickOutside(handler: Handler | null, isActive: boolean, ..
 export function usePopper(
   triggerRef: React.RefObject<Element | VirtualElement>,
   options?: Partial<Options>
-): React.RefObject<HTMLElement> {
+): [ref: React.RefObject<HTMLElement>, popperState: State | undefined] {
   const popoverRef = useRef<HTMLElement>(null);
   const popperInstanceRef = useRef<Instance>();
 
@@ -126,6 +126,10 @@ export function usePopper(
 
     popperInstanceRef.current?.destroy();
     popperInstanceRef.current = createPopper(triggerRef.current, popoverRef.current, options);
+    console.log(popperInstanceRef?.current?.state.placement);
+    setTimeout(() => {
+      console.log(popperInstanceRef?.current?.state);
+    }, 100);
   }, [triggerRef, options]);
 
   useEffect(() => {
@@ -134,7 +138,7 @@ export function usePopper(
     };
   }, []);
 
-  return useMemo(() => {
+  const ref = useMemo(() => {
     return {
       get current() {
         return popoverRef.current;
@@ -145,6 +149,7 @@ export function usePopper(
       },
     };
   }, [popoverRef, instantiatePopper]);
+  return [ref, popperInstanceRef.current?.state];
 }
 
 export const sameWidth: Modifier<'sameWidth', {}> = {
