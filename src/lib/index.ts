@@ -13,6 +13,7 @@ export { default as ListItem } from './ListItem';
 export { default as Menu } from './Menu';
 export { default as Picker } from './Picker';
 export { default as Section } from './Section';
+export { default as Spinner } from './Spinner';
 export { default as Switch } from './Switch';
 export { default as Text } from './Text';
 export { default as TextField } from './TextField';
