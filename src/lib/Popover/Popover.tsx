@@ -105,7 +105,7 @@ const Popover: React.FC<Props> = ({ children, triggerRef, offset = 8, placement 
               initial="initial"
               animate="animate"
               exit="initial"
-              transition={{ duration: 0.1, type: 'tween' }}
+              transition={{ duration: 0.15, type: 'tween' }}
             >
               {children}
             </PopperBox>

@@ -126,10 +126,6 @@ export function usePopper(
 
     popperInstanceRef.current?.destroy();
     popperInstanceRef.current = createPopper(triggerRef.current, popoverRef.current, options);
-    console.log(popperInstanceRef?.current?.state.placement);
-    setTimeout(() => {
-      console.log(popperInstanceRef?.current?.state);
-    }, 100);
   }, [triggerRef, options]);
 
   useEffect(() => {
