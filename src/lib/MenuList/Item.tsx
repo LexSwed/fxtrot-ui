@@ -1,4 +1,3 @@
-import { StitchesProps } from '@stitches/react';
 import React from 'react';
 import ListItem from '../ListItem';
 import { styled } from '../stitches.config';
@@ -17,24 +16,20 @@ const MenuItem = styled(ListItem, {
     content: `''`,
     bc: 'transparent',
   },
-  'variants': {
-    'aria-selected': {
-      true: {
-        'bc': '$surfaceActive',
-        '::after': {
-          bc: '$accent',
-        },
-      },
-      false: {
-        '::after': {
-          bc: 'transparent',
-        },
-      },
+  '&[aria-selected="true"]': {
+    'bc': '$surfaceActive',
+    '::after': {
+      bc: '$accent',
+    },
+  },
+  '&[aria-selected="false"]': {
+    '::after': {
+      bc: 'transparent',
     },
   },
 });
 
-type Props = StitchesProps<typeof MenuItem> & {
+type Props = React.ComponentProps<typeof MenuItem> & {
   selected?: boolean;
 };
 
