@@ -18,15 +18,15 @@ For big lists use `action` prop on `Menu.Item` and `onAction` callback to handle
         <Icon as={HiChevronDown} size="lg" />
       </Menu.Button>
       <Menu.List>
-        <Menu.Item act="copy">
+        <Menu.Item action="copy">
           <Icon as="svg" />
           Copy
         </Menu.Item>
-        <Menu.Item act="cut">
+        <Menu.Item action="cut">
           <Icon as="svg" />
           Cut
         </Menu.Item>
-        <Menu.Item act="delete" css={{ color: '$red700' }}>
+        <Menu.Item action="delete" css={{ color: '$red700' }}>
           <Icon as={HiOutlineTrash} color="$red700" />
           Delete
         </Menu.Item>
