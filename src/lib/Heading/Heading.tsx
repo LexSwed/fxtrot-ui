@@ -11,24 +11,34 @@ export const HeadingText = styled('h1', {
   variants: {
     as: {
       h1: {
-        textSize: '$2xl',
+        fontSize: '$2xl',
         textTransform: 'uppercase',
+        mt: '$3',
+        mb: '$5',
       },
       h2: {
-        textSize: '$2xl',
+        fontSize: '$2xl',
+        mt: '$2',
+        mb: '$4',
       },
       h3: {
-        textSize: '$xl',
+        fontSize: '$xl',
+        mt: '$2',
+        mb: '$4',
       },
       h4: {
-        textSize: '$lg',
+        fontSize: '$lg',
+        mt: '$1',
+        mb: '$3',
       },
       h5: {
-        textSize: '$lg',
+        fontSize: '$lg',
         textTransform: 'uppercase',
+        mt: '$1',
+        mb: '$2',
       },
       h6: {
-        textSize: '$md',
+        fontSize: '$md',
       },
     },
     variant: {

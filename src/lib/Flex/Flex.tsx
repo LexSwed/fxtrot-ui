@@ -5,9 +5,14 @@ import { styled } from '../stitches.config';
 import { gaps } from '../theme/variants';
 
 export const FlexBox = styled('div', {
-  display: 'flex',
+  'display': 'flex',
 
-  variants: {
+  '& > h1,h2,h3,h4,h5,h6': {
+    mt: 0,
+    mb: 0,
+  },
+
+  'variants': {
     space: gaps,
     display: {
       block: {
