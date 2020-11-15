@@ -21,18 +21,18 @@ export const IconWrapper = styled('div', {
 });
 
 export const InteractiveBox = styled('input', {
-  fontSize: '$sm',
-  lineHeight: '$base',
-  width: '100%',
-  height: '$base',
-  px: '$2',
-  display: 'inline-flex',
-  transition: '0.2s ease-in-out',
-  bc: '$surfaceStill',
-  outline: 'none',
-  border: '1px solid transparent',
+  'fontSize': '$sm',
+  'lineHeight': '$base',
+  'width': '100%',
+  'height': '$base',
+  'px': '$2',
+  'display': 'inline-flex',
+  'transition': '0.2s ease-in-out',
+  'bc': '$surfaceStill',
+  'outline': 'none',
+  'border': '1px solid transparent',
 
-  variants: {
+  'variants': {
     variant: {
       boxed: {
         'borderColor': '$borderStill',
@@ -64,6 +64,11 @@ export const InteractiveBox = styled('input', {
         },
       },
     },
+  },
+
+  '&[readonly]': {
+    cursor: 'default',
+    bc: '$surfaceHover',
   },
 });
 
