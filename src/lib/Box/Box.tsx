@@ -105,6 +105,7 @@ const acceptedProperties: (keyof CssProperties)[] = [
   'borderRight',
   'borderBottom',
   'borderLeft',
+  'boxShadow',
 ];
 
 const VALID_ITEMS = new Set<keyof CssProperties>(acceptedProperties);
