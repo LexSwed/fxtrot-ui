@@ -8,7 +8,7 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
 ## TextField
 
 <Playground>
-  <Flex flow="row" space="md" css={{ p: '$6', bc: '$gray050' }}>
+  <Flex flow="row" space="md" css={{ p: '$6', bc: '$gray50' }}>
     <TextField label="Enter your name" placeholder="John Doe" />
     <TextField label="Enter your name" placeholder="John Doe" disabled />
     <TextField label="Enter your name" placeholder="John Doe" readOnly />
@@ -18,7 +18,7 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
 ## Types
 
 <Playground>
-  <Box css={{ p: '$6', bc: '$gray050' }}>
+  <Box css={{ p: '$6', bc: '$gray50' }}>
     <Flex space="md" cross="stretch" display="inline">
       <TextField label="Email address" secondaryLabel="(required)" type="email" />
       <TextField label="Password" secondaryLabel="(required)" type="password" />
@@ -32,7 +32,7 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
 ## Variants
 
 <Playground>
-  <Flex space="lg" css={{ p: '$6', bc: '$gray050' }}>
+  <Flex space="lg" css={{ p: '$6', bc: '$gray50' }}>
     <Flex flow="row" space="md">
       <TextField label="Enter your name" placeholder="John Doe" />
       <TextField label="Enter your name" placeholder="John Doe" disabled />
@@ -51,7 +51,7 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
     const [value, setValue] = React.useState('me@email.com');
     const isValid = React.useMemo(() => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value), [value]);
     return (
-      <Box css={{ p: '$6', bc: '$gray050' }}>
+      <Box css={{ p: '$6', bc: '$gray50' }}>
         <Flex space="md" css={{ width: '$56' }}>
           <TextField
             cross="stretch"
@@ -74,7 +74,7 @@ Since input is wrapped in `Flex` component, you can easily pass any props `Flex`
 for example to specify flow direction:
 
 <Playground>
-  <Box css={{ p: '$6', bc: '$gray050' }}>
+  <Box css={{ p: '$6', bc: '$gray50' }}>
     <Box css={{ width: '420px', tablet: { width: '300px' } }}>
       <TextField
         label="Enter your name"

@@ -1,262 +1,312 @@
+export const blueGray = {
+  $blueGray50: '#F8FAFC',
+  $blueGray100: '#F1F5F9',
+  $blueGray200: '#E2E8F0',
+  $blueGray300: '#CBD5E1',
+  $blueGray400: '#94A3B8',
+  $blueGray500: '#64748B',
+  $blueGray600: '#475569',
+  $blueGray700: '#334155',
+  $blueGray800: '#1E293B',
+  $blueGray900: '#0F172A',
+};
+
+export const coolGray = {
+  $coolGray50: '#F9FAFB',
+  $coolGray100: '#F3F4F6',
+  $coolGray200: '#E5E7EB',
+  $coolGray300: '#D1D5DB',
+  $coolGray400: '#9CA3AF',
+  $coolGray500: '#6B7280',
+  $coolGray600: '#4B5563',
+  $coolGray700: '#374151',
+  $coolGray800: '#1F2937',
+  $coolGray900: '#111827',
+};
+
 export const gray = {
-  $gray050: '#F9FAFB',
-  $gray100: '#F4F5F7',
-  $gray200: '#E5E7EB',
-  $gray300: '#D2D6DC',
-  $gray400: '#9FA6B2',
-  $gray500: '#6B7280',
-  $gray600: '#4B5563',
-  $gray700: '#374151',
-  $gray800: '#252F3F',
-  $gray900: '#161E2E',
+  $gray50: '#FAFAFA',
+  $gray100: '#F4F4F5',
+  $gray200: '#E4E4E7',
+  $gray300: '#D4D4D8',
+  $gray400: '#A1A1AA',
+  $gray500: '#71717A',
+  $gray600: '#52525B',
+  $gray700: '#3F3F46',
+  $gray800: '#27272A',
+  $gray900: '#18181B',
 };
 
-// Red
+export const trueGray = {
+  $trueGray50: '#FAFAFA',
+  $trueGray100: '#F5F5F5',
+  $trueGray200: '#E5E5E5',
+  $trueGray300: '#D4D4D4',
+  $trueGray400: '#A3A3A3',
+  $trueGray500: '#737373',
+  $trueGray600: '#525252',
+  $trueGray700: '#404040',
+  $trueGray800: '#262626',
+  $trueGray900: '#171717',
+};
+
+export const warmGray = {
+  $warmGray50: '#FAFAF9',
+  $warmGray100: '#F5F5F4',
+  $warmGray200: '#E7E5E4',
+  $warmGray300: '#D6D3D1',
+  $warmGray400: '#A8A29E',
+  $warmGray500: '#78716C',
+  $warmGray600: '#57534E',
+  $warmGray700: '#44403C',
+  $warmGray800: '#292524',
+  $warmGray900: '#1C1917',
+};
+
 export const red = {
-  $red050: '#FDF2F2',
-  $red100: '#FDE8E8',
-  $red200: '#FBD5D5',
-  $red300: '#F9B5B5',
-  $red400: '#F58383',
-  $red500: '#EE4949',
-  $red600: '#E12929',
-  $red700: '#C81F1F',
-  $red800: '#9B1C1C',
-  $red900: '#771D1D',
+  $red50: '#FEF2F2',
+  $red100: '#FEE2E2',
+  $red200: '#FECACA',
+  $red300: '#FCA5A5',
+  $red400: '#F87171',
+  $red500: '#EF4444',
+  $red600: '#DC2626',
+  $red700: '#B91C1C',
+  $red800: '#991B1B',
+  $red900: '#7F1D1D',
 };
 
-// Orange
 export const orange = {
-  $orange050: '#FFF8F1',
-  $orange100: '#FFEDDE',
-  $orange200: '#FEDABF',
-  $orange300: '#FDC096',
-  $orange400: '#FB9059',
-  $orange500: '#F76225',
-  $orange600: '#E84A0F',
-  $orange700: '#BD3308',
-  $orange800: '#98290A',
-  $orange900: '#79260F',
+  $orange50: '#FFF7ED',
+  $orange100: '#FFEDD5',
+  $orange200: '#FED7AA',
+  $orange300: '#FDBA74',
+  $orange400: '#FB923C',
+  $orange500: '#F97316',
+  $orange600: '#EA580C',
+  $orange700: '#C2410C',
+  $orange800: '#9A3412',
+  $orange900: '#7C2D12',
 };
 
-// Amber
 export const amber = {
-  $amber050: '#FFFBF2',
-  $amber100: '#FFF3D9',
-  $amber200: '#FEE5B3',
-  $amber300: '#FDD487',
-  $amber400: '#FBB445',
-  $amber500: '#F58A23',
-  $amber600: '#E56510',
-  $amber700: '#BE4812',
-  $amber800: '#893815',
-  $amber900: '#722E15',
+  $amber50: '#FFFBEB',
+  $amber100: '#FEF3C7',
+  $amber200: '#FDE68A',
+  $amber300: '#FCD34D',
+  $amber400: '#FBBF24',
+  $amber500: '#F59E0B',
+  $amber600: '#D97706',
+  $amber700: '#B45309',
+  $amber800: '#92400E',
+  $amber900: '#78350F',
 };
 
-// Yellow
 export const yellow = {
-  $yellow050: '#FEFCE3',
-  $yellow100: '#FEF9C1',
-  $yellow200: '#FEF286',
-  $yellow300: '#FEE049',
-  $yellow400: '#FBC920',
-  $yellow500: '#F5A50B',
-  $yellow600: '#DD7B08',
-  $yellow700: '#B7570D',
-  $yellow800: '#8C3F10',
-  $yellow900: '#76340F',
+  $yellow50: '#FEFCE8',
+  $yellow100: '#FEF9C3',
+  $yellow200: '#FEF08A',
+  $yellow300: '#FDE047',
+  $yellow400: '#FACC15',
+  $yellow500: '#EAB308',
+  $yellow600: '#CA8A04',
+  $yellow700: '#A16207',
+  $yellow800: '#854D0E',
+  $yellow900: '#713F12',
 };
 
-// Lime
 export const lime = {
-  $lime050: '#344E12',
-  $lime100: '#3E5E12',
-  $lime200: '#4F7A10',
-  $lime300: '#66A00E',
-  $lime400: '#81C510',
-  $lime500: '#9EE223',
-  $lime600: '#C1F362',
-  $lime700: '#DFFAAB',
-  $lime800: '#EEFCD1',
-  $lime900: '#F7FEE7',
-};
-// Light Green
-export const lighlightGreen = {
-  $lightGreen050: '#F0FEF8',
-  $lightGreen100: '#DEFCE8',
-  $lightGreen200: '#C3FAD6',
-  $lightGreen300: '#8FF0B2',
-  $lightGreen400: '#49E482',
-  $lightGreen500: '#1FCD5E',
-  $lightGreen600: '#15A74B',
-  $lightGreen700: '#15803D',
-  $lightGreen800: '#156232',
-  $lightGreen900: '#14532D',
+  $lime50: '#F7FEE7',
+  $lime100: '#ECFCCB',
+  $lime200: '#D9F99D',
+  $lime300: '#BEF264',
+  $lime400: '#A3E635',
+  $lime500: '#84CC16',
+  $lime600: '#65A30D',
+  $lime700: '#4D7C0F',
+  $lime800: '#3F6212',
+  $lime900: '#365314',
 };
 
-// Green
 export const green = {
-  $green050: '#F0FEF8',
-  $green100: '#DAFBEC',
-  $green200: '#B4F4D9',
-  $green300: '#7AECBF',
-  $green400: '#2ADD9A',
-  $green500: '#0ABF82',
-  $green600: '#059C6C',
-  $green700: '#057C59',
-  $green800: '#076049',
-  $green900: '#06513F',
+  $green50: '#F0FDF4',
+  $green100: '#DCFCE7',
+  $green200: '#BBF7D0',
+  $green300: '#86EFAC',
+  $green400: '#4ADE80',
+  $green500: '#22C55E',
+  $green600: '#16A34A',
+  $green700: '#15803D',
+  $green800: '#166534',
+  $green900: '#14532D',
 };
 
-// Teal
+export const emerald = {
+  $emerald50: '#ECFDF5',
+  $emerald100: '#D1FAE5',
+  $emerald200: '#A7F3D0',
+  $emerald300: '#6EE7B7',
+  $emerald400: '#34D399',
+  $emerald500: '#10B981',
+  $emerald600: '#059669',
+  $emerald700: '#047857',
+  $emerald800: '#065F46',
+  $emerald900: '#064E3B',
+};
+
 export const teal = {
-  $teal050: '#EDFDF9',
-  $teal100: '#D1FAF1',
-  $teal200: '#A7F5E6',
-  $teal300: '#67E8D4',
+  $teal50: '#F0FDFA',
+  $teal100: '#CCFBF1',
+  $teal200: '#99F6E4',
+  $teal300: '#5EEAD4',
   $teal400: '#2DD4BF',
-  $teal500: '#14B3A2',
-  $teal600: '#0E9185',
-  $teal700: '#12746C',
-  $teal800: '#175A55',
-  $teal900: '#184B47',
+  $teal500: '#14B8A6',
+  $teal600: '#0D9488',
+  $teal700: '#0F766E',
+  $teal800: '#115E59',
+  $teal900: '#134E4A',
 };
 
-// Cyan
 export const cyan = {
-  $cyan050: '#ECFEFF',
+  $cyan50: '#ECFEFF',
   $cyan100: '#CFFAFE',
   $cyan200: '#A5F3FC',
   $cyan300: '#67E8F9',
-  $cyan400: '#22D4EF',
-  $cyan500: '#06B8D7',
-  $cyan600: '#0890B1',
-  $cyan700: '#0F728D',
-  $cyan800: '#18596E',
-  $cyan900: '#19485A',
-};
-// Light Blue
-export const liglightBlue = {
-  $lightBlue050: '#F0F9FF',
-  $lightBlue100: '#E0F2FE',
-  $lightBlue200: '#BAE6FD',
-  $lightBlue300: '#7ED6FC',
-  $lightBlue400: '#36C3F8',
-  $lightBlue500: '#0BA9E7',
-  $lightBlue600: '#0188C4',
-  $lightBlue700: '#046C9E',
-  $lightBlue800: '#09557C',
-  $lightBlue900: '#0C4663',
-};
-// Blue
-export const blue = {
-  $blue050: '#EEF5FF',
-  $blue100: '#DBEAFE',
-  $blue200: '#BFDBFE',
-  $blue300: '#96C7FD',
-  $blue400: '#6AAAFB',
-  $blue500: '#498AF6',
-  $blue600: '#3169E5',
-  $blue700: '#264FC4',
-  $blue800: '#24409E',
-  $blue900: '#243B7E',
-};
-// Indigo
-export const indigo = {
-  $indigo050: '#EFF3FF',
-  $indigo100: '#E2E8FF',
-  $indigo200: '#CBD6FE',
-  $indigo300: '#A7B5FC',
-  $indigo400: '#818CF8',
-  $indigo500: '#6366F1',
-  $indigo600: '#544CE5',
-  $indigo700: '#473DC9',
-  $indigo800: '#3A33A3',
-  $indigo900: '#312E81',
-};
-// Purple
-export const purple = {
-  $purple050: '#F6F5FF',
-  $purple100: '#EDEBFE',
-  $purple200: '#DCD7FE',
-  $purple300: '#C0B3FD',
-  $purple400: '#A286FB',
-  $purple500: '#8B5AF7',
-  $purple600: '#7B39ED',
-  $purple700: '#6D28DB',
-  $purple800: '#5A21B3',
-  $purple900: '#4C1D95',
-};
-// Plum
-export const plum = {
-  $plum050: '#FAF5FF',
-  $plum100: '#F3E8FF',
-  $plum200: '#E9D5FF',
-  $plum300: '#D8B4FE',
-  $plum400: '#C084FC',
-  $plum500: '#A855F7',
-  $plum600: '#9333EA',
-  $plum700: '#7E22CE',
-  $plum800: '#6B21A8',
-  $plum900: '#581C87',
-};
-// Fushia
-export const fushia = {
-  $fushia050: '#FDF4FF',
-  $fushia100: '#FAE8FF',
-  $fushia200: '#F5D0FE',
-  $fushia300: '#F0ABFC',
-  $fushia400: '#E879F9',
-  $fushia500: '#D946EF',
-  $fushia600: '#C026D3',
-  $fushia700: '#A21CAF',
-  $fushia800: '#86198F',
-  $fushia900: '#6E1973',
-};
-// Pink
-export const pink = {
-  $pink050: '#FDF2F8',
-  $pink100: '#FCE8F4',
-  $pink200: '#FAD1E8',
-  $pink300: '#F8B0D7',
-  $pink400: '#F26BB2',
-  $pink500: '#E7378D',
-  $pink600: '#D61B6E',
-  $pink700: '#BB1459',
-  $pink800: '#96174A',
-  $pink900: '#7A173F',
-};
-// Rose}
-export const rose = {
-  $rose050: '#FFF0F4',
-  $rose100: '#FFE6EC',
-  $rose200: '#FFCCD9',
-  $rose300: '#FDA4BC',
-  $rose400: '#F95986',
-  $rose500: '#EC2A60',
-  $rose600: '#CF1B4C',
-  $rose700: '#B41B48',
-  $rose800: '#951A3A',
-  $rose900: '#7C1833',
+  $cyan400: '#22D3EE',
+  $cyan500: '#06B6D4',
+  $cyan600: '#0891B2',
+  $cyan700: '#0E7490',
+  $cyan800: '#155E75',
+  $cyan900: '#164E63',
 };
 
-export default {
+export const lightBlue = {
+  $lightBlue50: '#F0F9FF',
+  $lightBlue100: '#E0F2FE',
+  $lightBlue200: '#BAE6FD',
+  $lightBlue300: '#7DD3FC',
+  $lightBlue400: '#38BDF8',
+  $lightBlue500: '#0EA5E9',
+  $lightBlue600: '#0284C7',
+  $lightBlue700: '#0369A1',
+  $lightBlue800: '#075985',
+  $lightBlue900: '#0C4A6E',
+};
+
+export const blue = {
+  $blue50: '#EFF6FF',
+  $blue100: '#DBEAFE',
+  $blue200: '#BFDBFE',
+  $blue300: '#93C5FD',
+  $blue400: '#60A5FA',
+  $blue500: '#3B82F6',
+  $blue600: '#2563EB',
+  $blue700: '#1D4ED8',
+  $blue800: '#1E40AF',
+  $blue900: '#1E3A8A',
+};
+
+export const indigo = {
+  $indigo50: '#EEF2FF',
+  $indigo100: '#E0E7FF',
+  $indigo200: '#C7D2FE',
+  $indigo300: '#A5B4FC',
+  $indigo400: '#818CF8',
+  $indigo500: '#6366F1',
+  $indigo600: '#4F46E5',
+  $indigo700: '#4338CA',
+  $indigo800: '#3730A3',
+  $indigo900: '#312E81',
+};
+
+export const violet = {
+  $violet50: '#F5F3FF',
+  $violet100: '#EDE9FE',
+  $violet200: '#DDD6FE',
+  $violet300: '#C4B5FD',
+  $violet400: '#A78BFA',
+  $violet500: '#8B5CF6',
+  $violet600: '#7C3AED',
+  $violet700: '#6D28D9',
+  $violet800: '#5B21B6',
+  $violet900: '#4C1D95',
+};
+
+export const purple = {
+  $purple50: '#FAF5FF',
+  $purple100: '#F3E8FF',
+  $purple200: '#E9D5FF',
+  $purple300: '#D8B4FE',
+  $purple400: '#C084FC',
+  $purple500: '#A855F7',
+  $purple600: '#9333EA',
+  $purple700: '#7E22CE',
+  $purple800: '#6B21A8',
+  $purple900: '#581C87',
+};
+
+export const fuchsia = {
+  $fuchsia50: '#FDF4FF',
+  $fuchsia100: '#FAE8FF',
+  $fuchsia200: '#F5D0FE',
+  $fuchsia300: '#F0ABFC',
+  $fuchsia400: '#E879F9',
+  $fuchsia500: '#D946EF',
+  $fuchsia600: '#C026D3',
+  $fuchsia700: '#A21CAF',
+  $fuchsia800: '#86198F',
+  $fuchsia900: '#701A75',
+};
+
+export const pink = {
+  $pink50: '#FDF2F8',
+  $pink100: '#FCE7F3',
+  $pink200: '#FBCFE8',
+  $pink300: '#F9A8D4',
+  $pink400: '#F472B6',
+  $pink500: '#EC4899',
+  $pink600: '#DB2777',
+  $pink700: '#BE185D',
+  $pink800: '#9D174D',
+  $pink900: '#831843',
+};
+
+export const rose = {
+  $rose50: '#FFF1F2',
+  $rose100: '#FFE4E6',
+  $rose200: '#FECDD3',
+  $rose300: '#FDA4AF',
+  $rose400: '#FB7185',
+  $rose500: '#F43F5E',
+  $rose600: '#E11D48',
+  $rose700: '#BE123C',
+  $rose800: '#9F1239',
+  $rose900: '#881337',
+};
+
+const allColors = {
+  ...blueGray,
+  ...coolGray,
   ...gray,
+  ...trueGray,
+  ...warmGray,
   ...red,
   ...orange,
   ...amber,
   ...yellow,
   ...lime,
-  ...lighlightGreen,
   ...green,
+  ...emerald,
   ...teal,
   ...cyan,
-  ...liglightBlue,
+  ...lightBlue,
   ...blue,
   ...indigo,
+  ...violet,
   ...purple,
-  ...plum,
-  ...fushia,
+  ...fuchsia,
   ...pink,
   ...rose,
 };
+
+export default allColors;

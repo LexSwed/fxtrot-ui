@@ -1,6 +1,6 @@
 import * as paletteColors from './palette';
 
-export const { gray, default: allColors, ...palette } = paletteColors;
+export const { default: allColors, ...palette } = paletteColors;
 
 export type ColorName = keyof typeof palette | 'black';
 
@@ -9,9 +9,9 @@ export const swatches: Array<readonly [ColorName, Swatch]> = Object.entries(pale
     name as ColorName,
     {
       colors: {
-        $text: gray['$gray900'],
-        $textDisabled: gray['$gray500'],
-        $textLight: gray['$gray600'],
+        $text: allColors['$coolGray900'],
+        $textDisabled: allColors['$coolGray500'],
+        $textLight: allColors['$coolGray600'],
         $accent: colors[`$${name}600` as keyof typeof colors],
 
         $primaryStill: colors[`$${name}500` as keyof typeof colors],
@@ -21,14 +21,14 @@ export const swatches: Array<readonly [ColorName, Swatch]> = Object.entries(pale
         $primaryLightActive: colors[`$${name}100` as keyof typeof colors],
 
         $surfaceStill: '#fff',
-        $surfaceHover: gray['$gray100'],
-        $surfaceActive: gray['$gray050'],
-        $surfaceDisabled: gray['$gray200'],
+        $surfaceHover: allColors['$coolGray100'],
+        $surfaceActive: allColors['$coolGray50'],
+        $surfaceDisabled: allColors['$coolGray200'],
 
-        $borderLight: gray['$gray200'],
-        $borderStill: gray['$gray400'],
-        $borderHover: gray['$gray500'],
-        $borderActive: gray['$gray600'],
+        $borderLight: allColors['$coolGray200'],
+        $borderStill: allColors['$coolGray400'],
+        $borderHover: allColors['$coolGray500'],
+        $borderActive: allColors['$coolGray600'],
       },
     },
   ])
@@ -38,25 +38,25 @@ export const swatches: Array<readonly [ColorName, Swatch]> = Object.entries(pale
       {
         colors: {
           $text: '#fff',
-          $textDisabled: gray['$gray400'],
-          $textLight: gray['$gray100'],
+          $textDisabled: allColors['$coolGray400'],
+          $textLight: allColors['$coolGray100'],
           $accent: '#fff',
 
-          $primaryStill: gray['$gray500'],
-          $primaryHover: gray['$gray600'],
-          $primaryActive: gray['$gray700'],
-          $primaryLight: gray['$gray500'],
-          $primaryLightActive: gray['$gray400'],
+          $primaryStill: allColors['$coolGray500'],
+          $primaryHover: allColors['$coolGray600'],
+          $primaryActive: allColors['$coolGray700'],
+          $primaryLight: allColors['$coolGray500'],
+          $primaryLightActive: allColors['$coolGray400'],
 
-          $surfaceStill: gray['$gray800'],
-          $surfaceHover: gray['$gray700'],
-          $surfaceActive: gray['$gray600'],
+          $surfaceStill: allColors['$coolGray800'],
+          $surfaceHover: allColors['$coolGray700'],
+          $surfaceActive: allColors['$coolGray600'],
           $surfaceDisabled: 'rgba(0,0,0,0.2)',
 
-          $borderLight: gray['$gray400'],
-          $borderStill: gray['$gray200'],
-          $borderHover: gray['$gray300'],
-          $borderActive: gray['$gray100'],
+          $borderLight: allColors['$coolGray400'],
+          $borderStill: allColors['$coolGray200'],
+          $borderHover: allColors['$coolGray300'],
+          $borderActive: allColors['$coolGray100'],
         },
       },
     ],
