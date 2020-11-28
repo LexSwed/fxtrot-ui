@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { StitchesProps } from '@stitches/react';
 import { styled } from '../stitches.config';
 import type { CssProperties } from '../utils';
@@ -14,28 +14,29 @@ type Props = Omit<StitchesProps<typeof Div>, 'as'> &
   };
 
 const Box: React.FC<Props> = ({ children, css, ...props }) => {
-  const [style, attrs] = useMemo(
-    () =>
-      Object.entries(props).reduce(
-        (res, [key, value]: [any, any]) => {
-          if (VALID_ITEMS.has(key)) {
-            res[0][key] = value;
-          } else {
-            res[1][key] = value;
-          }
+  const [style, attrs] = Object.entries(props).reduce(
+    (res, [key, value]: [any, any]) => {
+      if (VALID_ITEMS.has(key)) {
+        res[0][key] = value;
+      } else {
+        res[1][key] = value;
+      }
 
-          return res;
-        },
-        [{}, {}] as [any, any]
-      ),
-    Object.values(props) //eslint-disable-line
+      return res;
+    },
+    [{}, {}] as [any, any]
   );
-  return <Div css={Object.assign(style, css)} {...attrs} children={children} />;
+
+  return (
+    <Div css={Object.assign(style, css)} {...attrs}>
+      {children}
+    </Div>
+  );
 };
 
 export default Box;
 
-const acceptedProperties: (keyof CssProperties)[] = [
+const acceptedProperties: readonly (keyof CssProperties)[] = [
   'tablet',
   'mobile',
   'desktop',
@@ -106,6 +107,6 @@ const acceptedProperties: (keyof CssProperties)[] = [
   'borderBottom',
   'borderLeft',
   'boxShadow',
-];
+] as const;
 
 const VALID_ITEMS = new Set<keyof CssProperties>(acceptedProperties);
