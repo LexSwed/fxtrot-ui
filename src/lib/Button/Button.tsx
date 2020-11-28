@@ -131,7 +131,7 @@ const ButtonRoot = styled(FlexBox as FlexType<'button'>, {
 });
 
 const Button = React.forwardRef<HTMLButtonElement, React.ComponentProps<typeof ButtonRoot>>(
-  ({ variant = 'primary', size = 'md', space = '$2', css, style, className, ...props }, ref) => {
+  ({ variant = 'primary', size = 'md', space = '$2', type = 'button', css, style, className, ...props }, ref) => {
     return (
       <ButtonRoot
         {...props}
