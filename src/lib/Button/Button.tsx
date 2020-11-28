@@ -135,17 +135,18 @@ const Button = React.forwardRef<HTMLButtonElement, React.ComponentProps<typeof B
     return (
       <ButtonRoot
         {...props}
-        flow="row"
-        cross="center"
-        display="inline"
-        css={css}
-        space={space}
-        variant={variant}
         as="button"
-        ref={ref}
-        style={style}
         className={className}
+        cross="center"
+        css={css}
+        display="inline"
+        flow="row"
+        ref={ref}
         size={size}
+        space={space}
+        style={style}
+        type={type}
+        variant={variant}
       />
     );
   }
