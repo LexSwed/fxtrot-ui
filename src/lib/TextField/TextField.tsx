@@ -7,6 +7,7 @@ import Label from '../Label';
 import { FormField, HintBox, Hint, useFormField } from '../FormField/FormField';
 import { InteractiveBox, validityVariant, IconWrapper, iconStyles } from './shared';
 import { StitchesProps } from '@stitches/react';
+import { IconType } from 'react-icons/lib';
 
 const Input = styled(InteractiveBox, {
   '::placeholder': {
@@ -81,101 +82,114 @@ const inputMode: Record<NonNullable<Props['type']>, InputProps['inputMode']> = {
   password: undefined,
 };
 
-const TextField: React.FC<Props> = ({
-  label,
-  secondaryLabel,
-  hint,
-  main,
-  cross,
-  flow,
-  display,
-  space,
-  css,
-  style,
-  className,
-  type = 'text',
-  onChange,
-  validity,
-  value,
-  disabled,
-  variant = 'boxed',
-  id,
-  defaultValue,
-  ...props
-}) => {
-  const ariaProps = useFormField({ id, hint });
+const TextField = React.forwardRef<HTMLDivElement, Props>(
+  (
+    {
+      label,
+      secondaryLabel,
+      hint,
+      main,
+      cross,
+      flow,
+      display,
+      space,
+      css,
+      style,
+      className,
+      type = 'text',
+      onChange,
+      validity,
+      value,
+      disabled,
+      variant = 'boxed',
+      id,
+      defaultValue,
+      icon,
+      inputRef,
+      ...props
+    },
+    ref
+  ) => {
+    const ariaProps = useFormField({ id, hint });
 
-  const handleChange = useMemo(() => {
-    if (typeof onChange !== 'function') {
-      return undefined;
-    }
-
-    return (e: React.ChangeEvent<HTMLInputElement>) => {
-      switch (type) {
-        case 'number':
-          return (onChange as NumberChange)(e.target.valueAsNumber, e);
-        case 'date':
-          return (onChange as DateChange)(e.target.valueAsDate, e);
-        default:
-          return (onChange as StringChange)(e.target.value, e);
+    const handleChange = useMemo(() => {
+      if (typeof onChange !== 'function') {
+        return undefined;
       }
-    };
-  }, [onChange, type]);
 
-  const iconRight = icons[validity || type];
+      return (e: React.ChangeEvent<HTMLInputElement>) => {
+        switch (type) {
+          case 'number':
+            return (onChange as NumberChange)(e.target.valueAsNumber, e);
+          case 'date':
+            return (onChange as DateChange)(e.target.valueAsDate, e);
+          default:
+            return (onChange as StringChange)(e.target.value, e);
+        }
+      };
+    }, [onChange, type]);
 
-  return (
-    <FormField
-      main={main}
-      cross={cross}
-      flow={flow}
-      display={display}
-      space={space}
-      css={css}
-      style={style}
-      className={className}
-      hasHint={!!hint}
-    >
-      {label && <Label label={label} secondary={secondaryLabel} htmlFor={ariaProps.id} disabled={disabled} />}
-      <HintBox>
-        <InputWrapper validity={validity}>
-          <Input
-            {...props}
-            {...ariaProps}
-            defaultValue={defaultValue ? `${defaultValue}` : defaultValue}
-            disabled={disabled}
-            value={value ? `${value}` : value}
-            onChange={handleChange}
-            hasIcon={Boolean(iconRight)}
-            inputMode={inputMode[type]}
-            type={type}
-            variant={variant}
-          />
-          {iconRight && (
-            <IconWrapper>
-              <Icon as={iconRight} size="md" />
-            </IconWrapper>
+    const iconRight = icon || icons[validity || type];
+
+    return (
+      <FormField
+        main={main}
+        cross={cross}
+        flow={flow}
+        display={display}
+        space={space}
+        css={css}
+        style={style}
+        className={className}
+        hasHint={!!hint}
+        ref={ref}
+      >
+        {label && <Label label={label} secondary={secondaryLabel} htmlFor={ariaProps.id} disabled={disabled} />}
+        <HintBox>
+          <InputWrapper validity={validity}>
+            <Input
+              {...props}
+              {...ariaProps}
+              defaultValue={defaultValue ? `${defaultValue}` : defaultValue}
+              disabled={disabled}
+              value={value ? `${value}` : value}
+              onChange={handleChange}
+              hasIcon={Boolean(iconRight)}
+              inputMode={inputMode[type]}
+              type={type}
+              variant={variant}
+              ref={inputRef}
+            />
+            {iconRight && (
+              <IconWrapper>
+                <Icon as={iconRight} size="md" />
+              </IconWrapper>
+            )}
+          </InputWrapper>
+          {hint && (
+            <Hint id={ariaProps['aria-describedby']} validity={validity}>
+              {hint}
+            </Hint>
           )}
-        </InputWrapper>
-        {hint && (
-          <Hint id={ariaProps['aria-describedby']} validity={validity}>
-            {hint}
-          </Hint>
-        )}
-      </HintBox>
-    </FormField>
-  );
-};
+        </HintBox>
+      </FormField>
+    );
+  }
+);
+
+TextField.displayName = 'TextField';
 
 export default TextField;
 
 type InputProps = StitchesProps<typeof Input>;
-type Props = Omit<InputProps, 'onChange' | 'type' | 'value' | 'defaultValue'> &
+type Props = Omit<InputProps, 'onChange' | 'type' | 'value' | 'defaultValue' | 'children'> &
   FlexVariants & {
     label?: string;
     secondaryLabel?: string;
     hint?: string;
     validity?: 'valid' | 'invalid';
+    inputRef?: React.Ref<HTMLInputElement>;
+    icon?: IconType;
   } & OnChange;
 
 type OnChange =

@@ -3,6 +3,7 @@ import { StylesWithVariants } from './utils';
 export { default as Box } from './Box';
 export { default as Button } from './Button';
 export { default as Checkbox } from './Checkbox';
+export { default as ComboBox } from './ComboBox';
 export { default as Dialog } from './Dialog';
 export { default as Flex } from './Flex';
 export { default as Heading } from './Heading';

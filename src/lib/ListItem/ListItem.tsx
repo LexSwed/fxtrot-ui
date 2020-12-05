@@ -34,12 +34,6 @@ type Props = { disabled?: boolean } & StitchesProps<typeof Item>;
 
 const ListItem = React.forwardRef<HTMLLIElement, Props>(
   ({ flow = 'row', cross = 'center', space = '$2', disabled, as = 'li', ...props }, ref) => {
-    const onMouseEnter = useAllHandlers(props.onMouseEnter, (e) => {
-      e.currentTarget.focus({
-        preventScroll: true,
-      });
-    });
-
     const onKeyDown = useKeyboardHandles({
       'Enter': (e) => e.currentTarget.click?.(),
       ' ': (e) => e.currentTarget.click?.(),
@@ -57,7 +51,6 @@ const ListItem = React.forwardRef<HTMLLIElement, Props>(
         {...props}
         aria-disabled={disabled}
         ref={ref}
-        onMouseEnter={onMouseEnter}
         onKeyDown={handleKeyDown}
       />
     );
@@ -67,3 +60,9 @@ const ListItem = React.forwardRef<HTMLLIElement, Props>(
 ListItem.displayName = 'ListItem';
 
 export default ListItem;
+
+export function focusOnMouseOver(e: React.MouseEvent<HTMLLIElement, MouseEvent>) {
+  e.currentTarget.focus({
+    preventScroll: true,
+  });
+}

@@ -1,12 +1,10 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback } from 'react';
 import { HiCheck } from 'react-icons/hi';
 import Icon from '../Icon';
 import ListItem from '../ListItem';
-import { focusOnMouseOver } from '../ListItem/ListItem';
 import { styled } from '../stitches.config';
-import { useAllHandlers, useForkRef } from '../utils';
 import { useOpenStateControls } from '../utils/OpenStateProvider';
-import { usePicker } from './utils';
+import { useComboBox } from './utils';
 
 const SelectedIcon = styled(Icon, {});
 
@@ -22,8 +20,7 @@ type Props = Omit<React.ComponentProps<typeof ListItem>, 'children'> & {
 };
 
 const Item = React.forwardRef<HTMLLIElement, Props>(({ value, label, ...props }, ref) => {
-  const { value: dropdownValue, onChange } = usePicker();
-  const innerRef = useRef<HTMLLIElement>(null);
+  const { value: dropdownValue, onChange } = useComboBox();
   const { close } = useOpenStateControls();
   const isSelected = dropdownValue === value;
 
@@ -32,25 +29,8 @@ const Item = React.forwardRef<HTMLLIElement, Props>(({ value, label, ...props },
     close();
   }, [close, onChange, value]);
 
-  useEffect(() => {
-    if (isSelected) {
-      innerRef.current?.focus?.();
-    }
-  }, [isSelected]);
-
-  const onMouseEnter = useAllHandlers(props.onMouseEnter, focusOnMouseOver);
-
-  const refs = useForkRef(innerRef, ref);
-
   return (
-    <Option
-      {...props}
-      onMouseEnter={onMouseEnter}
-      aria-selected={isSelected}
-      onClick={onClick}
-      main="spread"
-      ref={refs}
-    >
+    <Option {...props} aria-selected={isSelected} onClick={onClick} main="spread" ref={ref}>
       {label}
       {isSelected ? <SelectedIcon as={HiCheck} size="md" /> : null}
     </Option>

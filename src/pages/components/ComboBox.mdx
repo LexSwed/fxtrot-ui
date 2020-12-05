@@ -1,0 +1,67 @@
+---
+name: ComboBox
+---
+
+import { Playground } from 'dokz';
+import { Box, Flex, ComboBox, Text } from '@fxtrot/ui';
+
+# ComboBox
+
+<Playground>
+  {() => {
+    const [value, setValue] = React.useState('');
+    const [newItemText, setNewItemText] = React.useState('');
+    const onChangeWithNewItem = (newValue, newText) => {
+      setValue(newValue);
+      setNewItemText(newText);
+    };
+    return (
+      <Box css={{ p: '$8', bc: '$surfaceStill' }}>
+        <Flex space="md" css={{ width: '$40' }}>
+          <ComboBox
+            placeholder="Hufflepuff"
+            label="The House you were sorted to"
+            value={value}
+            onChange={onChangeWithNewItem}
+          >
+            {['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'].map((house, index) => (
+              <ComboBox.Item value={index} label={house} key={index} />
+            ))}
+          </ComboBox>
+          <Flex>
+            <div>{`Fake selected item ID: ${value}`}</div>
+            <div>{`Current input text: ${newItemText}`}</div>
+          </Flex>
+        </Flex>
+      </Box>
+    );
+  }}
+</Playground>
+
+## Variants
+
+Supports same `variant`s as `TextField` component.
+
+<Playground>
+  {() => {
+    const [value, setValue] = React.useState('12');
+    return (
+      <Box css={{ p: '$8', bc: '$surfaceStill' }}>
+        <Flex space="md" css={{ width: '$40' }} cross="stretch">
+          <ComboBox
+            label="Item index"
+            variant="underlined"
+            placeholder="1 number"
+            validity={Number(value) > 10 ? 'valid' : 'invalid'}
+          >
+            {Array(20)
+              .fill(null)
+              .map((el, i) => (
+                <ComboBox.Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
+              ))}
+          </ComboBox>
+        </Flex>
+      </Box>
+    );
+  }}
+</Playground>

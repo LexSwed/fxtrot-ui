@@ -73,7 +73,7 @@ const Trigger: React.FC<Props> = ({
   children,
   ...props
 }) => {
-  const { triggerRef } = usePicker();
+  const { triggerRef, value } = usePicker();
   const isOpen = useOpenState();
   const { toggle, open } = useOpenStateControls();
   const ariaProps = useFormField({ id, hint, label });
@@ -115,6 +115,7 @@ const Trigger: React.FC<Props> = ({
           onClick={handleClick}
           onKeyDown={onKeyDown}
           ref={triggerRef as any}
+          value={value}
         >
           {children || <Placeholder>{placeholder}</Placeholder>}
           <Icon as={HiSelector} />
