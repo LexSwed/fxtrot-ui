@@ -1,68 +1,97 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { useUIDSeed } from 'react-uid';
 import Popover from '../Popover';
-import { useAllHandlers, useId } from '../utils';
+import { useAllHandlers } from '../utils';
 import { OpenStateProvider } from '../utils/OpenStateProvider';
-import List from './List';
 import Item from './Item';
+import { List as ListBox } from '../ListBox/ListBox';
 
-import { ComboBoxProvider } from './utils';
+import { ComboBoxProvider, ComboBoxContext, FocusControls } from './utils';
 import Input from './Input';
 
 interface OptionType extends React.ReactElement<React.ComponentProps<typeof Item>, typeof Item> {}
 type Props = Omit<React.ComponentProps<typeof Input>, 'onChange'> & {
   value?: string;
-  onChange?: (newValue: string | undefined, textValue: string) => void;
+  onChange?: (newValue: string | undefined | null) => void;
+  onInputChange?: (text: string) => void;
   children: OptionType[] | OptionType;
 };
 
 const ComboBox: React.FC<Props> & {
   Item: typeof Item;
-} = ({ children, id, value: propValue, onChange: propOnChange, ...textFieldProps }) => {
-  const selectedItem = (React.Children.toArray(children) as OptionType[]).find(
-    (child) => child.props.value === propValue
-  );
-  const selectedLabel = selectedItem?.props?.label || '';
-  const selectedValue = selectedItem?.props?.value;
+} = ({ children, id, value: propValue, onChange: propOnChange, onInputChange, ...textFieldProps }) => {
+  const [textValue, setTextValue] = useState('');
+  const [focusedItemId, setFocusedItemId] = useState<string>();
+  const [renderedItems, setRenderedItems] = useState<ComboBoxContext['renderedItems']>({});
 
-  const [textValue, setTextValue] = useState(selectedLabel);
+  const handleTextChange = useAllHandlers<string>(setTextValue, onInputChange);
+
+  const inputRef = useRef<HTMLInputElement>(null);
+  const idSeed = useUIDSeed();
+  const focusControls = useRef({} as FocusControls);
 
   useEffect(() => {
-    if (selectedLabel) {
-      setTextValue(selectedLabel);
+    const newItems: ComboBoxContext['renderedItems'] = {};
+    React.Children.forEach(children, (option: OptionType) => {
+      const { label, value } = option.props || {};
+      const selected = value === propValue;
+      const id = renderedItems[value]?.id || idSeed('option');
+      if (label.toLowerCase().includes(textValue.toLowerCase())) {
+        newItems[value] = {
+          focused: id === focusedItemId,
+          id,
+          value,
+          selected,
+          label,
+        };
+      }
+    });
+    setRenderedItems(newItems);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [children, focusedItemId, idSeed, propValue, textValue]);
+
+  useEffect(() => {
+    if (propValue && renderedItems[propValue]) {
+      setTextValue(renderedItems[propValue].label);
     }
-  }, [selectedLabel]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [propValue]);
 
-  const updateText = useAllHandlers<string>(setTextValue, (text) => propOnChange?.(selectedItem?.props?.value, text));
+  focusControls.current = {
+    focus: setFocusedItemId,
+    focusNext: () => {
+      const options = Object.values(renderedItems);
+      const i = options.findIndex((el) => el.focused);
+      const newIndex = (i + 1) % Object.values(renderedItems).length;
+      setFocusedItemId(options[newIndex].id);
+    },
+    focusPrev: () => {
+      const options = Object.values(renderedItems);
+      const i = options.findIndex((el) => el.focused);
+      const newIndex = i > 0 ? i - 1 : Object.values(renderedItems).length - 1;
+      setFocusedItemId(options[newIndex].id);
+    },
+  };
 
-  const textValueRef = useRef(textValue);
-  useEffect(() => {
-    textValueRef.current = textValue;
-  }, [textValue]);
-
-  const triggerRef = useRef<HTMLInputElement>(null);
-  const triggerId = useId();
-
-  const contextValue = useMemo(
-    () => ({
-      value: propValue,
-      triggerRef,
-      onChange: (newValue: string) => propOnChange?.(newValue, textValueRef.current),
-    }),
-    [propOnChange, propValue, textValueRef]
-  );
+  const contextValue: ComboBoxContext = {
+    inputRef,
+    selectedItemValue: propValue,
+    onChange: propOnChange,
+    focusedItemId,
+    idSeed,
+    textValue,
+    renderedItems,
+    focusControls,
+  };
 
   return (
     <OpenStateProvider>
       <ComboBoxProvider value={contextValue}>
-        <Input
-          aria-activedescendant={'someid'}
-          id={triggerId}
-          value={textValue}
-          onChange={updateText}
-          {...textFieldProps}
-        />
-        <Popover triggerRef={triggerRef}>
-          <List triggerId={triggerId}>{children}</List>
+        <Input value={textValue} onChange={handleTextChange} {...textFieldProps} />
+        <Popover triggerRef={inputRef}>
+          <ListBox role="listbox" id={idSeed('listbox')} aria-labelledby={idSeed('input')}>
+            {children}
+          </ListBox>
         </Popover>
       </ComboBoxProvider>
     </OpenStateProvider>
@@ -72,14 +101,3 @@ const ComboBox: React.FC<Props> & {
 ComboBox.Item = Item;
 
 export default ComboBox;
-
-/**
- * Duplicate state to be able to use the element uncontrolled
- */
-function useValue(propValue: Props['value'], propOnChange: Props['onChange']) {
-  return [value, onChange] as const;
-}
-
-function useTextValue({ children, onChange, value }: Partial<Props>) {
-  return [textValue, updateText] as const;
-}

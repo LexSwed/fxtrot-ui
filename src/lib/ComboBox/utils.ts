@@ -1,14 +1,45 @@
 import React, { createContext, useContext } from 'react';
+import { useUIDSeed } from 'react-uid';
 
-type ComboBoxContext = {
-  triggerRef: React.RefObject<HTMLInputElement>;
-  value?: string;
-  onChange?: (newValue: string) => void;
-};
+export interface FocusControls {
+  focus: (newId: string) => void;
+  focusNext: () => void;
+  focusPrev: () => void;
+}
 
-const context = createContext({
-  triggerRef: { current: null },
-} as ComboBoxContext);
+export interface ComboBoxContext {
+  inputRef: React.RefObject<HTMLInputElement>;
+  textValue: string;
+  selectedItemValue?: string;
+  focusedItemId?: string;
+  onChange?: (newValue: string | undefined | null) => void;
+  idSeed: ReturnType<typeof useUIDSeed>;
+  renderedItems: Record<
+    string,
+    {
+      id: string;
+      value: string;
+      label: string;
+      selected: boolean;
+      focused: boolean;
+    }
+  >;
+  focusControls: React.RefObject<FocusControls>;
+}
+
+const context = createContext<ComboBoxContext>({
+  inputRef: { current: null },
+  idSeed: () => undefined as any,
+  textValue: '',
+  renderedItems: {},
+  focusControls: {
+    current: {
+      focus: () => {},
+      focusNext: () => {},
+      focusPrev: () => {},
+    },
+  },
+});
 
 export const ComboBoxProvider = context.Provider;
 

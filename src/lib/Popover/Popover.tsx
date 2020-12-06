@@ -14,9 +14,8 @@ const Popper = styled('div', {
 const PopperBox = styled(motion.div, {
   bc: '$surfaceStill',
   br: '$md',
-  border: '1px solid $borderLight',
   outline: 'none',
-  boxShadow: '$xl',
+  boxShadow: '$popper',
 });
 
 const animations: Record<string, Variants> = {

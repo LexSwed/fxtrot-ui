@@ -24,6 +24,14 @@ const Item = styled(FlexBox as FlexType<'li'>, {
     bc: '$surfaceActive',
   },
 
+  'variants': {
+    isFocused: {
+      true: {
+        bc: '$surfaceHover',
+      },
+    },
+  },
+
   [`& ${Text}`]: {
     fontSize: 'inherit',
     lineHeight: 'inherit',

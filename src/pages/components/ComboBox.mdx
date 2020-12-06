@@ -9,12 +9,33 @@ import { Box, Flex, ComboBox, Text } from '@fxtrot/ui';
 
 <Playground>
   {() => {
+    const [value, setValue] = React.useState('1');
+    return (
+      <Box css={{ p: '$8', bc: '$surfaceStill' }}>
+        <Flex space="md" css={{ width: '$40' }}>
+          <ComboBox placeholder="Hufflepuff" label="The House you were sorted to" value={value} onChange={setValue}>
+            {['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'].map((house, index) => (
+              <ComboBox.Item value={index} label={house} key={index} />
+            ))}
+          </ComboBox>
+          <Flex>
+            <div>{`Selected item index: ${value}`}</div>
+          </Flex>
+        </Flex>
+      </Box>
+    );
+  }}
+</Playground>
+
+## Allowing creation of new elements
+
+You can allow the selection of elements that do not exist - creating them from the input value. For this, subscribe to the input text changes and store them locally.
+
+<!--
+<Playground>
+  {() => {
     const [value, setValue] = React.useState('');
-    const [newItemText, setNewItemText] = React.useState('');
-    const onChangeWithNewItem = (newValue, newText) => {
-      setValue(newValue);
-      setNewItemText(newText);
-    };
+    const [newItemValue, setNewItemValue] = React.useState('');
     return (
       <Box css={{ p: '$8', bc: '$surfaceStill' }}>
         <Flex space="md" css={{ width: '$40' }}>
@@ -22,15 +43,16 @@ import { Box, Flex, ComboBox, Text } from '@fxtrot/ui';
             placeholder="Hufflepuff"
             label="The House you were sorted to"
             value={value}
-            onChange={onChangeWithNewItem}
+            onChange={setValue}
+            onInputChange={setNewItemValue}
           >
             {['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'].map((house, index) => (
               <ComboBox.Item value={index} label={house} key={index} />
             ))}
           </ComboBox>
           <Flex>
-            <div>{`Fake selected item ID: ${value}`}</div>
-            <div>{`Current input text: ${newItemText}`}</div>
+            <div>{`Selected item index: ${value}`}</div>
+            <div>{`Current input text: ${newItemValue}`}</div>
           </Flex>
         </Flex>
       </Box>
@@ -64,4 +86,4 @@ Supports same `variant`s as `TextField` component.
       </Box>
     );
   }}
-</Playground>
+</Playground> -->

@@ -61,7 +61,9 @@ export function useAllHandlers<E = React.SyntheticEvent<any, Event>>(
 }
 
 type KeyboardHandler = ((event: React.KeyboardEvent<any>) => void) | undefined;
-type KeyboardHandlers = { [Key in React.KeyboardEvent<any>['key']]: KeyboardHandler };
+type KeyboardHandlers = {
+  [Key in React.KeyboardEvent<any>['key'] | `${React.KeyboardEvent<any>['key']}.propagate`]: KeyboardHandler;
+};
 
 export function useKeyboardHandles(handlers: KeyboardHandlers): KeyboardHandler {
   const handlersRef = useRef(handlers);
@@ -71,9 +73,14 @@ export function useKeyboardHandles(handlers: KeyboardHandlers): KeyboardHandler 
   }, [handlers]);
 
   return useCallback<(event: React.KeyboardEvent<any>) => void>((event) => {
-    const handler = handlersRef.current[event.key];
-    if (typeof handler === 'function') {
+    const handlers = handlersRef.current;
+    let handler = handlers[event.key];
+    if (handler) {
       event.preventDefault();
+      return handler(event);
+    }
+    handler = handlers[`${event.key}.propagate`];
+    if (handler) {
       handler(event);
     }
   }, []);

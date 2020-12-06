@@ -14,25 +14,43 @@ const Option = styled(ListItem, {
   },
 });
 
-type Props = Omit<React.ComponentProps<typeof ListItem>, 'children'> & {
+interface Props extends Omit<React.ComponentProps<typeof ListItem>, 'children' | 'value' | 'label'> {
   value: string;
   label: string;
-};
+}
 
-const Item = React.forwardRef<HTMLLIElement, Props>(({ value, label, ...props }, ref) => {
-  const { value: dropdownValue, onChange } = useComboBox();
+const Item = React.forwardRef<HTMLLIElement, Props>(({ value, label, ...props }, propRef) => {
+  const { renderedItems, onChange, inputRef } = useComboBox();
   const { close } = useOpenStateControls();
-  const isSelected = dropdownValue === value;
+  const item = renderedItems[value];
 
-  const onClick = useCallback(() => {
-    onChange?.(value);
-    close();
-  }, [close, onChange, value]);
+  const onClick = useCallback(
+    (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+      e.preventDefault();
+      e.stopPropagation();
+      onChange?.(value);
+      close();
+      inputRef.current?.focus();
+    },
+    [close, onChange, value, inputRef]
+  );
+
+  if (!item) {
+    return null;
+  }
 
   return (
-    <Option {...props} aria-selected={isSelected} onClick={onClick} main="spread" ref={ref}>
+    <Option
+      {...props}
+      isFocused={item.focused}
+      id={item.id}
+      aria-selected={item.selected}
+      onClick={onClick}
+      main="spread"
+      ref={propRef}
+    >
       {label}
-      {isSelected ? <SelectedIcon as={HiCheck} size="md" /> : null}
+      {item.selected ? <SelectedIcon as={HiCheck} size="md" /> : null}
     </Option>
   );
 });
