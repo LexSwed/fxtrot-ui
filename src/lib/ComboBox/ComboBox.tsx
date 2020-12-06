@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { useUIDSeed } from 'react-uid';
+import { useUIDSeed, uid } from 'react-uid';
 import Popover from '../Popover';
 import { useAllHandlers } from '../utils';
 import { OpenStateProvider } from '../utils/OpenStateProvider';
@@ -35,10 +35,9 @@ const ComboBox: React.FC<Props> & {
     React.Children.forEach(children, (option: OptionType) => {
       const { label, value } = option.props || {};
       const selected = value === propValue;
-      const id = renderedItems[value]?.id || idSeed('option');
+      const id = uid(value);
       if (label.toLowerCase().includes(textValue.toLowerCase())) {
         newItems[value] = {
-          focused: id === focusedItemId,
           id,
           value,
           selected,
@@ -48,7 +47,7 @@ const ComboBox: React.FC<Props> & {
     });
     setRenderedItems(newItems);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [children, focusedItemId, idSeed, propValue, textValue]);
+  }, [children, focusedItemId, propValue, textValue]);
 
   useEffect(() => {
     if (propValue && renderedItems[propValue]) {
@@ -61,13 +60,13 @@ const ComboBox: React.FC<Props> & {
     focus: setFocusedItemId,
     focusNext: () => {
       const options = Object.values(renderedItems);
-      const i = options.findIndex((el) => el.focused);
+      const i = options.findIndex((el) => el.id === focusedItemId);
       const newIndex = (i + 1) % Object.values(renderedItems).length;
       setFocusedItemId(options[newIndex].id);
     },
     focusPrev: () => {
       const options = Object.values(renderedItems);
-      const i = options.findIndex((el) => el.focused);
+      const i = options.findIndex((el) => el.id === focusedItemId);
       const newIndex = i > 0 ? i - 1 : Object.values(renderedItems).length - 1;
       setFocusedItemId(options[newIndex].id);
     },

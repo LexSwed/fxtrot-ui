@@ -21,7 +21,6 @@ export interface ComboBoxContext {
       value: string;
       label: string;
       selected: boolean;
-      focused: boolean;
     }
   >;
   focusControls: React.RefObject<FocusControls>;

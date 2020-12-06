@@ -20,7 +20,7 @@ interface Props extends Omit<React.ComponentProps<typeof ListItem>, 'children' |
 }
 
 const Item = React.forwardRef<HTMLLIElement, Props>(({ value, label, ...props }, propRef) => {
-  const { renderedItems, onChange, inputRef } = useComboBox();
+  const { renderedItems, onChange, focusedItemId, inputRef } = useComboBox();
   const { close } = useOpenStateControls();
   const item = renderedItems[value];
 
@@ -42,7 +42,7 @@ const Item = React.forwardRef<HTMLLIElement, Props>(({ value, label, ...props },
   return (
     <Option
       {...props}
-      isFocused={item.focused}
+      isFocused={item.id === focusedItemId}
       id={item.id}
       aria-selected={item.selected}
       onClick={onClick}

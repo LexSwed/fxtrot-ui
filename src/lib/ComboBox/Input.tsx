@@ -11,17 +11,45 @@ interface Props extends Omit<React.ComponentProps<typeof TextField>, 'icon' | 't
 }
 
 const Input: React.FC<Props> = (props) => {
-  const { inputRef, focusedItemId, focusControls, selectedItemValue, renderedItems, idSeed } = useComboBox();
+  const {
+    inputRef,
+    focusedItemId,
+    focusControls,
+    selectedItemValue,
+    onChange: changeValue,
+    renderedItems,
+    idSeed,
+  } = useComboBox();
   const isOpen = useOpenState();
   const { open, close } = useOpenStateControls();
 
   const onChange = useAllHandlers<string>(props.onChange as any, open);
 
+  const onSelect = useAllHandlers(() => {
+    const newValue = Object.keys(renderedItems).find((key) => renderedItems[key].id === focusedItemId);
+    changeValue?.(newValue);
+    close();
+  });
+
   const handleKeyDown = useKeyboardHandles({
-    'ArrowDown': open,
-    'ArrowUp': open,
+    'ArrowDown': () => {
+      if (isOpen) {
+        focusControls.current?.focusNext();
+      } else {
+        open();
+      }
+    },
+    'ArrowUp': () => {
+      if (isOpen) {
+        focusControls.current?.focusPrev();
+      } else {
+        open();
+      }
+    },
     'Escape': close,
     'Tab.propagate': close,
+    'Enter': onSelect,
+    'Space': onSelect,
   });
 
   const onKeyDown = useAllHandlers(props.onKeyDown, handleKeyDown);
