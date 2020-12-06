@@ -49,12 +49,14 @@ const ComboBox: React.FC<Props> & {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [children, focusedItemId, propValue, textValue]);
 
+  const currentLabel = propValue ? renderedItems[propValue]?.label : textValue;
+
   useEffect(() => {
-    if (propValue && renderedItems[propValue]) {
-      setTextValue(renderedItems[propValue].label);
+    if (currentLabel) {
+      setTextValue(currentLabel);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [propValue]);
+  }, [currentLabel]);
 
   focusControls.current = {
     focus: setFocusedItemId,
