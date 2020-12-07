@@ -34,14 +34,14 @@ const Input: React.FC<Props> = (props) => {
   const handleKeyDown = useKeyboardHandles({
     'ArrowDown': () => {
       if (isOpen) {
-        focusControls.current?.focusNext();
+        focusControls.focusNext();
       } else {
         open();
       }
     },
     'ArrowUp': () => {
       if (isOpen) {
-        focusControls.current?.focusPrev();
+        focusControls.focusPrev();
       } else {
         open();
       }
@@ -56,7 +56,7 @@ const Input: React.FC<Props> = (props) => {
 
   useEffect(() => {
     if (isOpen && selectedItemValue) {
-      focusControls.current?.focus(renderedItems[selectedItemValue].id);
+      focusControls.focus(renderedItems[selectedItemValue].id);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);

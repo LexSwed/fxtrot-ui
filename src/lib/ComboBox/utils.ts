@@ -23,7 +23,7 @@ export interface ComboBoxContext {
       selected: boolean;
     }
   >;
-  focusControls: React.RefObject<FocusControls>;
+  focusControls: FocusControls;
 }
 
 const context = createContext<ComboBoxContext>({
@@ -32,11 +32,9 @@ const context = createContext<ComboBoxContext>({
   textValue: '',
   renderedItems: {},
   focusControls: {
-    current: {
-      focus: () => {},
-      focusNext: () => {},
-      focusPrev: () => {},
-    },
+    focus: () => {},
+    focusNext: () => {},
+    focusPrev: () => {},
   },
 });
 

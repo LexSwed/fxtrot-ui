@@ -36,7 +36,7 @@ const Item = React.forwardRef<HTMLLIElement, Props>(({ value, label, ...props },
     [close, onChange, value, inputRef]
   );
 
-  const onMouseOver = useAllHandlers(props.onMouseOver, () => focusControls.current?.focus(item?.id));
+  const onMouseOver = useAllHandlers(props.onMouseOver, () => focusControls.focus(item?.id));
 
   if (!item) {
     return null;

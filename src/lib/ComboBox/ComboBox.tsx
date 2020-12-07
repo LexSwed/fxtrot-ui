@@ -21,14 +21,13 @@ const ComboBox: React.FC<Props> & {
   Item: typeof Item;
 } = ({ children, id, value: propValue, onChange: propOnChange, onInputChange, ...textFieldProps }) => {
   const [textValue, setTextValue] = useState('');
-  const [focusedItemId, setFocusedItemId] = useState<string>();
   const [renderedItems, setRenderedItems] = useState<ComboBoxContext['renderedItems']>({});
 
   const handleTextChange = useAllHandlers<string>(setTextValue, onInputChange);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const idSeed = useUIDSeed();
-  const focusControls = useRef({} as FocusControls);
+  const [focusedItemId, focusControls] = useFocusControls(renderedItems);
 
   useEffect(() => {
     const newItems: ComboBoxContext['renderedItems'] = {};
@@ -56,22 +55,6 @@ const ComboBox: React.FC<Props> & {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentLabel]);
-
-  focusControls.current = {
-    focus: setFocusedItemId,
-    focusNext: () => {
-      const options = Object.values(renderedItems);
-      const i = options.findIndex((el) => el.id === focusedItemId);
-      const newIndex = (i + 1) % Object.values(renderedItems).length;
-      setFocusedItemId(options[newIndex].id);
-    },
-    focusPrev: () => {
-      const options = Object.values(renderedItems);
-      const i = options.findIndex((el) => el.id === focusedItemId);
-      const newIndex = i > 0 ? i - 1 : Object.values(renderedItems).length - 1;
-      setFocusedItemId(options[newIndex].id);
-    },
-  };
 
   const contextValue: ComboBoxContext = {
     inputRef,
@@ -101,3 +84,34 @@ const ComboBox: React.FC<Props> & {
 ComboBox.Item = Item;
 
 export default ComboBox;
+
+function useFocusControls(renderedItems: ComboBoxContext['renderedItems']) {
+  const [focusedItemId, setFocusedItemId] = useState<string>();
+  const items = useRef<ComboBoxContext['renderedItems']>(renderedItems);
+
+  useEffect(() => {
+    items.current = renderedItems;
+  }, [renderedItems]);
+
+  const focusControls = useMemo<FocusControls>(() => {
+    return {
+      focus: setFocusedItemId,
+      focusNext: () =>
+        setFocusedItemId((currentId) => {
+          const options = Object.values(items.current);
+          const i = options.findIndex((el) => el.id === currentId);
+          const newIndex = (i + 1) % Object.values(items.current).length;
+          return options[newIndex].id;
+        }),
+      focusPrev: () =>
+        setFocusedItemId((currentId) => {
+          const options = Object.values(items.current);
+          const i = options.findIndex((el) => el.id === currentId);
+          const newIndex = i > 0 ? i - 1 : Object.values(items.current).length - 1;
+          return options[newIndex].id;
+        }),
+    };
+  }, []);
+
+  return [focusedItemId, focusControls] as const;
+}
