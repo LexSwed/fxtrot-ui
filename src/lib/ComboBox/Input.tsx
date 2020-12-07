@@ -26,7 +26,10 @@ const Input: React.FC<Props> = (props) => {
 
   const onSelect = useAllHandlers(() => {
     const newValue = Object.keys(renderedItems).find((key) => renderedItems[key].id === focusedItemId);
-    changeValue?.(newValue);
+    if (newValue) {
+      changeValue?.(newValue);
+      onChange(renderedItems[newValue].label);
+    }
     close();
   });
 
@@ -51,11 +54,11 @@ const Input: React.FC<Props> = (props) => {
     'Space': onSelect,
   });
 
-  const onKeyDown = useAllHandlers(props.onKeyDown, handleKeyDown);
+  const onKeyDown = useAllHandlers(handleKeyDown, props.onKeyDown);
 
   useEffect(() => {
     if (isOpen && selectedItemValue) {
-      focusControls.focus(renderedItems[selectedItemValue].id);
+      focusControls.focus(renderedItems[selectedItemValue]?.id);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);

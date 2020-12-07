@@ -177,4 +177,8 @@ export function useId(id?: string) {
   return id || newId;
 }
 
+export function querySelectorAll<T extends HTMLElement>(query: string, node: T | null) {
+  return Array.from((node || document).querySelectorAll(query));
+}
+
 export * from './types';

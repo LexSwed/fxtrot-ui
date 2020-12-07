@@ -9,18 +9,16 @@ import { Box, Flex, ComboBox, Text } from '@fxtrot/ui';
 
 <Playground>
   {() => {
-    const [value, setValue] = React.useState('1');
+    const [value, setValue] = React.useState('3');
     return (
       <Box css={{ p: '$8', bc: '$surfaceStill' }}>
-        <Flex space="md" css={{ width: '$40' }}>
+        <Flex space="md" css={{ width: '$56' }}>
           <ComboBox placeholder="Hufflepuff" label="The House you were sorted to" value={value} onChange={setValue}>
             {['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'].map((house, index) => (
               <ComboBox.Item value={index} label={house} key={index} />
             ))}
           </ComboBox>
-          <Flex>
-            <div>{`Selected item index: ${value}`}</div>
-          </Flex>
+          <Text>{`Selected item index: ${value}`}</Text>
         </Flex>
       </Box>
     );

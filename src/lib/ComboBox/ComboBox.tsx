@@ -6,7 +6,7 @@ import { OpenStateProvider } from '../utils/OpenStateProvider';
 import Item from './Item';
 import { List as ListBox } from '../ListBox/ListBox';
 
-import { ComboBoxProvider, ComboBoxContext, FocusControls } from './utils';
+import { ComboBoxProvider, ComboBoxContext, FocusControls, RenderedItems } from './utils';
 import Input from './Input';
 
 interface OptionType extends React.ReactElement<React.ComponentProps<typeof Item>, typeof Item> {}
@@ -17,26 +17,26 @@ type Props = Omit<React.ComponentProps<typeof Input>, 'onChange'> & {
   children: OptionType[] | OptionType;
 };
 
-const ComboBox: React.FC<Props> & {
-  Item: typeof Item;
-} = ({ children, id, value: propValue, onChange: propOnChange, onInputChange, ...textFieldProps }) => {
+const ComboBox: React.FC<Props> & { Item: typeof Item } = ({
+  children,
+  id,
+  value: propValue,
+  onChange: propOnChange,
+  onInputChange,
+  ...textFieldProps
+}) => {
   const [textValue, setTextValue] = useState('');
-  const [renderedItems, setRenderedItems] = useState<ComboBoxContext['renderedItems']>({});
-
-  const handleTextChange = useAllHandlers<string>(setTextValue, onInputChange);
-
   const inputRef = useRef<HTMLInputElement>(null);
   const idSeed = useUIDSeed();
-  const [focusedItemId, focusControls] = useFocusControls(renderedItems);
 
-  useEffect(() => {
-    const newItems: ComboBoxContext['renderedItems'] = {};
+  const renderedItems = useMemo<RenderedItems>(() => {
+    let items: RenderedItems = {};
     React.Children.forEach(children, (option: OptionType) => {
       const { label, value } = option.props || {};
       const id = uid(idSeed('option') + value);
       const selected = value === propValue;
-      if (label.toLowerCase().includes(textValue.toLowerCase())) {
-        newItems[value] = {
+      if (textValue === '' || label.toLowerCase().includes(textValue.toLowerCase())) {
+        items[value] = {
           id,
           value,
           selected,
@@ -44,17 +44,19 @@ const ComboBox: React.FC<Props> & {
         };
       }
     });
-    setRenderedItems(newItems);
-  }, [idSeed, children, propValue, textValue]);
+    return items;
+  }, [children, idSeed, propValue, textValue]);
 
-  const currentLabel = propValue !== undefined ? renderedItems[propValue]?.label : textValue;
+  const [focusedItemId, focusControls] = useFocusControls(renderedItems);
 
   useEffect(() => {
-    if (currentLabel) {
-      setTextValue(currentLabel);
+    if (!propValue) return;
+    const label = renderedItems[propValue]?.label;
+    if (label) {
+      setTextValue(label);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentLabel]);
+  }, [propValue]);
 
   const contextValue: ComboBoxContext = {
     inputRef,
@@ -64,6 +66,22 @@ const ComboBox: React.FC<Props> & {
     renderedItems,
     focusControls,
   };
+
+  const handleTextChange = useAllHandlers<string>(setTextValue, onInputChange);
+  const handleBlur = useAllHandlers(
+    textFieldProps.onBlur,
+    onInputChange
+      ? undefined
+      : () => {
+          if (textValue === '') {
+            propOnChange?.(null);
+          } else if (propValue) {
+            setTextValue(renderedItems[propValue]?.label);
+          } else {
+            setTextValue('');
+          }
+        }
+  );
 
   const popover = useMemo(
     () => (
@@ -79,7 +97,13 @@ const ComboBox: React.FC<Props> & {
   return (
     <OpenStateProvider>
       <ComboBoxProvider value={contextValue}>
-        <Input aria-controls={idSeed('listbox')} value={textValue} onChange={handleTextChange} {...textFieldProps} />
+        <Input
+          {...textFieldProps}
+          aria-controls={idSeed('listbox')}
+          value={textValue}
+          onChange={handleTextChange}
+          onBlur={handleBlur}
+        />
         {popover}
       </ComboBoxProvider>
     </OpenStateProvider>
@@ -90,12 +114,12 @@ ComboBox.Item = Item;
 
 export default ComboBox;
 
-function useFocusControls(renderedItems: ComboBoxContext['renderedItems']) {
+function useFocusControls(renderedItems: RenderedItems) {
   const [focusedItemId, setFocusedItemId] = useState<string>();
-  const items = useRef<ComboBoxContext['renderedItems']>(renderedItems);
+  const itemsRef = useRef(renderedItems);
 
   useEffect(() => {
-    items.current = renderedItems;
+    itemsRef.current = renderedItems;
   }, [renderedItems]);
 
   const focusControls = useMemo<FocusControls>(() => {
@@ -103,20 +127,20 @@ function useFocusControls(renderedItems: ComboBoxContext['renderedItems']) {
       focus: setFocusedItemId,
       focusNext: () =>
         setFocusedItemId((currentId) => {
-          const options = Object.values(items.current);
+          const options = Object.values(itemsRef.current || {});
           const i = options.findIndex((el) => el.id === currentId);
-          const newIndex = (i + 1) % Object.values(items.current).length;
+          const newIndex = (i + 1) % options.length;
           return options[newIndex].id;
         }),
       focusPrev: () =>
         setFocusedItemId((currentId) => {
-          const options = Object.values(items.current);
+          const options = Object.values(itemsRef.current || {});
           const i = options.findIndex((el) => el.id === currentId);
-          const newIndex = i > 0 ? i - 1 : Object.values(items.current).length - 1;
+          const newIndex = i > 0 ? i - 1 : options.length - 1;
           return options[newIndex].id;
         }),
     };
-  }, []);
+  }, [itemsRef]);
 
   return [focusedItemId, focusControls] as const;
 }

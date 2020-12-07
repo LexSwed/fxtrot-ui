@@ -6,20 +6,21 @@ export interface FocusControls {
   focusPrev: () => void;
 }
 
+export interface RenderedItems {
+  [value: string]: {
+    id: string;
+    value: string;
+    label: string;
+    selected: boolean;
+  };
+}
+
 export interface ComboBoxContext {
   inputRef: React.RefObject<HTMLInputElement>;
   selectedItemValue?: string;
   focusedItemId?: string;
   onChange?: (newValue: string | undefined | null) => void;
-  renderedItems: Record<
-    string,
-    {
-      id: string;
-      value: string;
-      label: string;
-      selected: boolean;
-    }
-  >;
+  renderedItems: RenderedItems;
   focusControls: FocusControls;
 }
 
