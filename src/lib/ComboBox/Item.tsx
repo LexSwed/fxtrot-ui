@@ -38,10 +38,6 @@ const Item = React.forwardRef<HTMLLIElement, Props>(({ value, label, ...props },
 
   const onMouseOver = useAllHandlers(props.onMouseOver, () => focusControls.focus(item?.id));
 
-  if (!item) {
-    return null;
-  }
-
   return (
     <Option
       {...props}
@@ -59,4 +55,14 @@ const Item = React.forwardRef<HTMLLIElement, Props>(({ value, label, ...props },
   );
 });
 
-export default Item;
+const ItemRenderer = React.forwardRef<HTMLLIElement, Props>((props, ref) => {
+  const { renderedItems } = useComboBox();
+
+  if (!renderedItems[props.value]) {
+    return null;
+  }
+
+  return <Item {...props} ref={ref} />;
+});
+
+export default ItemRenderer;

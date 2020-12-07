@@ -18,7 +18,6 @@ const Input: React.FC<Props> = (props) => {
     selectedItemValue,
     onChange: changeValue,
     renderedItems,
-    idSeed,
   } = useComboBox();
   const isOpen = useOpenState();
   const { open, close } = useOpenStateControls();
@@ -67,8 +66,8 @@ const Input: React.FC<Props> = (props) => {
       aria-autocomplete="list"
       role="combobox"
       {...props}
+      aria-controls={isOpen ? props['aria-controls'] : undefined}
       aria-activedescendant={focusedItemId}
-      aria-controls={idSeed('listbox')}
       autoComplete="off"
       spellCheck="false"
       icon={HiSelector}

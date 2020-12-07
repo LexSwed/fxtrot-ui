@@ -33,8 +33,8 @@ const ComboBox: React.FC<Props> & {
     const newItems: ComboBoxContext['renderedItems'] = {};
     React.Children.forEach(children, (option: OptionType) => {
       const { label, value } = option.props || {};
+      const id = uid(idSeed('option') + value);
       const selected = value === propValue;
-      const id = uid(value);
       if (label.toLowerCase().includes(textValue.toLowerCase())) {
         newItems[value] = {
           id,
@@ -45,7 +45,7 @@ const ComboBox: React.FC<Props> & {
       }
     });
     setRenderedItems(newItems);
-  }, [children, propValue, textValue]);
+  }, [idSeed, children, propValue, textValue]);
 
   const currentLabel = propValue !== undefined ? renderedItems[propValue]?.label : textValue;
 
@@ -61,21 +61,26 @@ const ComboBox: React.FC<Props> & {
     selectedItemValue: propValue,
     onChange: propOnChange,
     focusedItemId,
-    idSeed,
-    textValue,
     renderedItems,
     focusControls,
   };
 
+  const popover = useMemo(
+    () => (
+      <Popover triggerRef={inputRef}>
+        <ListBox role="listbox" id={idSeed('listbox')} aria-labelledby={idSeed('input')}>
+          {children}
+        </ListBox>
+      </Popover>
+    ),
+    [children, idSeed]
+  );
+
   return (
     <OpenStateProvider>
       <ComboBoxProvider value={contextValue}>
-        <Input value={textValue} onChange={handleTextChange} {...textFieldProps} />
-        <Popover triggerRef={inputRef}>
-          <ListBox role="listbox" id={idSeed('listbox')} aria-labelledby={idSeed('input')}>
-            {children}
-          </ListBox>
-        </Popover>
+        <Input aria-controls={idSeed('listbox')} value={textValue} onChange={handleTextChange} {...textFieldProps} />
+        {popover}
       </ComboBoxProvider>
     </OpenStateProvider>
   );

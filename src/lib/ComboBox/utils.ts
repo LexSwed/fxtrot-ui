@@ -1,5 +1,4 @@
 import React, { createContext, useContext } from 'react';
-import { useUIDSeed } from 'react-uid';
 
 export interface FocusControls {
   focus: (newId: string) => void;
@@ -9,11 +8,9 @@ export interface FocusControls {
 
 export interface ComboBoxContext {
   inputRef: React.RefObject<HTMLInputElement>;
-  textValue: string;
   selectedItemValue?: string;
   focusedItemId?: string;
   onChange?: (newValue: string | undefined | null) => void;
-  idSeed: ReturnType<typeof useUIDSeed>;
   renderedItems: Record<
     string,
     {
@@ -28,8 +25,6 @@ export interface ComboBoxContext {
 
 const context = createContext<ComboBoxContext>({
   inputRef: { current: null },
-  idSeed: () => undefined as any,
-  textValue: '',
   renderedItems: {},
   focusControls: {
     focus: () => {},
