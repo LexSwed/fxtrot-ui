@@ -3,6 +3,7 @@ import { HiCheck } from 'react-icons/hi';
 import Icon from '../Icon';
 import ListItem from '../ListItem';
 import { styled } from '../stitches.config';
+import { useAllHandlers } from '../utils';
 import { useOpenStateControls } from '../utils/OpenStateProvider';
 import { useComboBox } from './utils';
 
@@ -20,7 +21,7 @@ interface Props extends Omit<React.ComponentProps<typeof ListItem>, 'children' |
 }
 
 const Item = React.forwardRef<HTMLLIElement, Props>(({ value, label, ...props }, propRef) => {
-  const { renderedItems, onChange, focusedItemId, inputRef } = useComboBox();
+  const { renderedItems, onChange, focusedItemId, focusControls, inputRef } = useComboBox();
   const { close } = useOpenStateControls();
   const item = renderedItems[value];
 
@@ -35,6 +36,8 @@ const Item = React.forwardRef<HTMLLIElement, Props>(({ value, label, ...props },
     [close, onChange, value, inputRef]
   );
 
+  const onMouseOver = useAllHandlers(props.onMouseOver, () => focusControls.current?.focus(item?.id));
+
   if (!item) {
     return null;
   }
@@ -46,6 +49,7 @@ const Item = React.forwardRef<HTMLLIElement, Props>(({ value, label, ...props },
       id={item.id}
       aria-selected={item.selected}
       onClick={onClick}
+      onMouseOver={onMouseOver}
       main="spread"
       ref={propRef}
     >

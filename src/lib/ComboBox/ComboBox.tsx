@@ -46,10 +46,9 @@ const ComboBox: React.FC<Props> & {
       }
     });
     setRenderedItems(newItems);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [children, focusedItemId, propValue, textValue]);
+  }, [children, propValue, textValue]);
 
-  const currentLabel = propValue ? renderedItems[propValue]?.label : textValue;
+  const currentLabel = propValue !== undefined ? renderedItems[propValue]?.label : textValue;
 
   useEffect(() => {
     if (currentLabel) {
