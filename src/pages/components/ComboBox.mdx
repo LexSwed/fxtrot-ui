@@ -15,7 +15,7 @@ import { Box, Flex, ComboBox, Text } from '@fxtrot/ui';
         <Flex space="md" css={{ width: '$56' }}>
           <ComboBox placeholder="Hufflepuff" label="The House you were sorted to" value={value} onChange={setValue}>
             {['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'].map((house, index) => (
-              <ComboBox.Item value={index} label={house} key={index} />
+              <ComboBox.Item value={`${index}`} label={house} key={index} />
             ))}
           </ComboBox>
           <Text>{`Selected item index: ${value}`}</Text>
@@ -44,7 +44,7 @@ You can allow the selection of elements that do not exist - creating them from t
             onInputChange={setNewItemValue}
           >
             {['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'].map((house, index) => (
-              <ComboBox.Item value={index} label={house} key={index} />
+              <ComboBox.Item value={`${index}`} label={house} key={index} />
             ))}
           </ComboBox>
           <Flex>

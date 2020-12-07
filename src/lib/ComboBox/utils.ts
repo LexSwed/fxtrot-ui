@@ -19,7 +19,7 @@ export interface ComboBoxContext {
   inputRef: React.RefObject<HTMLInputElement>;
   selectedItemValue?: string;
   focusedItemId?: string;
-  onChange?: (newValue: string | undefined | null) => void;
+  onValueChange: (newValue: string | undefined | null, newLabel: string | undefined | null) => void;
   renderedItems: RenderedItems;
   focusControls: FocusControls;
 }
@@ -27,6 +27,7 @@ export interface ComboBoxContext {
 const context = createContext<ComboBoxContext>({
   inputRef: { current: null },
   renderedItems: {},
+  onValueChange: () => {},
   focusControls: {
     focus: () => {},
     focusNext: () => {},

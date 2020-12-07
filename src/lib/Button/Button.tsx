@@ -126,6 +126,11 @@ const ButtonRoot = styled(FlexBox as FlexType<'button'>, {
           color: '$textDisabled',
         },
       },
+      transparent: {
+        bc: 'transparent',
+        borderColor: 'transparent',
+        color: '$text',
+      },
     },
   },
 });

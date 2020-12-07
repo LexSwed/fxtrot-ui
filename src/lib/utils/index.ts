@@ -45,19 +45,19 @@ export function joinNonEmpty(...strings: Array<string | undefined>) {
 
 export function useAllHandlers<E = React.SyntheticEvent<any, Event>>(
   ...handlers: (
-    | (E extends React.SyntheticEvent<any, Event> ? React.EventHandler<E> : (value: string) => void)
+    | (E extends React.SyntheticEvent<any, Event> ? React.EventHandler<E> : (...args: any[]) => void)
     | undefined
   )[]
-): E extends React.SyntheticEvent<any, Event> ? React.EventHandler<E> : (value: string) => void {
+): E extends React.SyntheticEvent<any, Event> ? React.EventHandler<E> : (...args: any[]) => void {
   const handlersRef = useRef(handlers);
 
   useEffect(() => {
     handlersRef.current = handlers;
   }, handlers); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return useCallback((event: any) => {
-    handlersRef.current.forEach((fn) => fn?.(event));
-  }, []) as E extends React.SyntheticEvent<any, Event> ? React.EventHandler<E> : (value: string) => void;
+  return useCallback((...args: any[]) => {
+    handlersRef.current.forEach((fn) => (fn as any)?.(...args));
+  }, []) as E extends React.SyntheticEvent<any, Event> ? React.EventHandler<E> : (...args: any[]) => void;
 }
 
 type KeyboardHandler = ((event: React.KeyboardEvent<any>) => void) | undefined;

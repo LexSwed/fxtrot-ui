@@ -5,33 +5,23 @@ import TextField from '../TextField';
 import { useAllHandlers, useKeyboardHandles } from '../utils';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { useComboBox } from './utils';
+import Button from '../Button';
+import Icon from '../Icon';
+import { styled } from '../stitches.config';
 
 interface Props extends Omit<React.ComponentProps<typeof TextField>, 'icon' | 'type' | 'value'> {
   value?: string;
+  onSelect?: () => void;
 }
 
-const Input: React.FC<Props> = (props) => {
-  const {
-    inputRef,
-    focusedItemId,
-    focusControls,
-    selectedItemValue,
-    onChange: changeValue,
-    renderedItems,
-  } = useComboBox();
+const Input: React.FC<Props> = ({ onChange, onSelect, ...props }) => {
+  const { inputRef, focusedItemId, focusControls } = useComboBox();
   const isOpen = useOpenState();
   const { open, close } = useOpenStateControls();
 
-  const onChange = useAllHandlers<string>(props.onChange as any, open);
+  const handleChange = useAllHandlers<string>(onChange as any, open);
 
-  const onSelect = useAllHandlers(() => {
-    const newValue = Object.keys(renderedItems).find((key) => renderedItems[key].id === focusedItemId);
-    if (newValue) {
-      changeValue?.(newValue);
-      onChange(renderedItems[newValue].label);
-    }
-    close();
-  });
+  const handleSelect = useAllHandlers(onSelect, close);
 
   const handleKeyDown = useKeyboardHandles({
     'ArrowDown': () => {
@@ -50,18 +40,11 @@ const Input: React.FC<Props> = (props) => {
     },
     'Escape': close,
     'Tab.propagate': close,
-    'Enter': onSelect,
-    'Space': onSelect,
+    'Enter': handleSelect,
+    'Space': handleSelect,
   });
 
   const onKeyDown = useAllHandlers(handleKeyDown, props.onKeyDown);
-
-  useEffect(() => {
-    if (isOpen && selectedItemValue) {
-      focusControls.focus(renderedItems[selectedItemValue]?.id);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen]);
 
   return (
     <TextField
@@ -73,11 +56,39 @@ const Input: React.FC<Props> = (props) => {
       aria-activedescendant={focusedItemId}
       autoComplete="off"
       spellCheck="false"
-      icon={HiSelector}
+      icon={ComboButton}
       onKeyDown={onKeyDown}
-      onChange={onChange}
+      onChange={handleChange}
       inputRef={inputRef}
     />
+  );
+};
+
+const ButtonStyled = styled(Button, {
+  zIndex: 2,
+  position: 'relative',
+  pointerEvents: 'all',
+});
+
+const ComboButton = () => {
+  const isOpen = useOpenState();
+  const { open } = useOpenStateControls();
+  const { inputRef } = useComboBox();
+
+  return (
+    <ButtonStyled
+      variant="transparent"
+      tabIndex={-1}
+      aria-hidden={isOpen}
+      aria-expanded={isOpen}
+      aria-label="Open the list"
+      onClick={() => {
+        open();
+        inputRef.current?.focus();
+      }}
+    >
+      <Icon as={HiSelector} />
+    </ButtonStyled>
   );
 };
 

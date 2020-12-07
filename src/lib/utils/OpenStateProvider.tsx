@@ -13,6 +13,14 @@ export const OpenStateProvider: React.FC<{ defaultOpen?: boolean }> = ({ default
   );
 };
 
+export function withOpenStateProvider<T>(Component: React.ComponentType<T>): React.ComponentType<T> {
+  return React.memo((props) => (
+    <OpenStateProvider>
+      <Component {...props} />
+    </OpenStateProvider>
+  ));
+}
+
 export function useOpenState() {
   return useContext(menuStateContext);
 }

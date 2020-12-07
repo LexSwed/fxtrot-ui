@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { HiCheck } from 'react-icons/hi';
 import Icon from '../Icon';
 import ListItem from '../ListItem';
@@ -15,26 +15,23 @@ const Option = styled(ListItem, {
   },
 });
 
-interface Props extends Omit<React.ComponentProps<typeof ListItem>, 'children' | 'value' | 'label'> {
+interface Props extends Omit<React.ComponentProps<typeof ListItem>, 'children' | 'value' | 'label' | 'isFocused'> {
   value: string;
   label: string;
 }
 
 const Item = React.forwardRef<HTMLLIElement, Props>(({ value, label, ...props }, propRef) => {
-  const { onChange, focusedItemId, focusControls, renderedItems, inputRef } = useComboBox();
+  const { onValueChange, focusedItemId, focusControls, renderedItems, inputRef } = useComboBox();
   const { close } = useOpenStateControls();
   const item = renderedItems[value];
 
-  const onClick = useCallback(
-    (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-      e.preventDefault();
-      e.stopPropagation();
-      onChange?.(value);
-      close();
-      inputRef.current?.focus();
-    },
-    [close, onChange, value, inputRef]
-  );
+  const onClick = useAllHandlers(props.onClick, (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    onValueChange?.(value, label);
+    close();
+    inputRef.current?.focus();
+  });
 
   const onMouseOver = useAllHandlers(props.onMouseOver, item?.id ? () => focusControls.focus(item?.id) : undefined);
 
