@@ -5,7 +5,7 @@ import { HiOutlineExternalLink } from 'react-icons/hi';
 import { FlexBox, FlexType } from '../Flex';
 import Icon from '../Icon';
 import { styled } from '../stitches.config';
-import { font,textSize } from '../theme/variants';
+import { font, textSize } from '../theme/variants';
 
 const Link = styled(FlexBox as FlexType<'a'>, {
   'color': '$primaryStill',
@@ -40,7 +40,9 @@ const Link = styled(FlexBox as FlexType<'a'>, {
   },
 });
 
-type Props = StitchesProps<typeof Link> & { external?: boolean };
+interface Props extends StitchesProps<typeof Link> {
+  external?: boolean;
+}
 
 const TextLink = React.forwardRef<HTMLAnchorElement, Props>(
   (

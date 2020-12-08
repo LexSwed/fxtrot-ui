@@ -11,7 +11,7 @@ const List = styled('ul', {
   $outline: -1,
 });
 
-type Props = React.ComponentProps<typeof List>;
+interface Props extends React.ComponentProps<typeof List> {}
 
 const MenuList: React.FC<Props> & { Item: typeof Item } = (props) => {
   const ref = useRef<HTMLUListElement>(null);

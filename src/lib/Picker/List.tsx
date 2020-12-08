@@ -3,9 +3,9 @@ import React, { useEffect, useRef } from 'react';
 import ListBox from '../ListBox';
 import { usePicker } from './utils';
 
-type Props = {
+interface Props extends React.ComponentProps<typeof ListBox> {
   triggerId: string;
-} & React.ComponentProps<typeof ListBox>;
+}
 
 const List: React.FC<Props> = ({ triggerId, children, ...props }) => {
   const { value } = usePicker();

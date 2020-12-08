@@ -5,7 +5,7 @@ import { useAllHandlers, useForkRef, useKeyboardHandles } from '../utils';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { useMenu } from './utils';
 
-type ButtonProps = React.ComponentProps<typeof Button>;
+interface ButtonProps extends React.ComponentProps<typeof Button> {}
 
 const MenuButton: React.FC<ButtonProps> = (buttonProps) => {
   const isOpen = useOpenState();

@@ -71,7 +71,7 @@ const colors = {
 
 export default colors;
 
-export type Swatch = {
+export interface Swatch {
   colors: {
     $text: string;
     $textDisabled: string;
@@ -94,4 +94,4 @@ export type Swatch = {
     $borderHover: string;
     $borderActive: string;
   };
-};
+}

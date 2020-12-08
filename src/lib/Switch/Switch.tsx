@@ -98,8 +98,8 @@ const Input = styled('input', {
   },
 });
 
-type WrapperProps = React.ComponentProps<typeof FormField>;
-type InputProps = React.ComponentProps<typeof Input>;
+interface WrapperProps extends React.ComponentProps<typeof FormField> {}
+interface InputProps extends React.ComponentProps<typeof Input> {}
 
 type Props = Omit<InputProps, 'onChange'> &
   WrapperProps & {

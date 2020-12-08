@@ -5,25 +5,25 @@ import { FormField, Hint, HintBox, useFormField } from '../FormField/FormField';
 import Icon from '../Icon';
 import Label from '../Label';
 import { styled } from '../stitches.config';
-import { InteractiveBox, InteractiveBoxType,validityVariant } from '../TextField/shared';
+import { InteractiveBox, InteractiveBoxType, validityVariant } from '../TextField/shared';
 import { useAllHandlers, useKeyboardHandles } from '../utils';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { usePicker } from './utils';
 
-type FormFieldProps = React.ComponentProps<typeof FormField>;
+interface FormFieldProps extends React.ComponentProps<typeof FormField> {}
 
-type ButtonProps = InteractiveBoxType<
-  React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
->;
-type Props = FormFieldProps &
-  React.ComponentProps<ButtonProps> & {
-    id?: string;
-    placeholder?: string;
-    label?: string;
-    secondaryLabel?: string;
-    hint?: string;
-    disabled?: boolean;
-  };
+interface ButtonProps
+  extends InteractiveBoxType<
+    React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
+  > {}
+interface Props extends FormFieldProps {
+  id?: string;
+  placeholder?: string;
+  label?: string;
+  secondaryLabel?: string;
+  hint?: string;
+  disabled?: boolean;
+}
 
 const TriggerButton = styled((InteractiveBox as unknown) as ButtonProps, {
   position: 'relative',
@@ -54,7 +54,7 @@ const Placeholder = styled('div', {
   textOverflow: 'ellipsis',
 });
 
-const Trigger: React.FC<Props> = ({
+const Trigger: React.FC<Props & React.ComponentProps<ButtonProps>> = ({
   label,
   secondaryLabel,
   hint,

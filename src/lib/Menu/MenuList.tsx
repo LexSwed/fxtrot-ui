@@ -5,7 +5,7 @@ import ListBox from '../ListBox/ListBox';
 import Popover from '../Popover';
 import { useMenu } from './utils';
 
-type UlListProps = React.ComponentProps<typeof ListBox>;
+interface UlListProps extends React.ComponentProps<typeof ListBox> {}
 
 const MenuList: React.FC<UlListProps> = (props) => {
   const { seed } = useMenu();

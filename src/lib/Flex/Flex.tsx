@@ -94,8 +94,8 @@ const Flex = React.forwardRef<unknown, Props>(
 
 export default Flex;
 
-export type FlexVariants = StitchesVariants<typeof FlexBox>;
-export type FlexProps = StitchesProps<typeof FlexBox>;
+export interface FlexVariants extends StitchesVariants<typeof FlexBox> {}
+export interface FlexProps extends StitchesProps<typeof FlexBox> {}
 export type FlexType<C extends React.ElementType = 'div'> = typeof FlexBox extends IStyledComponent<
   any,
   infer Variants,

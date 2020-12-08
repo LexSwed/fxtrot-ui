@@ -44,10 +44,11 @@ export const IconBox = styled('svg', {
   },
 });
 
-const Icon: React.FC<Omit<StitchesProps<typeof IconBox>, 'as'> & { as: React.ElementType }> = ({
-  size = 'md',
-  ...props
-}) => {
+interface Props extends Omit<StitchesProps<typeof IconBox>, 'as'> {
+  as: React.ElementType;
+}
+
+const Icon: React.FC<Props> = ({ size = 'md', ...props }) => {
   return <IconBox size={size} {...props} />;
 };
 

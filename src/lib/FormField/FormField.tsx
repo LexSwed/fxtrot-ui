@@ -37,7 +37,7 @@ const HintText = styled(Text, {
 export interface FormFieldProps extends StitchesProps<typeof Wrapper> {
   hasHint?: boolean;
   validity?: keyof typeof tonesMap;
-};
+}
 
 const tonesMap: Record<'valid' | 'invalid', React.ComponentProps<typeof Text>['tone']> = {
   valid: 'success',
@@ -74,7 +74,9 @@ export const FormField: React.FC<FormFieldProps> = ({
     </Wrapper>
   );
 };
-type HintProps = React.ComponentProps<typeof Text> & { validity?: FormFieldProps['validity'] };
+interface HintProps extends React.ComponentProps<typeof Text> {
+  validity?: FormFieldProps['validity'];
+}
 
 export const Hint: React.FC<HintProps> = ({ validity, children, ...props }) => {
   return (
@@ -105,8 +107,8 @@ export function useFormField({ id, hint, label }: { id?: string; hint?: string; 
   );
 }
 
-type InputAriaProps = {
+interface InputAriaProps {
   'id': string;
   'aria-describedby'?: string;
   'aria-labelledby'?: string;
-};
+}

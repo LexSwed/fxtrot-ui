@@ -1,11 +1,11 @@
-import React, { createContext,useContext } from 'react';
+import React, { createContext, useContext } from 'react';
 import { useUIDSeed } from 'react-uid';
 
-type MenuStaticContextValue = {
+interface MenuStaticContextValue {
   triggerRef: React.RefObject<HTMLElement>;
   seed: ReturnType<typeof useUIDSeed>;
   onAction?: (key: string) => void;
-};
+}
 
 const menuContext = createContext<MenuStaticContextValue>({} as any);
 

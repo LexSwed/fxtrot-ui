@@ -1,10 +1,10 @@
 import React, { createContext, useContext } from 'react';
 
-type PickerContext = {
+interface PickerContext {
   triggerRef: React.RefObject<HTMLButtonElement>;
   value?: string;
   onChange?: (newValue: string) => void;
-};
+}
 
 const context = createContext({
   triggerRef: { current: null },

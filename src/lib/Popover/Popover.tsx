@@ -62,11 +62,11 @@ const animations: Record<string, Variants> = {
   },
 };
 
-type Props = {
+interface Props {
   triggerRef: React.RefObject<HTMLElement>;
   offset?: number;
   placement?: Options['placement'];
-};
+}
 
 const Popover: React.FC<Props> = ({ children, triggerRef, offset = 8, placement = 'bottom-start' }) => {
   const isOpen = useOpenState();

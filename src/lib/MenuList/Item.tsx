@@ -32,9 +32,9 @@ const MenuItem = styled(ListItem, {
   },
 });
 
-type Props = React.ComponentProps<typeof MenuItem> & {
+interface Props extends React.ComponentProps<typeof MenuItem> {
   selected?: boolean;
-};
+}
 
 const Item = React.forwardRef<HTMLLIElement, Props>(({ selected, ...props }, ref) => {
   const onMouseEnter = useAllHandlers(props.onMouseEnter, focusOnMouseOver);

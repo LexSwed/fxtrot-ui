@@ -101,14 +101,12 @@ const Input = styled('input', {
   },
 });
 
-type InputProps = StitchesProps<typeof Input>;
-
-interface Props extends InputProps  { 
+interface InputProps extends StitchesProps<typeof Input> {
   label?: string;
   secondaryLabel?: string;
-};
+}
 
-const Checkbox: React.FC<FormFieldProps & Props> = ({
+const Checkbox: React.FC<FormFieldProps & InputProps> = ({
   checked,
   onChange,
   css,

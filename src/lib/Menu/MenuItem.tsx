@@ -6,7 +6,9 @@ import { useAllHandlers } from '../utils';
 import { useOpenStateControls } from '../utils/OpenStateProvider';
 import { useMenu } from './utils';
 
-type Props = React.ComponentProps<typeof ListItem> & { action?: string };
+interface Props extends React.ComponentProps<typeof ListItem> {
+  action?: string;
+}
 
 const MenuItem = React.forwardRef<HTMLLIElement, Props>(({ action, disabled, ...props }, ref) => {
   const { onAction } = useMenu();

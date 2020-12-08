@@ -17,10 +17,10 @@ const Option = styled(ListItem, {
   },
 });
 
-type Props = Omit<React.ComponentProps<typeof ListItem>, 'children'> & {
+interface Props extends Omit<React.ComponentProps<typeof ListItem>, 'children'> {
   value: string;
   label: string;
-};
+}
 
 const Item = React.forwardRef<HTMLLIElement, Props>(({ value, label, ...props }, ref) => {
   const { value: dropdownValue, onChange } = usePicker();

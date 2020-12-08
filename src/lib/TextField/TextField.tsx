@@ -7,7 +7,7 @@ import { FormField, Hint, HintBox, useFormField } from '../FormField/FormField';
 import Icon from '../Icon';
 import Label from '../Label';
 import { styled } from '../stitches.config';
-import { iconStyles,IconWrapper, InteractiveBox, validityVariant } from './shared';
+import { iconStyles, IconWrapper, InteractiveBox, validityVariant } from './shared';
 
 const Input = styled(InteractiveBox, {
   '&[type="number"]::-webkit-inner-spin-button, &[type="number"]::-webkit-outer-spin-button': {
@@ -171,7 +171,7 @@ TextField.displayName = 'TextField';
 
 export default TextField;
 
-type InputProps = StitchesProps<typeof Input>;
+interface InputProps extends StitchesProps<typeof Input> {}
 type Props = Omit<InputProps, 'onChange' | 'type' | 'value' | 'defaultValue' | 'children'> &
   FlexVariants & {
     label?: string;
@@ -207,6 +207,12 @@ type OnChange =
       onChange?: StringChange;
     };
 
-type NumberChange = (value: number, event: React.ChangeEvent<HTMLInputElement>) => void;
-type DateChange = (value: Date | null, event: React.ChangeEvent<HTMLInputElement>) => void;
-type StringChange = (value: string, event: React.ChangeEvent<HTMLInputElement>) => void;
+interface NumberChange {
+  (value: number, event: React.ChangeEvent<HTMLInputElement>): void;
+}
+interface DateChange {
+  (value: Date | null, event: React.ChangeEvent<HTMLInputElement>): void;
+}
+interface StringChange {
+  (value: string, event: React.ChangeEvent<HTMLInputElement>): void;
+}

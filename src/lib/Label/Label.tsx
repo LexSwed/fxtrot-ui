@@ -33,11 +33,11 @@ const Wrapper = styled(FlexBox as FlexType<'label'>, {
   whiteSpace: 'nowrap',
 });
 
-type Props = StitchesProps<typeof Wrapper> & {
+interface Props extends StitchesProps<typeof Wrapper> {
   label: React.ReactNode;
   secondary?: React.ReactNode;
   disabled?: boolean;
-};
+}
 
 const Label: React.FC<Props> = ({ label, children: _ignore, secondary, ref, as = 'label', disabled, ...props }) => {
   return (
