@@ -29,7 +29,7 @@ export function useOpenStateControls() {
   return useContext(menuStateControlsContext);
 }
 
-type MenuControlFunctions = {
+interface MenuControlFunctions {
   open: () => void;
   close: () => void;
   toggle: () => void;

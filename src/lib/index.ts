@@ -25,4 +25,4 @@ export { themes } from './theme/themes';
 export { default as ThemeProvider } from './ThemeProvider';
 export { default as VisuallyHidden } from './VisuallyHidden';
 
-export type StyleRecord = Record<string, StylesWithVariants>;
+export interface StyleRecord extends Record<string, StylesWithVariants> {}

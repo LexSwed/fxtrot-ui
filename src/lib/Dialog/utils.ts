@@ -5,7 +5,7 @@ const dialogContext = createContext<DialogContext>({
   seed: null,
 } as any);
 
-export type DialogContext = {
+export interface DialogContext {
   seed: ReturnType<typeof useUIDSeed>;
   render: (close: () => void) => React.ReactNode;
 };
