@@ -46,11 +46,11 @@
     "@chakra-ui/core": "^0.8.0",
     "@emotion/core": "^10.1.1",
     "@emotion/styled": "^10.0.27",
-    "@types/jest": "^26.0.16",
-    "@types/node": "^14.14.10",
+    "@types/jest": "^26.0.17",
+    "@types/node": "^14.14.11",
     "@types/react": "^17.0.0",
-    "@typescript-eslint/eslint-plugin": "^4.9.0",
-    "@typescript-eslint/parser": "^4.9.0",
+    "@typescript-eslint/eslint-plugin": "^4.9.1",
+    "@typescript-eslint/parser": "^4.9.1",
     "babel-eslint": "^10.1.0",
     "babel-preset-react-app": "^10.0.0",
     "dokz": "^1.0.79",
@@ -62,7 +62,7 @@
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-simple-import-sort": "^6.0.1",
-    "husky": "^4.3.4",
+    "husky": "^4.3.5",
     "jest": "^26.6.3",
     "microbundle": "^0.12.4",
     "next": "^10.0.3",
@@ -83,18 +83,8 @@
       "pre-commit": "pretty-quick --pattern \"lib/**/*.*\" --staged && run-p lint typecheck"
     }
   },
-  "prettier": {
-    "plugins": [
-      "simple-import-sort",
-      "import"
-    ],
-    "rules": {
-      "simple-import-sort/imports": "error",
-      "simple-import-sort/exports": "error",
-      "sort-imports": "off",
-      "import/first": "error",
-      "import/newline-after-import": "error",
-      "import/no-duplicates": "error"
-    }
+  "resolutions": {
+    "typescript": "^4.1.2",
+    "rollup-plugin-typescript2": "^0.29.0"
   }
 }

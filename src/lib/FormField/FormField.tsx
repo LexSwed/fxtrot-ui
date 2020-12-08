@@ -34,7 +34,7 @@ const HintText = styled(Text, {
   maxWidth: '-webkit-fill-available',
 });
 
-type Props = StitchesProps<typeof Wrapper> & {
+export interface FormFieldProps extends StitchesProps<typeof Wrapper> {
   hasHint?: boolean;
   validity?: keyof typeof tonesMap;
 };
@@ -44,7 +44,7 @@ const tonesMap: Record<'valid' | 'invalid', React.ComponentProps<typeof Text>['t
   invalid: 'danger',
 };
 
-export const FormField: React.FC<Props> = ({
+export const FormField: React.FC<FormFieldProps> = ({
   main = 'stretch',
   cross = 'stretch',
   flow,
@@ -74,7 +74,7 @@ export const FormField: React.FC<Props> = ({
     </Wrapper>
   );
 };
-type HintProps = React.ComponentProps<typeof Text> & { validity?: Props['validity'] };
+type HintProps = React.ComponentProps<typeof Text> & { validity?: FormFieldProps['validity'] };
 
 export const Hint: React.FC<HintProps> = ({ validity, children, ...props }) => {
   return (

@@ -132,7 +132,9 @@ const CloseButtonContainer = styled('div', {
   right: '$2',
 });
 
-export const Modal: React.FC<StitchesProps<typeof DialogWindow>> = ({ children, ...props }) => {
+export interface ModalProps extends StitchesProps<typeof DialogWindow> {}
+
+export const Modal: React.FC<ModalProps> = ({ children, ...props }) => {
   const { seed } = useDialog();
   const { close } = useOpenStateControls();
   const handleKeyDown = useAllHandlers(
