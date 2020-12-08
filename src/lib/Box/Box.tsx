@@ -6,14 +6,6 @@ import type { CssProperties } from '../utils';
 
 const Div = styled('div', {});
 
-/** Not all properties supported */
-type Props = Omit<StitchesProps<typeof Div>, 'as'> &
-  {
-    [prop in typeof acceptedProperties[number]]?: CssProperties[prop];
-  } & {
-    as?: JSX.IntrinsicElements | React.ElementType;
-  };
-
 const Box: React.FC<Props> = ({ children, css, ...props }) => {
   const [style, attrs] = Object.entries(props).reduce(
     (res, [key, value]: [any, any]) => {
@@ -109,5 +101,14 @@ const acceptedProperties: readonly (keyof CssProperties)[] = [
   'borderLeft',
   'boxShadow',
 ] as const;
+/** Not all properties supported */
+export interface Props extends Omit<BoxProps, 'as' | 'translate' | 'color'>, CustomField {
+  as?: JSX.IntrinsicElements | React.ElementType;
+}
+
+type CustomField = {
+  [prop in typeof acceptedProperties[number]]?: CssProperties[prop];
+};
+type BoxProps = StitchesProps<typeof Div>;
 
 const VALID_ITEMS = new Set<keyof CssProperties>(acceptedProperties);

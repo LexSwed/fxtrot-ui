@@ -39,7 +39,9 @@ const Item = styled(FlexBox as FlexType<'li'>, {
   },
 });
 
-type Props = { disabled?: boolean } & StitchesProps<typeof Item>;
+export interface Props extends StitchesProps<typeof Item> {
+  disabled?: boolean;
+}
 
 const ListItem = React.forwardRef<HTMLLIElement, Props>(
   ({ flow = 'row', cross = 'center', space = '$2', disabled, as = 'li', ...props }, ref) => {
