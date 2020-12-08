@@ -11,7 +11,7 @@ import Input from './Input';
 
 interface OptionType extends React.ReactElement<React.ComponentProps<typeof Item>, typeof Item> {}
 interface Props extends Omit<React.ComponentProps<typeof Input>, 'onChange' | 'value' | 'children'> {
-  value?: string;
+  value?: string | null;
   onChange?: (newValue: string | undefined | null) => void;
   onInputChange?: (text: string) => void;
   children: OptionType[] | OptionType;
@@ -25,6 +25,7 @@ const ComboBoxInner: React.FC<Props> = ({
   onInputChange,
   ...textFieldProps
 }) => {
+  const [innerValue, onChange] = useValue(propValue, propOnChange);
   const [textValue, setTextValue] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
   const idSeed = useUIDSeed();
@@ -35,7 +36,7 @@ const ComboBoxInner: React.FC<Props> = ({
     React.Children.forEach(children, (option: OptionType) => {
       const { label, value } = option.props || {};
       const id = uid(idSeed('option') + value);
-      const selected = value === propValue;
+      const selected = value === innerValue;
       items[value] = {
         id,
         value,
@@ -44,7 +45,7 @@ const ComboBoxInner: React.FC<Props> = ({
       };
     });
     return items;
-  }, [children, idSeed, propValue]);
+  }, [children, idSeed, innerValue]);
 
   const [renderedItems, setRenderedItems] = useState<RenderedItems>(allItems);
 
@@ -61,30 +62,30 @@ const ComboBoxInner: React.FC<Props> = ({
   const [focusedItemId, focusControls] = useFocusControls(renderedItems);
 
   useEffect(() => {
-    if (!propValue) return;
-    const label = allItems[propValue]?.label;
+    if (!innerValue) return;
+    const label = allItems[innerValue]?.label;
     if (label) {
       setTextValue(label);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [propValue]);
+  }, [innerValue]);
 
   useEffect(() => {
-    if (isOpen && propValue) {
-      focusControls.focus(allItems[propValue]?.id);
+    if (isOpen && innerValue) {
+      focusControls.focus(allItems[innerValue]?.id);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
   const handleValueChange = useAllHandlers((newValue?: string, newText?: string) => {
-    propOnChange?.(newValue);
+    onChange(newValue);
     setTextValue(newText || '');
     onInputChange?.(newText || '');
   });
 
   const handleTextChange = useAllHandlers<string>((textValue) => {
     if (textValue === '') {
-      propOnChange?.(null);
+      onChange(null);
     }
     setTextValue(textValue);
   }, onInputChange);
@@ -95,9 +96,9 @@ const ComboBoxInner: React.FC<Props> = ({
       ? undefined
       : () => {
           if (textValue === '') {
-            propOnChange?.(null);
-          } else if (propValue) {
-            setTextValue(allItems[propValue]?.label);
+            onChange(null);
+          } else if (innerValue) {
+            setTextValue(allItems[innerValue]?.label);
           } else {
             setTextValue('');
           }
@@ -113,7 +114,7 @@ const ComboBoxInner: React.FC<Props> = ({
 
   const contextValue: ComboBoxContext = {
     inputRef,
-    selectedItemValue: propValue,
+    selectedItemValue: innerValue,
     onValueChange: handleValueChange,
     focusedItemId,
     renderedItems,
@@ -151,6 +152,31 @@ const ComboBox = withOpenStateProvider<Props>(ComboBoxInner) as React.FC<Props> 
 ComboBox.Item = Item;
 
 export default ComboBox;
+
+/**
+ * Duplicate state to be able to use the element uncontrolled
+ */
+function useValue(propValue: Props['value'], propOnChange: Props['onChange']) {
+  const [value, setValue] = useState(propValue);
+
+  const onChange = useCallback<Required<Props>['onChange']>(
+    (newValue) => {
+      // we expect `propOnChange` to change also `value` prop, so useEffect would update internal value
+      if (typeof propOnChange === 'function') {
+        propOnChange?.(newValue);
+      } else {
+        setValue(newValue);
+      }
+    },
+    [propOnChange]
+  );
+
+  useEffect(() => {
+    setValue(propValue);
+  }, [propValue]);
+
+  return [value, onChange] as const;
+}
 
 function useFocusControls(renderedItems: RenderedItems) {
   const [focusedItemId, setFocusedItemId] = useState<string>();

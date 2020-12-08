@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React from 'react';
 import { HiSelector } from 'react-icons/hi';
 
 import TextField from '../TextField';

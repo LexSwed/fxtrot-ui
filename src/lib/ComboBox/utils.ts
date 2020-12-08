@@ -17,7 +17,7 @@ export interface RenderedItems {
 
 export interface ComboBoxContext {
   inputRef: React.RefObject<HTMLInputElement>;
-  selectedItemValue?: string;
+  selectedItemValue?: string | null;
   focusedItemId?: string;
   onValueChange: (newValue: string | undefined | null, newLabel: string | undefined | null) => void;
   renderedItems: RenderedItems;

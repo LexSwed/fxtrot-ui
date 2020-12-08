@@ -8,11 +8,11 @@ import Trigger from './Trigger';
 import { PickerProvider } from './utils';
 
 interface OptionType extends React.ReactElement<React.ComponentProps<typeof Item>, typeof Item> {}
-type Props = React.ComponentProps<typeof Trigger> & {
+interface Props extends Omit<React.ComponentProps<typeof Trigger>, 'value' | 'onChange' | 'children'> {
   value?: string;
   onChange?: (newValue: string) => void;
   children: OptionType[] | OptionType;
-};
+}
 
 const Picker: React.FC<Props> & {
   Item: typeof Item;
@@ -73,8 +73,8 @@ function useTitle({ children, value }: { children: Props['children']; value?: st
 function useValue(propValue: Props['value'], propOnChange: Props['onChange']) {
   const [value, setValue] = useState(propValue);
 
-  const onChange = useCallback(
-    (newValue: string) => {
+  const onChange = useCallback<Required<Props>['onChange']>(
+    (newValue) => {
       // we expect `propOnChange` to change also `value` prop, so useEffect would update internal value
       if (typeof propOnChange === 'function') {
         propOnChange?.(newValue);
