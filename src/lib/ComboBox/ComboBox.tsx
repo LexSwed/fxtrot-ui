@@ -77,7 +77,6 @@ const ComboBoxInner: React.FC<Props> = ({
   }, [isOpen]);
 
   const handleValueChange = useAllHandlers((newValue?: string, newText?: string) => {
-    console.log({ newValue, newText });
     propOnChange?.(newValue);
     setTextValue(newText || '');
     onInputChange?.(newText || '');

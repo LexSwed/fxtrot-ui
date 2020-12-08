@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { HiSelector } from 'react-icons/hi';
 
 import TextField from '../TextField';
@@ -82,7 +82,10 @@ const ComboButton = () => {
       aria-hidden={isOpen}
       aria-expanded={isOpen}
       aria-label="Open the list"
-      onClick={() => {
+      /* onClick would cause onOutside click to close the popup */
+      onMouseDown={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
         open();
         inputRef.current?.focus();
       }}
