@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
-import Box from '../Box';
 
+import Box from '../Box';
 import { attribute } from '../FocusRing/focus-visible';
 import { FormField } from '../FormField/FormField';
 import Label from '../Label';

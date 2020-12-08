@@ -9,9 +9,9 @@ export const swatches: Array<readonly [ColorName, Swatch]> = Object.entries(pale
     name as ColorName,
     {
       colors: {
-        $text: allColors['$coolGray900'],
-        $textDisabled: allColors['$coolGray500'],
-        $textLight: allColors['$coolGray600'],
+        $text: allColors['$gray900'],
+        $textDisabled: allColors['$gray500'],
+        $textLight: allColors['$gray600'],
         $accent: colors[`$${name}600` as keyof typeof colors],
 
         $primaryStill: colors[`$${name}500` as keyof typeof colors],
@@ -21,14 +21,14 @@ export const swatches: Array<readonly [ColorName, Swatch]> = Object.entries(pale
         $primaryLightActive: colors[`$${name}100` as keyof typeof colors],
 
         $surfaceStill: '#fff',
-        $surfaceHover: allColors['$coolGray100'],
-        $surfaceActive: allColors['$coolGray50'],
-        $surfaceDisabled: allColors['$coolGray200'],
+        $surfaceHover: allColors['$gray100'],
+        $surfaceActive: allColors['$gray50'],
+        $surfaceDisabled: allColors['$gray200'],
 
-        $borderLight: allColors['$coolGray200'],
-        $borderStill: allColors['$coolGray400'],
-        $borderHover: allColors['$coolGray500'],
-        $borderActive: allColors['$coolGray600'],
+        $borderLight: allColors['$gray200'],
+        $borderStill: allColors['$gray400'],
+        $borderHover: allColors['$gray500'],
+        $borderActive: allColors['$gray600'],
       },
     },
   ])

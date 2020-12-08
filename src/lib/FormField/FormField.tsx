@@ -1,10 +1,11 @@
+import { StitchesProps } from '@stitches/react';
 import React, { useMemo } from 'react';
+import { useUID } from 'react-uid';
+
+import Box from '../Box';
 import Flex from '../Flex';
 import { styled } from '../stitches.config';
 import Text from '../Text';
-import { useUID } from 'react-uid';
-import Box from '../Box';
-import { StitchesProps } from '@stitches/react';
 
 const Wrapper = styled(Flex, {
   position: 'relative',

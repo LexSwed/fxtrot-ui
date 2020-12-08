@@ -1,16 +1,16 @@
-import React, { useEffect, useMemo, useRef, useState, useCallback } from 'react';
-import { useUIDSeed, uid } from 'react-uid';
+import React, { useCallback,useEffect, useMemo, useRef, useState } from 'react';
+import { uid,useUIDSeed } from 'react-uid';
+
+import { List as ListBox } from '../ListBox/ListBox';
 import Popover from '../Popover';
 import { useAllHandlers } from '../utils';
 import { useOpenState, withOpenStateProvider } from '../utils/OpenStateProvider';
-import Item from './Item';
-import { List as ListBox } from '../ListBox/ListBox';
-
-import { ComboBoxProvider, ComboBoxContext, FocusControls, RenderedItems } from './utils';
 import Input from './Input';
+import Item from './Item';
+import { ComboBoxContext, ComboBoxProvider, FocusControls, RenderedItems } from './utils';
 
 interface OptionType extends React.ReactElement<React.ComponentProps<typeof Item>, typeof Item> {}
-interface Props extends Omit<React.ComponentProps<typeof Input>, 'onChange' | 'value' | 'children'> {
+interface Props extends Omit<React.ComponentProps<typeof Input>, 'onChange' | 'onSelect' | 'value' | 'children'> {
   value?: string | null;
   onChange?: (newValue: string | undefined | null) => void;
   onInputChange?: (text: string) => void;
@@ -30,6 +30,7 @@ const ComboBoxInner: React.FC<Props> = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const idSeed = useUIDSeed();
   const isOpen = useOpenState();
+  const allowNewElement = !!onInputChange;
 
   const allItems = useMemo<RenderedItems>(() => {
     let items: RenderedItems = {};
@@ -84,7 +85,7 @@ const ComboBoxInner: React.FC<Props> = ({
   });
 
   const handleTextChange = useAllHandlers<string>((textValue) => {
-    if (textValue === '') {
+    if (allowNewElement || textValue === '') {
       onChange(null);
     }
     setTextValue(textValue);
@@ -92,17 +93,17 @@ const ComboBoxInner: React.FC<Props> = ({
 
   const handleBlur = useAllHandlers(
     textFieldProps.onBlur,
-    onInputChange
+    allowNewElement
       ? undefined
       : () => {
-          if (textValue === '') {
-            onChange(null);
-          } else if (innerValue) {
-            setTextValue(allItems[innerValue]?.label);
-          } else {
-            setTextValue('');
-          }
+        if (textValue === '') {
+          onChange(null);
+        } else if (innerValue) {
+          setTextValue(allItems[innerValue]?.label);
+        } else {
+          setTextValue('');
         }
+      }
   );
 
   const handleSelect = useAllHandlers<void>(() => {
@@ -119,6 +120,7 @@ const ComboBoxInner: React.FC<Props> = ({
     focusedItemId,
     renderedItems,
     focusControls,
+    allowNewElement,
   };
 
   const popover = useMemo(

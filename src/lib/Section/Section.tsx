@@ -1,5 +1,6 @@
 import React from 'react';
 import { useUID } from 'react-uid';
+
 import Flex, { FlexProps } from '../Flex';
 import { styled } from '../stitches.config';
 import Text from '../Text';

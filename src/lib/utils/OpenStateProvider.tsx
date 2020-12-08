@@ -1,4 +1,4 @@
-import React, { useContext, createContext, useMemo, useState } from 'react';
+import React, { createContext, useContext, useMemo, useState } from 'react';
 
 const menuStateContext = createContext(false);
 const menuStateControlsContext = createContext<ReturnType<typeof useTogglesState>[1]>({} as any);

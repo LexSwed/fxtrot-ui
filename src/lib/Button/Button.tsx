@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { styled } from '../stitches.config';
 import { FlexBox, FlexType } from '../Flex';
 import { IconBox } from '../Icon/Icon';
+import { styled } from '../stitches.config';
 
 const ButtonRoot = styled(FlexBox as FlexType<'button'>, {
   'transition': '0.2s ease-in-out',

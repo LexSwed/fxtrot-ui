@@ -1,24 +1,15 @@
+import { StitchesProps } from '@stitches/react';
 import React, { useMemo } from 'react';
+import { HiCheck, HiOutlineCalendar, HiOutlineExclamationCircle, HiX } from 'react-icons/hi';
+
 import type { FlexVariants } from '../Flex';
-import { styled } from '../stitches.config';
-import { HiOutlineCalendar, HiCheck, HiOutlineExclamationCircle, HiX } from 'react-icons/hi';
+import { FormField, Hint, HintBox, useFormField } from '../FormField/FormField';
 import Icon from '../Icon';
 import Label from '../Label';
-import { FormField, HintBox, Hint, useFormField } from '../FormField/FormField';
-import { InteractiveBox, validityVariant, IconWrapper, iconStyles } from './shared';
-import { StitchesProps } from '@stitches/react';
-import { IconType } from 'react-icons/lib';
+import { styled } from '../stitches.config';
+import { iconStyles,IconWrapper, InteractiveBox, validityVariant } from './shared';
 
 const Input = styled(InteractiveBox, {
-  '::placeholder': {
-    color: '$borderStill',
-  },
-  ':disabled': {
-    color: '$textDisabled',
-    borderColor: '$surfaceDisabled',
-    bc: '$surfaceDisabled',
-  },
-
   '&[type="number"]::-webkit-inner-spin-button, &[type="number"]::-webkit-outer-spin-button': {
     '-webkit-appearance': 'inner-spin-button !important',
     'appearance': 'inner-spin-button !important',
@@ -104,7 +95,6 @@ const TextField = React.forwardRef<HTMLDivElement, Props>(
       variant = 'boxed',
       id,
       defaultValue,
-      icon,
       inputRef,
       ...props
     },
@@ -129,7 +119,7 @@ const TextField = React.forwardRef<HTMLDivElement, Props>(
       };
     }, [onChange, type]);
 
-    const iconRight = icon || icons[validity || type];
+    const iconRight = icons[validity || type];
 
     return (
       <FormField
@@ -189,7 +179,6 @@ type Props = Omit<InputProps, 'onChange' | 'type' | 'value' | 'defaultValue' | '
     hint?: string;
     validity?: 'valid' | 'invalid';
     inputRef?: React.Ref<HTMLInputElement>;
-    icon?: IconType;
   } & OnChange;
 
 type OnChange =

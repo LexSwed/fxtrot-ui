@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+
 import Popover from '../Popover';
 import { useId } from '../utils';
 import { OpenStateProvider } from '../utils/OpenStateProvider';
-import List from './List';
 import Item from './Item';
+import List from './List';
 import Trigger from './Trigger';
 import { PickerProvider } from './utils';
 

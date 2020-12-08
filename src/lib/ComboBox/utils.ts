@@ -22,12 +22,14 @@ export interface ComboBoxContext {
   onValueChange: (newValue: string | undefined | null, newLabel: string | undefined | null) => void;
   renderedItems: RenderedItems;
   focusControls: FocusControls;
+  allowNewElement: boolean;
 }
 
 const context = createContext<ComboBoxContext>({
   inputRef: { current: null },
   renderedItems: {},
   onValueChange: () => {},
+  allowNewElement: false,
   focusControls: {
     focus: () => {},
     focusNext: () => {},

@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import { HiCheck } from 'react-icons/hi';
+
 import Icon from '../Icon';
 import ListItem from '../ListItem';
 import { focusOnMouseOver } from '../ListItem/ListItem';

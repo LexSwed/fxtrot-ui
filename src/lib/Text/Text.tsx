@@ -1,5 +1,5 @@
 import { styled } from '../stitches.config';
-import { textSize, font } from '../theme/variants';
+import { font,textSize } from '../theme/variants';
 
 const Text = styled('span', {
   p: 0,

@@ -1,10 +1,11 @@
 import React from 'react';
 import { HiSelector } from 'react-icons/hi';
+
 import { FormField, Hint, HintBox, useFormField } from '../FormField/FormField';
 import Icon from '../Icon';
 import Label from '../Label';
 import { styled } from '../stitches.config';
-import { InteractiveBox, validityVariant, InteractiveBoxType } from '../TextField/shared';
+import { InteractiveBox, InteractiveBoxType,validityVariant } from '../TextField/shared';
 import { useAllHandlers, useKeyboardHandles } from '../utils';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { usePicker } from './utils';

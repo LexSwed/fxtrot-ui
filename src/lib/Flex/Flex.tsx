@@ -1,6 +1,6 @@
+import type { IStyledComponent, StitchesProps, StitchesVariants } from '@stitches/react';
 import React from 'react';
 
-import type { IStyledComponent, StitchesProps, StitchesVariants } from '@stitches/react';
 import { styled } from '../stitches.config';
 import { gaps } from '../theme/variants';
 

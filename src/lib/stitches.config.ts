@@ -1,4 +1,5 @@
 import { createStyled } from '@stitches/react';
+
 import { attribute } from './FocusRing/focus-visible';
 import colors from './theme/colors';
 import { scales } from './theme/scales';

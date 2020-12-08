@@ -1,5 +1,5 @@
-import React from 'react';
 import { StitchesProps, StitchesVariants } from '@stitches/react';
+import React from 'react';
 
 import { styled } from '../stitches.config';
 import { createVariant } from '../theme/variants';
@@ -10,7 +10,6 @@ export const iconStyles: StylesObject = {
   top: 0,
   right: 0,
   bottom: 0,
-  width: '$base',
 };
 
 export const IconWrapper = styled('div', {
@@ -33,6 +32,15 @@ export const InteractiveBox = styled('input', {
   'bc': '$surfaceStill',
   'outline': 'none',
   'border': '1px solid transparent',
+
+  '::placeholder': {
+    color: '$borderStill',
+  },
+  ':disabled': {
+    color: '$textDisabled',
+    borderColor: '$surfaceDisabled',
+    bc: '$surfaceDisabled',
+  },
 
   'variants': {
     variant: {

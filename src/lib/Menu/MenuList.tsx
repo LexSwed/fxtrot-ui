@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
-import { useMenu } from './utils';
 import type { Options } from '@popperjs/core';
+import React, { useEffect, useRef } from 'react';
+
 import ListBox from '../ListBox/ListBox';
 import Popover from '../Popover';
+import { useMenu } from './utils';
 
 type UlListProps = React.ComponentProps<typeof ListBox>;
 

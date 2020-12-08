@@ -1,8 +1,9 @@
-import React from 'react';
-import { styled } from '../stitches.config';
-import { FlexBox, FlexType } from '../Flex';
-import Text from '../Text';
 import { StitchesProps } from '@stitches/react';
+import React from 'react';
+
+import { FlexBox, FlexType } from '../Flex';
+import { styled } from '../stitches.config';
+import Text from '../Text';
 
 const Main = styled(Text, {
   lineHeight: 1,

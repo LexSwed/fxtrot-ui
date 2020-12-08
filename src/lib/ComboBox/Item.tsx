@@ -1,5 +1,6 @@
 import React from 'react';
 import { HiCheck } from 'react-icons/hi';
+
 import Icon from '../Icon';
 import ListItem from '../ListItem';
 import { styled } from '../stitches.config';

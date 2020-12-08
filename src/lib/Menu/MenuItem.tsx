@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { useAllHandlers } from '../utils';
-import { useMenu } from './utils';
 import ListItem from '../ListItem';
-import { useOpenStateControls } from '../utils/OpenStateProvider';
 import { focusOnMouseOver } from '../ListItem/ListItem';
+import { useAllHandlers } from '../utils';
+import { useOpenStateControls } from '../utils/OpenStateProvider';
+import { useMenu } from './utils';
 
 type Props = React.ComponentProps<typeof ListItem> & { action?: string };
 
