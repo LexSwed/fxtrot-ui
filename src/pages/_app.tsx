@@ -1,7 +1,7 @@
 import { DokzProvider, GithubLink } from 'dokz';
-import React, { Fragment } from 'react';
-import Head from 'next/head';
 import { AppProps } from 'next/dist/next-server/lib/router/router';
+import Head from 'next/head';
+import React, { Fragment } from 'react';
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;

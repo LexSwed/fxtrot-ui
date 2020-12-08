@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { createPopper, Instance, Modifier, Options, State, VirtualElement } from '@popperjs/core';
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { useUID } from 'react-uid';
 
 type PossibleRef<T> = React.Ref<T> | ((instance: T | null) => void) | null | undefined;
@@ -43,22 +43,27 @@ export function joinNonEmpty(...strings: Array<string | undefined>) {
   return strings.filter(Boolean).join(' ');
 }
 
-export function useAllHandlers<E extends React.SyntheticEvent<any, Event>>(
-  ...handlers: (React.EventHandler<E> | undefined)[]
-): React.EventHandler<E> {
+export function useAllHandlers<E = React.SyntheticEvent<any, Event>>(
+  ...handlers: (
+    | (E extends React.SyntheticEvent<any, Event> ? React.EventHandler<E> : (...args: any[]) => void)
+    | undefined
+  )[]
+): E extends React.SyntheticEvent<any, Event> ? React.EventHandler<E> : (...args: any[]) => void {
   const handlersRef = useRef(handlers);
 
   useEffect(() => {
     handlersRef.current = handlers;
   }, handlers); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return useCallback((...args) => {
-    handlersRef.current.forEach((fn) => fn?.(...args));
-  }, []);
+  return useCallback((...args: any[]) => {
+    handlersRef.current.forEach((fn) => (fn as any)?.(...args));
+  }, []) as E extends React.SyntheticEvent<any, Event> ? React.EventHandler<E> : (...args: any[]) => void;
 }
 
 type KeyboardHandler = ((event: React.KeyboardEvent<any>) => void) | undefined;
-type KeyboardHandlers = { [Key in React.KeyboardEvent<any>['key']]: KeyboardHandler };
+type KeyboardHandlers = {
+  [Key in React.KeyboardEvent<any>['key'] | `${React.KeyboardEvent<any>['key']}.propagate`]: KeyboardHandler;
+};
 
 export function useKeyboardHandles(handlers: KeyboardHandlers): KeyboardHandler {
   const handlersRef = useRef(handlers);
@@ -68,9 +73,14 @@ export function useKeyboardHandles(handlers: KeyboardHandlers): KeyboardHandler 
   }, [handlers]);
 
   return useCallback<(event: React.KeyboardEvent<any>) => void>((event) => {
-    const handler = handlersRef.current[event.key];
-    if (typeof handler === 'function') {
+    const handlers = handlersRef.current;
+    let handler = handlers[event.key];
+    if (handler) {
       event.preventDefault();
+      return handler(event);
+    }
+    handler = handlers[`${event.key}.propagate`];
+    if (handler) {
       handler(event);
     }
   }, []);
@@ -165,6 +175,10 @@ export function useId(id?: string) {
   let newId = useUID();
 
   return id || newId;
+}
+
+export function querySelectorAll<T extends HTMLElement>(query: string, node: T | null) {
+  return Array.from((node || document).querySelectorAll(query));
 }
 
 export * from './types';

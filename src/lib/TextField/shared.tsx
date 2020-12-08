@@ -1,4 +1,6 @@
-import { StitchesVariants } from '@stitches/react';
+import { StitchesProps, StitchesVariants } from '@stitches/react';
+import React from 'react';
+
 import { styled } from '../stitches.config';
 import { createVariant } from '../theme/variants';
 import { StylesObject } from '../utils';
@@ -8,7 +10,6 @@ export const iconStyles: StylesObject = {
   top: 0,
   right: 0,
   bottom: 0,
-  width: '$base',
 };
 
 export const IconWrapper = styled('div', {
@@ -31,6 +32,15 @@ export const InteractiveBox = styled('input', {
   'bc': '$surfaceStill',
   'outline': 'none',
   'border': '1px solid transparent',
+
+  '::placeholder': {
+    color: '$borderStill',
+  },
+  ':disabled': {
+    color: '$textDisabled',
+    borderColor: '$surfaceDisabled',
+    bc: '$surfaceDisabled',
+  },
 
   'variants': {
     variant: {
@@ -102,3 +112,68 @@ export const validityVariant = createVariant({
     },
   },
 });
+
+const Input = styled(InteractiveBox, {
+  '::placeholder': {
+    color: '$borderStill',
+  },
+  ':disabled': {
+    color: '$textDisabled',
+    borderColor: '$surfaceDisabled',
+    bc: '$surfaceDisabled',
+  },
+
+  '&[type="number"]::-webkit-inner-spin-button, &[type="number"]::-webkit-outer-spin-button': {
+    '-webkit-appearance': 'inner-spin-button !important',
+    'appearance': 'inner-spin-button !important',
+  },
+
+  '&[type="date"]': {
+    'backgroundImage': 'none',
+    '::-webkit-calendar-picker-indicator': {
+      backgroundImage: 'none',
+      m: 0,
+      p: 0,
+      ...iconStyles,
+    },
+  },
+
+  '&[type="search"]': {
+    '::-webkit-search-cancel-button': {
+      appearance: 'none',
+      m: 0,
+      p: 0,
+      ...iconStyles,
+    },
+    [`&:placeholder-shown + ${IconWrapper}`]: {
+      opacity: 0,
+    },
+  },
+
+  'variants': {
+    hasIcon: {
+      true: {
+        pr: '$8',
+      },
+    },
+  },
+});
+
+const InputWrapper = styled('div', {
+  position: 'relative',
+  width: '100%',
+
+  variants: {
+    validity: validityVariant,
+  },
+});
+
+interface InputFieldProps extends StitchesVariants<typeof InputWrapper>, StitchesProps<typeof Input> {
+  inputRef?: React.Ref<HTMLInputElement>;
+}
+
+export const InputField: React.FC<InputFieldProps> = ({ validity, inputRef, ...props }) => (
+  <InputWrapper validity={validity}>
+    <Input {...props} ref={inputRef} />
+  </InputWrapper>
+);

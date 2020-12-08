@@ -1,6 +1,5 @@
 import { css } from '../stitches.config';
-
-import { swatches, ColorName } from './colors';
+import { ColorName,swatches } from './colors';
 
 export const themes = Object.fromEntries(swatches.map(([name, swatch]) => [name, css.theme(swatch)])) as Themes;
 

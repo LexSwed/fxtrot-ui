@@ -1,6 +1,6 @@
+import type { IStyledComponent, StitchesProps, StitchesVariants } from '@stitches/react';
 import React from 'react';
 
-import type { IStyledComponent, StitchesProps, StitchesVariants } from '@stitches/react';
 import { styled } from '../stitches.config';
 import { gaps } from '../theme/variants';
 
@@ -84,7 +84,9 @@ export const FlexBox = styled('div', {
   },
 });
 
-const Flex = React.forwardRef<unknown, StitchesProps<typeof FlexBox>>(
+export interface Props extends StitchesProps<typeof FlexBox> {}
+
+const Flex = React.forwardRef<unknown, Props>(
   ({ space = 'none', flow = 'column', wrap = 'nowrap', main = 'start', cross = 'start', ...props }, ref) => {
     return <FlexBox space={space} flow={flow} wrap={wrap} main={main} cross={cross} {...props} ref={ref as any} />;
   }

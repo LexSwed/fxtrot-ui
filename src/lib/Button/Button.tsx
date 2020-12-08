@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { styled } from '../stitches.config';
 import { FlexBox, FlexType } from '../Flex';
 import { IconBox } from '../Icon/Icon';
+import { styled } from '../stitches.config';
 
 const ButtonRoot = styled(FlexBox as FlexType<'button'>, {
   'transition': '0.2s ease-in-out',
@@ -126,11 +126,18 @@ const ButtonRoot = styled(FlexBox as FlexType<'button'>, {
           color: '$textDisabled',
         },
       },
+      transparent: {
+        bc: 'transparent',
+        borderColor: 'transparent',
+        color: '$text',
+      },
     },
   },
 });
 
-const Button = React.forwardRef<HTMLButtonElement, React.ComponentProps<typeof ButtonRoot>>(
+interface Props extends React.ComponentProps<typeof ButtonRoot> {}
+
+const Button = React.forwardRef<HTMLButtonElement, Props>(
   ({ variant = 'primary', size = 'md', space = '$2', type = 'button', css, style, className, ...props }, ref) => {
     return (
       <ButtonRoot

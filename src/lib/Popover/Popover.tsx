@@ -1,6 +1,7 @@
-import React, { useMemo } from 'react';
 import type { Options } from '@popperjs/core';
 import { AnimatePresence, motion, Variants } from 'framer-motion';
+import React, { useMemo } from 'react';
+
 import Portal from '../Portal';
 import { styled } from '../stitches.config';
 import { sameWidth, useKeyboardHandles, useOnClickOutside, usePopper } from '../utils';
@@ -14,9 +15,8 @@ const Popper = styled('div', {
 const PopperBox = styled(motion.div, {
   bc: '$surfaceStill',
   br: '$md',
-  border: '1px solid $borderLight',
   outline: 'none',
-  boxShadow: '$xl',
+  boxShadow: '$popper',
 });
 
 const animations: Record<string, Variants> = {

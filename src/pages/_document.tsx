@@ -1,5 +1,5 @@
-import React from 'react';
 import NextDocument, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
+import React from 'react';
 import { css } from 'src/lib/stitches.config';
 
 export default class Document extends NextDocument {

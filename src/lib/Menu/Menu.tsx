@@ -1,10 +1,10 @@
 import React, { useMemo, useRef } from 'react';
 import { useUIDSeed } from 'react-uid';
-import { OpenStateProvider } from '../utils/OpenStateProvider';
 
+import { OpenStateProvider } from '../utils/OpenStateProvider';
 import MenuButton from './MenuButton';
-import MenuList from './MenuList';
 import MenuItem from './MenuItem';
+import MenuList from './MenuList';
 import { MenuProvider } from './utils';
 
 const Menu: React.FC<{

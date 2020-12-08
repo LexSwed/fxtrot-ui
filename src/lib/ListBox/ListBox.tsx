@@ -1,14 +1,19 @@
 import { FocusScope, useFocusManager } from '@react-aria/focus';
 import React from 'react';
+
 import { styled } from '../stitches.config';
 import { useKeyboardHandles } from '../utils';
 
-const List = styled('ul', {
-  m: 0,
-  p: '$1',
-  overflowY: 'auto',
-  maxHeight: '240px',
-  $outline: -1,
+export const List = styled('ul', {
+  'm': 0,
+  'p': '$1',
+  'overflowY': 'auto',
+  'maxHeight': '240px',
+  '$outline': -1,
+
+  '&:empty': {
+    display: 'none',
+  },
 });
 
 const ListInner: React.FC<{ wrap?: boolean }> = ({ wrap, ...props }) => {

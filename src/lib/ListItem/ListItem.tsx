@@ -1,5 +1,6 @@
 import { StitchesProps } from '@stitches/react';
 import React from 'react';
+
 import { FlexBox, FlexType } from '../Flex';
 import { styled } from '../stitches.config';
 import Text from '../Text';
@@ -24,22 +25,26 @@ const Item = styled(FlexBox as FlexType<'li'>, {
     bc: '$surfaceActive',
   },
 
+  'variants': {
+    isFocused: {
+      true: {
+        bc: '$surfaceHover',
+      },
+    },
+  },
+
   [`& ${Text}`]: {
     fontSize: 'inherit',
     lineHeight: 'inherit',
   },
 });
 
-type Props = { disabled?: boolean } & StitchesProps<typeof Item>;
+export interface Props extends StitchesProps<typeof Item> {
+  disabled?: boolean;
+}
 
 const ListItem = React.forwardRef<HTMLLIElement, Props>(
   ({ flow = 'row', cross = 'center', space = '$2', disabled, as = 'li', ...props }, ref) => {
-    const onMouseEnter = useAllHandlers(props.onMouseEnter, (e) => {
-      e.currentTarget.focus({
-        preventScroll: true,
-      });
-    });
-
     const onKeyDown = useKeyboardHandles({
       'Enter': (e) => e.currentTarget.click?.(),
       ' ': (e) => e.currentTarget.click?.(),
@@ -57,7 +62,6 @@ const ListItem = React.forwardRef<HTMLLIElement, Props>(
         {...props}
         aria-disabled={disabled}
         ref={ref}
-        onMouseEnter={onMouseEnter}
         onKeyDown={handleKeyDown}
       />
     );
@@ -67,3 +71,9 @@ const ListItem = React.forwardRef<HTMLLIElement, Props>(
 ListItem.displayName = 'ListItem';
 
 export default ListItem;
+
+export function focusOnMouseOver(e: React.MouseEvent<HTMLLIElement, MouseEvent>) {
+  e.currentTarget.focus({
+    preventScroll: true,
+  });
+}

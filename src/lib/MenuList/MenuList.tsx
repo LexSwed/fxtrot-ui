@@ -1,8 +1,9 @@
-import React, { useCallback, useRef } from 'react';
 import { getFocusableTreeWalker } from '@react-aria/focus';
-import Item from './Item';
-import { useAllHandlers, useKeyboardHandles } from '../utils';
+import React, { useCallback, useRef } from 'react';
+
 import { styled } from '../stitches.config';
+import { useAllHandlers, useKeyboardHandles } from '../utils';
+import Item from './Item';
 
 const List = styled('ul', {
   m: 0,

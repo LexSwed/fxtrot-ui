@@ -1,10 +1,11 @@
+import { StitchesProps } from '@stitches/react';
 import React from 'react';
+import { HiOutlineExternalLink } from 'react-icons/hi';
+
 import { FlexBox, FlexType } from '../Flex';
 import Icon from '../Icon';
-import { HiOutlineExternalLink } from 'react-icons/hi';
 import { styled } from '../stitches.config';
-import { textSize, font } from '../theme/variants';
-import { StitchesProps } from '@stitches/react';
+import { font,textSize } from '../theme/variants';
 
 const Link = styled(FlexBox as FlexType<'a'>, {
   'color': '$primaryStill',

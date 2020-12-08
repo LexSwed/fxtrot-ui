@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useMemo } from 'react';
+
 import Box from '../Box';
-import { themes } from '../theme/themes';
 import { css, styled } from '../stitches.config';
-import { Swatch, ColorName } from '../theme/colors';
+import { ColorName,Swatch } from '../theme/colors';
+import { themes } from '../theme/themes';
 
 type Props = {
   theme?: ColorName | Swatch;

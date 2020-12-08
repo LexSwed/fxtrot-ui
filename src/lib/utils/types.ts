@@ -1,5 +1,6 @@
-import type { TCssWithBreakpoints, TCssProp, BreakPointsKeys } from '@stitches/react';
-import type { TCssProperties, TCss } from '@stitches/core';
+import type { TCss,TCssProperties } from '@stitches/core';
+import type { BreakPointsKeys,TCssProp, TCssWithBreakpoints } from '@stitches/react';
+
 import { css } from '../stitches.config';
 
 export interface Config extends GetConfig<typeof css> {}

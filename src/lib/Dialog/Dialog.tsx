@@ -1,8 +1,10 @@
 import { FocusScope } from '@react-aria/focus';
 import { StitchesProps } from '@stitches/react';
+import { AnimatePresence, motion } from 'framer-motion';
 import React, { useMemo } from 'react';
-import { useUIDSeed } from 'react-uid';
 import { HiOutlineX } from 'react-icons/hi';
+import { useUIDSeed } from 'react-uid';
+
 import Button from '../Button';
 import Flex from '../Flex';
 import { HeadingText } from '../Heading/Heading';
@@ -10,10 +12,8 @@ import Icon from '../Icon';
 import Portal from '../Portal';
 import { styled } from '../stitches.config';
 import { useAllHandlers, useKeyboardHandles } from '../utils';
-
 import { OpenStateProvider, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { DialogContext, DialogProvider, useDialog } from './utils';
-import { AnimatePresence, motion } from 'framer-motion';
 
 export const DialogTrigger: React.FC<{
   children: [React.ReactElement, DialogContext['render']];
@@ -132,7 +132,9 @@ const CloseButtonContainer = styled('div', {
   right: '$2',
 });
 
-export const Modal: React.FC<StitchesProps<typeof DialogWindow>> = ({ children, ...props }) => {
+export interface ModalProps extends StitchesProps<typeof DialogWindow> {}
+
+export const Modal: React.FC<ModalProps> = ({ children, ...props }) => {
   const { seed } = useDialog();
   const { close } = useOpenStateControls();
   const handleKeyDown = useAllHandlers(

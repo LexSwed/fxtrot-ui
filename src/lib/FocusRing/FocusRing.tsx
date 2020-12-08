@@ -1,5 +1,6 @@
-import React from 'react';
 import { FocusRing as SpectrumFocusRing } from '@react-aria/focus';
+import React from 'react';
+
 import { css } from '../stitches.config';
 
 const focusClass = css({

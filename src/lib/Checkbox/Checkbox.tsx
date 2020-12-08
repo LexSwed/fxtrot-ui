@@ -1,8 +1,10 @@
+import { StitchesProps } from '@stitches/react';
 import React, { useMemo } from 'react';
 import { HiCheck } from 'react-icons/hi';
+
 import Box from '../Box';
 import { attribute } from '../FocusRing/focus-visible';
-import { FormField } from '../FormField/FormField';
+import { FormField, FormFieldProps } from '../FormField/FormField';
 import Icon from '../Icon';
 import Label from '../Label';
 import { styled } from '../stitches.config';
@@ -99,13 +101,14 @@ const Input = styled('input', {
   },
 });
 
-type WrapperProps = React.ComponentProps<typeof CheckboxWrapper>;
-type InputProps = React.ComponentProps<typeof Input>;
-type FormFieldProps = React.ComponentProps<typeof FormField>;
+type InputProps = StitchesProps<typeof Input>;
 
-type Props = FormFieldProps & InputProps & WrapperProps & { label?: string; secondaryLabel?: string };
+interface Props extends InputProps  { 
+  label?: string;
+  secondaryLabel?: string;
+};
 
-const Checkbox: React.FC<Props> = ({
+const Checkbox: React.FC<FormFieldProps & Props> = ({
   checked,
   onChange,
   css,

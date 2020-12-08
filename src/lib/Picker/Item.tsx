@@ -1,9 +1,11 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import { HiCheck } from 'react-icons/hi';
+
 import Icon from '../Icon';
 import ListItem from '../ListItem';
+import { focusOnMouseOver } from '../ListItem/ListItem';
 import { styled } from '../stitches.config';
-import { useForkRef } from '../utils';
+import { useAllHandlers, useForkRef } from '../utils';
 import { useOpenStateControls } from '../utils/OpenStateProvider';
 import { usePicker } from './utils';
 
@@ -37,10 +39,19 @@ const Item = React.forwardRef<HTMLLIElement, Props>(({ value, label, ...props },
     }
   }, [isSelected]);
 
+  const onMouseEnter = useAllHandlers(props.onMouseEnter, focusOnMouseOver);
+
   const refs = useForkRef(innerRef, ref);
 
   return (
-    <Option {...props} aria-selected={isSelected} onClick={onClick} main="spread" ref={refs}>
+    <Option
+      {...props}
+      onMouseEnter={onMouseEnter}
+      aria-selected={isSelected}
+      onClick={onClick}
+      main="spread"
+      ref={refs}
+    >
       {label}
       {isSelected ? <SelectedIcon as={HiCheck} size="md" /> : null}
     </Option>

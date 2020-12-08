@@ -1,6 +1,7 @@
 import { StitchesProps } from '@stitches/react';
 import React from 'react';
-import { styled, css } from '../stitches.config';
+
+import { css,styled } from '../stitches.config';
 import { createVariant } from '../theme/variants';
 
 const rotate = css.keyframes({
