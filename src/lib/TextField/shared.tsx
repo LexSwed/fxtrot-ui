@@ -10,6 +10,7 @@ export const iconStyles: StylesObject = {
   top: 0,
   right: 0,
   bottom: 0,
+  size: '$base',
 };
 
 export const IconWrapper = styled('div', {
