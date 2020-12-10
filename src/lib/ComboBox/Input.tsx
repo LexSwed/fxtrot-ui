@@ -21,8 +21,7 @@ const InputWrapper = styled('div', {
   variants: {
     validity: validityVariant,
   },
-})
-
+});
 
 const Input = styled(InteractiveBox, {
   variants: {
@@ -31,10 +30,10 @@ const Input = styled(InteractiveBox, {
         pr: '$18',
       },
       false: {
-        pr: '$10'
-      }
-    }
-  }
+        pr: '$10',
+      },
+    },
+  },
 });
 
 type InputProps = StitchesProps<typeof InteractiveBox>;
@@ -83,7 +82,7 @@ const ComboBoxInput = React.forwardRef<HTMLDivElement, Props>(
     const { open, close } = useOpenStateControls();
 
     const handleChange = useAllHandlers((e: React.ChangeEvent<HTMLInputElement>) => {
-      onChange?.(e.currentTarget.value)
+      onChange?.(e.currentTarget.value);
     }, open);
 
     const handleSelect = useAllHandlers(onSelect, close);
@@ -112,7 +111,7 @@ const ComboBoxInput = React.forwardRef<HTMLDivElement, Props>(
     });
 
     const handleKeyDown = useAllHandlers(keydownControls, props.onKeyDown);
-    const hasNewBadge = !selectedItemValue && !!value && allowNewElement
+    const hasNewBadge = !selectedItemValue && !!value && allowNewElement;
 
     return (
       <FormField
@@ -166,8 +165,8 @@ const ButtonContainer = styled(Flex, {
   position: 'absolute',
   right: 0,
   top: 0,
-  height: '100%'
-})
+  height: '100%',
+});
 
 const ButtonStyled = styled(Button, {
   zIndex: 2,
@@ -178,7 +177,7 @@ const ButtonStyled = styled(Button, {
 const ComboBoxButton = React.memo(({ hasNewBadge }: { hasNewBadge: boolean }) => {
   const isOpen = useOpenState();
   const { open } = useOpenStateControls();
-  const { inputRef,  } = useComboBox();
+  const { inputRef } = useComboBox();
 
   return (
     <ButtonContainer flow="row" cross="center">

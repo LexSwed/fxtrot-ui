@@ -4,12 +4,11 @@
   "license": "Apache-2.0",
   "version": "0.0.1",
   "source": "src/lib/index.ts",
-  "main": "build/index.js",
-  "module": "build/index.es.js",
-  "umd": "build/index.umd.js",
-  "types": "build/index.d.ts",
+  "main": "dist/ui.js",
+  "module": "dist/ui.es.js",
+  "types": "dist/index.d.ts",
   "files": [
-    "build",
+    "dist",
     "src/lib"
   ],
   "sideEffects": false,
@@ -24,10 +23,11 @@
     "access": "public"
   },
   "scripts": {
-    "build": "microbundle build --jsx React.createElement --entry src/lib/index.ts --jsxFragment React.Fragment --tsconfig tsconfig.lib.json --compress",
-    "start": "microbundle watch --jsx React.createElement --entry src/lib/index.ts --jsxFragment React.Fragment --tsconfig tsconfig.lib.json --format modern --no-compress",
+    "build": "tsdx build --entry src/lib/index.ts --tsconfig tsconfig.lib.json",
+    "start": "tsdx watch --entry src/lib/index.ts --tsconfig tsconfig.lib.json",
     "dev": "yarn run dokz:dev",
-    "lint": "eslint src",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "eslint src --fix",
     "typecheck": "tsc --noEmit",
     "dokz:dev": "next dev -p 3001",
     "dokz:build": "next build",
@@ -46,7 +46,7 @@
     "@chakra-ui/core": "^0.8.0",
     "@emotion/core": "^10.1.1",
     "@emotion/styled": "^10.0.27",
-    "@types/jest": "^26.0.17",
+    "@types/jest": "^26.0.18",
     "@types/node": "^14.14.11",
     "@types/react": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^4.9.1",
@@ -64,7 +64,6 @@
     "eslint-plugin-simple-import-sort": "^6.0.1",
     "husky": "^4.3.5",
     "jest": "^26.6.3",
-    "microbundle": "^0.12.4",
     "next": "^10.0.3",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.2.1",
@@ -72,11 +71,18 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-icons": "^4.1.0",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.0.3",
     "typescript": "^4.1.2"
   },
   "peerDependencies": {
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "printWidth": 120,
+    "quoteProps": "consistent"
   },
   "husky": {
     "hooks": {
@@ -85,6 +91,6 @@
   },
   "resolutions": {
     "typescript": "^4.1.2",
-    "rollup-plugin-typescript2": "^0.29.0"
+    "prettier": "^2.2.1"
   }
 }

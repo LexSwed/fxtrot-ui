@@ -15,7 +15,7 @@ export { default as MenuList } from './MenuList';
 export { default as Picker } from './Picker';
 export { default as Section } from './Section';
 export { default as Spinner } from './Spinner';
-export { css,styled, theme } from './stitches.config';
+export { css, styled, theme } from './stitches.config';
 export { default as Switch } from './Switch';
 export { default as Tag } from './Tag';
 export { default as Text } from './Text';

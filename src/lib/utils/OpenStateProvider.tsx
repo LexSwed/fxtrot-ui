@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useMemo, useState } from 'react';
 
 const menuStateContext = createContext(false);
-const menuStateControlsContext = createContext<ReturnType<typeof useTogglesState>[1]>({} as any);
+const menuStateControlsContext = createContext<MenuControlFunctions>({} as MenuControlFunctions);
 
 export const OpenStateProvider: React.FC<{ defaultOpen?: boolean }> = ({ defaultOpen, children }) => {
   const [isOpen, controls] = useTogglesState(defaultOpen);
@@ -33,7 +33,7 @@ interface MenuControlFunctions {
   open: () => void;
   close: () => void;
   toggle: () => void;
-};
+}
 
 function useTogglesState(defaultOpen = false): [isOpen: boolean, controls: MenuControlFunctions] {
   const [isOpen, setOpen] = useState(defaultOpen);

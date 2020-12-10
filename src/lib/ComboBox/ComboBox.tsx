@@ -1,5 +1,5 @@
-import React, { useCallback,useEffect, useMemo, useRef, useState } from 'react';
-import { uid,useUIDSeed } from 'react-uid';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { uid, useUIDSeed } from 'react-uid';
 
 import { List as ListBox } from '../ListBox/ListBox';
 import Popover from '../Popover';
@@ -96,14 +96,14 @@ const ComboBoxInner: React.FC<Props> = ({
     allowNewElement
       ? undefined
       : () => {
-        if (textValue === '') {
-          onChange(null);
-        } else if (innerValue) {
-          setTextValue(allItems[innerValue]?.label);
-        } else {
-          setTextValue('');
+          if (textValue === '') {
+            onChange(null);
+          } else if (innerValue) {
+            setTextValue(allItems[innerValue]?.label);
+          } else {
+            setTextValue('');
+          }
         }
-      }
   );
 
   const handleSelect = useAllHandlers<void>(() => {
