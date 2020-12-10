@@ -86,11 +86,9 @@ export const FlexBox = styled('div', {
 
 export interface Props extends StitchesProps<typeof FlexBox> {}
 
-const Flex = React.forwardRef<unknown, Props>(
-  ({ space = 'none', flow = 'column', wrap = 'nowrap', main = 'start', cross = 'start', ...props }, ref) => {
-    return <FlexBox space={space} flow={flow} wrap={wrap} main={main} cross={cross} {...props} ref={ref as any} />;
-  }
-);
+const Flex = React.forwardRef<unknown, Props>(({ space = 'none', flow = 'column', wrap = 'nowrap', ...props }, ref) => {
+  return <FlexBox space={space} flow={flow} wrap={wrap} {...props} ref={ref as any} />;
+});
 
 export default Flex;
 

@@ -5,10 +5,17 @@
     "sourceMap": true,
     "strict": true,
     "esModuleInterop": true,
-    "types": ["react", "jest"],
+    "types": [
+      "react",
+      "jest"
+    ],
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "noEmit": true,
     "moduleResolution": "node",
@@ -17,9 +24,17 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@fxtrot/ui": ["src/lib"]
-    }
+      "@fxtrot/ui": [
+        "src/lib"
+      ]
+    },
+    "isolatedModules": true
   },
-  "include": ["next-env.d.ts", "src/**/*"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

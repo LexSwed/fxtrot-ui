@@ -13,6 +13,8 @@ export const swatches: Array<readonly [ColorName, Swatch]> = Object.entries(pale
         $textDisabled: allColors['$gray500'],
         $textLight: allColors['$gray600'],
         $accent: colors[`$${name}600` as keyof typeof colors],
+        $success: allColors['$green600'],
+        $danger: allColors['$red600'],
 
         $primaryStill: colors[`$${name}500` as keyof typeof colors],
         $primaryHover: colors[`$${name}600` as keyof typeof colors],
@@ -41,6 +43,8 @@ export const swatches: Array<readonly [ColorName, Swatch]> = Object.entries(pale
           $textDisabled: allColors['$coolGray400'],
           $textLight: allColors['$coolGray100'],
           $accent: '#fff',
+          $success: allColors['$green600'],
+          $danger: allColors['$red600'],
 
           $primaryStill: allColors['$coolGray500'],
           $primaryHover: allColors['$coolGray600'],
@@ -77,6 +81,8 @@ export interface Swatch {
     $textDisabled: string;
     $textLight: string;
     $accent: string;
+    $success: string;
+    $danger: string;
 
     $primaryStill: string;
     $primaryHover: string;

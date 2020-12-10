@@ -15,10 +15,10 @@ const Text = styled('span', {
         color: '$textLight',
       },
       success: {
-        color: '$lightGreen600',
+        color: '$success',
       },
       danger: {
-        color: '$red600',
+        color: '$danger',
       },
     },
     align: {

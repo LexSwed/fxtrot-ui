@@ -95,15 +95,15 @@ export type InteractiveBoxType<T = HTMLInputElement> = T extends HTMLElement
 export const validityVariant = createVariant({
   valid: {
     [`& ${IconWrapper}`]: {
-      color: '$lightGreen600',
+      color: '$success',
     },
   },
   invalid: {
     [`& ${IconWrapper}`]: {
-      color: '$red600',
+      color: '$danger',
     },
     [`${InteractiveBox}`]: {
-      'borderColor': '$red600',
+      'borderColor': '$danger',
       ':hover': {
         borderColor: '$red700',
       },

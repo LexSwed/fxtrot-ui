@@ -8,7 +8,7 @@ const Block = styled('div', {
   transition: '0.2s ease-in-out',
   fontFamily: '$default',
   border: '1px solid transparent',
-  br: '$md',
+  br: '$sm',
   cursor: 'default',
   whiteSpace: 'nowrap',
   display: 'flex',
