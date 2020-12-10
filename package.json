@@ -4,8 +4,8 @@
   "license": "Apache-2.0",
   "version": "0.0.1",
   "source": "src/lib/index.ts",
-  "main": "dist/ui.js",
-  "module": "dist/ui.es.js",
+  "main": "dist/index.js",
+  "module": "dist/ui.esm.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
