@@ -95,13 +95,13 @@ const ButtonRoot = styled(FlexBox as FlexType<'button'>, {
         },
       },
       flat: {
-        'bc': 'transparent',
+        'bc': '$flatStill',
         'color': '$text',
         ':hover': {
-          bc: '$surfaceHover',
+          bc: '$flatHover',
         },
         ':active': {
-          bc: '$surfaceActive',
+          bc: '$flatActive',
         },
         ':disabled': {
           borderColor: 'transparent',

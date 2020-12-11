@@ -18,17 +18,18 @@ const Item = styled(FlexBox as FlexType<'li'>, {
   'userSelect': 'none',
   'flexShrink': 0,
   'transition': '0.1s ease-in-out',
+  'bc': '$flatStill',
   ':focus:not(:active)': {
-    bc: '$surfaceHover',
+    bc: '$flatHover',
   },
   ':active': {
-    bc: '$surfaceActive',
+    bc: '$flatActive',
   },
 
   'variants': {
     isFocused: {
       true: {
-        bc: '$surfaceHover',
+        bc: '$flatHover',
       },
     },
   },
