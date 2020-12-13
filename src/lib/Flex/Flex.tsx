@@ -3,7 +3,7 @@ import React from 'react';
 
 import { styled } from '../stitches.config';
 import { gaps } from '../theme/variants';
-import type { Config } from '../utils/types';
+import { Config, forwardRef } from '../utils/types';
 
 export const FlexBox = styled('div', {
   'display': 'flex',
@@ -85,9 +85,7 @@ export const FlexBox = styled('div', {
   },
 });
 
-export interface Props extends StitchesProps<typeof FlexBox> {}
-
-const Flex = React.forwardRef<unknown, Props>(({ space = 'none', flow = 'column', wrap = 'nowrap', ...props }, ref) => {
+const Flex = forwardRef<FlexProps, 'div'>(({ space = 'none', flow = 'column', wrap = 'nowrap', ...props }, ref) => {
   return <FlexBox space={space} flow={flow} wrap={wrap} {...props} ref={ref as any} />;
 });
 
@@ -95,4 +93,4 @@ export default Flex;
 
 export interface FlexVariants extends StitchesVariants<typeof FlexBox> {}
 export interface FlexProps extends StitchesProps<typeof FlexBox> {}
-export type FlexType<C extends React.ElementType = 'div'> = IStyledComponent<C, FlexVariants, Config>;
+export interface FlexType<C extends React.ElementType = 'div'> extends IStyledComponent<C, FlexVariants, Config> {}

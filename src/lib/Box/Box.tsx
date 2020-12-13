@@ -3,10 +3,11 @@ import React from 'react';
 
 import { styled } from '../stitches.config';
 import type { CssProperties } from '../utils';
+import { forwardRef } from '../utils/types';
 
 const Div = styled('div', {});
 
-const Box: React.FC<Props> = ({ children, css, ...props }) => {
+const Box = forwardRef<Props, 'div'>(({ children, css, ...props }) => {
   const [style, attrs] = Object.entries(props).reduce(
     (res, [key, value]: [any, any]) => {
       if (VALID_ITEMS.has(key)) {
@@ -25,7 +26,7 @@ const Box: React.FC<Props> = ({ children, css, ...props }) => {
       {children}
     </Div>
   );
-};
+});
 
 export default Box;
 
@@ -103,9 +104,7 @@ const acceptedProperties: readonly (keyof CssProperties)[] = [
   'whiteSpace',
 ] as const;
 /** Not all properties supported */
-export interface Props extends Omit<BoxProps, 'as' | 'translate' | 'color'>, CustomField {
-  as?: JSX.IntrinsicElements | React.ElementType;
-}
+export interface Props extends Omit<BoxProps, 'as' | 'translate' | 'color'>, CustomField {}
 
 type CustomField = {
   [prop in typeof acceptedProperties[number]]?: CssProperties[prop];

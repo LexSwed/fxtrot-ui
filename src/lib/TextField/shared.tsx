@@ -1,9 +1,9 @@
-import type { StitchesProps, StitchesVariants } from '@stitches/react';
+import type { IStyledComponent, StitchesProps, StitchesVariants } from '@stitches/react';
 import React from 'react';
 
 import { styled } from '../stitches.config';
 import { createVariant } from '../theme/variants';
-import type { StylesObject } from '../utils';
+import type { Config, StylesObject } from '../utils';
 
 export const iconStyles: StylesObject = {
   position: 'absolute',
@@ -83,14 +83,8 @@ export const InteractiveBox = styled('input', {
   },
 });
 
-export type InteractiveBoxType<T = HTMLInputElement> = T extends HTMLElement
-  ? React.ForwardRefExoticComponent<
-      React.DetailedHTMLProps<React.HTMLAttributes<T>, T> &
-        StitchesVariants<typeof InteractiveBox> & { as: keyof JSX.IntrinsicElements | React.ElementType }
-    >
-  : React.ForwardRefExoticComponent<
-      T & StitchesVariants<typeof InteractiveBox> & { as: keyof JSX.IntrinsicElements | React.ElementType }
-    >;
+export interface InteractiveField<T extends React.ElementType>
+  extends IStyledComponent<T, StitchesVariants<typeof InteractiveBox>, Config> {}
 
 export const validityVariant = createVariant({
   valid: {

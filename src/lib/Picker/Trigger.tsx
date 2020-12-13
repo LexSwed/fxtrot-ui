@@ -1,29 +1,18 @@
+import type { StitchesProps } from '@stitches/react';
 import React from 'react';
 import { HiSelector } from 'react-icons/hi';
 
+import type { FlexVariants } from '../Flex';
 import { FormField, FormFieldProps, Hint, HintBox, useFormField } from '../FormField/FormField';
 import Icon from '../Icon';
 import Label from '../Label';
 import { styled } from '../stitches.config';
-import { InteractiveBox, InteractiveBoxType, validityVariant } from '../TextField/shared';
+import { InteractiveBox, InteractiveField, validityVariant } from '../TextField/shared';
 import { useAllHandlers, useKeyboardHandles } from '../utils';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { usePicker } from './utils';
 
-interface ButtonProps
-  extends InteractiveBoxType<
-    React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
-  > {}
-interface Props extends FormFieldProps {
-  id?: string;
-  placeholder?: string;
-  label?: string;
-  secondaryLabel?: string;
-  hint?: string;
-  disabled?: boolean;
-}
-
-const TriggerButton = styled((InteractiveBox as unknown) as ButtonProps, {
+const TriggerButton = styled(InteractiveBox as InteractiveField<'button'>, {
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
@@ -52,7 +41,15 @@ const Placeholder = styled('div', {
   textOverflow: 'ellipsis',
 });
 
-export type TriggerProps = Props & React.ComponentProps<ButtonProps>;
+export interface TriggerProps extends FlexVariants, Omit<StitchesProps<typeof TriggerButton>, 'as' | 'validity'> {
+  id?: string;
+  placeholder?: string;
+  label?: string;
+  secondaryLabel?: string;
+  hint?: string;
+  disabled?: boolean;
+  validity?: FormFieldProps['validity'];
+}
 
 const Trigger: React.FC<TriggerProps> = ({
   label,
