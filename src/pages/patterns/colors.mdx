@@ -3,7 +3,7 @@ name: Palette
 ---
 
 import { Box } from '@fxtrot/ui';
-import * as palette from 'src/lib/theme/palette';
+import * as colors from 'src/lib/theme/colors';
 
 # Palette
 
@@ -38,7 +38,7 @@ export const styles = {
 };
 
 <Box>
-  {Object.entries(palette).map(([title, colors]) => (
+  {Object.entries(colors).map(([title, colors]) => (
     <React.Fragment key={title}>
       <h2>{title}</h2>
       <Box css={styles.wrapper}>
