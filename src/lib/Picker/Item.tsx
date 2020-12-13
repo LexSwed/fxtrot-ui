@@ -3,7 +3,7 @@ import { HiCheck } from 'react-icons/hi';
 
 import Icon from '../Icon';
 import ListItem from '../ListItem';
-import type { Props as ListItemProps } from '../ListItem/ListItem';
+import type { ListItemProps } from '../ListItem/ListItem';
 import { focusOnMouseOver } from '../ListItem/ListItem';
 import { styled } from '../stitches.config';
 import { useAllHandlers, useForkRef } from '../utils';
@@ -18,12 +18,12 @@ const Option = styled(ListItem, {
   },
 });
 
-interface Props extends Omit<ListItemProps, 'children' | 'value' | 'label'> {
+export interface PickerItemProps extends Omit<ListItemProps, 'children' | 'value' | 'label'> {
   value: string;
   label: string;
 }
 
-const Item = React.forwardRef<HTMLLIElement, Props>(({ value, label, ...props }, ref) => {
+const Item = React.forwardRef<HTMLLIElement, PickerItemProps>(({ value, label, ...props }, ref) => {
   const { value: dropdownValue, onChange } = usePicker();
   const innerRef = useRef<HTMLLIElement>(null);
   const { close } = useOpenStateControls();

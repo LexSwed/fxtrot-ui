@@ -39,7 +39,7 @@ export interface FormFieldProps extends StitchesProps<typeof Wrapper> {
   validity?: keyof typeof tonesMap;
 }
 
-const tonesMap: Record<'valid' | 'invalid', React.ComponentProps<typeof Text>['tone']> = {
+const tonesMap: Record<'valid' | 'invalid', StitchesProps<typeof Text>['tone']> = {
   valid: 'success',
   invalid: 'danger',
 };
@@ -74,7 +74,7 @@ export const FormField: React.FC<FormFieldProps> = ({
     </Wrapper>
   );
 };
-interface HintProps extends React.ComponentProps<typeof Text> {
+interface HintProps extends StitchesProps<typeof Text> {
   validity?: FormFieldProps['validity'];
 }
 

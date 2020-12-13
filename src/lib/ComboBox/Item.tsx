@@ -3,6 +3,7 @@ import { HiCheck } from 'react-icons/hi';
 
 import Icon from '../Icon';
 import ListItem from '../ListItem';
+import type { ListItemProps } from '../ListItem/ListItem';
 import { styled } from '../stitches.config';
 import { useAllHandlers } from '../utils';
 import { useOpenStateControls } from '../utils/OpenStateProvider';
@@ -16,7 +17,7 @@ const Option = styled(ListItem, {
   },
 });
 
-interface Props extends Omit<React.ComponentProps<typeof ListItem>, 'children' | 'value' | 'label' | 'isFocused'> {
+export interface Props extends Omit<ListItemProps, 'children' | 'value' | 'label' | 'isFocused'> {
   value: string;
   label: string;
 }

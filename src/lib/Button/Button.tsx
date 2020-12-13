@@ -1,3 +1,4 @@
+import type { StitchesProps } from '@stitches/react';
 import React from 'react';
 
 import { FlexBox, FlexType } from '../Flex';
@@ -135,7 +136,7 @@ const ButtonRoot = styled(FlexBox as FlexType<'button'>, {
   },
 });
 
-interface Props extends React.ComponentProps<typeof ButtonRoot> {}
+interface Props extends StitchesProps<typeof ButtonRoot> {}
 
 const Button = React.forwardRef<HTMLButtonElement, Props>(
   ({ variant = 'primary', size = 'md', space = '$2', type = 'button', css, style, className, ...props }, ref) => {

@@ -1,3 +1,4 @@
+import type { StitchesProps } from '@stitches/react';
 import React from 'react';
 
 import { useDialog } from '../Dialog/utils';
@@ -63,11 +64,9 @@ HeadingText.compoundVariant(
   }
 );
 
-const Heading: React.FC<React.ComponentPropsWithRef<typeof HeadingText>> = ({
-  variant = 'default',
-  as = 'h1',
-  ...props
-}) => {
+interface Props extends StitchesProps<typeof HeadingText> {}
+
+const Heading: React.FC<Props> = ({ variant = 'default', as = 'h1', ...props }) => {
   const { seed } = useDialog() || {};
   return <HeadingText variant={variant} as={as} id={seed?.('heading')} {...props} />;
 };

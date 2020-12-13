@@ -1,12 +1,12 @@
 import React from 'react';
 
-import ListItem from '../ListItem';
+import ListItem, { ListItemProps } from '../ListItem/ListItem';
 import { focusOnMouseOver } from '../ListItem/ListItem';
 import { useAllHandlers } from '../utils';
 import { useOpenStateControls } from '../utils/OpenStateProvider';
 import { useMenu } from './utils';
 
-interface Props extends React.ComponentProps<typeof ListItem> {
+interface Props extends ListItemProps {
   action?: string;
 }
 

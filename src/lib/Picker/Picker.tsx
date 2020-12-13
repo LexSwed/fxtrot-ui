@@ -3,13 +3,13 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Popover from '../Popover';
 import { useId } from '../utils';
 import { OpenStateProvider } from '../utils/OpenStateProvider';
-import Item from './Item';
+import Item, { PickerItemProps } from './Item';
 import List from './List';
-import Trigger from './Trigger';
+import Trigger, { TriggerProps } from './Trigger';
 import { PickerProvider } from './utils';
 
-interface OptionType extends React.ReactElement<React.ComponentProps<typeof Item>, typeof Item> {}
-interface Props extends Omit<React.ComponentProps<typeof Trigger>, 'value' | 'onChange' | 'children'> {
+interface OptionType extends React.ReactElement<PickerItemProps, typeof Item> {}
+interface Props extends Omit<TriggerProps, 'value' | 'onChange' | 'children'> {
   value?: string;
   onChange?: (newValue: string) => void;
   children: OptionType[] | OptionType;

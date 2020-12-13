@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 
-import ListBox from '../ListBox';
+import ListBox, { ListBoxProps } from '../ListBox/ListBox';
 import { usePicker } from './utils';
 
-interface Props extends React.ComponentProps<typeof ListBox> {
+interface Props extends ListBoxProps {
   triggerId: string;
 }
 

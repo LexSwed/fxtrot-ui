@@ -5,12 +5,12 @@ import { List as ListBox } from '../ListBox/ListBox';
 import Popover from '../Popover';
 import { useAllHandlers } from '../utils';
 import { useOpenState, withOpenStateProvider } from '../utils/OpenStateProvider';
-import Input from './Input';
-import Item from './Item';
+import Input, { Props as InputProps } from './Input';
+import Item, { Props as ItemProps } from './Item';
 import { ComboBoxContext, ComboBoxProvider, FocusControls, RenderedItems } from './utils';
 
-interface OptionType extends React.ReactElement<React.ComponentProps<typeof Item>, typeof Item> {}
-interface Props extends Omit<React.ComponentProps<typeof Input>, 'onChange' | 'onSelect' | 'value' | 'children'> {
+interface OptionType extends React.ReactElement<ItemProps, typeof Item> {}
+interface Props extends Omit<InputProps, 'onChange' | 'onSelect' | 'value' | 'children'> {
   value?: string | null;
   onChange?: (newValue: string | undefined | null) => void;
   onInputChange?: (text: string) => void;

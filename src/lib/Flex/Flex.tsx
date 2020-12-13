@@ -3,6 +3,7 @@ import React from 'react';
 
 import { styled } from '../stitches.config';
 import { gaps } from '../theme/variants';
+import type { Config } from '../utils/types';
 
 export const FlexBox = styled('div', {
   'display': 'flex',
@@ -94,10 +95,4 @@ export default Flex;
 
 export interface FlexVariants extends StitchesVariants<typeof FlexBox> {}
 export interface FlexProps extends StitchesProps<typeof FlexBox> {}
-export type FlexType<C extends React.ElementType = 'div'> = typeof FlexBox extends IStyledComponent<
-  any,
-  infer Variants,
-  infer Config
->
-  ? IStyledComponent<C, Variants, Config>
-  : never;
+export type FlexType<C extends React.ElementType = 'div'> = IStyledComponent<C, FlexVariants, Config>;

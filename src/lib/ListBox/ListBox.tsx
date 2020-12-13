@@ -30,13 +30,13 @@ const ListInner: React.FC<{ wrap?: boolean }> = ({ wrap, ...props }) => {
 
 ListInner.displayName = 'ListBox.Inner';
 
-interface Props extends StitchesProps<typeof List> {
+export interface ListBoxProps extends StitchesProps<typeof List> {
   restoreFocus?: boolean;
   contain?: boolean;
   wrap?: boolean;
 }
 
-const ListBox = React.forwardRef<HTMLUListElement, Props>(
+const ListBox = React.forwardRef<HTMLUListElement, ListBoxProps>(
   ({ children, restoreFocus, contain, wrap, ...props }, ref) => {
     return (
       <List role="listbox" tabIndex={-1} {...props} as="ul" ref={ref}>

@@ -36,8 +36,8 @@ const Input = styled(InteractiveBox, {
   },
 });
 
-type InputProps = StitchesProps<typeof InteractiveBox>;
-interface Props
+interface InputProps extends StitchesProps<typeof InteractiveBox> {}
+export interface Props
   extends Omit<InputProps, 'onChange' | 'type' | 'value' | 'defaultValue' | 'children' | 'text'>,
     FlexVariants {
   value?: string;

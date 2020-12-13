@@ -1,13 +1,11 @@
 import type { Options } from '@popperjs/core';
 import React, { useEffect, useRef } from 'react';
 
-import ListBox from '../ListBox/ListBox';
+import ListBox, { ListBoxProps } from '../ListBox/ListBox';
 import Popover from '../Popover';
 import { useMenu } from './utils';
 
-interface UlListProps extends React.ComponentProps<typeof ListBox> {}
-
-const MenuList: React.FC<UlListProps> = (props) => {
+const MenuList: React.FC<ListBoxProps> = (props) => {
   const { seed } = useMenu();
 
   const listRef = useInitialFocus();
@@ -27,7 +25,7 @@ const MenuList: React.FC<UlListProps> = (props) => {
 };
 
 const MenuPopper: React.FC<
-  UlListProps & {
+  ListBoxProps & {
     offset?: number;
     placement?: Options['placement'];
   }

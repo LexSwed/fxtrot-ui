@@ -1,7 +1,7 @@
 import React from 'react';
 import { HiSelector } from 'react-icons/hi';
 
-import { FormField, Hint, HintBox, useFormField } from '../FormField/FormField';
+import { FormField, FormFieldProps, Hint, HintBox, useFormField } from '../FormField/FormField';
 import Icon from '../Icon';
 import Label from '../Label';
 import { styled } from '../stitches.config';
@@ -9,8 +9,6 @@ import { InteractiveBox, InteractiveBoxType, validityVariant } from '../TextFiel
 import { useAllHandlers, useKeyboardHandles } from '../utils';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { usePicker } from './utils';
-
-interface FormFieldProps extends React.ComponentProps<typeof FormField> {}
 
 interface ButtonProps
   extends InteractiveBoxType<
@@ -54,7 +52,9 @@ const Placeholder = styled('div', {
   textOverflow: 'ellipsis',
 });
 
-const Trigger: React.FC<Props & React.ComponentProps<ButtonProps>> = ({
+export type TriggerProps = Props & React.ComponentProps<ButtonProps>;
+
+const Trigger: React.FC<TriggerProps> = ({
   label,
   secondaryLabel,
   hint,

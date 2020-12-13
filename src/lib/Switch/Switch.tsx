@@ -1,8 +1,9 @@
+import type { StitchesProps } from '@stitches/react';
 import React, { useMemo } from 'react';
 
 import Box from '../Box';
 import { attribute } from '../FocusRing/focus-visible';
-import { FormField } from '../FormField/FormField';
+import { FormField, FormFieldProps } from '../FormField/FormField';
 import Label from '../Label';
 import { styled } from '../stitches.config';
 
@@ -98,11 +99,10 @@ const Input = styled('input', {
   },
 });
 
-interface WrapperProps extends React.ComponentProps<typeof FormField> {}
-interface InputProps extends React.ComponentProps<typeof Input> {}
+interface InputProps extends StitchesProps<typeof Input> {}
 
 type Props = Omit<InputProps, 'onChange'> &
-  WrapperProps & {
+  FormFieldProps & {
     label?: string;
     secondaryLabel?: string;
     onChange: (checked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;

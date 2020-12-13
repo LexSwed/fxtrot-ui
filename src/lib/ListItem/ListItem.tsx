@@ -40,11 +40,11 @@ const Item = styled(FlexBox as FlexType<'li'>, {
   },
 });
 
-export interface Props extends StitchesProps<typeof Item> {
+export interface ListItemProps extends StitchesProps<typeof Item> {
   disabled?: boolean;
 }
 
-const ListItem = React.forwardRef<HTMLLIElement, Props>(
+const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
   ({ flow = 'row', cross = 'center', space = '$2', disabled, as = 'li', ...props }, ref) => {
     const onKeyDown = useKeyboardHandles({
       'Enter': (e) => e.currentTarget.click?.(),
