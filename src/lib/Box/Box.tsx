@@ -30,7 +30,7 @@ const Box = forwardRef<Props, 'div'>(({ children, css, ...props }) => {
 
 export default Box;
 
-const acceptedProperties: readonly (keyof CssProperties)[] = [
+const acceptedProperties = [
   'tablet',
   'mobile',
   'desktop',
@@ -104,7 +104,7 @@ const acceptedProperties: readonly (keyof CssProperties)[] = [
   'whiteSpace',
 ] as const;
 /** Not all properties supported */
-export interface Props extends Omit<BoxProps, 'as' | 'translate' | 'color'>, CustomField {}
+export interface Props extends BoxProps, CustomField {}
 
 type CustomField = {
   [prop in typeof acceptedProperties[number]]?: CssProperties[prop];

@@ -21,10 +21,7 @@ type PropsOf<T extends As> = React.ComponentProps<T> & {
   as?: As;
 };
 export interface ComponentWithAs<T extends As, P> {
-  <TT extends As>(
-    props: { as?: TT } & (PropsOf<T> extends { transition?: any } ? Omit<P, 'transition'> : P) &
-      Omit<PropsOf<TT>, keyof PropsOf<T>>
-  ): JSX.Element;
+  <TT extends As>(props: { as?: TT } & Omit<PropsOf<T>, 'as'> & Omit<PropsOf<TT>, keyof PropsOf<T>>): JSX.Element;
   displayName?: string;
 }
 
