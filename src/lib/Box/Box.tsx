@@ -100,6 +100,7 @@ const acceptedProperties: readonly (keyof CssProperties)[] = [
   'borderBottom',
   'borderLeft',
   'boxShadow',
+  'whiteSpace',
 ] as const;
 /** Not all properties supported */
 export interface Props extends Omit<BoxProps, 'as' | 'translate' | 'color'>, CustomField {
