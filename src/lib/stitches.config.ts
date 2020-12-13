@@ -58,7 +58,7 @@ export const theme = {
     $max: '9999',
   },
   shadows: { ...shadows, $popper: `0 0 1px ${palette.$borderLight}, ${shadows.$xl}`, $none: 'none' },
-};
+} as const;
 
 type Theme = typeof theme;
 

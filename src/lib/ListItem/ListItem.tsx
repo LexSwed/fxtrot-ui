@@ -1,4 +1,4 @@
-import { StitchesProps } from '@stitches/react';
+import type { StitchesProps } from '@stitches/react';
 import React from 'react';
 
 import { FlexBox, FlexType } from '../Flex';

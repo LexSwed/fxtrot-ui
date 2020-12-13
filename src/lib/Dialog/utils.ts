@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import { useUIDSeed } from 'react-uid';
+import type { useUIDSeed } from 'react-uid';
 
 const dialogContext = createContext<DialogContext>({
   seed: null,

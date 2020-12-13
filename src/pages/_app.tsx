@@ -1,5 +1,5 @@
 import { DokzProvider, GithubLink } from 'dokz';
-import { AppProps } from 'next/dist/next-server/lib/router/router';
+import type { AppProps } from 'next/dist/next-server/lib/router/router';
 import Head from 'next/head';
 import React, { Fragment } from 'react';
 

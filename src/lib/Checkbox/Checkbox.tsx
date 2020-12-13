@@ -1,4 +1,4 @@
-import { StitchesProps } from '@stitches/react';
+import type { StitchesProps } from '@stitches/react';
 import React, { useMemo } from 'react';
 import { HiCheck } from 'react-icons/hi';
 

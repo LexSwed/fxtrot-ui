@@ -1,3 +1,4 @@
+import type { StitchesProps } from '@stitches/react';
 import React from 'react';
 
 import ListItem from '../ListItem';
@@ -32,7 +33,7 @@ const MenuItem = styled(ListItem, {
   },
 });
 
-interface Props extends React.ComponentProps<typeof MenuItem> {
+interface Props extends StitchesProps<typeof MenuItem> {
   selected?: boolean;
 }
 

@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react';
-import { useUIDSeed } from 'react-uid';
+import type { useUIDSeed } from 'react-uid';
 
 interface MenuStaticContextValue {
   triggerRef: React.RefObject<HTMLElement>;

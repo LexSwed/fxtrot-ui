@@ -1,5 +1,5 @@
 import { FocusScope } from '@react-aria/focus';
-import { StitchesProps } from '@stitches/react';
+import type { StitchesProps } from '@stitches/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useMemo } from 'react';
 import { HiOutlineX } from 'react-icons/hi';

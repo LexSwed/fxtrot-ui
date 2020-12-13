@@ -1,9 +1,9 @@
-import { StitchesProps, StitchesVariants } from '@stitches/react';
+import type { StitchesProps, StitchesVariants } from '@stitches/react';
 import React from 'react';
 
 import { styled } from '../stitches.config';
 import { createVariant } from '../theme/variants';
-import { StylesObject } from '../utils';
+import type { StylesObject } from '../utils';
 
 export const iconStyles: StylesObject = {
   position: 'absolute',

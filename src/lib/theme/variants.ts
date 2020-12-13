@@ -1,4 +1,4 @@
-import { CssWithBreakpoints } from '../utils';
+import type { CssWithBreakpoints } from '../utils';
 import { scales } from './scales';
 
 const gapScale: ScalesMap = {
