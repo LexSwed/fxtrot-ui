@@ -1,5 +1,5 @@
 import type { TCss, TCssProperties } from '@stitches/core';
-import type { BreakPointsKeys, TCssProp, TCssWithBreakpoints } from '@stitches/react';
+import type { BreakPointsKeys, StitchesProps, TCssProp, TCssWithBreakpoints } from '@stitches/react';
 import * as React from 'react';
 
 import type { css } from '../stitches.config';
@@ -17,8 +17,9 @@ type GetConfig<S> = S extends TCss<infer T> ? T : never;
 
 type As = React.ElementType;
 
-type PropsOf<T extends As> = React.ComponentProps<T>;
-
+type PropsOf<T extends As> = React.ComponentProps<T> & {
+  as?: As;
+};
 export interface ComponentWithAs<T extends As, P> {
   <TT extends As>(
     props: { as?: TT } & (PropsOf<T> extends { transition?: any } ? Omit<P, 'transition'> : P) &
@@ -28,10 +29,9 @@ export interface ComponentWithAs<T extends As, P> {
 }
 
 export function forwardRef<P, T extends As>(
-  component: (
-    props: React.PropsWithChildren<P> & Omit<PropsOf<T>, keyof P | 'color' | 'ref'> & { as?: As },
-    ref: React.Ref<any>
-  ) => React.ReactElement | null
+  component: (props: React.PropsWithChildren<P> & { as?: As }, ref: React.Ref<any>) => React.ReactElement | null
 ) {
   return (React.forwardRef(component as any) as unknown) as ComponentWithAs<T, P>;
 }
+
+export interface StitchesComponent<T extends As, P = {}> extends ComponentWithAs<T, Omit<StitchesProps<T>, 'as'> & P> {}

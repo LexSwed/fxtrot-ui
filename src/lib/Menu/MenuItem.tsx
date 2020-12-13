@@ -2,7 +2,7 @@ import React from 'react';
 
 import ListItem, { ListItemProps } from '../ListItem/ListItem';
 import { focusOnMouseOver } from '../ListItem/ListItem';
-import { useAllHandlers } from '../utils';
+import { forwardRef, useAllHandlers } from '../utils';
 import { useOpenStateControls } from '../utils/OpenStateProvider';
 import { useMenu } from './utils';
 
@@ -10,7 +10,7 @@ interface Props extends ListItemProps {
   action?: string;
 }
 
-const MenuItem = React.forwardRef<HTMLLIElement, Props>(({ action, disabled, ...props }, ref) => {
+const MenuItem = forwardRef<Props, 'li'>(({ action, disabled, ...props }, ref) => {
   const { onAction } = useMenu();
   const { close } = useOpenStateControls();
 

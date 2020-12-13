@@ -1,9 +1,8 @@
 import { getFocusableTreeWalker } from '@react-aria/focus';
-import type { StitchesProps } from '@stitches/react';
 import React, { useCallback, useRef } from 'react';
 
 import { styled } from '../stitches.config';
-import { useAllHandlers, useKeyboardHandles } from '../utils';
+import { StitchesComponent, useAllHandlers, useKeyboardHandles } from '../utils';
 import Item from './Item';
 
 const List = styled('ul', {
@@ -12,9 +11,7 @@ const List = styled('ul', {
   $outline: -1,
 });
 
-interface Props extends StitchesProps<typeof List> {}
-
-const MenuList: React.FC<Props> & { Item: typeof Item } = (props) => {
+const MenuList: StitchesComponent<typeof List> & { Item: typeof Item } = (props) => {
   const ref = useRef<HTMLUListElement>(null);
 
   const focusElement = useCallback((fn: (walker: TreeWalker) => Node | null) => {

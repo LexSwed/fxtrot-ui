@@ -6,7 +6,7 @@ import ListItem from '../ListItem';
 import type { ListItemProps } from '../ListItem/ListItem';
 import { focusOnMouseOver } from '../ListItem/ListItem';
 import { styled } from '../stitches.config';
-import { useAllHandlers, useForkRef } from '../utils';
+import { forwardRef, useAllHandlers, useForkRef } from '../utils';
 import { useOpenStateControls } from '../utils/OpenStateProvider';
 import { usePicker } from './utils';
 
@@ -23,7 +23,7 @@ export interface PickerItemProps extends Omit<ListItemProps, 'children' | 'value
   label: string;
 }
 
-const Item = React.forwardRef<HTMLLIElement, PickerItemProps>(({ value, label, ...props }, ref) => {
+const Item = forwardRef<PickerItemProps, 'li'>(({ value, label, ...props }, ref) => {
   const { value: dropdownValue, onChange } = usePicker();
   const innerRef = useRef<HTMLLIElement>(null);
   const { close } = useOpenStateControls();
