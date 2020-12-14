@@ -5,7 +5,7 @@ import Icon from '../Icon';
 import ListItem from '../ListItem';
 import type { ListItemProps } from '../ListItem/ListItem';
 import { styled } from '../stitches.config';
-import { useAllHandlers } from '../utils';
+import { forwardRef, useAllHandlers } from '../utils';
 import { useOpenStateControls } from '../utils/OpenStateProvider';
 import { useComboBox } from './utils';
 
@@ -22,7 +22,7 @@ export interface Props extends Omit<ListItemProps, 'children' | 'value' | 'label
   label: string;
 }
 
-const Item = React.forwardRef<HTMLLIElement, Props>(({ value, label, ...props }, propRef) => {
+const Item = forwardRef<HTMLLIElement, Props>(({ value, label, ...props }, propRef) => {
   const { onValueChange, focusedItemId, focusControls, renderedItems, inputRef } = useComboBox();
   const { close } = useOpenStateControls();
   const item = renderedItems[value];

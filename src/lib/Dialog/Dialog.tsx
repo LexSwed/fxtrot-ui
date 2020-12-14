@@ -1,5 +1,4 @@
 import { FocusScope } from '@react-aria/focus';
-import type { StitchesProps } from '@stitches/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useMemo } from 'react';
 import { HiOutlineX } from 'react-icons/hi';
@@ -11,7 +10,7 @@ import { HeadingText } from '../Heading/Heading';
 import Icon from '../Icon';
 import Portal from '../Portal';
 import { styled } from '../stitches.config';
-import { useAllHandlers, useKeyboardHandles } from '../utils';
+import { PropsOf, useAllHandlers, useKeyboardHandles } from '../utils';
 import { OpenStateProvider, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { DialogContext, DialogProvider, useDialog } from './utils';
 
@@ -132,7 +131,7 @@ const CloseButtonContainer = styled('div', {
   right: '$2',
 });
 
-export interface ModalProps extends StitchesProps<typeof DialogWindow> {}
+export interface ModalProps extends PropsOf<typeof DialogWindow> {}
 
 export const Modal: React.FC<ModalProps> = ({ children, ...props }) => {
   const { seed } = useDialog();

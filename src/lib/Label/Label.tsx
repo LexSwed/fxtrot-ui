@@ -1,9 +1,9 @@
-import type { StitchesProps } from '@stitches/react';
 import React from 'react';
 
 import { FlexBox, FlexType } from '../Flex';
 import { styled } from '../stitches.config';
 import Text from '../Text';
+import type { PropsOf } from '../utils';
 
 const Main = styled(Text, {
   lineHeight: 1,
@@ -33,7 +33,7 @@ const Wrapper = styled(FlexBox as FlexType<'label'>, {
   whiteSpace: 'nowrap',
 });
 
-interface Props extends StitchesProps<typeof Wrapper> {
+interface Props extends PropsOf<typeof Wrapper> {
   label: React.ReactNode;
   secondary?: React.ReactNode;
   disabled?: boolean;

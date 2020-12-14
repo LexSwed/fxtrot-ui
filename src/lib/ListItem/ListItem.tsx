@@ -1,10 +1,9 @@
-import type { StitchesProps } from '@stitches/react';
 import React from 'react';
 
 import { FlexBox, FlexType } from '../Flex';
 import { styled } from '../stitches.config';
 import Text from '../Text';
-import { forwardRef, useAllHandlers, useKeyboardHandles } from '../utils';
+import { forwardRef, PropsOf, useAllHandlers, useKeyboardHandles } from '../utils';
 
 const Item = styled(FlexBox as FlexType<'li'>, {
   'px': '$2',
@@ -40,11 +39,11 @@ const Item = styled(FlexBox as FlexType<'li'>, {
   },
 });
 
-export interface ListItemProps extends StitchesProps<typeof Item> {
+export interface ListItemProps extends PropsOf<typeof Item> {
   disabled?: boolean;
 }
 
-const ListItem = forwardRef<ListItemProps, 'li'>(
+const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
   ({ flow = 'row', cross = 'center', space = '$2', disabled, as = 'li', ...props }, ref) => {
     const onKeyDown = useKeyboardHandles({
       'Enter': (e) => e.currentTarget.click?.(),

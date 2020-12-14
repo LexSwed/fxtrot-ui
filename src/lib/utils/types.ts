@@ -1,6 +1,8 @@
 import type { TCss, TCssProperties } from '@stitches/core';
-import type { BreakPointsKeys, StitchesProps, TCssProp, TCssWithBreakpoints } from '@stitches/react';
-import * as React from 'react';
+import type { BreakPointsKeys, IStyledComponent, StitchesProps, TCssProp, TCssWithBreakpoints } from '@stitches/react';
+import type { ComponentProps, ElementType, FC, ForwardedRef, ForwardRefRenderFunction, ReactElement } from 'react';
+import React from 'react';
+import type { Merge } from 'type-fest';
 
 import type { css } from '../stitches.config';
 
@@ -15,20 +17,22 @@ export type CssProperties = TCssProperties<Config> &
 
 type GetConfig<S> = S extends TCss<infer T> ? T : never;
 
-type As = React.ElementType;
+type As = ElementType;
 
-type PropsOf<T extends As> = React.ComponentProps<T> & {
+export type PropsOf<T extends ElementType> = Omit<
+  T extends IStyledComponent<any, any, any> ? StitchesProps<T> : ComponentProps<T>,
+  'as'
+> & {
   as?: As;
 };
-export interface ComponentWithAs<T extends As, P> {
-  <TT extends As>(props: { as?: TT } & Omit<PropsOf<T>, 'as'> & Omit<PropsOf<TT>, keyof PropsOf<T>>): JSX.Element;
+
+export function forwardRef<T extends HTMLElement, P>(
+  component: ForwardRefRenderFunction<T, P>
+): ForwardRefComponent<T, P> {
+  return React.forwardRef(component as any) as any;
+}
+
+interface ForwardRefComponent<T extends HTMLElement, P> extends FC<P> {
+  <TT extends As>(props: { as?: TT } & Merge<PropsOf<TT>, P>, ref: ForwardedRef<T>): ReactElement | null;
   displayName?: string;
 }
-
-export function forwardRef<P, T extends As>(
-  component: (props: React.PropsWithChildren<P> & { as?: As }, ref: React.Ref<any>) => React.ReactElement | null
-) {
-  return (React.forwardRef(component as any) as unknown) as ComponentWithAs<T, P>;
-}
-
-export interface StitchesComponent<T extends As, P = {}> extends ComponentWithAs<T, Omit<StitchesProps<T>, 'as'> & P> {}

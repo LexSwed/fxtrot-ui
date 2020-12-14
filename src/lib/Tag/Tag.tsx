@@ -1,8 +1,8 @@
-import type { StitchesProps } from '@stitches/react';
 import React from 'react';
 
 import { IconBox } from '../Icon/Icon';
 import { styled } from '../stitches.config';
+import type { PropsOf } from '../utils';
 
 const Block = styled('div', {
   transition: '0.2s ease-in-out',
@@ -62,7 +62,7 @@ const Block = styled('div', {
   },
 });
 
-interface Props extends Omit<StitchesProps<typeof Block>, 'children'> {
+interface Props extends Omit<PropsOf<typeof Block>, 'children'> {
   label: string;
 }
 

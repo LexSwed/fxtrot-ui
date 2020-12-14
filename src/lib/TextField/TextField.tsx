@@ -7,6 +7,7 @@ import { FormField, Hint, HintBox, useFormField } from '../FormField/FormField';
 import Icon from '../Icon';
 import Label from '../Label';
 import { styled } from '../stitches.config';
+import { forwardRef } from '../utils';
 import { iconStyles, IconWrapper, InteractiveBox, validityVariant } from './shared';
 
 const Input = styled(InteractiveBox, {
@@ -73,7 +74,7 @@ const inputMode: Record<NonNullable<Props['type']>, InputProps['inputMode']> = {
   password: undefined,
 };
 
-const TextField = React.forwardRef<HTMLDivElement, Props>(
+const TextField = forwardRef<HTMLDivElement, Props>(
   (
     {
       label,

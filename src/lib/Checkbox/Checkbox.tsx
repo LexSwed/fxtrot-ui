@@ -1,4 +1,3 @@
-import type { StitchesProps } from '@stitches/react';
 import React, { useMemo } from 'react';
 import { HiCheck } from 'react-icons/hi';
 
@@ -8,6 +7,7 @@ import { FormField, FormFieldProps } from '../FormField/FormField';
 import Icon from '../Icon';
 import Label from '../Label';
 import { styled } from '../stitches.config';
+import type { PropsOf } from '../utils';
 
 const CheckboxWrapper = styled(Box, {
   position: 'relative',
@@ -101,7 +101,7 @@ const Input = styled('input', {
   },
 });
 
-interface InputProps extends StitchesProps<typeof Input> {
+interface InputProps extends PropsOf<typeof Input> {
   label?: string;
   secondaryLabel?: string;
 }

@@ -1,4 +1,3 @@
-import type { StitchesProps } from '@stitches/react';
 import React from 'react';
 import { HiSelector } from 'react-icons/hi';
 
@@ -10,7 +9,7 @@ import Label from '../Label';
 import { styled } from '../stitches.config';
 import Tag from '../Tag';
 import { InteractiveBox, validityVariant } from '../TextField/shared';
-import { useAllHandlers, useForkRef, useKeyboardHandles } from '../utils';
+import { forwardRef, PropsOf, useAllHandlers, useForkRef, useKeyboardHandles } from '../utils';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { useComboBox } from './utils';
 
@@ -36,7 +35,7 @@ const Input = styled(InteractiveBox, {
   },
 });
 
-interface InputProps extends StitchesProps<typeof InteractiveBox> {}
+interface InputProps extends PropsOf<typeof InteractiveBox> {}
 export interface Props
   extends Omit<InputProps, 'onChange' | 'type' | 'value' | 'defaultValue' | 'children' | 'text'>,
     FlexVariants {
@@ -50,7 +49,7 @@ export interface Props
   inputRef?: React.Ref<HTMLInputElement>;
 }
 
-const ComboBoxInput = React.forwardRef<HTMLDivElement, Props>(
+const ComboBoxInput = forwardRef<HTMLDivElement, Props>(
   (
     {
       label,

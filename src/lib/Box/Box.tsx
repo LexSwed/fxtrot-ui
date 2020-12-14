@@ -1,13 +1,11 @@
-import type { StitchesProps } from '@stitches/react';
 import React from 'react';
 
 import { styled } from '../stitches.config';
-import type { CssProperties } from '../utils';
-import { forwardRef } from '../utils/types';
+import { CssProperties, forwardRef, PropsOf } from '../utils';
 
 const Div = styled('div', {});
 
-const Box = forwardRef<Props, 'div'>(({ children, css, ...props }) => {
+const Box = forwardRef<HTMLDivElement, Props>(({ children, css, ...props }) => {
   const [style, attrs] = Object.entries(props).reduce(
     (res, [key, value]: [any, any]) => {
       if (VALID_ITEMS.has(key)) {
@@ -109,6 +107,6 @@ export interface Props extends BoxProps, CustomField {}
 type CustomField = {
   [prop in typeof acceptedProperties[number]]?: CssProperties[prop];
 };
-type BoxProps = StitchesProps<typeof Div>;
+type BoxProps = PropsOf<typeof Div>;
 
 const VALID_ITEMS = new Set<keyof CssProperties>(acceptedProperties);

@@ -6,11 +6,11 @@ import { forwardRef, useAllHandlers } from '../utils';
 import { useOpenStateControls } from '../utils/OpenStateProvider';
 import { useMenu } from './utils';
 
-interface Props extends ListItemProps {
+interface Props extends Omit<ListItemProps, 'isFocused' | 'value' | 'children'> {
   action?: string;
 }
 
-const MenuItem = forwardRef<Props, 'li'>(({ action, disabled, ...props }, ref) => {
+const MenuItem = forwardRef<HTMLLIElement, Props>(({ action, disabled, ...props }, ref) => {
   const { onAction } = useMenu();
   const { close } = useOpenStateControls();
 

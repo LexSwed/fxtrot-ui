@@ -1,4 +1,4 @@
-import type { StitchesProps } from '@stitches/react';
+import type {} from '@stitches/react';
 import React, { useMemo } from 'react';
 import { useUID } from 'react-uid';
 
@@ -6,6 +6,7 @@ import Box from '../Box';
 import Flex from '../Flex';
 import { styled } from '../stitches.config';
 import Text from '../Text';
+import type { PropsOf } from '../utils';
 
 const Wrapper = styled(Flex, {
   position: 'relative',
@@ -34,12 +35,12 @@ const HintText = styled(Text, {
   maxWidth: '-webkit-fill-available',
 });
 
-export interface FormFieldProps extends StitchesProps<typeof Wrapper> {
+export interface FormFieldProps extends PropsOf<typeof Wrapper> {
   hasHint?: boolean;
   validity?: keyof typeof tonesMap;
 }
 
-const tonesMap: Record<'valid' | 'invalid', StitchesProps<typeof Text>['tone']> = {
+const tonesMap: Record<'valid' | 'invalid', PropsOf<typeof Text>['tone']> = {
   valid: 'success',
   invalid: 'danger',
 };
@@ -74,7 +75,7 @@ export const FormField: React.FC<FormFieldProps> = ({
     </Wrapper>
   );
 };
-interface HintProps extends StitchesProps<typeof Text> {
+interface HintProps extends PropsOf<typeof Text> {
   validity?: FormFieldProps['validity'];
 }
 

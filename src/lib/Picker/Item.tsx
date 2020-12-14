@@ -23,7 +23,7 @@ export interface PickerItemProps extends Omit<ListItemProps, 'children' | 'value
   label: string;
 }
 
-const Item = forwardRef<PickerItemProps, 'li'>(({ value, label, ...props }, ref) => {
+const Item = forwardRef<HTMLLIElement, PickerItemProps>(({ value, label, ...props }, ref) => {
   const { value: dropdownValue, onChange } = usePicker();
   const innerRef = useRef<HTMLLIElement>(null);
   const { close } = useOpenStateControls();
