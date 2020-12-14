@@ -32,7 +32,7 @@ export function forwardRef<T extends HTMLElement, P>(
   return React.forwardRef(component as any) as any;
 }
 
-interface ForwardRefComponent<T extends HTMLElement, P> extends FC<P> {
+export interface ForwardRefComponent<T extends HTMLElement, P> extends FC<P> {
   <TT extends As>(props: { as?: TT } & Merge<PropsOf<TT>, P>, ref: ForwardedRef<T>): ReactElement | null;
   displayName?: string;
 }
