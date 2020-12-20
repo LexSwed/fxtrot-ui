@@ -23,16 +23,15 @@ export interface Props extends Omit<ListItemProps, 'children' | 'value' | 'label
 }
 
 const Item = forwardRef<HTMLLIElement, Props>(({ value, label, ...props }, propRef) => {
-  const { onValueChange, focusedItemId, focusControls, renderedItems, inputRef } = useComboBox();
+  const { onValueChange, focusedItemId, focusControls, renderedItems } = useComboBox();
   const { close } = useOpenStateControls();
   const item = renderedItems[value];
 
-  const onClick = useAllHandlers(props.onClick, (e) => {
+  const onMouseDown = useAllHandlers(props.onMouseDown, (e) => {
     e.preventDefault();
     e.stopPropagation();
     onValueChange?.(value, label);
     close();
-    inputRef.current?.focus();
   });
 
   const onMouseOver = useAllHandlers(props.onMouseOver, item?.id ? () => focusControls.focus(item?.id) : undefined);
@@ -47,7 +46,7 @@ const Item = forwardRef<HTMLLIElement, Props>(({ value, label, ...props }, propR
       isFocused={item.id === focusedItemId}
       id={item.id}
       aria-selected={item.selected}
-      onClick={onClick}
+      onMouseDown={onMouseDown}
       onMouseOver={onMouseOver}
       main="spread"
       ref={propRef}
