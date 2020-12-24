@@ -7,7 +7,7 @@ import type { ListItemProps } from '../ListItem/ListItem';
 import { styled } from '../stitches.config';
 import { forwardRef, useAllHandlers } from '../utils';
 import { useOpenStateControls } from '../utils/OpenStateProvider';
-import { useComboBox } from './utils';
+import { useComboBox, useIsItemFocused, useItem, useUpdateCombobox } from './utils';
 
 const SelectedIcon = styled(Icon, {});
 
@@ -22,10 +22,12 @@ export interface Props extends Omit<ListItemProps, 'children' | 'value' | 'label
   label: string;
 }
 
-const Item = forwardRef<HTMLLIElement, Props>(({ value, label, ...props }, propRef) => {
-  const { onValueChange, focusedItemId, focusControls, renderedItems } = useComboBox();
+const ItemOption = forwardRef<HTMLLIElement, Props>(({ value, label, ...props }, propRef) => {
+  const { onValueChange } = useComboBox();
   const { close } = useOpenStateControls();
-  const item = renderedItems[value];
+  const dispatch = useUpdateCombobox();
+  const item = useItem(value);
+  const isFocused = useIsItemFocused(value);
 
   const onMouseDown = useAllHandlers(props.onMouseDown, (e) => {
     e.preventDefault();
@@ -34,7 +36,10 @@ const Item = forwardRef<HTMLLIElement, Props>(({ value, label, ...props }, propR
     close();
   });
 
-  const onMouseOver = useAllHandlers(props.onMouseOver, item?.id ? () => focusControls.focus(item?.id) : undefined);
+  const onMouseOver = useAllHandlers(
+    props.onMouseOver,
+    item?.id ? () => dispatch({ type: 'focus', newId: item.id }) : undefined
+  );
 
   if (!item) {
     return null;
@@ -43,7 +48,7 @@ const Item = forwardRef<HTMLLIElement, Props>(({ value, label, ...props }, propR
   return (
     <Option
       {...props}
-      isFocused={item.id === focusedItemId}
+      isFocused={isFocused}
       id={item.id}
       aria-selected={item.selected}
       onMouseDown={onMouseDown}
@@ -55,6 +60,16 @@ const Item = forwardRef<HTMLLIElement, Props>(({ value, label, ...props }, propR
       {item.selected ? <SelectedIcon as={HiCheck} size="md" /> : null}
     </Option>
   );
+});
+
+const Item = React.forwardRef<HTMLLIElement, Props>((props, ref) => {
+  const item = useItem(props.value);
+
+  if (!item) {
+    return null;
+  }
+
+  return <ItemOption {...props} ref={ref} />;
 });
 
 export default Item;

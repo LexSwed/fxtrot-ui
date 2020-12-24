@@ -9,9 +9,9 @@ import Label from '../Label';
 import { styled } from '../stitches.config';
 import Tag from '../Tag';
 import { InteractiveBox, validityVariant } from '../TextField/shared';
-import { forwardRef, PropsOf, useAllHandlers, useForkRef, useKeyboardHandles } from '../utils';
+import { forwardRef, PropsOf, useAllHandlers, useKeyboardHandles } from '../utils';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
-import { useComboBox } from './utils';
+import { useComboBox, useComboBoxAtom, useSelectedItem } from './utils';
 
 const InputWrapper = styled('div', {
   position: 'relative',
@@ -39,14 +39,12 @@ interface InputProps extends PropsOf<typeof InteractiveBox> {}
 export interface Props
   extends Omit<InputProps, 'onChange' | 'type' | 'value' | 'defaultValue' | 'children' | 'text'>,
     FlexVariants {
-  value?: string;
-  onSelect: () => void;
-  onChange: (value: string) => void;
-  label?: string;
-  secondaryLabel?: string;
-  hint?: string;
-  validity?: 'valid' | 'invalid';
-  inputRef?: React.Ref<HTMLInputElement>;
+  'label'?: string;
+  'secondaryLabel'?: string;
+  'hint'?: string;
+  'validity'?: 'valid' | 'invalid';
+  'inputRef'?: React.Ref<HTMLInputElement>;
+  'aria-controls': string;
 }
 
 const ComboBoxInput = forwardRef<HTMLDivElement, Props>(
@@ -63,42 +61,71 @@ const ComboBoxInput = forwardRef<HTMLDivElement, Props>(
       css,
       style,
       className,
-      onChange,
-      onSelect,
       validity,
-      value,
       disabled,
       variant = 'boxed',
       id,
-      inputRef: inputRefProp,
+      inputRef,
       ...props
     },
     ref
   ) => {
     const ariaProps = useFormField({ id, hint });
-    const { inputRef, focusedItemId, focusControls, allowNewElement, selectedItemValue } = useComboBox();
+    const { allowNewElement, onValueChange } = useComboBox();
     const isOpen = useOpenState();
     const { open, close } = useOpenStateControls();
+    const [{ focusedItemId, filterText, items }, dispatch] = useComboBoxAtom();
+    const selectedItem = useSelectedItem();
+
+    const handleBlur = useAllHandlers(
+      props.onBlur,
+      allowNewElement
+        ? undefined
+        : () => {
+            if (filterText === '') {
+              onValueChange(null, '');
+            } else if (selectedItem) {
+              dispatch({
+                type: 'filter',
+                text: selectedItem.label,
+              });
+            } else {
+              dispatch({
+                type: 'filter',
+                text: '',
+              });
+            }
+          }
+    );
 
     const handleChange = useAllHandlers((e: React.ChangeEvent<HTMLInputElement>) => {
-      onChange?.(e.currentTarget.value);
+      dispatch({ type: 'filter', text: e.currentTarget.value });
     }, open);
 
-    const handleSelect = useAllHandlers(onSelect, close);
-
-    const refs = useForkRef(inputRefProp, inputRef);
+    const handleSelect = useAllHandlers(() => {
+      const newValue = Object.keys(items).find((key) => items[key].id === focusedItemId);
+      if (newValue) {
+        onValueChange(newValue, items[newValue].label);
+      }
+    }, close);
 
     const keydownControls = useKeyboardHandles({
       'ArrowDown': () => {
         if (isOpen) {
-          focusControls.focusNext();
+          dispatch({
+            type: 'focus_next',
+            listboxId: props['aria-controls'],
+          });
         } else {
           open();
         }
       },
       'ArrowUp': () => {
         if (isOpen) {
-          focusControls.focusPrev();
+          dispatch({
+            type: 'focus_prev',
+            listboxId: props['aria-controls'],
+          });
         } else {
           open();
         }
@@ -110,7 +137,7 @@ const ComboBoxInput = forwardRef<HTMLDivElement, Props>(
     });
 
     const handleKeyDown = useAllHandlers(keydownControls, props.onKeyDown);
-    const hasNewBadge = !selectedItemValue && !!value && allowNewElement;
+    const hasNewBadge = !selectedItem?.value && !!filterText && allowNewElement;
 
     return (
       <FormField
@@ -139,13 +166,14 @@ const ComboBoxInput = forwardRef<HTMLDivElement, Props>(
               autoComplete="off"
               spellCheck="false"
               disabled={disabled}
-              value={value ? `${value}` : value}
+              value={filterText}
               onChange={handleChange}
               type="text"
               variant={variant}
-              ref={refs}
               onKeyDown={handleKeyDown}
+              onBlur={handleBlur}
               hasNewBadge={hasNewBadge}
+              ref={inputRef}
             />
             <ComboBoxButton hasNewBadge={hasNewBadge} />
           </InputWrapper>
@@ -176,7 +204,6 @@ const ButtonStyled = styled(Button, {
 const ComboBoxButton = React.memo(({ hasNewBadge }: { hasNewBadge: boolean }) => {
   const isOpen = useOpenState();
   const { open } = useOpenStateControls();
-  const { inputRef } = useComboBox();
 
   return (
     <ButtonContainer flow="row" cross="center">
@@ -192,7 +219,6 @@ const ComboBoxButton = React.memo(({ hasNewBadge }: { hasNewBadge: boolean }) =>
           e.preventDefault();
           e.stopPropagation();
           open();
-          inputRef.current?.focus();
         }}
       >
         <Icon as={HiSelector} />
