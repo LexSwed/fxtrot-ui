@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React from 'react';
 import { HiSelector } from 'react-icons/hi';
 
 import Button from '../Button';
@@ -9,9 +9,9 @@ import Label from '../Label';
 import { styled } from '../stitches.config';
 import Tag from '../Tag';
 import { InteractiveBox, validityVariant } from '../TextField/shared';
-import { forwardRef, PropsOf, useAllHandlers, useForkRef, useKeyboardHandles } from '../utils';
+import { forwardRef, PropsOf, useAllHandlers, useKeyboardHandles } from '../utils';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
-import { useFilterText } from './atoms';
+import { useComboBox, useComboBoxAtom, useSelectedItem } from './utils';
 
 const InputWrapper = styled('div', {
   position: 'relative',
@@ -45,14 +45,6 @@ export interface Props
   'validity'?: 'valid' | 'invalid';
   'inputRef'?: React.Ref<HTMLInputElement>;
   'aria-controls': string;
-  /** Custom prop */
-  'hasNewBadge': boolean;
-  /** Custom prop */
-  'onSelect': () => void;
-  /** Custom prop */
-  'onFocusNext': () => void;
-  /** Custom prop */
-  'onFocusPrev': () => void;
 }
 
 const ComboBoxInput = forwardRef<HTMLDivElement, Props>(
@@ -74,46 +66,78 @@ const ComboBoxInput = forwardRef<HTMLDivElement, Props>(
       variant = 'boxed',
       id,
       inputRef,
-      /** custom props, should be filtered from ComboBox parent */
-      hasNewBadge,
-      onSelect,
-      onFocusNext,
-      onFocusPrev,
       ...props
     },
     ref
   ) => {
     const ariaProps = useFormField({ id, hint });
+    const { allowNewElement, onValueChange } = useComboBox();
     const isOpen = useOpenState();
     const { open, close } = useOpenStateControls();
-    const [filterText, setFilterText] = useFilterText();
-    const innerRef = useRef<HTMLInputElement>(null);
-    const refs = useForkRef(inputRef, innerRef);
+    const [{ focusedItemId, filterText, items }, dispatch] = useComboBoxAtom();
+    const selectedItem = useSelectedItem();
 
-    const handleChange = useCallback(
-      (e: React.ChangeEvent<HTMLInputElement>) => {
-        open();
-        setFilterText(e.currentTarget.value);
-      },
-      [open, setFilterText]
+    const handleBlur = useAllHandlers(
+      props.onBlur,
+      allowNewElement
+        ? undefined
+        : () => {
+            if (filterText === '') {
+              onValueChange(null, '');
+            } else if (selectedItem) {
+              dispatch({
+                type: 'filter',
+                text: selectedItem.label,
+              });
+            } else {
+              dispatch({
+                type: 'filter',
+                text: '',
+              });
+            }
+          }
     );
+
+    const handleChange = useAllHandlers((e: React.ChangeEvent<HTMLInputElement>) => {
+      dispatch({ type: 'filter', text: e.currentTarget.value });
+    }, open);
+
+    const handleSelect = useAllHandlers(() => {
+      const newValue = Object.keys(items).find((key) => items[key].id === focusedItemId);
+      if (newValue) {
+        onValueChange(newValue, items[newValue].label);
+      }
+    }, close);
 
     const keydownControls = useKeyboardHandles({
       'ArrowDown': () => {
-        open();
-        onFocusNext();
+        if (isOpen) {
+          dispatch({
+            type: 'focus_next',
+            listboxId: props['aria-controls'],
+          });
+        } else {
+          open();
+        }
       },
       'ArrowUp': () => {
-        open();
-        onFocusPrev();
+        if (isOpen) {
+          dispatch({
+            type: 'focus_prev',
+            listboxId: props['aria-controls'],
+          });
+        } else {
+          open();
+        }
       },
       'Escape': close,
       'Tab.propagate': close,
-      'Enter': onSelect,
-      'Space': onSelect,
+      'Enter': handleSelect,
+      'Space': handleSelect,
     });
 
     const handleKeyDown = useAllHandlers(keydownControls, props.onKeyDown);
+    const hasNewBadge = !selectedItem?.value && !!filterText && allowNewElement;
 
     return (
       <FormField
@@ -137,18 +161,21 @@ const ComboBoxInput = forwardRef<HTMLDivElement, Props>(
               aria-expanded={isOpen}
               aria-autocomplete="list"
               role="combobox"
+              aria-controls={isOpen ? props['aria-controls'] : undefined}
+              aria-activedescendant={focusedItemId}
               autoComplete="off"
               spellCheck="false"
               disabled={disabled}
               value={filterText}
               onChange={handleChange}
-              onKeyDown={handleKeyDown}
               type="text"
               variant={variant}
+              onKeyDown={handleKeyDown}
+              onBlur={handleBlur}
               hasNewBadge={hasNewBadge}
-              ref={refs}
+              ref={inputRef}
             />
-            <ComboBoxButton hasNewBadge={hasNewBadge} inputRef={innerRef} />
+            <ComboBoxButton hasNewBadge={hasNewBadge} />
           </InputWrapper>
           {hint && (
             <Hint id={ariaProps['aria-describedby']} validity={validity}>
@@ -174,34 +201,31 @@ const ButtonStyled = styled(Button, {
   pointerEvents: 'all',
 });
 
-const ComboBoxButton = React.memo(
-  ({ hasNewBadge, inputRef }: { hasNewBadge: boolean; inputRef: React.RefObject<HTMLInputElement> }) => {
-    const isOpen = useOpenState();
-    const { open } = useOpenStateControls();
+const ComboBoxButton = React.memo(({ hasNewBadge }: { hasNewBadge: boolean }) => {
+  const isOpen = useOpenState();
+  const { open } = useOpenStateControls();
 
-    return (
-      <ButtonContainer flow="row" cross="center">
-        {hasNewBadge && <Tag label="NEW" size="sm" />}
-        <ButtonStyled
-          variant="transparent"
-          tabIndex={-1}
-          aria-hidden={isOpen}
-          aria-expanded={isOpen}
-          aria-label="Open the list"
-          onMouseDown={(e) => {
-            /* onClick would cause onOutside click to close the popup */
-            e.preventDefault();
-            e.stopPropagation();
-            open();
-            inputRef.current?.focus();
-          }}
-        >
-          <Icon as={HiSelector} />
-        </ButtonStyled>
-      </ButtonContainer>
-    );
-  }
-);
+  return (
+    <ButtonContainer flow="row" cross="center">
+      {hasNewBadge && <Tag label="NEW" size="sm" />}
+      <ButtonStyled
+        variant="transparent"
+        tabIndex={-1}
+        aria-hidden={isOpen}
+        aria-expanded={isOpen}
+        aria-label="Open the list"
+        onMouseDown={(e) => {
+          /* onClick would cause onOutside click to close the popup */
+          e.preventDefault();
+          e.stopPropagation();
+          open();
+        }}
+      >
+        <Icon as={HiSelector} />
+      </ButtonStyled>
+    </ButtonContainer>
+  );
+});
 
 ComboBoxButton.displayName = 'ComboBoxButton';
 

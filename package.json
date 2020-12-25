@@ -41,7 +41,8 @@
     "@stitches/react": "^0.0.3-canary.4",
     "framer-motion": "^3.1.1",
     "jotai": "^0.12.1",
-    "react-uid": "^2.3.1"
+    "react-uid": "^2.3.1",
+    "react-virtual": "^2.3.2"
   },
   "devDependencies": {
     "@chakra-ui/core": "^0.8.0",
