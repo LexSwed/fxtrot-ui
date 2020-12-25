@@ -9,23 +9,20 @@ const innerValue = atom<string | null>(null);
 export const useSyncValue = (propValue?: string | null, onChange?: (newValue: string | null) => void) => {
   const [value, setValue] = useAtom(innerValue);
 
-  const handleChange = useCallback(
-    (newValue: string | null) => {
-      // we expect `propOnChange` to change also `value` prop, so useEffect would update internal value
-      if (typeof onChange === 'function') {
-        onChange(newValue);
-      } else {
-        setValue(newValue);
-      }
-    },
-    [onChange, setValue]
-  );
-
   useEffect(() => {
     if (typeof propValue !== 'undefined') {
+      console.log({ propValue });
       setValue(propValue);
     }
   }, [propValue, setValue]);
+
+  const handleChange = useCallback(
+    (newValue: string | null) => {
+      setValue(newValue);
+      onChange?.(newValue);
+    },
+    [onChange, setValue]
+  );
 
   return [value, handleChange] as const;
 };

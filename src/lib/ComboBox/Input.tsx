@@ -194,6 +194,7 @@ const ComboBoxButton = React.memo(
             e.stopPropagation();
             open();
             inputRef.current?.focus();
+            inputRef.current?.select();
           }}
         >
           <Icon as={HiSelector} />

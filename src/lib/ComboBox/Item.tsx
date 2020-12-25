@@ -16,6 +16,7 @@ const Option = styled(ListItem, {
   },
 });
 
+export interface OptionType extends React.ReactElement<Props, typeof Item> {}
 export interface Props extends Omit<ListItemProps, 'children' | 'value' | 'label' | 'isFocused'> {
   value: string;
   label: string;
@@ -29,7 +30,7 @@ const Item = forwardRef<HTMLLIElement, Props>(({ id, value, label, ...props }, p
   const handleFocus = useFocusItem(id as string);
   const onMouseOver = useAllHandlers(props.onMouseOver, handleFocus);
   const refs = useForkRef(propRef, innerRef);
-  console.log({ id }, 'updated');
+
   return (
     <Option
       {...props}

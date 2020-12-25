@@ -1,18 +1,16 @@
-import React, { CSSProperties, useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { Provider } from 'jotai';
 import { useUIDSeed } from 'react-uid';
-import { useVirtual } from 'react-virtual';
 
 import { OpenStateProvider, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 
 import Input, { Props as InputProps } from './Input';
-import Item, { Props as ItemProps } from './Item';
+import Item, { OptionType } from './Item';
 import { useAllHandlers, useForkRef } from '../utils';
 import Popover from '../Popover';
-import ListBox from '../ListBox';
 import { useFilterText, useFocusedItemId, useSyncValue } from './atoms';
+import VirtualList from './VirtualList';
 
-interface OptionType extends React.ReactElement<ItemProps, typeof Item> {}
 interface Props
   extends Omit<
     InputProps,
@@ -34,7 +32,6 @@ const ComboBoxInner: React.FC<Props> = ({
 }) => {
   const triggerRef = useRef<HTMLInputElement>(null);
   const inputRefs = useForkRef(triggerRef, inputRef);
-  const listRef = useRef<HTMLUListElement>(null);
   const idSeed = useUIDSeed();
   const isOpen = useOpenState();
   const [value, setValue] = useSyncValue(propValue, propOnChange);
@@ -51,7 +48,6 @@ const ComboBoxInner: React.FC<Props> = ({
   }, [filterText, onInputChange]);
 
   const items = useMemo<OptionType[]>(() => {
-    if (!isOpen) return [];
     if (filterText === '') return React.Children.toArray(children) as OptionType[];
 
     let filtered: OptionType[] = [];
@@ -63,19 +59,7 @@ const ComboBoxInner: React.FC<Props> = ({
     });
 
     return filtered;
-  }, [children, filterText, isOpen]);
-  const rowVirtualizer = useVirtual({
-    size: items.length,
-    parentRef: listRef,
-    paddingStart: 4,
-    paddingEnd: 4,
-    overscan: 5,
-  });
-  const listStyle: CSSProperties = {
-    height: `${rowVirtualizer.totalSize}px`,
-    width: '100%',
-    position: 'relative',
-  };
+  }, [children, filterText]);
 
   useEffect(() => {
     if (value) {
@@ -96,15 +80,15 @@ const ComboBoxInner: React.FC<Props> = ({
   };
   const handleFocus = (createNewIndex: (oldIndex: number) => number) => {
     const itemIndex = items.findIndex((item) => createOptionId(item.props.value) === focusedItemId);
-    const newIndex = itemIndex ? createNewIndex(itemIndex) : 0;
+    const newIndex = itemIndex > -1 ? createNewIndex(itemIndex) : 0;
     setFocusedItemId(createOptionId(items[newIndex]?.props?.value));
-    rowVirtualizer.scrollToIndex(newIndex);
+    // rowVirtualizer.scrollToIndex(newIndex);
   };
   const handleFocusNext = () => {
-    handleFocus((index) => (index < rowVirtualizer.totalSize ? index + 1 : 0));
+    handleFocus((index) => (index < items.length - 1 ? index + 1 : 0));
   };
   const handleFocusPrev = () => {
-    handleFocus((index) => (index > 0 ? index - 1 : rowVirtualizer.totalSize - 1));
+    handleFocus((index) => (index > 0 ? index - 1 : items.length - 1));
   };
   const handleBlur = useAllHandlers(
     textFieldProps.onBlur,
@@ -136,35 +120,22 @@ const ComboBoxInner: React.FC<Props> = ({
         onFocusPrev={handleFocusPrev}
       />
       <Popover triggerRef={triggerRef}>
-        <ListBox role="listbox" id={listboxId} aria-labelledby={idSeed('input')} style={listStyle} ref={listRef}>
-          {rowVirtualizer.virtualItems.map(({ index, start, measureRef }) => {
-            const item: OptionType = items[index];
-            return (
-              <div
-                key={item.props.value}
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: '100%',
-                  transform: `translateY(${start}px)`,
-                }}
-                ref={measureRef}
-              >
-                {React.cloneElement(item, {
-                  id: createOptionId(item.props.value),
-                  onClick: (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-                    setFilterText(item.props.value);
-                    setValue(item.props.value);
-                    close();
+        <VirtualList id={listboxId} aria-labelledby={idSeed('input')} size={items.length}>
+          {(index) => {
+            const item = items[index];
 
-                    item.props.onClick?.(e);
-                  },
-                })}
-              </div>
-            );
-          })}
-        </ListBox>
+            return React.cloneElement(item, {
+              id: createOptionId(item.props.value),
+              onClick: (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+                setFilterText(item.props.value);
+                setValue(item.props.value);
+                close();
+
+                item.props.onClick?.(e);
+              },
+            });
+          }}
+        </VirtualList>
       </Popover>
     </>
   );
