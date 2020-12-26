@@ -1,11 +1,11 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { HiCheck } from 'react-icons/hi';
 
 import Icon from '../Icon';
 import ListItem from '../ListItem';
 import type { ListItemProps } from '../ListItem/ListItem';
 import { styled } from '../stitches.config';
-import { forwardRef, useAllHandlers, useForkRef } from '../utils';
+import { forwardRef, useAllHandlers } from '../utils';
 import { useItemSelected, useItemFocused, useFocusItem } from './atoms';
 
 const SelectedIcon = styled(Icon, {});
@@ -23,7 +23,6 @@ export interface Props extends Omit<ListItemProps, 'children' | 'value' | 'label
 }
 
 const Item = forwardRef<HTMLLIElement, Props>(({ id, value, label, ...props }, propRef) => {
-  const innerRef = useRef<HTMLLIElement>(null);
   const isSelected = useItemSelected(value);
   const isFocused = useItemFocused(id as string);
 
@@ -33,7 +32,6 @@ const Item = forwardRef<HTMLLIElement, Props>(({ id, value, label, ...props }, p
     e.preventDefault();
     e.stopPropagation();
   });
-  const refs = useForkRef(propRef, innerRef);
 
   return (
     <Option
@@ -43,7 +41,7 @@ const Item = forwardRef<HTMLLIElement, Props>(({ id, value, label, ...props }, p
       onMouseOver={onMouseOver}
       onMouseDown={preventMouseDown}
       main="spread"
-      ref={refs}
+      ref={propRef}
     >
       {label}
       {isSelected ? <SelectedIcon as={HiCheck} size="md" /> : null}

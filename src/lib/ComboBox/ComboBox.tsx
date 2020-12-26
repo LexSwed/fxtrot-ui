@@ -6,7 +6,7 @@ import { OpenStateProvider, useOpenState, useOpenStateControls } from '../utils/
 
 import Input, { Props as InputProps } from './Input';
 import Item, { OptionType } from './Item';
-import { useAllHandlers, useForkRef } from '../utils';
+import { useAllHandlers, useForkRef, useLatest } from '../utils';
 import Popover from '../Popover';
 import { useFocusedItemId, useSyncValue } from './atoms';
 import VirtualList from './VirtualList';
@@ -39,6 +39,7 @@ const ComboBoxInner: React.FC<Props> = ({
   const [focusedItemId, setFocusedItemId] = useFocusedItemId();
   const { close } = useOpenStateControls();
   const scrollToIndexRef = useRef<(index: number) => void>(() => {});
+  const onInputChangeRef = useLatest(onInputChange);
 
   const allowNewElement = !!onInputChange;
   const listboxId = idSeed('listbox');
@@ -62,6 +63,10 @@ const ComboBoxInner: React.FC<Props> = ({
     const item = (React.Children.toArray(children) as OptionType[]).find((item) => item.props.value === value);
     setFilterText((text) => item?.props?.label || (allowNewElement ? text : ''));
   }, [children, setFilterText, value, allowNewElement]);
+
+  useEffect(() => {
+    onInputChangeRef.current?.(filterText);
+  }, [filterText, onInputChangeRef]);
 
   const handleSelect = () => {
     if (focusedItemId) {
