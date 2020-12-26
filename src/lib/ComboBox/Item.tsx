@@ -29,6 +29,10 @@ const Item = forwardRef<HTMLLIElement, Props>(({ id, value, label, ...props }, p
 
   const handleFocus = useFocusItem(id as string);
   const onMouseOver = useAllHandlers(props.onMouseOver, handleFocus);
+  const preventMouseDown = useAllHandlers(props.onMouseDown, (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  });
   const refs = useForkRef(propRef, innerRef);
 
   return (
@@ -37,6 +41,7 @@ const Item = forwardRef<HTMLLIElement, Props>(({ id, value, label, ...props }, p
       isFocused={isFocused}
       aria-selected={isSelected}
       onMouseOver={onMouseOver}
+      onMouseDown={preventMouseDown}
       main="spread"
       ref={refs}
     >

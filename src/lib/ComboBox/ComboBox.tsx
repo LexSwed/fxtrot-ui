@@ -6,7 +6,7 @@ import { OpenStateProvider, useOpenState, useOpenStateControls } from '../utils/
 
 import Input, { Props as InputProps } from './Input';
 import Item, { OptionType } from './Item';
-import { useAllHandlers, useForkRef } from '../utils';
+import { useAllHandlers, useForkRef, useLatest } from '../utils';
 import Popover from '../Popover';
 import { useFilterText, useFocusedItemId, useSyncValue } from './atoms';
 import VirtualList from './VirtualList';
@@ -38,14 +38,16 @@ const ComboBoxInner: React.FC<Props> = ({
   const [filterText, setFilterText] = useFilterText();
   const [focusedItemId, setFocusedItemId] = useFocusedItemId();
   const { close } = useOpenStateControls();
+  const onInputChangeRef = useLatest(onInputChange);
+  const scrollToIndexRef = useRef<(index: number) => void>(() => {});
 
   const allowNewElement = !!onInputChange;
   const listboxId = idSeed('listbox');
   const createOptionId = (value: string) => idSeed('option') + value;
 
   useEffect(() => {
-    onInputChange?.(filterText);
-  }, [filterText, onInputChange]);
+    onInputChangeRef.current?.(filterText);
+  }, [filterText, onInputChangeRef]);
 
   const items = useMemo<OptionType[]>(() => {
     if (filterText === '') return React.Children.toArray(children) as OptionType[];
@@ -62,10 +64,8 @@ const ComboBoxInner: React.FC<Props> = ({
   }, [children, filterText]);
 
   useEffect(() => {
-    if (value) {
-      const item = (React.Children.toArray(children) as OptionType[]).find((item) => item.props.value === value);
-      item && setFilterText(item.props?.label);
-    }
+    const item = (React.Children.toArray(children) as OptionType[]).find((item) => item.props.value === value);
+    setFilterText(item?.props?.label || '');
   }, [children, setFilterText, value]);
 
   const handleSelect = () => {
@@ -82,7 +82,7 @@ const ComboBoxInner: React.FC<Props> = ({
     const itemIndex = items.findIndex((item) => createOptionId(item.props.value) === focusedItemId);
     const newIndex = itemIndex > -1 ? createNewIndex(itemIndex) : 0;
     setFocusedItemId(createOptionId(items[newIndex]?.props?.value));
-    // rowVirtualizer.scrollToIndex(newIndex);
+    scrollToIndexRef.current(newIndex);
   };
   const handleFocusNext = () => {
     handleFocus((index) => (index < items.length - 1 ? index + 1 : 0));
@@ -120,14 +120,19 @@ const ComboBoxInner: React.FC<Props> = ({
         onFocusPrev={handleFocusPrev}
       />
       <Popover triggerRef={triggerRef}>
-        <VirtualList id={listboxId} aria-labelledby={idSeed('input')} size={items.length}>
+        <VirtualList
+          id={listboxId}
+          aria-labelledby={idSeed('input')}
+          scrollToIndexRef={scrollToIndexRef}
+          size={items.length}
+        >
           {(index) => {
             const item = items[index];
 
             return React.cloneElement(item, {
               id: createOptionId(item.props.value),
-              onClick: (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-                setFilterText(item.props.value);
+              onMouseUp: (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+                setFilterText(item.props.label);
                 setValue(item.props.value);
                 close();
 
