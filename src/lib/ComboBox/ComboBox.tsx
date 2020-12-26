@@ -39,35 +39,16 @@ const ComboBoxInner: React.FC<Props> = ({
   const [focusedItemId, setFocusedItemId] = useFocusedItemId();
   const { close } = useOpenStateControls();
   const scrollToIndexRef = useRef<(index: number) => void>(() => {});
-  const onInputChangeRef = useLatest(onInputChange);
 
   const allowNewElement = !!onInputChange;
   const listboxId = idSeed('listbox');
+
+  const items = useFilteredItems(children, filterText);
+
+  useUpdateTextWithLabel(value, children, setFilterText, allowNewElement);
+  useOnInputChangeSync(onInputChange, filterText);
+
   const createOptionId = (value: string) => idSeed('option') + value;
-
-  const items = useMemo<OptionType[]>(() => {
-    if (filterText === '') return React.Children.toArray(children) as OptionType[];
-
-    let filtered: OptionType[] = [];
-
-    React.Children.forEach(children, (item: OptionType) => {
-      if (item.props.label.toLowerCase().includes(filterText.toLowerCase())) {
-        filtered.push(item);
-      }
-    });
-
-    return filtered;
-  }, [children, filterText]);
-
-  useEffect(() => {
-    const item = (React.Children.toArray(children) as OptionType[]).find((item) => item.props.value === value);
-    setFilterText((text) => item?.props?.label || (allowNewElement ? text : ''));
-  }, [children, setFilterText, value, allowNewElement]);
-
-  useEffect(() => {
-    onInputChangeRef.current?.(filterText);
-  }, [filterText, onInputChangeRef]);
-
   const handleSelect = () => {
     if (focusedItemId) {
       const selected = items.find((item) => createOptionId(item.props.value) === focusedItemId);
@@ -168,3 +149,39 @@ const ComboBox: React.FC<Props> & { Item: typeof Item } = (props) => {
 ComboBox.Item = Item;
 
 export default ComboBox;
+
+function useFilteredItems(children: Props['children'], filterText: string) {
+  return useMemo<OptionType[]>(() => {
+    if (filterText === '') return React.Children.toArray(children) as OptionType[];
+
+    let filtered: OptionType[] = [];
+
+    React.Children.forEach(children, (item: OptionType) => {
+      if (item.props.label.toLowerCase().includes(filterText.toLowerCase())) {
+        filtered.push(item);
+      }
+    });
+
+    return filtered;
+  }, [children, filterText]);
+}
+
+function useOnInputChangeSync(onInputChange: Props['onInputChange'], filterText: string) {
+  const onInputChangeRef = useLatest(onInputChange);
+
+  useEffect(() => {
+    onInputChangeRef.current?.(filterText);
+  }, [filterText, onInputChangeRef]);
+}
+
+function useUpdateTextWithLabel(
+  value: Props['value'],
+  children: Props['children'],
+  setFilterText: React.Dispatch<React.SetStateAction<string>>,
+  allowNewElement: boolean
+) {
+  useEffect(() => {
+    const item = (React.Children.toArray(children) as OptionType[]).find((item) => item.props.value === value);
+    setFilterText((text) => item?.props?.label || (allowNewElement ? text : ''));
+  }, [value, children, setFilterText, allowNewElement]);
+}

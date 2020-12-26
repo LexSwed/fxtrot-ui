@@ -37,8 +37,6 @@ export const useItemFocused = (id: string) =>
     focusedItemId,
     useCallback((focusedId) => id === focusedId, [id])
   );
-export const useFocusItem = (id: string) => {
-  const setFocused = useUpdateAtom(focusedItemId);
-
-  return useCallback(() => setFocused(id), [id, setFocused]);
+export const useFocusItem = () => {
+  return useUpdateAtom(focusedItemId);
 };

@@ -18,6 +18,8 @@ const Option = styled(ListItem, {
 
 export interface OptionType extends React.ReactElement<Props, typeof Item> {}
 export interface Props extends Omit<ListItemProps, 'children' | 'value' | 'label' | 'isFocused'> {
+  /** id won't work as it's overwritten by ComboBox 🤷‍♂️ */
+  id?: string;
   value: string;
   label: string;
 }
@@ -26,8 +28,8 @@ const Item = forwardRef<HTMLLIElement, Props>(({ id, value, label, ...props }, p
   const isSelected = useItemSelected(value);
   const isFocused = useItemFocused(id as string);
 
-  const handleFocus = useFocusItem(id as string);
-  const onMouseOver = useAllHandlers(props.onMouseOver, handleFocus);
+  const updateFocusedItemId = useFocusItem();
+  const onMouseOver = useAllHandlers(props.onMouseOver, () => updateFocusedItemId(id as string));
   const preventMouseDown = useAllHandlers(props.onMouseDown, (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -36,6 +38,7 @@ const Item = forwardRef<HTMLLIElement, Props>(({ id, value, label, ...props }, p
   return (
     <Option
       {...props}
+      id={id}
       isFocused={isFocused}
       aria-selected={isSelected}
       onMouseOver={onMouseOver}
