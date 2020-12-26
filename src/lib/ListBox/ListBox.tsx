@@ -10,7 +10,6 @@ export const List = styled('ul', {
   'overflowY': 'auto',
   'maxHeight': '240px',
   '$outline': -1,
-
   '&:empty': {
     display: 'none',
   },
@@ -37,6 +36,9 @@ export interface ListBoxProps extends PropsOf<typeof List> {
 
 const ListBox = forwardRef<HTMLUListElement, ListBoxProps>(
   ({ children, restoreFocus, contain, wrap, ...props }, ref) => {
+    if (React.Children.count(children) === 0) {
+      return <List role="listbox" tabIndex={-1} {...props} as="ul" ref={ref} />;
+    }
     return (
       <List role="listbox" tabIndex={-1} {...props} as="ul" ref={ref}>
         <FocusScope contain={contain} restoreFocus={restoreFocus}>

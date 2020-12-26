@@ -25,9 +25,6 @@ export const useSyncValue: SyncedValue = (propValue, onChange = () => {}) => {
   return [value, setValue] as const;
 };
 
-const filterText = atom('');
-export const useFilterText = () => useAtom(filterText);
-
 const focusedItemId = atom<string | null>(null);
 export const useFocusedItemId = () => useAtom(focusedItemId);
 export const useItemSelected = (value: string) =>

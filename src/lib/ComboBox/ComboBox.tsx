@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { Provider } from 'jotai';
 import { useUIDSeed } from 'react-uid';
 
@@ -6,9 +6,9 @@ import { OpenStateProvider, useOpenState, useOpenStateControls } from '../utils/
 
 import Input, { Props as InputProps } from './Input';
 import Item, { OptionType } from './Item';
-import { useAllHandlers, useForkRef, useLatest } from '../utils';
+import { useAllHandlers, useForkRef } from '../utils';
 import Popover from '../Popover';
-import { useFilterText, useFocusedItemId, useSyncValue } from './atoms';
+import { useFocusedItemId, useSyncValue } from './atoms';
 import VirtualList from './VirtualList';
 
 interface Props
@@ -35,19 +35,14 @@ const ComboBoxInner: React.FC<Props> = ({
   const idSeed = useUIDSeed();
   const isOpen = useOpenState();
   const [value, setValue] = useSyncValue(propValue, propOnChange);
-  const [filterText, setFilterText] = useFilterText();
+  const [filterText, setFilterText] = useState('');
   const [focusedItemId, setFocusedItemId] = useFocusedItemId();
   const { close } = useOpenStateControls();
-  const onInputChangeRef = useLatest(onInputChange);
   const scrollToIndexRef = useRef<(index: number) => void>(() => {});
 
   const allowNewElement = !!onInputChange;
   const listboxId = idSeed('listbox');
   const createOptionId = (value: string) => idSeed('option') + value;
-
-  useEffect(() => {
-    onInputChangeRef.current?.(filterText);
-  }, [filterText, onInputChangeRef]);
 
   const items = useMemo<OptionType[]>(() => {
     if (filterText === '') return React.Children.toArray(children) as OptionType[];
@@ -65,8 +60,8 @@ const ComboBoxInner: React.FC<Props> = ({
 
   useEffect(() => {
     const item = (React.Children.toArray(children) as OptionType[]).find((item) => item.props.value === value);
-    setFilterText(item?.props?.label || '');
-  }, [children, setFilterText, value]);
+    setFilterText((text) => item?.props?.label || (allowNewElement ? text : ''));
+  }, [children, setFilterText, value, allowNewElement]);
 
   const handleSelect = () => {
     if (focusedItemId) {
@@ -90,6 +85,7 @@ const ComboBoxInner: React.FC<Props> = ({
   const handleFocusPrev = () => {
     handleFocus((index) => (index > 0 ? index - 1 : items.length - 1));
   };
+
   const handleBlur = useAllHandlers(
     textFieldProps.onBlur,
     allowNewElement
@@ -105,6 +101,12 @@ const ComboBoxInner: React.FC<Props> = ({
           }
         }
   );
+  const handleFilterChange = (text: string) => {
+    if (allowNewElement || text === '') {
+      setValue(null);
+    }
+    setFilterText(text);
+  };
 
   return (
     <>
@@ -114,6 +116,8 @@ const ComboBoxInner: React.FC<Props> = ({
         aria-activedescendant={focusedItemId as string}
         inputRef={inputRefs}
         hasNewBadge={allowNewElement && !value && !!filterText}
+        value={filterText}
+        onChange={handleFilterChange}
         onBlur={handleBlur}
         onSelect={handleSelect}
         onFocusNext={handleFocusNext}

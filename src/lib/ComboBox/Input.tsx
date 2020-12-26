@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useRef } from 'react';
 import { HiSelector } from 'react-icons/hi';
 
 import Button from '../Button';
@@ -11,7 +11,6 @@ import Tag from '../Tag';
 import { InteractiveBox, validityVariant } from '../TextField/shared';
 import { PropsOf, useAllHandlers, useForkRef, useKeyboardHandles } from '../utils';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
-import { useFilterText } from './atoms';
 
 const InputWrapper = styled('div', {
   position: 'relative',
@@ -45,14 +44,18 @@ export interface Props
   'validity'?: 'valid' | 'invalid';
   'inputRef'?: React.Ref<HTMLInputElement>;
   'aria-controls': string;
-  /** Custom prop */
+  /** Internal prop */
   'hasNewBadge': boolean;
-  /** Custom prop */
+  /** Internal prop */
   'onSelect': () => void;
-  /** Custom prop */
+  /** Internal prop */
   'onFocusNext': () => void;
-  /** Custom prop */
+  /** Internal prop */
   'onFocusPrev': () => void;
+  /** Internal prop */
+  'value': string;
+  /** Internal prop */
+  'onChange': (newValue: string) => void;
 }
 
 const ComboBoxInput: React.FC<Props> = ({
@@ -74,6 +77,8 @@ const ComboBoxInput: React.FC<Props> = ({
   inputRef,
   /** custom props, should be filtered from ComboBox parent */
   hasNewBadge,
+  value,
+  onChange,
   onSelect,
   onFocusNext,
   onFocusPrev,
@@ -82,17 +87,10 @@ const ComboBoxInput: React.FC<Props> = ({
   const ariaProps = useFormField({ id, hint });
   const isOpen = useOpenState();
   const { open, close } = useOpenStateControls();
-  const [filterText, setFilterText] = useFilterText();
   const innerRef = useRef<HTMLInputElement>(null);
   const refs = useForkRef(inputRef, innerRef);
 
-  const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      open();
-      setFilterText(e.currentTarget.value);
-    },
-    [open, setFilterText]
-  );
+  const handleChange = useAllHandlers((e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value), open);
 
   const keydownControls = useKeyboardHandles({
     'ArrowDown': () => {
@@ -105,8 +103,8 @@ const ComboBoxInput: React.FC<Props> = ({
     },
     'Escape': close,
     'Tab.propagate': close,
-    'Enter': onSelect,
-    'Space': onSelect,
+    'Enter': isOpen ? onSelect : undefined,
+    'Space': isOpen ? onSelect : undefined,
   });
 
   const handleKeyDown = useAllHandlers(keydownControls, props.onKeyDown);
@@ -135,7 +133,7 @@ const ComboBoxInput: React.FC<Props> = ({
             autoComplete="off"
             spellCheck="false"
             disabled={disabled}
-            value={filterText}
+            value={value}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
             type="text"

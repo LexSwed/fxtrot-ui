@@ -28,6 +28,10 @@ const VirtualList: React.FC<Props> = ({ size, children, scrollToIndexRef, ...pro
     scrollToIndexRef.current = rowVirtualizer.scrollToIndex;
   }, [scrollToIndexRef, rowVirtualizer.scrollToIndex]);
 
+  if (size === 0) {
+    return <ListBox role="listbox" {...props} />;
+  }
+
   return (
     <ListBox role="listbox" ref={listRef} {...props}>
       <div style={listStyle}>
