@@ -1,9 +1,8 @@
 import React from 'react';
 
 import ListItem from '../ListItem/ListItem';
-import { focusOnMouseOver } from '../ListItem/ListItem';
 import { styled } from '../stitches.config';
-import { forwardRef, PropsOf, useAllHandlers } from '../utils';
+import { forwardRef, PropsOf } from '../utils';
 
 const MenuItem = styled(ListItem, {
   'position': 'relative',
@@ -37,13 +36,10 @@ interface Props extends PropsOf<typeof MenuItem> {
 }
 
 const Item = forwardRef<HTMLLIElement, Props>(({ selected, ...props }, ref) => {
-  const onMouseEnter = useAllHandlers(props.onMouseEnter, focusOnMouseOver);
-
   return (
     <MenuItem
       {...props}
       flow={props.flow}
-      onMouseEnter={onMouseEnter}
       role="treeitem"
       aria-selected={selected}
       tabIndex={selected ? 0 : -1}

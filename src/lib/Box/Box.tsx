@@ -5,7 +5,7 @@ import { CssProperties, forwardRef, PropsOf } from '../utils';
 
 const Div = styled('div', {});
 
-const Box = forwardRef<HTMLDivElement, Props>(({ children, css, ...props }) => {
+const Box = forwardRef<HTMLDivElement, Props>(({ children, css, ...props }, ref) => {
   const [style, attrs] = Object.entries(props).reduce(
     (res, [key, value]: [any, any]) => {
       if (VALID_ITEMS.has(key)) {
@@ -20,7 +20,7 @@ const Box = forwardRef<HTMLDivElement, Props>(({ children, css, ...props }) => {
   );
 
   return (
-    <Div css={Object.assign(style, css)} {...attrs}>
+    <Div css={Object.assign(style, css)} {...attrs} ref={ref}>
       {children}
     </Div>
   );

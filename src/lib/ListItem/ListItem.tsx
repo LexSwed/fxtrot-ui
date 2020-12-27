@@ -21,6 +21,10 @@ const Item = styled(FlexBox as FlexType<'li'>, {
   ':focus:not(:active)': {
     bc: '$flatHover',
   },
+  // TODO: deduplicate with focus when fixed in stitches
+  ':hover': {
+    bc: '$flatHover',
+  },
   ':active': {
     bc: '$flatActive',
   },
