@@ -25,4 +25,6 @@ export { themes } from './theme/themes';
 export { default as ThemeProvider } from './ThemeProvider';
 export { default as VisuallyHidden } from './VisuallyHidden';
 
+export { useForkRef, useLatest, useAllHandlers, useKeyboardHandles } from './utils';
+
 export interface StyleRecord extends Record<string, StylesWithVariants> {}

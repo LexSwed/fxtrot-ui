@@ -60,8 +60,8 @@ export function useAllHandlers<E = React.SyntheticEvent<any, Event>>(
   }, []) as E extends React.SyntheticEvent<any, Event> ? React.EventHandler<E> : (...args: any[]) => void;
 }
 
-type KeyboardHandler = ((event: React.KeyboardEvent<any>) => void) | undefined;
-type KeyboardHandlers = {
+export type KeyboardHandler = ((event: React.KeyboardEvent<any>) => void) | undefined;
+export type KeyboardHandlers = {
   [Key in React.KeyboardEvent<any>['key'] | `${React.KeyboardEvent<any>['key']}.propagate`]: KeyboardHandler;
 };
 
