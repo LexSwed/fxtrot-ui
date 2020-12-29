@@ -14,7 +14,15 @@ import VirtualList from './VirtualList';
 interface Props
   extends Omit<
     InputProps,
-    'onChange' | 'onSelect' | 'value' | 'children' | 'hasNewBadge' | 'onSelect' | 'onFocusNext' | 'onFocusPrev'
+    | 'onChange'
+    | 'onSelect'
+    | 'value'
+    | 'children'
+    | 'hasNewBadge'
+    | 'onSelect'
+    | 'onFocusNext'
+    | 'onFocusPrev'
+    | 'aria-controls'
   > {
   value?: string | null;
   onChange?: (newValue: string | null) => void;

@@ -43,7 +43,7 @@ export interface Props
   'hint'?: string;
   'validity'?: 'valid' | 'invalid';
   'inputRef'?: React.Ref<HTMLInputElement>;
-  'aria-controls': string;
+  'aria-controls'?: string;
   /** Internal prop */
   'hasNewBadge': boolean;
   /** Internal prop */
