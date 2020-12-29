@@ -3,6 +3,7 @@ import React from 'react';
 
 import { useDialog } from '../Dialog/utils';
 import { styled } from '../stitches.config';
+import { forwardRef } from '../utils';
 
 export const HeadingText = styled('h1', {
   fontFamily: '$heading',
@@ -66,9 +67,9 @@ HeadingText.compoundVariant(
 
 interface Props extends StitchesProps<typeof HeadingText> {}
 
-const Heading: React.FC<Props> = ({ variant = 'default', as = 'h1', ...props }) => {
+const Heading = forwardRef<HTMLHeadingElement, Props>(({ variant = 'default', as = 'h1', ...props }, ref) => {
   const { seed } = useDialog() || {};
-  return <HeadingText variant={variant} as={as} id={seed?.('heading')} {...props} />;
-};
+  return <HeadingText variant={variant} as={as} id={seed?.('heading')} {...props} ref={ref} />;
+});
 
 export default Heading;

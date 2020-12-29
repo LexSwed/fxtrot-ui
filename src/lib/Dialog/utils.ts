@@ -2,7 +2,7 @@ import { createContext, useContext } from 'react';
 import type { useUIDSeed } from 'react-uid';
 
 const dialogContext = createContext<DialogContext>({
-  seed: null,
+  seed: () => {},
 } as any);
 
 export interface DialogContext {
