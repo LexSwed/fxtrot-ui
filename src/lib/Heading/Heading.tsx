@@ -1,9 +1,8 @@
-import type { StitchesProps } from '@stitches/react';
 import React from 'react';
+import type { StitchesProps } from '@stitches/react';
 
 import { useDialog } from '../Dialog/utils';
 import { styled } from '../stitches.config';
-import { forwardRef } from '../utils';
 
 export const HeadingText = styled('h1', {
   fontFamily: '$heading',
@@ -12,35 +11,34 @@ export const HeadingText = styled('h1', {
   color: '$text',
 
   variants: {
-    as: {
-      h1: {
+    level: {
+      1: {
         fontSize: '$2xl',
-        textTransform: 'uppercase',
         mt: '$3',
         mb: '$5',
       },
-      h2: {
+      2: {
         fontSize: '$2xl',
         mt: '$2',
         mb: '$4',
       },
-      h3: {
+      3: {
         fontSize: '$xl',
         mt: '$2',
         mb: '$4',
       },
-      h4: {
+      4: {
         fontSize: '$lg',
         mt: '$1',
         mb: '$3',
       },
-      h5: {
+      5: {
         fontSize: '$lg',
         textTransform: 'uppercase',
         mt: '$1',
         mb: '$2',
       },
-      h6: {
+      6: {
         fontSize: '$md',
       },
     },
@@ -57,19 +55,21 @@ export const HeadingText = styled('h1', {
 
 HeadingText.compoundVariant(
   {
-    as: 'h1',
+    level: 1,
     variant: 'default',
   },
   {
-    fontWeight: 900,
+    fontWeight: 800,
   }
 );
 
-interface Props extends StitchesProps<typeof HeadingText> {}
+interface Props extends Omit<StitchesProps<typeof HeadingText>, 'as'> {}
 
-const Heading = forwardRef<HTMLHeadingElement, Props>(({ variant = 'default', as = 'h1', ...props }, ref) => {
+const Heading = React.forwardRef<HTMLHeadingElement, Props>(({ variant = 'default', level = 1, ...props }, ref) => {
   const { seed } = useDialog() || {};
-  return <HeadingText variant={variant} as={as} id={seed?.('heading')} {...props} ref={ref} />;
+  return (
+    <HeadingText variant={variant} as={`h${level}` as any} level={level} id={seed?.('heading')} {...props} ref={ref} />
+  );
 });
 
 export default Heading;
