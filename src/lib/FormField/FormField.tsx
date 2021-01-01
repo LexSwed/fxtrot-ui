@@ -1,9 +1,9 @@
-import type {} from '@stitches/react';
 import React, { useMemo } from 'react';
 import { useUID } from 'react-uid';
 
 import Box from '../Box';
 import Flex from '../Flex';
+import { LabelWrapper } from '../Label/Label';
 import { styled } from '../stitches.config';
 import Text from '../Text';
 import type { PropsOf } from '../utils';
@@ -11,6 +11,7 @@ import type { PropsOf } from '../utils';
 const Wrapper = styled(Flex, {
   position: 'relative',
   width: '100%',
+
   variants: {
     hasHint: {
       true: {
@@ -33,6 +34,7 @@ const HintText = styled(Text, {
   bottom: '0',
   transform: 'translateY(calc(100% + 4px))',
   maxWidth: '-webkit-fill-available',
+  pl: '$2',
 });
 
 export interface FormFieldProps extends PropsOf<typeof Wrapper> {

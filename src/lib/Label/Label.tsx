@@ -28,12 +28,12 @@ const Secondary = styled(Text, {
   fontWeight: 400,
 });
 
-const Wrapper = styled(FlexBox as FlexType<'label'>, {
+export const LabelWrapper = styled(FlexBox as FlexType<'label'>, {
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
 });
 
-interface Props extends PropsOf<typeof Wrapper> {
+interface Props extends PropsOf<typeof LabelWrapper> {
   label: React.ReactNode;
   secondary?: React.ReactNode;
   disabled?: boolean;
@@ -41,7 +41,7 @@ interface Props extends PropsOf<typeof Wrapper> {
 
 const Label: React.FC<Props> = ({ label, children: _ignore, secondary, ref, as = 'label', disabled, ...props }) => {
   return (
-    <Wrapper {...props} flow="row" cross="center" space="xs" display="inline" as={as} ref={ref as any}>
+    <LabelWrapper {...props} flow="row" cross="center" space="xs" display="inline" as={as} ref={ref as any}>
       <Main size="xs" disabled={disabled}>
         {label}
       </Main>
@@ -50,7 +50,7 @@ const Label: React.FC<Props> = ({ label, children: _ignore, secondary, ref, as =
           {secondary}
         </Secondary>
       )}
-    </Wrapper>
+    </LabelWrapper>
   );
 };
 
