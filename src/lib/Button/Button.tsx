@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { FlexBox, FlexType } from '../Flex';
-import { IconBox } from '../Icon/Icon';
+import Icon from '../Icon/Icon';
 import { styled } from '../stitches.config';
 import { forwardRef, PropsOf } from '../utils';
 
@@ -13,11 +13,6 @@ const ButtonRoot = styled(FlexBox as FlexType<'button'>, {
   'br': '$md',
   'cursor': 'default',
   'whiteSpace': 'nowrap',
-
-  [`& > ${IconBox}:first-child:last-child`]: {
-    ml: '-$1',
-    mr: '-$1',
-  },
 
   ':disabled': {
     color: '$textDisabled',
@@ -133,13 +128,53 @@ const ButtonRoot = styled(FlexBox as FlexType<'button'>, {
         color: '$text',
       },
     },
+    isIconButton: {
+      true: {
+        position: 'relative',
+        padding: 0,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+    },
   },
 });
 
-interface Props extends PropsOf<typeof ButtonRoot> {}
+ButtonRoot.compoundVariant(
+  {
+    isIconButton: true,
+    size: 'sm',
+  },
+  {
+    width: '$6',
+  }
+);
+ButtonRoot.compoundVariant(
+  {
+    isIconButton: true,
+    size: 'md',
+  },
+  {
+    width: '$base',
+  }
+);
+ButtonRoot.compoundVariant(
+  {
+    isIconButton: true,
+    size: 'lg',
+  },
+  {
+    width: '$10',
+  }
+);
+
+interface Props extends Omit<PropsOf<typeof ButtonRoot>, 'isIconButton'> {}
 
 const Button = forwardRef<HTMLButtonElement, Props>(
   ({ variant = 'primary', size = 'md', space = '$2', type = 'button', css, style, className, ...props }, ref) => {
+    const isIconButton = React.Children.toArray(props.children).every(
+      (child) => React.isValidElement(child) && child.type === Icon
+    );
+
     return (
       <ButtonRoot
         {...props}
@@ -155,6 +190,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(
         style={style}
         type={type}
         variant={variant}
+        isIconButton={isIconButton}
       />
     );
   }
