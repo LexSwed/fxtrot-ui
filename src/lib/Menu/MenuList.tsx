@@ -8,7 +8,18 @@ import { useMenu } from './utils';
 const MenuList: React.FC<ListBoxProps> = (props) => {
   const { seed } = useMenu();
 
-  const listRef = useInitialFocus();
+  const listRef = useRef<HTMLUListElement>(null);
+
+  /** Will run when the component is rendered by Popover component */
+  useEffect(() => {
+    const option = listRef.current?.querySelector('[role="menuitem"]');
+
+    if (option) {
+      (option as HTMLLIElement | undefined)?.focus?.();
+    } else {
+      listRef.current?.focus();
+    }
+  }, [listRef]);
 
   return (
     <ListBox
@@ -40,19 +51,3 @@ const MenuPopper: React.FC<
 };
 
 export default MenuPopper;
-
-function useInitialFocus() {
-  const listRef = useRef<HTMLUListElement>(null);
-
-  useEffect(() => {
-    const option = listRef.current?.querySelector('[role="menuitem"]');
-
-    if (option) {
-      (option as HTMLLIElement | undefined)?.focus?.();
-    } else {
-      listRef.current?.focus();
-    }
-  }, [listRef]);
-
-  return listRef;
-}

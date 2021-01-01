@@ -9,13 +9,14 @@ interface ButtonProps extends React.ComponentProps<typeof Button> {}
 
 const MenuButton: React.FC<ButtonProps> = (buttonProps) => {
   const isOpen = useOpenState();
-  const { open, toggle } = useOpenStateControls();
+  const { open, close, toggle } = useOpenStateControls();
   const { seed, triggerRef } = useMenu();
   const onClick = useAllHandlers(buttonProps.onClick, toggle);
 
   const handleKeyDown = useKeyboardHandles({
     ArrowDown: open,
     ArrowUp: open,
+    Escape: close,
   });
 
   const onKeyDown = useAllHandlers(buttonProps.onKeyDown, handleKeyDown);
