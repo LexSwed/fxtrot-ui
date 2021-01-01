@@ -3,7 +3,6 @@ import { useUID } from 'react-uid';
 
 import Box from '../Box';
 import Flex from '../Flex';
-import { LabelWrapper } from '../Label/Label';
 import { styled } from '../stitches.config';
 import Text from '../Text';
 import type { PropsOf } from '../utils';
