@@ -1,13 +1,18 @@
 import { createStyled } from '@stitches/react';
 
 import { attribute } from './FocusRing/focus-visible';
-import palette from './theme/palette';
 import { scales } from './theme/scales';
 import { shadows } from './theme/shadows';
+import { allColors, themes } from './ThemeProvider/themes';
 import { isServer } from './utils';
 
+const defaultPalette = {
+  ...allColors,
+  ...themes.blue.colors,
+};
+
 export const theme = {
-  colors: palette,
+  colors: defaultPalette,
   fonts: {
     $default: '"Noto Sans", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif',
     $heading: '"Source Sans Pro", apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif',
@@ -57,7 +62,7 @@ export const theme = {
     $4: '400',
     $max: '9999',
   },
-  shadows: { ...shadows, $popper: `0 0 1px ${palette.$borderLight}, ${shadows.$xl}`, $none: 'none' },
+  shadows: { ...shadows, $popper: `0 0 1px ${defaultPalette.$borderLight}, ${shadows.$xl}`, $none: 'none' },
 } as const;
 
 type Theme = typeof theme;

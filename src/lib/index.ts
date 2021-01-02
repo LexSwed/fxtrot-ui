@@ -21,7 +21,6 @@ export { default as Tag } from './Tag';
 export { default as Text } from './Text';
 export { default as TextField } from './TextField';
 export { default as TextLink } from './TextLink';
-export { themes } from './theme/themes';
 export { default as ThemeProvider } from './ThemeProvider';
 export { default as VisuallyHidden } from './VisuallyHidden';
 

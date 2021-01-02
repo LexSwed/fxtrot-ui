@@ -283,30 +283,3 @@ export const rose = {
   $rose800: '#9F1239',
   $rose900: '#881337',
 };
-
-const allColors = {
-  ...blueGray,
-  ...coolGray,
-  ...gray,
-  ...trueGray,
-  ...warmGray,
-  ...red,
-  ...orange,
-  ...amber,
-  ...yellow,
-  ...lime,
-  ...green,
-  ...emerald,
-  ...teal,
-  ...cyan,
-  ...lightBlue,
-  ...blue,
-  ...indigo,
-  ...violet,
-  ...purple,
-  ...fuchsia,
-  ...pink,
-  ...rose,
-};
-
-export default allColors;

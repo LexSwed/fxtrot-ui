@@ -1,17 +1,15 @@
 import React, { createContext, useContext, useMemo } from 'react';
 
-import Box from '../Box';
 import { css, styled } from '../stitches.config';
-import type { ColorName, Swatch } from '../theme/palette';
-import { themes } from '../theme/themes';
+import { themes, createNewTheme, DefinedThemes, ShortDefinition, Swatch } from './themes';
 
 type Props = {
-  theme?: ColorName | Swatch;
+  theme?: DefinedThemes | ShortDefinition | Swatch;
 };
 
 const themeContext = createContext<string | null>(null);
 
-const ThemeWrapper = styled(Box, {
+const ThemeWrapper = styled('div', {
   display: 'contents',
 });
 
@@ -19,11 +17,14 @@ const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
   const contextTheme = useContext(themeContext);
 
   const themeClass = useMemo(() => {
-    if (typeof theme === 'object') {
-      return css.theme(theme as Swatch);
+    if (!theme) return null;
+    if (isShortDefinition(theme)) {
+      return css.theme(createNewTheme(theme));
+    } else if (isFullSwatch(theme)) {
+      return css.theme(theme);
     }
 
-    return themes[theme as ColorName];
+    return css.theme(themes[theme]);
   }, [theme]);
 
   const className = themeClass || contextTheme;
@@ -34,9 +35,7 @@ const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
 
   return (
     <themeContext.Provider value={className}>
-      <ThemeWrapper className={className} as="span">
-        {children}
-      </ThemeWrapper>
+      <ThemeWrapper className={className}>{children}</ThemeWrapper>
     </themeContext.Provider>
   );
 };
@@ -44,3 +43,11 @@ const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
 export default ThemeProvider;
 
 export const useTheme = () => useContext(themeContext);
+
+function isShortDefinition(theme: Props['theme']): theme is ShortDefinition {
+  return typeof theme === 'object' && !!(theme as ShortDefinition)?.primary;
+}
+
+function isFullSwatch(theme: Props['theme']): theme is Swatch {
+  return typeof theme === 'object' && !!(theme as Swatch)?.colors?.$text;
+}

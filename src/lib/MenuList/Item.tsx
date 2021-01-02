@@ -20,6 +20,7 @@ const MenuItem = styled(ListItem, {
   },
   '&[aria-selected="true"]': {
     'bc': '$surfaceActive',
+    'color': '$accent',
     '::after': {
       bc: '$accent',
     },

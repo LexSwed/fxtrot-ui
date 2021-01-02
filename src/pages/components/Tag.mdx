@@ -9,31 +9,20 @@ import { Box, Flex, Tag, ThemeProvider, Icon } from '@fxtrot/ui';
 ## Variant
 
 <Playground>
-  <Flex space="xl" css={{ py: '$8', bc: '$gray50' }}>
-    <Flex flow="row" space="sm" css={{ px: '$10' }}>
-      <Tag label="Primary" />
-      <Tag label="Primary (disabled)" />
-    </Flex>
-    <Flex flow="row" space="sm" css={{ px: '$10' }}>
-      <Tag variant="outline" label="Outline" />
-      <Tag variant="outline" label="Outline (disabled)" disabled />
-    </Flex>
-    <Flex flow="row" space="sm" css={{ px: '$10' }}>
-      <Tag variant="secondary" label="Secondary" />
-      <Tag variant="secondary" disabled label="Secondary (disabled)" />
-    </Flex>
+  <Flex space="xl" flow="row" css={{ p: '$8', bc: '$gray50' }}>
+    <Tag label="Primary" />
+    <Tag variant="outline" label="Outline" />
+    <Tag variant="secondary" label="Secondary" />
   </Flex>
 </Playground>
 
 ## Size
 
 <Playground>
-  <Flex space="xl" css={{ py: '$8', bc: '$gray50' }}>
-    <Flex flow="row" space="sm" css={{ px: '$10' }}>
-      <Tag label="Small (sm)" size="sm" />
-      <Tag label="Medium (md)" size="md" />
-      <Tag label="Large (lg)" size="lg" />
-    </Flex>
+  <Flex space="xl" flow="row" css={{ p: '$8', bc: '$gray50' }}>
+    <Tag label="Small (sm)" size="sm" />
+    <Tag label="Medium (md)" size="md" />
+    <Tag label="Large (lg)" size="lg" />
   </Flex>
 </Playground>
 
@@ -42,16 +31,11 @@ import { Box, Flex, Tag, ThemeProvider, Icon } from '@fxtrot/ui';
 Use `ThemeProvider` component to change the primary color of the Tag.
 
 <Playground>
-  <ThemeProvider theme="black">
-    <Flex space="xl" css={{ py: '$8', bc: '$surfaceStill' }}>
-      <Flex flow="row" space="sm" css={{ px: '$10' }}>
-        <Tag label="Primary" />
-        <Tag label="Primary (disabled)" />
-      </Flex>
-      <Flex flow="row" space="sm" css={{ px: '$10' }}>
-        <Tag variant="secondary" label="Secondary" />
-        <Tag variant="secondary" disabled label="Secondary (disabled)" />
-      </Flex>
+  <ThemeProvider theme="orange">
+    <Flex space="xl" flow="row" css={{ p: '$8', bc: '$surfaceStill' }}>
+      <Tag label="Primary" />
+      <Tag variant="outline" label="Secondary" />
+      <Tag variant="secondary" label="Secondary" />
     </Flex>
   </ThemeProvider>
 </Playground>

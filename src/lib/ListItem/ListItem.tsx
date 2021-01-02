@@ -12,7 +12,7 @@ const Item = styled(FlexBox as FlexType<'li'>, {
   'height': '$8',
   'br': '$sm',
   'outline': 'none',
-  'color': '$text',
+  'color': 'inherit',
   'cursor': 'default',
   'userSelect': 'none',
   'flexShrink': 0,
@@ -40,6 +40,7 @@ const Item = styled(FlexBox as FlexType<'li'>, {
   [`& ${Text}`]: {
     fontSize: 'inherit',
     lineHeight: 'inherit',
+    color: 'inherit',
   },
 });
 

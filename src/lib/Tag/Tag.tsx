@@ -54,8 +54,8 @@ const Block = styled('div', {
         borderColor: '$borderStill',
       },
       outline: {
-        color: '$primaryStill',
-        bc: 'transparent',
+        color: '$primaryActive',
+        bc: '$primaryLightActive',
         borderColor: '$primaryStill',
       },
     },

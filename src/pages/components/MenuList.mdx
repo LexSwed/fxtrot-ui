@@ -3,7 +3,7 @@ name: MenuList
 ---
 
 import { Playground } from 'dokz';
-import { Box, MenuList, ListItem, Icon, Text, Section } from '@fxtrot/ui';
+import { Box, MenuList, ListItem, Icon, Text, Section, ThemeProvider } from '@fxtrot/ui';
 import { HiOutlineUsers, HiOutlineAdjustments, HiOutlineGlobe } from 'react-icons/hi';
 
 ## MenuList
@@ -39,4 +39,35 @@ import { HiOutlineUsers, HiOutlineAdjustments, HiOutlineGlobe } from 'react-icon
       </Box>
     );
   }}
+</Playground>
+
+<Playground>
+  <ThemeProvider theme="orange">
+    <Box width="$56" p="$4">
+      <MenuList role="navigation">
+        <Section title="Settings">
+          {[
+            {
+              icon: HiOutlineUsers,
+              label: 'Profiles',
+            },
+            {
+              icon: HiOutlineAdjustments,
+              label: 'Appearance',
+            },
+            {
+              icon: HiOutlineGlobe,
+              label: 'Language',
+              selected: true,
+            },
+          ].map(({ icon, label, selected }) => (
+            <MenuList.Item key={label} selected={selected}>
+              <Icon as={icon} />
+              <Text>{label}</Text>
+            </MenuList.Item>
+          ))}
+        </Section>
+      </MenuList>
+    </Box>
+  </ThemeProvider>
 </Playground>
