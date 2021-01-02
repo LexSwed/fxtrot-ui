@@ -13,6 +13,7 @@ const ButtonRoot = styled(FlexBox as FlexType<'button'>, {
   'br': '$md',
   'cursor': 'default',
   'whiteSpace': 'nowrap',
+  'flexShrink': 0,
 
   ':disabled': {
     color: '$textDisabled',
@@ -170,7 +171,7 @@ ButtonRoot.compoundVariant(
 interface Props extends Omit<PropsOf<typeof ButtonRoot>, 'isIconButton'> {}
 
 const Button = forwardRef<HTMLButtonElement, Props>(
-  ({ variant = 'primary', size = 'md', space = '$2', type = 'button', css, style, className, ...props }, ref) => {
+  ({ variant = 'flat', size = 'md', space = '$2', type = 'button', css, style, className, ...props }, ref) => {
     const isIconButton = React.Children.toArray(props.children).every(
       (child) => React.isValidElement(child) && child.type === Icon
     );
