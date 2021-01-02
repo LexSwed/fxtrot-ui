@@ -124,13 +124,14 @@ export function createNewTheme({ shade, primary, accent }: ShortDefinition): Swa
       $textDisabled: allColors[`$${shade}Gray500` as keyof typeof allColors],
       $textLight: allColors[`$${shade}Gray600` as keyof typeof allColors],
       $accent: allColors[`$${accent}600` as keyof typeof allColors],
+      $accentLight: allColors[`$${accent}500` as keyof typeof allColors],
       $success: allColors['$green600' as keyof typeof allColors],
       $danger: allColors['$red600'],
 
       $primaryStill: allColors[`$${primary}500` as keyof typeof allColors],
       $primaryHover: allColors[`$${primary}600` as keyof typeof allColors],
       $primaryActive: allColors[`$${primary}700` as keyof typeof allColors],
-      $primaryLight: allColors[`$${primary}050` as keyof typeof allColors],
+      $primaryLight: allColors[`$${primary}50` as keyof typeof allColors],
       $primaryLightActive: allColors[`$${primary}100` as keyof typeof allColors],
 
       $flatStill: 'transparent',
@@ -182,6 +183,7 @@ export interface Swatch {
     $textDisabled: string;
     $textLight: string;
     $accent: string;
+    $accentLight: string;
     $success: string;
     $danger: string;
 
