@@ -6,6 +6,7 @@ import { gaps } from '../theme/variants';
 import { Config, forwardRef, PropsOf } from '../utils/types';
 
 export const FlexBox = styled('div', {
+  'display': 'flex',
   '&>h1, &>h2, &>h3, &>h4, &>h5, &>h6': {
     mt: 0,
     mb: 0,
