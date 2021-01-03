@@ -6,8 +6,6 @@ import { gaps } from '../theme/variants';
 import { Config, forwardRef, PropsOf } from '../utils/types';
 
 export const FlexBox = styled('div', {
-  'display': 'flex',
-
   '&>h1, &>h2, &>h3, &>h4, &>h5, &>h6': {
     mt: 0,
     mb: 0,
@@ -16,7 +14,7 @@ export const FlexBox = styled('div', {
   'variants': {
     space: gaps,
     display: {
-      block: {
+      flex: {
         display: 'flex',
       },
       inline: {
@@ -86,8 +84,8 @@ export const FlexBox = styled('div', {
 });
 
 const Flex = forwardRef<HTMLDivElement, FlexProps>(
-  ({ space = 'none', flow = 'column', wrap = 'nowrap', ...props }, ref) => {
-    return <FlexBox space={space} flow={flow} wrap={wrap} {...props} ref={ref as any} />;
+  ({ space = 'none', flow = 'column', wrap = 'nowrap', display = 'flex', ...props }, ref) => {
+    return <FlexBox space={space} flow={flow} wrap={wrap} display={display} {...props} ref={ref as any} />;
   }
 );
 

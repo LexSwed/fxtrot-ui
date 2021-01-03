@@ -9,16 +9,24 @@ import type { StitchesVariants } from '@stitches/react';
 const GridWithGaps = styled(Box, {
   variants: {
     gap: gaps,
+    display: {
+      grid: {
+        display: 'grid',
+      },
+      inline: {
+        display: 'inline-grid',
+      },
+    },
   },
 });
 
 interface Props extends Omit<BoxProps, 'display' | 'gap'> {
-  display: 'grid' | 'inline-grid';
-  rows: BoxProps['gridTemplateRows'];
-  columns: BoxProps['gridTemplateColumns'];
-  areas: BoxProps['gridTemplateAreas'];
-  template: BoxProps['gridTemplate'];
-  gap: StitchesVariants<typeof GridWithGaps>['gap'];
+  display?: StitchesVariants<typeof GridWithGaps>['display'];
+  rows?: BoxProps['gridTemplateRows'];
+  columns?: BoxProps['gridTemplateColumns'];
+  areas?: BoxProps['gridTemplateAreas'];
+  template?: BoxProps['gridTemplate'];
+  gap?: StitchesVariants<typeof GridWithGaps>['gap'];
 }
 
 const Grid = forwardRef<HTMLDivElement, Props>(
