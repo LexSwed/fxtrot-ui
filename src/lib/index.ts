@@ -6,6 +6,7 @@ export { default as Checkbox } from './Checkbox';
 export { default as ComboBox } from './ComboBox';
 export { default as Dialog } from './Dialog';
 export { default as Flex } from './Flex';
+export { default as Grid } from './Grid';
 export { default as Heading } from './Heading';
 export { default as Icon } from './Icon';
 export { default as Label } from './Label';

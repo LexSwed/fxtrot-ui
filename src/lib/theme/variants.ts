@@ -14,7 +14,12 @@ const gapScale: ScalesMap = {
 
 export const createVariant = <Variants extends string>(config: { [K in Variants]: CssWithBreakpoints }) => config;
 
-const createScalesVariant = (property: string, customScales: ScalesMap) =>
+const createScalesVariant = <P extends string = string>(
+  property: P,
+  customScales: ScalesMap
+): {
+  [K in keyof typeof scales | Scale]: { [T in P]: string };
+} =>
   Object.fromEntries(
     Object.keys(scales)
       .map((scale) => [scale, { [property]: scale }])
