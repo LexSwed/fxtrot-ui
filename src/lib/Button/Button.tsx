@@ -23,10 +23,17 @@ const ButtonRoot = styled(FlexBox as FlexType<'button'>, {
 
   'variants': {
     size: {
-      sm: {
+      xs: {
         height: '$6',
         lineHeight: '$6',
         fontSize: '$xs',
+        fontWeight: 400,
+        px: '$2',
+      },
+      sm: {
+        height: '$8',
+        lineHeight: '$8',
+        fontSize: '$sm',
         fontWeight: 400,
         px: '$2',
       },

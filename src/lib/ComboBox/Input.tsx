@@ -173,7 +173,7 @@ const ComboBoxButton = React.memo(
             inputRef.current?.focus();
             inputRef.current?.select();
           }}
-          size="sm"
+          size="xs"
         >
           <Icon as={HiSelector} />
         </ButtonStyled>
