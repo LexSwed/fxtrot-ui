@@ -7,7 +7,6 @@ import { forwardRef, PropsOf } from '../utils';
 const MenuItem = styled(ListItem, {
   'position': 'relative',
   'textDecoration': 'none',
-  'color': 'inherit',
   'cursor': 'default',
   '::after': {
     position: 'absolute',

@@ -4,7 +4,6 @@ import { font, textSize } from '../theme/variants';
 const Text = styled('span', {
   p: 0,
   m: 0,
-  color: '$text',
   fontFamily: '$default',
   textSize: '$base',
   variants: {
