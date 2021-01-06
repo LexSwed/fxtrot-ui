@@ -33,7 +33,7 @@ const HintText = styled(Text, {
   bottom: '0',
   transform: 'translateY(calc(100% + 4px))',
   maxWidth: '-webkit-fill-available',
-  pl: '$2',
+  pl: '$3',
 });
 
 export interface FormFieldProps extends PropsOf<typeof Wrapper> {

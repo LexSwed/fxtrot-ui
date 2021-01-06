@@ -33,9 +33,15 @@ export const InteractiveBox = styled('input', {
   'px': '$3',
   'display': 'inline-flex',
   'transition': '0.2s ease-in-out',
+  'transitionProperty': 'background, border-color, box-shadow',
   'bc': '$surfaceStill',
   'outline': 'none',
   'border': '1px solid transparent',
+
+  // has icon
+  '&:not(:only-child)': {
+    paddingRight: '$8',
+  },
 
   '::placeholder': {
     color: '$textSubtle',
@@ -82,8 +88,8 @@ export const InteractiveBox = styled('input', {
         'background': 'transparent',
         'br': '$md',
         'border': 'none',
-        ':disabled': {
-          bc: '$surfaceDisabled',
+        ':not(:disabled)': {
+          pl: 0,
         },
       },
     },
@@ -121,20 +127,6 @@ export const validityVariant = createVariant({
 });
 
 const Input = styled(InteractiveBox, {
-  // has icon
-  '&:not(:only-child)': {
-    paddingRight: '$8',
-  },
-
-  '::placeholder': {
-    color: '$textSubtle',
-  },
-  ':disabled': {
-    color: '$textDisabled',
-    borderColor: '$surfaceDisabled',
-    bc: '$surfaceDisabled',
-  },
-
   //  throws warnings that inner-spin-button is not standartized
   // '&[type="number"]::-webkit-inner-spin-button, &[type="number"]::-webkit-outer-spin-button': {
   //   '-webkit-appearance': 'inner-spin-button !important',
