@@ -1,4 +1,3 @@
-import type { StitchesProps } from '@stitches/react';
 import React, { useMemo } from 'react';
 import { HiCheck, HiOutlineCalendar, HiOutlineExclamationCircle, HiX } from 'react-icons/hi';
 
@@ -6,55 +5,8 @@ import type { FlexVariants } from '../Flex';
 import { FormField, Hint, HintBox, useFormField } from '../FormField/FormField';
 import Icon from '../Icon';
 import Label from '../Label';
-import { styled } from '../stitches.config';
 import { forwardRef } from '../utils';
-import { iconStyles, IconWrapper, InteractiveBox, validityVariant } from './shared';
-
-const Input = styled(InteractiveBox, {
-  '&[type="number"]::-webkit-inner-spin-button, &[type="number"]::-webkit-outer-spin-button': {
-    '-webkit-appearance': 'inner-spin-button !important',
-    'appearance': 'inner-spin-button !important',
-  },
-
-  '&[type="date"]': {
-    'backgroundImage': 'none',
-    '::-webkit-calendar-picker-indicator': {
-      backgroundImage: 'none',
-      m: 0,
-      p: 0,
-      ...iconStyles,
-    },
-  },
-
-  '&[type="search"]': {
-    '::-webkit-search-cancel-button': {
-      appearance: 'none',
-      m: 0,
-      p: 0,
-      ...iconStyles,
-    },
-    [`&:placeholder-shown + ${IconWrapper}`]: {
-      opacity: 0,
-    },
-  },
-
-  'variants': {
-    hasIcon: {
-      true: {
-        pr: '$8',
-      },
-    },
-  },
-});
-
-const InputWrapper = styled('div', {
-  position: 'relative',
-  width: '100%',
-
-  variants: {
-    validity: validityVariant,
-  },
-});
+import { InputField, IconWrapper, InputProps } from './shared';
 
 const icons: Record<string, React.ElementType> = {
   date: HiOutlineCalendar,
@@ -137,26 +89,25 @@ const TextField = forwardRef<HTMLDivElement, Props>(
       >
         {label && <Label label={label} secondary={secondaryLabel} htmlFor={ariaProps.id} disabled={disabled} />}
         <HintBox>
-          <InputWrapper validity={validity}>
-            <Input
-              {...props}
-              {...ariaProps}
-              defaultValue={defaultValue ? `${defaultValue}` : defaultValue}
-              disabled={disabled}
-              value={value ? `${value}` : value}
-              onChange={handleChange}
-              hasIcon={Boolean(iconRight)}
-              inputMode={inputMode[type]}
-              type={type}
-              variant={variant}
-              ref={inputRef}
-            />
+          <InputField
+            validity={validity}
+            {...props}
+            {...ariaProps}
+            defaultValue={defaultValue ? `${defaultValue}` : defaultValue}
+            disabled={disabled}
+            value={value ? `${value}` : value}
+            onChange={handleChange}
+            inputMode={inputMode[type]}
+            type={type}
+            variant={variant}
+            ref={inputRef}
+          >
             {iconRight && (
               <IconWrapper>
                 <Icon as={iconRight} size="md" />
               </IconWrapper>
             )}
-          </InputWrapper>
+          </InputField>
           {hint && (
             <Hint id={ariaProps['aria-describedby']} validity={validity}>
               {hint}
@@ -172,7 +123,6 @@ TextField.displayName = 'TextField';
 
 export default TextField;
 
-interface InputProps extends StitchesProps<typeof Input> {}
 type Props = Omit<InputProps, 'onChange' | 'type' | 'value' | 'defaultValue' | 'children'> &
   FlexVariants & {
     label?: string;

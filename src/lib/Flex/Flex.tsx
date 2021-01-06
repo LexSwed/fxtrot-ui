@@ -94,4 +94,5 @@ export default Flex;
 
 export interface FlexVariants extends StitchesVariants<typeof FlexBox> {}
 export interface FlexProps extends PropsOf<typeof FlexBox> {}
-export interface FlexType<C extends React.ElementType = 'div'> extends IStyledComponent<C, FlexVariants, Config> {}
+export interface FlexType<C extends React.ElementType = 'div', P = {}>
+  extends IStyledComponent<C, FlexVariants & P, Config> {}

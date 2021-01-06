@@ -9,7 +9,7 @@ const Item = styled(FlexBox as FlexType<'li'>, {
   'px': '$2',
   'fontSize': '$sm',
   'lineHeight': 1,
-  'height': '$8',
+  'height': '$base',
   'br': '$sm',
   'outline': 'none',
   'color': 'inherit',

@@ -123,6 +123,7 @@ export function createNewTheme({ shade, primary, accent }: ShortDefinition): Swa
       $text: allColors[`$${shade}Gray900` as keyof typeof allColors],
       $textDisabled: allColors[`$${shade}Gray500` as keyof typeof allColors],
       $textLight: allColors[`$${shade}Gray600` as keyof typeof allColors],
+      $textSubtle: allColors[`$${shade}Gray500` as keyof typeof allColors],
       $accent: allColors[`$${accent}600` as keyof typeof allColors],
       $accentLight: allColors[`$${accent}500` as keyof typeof allColors],
       $success: allColors['$green600' as keyof typeof allColors],
@@ -145,9 +146,9 @@ export function createNewTheme({ shade, primary, accent }: ShortDefinition): Swa
       $surfaceDisabled: allColors[`$${shade}Gray200` as keyof typeof allColors],
 
       $borderLight: allColors[`$${shade}Gray200` as keyof typeof allColors],
-      $borderStill: allColors[`$${shade}Gray400` as keyof typeof allColors],
-      $borderHover: allColors[`$${shade}Gray500` as keyof typeof allColors],
-      $borderActive: allColors[`$${shade}Gray600` as keyof typeof allColors],
+      $borderStill: allColors[`$${shade}Gray300` as keyof typeof allColors],
+      $borderHover: allColors[`$${shade}Gray400` as keyof typeof allColors],
+      $borderActive: allColors[`$${shade}Gray500` as keyof typeof allColors],
     },
   };
 }
@@ -182,6 +183,7 @@ export interface Swatch {
     $text: string;
     $textDisabled: string;
     $textLight: string;
+    $textSubtle: string;
     $accent: string;
     $accentLight: string;
     $success: string;

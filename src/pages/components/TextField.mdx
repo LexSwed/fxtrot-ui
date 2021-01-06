@@ -34,12 +34,16 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
 <Playground>
   <Flex space="lg" css={{ p: '$6', bc: '$gray50' }}>
     <Flex flow="row" space="md">
-      <TextField label="Enter your name" placeholder="John Doe" />
-      <TextField label="Enter your name" placeholder="John Doe" disabled />
+      <TextField label="Boxed" placeholder="Default boxed variant" />
+      <TextField label="Boxed" placeholder="Default boxed variant" disabled />
     </Flex>
     <Flex flow="row" space="md">
-      <TextField variant="underlined" label="Enter your name" placeholder="John Doe" />
-      <TextField variant="underlined" label="Enter your name" placeholder="John Doe" disabled />
+      <TextField variant="underlined" label="Underlined" placeholder="Pretty underlined" />
+      <TextField variant="underlined" label="Underlined" placeholder="Pretty underlined" disabled />
+    </Flex>
+    <Flex flow="row" space="md">
+      <TextField variant="inline" label="Inline" placeholder="Inline variant" />
+      <TextField variant="inline" label="Inline" placeholder="Inline variant" disabled />
     </Flex>
   </Flex>
 </Playground>
@@ -52,15 +56,35 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
     const isValid = React.useMemo(() => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value), [value]);
     return (
       <Box css={{ p: '$6', bc: '$gray50' }}>
-        <Flex space="md" css={{ width: '$56' }}>
+        <Flex space="md" flow="row">
           <TextField
             cross="stretch"
             validity={isValid ? 'valid' : 'invalid'}
+            label="Email"
             hint={!isValid ? 'Check that your email is typed correctly' : ' '}
             placeholder="john.doe@mail.com"
             value={value}
             onChange={setValue}
+          />
+          <TextField
+            cross="stretch"
+            validity={isValid ? 'valid' : 'invalid'}
             label="Email"
+            hint={!isValid ? 'Check that your email is typed correctly' : ' '}
+            placeholder="john.doe@mail.com"
+            value={value}
+            onChange={setValue}
+            variant="underlined"
+          />
+          <TextField
+            cross="stretch"
+            validity={isValid ? 'valid' : 'invalid'}
+            label="Email"
+            hint={!isValid ? 'Check that your email is typed correctly' : ' '}
+            placeholder="john.doe@mail.com"
+            value={value}
+            onChange={setValue}
+            variant="inline"
           />
         </Flex>
       </Box>

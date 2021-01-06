@@ -8,35 +8,20 @@ import Icon from '../Icon';
 import Label from '../Label';
 import { styled } from '../stitches.config';
 import Tag from '../Tag';
-import { InteractiveBox, validityVariant } from '../TextField/shared';
-import { PropsOf, useAllHandlers, useForkRef, useKeyboardHandles } from '../utils';
+import { InputField, InteractiveBox } from '../TextField/shared';
+import { PropsOf, StylesObject, useAllHandlers, useForkRef, useKeyboardHandles } from '../utils';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 
-const InputWrapper = styled('div', {
-  position: 'relative',
-  width: '100%',
-
-  variants: {
-    validity: validityVariant,
+const inputStyle: StylesObject = {
+  // increase specificity
+  '&:not(:only-child)': {
+    pr: '$16',
   },
-});
-
-const Input = styled(InteractiveBox, {
-  variants: {
-    hasNewBadge: {
-      true: {
-        pr: '$18',
-      },
-      false: {
-        pr: '$10',
-      },
-    },
-  },
-});
+};
 
 interface InputProps extends PropsOf<typeof InteractiveBox> {}
 export interface Props
-  extends Omit<InputProps, 'onChange' | 'type' | 'value' | 'defaultValue' | 'children' | 'text'>,
+  extends Omit<InputProps, 'onChange' | 'type' | 'value' | 'defaultValue' | 'children' | 'text' | 'as'>,
     FlexVariants {
   'label'?: string;
   'secondaryLabel'?: string;
@@ -123,26 +108,25 @@ const ComboBoxInput: React.FC<Props> = ({
     >
       {label && <Label label={label} secondary={secondaryLabel} htmlFor={ariaProps.id} disabled={disabled} />}
       <HintBox>
-        <InputWrapper>
-          <Input
-            {...props}
-            {...ariaProps}
-            aria-expanded={isOpen}
-            aria-autocomplete="list"
-            role="combobox"
-            autoComplete="off"
-            spellCheck="false"
-            disabled={disabled}
-            value={value}
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-            type="text"
-            variant={variant}
-            hasNewBadge={hasNewBadge}
-            ref={refs}
-          />
+        <InputField
+          {...props}
+          {...ariaProps}
+          aria-expanded={isOpen}
+          aria-autocomplete="list"
+          role="combobox"
+          autoComplete="off"
+          spellCheck="false"
+          disabled={disabled}
+          value={value}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+          type="text"
+          variant={variant}
+          css={hasNewBadge ? inputStyle : undefined}
+          inputRef={refs}
+        >
           <ComboBoxButton hasNewBadge={hasNewBadge} inputRef={innerRef} />
-        </InputWrapper>
+        </InputField>
         {hint && (
           <Hint id={ariaProps['aria-describedby']} validity={validity}>
             {hint}
@@ -158,6 +142,7 @@ const ButtonContainer = styled(Flex, {
   right: 0,
   top: 0,
   height: '100%',
+  px: '$1',
 });
 
 const ButtonStyled = styled(Button, {
@@ -188,6 +173,7 @@ const ComboBoxButton = React.memo(
             inputRef.current?.focus();
             inputRef.current?.select();
           }}
+          size="sm"
         >
           <Icon as={HiSelector} />
         </ButtonStyled>

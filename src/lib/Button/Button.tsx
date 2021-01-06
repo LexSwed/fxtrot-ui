@@ -38,11 +38,11 @@ const ButtonRoot = styled(FlexBox as FlexType<'button'>, {
         px: '$3',
       },
       lg: {
-        height: '$10',
-        lineHeight: '$10',
+        height: '$12',
+        lineHeight: '$12',
         fontSize: '$md',
         fontWeight: 500,
-        px: '$3',
+        px: '$4',
       },
     },
     variant: {

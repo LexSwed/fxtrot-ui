@@ -4,7 +4,7 @@ import { HiCheck } from 'react-icons/hi';
 import Box from '../Box';
 import { attribute } from '../FocusRing/focus-visible';
 import { FormField, FormFieldProps } from '../FormField/FormField';
-import Icon from '../Icon';
+import Icon, { IconBox } from '../Icon/Icon';
 import Label from '../Label';
 import { styled } from '../stitches.config';
 import type { PropsOf } from '../utils';
@@ -17,16 +17,16 @@ const CheckMark = styled('div', {
   br: '$md',
   bc: 'transparent',
   border: '1px solid $borderStill',
-  size: '$4',
+  size: '$5',
   position: 'relative',
   transition: '0.24s ease-in-out',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
 
-  [`& > ${Icon}`]: {
+  [`& > ${IconBox}`]: {
     transition: '0.14s ease-in-out',
-    size: '$3',
+    size: '$4',
     opacity: 0,
   },
 });
@@ -50,25 +50,24 @@ const Input = styled('input', {
 
   [`:hover:not(:checked) + ${CheckMark}`]: {
     borderColor: '$borderHover',
-    [`& > ${Icon}`]: {
+    [`& ${IconBox}`]: {
       opacity: 0.7,
     },
   },
 
   [`:checked + ${CheckMark}`]: {
-    'borderColor': '$primaryStill',
-    'bc': '$primaryStill',
-    [`& > ${Icon}`]: {
+    borderColor: '$primaryStill',
+    bc: '$primaryStill',
+    [`& ${IconBox}`]: {
       opacity: 1,
-    },
-    '& svg': {
       fill: '#fff',
     },
   },
   [`:checked:hover + ${CheckMark}`]: {
-    'borderColor': '$primaryHover',
-    'bc': '$primaryHover',
-    '& svg': {
+    borderColor: '$primaryHover',
+    bc: '$primaryHover',
+    [`& ${IconBox}`]: {
+      opacity: 1,
       fill: '#fff',
     },
   },
@@ -81,21 +80,22 @@ const Input = styled('input', {
   [`:focus[${attribute}]:checked + ${CheckMark}`]: {
     borderColor: '$primaryStill',
     $boxOutline: '$primaryStill',
+    [`& > ${IconBox}`]: {
+      opacity: 1,
+    },
   },
 
   [`:disabled + ${CheckMark}`]: {
     borderColor: '$surfaceDisabled',
     bc: '$surfaceDisabled',
-    [`& > ${Icon}`]: {
+    [`& > ${IconBox}`]: {
       opacity: 0,
     },
   },
 
   [`:disabled:checked + ${CheckMark}`]: {
-    [`& > ${Icon}`]: {
+    [`& > ${IconBox}`]: {
       opacity: 1,
-    },
-    '& svg': {
       fill: '$textDisabled',
     },
   },
@@ -149,7 +149,7 @@ const Checkbox: React.FC<FormFieldProps & InputProps> = ({
           onChange={handleChange}
         />
         <CheckMark>
-          <Icon as={HiCheck} size="sm" />
+          <Icon as={HiCheck} />
         </CheckMark>
       </CheckboxWrapper>
       {label && <Label label={label} secondary={secondaryLabel} disabled={disabled} as={'span' as any} />}

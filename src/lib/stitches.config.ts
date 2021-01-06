@@ -19,7 +19,7 @@ export const theme = {
     $mono: 'Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;',
   },
   space: scales,
-  sizes: { ...scales, $base: scales['$8'] },
+  sizes: { ...scales, $base: scales['$10'] },
   fontSizes: {
     $base: '16px',
     $xs: '12px',

@@ -10,7 +10,9 @@ export const iconStyles: StylesObject = {
   top: 0,
   right: 0,
   bottom: 0,
-  size: '$base',
+  height: '$base',
+  width: '$8',
+  outline: 'none',
 };
 
 export const IconWrapper = styled('div', {
@@ -20,6 +22,7 @@ export const IconWrapper = styled('div', {
   justifyContent: 'center',
   pointerEvents: 'none',
   transition: '0.1s ease-in',
+  pr: '$2',
 });
 
 export const InteractiveBox = styled('input', {
@@ -27,7 +30,7 @@ export const InteractiveBox = styled('input', {
   'lineHeight': '$base',
   'width': '100%',
   'height': '$base',
-  'px': '$2',
+  'px': '$3',
   'display': 'inline-flex',
   'transition': '0.2s ease-in-out',
   'bc': '$surfaceStill',
@@ -35,7 +38,7 @@ export const InteractiveBox = styled('input', {
   'border': '1px solid transparent',
 
   '::placeholder': {
-    color: '$borderStill',
+    color: '$textSubtle',
   },
   ':disabled': {
     color: '$textDisabled',
@@ -56,21 +59,30 @@ export const InteractiveBox = styled('input', {
           boxShadow: '0 0 0 1px $borderActive inset',
         },
       },
+      // TODO: replace CSS vars when stitches is fixed
       underlined: {
         'borderRadius': '$md $md 0 0',
-        'backgroundImage': 'linear-gradient(to top, $primaryStill 0px, $primaryStill 2px, $surfaceStill 2px)',
+        'backgroundImage': 'linear-gradient(to top,  var(--colors-borderStill) 2px, var(--colors-surfaceStill) 2px)',
         'backgroundSize': '100% calc(100% + 4px)',
-        'backgroundPosition': '0 calc(100% + 3px)',
+        'backgroundPosition': '0 calc(100% + 2px)',
         ':hover': {
           backgroundPosition: '0 calc(100% + 2px)',
-          backgroundImage: 'linear-gradient(to top, $primaryHover 0px, $primaryHover 2px, $surfaceStill 2px)',
+          backgroundImage: 'linear-gradient(to top, var(--colors-primaryHover) 2px, var(--colors-surfaceStill) 2px)',
         },
         ':focus, &[aria-expanded="true"]': {
           backgroundPosition: '0 calc(100% + 1px)',
-          backgroundImage: 'linear-gradient(to top, $primaryActive 0px, $primaryActive 2px, $surfaceStill 2px)',
+          backgroundImage: 'linear-gradient(to top,  var(--colors-primaryActive) 2px, var(--colors-surfaceStill) 2px)',
         },
         ':disabled': {
           backgroundImage: 'none',
+          bc: '$surfaceDisabled',
+        },
+      },
+      inline: {
+        'background': 'transparent',
+        'br': '$md',
+        'border': 'none',
+        ':disabled': {
           bc: '$surfaceDisabled',
         },
       },
@@ -109,8 +121,13 @@ export const validityVariant = createVariant({
 });
 
 const Input = styled(InteractiveBox, {
+  // has icon
+  '&:not(:only-child)': {
+    paddingRight: '$8',
+  },
+
   '::placeholder': {
-    color: '$borderStill',
+    color: '$textSubtle',
   },
   ':disabled': {
     color: '$textDisabled',
@@ -118,10 +135,11 @@ const Input = styled(InteractiveBox, {
     bc: '$surfaceDisabled',
   },
 
-  '&[type="number"]::-webkit-inner-spin-button, &[type="number"]::-webkit-outer-spin-button': {
-    '-webkit-appearance': 'inner-spin-button !important',
-    'appearance': 'inner-spin-button !important',
-  },
+  //  throws warnings that inner-spin-button is not standartized
+  // '&[type="number"]::-webkit-inner-spin-button, &[type="number"]::-webkit-outer-spin-button': {
+  //   '-webkit-appearance': 'inner-spin-button !important',
+  //   'appearance': 'inner-spin-button !important',
+  // },
 
   '&[type="date"]': {
     'backgroundImage': 'none',
@@ -144,14 +162,6 @@ const Input = styled(InteractiveBox, {
       opacity: 0,
     },
   },
-
-  'variants': {
-    hasIcon: {
-      true: {
-        pr: '$8',
-      },
-    },
-  },
 });
 
 const InputWrapper = styled('div', {
@@ -163,12 +173,13 @@ const InputWrapper = styled('div', {
   },
 });
 
-interface InputFieldProps extends StitchesVariants<typeof InputWrapper>, StitchesProps<typeof Input> {
+export interface InputProps extends StitchesVariants<typeof InputWrapper>, StitchesProps<typeof Input> {
   inputRef?: React.Ref<HTMLInputElement>;
 }
 
-export const InputField: React.FC<InputFieldProps> = ({ validity, inputRef, ...props }) => (
+export const InputField: React.FC<InputProps> = ({ validity, inputRef, children, ...props }) => (
   <InputWrapper validity={validity}>
     <Input {...props} ref={inputRef} />
+    {children}
   </InputWrapper>
 );

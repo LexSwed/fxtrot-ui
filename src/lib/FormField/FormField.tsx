@@ -2,12 +2,12 @@ import React, { useMemo } from 'react';
 import { useUID } from 'react-uid';
 
 import Box from '../Box';
-import Flex from '../Flex';
+import { FlexBox } from '../Flex';
 import { styled } from '../stitches.config';
 import Text from '../Text';
 import type { PropsOf } from '../utils';
 
-const Wrapper = styled(Flex, {
+const Wrapper = styled(FlexBox, {
   position: 'relative',
   width: '100%',
 
@@ -49,7 +49,7 @@ const tonesMap: Record<'valid' | 'invalid', PropsOf<typeof Text>['tone']> = {
 export const FormField: React.FC<FormFieldProps> = ({
   main = 'stretch',
   cross = 'stretch',
-  flow,
+  flow = 'column',
   display = 'inline',
   space = 'xs',
   css,
@@ -57,7 +57,6 @@ export const FormField: React.FC<FormFieldProps> = ({
   className,
   children,
   hasHint,
-  as,
 }) => {
   return (
     <Wrapper
@@ -70,7 +69,6 @@ export const FormField: React.FC<FormFieldProps> = ({
       style={style}
       className={className}
       hasHint={hasHint}
-      as={as}
     >
       {children}
     </Wrapper>
