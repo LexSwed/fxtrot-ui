@@ -32,18 +32,29 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
 ## Variants
 
 <Playground>
-  <Flex space="lg" css={{ p: '$6', bc: '$gray50' }}>
-    <Flex flow="row" space="md">
-      <TextField label="Boxed" placeholder="Default boxed variant" />
-      <TextField label="Boxed" placeholder="Default boxed variant" disabled />
+  <Flex space="lg" flow="row" css={{ p: '$6', bc: '$gray50' }}>
+    <Flex flow="column" space="md">
+      <TextField label="Boxed" hint="Default variant" placeholder="Default boxed variant" />
+      <TextField variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Pretty underlined" />
+      <TextField variant="inline" hint="Not using labels" placeholder="Inline variant" />
     </Flex>
-    <Flex flow="row" space="md">
-      <TextField variant="underlined" label="Underlined" placeholder="Pretty underlined" />
-      <TextField variant="underlined" label="Underlined" placeholder="Pretty underlined" disabled />
-    </Flex>
-    <Flex flow="row" space="md">
-      <TextField variant="inline" label="Inline" placeholder="Inline variant" />
-      <TextField variant="inline" label="Inline" placeholder="Inline variant" disabled />
+    <Flex flow="column" space="md">
+      <TextField
+        label="Boxed"
+        secondaryLabel="(disabled)"
+        hint="Default variant"
+        placeholder="Default boxed variant"
+        disabled
+      />
+      <TextField
+        variant="underlined"
+        hint="Pretty variant"
+        secondaryLabel="(disabled)"
+        label="Underlined"
+        placeholder="Pretty underlined"
+        disabled
+      />
+      <TextField variant="inline" hint="Not using labels" placeholder="Inline variant" disabled />
     </Flex>
   </Flex>
 </Playground>

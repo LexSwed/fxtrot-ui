@@ -85,12 +85,9 @@ export const InteractiveBox = styled('input', {
         },
       },
       inline: {
-        'background': 'transparent',
-        'br': '$md',
-        'border': 'none',
-        ':not(:disabled)': {
-          pl: 0,
-        },
+        background: 'transparent',
+        br: '$md',
+        border: 'none',
       },
     },
   },
