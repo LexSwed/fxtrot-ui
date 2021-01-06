@@ -6,7 +6,7 @@ import Text from '../Text';
 import { forwardRef, PropsOf, useAllHandlers, useKeyboardHandles } from '../utils';
 
 const Item = styled(FlexBox as FlexType<'li'>, {
-  'px': '$2',
+  'px': '$3',
   'fontSize': '$sm',
   'lineHeight': 1,
   'height': '$base',
