@@ -48,8 +48,8 @@ interface Props extends Omit<StitchesProps<typeof IconBox>, 'as'> {
   as: React.ElementType;
 }
 
-const Icon: React.FC<Props> = ({ size = 'md', ...props }) => {
-  return <IconBox size={size} {...props} />;
+const Icon: React.FC<Props> = ({ size = 'md', stroke, fill, ...props }) => {
+  return <IconBox size={size} {...props} css={{ stroke, fill }} />;
 };
 
 export default Icon;

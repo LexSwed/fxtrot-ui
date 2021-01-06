@@ -49,6 +49,7 @@ const acceptedProperties = [
   'bg',
   'bc',
   'br',
+  'color',
   'textAlign',
   'textSize',
   'size',
@@ -102,7 +103,7 @@ const acceptedProperties = [
   'whiteSpace',
 ] as const;
 /** Not all properties supported */
-export interface Props extends BoxProps, CustomField {}
+export interface Props extends Omit<BoxProps, 'color'>, CustomField {}
 
 type CustomField = {
   [prop in typeof acceptedProperties[number]]?: CssProperties[prop];

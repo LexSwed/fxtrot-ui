@@ -5,7 +5,7 @@ import Box from '../Box';
 import { FlexBox } from '../Flex';
 import { styled } from '../stitches.config';
 import Text from '../Text';
-import type { PropsOf } from '../utils';
+import { forwardRef, PropsOf } from '../utils';
 
 const Wrapper = styled(FlexBox, {
   position: 'relative',
@@ -46,34 +46,42 @@ const tonesMap: Record<'valid' | 'invalid', PropsOf<typeof Text>['tone']> = {
   invalid: 'danger',
 };
 
-export const FormField: React.FC<FormFieldProps> = ({
-  main = 'stretch',
-  cross = 'stretch',
-  flow = 'column',
-  display = 'inline',
-  space = 'xs',
-  css,
-  style,
-  className,
-  children,
-  hasHint,
-}) => {
-  return (
-    <Wrapper
-      main={main}
-      cross={cross}
-      flow={flow}
-      display={display}
-      space={space}
-      css={css}
-      style={style}
-      className={className}
-      hasHint={hasHint}
-    >
-      {children}
-    </Wrapper>
-  );
-};
+export const FormField = forwardRef<HTMLDivElement, FormFieldProps>(
+  (
+    {
+      main = 'stretch',
+      cross = 'stretch',
+      flow = 'column',
+      display = 'inline',
+      space = 'xs',
+      css,
+      style,
+      className,
+      children,
+      hasHint,
+      as,
+    },
+    ref
+  ) => {
+    return (
+      <Wrapper
+        main={main}
+        cross={cross}
+        flow={flow}
+        display={display}
+        space={space}
+        css={css}
+        style={style}
+        className={className}
+        hasHint={hasHint}
+        ref={ref}
+        as={as as any}
+      >
+        {children}
+      </Wrapper>
+    );
+  }
+);
 interface HintProps extends PropsOf<typeof Text> {
   validity?: FormFieldProps['validity'];
 }
