@@ -150,10 +150,19 @@ const ButtonRoot = styled(FlexBox as FlexType<'button'>, {
 ButtonRoot.compoundVariant(
   {
     isIconButton: true,
-    size: 'sm',
+    size: 'xs',
   },
   {
     width: '$6',
+  }
+);
+ButtonRoot.compoundVariant(
+  {
+    isIconButton: true,
+    size: 'sm',
+  },
+  {
+    width: '$8',
   }
 );
 ButtonRoot.compoundVariant(
@@ -171,7 +180,7 @@ ButtonRoot.compoundVariant(
     size: 'lg',
   },
   {
-    width: '$10',
+    width: '$12',
   }
 );
 
