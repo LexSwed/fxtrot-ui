@@ -7,6 +7,8 @@ import { styled } from '../stitches.config';
 import { font, textSize } from '../theme/variants';
 import { forwardRef, PropsOf } from '../utils';
 
+const ExternalIcon = styled(Icon, {});
+
 const Link = styled(FlexBox as FlexType<'a'>, {
   'color': '$primaryStill',
   'textDecoration': 'none',
@@ -26,7 +28,7 @@ const Link = styled(FlexBox as FlexType<'a'>, {
     },
   },
 
-  '& svg': {
+  [`& ${ExternalIcon}`]: {
     size: '0.8em',
   },
 
@@ -64,7 +66,7 @@ const TextLink = forwardRef<HTMLAnchorElement, Props>(
         ref={ref as any}
       >
         {children}
-        {external ? <Icon as={HiOutlineExternalLink} /> : null}
+        {external ? <ExternalIcon as={HiOutlineExternalLink} /> : null}
       </Link>
     );
   }
