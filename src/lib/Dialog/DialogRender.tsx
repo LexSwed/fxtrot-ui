@@ -14,6 +14,7 @@ import type { PropsOf } from '../utils/types';
 
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { DialogContext, DialogProvider, useDialog } from './utils';
+import Box from '../Box';
 
 interface ModalProps extends PropsOf<typeof DialogWindow> {}
 
@@ -50,33 +51,35 @@ export const DialogRender: React.FC<{ render: DialogContext['render'] }> = ({ re
       {isOpen && render && (
         <DialogProvider value={context}>
           <Portal>
-            <Underlay
-              key="underlay"
-              aria-hidden="true"
-              onClick={close}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3, type: 'tween' }}
-            />
-            <ModalWrapper
-              main="center"
-              cross="center"
-              as={motion.div as any}
-              initial={{ opacity: 0, y: 5 }}
-              animate={{
-                opacity: 1,
-                y: 0,
-                transition: { opacity: { duration: 0.2 }, y: { duration: 0.2 } },
-              }}
-              exit={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.1, type: 'tween' }}
-              key="dialog"
-            >
-              <FocusScope contain autoFocus restoreFocus>
-                {render(close)}
-              </FocusScope>
-            </ModalWrapper>
+            <ClickCatcher>
+              <Underlay
+                key="underlay"
+                aria-hidden="true"
+                onClick={close}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3, type: 'tween' }}
+              />
+              <ModalWrapper
+                main="center"
+                cross="center"
+                as={motion.div as any}
+                initial={{ opacity: 0, y: 5 }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                  transition: { opacity: { duration: 0.2 }, y: { duration: 0.2 } },
+                }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.1, type: 'tween' }}
+                key="dialog"
+              >
+                <FocusScope contain autoFocus restoreFocus>
+                  {render(close)}
+                </FocusScope>
+              </ModalWrapper>
+            </ClickCatcher>
           </Portal>
         </DialogProvider>
       )}
@@ -122,3 +125,22 @@ const DialogWindow = styled('section', {
   pointerEvents: 'auto',
   position: 'relative',
 });
+
+/**
+ * Allows Dialog to remain open when opened by a trigger
+ * inside the Menu that registers outside click listener to close the menu
+ */
+function preventClick(e: React.PointerEvent | React.TouchEvent | React.MouseEvent) {
+  e.preventDefault();
+  e.stopPropagation();
+}
+const ClickCatcher: React.FC = ({ children }) => (
+  <Box
+    display="contents"
+    onMouseDownCapture={preventClick}
+    onTouchStartCapture={preventClick}
+    onPointerDownCapture={preventClick}
+  >
+    {children}
+  </Box>
+);

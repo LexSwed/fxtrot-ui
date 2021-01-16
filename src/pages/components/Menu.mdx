@@ -3,7 +3,7 @@ name: Menu
 ---
 
 import { Playground } from 'dokz';
-import { Box, Button, Menu, Icon, Text, ThemeProvider } from '@fxtrot/ui';
+import { Box, Button, Menu, Icon, Text, ThemeProvider, Dialog } from '@fxtrot/ui';
 import { HiChevronDown, HiOutlineTrash } from 'react-icons/hi';
 
 ## Menu
@@ -64,3 +64,30 @@ You can modify `offset` and [`placement`](https://popper.js.org/docs/v2/construc
 - `ArrowUp` and `ArrowDown` just open the menu, first option is always focused
 - No <kbd>Home</kbd>, <kbd>End</kbd>, <kbd>Page Up</kbd> or <kbd>Page Down</kbd> support
 - No typeahead support
+
+<Playground>
+  <ThemeProvider theme="orange">
+    <Box css={{ p: '$8', bc: '$surfaceStill' }}>
+      <Menu>
+        <Menu.Button>
+          <span>Open menu</span>
+          <Icon as={HiChevronDown} size="lg" />
+        </Menu.Button>
+        <Menu.List offset={0} placement="right-start">
+          <Dialog>
+            <Dialog.Trigger as={Menu.Item} aria-label="Delete the document" css={{ color: '$danger' }} variant="flat">
+              <Icon size="md" as={HiOutlineTrash} />
+              <span>Delete topic</span>
+            </Dialog.Trigger>
+            {(close) => (
+              <Dialog.Modal>
+                <Dialog.Title level={3}>Delete topic?</Dialog.Title>
+                <div onClick={(e) => console.log(e.defaultPrevented, 'click')}>divkda;dka;s</div>
+              </Dialog.Modal>
+            )}
+          </Dialog>
+        </Menu.List>
+      </Menu>
+    </Box>
+  </ThemeProvider>
+</Playground>

@@ -100,9 +100,6 @@ const events: HandledEventsType[] = [MOUSEDOWN, TOUCHSTART, POINTERDOWN];
 
 export function useOnClickOutside(handler: Handler | null, isActive: boolean, ...refs: React.RefObject<HTMLElement>[]) {
   const handlerRef = useLatest(handler);
-  const { ref } = useContext(portalContext);
-
-  refs.push(ref);
 
   useEffect(() => {
     if (!isActive) {
