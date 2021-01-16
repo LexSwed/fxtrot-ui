@@ -1,7 +1,6 @@
 import React from 'react';
 import type { StitchesProps } from '@stitches/react';
 
-import { useDialog } from '../Dialog/utils';
 import { styled } from '../stitches.config';
 
 export const HeadingText = styled('h1', {
@@ -66,10 +65,7 @@ HeadingText.compoundVariant(
 interface Props extends Omit<StitchesProps<typeof HeadingText>, 'as'> {}
 
 const Heading = React.forwardRef<HTMLHeadingElement, Props>(({ variant = 'default', level = 1, ...props }, ref) => {
-  const { seed } = useDialog() || {};
-  return (
-    <HeadingText variant={variant} as={`h${level}` as any} level={level} id={seed?.('heading')} {...props} ref={ref} />
-  );
+  return <HeadingText variant={variant} as={`h${level}` as any} level={level} {...props} ref={ref} />;
 });
 
 export default Heading;

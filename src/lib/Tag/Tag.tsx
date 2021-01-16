@@ -2,7 +2,7 @@ import React from 'react';
 
 import { IconBox } from '../Icon/Icon';
 import { styled } from '../stitches.config';
-import type { PropsOf } from '../utils';
+import type { PropsOf } from '../utils/types';
 
 const Block = styled('div', {
   transition: '0.2s ease-in-out',

@@ -9,7 +9,8 @@ import Label from '../Label';
 import { styled } from '../stitches.config';
 import Tag from '../Tag';
 import { InputField, InteractiveBox } from '../TextField/shared';
-import { PropsOf, StylesObject, useAllHandlers, useForkRef, useKeyboardHandles } from '../utils';
+import type { PropsOf, StylesObject } from '../utils/types';
+import { useAllHandlers, useForkRef, useKeyboardHandles } from '../utils/hooks';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 
 const inputStyle: StylesObject = {

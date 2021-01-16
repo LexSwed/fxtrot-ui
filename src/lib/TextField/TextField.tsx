@@ -5,7 +5,7 @@ import type { FlexVariants } from '../Flex';
 import { FormField, Hint, HintBox, useFormField } from '../FormField/FormField';
 import Icon from '../Icon';
 import Label from '../Label';
-import { forwardRef } from '../utils';
+import { forwardRef } from '../utils/types';
 import { InputField, IconWrapper, InputProps } from './shared';
 
 const icons: Record<string, React.ElementType> = {

@@ -2,7 +2,8 @@ import { getFocusableTreeWalker } from '@react-aria/focus';
 import React, { useCallback, useRef } from 'react';
 
 import { styled } from '../stitches.config';
-import { PropsOf, useAllHandlers, useKeyboardHandles } from '../utils';
+import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
+import type { PropsOf } from '../utils/types';
 import Item from './Item';
 
 const List = styled('ul', {

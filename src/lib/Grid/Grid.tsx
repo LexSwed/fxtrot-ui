@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Box, { Props as BoxProps } from '../Box/Box';
-import { forwardRef } from '../utils';
+import { forwardRef } from '../utils/types';
 import { gaps } from '../theme/variants';
 import { styled } from '../stitches.config';
 import type { StitchesVariants } from '@stitches/react';

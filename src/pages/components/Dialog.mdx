@@ -3,17 +3,17 @@ name: Dialog
 ---
 
 import { Playground } from 'dokz';
-import { Dialog, Button, Heading, TextField, Flex, Box, Switch } from '@fxtrot/ui';
+import { Dialog, Button, TextField, Flex, Box, Switch } from '@fxtrot/ui';
 
 ## Dialog
 
 <Playground>
   <Box p="$8">
-    <Dialog.Trigger>
-      <Button>New workspace</Button>
+    <Dialog>
+      <Dialog.Trigger>New workspace</Dialog.Trigger>
       {(close) => (
         <Dialog.Modal>
-          <Heading>Create new workspace</Heading>
+          <Dialog.Title level={3}>Create new workspace</Dialog.Title>
           <Box
             pt="$4"
             as="form"
@@ -25,7 +25,9 @@ import { Dialog, Button, Heading, TextField, Flex, Box, Switch } from '@fxtrot/u
             <TextField placeholder="Carefive" name="workspace-name" label="Workspace name" />
             <Box pb="$10" />
             <Flex flow="row-reverse" space="sm">
-              <Button type="submit">Create</Button>
+              <Button type="submit" variant="primary">
+                Create
+              </Button>
               <Button onClick={close} variant="flat">
                 Cancel
               </Button>
@@ -33,7 +35,7 @@ import { Dialog, Button, Heading, TextField, Flex, Box, Switch } from '@fxtrot/u
           </Box>
         </Dialog.Modal>
       )}
-    </Dialog.Trigger>
+    </Dialog>
   </Box>
 </Playground>
 
@@ -49,11 +51,11 @@ import { Dialog, Button, Heading, TextField, Flex, Box, Switch } from '@fxtrot/u
             <Switch label="Default open" value={defaultOpen} onChange={setDefaultOpen} />
           </Box>
           {defaultOpen && (
-            <Dialog.Trigger defaultOpen={defaultOpen}>
-              <Button>New workspace</Button>
+            <Dialog defaultOpen={defaultOpen}>
+              <Dialog.Trigger>New workspace</Dialog.Trigger>
               {(close) => (
                 <Dialog.Modal>
-                  <Heading>Create new workspace</Heading>
+                  <Dialog.Title level={3}>Create new workspace</Dialog.Title>
                   <Box
                     pt="$4"
                     as="form"
@@ -65,7 +67,9 @@ import { Dialog, Button, Heading, TextField, Flex, Box, Switch } from '@fxtrot/u
                     <TextField placeholder="Carefive" name="workspace-name" label="Workspace name" />
                     <Box pb="$10" />
                     <Flex flow="row-reverse" space="sm">
-                      <Button type="submit">Create</Button>
+                      <Button type="submit" variant="primary">
+                        Create
+                      </Button>
                       <Button onClick={close} variant="flat">
                         Cancel
                       </Button>
@@ -73,7 +77,7 @@ import { Dialog, Button, Heading, TextField, Flex, Box, Switch } from '@fxtrot/u
                   </Box>
                 </Dialog.Modal>
               )}
-            </Dialog.Trigger>
+            </Dialog>
           )}
         </Flex>
       </Box>

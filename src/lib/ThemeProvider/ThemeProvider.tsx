@@ -9,7 +9,7 @@ type Props = {
 
 const themeContext = createContext<string | null>(null);
 
-const ThemeWrapper = styled('div', {
+const ThemeWrapper = styled('span', {
   display: 'contents',
 });
 

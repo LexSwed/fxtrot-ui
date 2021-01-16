@@ -2,7 +2,7 @@ import React from 'react';
 
 import ListItem from '../ListItem/ListItem';
 import { styled } from '../stitches.config';
-import { forwardRef, PropsOf } from '../utils';
+import { forwardRef, PropsOf } from '../utils/types';
 
 const MenuItem = styled(ListItem, {
   'position': 'relative',

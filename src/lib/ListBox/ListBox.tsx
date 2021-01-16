@@ -2,7 +2,8 @@ import { FocusScope, useFocusManager } from '@react-aria/focus';
 import React from 'react';
 
 import { styled } from '../stitches.config';
-import { forwardRef, PropsOf, useKeyboardHandles } from '../utils';
+import { forwardRef, PropsOf } from '../utils/types';
+import { useKeyboardHandles } from '../utils/hooks';
 
 export const List = styled('ul', {
   'm': 0,

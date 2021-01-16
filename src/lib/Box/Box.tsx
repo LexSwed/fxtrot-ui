@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { styled } from '../stitches.config';
-import { CssProperties, forwardRef, PropsOf } from '../utils';
+import { CssProperties, forwardRef, PropsOf } from '../utils/types';
 
 const Div = styled('div', {});
 

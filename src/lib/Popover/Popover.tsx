@@ -4,11 +4,11 @@ import React, { useMemo } from 'react';
 
 import Portal from '../Portal';
 import { styled } from '../stitches.config';
-import { sameWidth, useKeyboardHandles, useOnClickOutside, usePopper } from '../utils';
+import { sameWidth, usePopper } from '../utils/popper';
+import { useKeyboardHandles, useOnClickOutside } from '../utils/hooks';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 
 const Popper = styled('div', {
-  zIndex: '$2',
   position: 'absolute',
 });
 

@@ -2,7 +2,8 @@ import React from 'react';
 
 import ListItem, { ListItemProps } from '../ListItem/ListItem';
 import { focusOnMouseOver } from '../ListItem/ListItem';
-import { forwardRef, useAllHandlers } from '../utils';
+import { useAllHandlers } from '../utils/hooks';
+import { forwardRef } from '../utils/types';
 import { useOpenStateControls } from '../utils/OpenStateProvider';
 import { useMenu } from './utils';
 

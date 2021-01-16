@@ -3,7 +3,8 @@ import React from 'react';
 import { FlexBox, FlexType } from '../Flex';
 import { styled } from '../stitches.config';
 import Text from '../Text';
-import { forwardRef, PropsOf, useAllHandlers, useKeyboardHandles } from '../utils';
+import { forwardRef, PropsOf } from '../utils/types';
+import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
 
 const Item = styled(FlexBox as FlexType<'li'>, {
   'px': '$3',

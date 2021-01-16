@@ -7,7 +7,7 @@ import { FormField, FormFieldProps } from '../FormField/FormField';
 import Icon, { IconBox } from '../Icon/Icon';
 import Label from '../Label';
 import { styled } from '../stitches.config';
-import type { PropsOf } from '../utils';
+import type { PropsOf } from '../utils/types';
 
 const CheckboxWrapper = styled(Box, {
   position: 'relative',

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import Popover from '../Popover';
-import { useId } from '../utils';
+import { useId } from '../utils/hooks';
 import { OpenStateProvider } from '../utils/OpenStateProvider';
 import Item, { PickerItemProps } from './Item';
 import List from './List';

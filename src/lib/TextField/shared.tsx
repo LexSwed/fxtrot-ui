@@ -3,7 +3,7 @@ import React from 'react';
 
 import { styled } from '../stitches.config';
 import { createVariant } from '../theme/variants';
-import type { Config, StylesObject } from '../utils';
+import type { Config, StylesObject } from '../utils/types';
 
 export const iconStyles: StylesObject = {
   position: 'absolute',

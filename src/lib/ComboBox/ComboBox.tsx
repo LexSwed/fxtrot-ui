@@ -6,7 +6,7 @@ import { OpenStateProvider, useOpenState, useOpenStateControls } from '../utils/
 
 import Input, { Props as InputProps } from './Input';
 import Item, { OptionType } from './Item';
-import { useAllHandlers, useForkRef, useLatest } from '../utils';
+import { useAllHandlers, useForkRef, useLatest } from '../utils/hooks';
 import Popover from '../Popover';
 import { useFocusedItemId, useSyncValue } from './atoms';
 import VirtualList from './VirtualList';

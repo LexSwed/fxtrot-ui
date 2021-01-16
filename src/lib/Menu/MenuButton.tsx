@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Button from '../Button';
-import { useAllHandlers, useForkRef, useKeyboardHandles } from '../utils';
+import { useAllHandlers, useForkRef, useKeyboardHandles } from '../utils/hooks';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { useMenu } from './utils';
 

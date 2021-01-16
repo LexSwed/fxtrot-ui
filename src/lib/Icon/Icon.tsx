@@ -2,7 +2,7 @@ import type { StitchesProps } from '@stitches/react';
 import React from 'react';
 
 import { styled } from '../stitches.config';
-import type { StylesObject } from '../utils';
+import type { StylesObject } from '../utils/types';
 
 export const IconBox = styled('svg', {
   flexShrink: 0,

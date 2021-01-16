@@ -3,7 +3,7 @@ import React from 'react';
 import { FlexBox, FlexType } from '../Flex';
 import Icon from '../Icon/Icon';
 import { styled } from '../stitches.config';
-import { forwardRef, PropsOf } from '../utils';
+import { forwardRef, PropsOf } from '../utils/types';
 
 const ButtonRoot = styled(FlexBox as FlexType<'button'>, {
   'transition': '0.2s ease-in-out',

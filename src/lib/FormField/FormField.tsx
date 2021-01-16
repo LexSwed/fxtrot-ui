@@ -5,7 +5,7 @@ import Box from '../Box';
 import { FlexBox } from '../Flex';
 import { styled } from '../stitches.config';
 import Text from '../Text';
-import { forwardRef, PropsOf } from '../utils';
+import { forwardRef, PropsOf } from '../utils/types';
 
 const Wrapper = styled(FlexBox, {
   position: 'relative',

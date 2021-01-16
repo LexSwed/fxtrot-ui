@@ -5,7 +5,7 @@ import { FlexBox, FlexType } from '../Flex';
 import Icon from '../Icon';
 import { styled } from '../stitches.config';
 import { font, textSize } from '../theme/variants';
-import { forwardRef, PropsOf } from '../utils';
+import { forwardRef, PropsOf } from '../utils/types';
 
 const ExternalIcon = styled(Icon, {});
 

@@ -8,7 +8,7 @@ import Icon from '../Icon';
 import Label from '../Label';
 import { styled } from '../stitches.config';
 import { InteractiveBox, InteractiveField, validityVariant } from '../TextField/shared';
-import { useAllHandlers, useKeyboardHandles } from '../utils';
+import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { usePicker } from './utils';
 
