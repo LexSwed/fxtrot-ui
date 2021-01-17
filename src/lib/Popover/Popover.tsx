@@ -92,8 +92,8 @@ const Popover: React.FC<Props> = ({ children, triggerRef, offset = 8, placement 
   };
 
   const handleKeyDown = useKeyboardHandles({
-    ['Escape.propagate']: closeOnKeydown,
-    ['Tab.propagate']: closeOnKeydown,
+    'Escape.propagate': closeOnKeydown,
+    'Tab.propagate': closeOnKeydown,
   });
 
   return (

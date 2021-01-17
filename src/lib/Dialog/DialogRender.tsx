@@ -1,6 +1,6 @@
 import { FocusScope } from '@react-aria/focus';
 import { AnimatePresence, motion } from 'framer-motion';
-import React, { useMemo } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { HiOutlineX } from 'react-icons/hi';
 import { useUIDSeed } from 'react-uid';
 
@@ -9,42 +9,27 @@ import Flex from '../Flex';
 import Icon from '../Icon';
 import Portal from '../Portal';
 import { styled } from '../stitches.config';
-import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
+import { useKeyboardHandles } from '../utils/hooks';
 import type { PropsOf } from '../utils/types';
 
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { DialogContext, DialogProvider, useDialog } from './utils';
 import Box from '../Box';
 
-interface ModalProps extends PropsOf<typeof DialogWindow> {}
-
-export const ModalWindow: React.FC<ModalProps> = ({ children, ...props }) => {
-  const { seed } = useDialog();
-  const { close } = useOpenStateControls();
-  const handleKeyDown = useAllHandlers(
-    props.onKeyDown,
-    useKeyboardHandles({
-      Escape: close,
-    })
-  );
-
-  return (
-    <DialogWindow {...props} onKeyDown={handleKeyDown} role="dialog" tabIndex={-1} aria-labelledby={seed('title')}>
-      {children}
-      <CloseButtonContainer>
-        <Button variant="flat" onClick={close} aria-label="Dismiss">
-          <Icon as={HiOutlineX} />
-        </Button>
-      </CloseButtonContainer>
-    </DialogWindow>
-  );
-};
-
 export const DialogRender: React.FC<{ render: DialogContext['render'] }> = ({ render }) => {
   const isOpen = useOpenState();
   const { close } = useOpenStateControls();
+  const dialogRef = useRef<HTMLDivElement>(null);
   const seed = useUIDSeed();
   const context = useMemo<DialogContext>(() => ({ seed, render }), [seed, render]);
+
+  const handleKeyDown = useKeyboardHandles({
+    'Escape.propagate': (e) => {
+      if (dialogRef.current?.contains(e.target as Node)) {
+        close();
+      }
+    },
+  });
 
   return (
     <AnimatePresence>
@@ -74,6 +59,8 @@ export const DialogRender: React.FC<{ render: DialogContext['render'] }> = ({ re
                 exit={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.1, type: 'tween' }}
                 key="dialog"
+                onKeyDown={handleKeyDown}
+                ref={dialogRef}
               >
                 <FocusScope contain autoFocus restoreFocus>
                   {render(close)}
@@ -84,6 +71,24 @@ export const DialogRender: React.FC<{ render: DialogContext['render'] }> = ({ re
         </DialogProvider>
       )}
     </AnimatePresence>
+  );
+};
+
+interface ModalProps extends PropsOf<typeof DialogWindow> {}
+
+export const ModalWindow: React.FC<ModalProps> = ({ children, ...props }) => {
+  const { seed } = useDialog();
+  const { close } = useOpenStateControls();
+
+  return (
+    <DialogWindow {...props} role="dialog" tabIndex={-1} aria-labelledby={seed('title')}>
+      {children}
+      <CloseButtonContainer>
+        <Button variant="flat" onClick={close} aria-label="Dismiss">
+          <Icon as={HiOutlineX} />
+        </Button>
+      </CloseButtonContainer>
+    </DialogWindow>
   );
 };
 
