@@ -85,15 +85,16 @@ const Popover: React.FC<Props> = ({ children, triggerRef, offset = 8, placement 
 
   useOnClickOutside(close, isOpen, popperRef, triggerRef);
 
-  const handleKeyDown = useKeyboardHandles(
-    useMemo(
-      () => ({
-        Escape: close,
-        Tab: close,
-      }),
-      [close]
-    )
-  );
+  const closeOnKeydown = (e: React.KeyboardEvent) => {
+    if (popperRef.current?.contains(e.target as Node)) {
+      close();
+    }
+  };
+
+  const handleKeyDown = useKeyboardHandles({
+    ['Escape.propagate']: closeOnKeydown,
+    ['Tab.propagate']: closeOnKeydown,
+  });
 
   return (
     <AnimatePresence>
