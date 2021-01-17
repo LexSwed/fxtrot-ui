@@ -1,6 +1,5 @@
-import React, { useCallback, useContext, useEffect, useLayoutEffect,  useRef } from 'react';
+import React, { useCallback,  useEffect, useLayoutEffect,  useRef } from 'react';
 import { useUID } from 'react-uid';
-import { portalContext } from '../Portal/Portal';
 
 type PossibleRef<T> = React.Ref<T> | ((instance: T | null) => void) | null | undefined;
 
