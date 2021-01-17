@@ -22,7 +22,17 @@ const MenuItem = forwardRef<HTMLLIElement, Props>(({ action, disabled, ...props 
     close();
   }, props.onClick);
 
-  return <ListItem {...props} onMouseEnter={onMouseEnter} onClick={onClick} role="menuitem" ref={ref} />;
+  return (
+    <ListItem
+      {...props}
+      disabled={disabled}
+      tabIndex={disabled ? undefined : 0}
+      onMouseEnter={onMouseEnter}
+      onClick={onClick}
+      role="menuitem"
+      ref={ref}
+    />
+  );
 });
 
 MenuItem.displayName = 'MenuItem';

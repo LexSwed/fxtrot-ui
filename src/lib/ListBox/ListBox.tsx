@@ -33,16 +33,17 @@ export interface ListBoxProps extends PropsOf<typeof List> {
   restoreFocus?: boolean;
   contain?: boolean;
   wrap?: boolean;
+  autoFocus?: boolean;
 }
 
 const ListBox = forwardRef<HTMLUListElement, ListBoxProps>(
-  ({ children, restoreFocus, contain, wrap, ...props }, ref) => {
+  ({ children, restoreFocus, contain, wrap, autoFocus, ...props }, ref) => {
     if (React.Children.count(children) === 0) {
       return <List role="listbox" tabIndex={-1} {...props} as="ul" ref={ref} />;
     }
     return (
       <List role="listbox" tabIndex={-1} {...props} as="ul" ref={ref}>
-        <FocusScope contain={contain} restoreFocus={restoreFocus}>
+        <FocusScope contain={contain} restoreFocus={restoreFocus} autoFocus={autoFocus}>
           <ListInner wrap={wrap}>{children}</ListInner>
         </FocusScope>
       </List>

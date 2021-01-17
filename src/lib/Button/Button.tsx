@@ -187,19 +187,32 @@ ButtonRoot.compoundVariant(
 interface Props extends Omit<PropsOf<typeof ButtonRoot>, 'isIconButton'> {}
 
 const Button = forwardRef<HTMLButtonElement, Props>(
-  ({ variant = 'secondary', size = 'md', space = '$2', type = 'button', css, style, className, ...props }, ref) => {
+  (
+    {
+      variant = 'secondary',
+      size = 'md',
+      space = '$2',
+      display = 'inline',
+      type = 'button',
+      css,
+      style,
+      className,
+      ...props
+    },
+    ref
+  ) => {
     const isIconButton = React.Children.toArray(props.children).every(
       (child) => React.isValidElement(child) && child.type === Icon
     );
 
     return (
       <ButtonRoot
-        {...props}
         as="button"
+        {...props}
+        display={display}
         className={className}
         cross="center"
         css={css}
-        display="inline"
         flow="row"
         ref={ref}
         size={size}

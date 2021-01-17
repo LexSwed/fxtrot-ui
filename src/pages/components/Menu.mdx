@@ -11,7 +11,7 @@ import { HiChevronDown, HiOutlineTrash } from 'react-icons/hi';
 For big lists use `action` prop on `Menu.Item` and `onAction` callback to handle click on the item with `action`.
 
 <Playground>
-  <Box css={{ p: '$8' }}>
+  <Box p="$8">
     <Menu onAction={typeof window !== 'undefined' ? window.alert : null}>
       <Menu.Button>
         <span>Open menu</span>
@@ -39,7 +39,7 @@ You can modify `offset` and [`placement`](https://popper.js.org/docs/v2/construc
 
 <Playground>
   <ThemeProvider theme="orange">
-    <Box css={{ p: '$8', bc: '$surfaceStill' }}>
+    <Box p="$8">
       <Menu>
         <Menu.Button>
           <span>Open menu</span>
@@ -66,28 +66,25 @@ You can modify `offset` and [`placement`](https://popper.js.org/docs/v2/construc
 - No typeahead support
 
 <Playground>
-  <ThemeProvider theme="orange">
-    <Box css={{ p: '$8', bc: '$surfaceStill' }}>
-      <Menu>
-        <Menu.Button>
-          <span>Open menu</span>
-          <Icon as={HiChevronDown} size="lg" />
-        </Menu.Button>
-        <Menu.List offset={0} placement="right-start">
-          <Dialog>
-            <Dialog.Trigger as={Menu.Item} aria-label="Delete the document" css={{ color: '$danger' }} variant="flat">
-              <Icon size="md" as={HiOutlineTrash} />
-              <span>Delete topic</span>
-            </Dialog.Trigger>
-            {(close) => (
-              <Dialog.Modal>
-                <Dialog.Title level={3}>Delete topic?</Dialog.Title>
-                <div onClick={(e) => console.log(e.defaultPrevented, 'click')}>divkda;dka;s</div>
-              </Dialog.Modal>
-            )}
-          </Dialog>
-        </Menu.List>
-      </Menu>
-    </Box>
-  </ThemeProvider>
+  <Box p="$8">
+    <Menu>
+      <Menu.Button variant="outline">
+        <Icon as={HiChevronDown} size="lg" />
+      </Menu.Button>
+      <Menu.List>
+        <Dialog>
+          <Dialog.Trigger as={Menu.Item} css={{ color: '$danger' }} display="flex" variant="transparent">
+            <Icon size="md" as={HiOutlineTrash} />
+            <span>Delete</span>
+          </Dialog.Trigger>
+          {(close) => (
+            <Dialog.Modal>
+              <Dialog.Title level={3}>Delete topic?</Dialog.Title>
+              <div onClick={(e) => console.log(e.defaultPrevented, 'click')}>divkda;dka;s</div>
+            </Dialog.Modal>
+          )}
+        </Dialog>
+      </Menu.List>
+    </Menu>
+  </Box>
 </Playground>

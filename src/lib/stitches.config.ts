@@ -62,7 +62,7 @@ export const theme = {
     $4: '400',
     $max: '9999',
   },
-  shadows: { ...shadows, $popper: `0 0 1px ${defaultPalette.$borderLight}, ${shadows.$xl}`, $none: 'none' },
+  shadows: { ...shadows, $popper: `0 0 1px ${defaultPalette.$borderActive}, ${shadows.$xl}`, $none: 'none' },
 } as const;
 
 type Theme = typeof theme;

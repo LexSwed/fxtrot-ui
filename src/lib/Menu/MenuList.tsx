@@ -1,53 +1,32 @@
+import React from 'react';
 import type { Options } from '@popperjs/core';
-import React, { useEffect, useRef } from 'react';
 
 import ListBox, { ListBoxProps } from '../ListBox/ListBox';
 import Popover from '../Popover';
 import { useMenu } from './utils';
 
-const MenuList: React.FC<ListBoxProps> = (props) => {
-  const { seed } = useMenu();
+interface MenuListProps extends ListBoxProps {
+  offset?: number;
+  placement?: Options['placement'];
+}
 
-  const listRef = useRef<HTMLUListElement>(null);
-
-  /** Will run when the component is rendered by Popover component */
-  useEffect(() => {
-    const option = listRef.current?.querySelector('[role="menuitem"]');
-
-    if (option) {
-      (option as HTMLLIElement | undefined)?.focus?.();
-    } else {
-      listRef.current?.focus();
-    }
-  }, [listRef]);
-
-  return (
-    <ListBox
-      {...props}
-      restoreFocus
-      contain
-      wrap
-      role={'menu'}
-      id={seed('menu')}
-      aria-labelledby={seed('button')}
-      ref={listRef}
-    />
-  );
-};
-
-const MenuPopper: React.FC<
-  ListBoxProps & {
-    offset?: number;
-    placement?: Options['placement'];
-  }
-> = ({ placement, offset, ...props }) => {
-  const { triggerRef } = useMenu();
+const MenuList: React.FC<MenuListProps> = ({ placement, offset, ...props }) => {
+  const { triggerRef, seed } = useMenu();
 
   return (
     <Popover triggerRef={triggerRef} placement={placement} offset={offset}>
-      <MenuList {...props} />
+      <ListBox
+        {...props}
+        restoreFocus
+        contain
+        wrap
+        role={'menu'}
+        id={seed('menu')}
+        aria-labelledby={seed('button')}
+        autoFocus
+      />
     </Popover>
   );
 };
 
-export default MenuPopper;
+export default MenuList;
