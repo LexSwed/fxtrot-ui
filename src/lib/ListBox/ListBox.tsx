@@ -1,5 +1,5 @@
 import { FocusScope, useFocusManager } from '@react-aria/focus';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { styled } from '../stitches.config';
 import { forwardRef, PropsOf } from '../utils/types';
@@ -19,6 +19,10 @@ export const List = styled('ul', {
 const ListInner: React.FC<{ wrap?: boolean }> = ({ wrap, ...props }) => {
   const { focusNext, focusPrevious } = useFocusManager();
 
+  useEffect(() => {
+    findItems()[0]?.focus();
+  }, []);
+
   const handleKeyDown = useKeyboardHandles({
     ArrowDown: () => focusNext({ wrap }),
     ArrowUp: () => focusPrevious({ wrap }),
@@ -33,17 +37,16 @@ export interface ListBoxProps extends PropsOf<typeof List> {
   restoreFocus?: boolean;
   contain?: boolean;
   wrap?: boolean;
-  autoFocus?: boolean;
 }
 
 const ListBox = forwardRef<HTMLUListElement, ListBoxProps>(
-  ({ children, restoreFocus, contain, wrap, autoFocus, ...props }, ref) => {
+  ({ children, restoreFocus, contain, wrap, ...props }, ref) => {
     if (React.Children.count(children) === 0) {
       return <List role="listbox" tabIndex={-1} {...props} as="ul" ref={ref} />;
     }
     return (
       <List role="listbox" tabIndex={-1} {...props} as="ul" ref={ref}>
-        <FocusScope contain={contain} restoreFocus={restoreFocus} autoFocus={autoFocus}>
+        <FocusScope contain={contain} restoreFocus={restoreFocus}>
           <ListInner wrap={wrap}>{children}</ListInner>
         </FocusScope>
       </List>
@@ -54,3 +57,11 @@ const ListBox = forwardRef<HTMLUListElement, ListBoxProps>(
 ListInner.displayName = 'ListBox';
 
 export default ListBox;
+
+/**
+ * FocusScope is fun: it filters out tabIndex=-1 elements, but allows to focusNext/Prev between them
+ * This is handy though to not write own wrapping logic
+ */
+function findItems() {
+  return Array.from(document.querySelectorAll('[role="menuitem"]')) as HTMLElement[];
+}

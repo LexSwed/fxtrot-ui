@@ -26,7 +26,7 @@ const MenuItem = forwardRef<HTMLLIElement, Props>(({ action, disabled, ...props 
     <ListItem
       {...props}
       disabled={disabled}
-      tabIndex={disabled ? undefined : 0}
+      tabIndex={disabled ? undefined : -1}
       onMouseEnter={onMouseEnter}
       onClick={onClick}
       role="menuitem"

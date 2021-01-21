@@ -136,16 +136,10 @@ const DialogWindow = styled('section', {
  * inside the Menu that registers outside click listener to close the menu
  */
 function preventClick(e: React.PointerEvent | React.TouchEvent | React.MouseEvent) {
-  e.preventDefault();
   e.stopPropagation();
 }
 const ClickCatcher: React.FC = ({ children }) => (
-  <Box
-    display="contents"
-    onMouseDownCapture={preventClick}
-    onTouchStartCapture={preventClick}
-    onPointerDownCapture={preventClick}
-  >
+  <Box display="contents" onMouseDown={preventClick} onTouchStart={preventClick} onPointerDown={preventClick}>
     {children}
   </Box>
 );
