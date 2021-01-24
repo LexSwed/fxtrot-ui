@@ -100,7 +100,7 @@ const TextField = forwardRef<HTMLDivElement, Props>(
             inputMode={inputMode[type]}
             type={type}
             variant={variant}
-            ref={inputRef}
+            inputRef={inputRef}
           >
             {iconRight && (
               <IconWrapper>
