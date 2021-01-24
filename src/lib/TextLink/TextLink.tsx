@@ -1,15 +1,16 @@
 import React from 'react';
 import { HiOutlineExternalLink } from 'react-icons/hi';
 
-import { FlexBox, FlexType } from '../Flex';
 import Icon from '../Icon';
 import { styled } from '../stitches.config';
-import { font, textSize } from '../theme/variants';
+import Text from '../Text/Text';
 import { forwardRef, PropsOf } from '../utils/types';
 
 const ExternalIcon = styled(Icon, {});
 
-const Link = styled(FlexBox as FlexType<'a'>, {
+const Link = styled(Text, {
+  'display': 'inline-flex',
+  'alignItems': 'center',
   'color': '$primaryStill',
   'textDecoration': 'none',
   'boxSizing': 'border-box',
@@ -29,48 +30,28 @@ const Link = styled(FlexBox as FlexType<'a'>, {
   },
 
   [`& ${ExternalIcon}`]: {
-    size: '0.8em',
-  },
-
-  '& path': {
-    stroke: '$primaryStill',
-  },
-
-  'variants': {
-    font,
-    size: textSize,
+    'display': 'inline-block',
+    'ml': '$1',
+    '& path': {
+      stroke: '$primaryStill',
+    },
   },
 });
 
 interface Props extends PropsOf<typeof Link> {
-  external?: boolean;
+  external?: 'icon' | true;
 }
 
-const TextLink = forwardRef<HTMLAnchorElement, Props>(
-  (
-    { font = 'default', size = 'base', external, children, flow = 'row', main = 'start', space = '$1', ...props },
-    ref
-  ) => {
-    const additionalProps = external ? { target: '_blank', rel: 'noopener' } : null;
+const TextLink = forwardRef<HTMLAnchorElement, Props>(({ external, children, ...props }, ref) => {
+  const additionalProps = external ? { target: '_blank', rel: 'noopener' } : null;
 
-    return (
-      <Link
-        {...additionalProps}
-        {...props}
-        flow={flow}
-        main={main}
-        space={space}
-        as="a"
-        font={font}
-        size={size}
-        ref={ref as any}
-      >
-        {children}
-        {external ? <ExternalIcon as={HiOutlineExternalLink} /> : null}
-      </Link>
-    );
-  }
-);
+  return (
+    <Link {...additionalProps} {...props} as="a" ref={ref as any}>
+      {children}
+      {external === 'icon' ? <ExternalIcon size="md" as={HiOutlineExternalLink} /> : null}
+    </Link>
+  );
+});
 
 TextLink.displayName = 'TextLink';
 

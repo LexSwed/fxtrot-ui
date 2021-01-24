@@ -30,6 +30,9 @@ const Text = styled('span', {
       end: {
         textAlign: 'end',
       },
+      justify: {
+        textAlign: 'justify',
+      },
     },
     ellipsis: {
       true: {
