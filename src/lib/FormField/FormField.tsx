@@ -3,6 +3,7 @@ import { useUID } from 'react-uid';
 
 import Box from '../Box';
 import { FlexBox } from '../Flex';
+import { LabelWrapper } from '../Label/Label';
 import { styled } from '../stitches.config';
 import Text from '../Text';
 import { forwardRef, PropsOf } from '../utils/types';
@@ -10,6 +11,10 @@ import { forwardRef, PropsOf } from '../utils/types';
 const Wrapper = styled(FlexBox, {
   position: 'relative',
   width: '100%',
+
+  [`& > ${LabelWrapper}`]: {
+    pl: '1px',
+  },
 
   variants: {
     hasHint: {
@@ -33,7 +38,7 @@ const HintText = styled(Text, {
   bottom: '0',
   transform: 'translateY(calc(100% + 4px))',
   maxWidth: '-webkit-fill-available',
-  pl: '$3',
+  pl: '1px',
 });
 
 export interface FormFieldProps extends PropsOf<typeof Wrapper> {

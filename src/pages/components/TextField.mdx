@@ -36,7 +36,7 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
     <Flex flow="column" space="md">
       <TextField label="Boxed" hint="Default variant" placeholder="Default boxed variant" />
       <TextField variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Pretty underlined" />
-      <TextField variant="inline" hint="Not using labels" placeholder="Inline variant" />
+      <TextField variant="transparent" hint="Not using labels" placeholder="Transparent variant" />
     </Flex>
     <Flex flow="column" space="md">
       <TextField
@@ -54,7 +54,7 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
         placeholder="Pretty underlined"
         disabled
       />
-      <TextField variant="inline" hint="Not using labels" placeholder="Inline variant" disabled />
+      <TextField variant="transparent" hint="Not using labels" placeholder="Transparent variant" disabled />
     </Flex>
   </Flex>
 </Playground>
@@ -67,7 +67,7 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
     const isValid = React.useMemo(() => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value), [value]);
     return (
       <Box css={{ p: '$6', bc: '$gray50' }}>
-        <Flex space="md" flow="row">
+        <Flex space="md" flow="row" cross="end">
           <TextField
             cross="stretch"
             validity={isValid ? 'valid' : 'invalid'}
@@ -90,12 +90,11 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
           <TextField
             cross="stretch"
             validity={isValid ? 'valid' : 'invalid'}
-            label="Email"
             hint={!isValid ? 'Check that your email is typed correctly' : ' '}
             placeholder="john.doe@mail.com"
             value={value}
             onChange={setValue}
-            variant="inline"
+            variant="transparent"
           />
         </Flex>
       </Box>

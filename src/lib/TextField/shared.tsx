@@ -22,7 +22,7 @@ export const IconWrapper = styled('div', {
   justifyContent: 'center',
   pointerEvents: 'none',
   transition: '0.1s ease-in',
-  pr: '$2',
+  pr: '$1',
 });
 
 export const InteractiveBox = styled('input', {
@@ -30,7 +30,7 @@ export const InteractiveBox = styled('input', {
   'lineHeight': '$base',
   'width': '100%',
   'height': '$base',
-  'px': '$3',
+  'px': '$2',
   'display': 'inline-flex',
   'transition': '0.2s ease-in-out',
   'transitionProperty': 'background, border-color, box-shadow',
@@ -84,10 +84,13 @@ export const InteractiveBox = styled('input', {
           bc: '$surfaceDisabled',
         },
       },
-      inline: {
-        background: 'transparent',
-        br: '$md',
-        border: 'none',
+      transparent: {
+        'background': 'transparent',
+        'br': '$md',
+        'ml': '-$2',
+        '&:hover, &:focus': {
+          borderColor: '$borderLight',
+        },
       },
     },
   },
