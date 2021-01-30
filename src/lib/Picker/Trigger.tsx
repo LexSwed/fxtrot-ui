@@ -114,6 +114,7 @@ const Trigger: React.FC<TriggerProps> = ({
           onKeyDown={onKeyDown}
           ref={triggerRef as any}
           value={value}
+          type="button"
         >
           {children || <Placeholder>{placeholder}</Placeholder>}
           <Icon as={HiSelector} />
