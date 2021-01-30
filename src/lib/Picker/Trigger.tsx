@@ -35,7 +35,7 @@ const TriggerButton = styled(InteractiveBox as InteractiveField<'button'>, {
 });
 
 const Placeholder = styled('div', {
-  color: '$borderStill',
+  color: '$textSubtle',
   overflow: 'hidden',
   whiteSpace: 'nowrap',
   textOverflow: 'ellipsis',
