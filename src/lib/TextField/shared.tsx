@@ -28,8 +28,8 @@ export const IconWrapper = styled('div', {
 export const InteractiveBox = styled('input', {
   'fontSize': '$sm',
   'lineHeight': '$base',
-  'width': '100%',
   'height': '$base',
+  'width': '100%',
   'px': '$2',
   'display': 'inline-flex',
   'transition': '0.2s ease-in-out',
@@ -91,6 +91,24 @@ export const InteractiveBox = styled('input', {
         '&:hover, &:focus': {
           borderColor: '$borderLight',
         },
+      },
+    },
+    size: {
+      sm: {
+        height: '$8',
+      },
+      md: {
+        height: '$base',
+      },
+      lg: {
+        height: '$12',
+        fontSize: '$lg',
+      },
+      xl: {
+        height: 'auto',
+        fontWeight: '600',
+        fontSize: '$2xl',
+        py: '$1',
       },
     },
   },

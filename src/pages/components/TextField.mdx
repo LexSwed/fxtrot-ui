@@ -59,6 +59,39 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
   </Flex>
 </Playground>
 
+## Size
+
+<Playground>
+  <Flex space="lg" flow="row" css={{ p: '$6', bc: '$gray50' }}>
+    <Flex flow="column" space="md">
+      <TextField size="sm" label="Boxed" hint="Default variant" placeholder="Small size" />
+      <TextField size="sm" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Small size" />
+      <TextField size="sm" variant="transparent" hint="Not using labels" placeholder="Small size" />
+    </Flex>
+    <Flex flow="column" space="md">
+      <TextField size="md" label="Boxed" hint="Default variant" placeholder="Default size" />
+      <TextField size="md" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Default size" />
+      <TextField size="md" variant="transparent" hint="Not using labels" placeholder="Default size" />
+    </Flex>
+    <Flex flow="column" space="md">
+      <TextField size="lg" label="Boxed" hint="Default variant" placeholder="Large size" />
+      <TextField size="lg" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Large size" />
+      <TextField size="lg" variant="transparent" hint="Not using labels" placeholder="Large size" />
+    </Flex>
+    <Flex flow="column" space="md">
+      <TextField size="xl" label="Boxed" hint="Default variant" placeholder="Editable heading size" />
+      <TextField
+        size="xl"
+        variant="underlined"
+        hint="Pretty variant"
+        label="Underlined"
+        placeholder="Editable heading size"
+      />
+      <TextField size="xl" variant="transparent" hint="Not using labels" placeholder="Editable heading size" />
+    </Flex>
+  </Flex>
+</Playground>
+
 ## Validity
 
 <Playground>

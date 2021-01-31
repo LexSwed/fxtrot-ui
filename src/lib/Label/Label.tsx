@@ -7,7 +7,7 @@ import type { PropsOf } from '../utils/types';
 
 const Main = styled(Text, {
   lineHeight: 1,
-  fontWeight: 600,
+  fontWeight: 500,
   flexShrink: 0,
   cursor: 'default',
 

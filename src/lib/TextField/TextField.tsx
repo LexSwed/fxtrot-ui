@@ -49,6 +49,7 @@ const TextField = forwardRef<HTMLDivElement, Props>(
       id,
       defaultValue,
       inputRef,
+      size = 'md',
       ...props
     },
     ref
@@ -101,6 +102,7 @@ const TextField = forwardRef<HTMLDivElement, Props>(
             type={type}
             variant={variant}
             inputRef={inputRef}
+            size={size}
           >
             {iconRight && (
               <IconWrapper>
