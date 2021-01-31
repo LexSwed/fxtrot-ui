@@ -10,6 +10,9 @@ const Text = styled('span', {
     font,
     size: textSize,
     tone: {
+      subtle: {
+        color: '$textSubtle',
+      },
       light: {
         color: '$textLight',
       },
