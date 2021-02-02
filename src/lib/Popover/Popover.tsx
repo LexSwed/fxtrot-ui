@@ -1,117 +1,79 @@
-import type { Options } from '@popperjs/core';
-import { AnimatePresence, motion, Variants } from 'framer-motion';
-import React, { useMemo } from 'react';
+import { FocusScope } from '@react-aria/focus';
+import React, { useContext, useMemo, useRef } from 'react';
+import { useUID } from 'react-uid';
+import Button from '../Button';
+import Box from '../Box';
+import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
+import { OpenStateProvider, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
+import PopoverLayer from './PopoverLayer';
 
-import Portal from '../Portal';
-import { styled } from '../stitches.config';
-import { sameWidth, usePopper } from '../utils/popper';
-import { useKeyboardHandles, useOnClickOutside } from '../utils/hooks';
-import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
-
-const Popper = styled('div', {
-  position: 'absolute',
-});
-
-const PopperBox = styled(motion.div, {
-  bc: '$surfaceStill',
-  br: '$md',
-  outline: 'none',
-  boxShadow: '$popper',
-});
-
-const animations: Record<string, Variants> = {
-  top: {
-    initial: {
-      opacity: 0,
-      y: 5,
-    },
-    animate: {
-      opacity: 1,
-      y: 0,
-    },
-  },
-  bottom: {
-    initial: {
-      opacity: 0,
-      y: -5,
-    },
-    animate: {
-      opacity: 1,
-      y: 0,
-    },
-  },
-  right: {
-    initial: {
-      opacity: 0,
-      x: -5,
-    },
-    animate: {
-      opacity: 1,
-      x: 0,
-    },
-  },
-  left: {
-    initial: {
-      opacity: 0,
-      x: 5,
-    },
-    animate: {
-      opacity: 1,
-      x: 0,
-    },
-  },
-};
-
-interface Props {
-  triggerRef: React.RefObject<HTMLElement>;
-  offset?: number;
-  placement?: Options['placement'];
-}
-
-const Popover: React.FC<Props> = ({ children, triggerRef, offset = 8, placement = 'bottom-start' }) => {
-  const isOpen = useOpenState();
-  const { close } = useOpenStateControls();
-  const [popperRef, state] = usePopper(
-    triggerRef,
-    useMemo<Options>(
-      () => ({
-        placement,
-        strategy: 'fixed',
-        modifiers: [{ name: 'offset', options: { offset: [0, offset] } }, sameWidth],
-      }),
-      [placement, offset]
-    )
-  );
-
-  useOnClickOutside(close, isOpen, popperRef, triggerRef);
-
-  const handleKeyDown = useKeyboardHandles({
-    'Escape.propagate': (e) => {
-      if (popperRef.current?.contains(e.target as Node)) {
-        close();
-      }
-    },
-  });
+const Popover: React.FC<Props> & { Trigger: typeof Trigger; Content: typeof Content } = ({ children }) => {
+  const id = useUID();
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const value = useMemo(() => ({ id, triggerRef }), [id, triggerRef]);
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <Portal>
-          <Popper ref={popperRef as any} onKeyDown={handleKeyDown}>
-            <PopperBox
-              variants={state?.placement ? animations[state?.placement.split('-')[0]] : animations.bottom}
-              initial="initial"
-              animate="animate"
-              exit="initial"
-              transition={{ duration: 0.15, type: 'tween' }}
-            >
-              {children}
-            </PopperBox>
-          </Popper>
-        </Portal>
-      )}
-    </AnimatePresence>
+    <context.Provider value={value}>
+      <OpenStateProvider>{children}</OpenStateProvider>
+    </context.Provider>
   );
 };
 
+const Trigger: React.FC<React.ComponentProps<typeof Button>> = (props) => {
+  const open = useOpenState();
+  const { toggle } = useOpenStateControls();
+  const { id, triggerRef } = useContext(context);
+  return (
+    <Button
+      {...props}
+      ref={triggerRef}
+      aria-haspopup="dialog"
+      aria-expanded={open}
+      aria-controls={id}
+      onClick={useAllHandlers(props.onClick, toggle)}
+    />
+  );
+};
+
+interface ContentProps extends Omit<React.ComponentProps<typeof PopoverLayer>, 'triggerRef'> {}
+const Content: React.FC<ContentProps> = ({ children, ...props }) => {
+  const { id, triggerRef } = useContext(context);
+  const { close } = useOpenStateControls();
+  const handleKeyDown = useKeyboardHandles({
+    Esc: close,
+  });
+  const onKeyDown = useAllHandlers(props.onKeyDown, handleKeyDown);
+  return (
+    <PopoverLayer
+      id={id}
+      tabIndex={-1}
+      aria-modal="true"
+      role="dialog"
+      {...props}
+      triggerRef={triggerRef}
+      onKeyDown={onKeyDown}
+    >
+      <FocusScope contain restoreFocus autoFocus>
+        <Box p="$4">{children}</Box>
+      </FocusScope>
+    </PopoverLayer>
+  );
+};
+
+Popover.Trigger = Trigger;
+
+Popover.Content = Content;
+
 export default Popover;
+
+interface Props {
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+}
+
+const context = React.createContext<{ id: string; triggerRef: React.RefObject<HTMLButtonElement> }>({
+  id: '',
+  triggerRef: {
+    current: null,
+  },
+});

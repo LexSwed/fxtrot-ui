@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import Popover from '../Popover';
+import Popover from '../Popover/PopoverLayer';
 import { useId } from '../utils/hooks';
 import { OpenStateProvider } from '../utils/OpenStateProvider';
 import Item, { PickerItemProps } from './Item';

@@ -126,7 +126,7 @@ export function createNewTheme({ shade, primary, accent }: ShortDefinition): Swa
       $textSubtle: allColors[`$${shade}Gray500` as keyof typeof allColors],
       $accent: allColors[`$${accent}600` as keyof typeof allColors],
       $accentLight: allColors[`$${accent}500` as keyof typeof allColors],
-      $success: allColors['$green600' as keyof typeof allColors],
+      $success: allColors['$green700' as keyof typeof allColors],
       $danger: allColors['$red600'],
 
       $primaryStill: allColors[`$${primary}500` as keyof typeof allColors],

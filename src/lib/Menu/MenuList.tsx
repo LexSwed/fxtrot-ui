@@ -2,7 +2,7 @@ import React from 'react';
 import type { Options } from '@popperjs/core';
 
 import ListBox, { ListBoxProps } from '../ListBox/ListBox';
-import Popover from '../Popover';
+import Popover from '../Popover/PopoverLayer';
 import { useMenu } from './utils';
 
 interface MenuListProps extends ListBoxProps {
