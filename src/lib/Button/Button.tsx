@@ -9,6 +9,7 @@ const ButtonRoot = styled(FlexBox as FlexType<'button'>, {
   'transition': '0.2s ease-in-out',
   '$outline': 0,
   'fontFamily': '$default',
+  'lineHeight': 1,
   'border': '1px solid transparent',
   'br': '$md',
   'cursor': 'default',
@@ -25,28 +26,24 @@ const ButtonRoot = styled(FlexBox as FlexType<'button'>, {
     size: {
       xs: {
         height: '$6',
-        lineHeight: '$6',
         fontSize: '$xs',
         fontWeight: 400,
         px: '$2',
       },
       sm: {
         height: '$8',
-        lineHeight: '$8',
         fontSize: '$sm',
         fontWeight: 400,
         px: '$2',
       },
       md: {
         height: '$base',
-        lineHeight: '$base',
         fontSize: '$sm',
         fontWeight: 500,
         px: '$3',
       },
       lg: {
         height: '$12',
-        lineHeight: '$12',
         fontSize: '$md',
         fontWeight: 500,
         px: '$4',
