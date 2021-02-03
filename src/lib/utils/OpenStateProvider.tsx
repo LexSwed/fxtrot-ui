@@ -1,25 +1,27 @@
-import React, { createContext, useContext, useMemo, useState } from 'react';
+import React, { createContext, useContext, useMemo, useState, useImperativeHandle } from 'react';
 
 const menuStateContext = createContext(false);
 const menuStateControlsContext = createContext<MenuControlFunctions>({} as MenuControlFunctions);
 
-export const OpenStateProvider: React.FC<{ defaultOpen?: boolean }> = ({ defaultOpen, children }) => {
-  const [isOpen, controls] = useTogglesState(defaultOpen);
-
-  return (
-    <menuStateControlsContext.Provider value={controls}>
-      <menuStateContext.Provider value={isOpen}>{children}</menuStateContext.Provider>
-    </menuStateControlsContext.Provider>
-  );
-};
-
-export function withOpenStateProvider<T>(Component: React.ComponentType<T>): React.ComponentType<T> {
-  return React.memo((props) => (
-    <OpenStateProvider>
-      <Component {...props} />
-    </OpenStateProvider>
-  ));
+interface Ref {
+  open: () => void;
+  close: () => void;
+  toggle: () => void;
 }
+
+export const OpenStateProvider = React.forwardRef<Ref, { defaultOpen?: boolean; children?: React.ReactNode }>(
+  ({ defaultOpen, children }, ref) => {
+    const [isOpen, controls] = useTogglesState(defaultOpen);
+
+    useImperativeHandle(ref, () => controls, [controls]);
+
+    return (
+      <menuStateControlsContext.Provider value={controls}>
+        <menuStateContext.Provider value={isOpen}>{children}</menuStateContext.Provider>
+      </menuStateControlsContext.Provider>
+    );
+  }
+);
 
 export function useOpenState() {
   return useContext(menuStateContext);

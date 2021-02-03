@@ -7,16 +7,27 @@ import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
 import { OpenStateProvider, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import PopoverLayer from './PopoverLayer';
 
-const Popover: React.FC<Props> & { Trigger: typeof Trigger; Content: typeof Content } = ({ children }) => {
+interface Ref {
+  open: () => void;
+  close: () => void;
+  toggle: () => void;
+}
+interface Props {
+  children: React.ReactNode;
+}
+const Popover = React.forwardRef<Ref, Props>(({ children }, ref) => {
   const id = useUID();
   const triggerRef = useRef<HTMLButtonElement>(null);
   const value = useMemo(() => ({ id, triggerRef }), [id, triggerRef]);
 
   return (
-    <context.Provider value={value}>
-      <OpenStateProvider>{children}</OpenStateProvider>
-    </context.Provider>
+    <OpenStateProvider ref={ref}>
+      <context.Provider value={value}>{children}</context.Provider>
+    </OpenStateProvider>
   );
+}) as React.ForwardRefExoticComponent<Props & React.RefAttributes<Ref>> & {
+  Trigger: typeof Trigger;
+  Content: typeof Content;
 };
 
 const Trigger: React.FC<React.ComponentProps<typeof Button>> = (props) => {
@@ -60,16 +71,11 @@ const Content: React.FC<ContentProps> = ({ children, ...props }) => {
   );
 };
 
+Popover.displayName = 'Popover';
 Popover.Trigger = Trigger;
-
 Popover.Content = Content;
 
 export default Popover;
-
-interface Props {
-  open?: boolean;
-  onOpenChange?: (open: boolean) => void;
-}
 
 const context = React.createContext<{ id: string; triggerRef: React.RefObject<HTMLButtonElement> }>({
   id: '',

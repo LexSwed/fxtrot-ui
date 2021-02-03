@@ -8,13 +8,28 @@ import { Box, Flex, Text, TextField, Button, Popover } from '@fxtrot/ui';
 # Popover
 
 <Playground>
-  <Popover>
-    <Popover.Trigger variant="primary">Create</Popover.Trigger>
-    <Popover.Content css={{ width: '300px' }} offset={12} placement="bottom-end">
-      <Flex space="$4">
-        <TextField label="Full name" placeholder="Ahsoka Tano" />
-        <Button css={{ alignSelf: 'flex-end' }}>Submit</Button>
-      </Flex>
-    </Popover.Content>
-  </Popover>
+  {() => {
+    const ref = React.useRef({});
+    React.useEffect(() => {
+      console.log(ref.current.close);
+    }, []);
+    return (
+      <Popover ref={ref}>
+        <Popover.Trigger variant="primary">Create</Popover.Trigger>
+        <Popover.Content css={{ width: '300px' }} offset={12} placement="bottom-end">
+          <Flex space="$4">
+            <TextField label="Full name" placeholder="Ahsoka Tano" />
+            <Button
+              css={{ alignSelf: 'flex-end' }}
+              onClick={() => {
+                ref.current.close();
+              }}
+            >
+              Submit
+            </Button>
+          </Flex>
+        </Popover.Content>
+      </Popover>
+    );
+  }}
 </Playground>
