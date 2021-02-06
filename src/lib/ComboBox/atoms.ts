@@ -1,6 +1,6 @@
 import { atom, useAtom } from 'jotai';
-import { useSelector, useUpdateAtom } from 'jotai/utils';
-import { useCallback, useEffect } from 'react';
+import { useAtomValue, useUpdateAtom } from 'jotai/utils';
+import { useEffect } from 'react';
 
 const innerValue = atom<string | null>(null);
 interface SyncedValue {
@@ -27,16 +27,8 @@ export const useSyncValue: SyncedValue = (propValue, onChange = () => {}) => {
 
 const focusedItemId = atom<string | null>(null);
 export const useFocusedItemId = () => useAtom(focusedItemId);
-export const useItemSelected = (value: string) =>
-  useSelector(
-    innerValue,
-    useCallback((innerVal) => value === innerVal, [value])
-  );
-export const useItemFocused = (id: string) =>
-  useSelector(
-    focusedItemId,
-    useCallback((focusedId) => id === focusedId, [id])
-  );
+export const useItemSelected = (value: string) => value === useAtomValue(innerValue);
+export const useItemFocused = (id: string) => id === useAtomValue(focusedItemId);
 export const useFocusItem = () => {
   return useUpdateAtom(focusedItemId);
 };
