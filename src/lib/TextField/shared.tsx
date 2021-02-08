@@ -86,10 +86,14 @@ export const InteractiveBox = styled('input', {
       },
       transparent: {
         'background': 'transparent',
-        'br': '$md',
-        'ml': '-$2',
-        '&:hover, &:focus': {
-          borderColor: '$borderLight',
+        '&:not(:disabled)': {
+          px: 0,
+        },
+        '&:hover': {
+          borderBottomColor: '$borderLight',
+        },
+        '&:focus': {
+          borderBottomColor: '$borderStill',
         },
       },
     },
@@ -116,6 +120,7 @@ export const InteractiveBox = styled('input', {
   '&[readonly]': {
     cursor: 'default',
     bc: '$surfaceHover',
+    color: '$textLight',
   },
 });
 
