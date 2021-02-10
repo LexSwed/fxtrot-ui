@@ -10,7 +10,7 @@ export const iconStyles: StylesObject = {
   top: 0,
   right: 0,
   bottom: 0,
-  height: '$base',
+  height: 'inherit',
   width: '$8',
   outline: 'none',
 };
