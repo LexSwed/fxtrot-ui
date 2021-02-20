@@ -2475,10 +2475,10 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.4.4.tgz#11d5db19bd178936ec89cd84519c4de439574398"
   integrity sha512-1oO6+dN5kdIA3sKPZhRGJTfGVP4SWV6KqlMOwry4J3HfyD68sl/3KmG7DeYUzvN+RbhXDnv/D8vNNB8168tAMg==
 
-"@popperjs/core@^2.7.0":
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.7.0.tgz#5f7760965170f7f1e2910d2498c5be88b47a2a8c"
-  integrity sha512-V3WyEc8ZyAuOQ2fpFuTuYYOd2tV4NePeSdxaHYgYAOs7ERLxlcFi2XsmgI5LJFdAUmJKXsg8jaIiVTkTHQygQw==
+"@popperjs/core@2.8.0":
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.8.0.tgz#b90c28fa62aa9d821ac8dd1f527d080c766a8bde"
+  integrity sha512-3/bHDejUVbncu7zbBpiIOAbl61i5XATrFQl7NMBtgls0PJjU7VKHvf8pvavNcXriZy2Qp0Gds39KyvBGGtZO4A==
 
 "@reach/alert@0.13.0":
   version "0.13.0"
@@ -2793,10 +2793,15 @@
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
 
-"@types/node@*", "@types/node@^14.14.29":
+"@types/node@*":
   version "14.14.29"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.29.tgz#2bbaefda2b715f9a0cd31c55b55b9092c5920e59"
   integrity sha512-z1PF7SVwqolmqu21eoWM82FPx699C2sCmrxTcCRotRn+2gt9Ve4dwmZsDntxgGyEHFHXYaqMcMMCdPKUeTKXsA==
+
+"@types/node@^14.14.31":
+  version "14.14.31"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.31.tgz#72286bd33d137aa0d152d47ec7c1762563d34055"
+  integrity sha512-vFHy/ezP5qI0rFgJ7aQnjDXwAMrG0KqqIH7tQG5PPv3BWBayOPIQNBjVc/P6hhdZfMx51REc6tfDNXHUio893g==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -5634,9 +5639,9 @@ fragment-cache@^0.2.1:
     map-cache "^0.2.2"
 
 framer-motion@^3.5.2:
-  version "3.5.2"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-3.5.2.tgz#a44298b57c84c08345b24bf11fd7002a5bff31ad"
-  integrity sha512-G4Tts16mt/Q2kxA0t/7Dob7Mi8ZJ1/QSiV1HNJ1IZptPzIzk8/lRQxxh/7YNWMaY47eeZzLRbtOHvKHnKs296A==
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-3.6.2.tgz#f3190eddcd9e4e41dc31c9bb8cc8bdef03adba96"
+  integrity sha512-PMmybIGmIZVOb422NbUPIu919Rqm6MEKYyoOInExWdVFBsY+isbbu7/R60TZ+ru2eewLq3uTwntrYX04MxnAhg==
   dependencies:
     framesync "^5.0.0"
     hey-listen "^1.0.8"
@@ -7421,10 +7426,10 @@ jest@^26.6.3:
     import-local "^3.0.2"
     jest-cli "^26.6.3"
 
-jotai@^0.14.1:
-  version "0.14.1"
-  resolved "https://registry.yarnpkg.com/jotai/-/jotai-0.14.1.tgz#f99950b3e92f4a74c49d6ed5020245e503dfd9fe"
-  integrity sha512-aa0XBZWilJyu7vmlboRuIMLIBCnW2hD8ErttC40e/PHZELKLw12bhwXqUa8zZhKWWJ4/vX578NZ4eimRl4HOWQ==
+jotai@^0.14.4:
+  version "0.14.4"
+  resolved "https://registry.yarnpkg.com/jotai/-/jotai-0.14.4.tgz#edea77ab2fd0f08c56f2a8b04549b7cb8e0be7c0"
+  integrity sha512-kZ3OZhvlww4rNO/FXiv/hZGOKLbMu6bVtR8TAzi54pQywM27ZmoxbybC0TgAJu+2CVS4HTtx9c06+1PaMyqkvg==
   dependencies:
     use-context-selector "1.3.7"
 
