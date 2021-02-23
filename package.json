@@ -31,7 +31,10 @@
     "typecheck": "tsc --noEmit",
     "dokz:dev": "next dev -p 3001",
     "dokz:build": "next build",
-    "dokz:start": "next start"
+    "dokz:start": "next start",
+    "postinstall": "husky install",
+    "prepublishOnly": "pinst --disable",
+    "postpublish": "pinst --enable"
   },
   "dependencies": {
     "@popperjs/core": "^2.8.3",
@@ -42,8 +45,7 @@
     "framer-motion": "^3.6.7",
     "jotai": "^0.15.0",
     "react-uid": "^2.3.1",
-    "react-virtual": "^2.4.0",
-    "scheduler": "^0.20.1"
+    "react-virtual": "^2.4.0"
   },
   "devDependencies": {
     "@chakra-ui/react": "^1.3.3",
@@ -65,10 +67,11 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "husky": "4",
+    "husky": "^5.1.1",
     "jest": "^26.6.3",
     "next": "^10.0.7",
     "npm-run-all": "^4.1.5",
+    "pinst": "^2.1.6",
     "prettier": "^2.2.1",
     "pretty-quick": "^3.1.0",
     "react": "^17.0.1",

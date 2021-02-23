@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { Provider } from 'jotai';
 import { useUIDSeed } from 'react-uid';
 
 import { OpenStateProvider, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
@@ -8,7 +7,7 @@ import Input, { Props as InputProps } from './Input';
 import Item, { OptionType } from './Item';
 import { useAllHandlers, useForkRef, useLatest } from '../utils/hooks';
 import Popover from '../Popover/PopoverLayer';
-import { useFocusedItemId, useSyncValue } from './atoms';
+import { StateProvider, useFocusedItemId, useSyncValue } from './atoms';
 import VirtualList from './VirtualList';
 
 interface Props
@@ -147,9 +146,9 @@ const ComboBoxInner: React.FC<Props> = ({
 const ComboBox: React.FC<Props> & { Item: typeof Item } = (props) => {
   return (
     <OpenStateProvider>
-      <Provider>
+      <StateProvider>
         <ComboBoxInner {...props} />
-      </Provider>
+      </StateProvider>
     </OpenStateProvider>
   );
 };
