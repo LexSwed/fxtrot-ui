@@ -16,13 +16,13 @@ const Link = styled(Text, {
   'boxSizing': 'border-box',
   'cursor': 'pointer',
   'fontWeight': 600,
-  ':hover': {
+  '&:hover': {
     textDecoration: 'underline',
   },
-  ':focus': {
+  '&:focus': {
     textDecoration: 'underline',
   },
-  ':visited': {
+  '&:visited': {
     'color': '$primaryActive',
     '& path': {
       stroke: '$primaryActive',

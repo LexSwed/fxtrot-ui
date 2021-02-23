@@ -1,11 +1,11 @@
 import React from 'react';
+import { flexProps } from '../Flex';
 
-import { FlexBox, FlexType } from '../Flex';
 import Icon from '../Icon/Icon';
 import { styled } from '../stitches.config';
-import { forwardRef, PropsOf } from '../utils/types';
+import { forwardRef } from '../utils/types';
 
-const ButtonRoot = styled(FlexBox as FlexType<'button'>, {
+const ButtonRoot = styled('button', {
   'transition': '0.2s ease-in-out',
   '$outline': 0,
   'fontFamily': '$default',
@@ -16,13 +16,14 @@ const ButtonRoot = styled(FlexBox as FlexType<'button'>, {
   'whiteSpace': 'nowrap',
   'flexShrink': 0,
 
-  ':disabled': {
+  '&:disabled': {
     color: '$textDisabled',
     borderColor: '$surfaceDisabled',
     bc: '$surfaceDisabled',
   },
 
   'variants': {
+    ...flexProps.variants,
     size: {
       xs: {
         height: '$6',
@@ -54,11 +55,11 @@ const ButtonRoot = styled(FlexBox as FlexType<'button'>, {
         'bc': '$primaryStill',
         'color': 'white',
         'borderColor': '$primaryStill',
-        ':hover': {
+        '&:hover': {
           borderColor: '$primaryHover',
           bc: '$primaryHover',
         },
-        ':active': {
+        '&:active': {
           borderColor: '$primaryActive',
           bc: '$primaryActive',
         },
@@ -67,15 +68,15 @@ const ButtonRoot = styled(FlexBox as FlexType<'button'>, {
         'bc': '$surfaceStill',
         'color': '$text',
         'borderColor': '$borderStill',
-        ':hover': {
+        '&:hover': {
           borderColor: '$borderHover',
           bc: '$surfaceHover',
         },
-        ':disabled': {
+        '&:disabled': {
           borderColor: '$surfaceDisabled',
           bc: '$surfaceDisabled',
         },
-        ':active, :focus': {
+        '&:active, &:focus': {
           borderColor: '$borderActive',
           bc: '$surfaceActive',
         },
@@ -84,12 +85,12 @@ const ButtonRoot = styled(FlexBox as FlexType<'button'>, {
         'color': '$primaryStill',
         'bc': 'transparent',
         'borderColor': '$primaryStill',
-        ':hover': {
+        '&:hover': {
           bc: '$primaryLight',
           color: '$primaryHover',
           borderColor: '$primaryHover',
         },
-        ':active': {
+        '&:active': {
           bc: '$primaryLightActive',
           color: '$primaryActive',
           borderColor: '$primaryActive',
@@ -98,13 +99,13 @@ const ButtonRoot = styled(FlexBox as FlexType<'button'>, {
       flat: {
         'bc': '$flatStill',
         'color': '$text',
-        ':hover': {
+        '&:hover': {
           bc: '$flatHover',
         },
-        ':active': {
+        '&:active': {
           bc: '$flatActive',
         },
-        ':disabled': {
+        '&:disabled': {
           borderColor: 'transparent',
           bc: 'transparent',
         },
@@ -113,11 +114,11 @@ const ButtonRoot = styled(FlexBox as FlexType<'button'>, {
         'bc': 'transparent',
         'color': '$accent',
         'cursor': 'pointer',
-        ':not([aria-disabled="true"]):hover': {
+        '&:not([aria-disabled="true"]):hover': {
           color: '$hover',
           textDecoration: 'underline',
         },
-        ':not([aria-disabled="true"]):active': {
+        '&:not([aria-disabled="true"]):active': {
           color: '$active',
           textDecoration: 'underline',
         },
@@ -142,85 +143,64 @@ const ButtonRoot = styled(FlexBox as FlexType<'button'>, {
       },
     },
   },
+  'defaultVariants': {
+    ...flexProps.defaultVariants,
+    variant: 'secondary',
+    size: 'md',
+    gap: '$2',
+  },
+  'compoundVariants': [
+    {
+      isIconButton: true,
+      size: 'xs',
+      css: {
+        width: '$6',
+      },
+    },
+    {
+      isIconButton: true,
+      size: 'md',
+      css: {
+        width: '$base',
+      },
+    },
+    {
+      isIconButton: true,
+      size: 'sm',
+      css: {
+        width: '$8',
+      },
+    },
+    {
+      isIconButton: true,
+      size: 'lg',
+      css: {
+        width: '$12',
+      },
+    },
+  ],
 });
 
-ButtonRoot.compoundVariant(
-  {
-    isIconButton: true,
-    size: 'xs',
-  },
-  {
-    width: '$6',
-  }
-);
-ButtonRoot.compoundVariant(
-  {
-    isIconButton: true,
-    size: 'sm',
-  },
-  {
-    width: '$8',
-  }
-);
-ButtonRoot.compoundVariant(
-  {
-    isIconButton: true,
-    size: 'md',
-  },
-  {
-    width: '$base',
-  }
-);
-ButtonRoot.compoundVariant(
-  {
-    isIconButton: true,
-    size: 'lg',
-  },
-  {
-    width: '$12',
-  }
-);
+interface Props extends Omit<React.ComponentProps<typeof ButtonRoot>, 'isIconButton'> {}
 
-interface Props extends Omit<PropsOf<typeof ButtonRoot>, 'isIconButton'> {}
+const Button = forwardRef<HTMLButtonElement, Props>(({ type = 'button', css, style, className, ...props }, ref) => {
+  const isIconButton = React.Children.toArray(props.children).every(
+    (child) => React.isValidElement(child) && child.type === Icon
+  );
 
-const Button = forwardRef<HTMLButtonElement, Props>(
-  (
-    {
-      variant = 'secondary',
-      size = 'md',
-      space = '$2',
-      display = 'inline',
-      type = 'button',
-      css,
-      style,
-      className,
-      ...props
-    },
-    ref
-  ) => {
-    const isIconButton = React.Children.toArray(props.children).every(
-      (child) => React.isValidElement(child) && child.type === Icon
-    );
-
-    return (
-      <ButtonRoot
-        as="button"
-        {...props}
-        display={display}
-        className={className}
-        cross="center"
-        css={css}
-        flow="row"
-        ref={ref}
-        size={size}
-        space={space}
-        style={style}
-        type={type}
-        variant={variant}
-        isIconButton={isIconButton}
-      />
-    );
-  }
-);
+  return (
+    <ButtonRoot
+      {...props}
+      className={className}
+      cross="center"
+      css={css}
+      flow="row"
+      ref={ref}
+      style={style}
+      type={type}
+      isIconButton={isIconButton}
+    />
+  );
+});
 
 export default Button;

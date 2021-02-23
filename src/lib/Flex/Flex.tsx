@@ -1,24 +1,11 @@
-import type { IStyledComponent, StitchesVariants } from '@stitches/react';
-import React from 'react';
-
 import { styled } from '../stitches.config';
 import { gaps } from '../theme/variants';
-import { Config, forwardRef, PropsOf } from '../utils/types';
 
-export const FlexBox = styled('div', {
-  'display': 'flex',
-  '&>h1, &>h2, &>h3, &>h4, &>h5, &>h6': {
-    mt: 0,
-    mb: 0,
-  },
-
-  'variants': {
-    space: gaps,
-    display: {
-      flex: {
-        display: 'flex',
-      },
-      inline: {
+export const flexProps = {
+  variants: {
+    gap: gaps,
+    inline: {
+      true: {
         display: 'inline-flex',
       },
     },
@@ -82,17 +69,23 @@ export const FlexBox = styled('div', {
       },
     },
   },
+  defaultVariants: {
+    gap: 'none',
+    flow: 'column',
+    wrap: 'nowrap',
+    display: 'flex',
+  },
+} as const;
+
+const Flex = styled('div', {
+  'display': 'flex',
+
+  '&>h1, &>h2, &>h3, &>h4, &>h5, &>h6': {
+    mt: 0,
+    mb: 0,
+  },
+
+  ...flexProps,
 });
 
-const Flex = forwardRef<HTMLDivElement, FlexProps>(
-  ({ space = 'none', flow = 'column', wrap = 'nowrap', display = 'flex', ...props }, ref) => {
-    return <FlexBox space={space} flow={flow} wrap={wrap} display={display} {...props} ref={ref as any} />;
-  }
-);
-
 export default Flex;
-
-export interface FlexVariants extends StitchesVariants<typeof FlexBox> {}
-export interface FlexProps extends PropsOf<typeof FlexBox> {}
-export interface FlexType<C extends React.ElementType = 'div', P = {}>
-  extends IStyledComponent<C, FlexVariants & P, Config> {}

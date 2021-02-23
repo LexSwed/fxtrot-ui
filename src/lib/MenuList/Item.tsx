@@ -8,7 +8,7 @@ const MenuItem = styled(ListItem, {
   'position': 'relative',
   'textDecoration': 'none',
   'cursor': 'default',
-  '::after': {
+  '&::after': {
     position: 'absolute',
     left: 0,
     top: '$1',
@@ -20,12 +20,12 @@ const MenuItem = styled(ListItem, {
   '&[aria-selected="true"]': {
     'bc': '$surfaceActive',
     'color': '$accentLight',
-    '::after': {
+    '&::after': {
       bc: '$accent',
     },
   },
   '&[aria-selected="false"]': {
-    '::after': {
+    '&::after': {
       bc: 'transparent',
     },
   },

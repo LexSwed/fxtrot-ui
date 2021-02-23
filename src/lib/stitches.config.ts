@@ -1,4 +1,4 @@
-import { createStyled } from '@stitches/react';
+import { createCss } from '@stitches/react';
 
 import { attribute } from './FocusRing/focus-visible';
 import { scales } from './theme/scales';
@@ -62,103 +62,103 @@ export const theme = {
     $4: '400',
     $max: '9999',
   },
-  shadows: { ...shadows, $popper: `0 0 1px ${defaultPalette.$borderStill}, ${shadows.$xl}`, $none: 'none' },
+  shadows: { ...shadows, $popper: `0 0 1px $borderStill, ${shadows.$xl}`, $none: 'none' },
 } as const;
 
 type Theme = typeof theme;
 
-export const { styled, css } = createStyled({
-  tokens: theme,
-  breakpoints: {
-    mobile: (rule) => `@media (max-width: 320px) { ${rule} }`,
-    tablet: (rule) => `@media (max-width: 768px) { ${rule} }`,
-    desktop: (rule) => `@media (max-width: 1024px) { ${rule} }`,
-    fullscreen: (rule) => `@media (max-width: 1280px) { ${rule} }`,
+export const stitchesConfig = createCss({
+  theme,
+  conditions: {
+    mobile: `@media (max-width: 320px)`,
+    tablet: `@media (max-width: 768px)`,
+    desktop: `@media (max-width: 1024px)`,
+    fullscreen: `@media (max-width: 1280px)`,
   },
   utils: {
-    p: (value: keyof Theme['space'] | (number | (string & {}))) => ({
+    p: (config) => (value: keyof Theme['space'] | (number | (string & {}))) => ({
       paddingTop: value,
       paddingBottom: value,
       paddingLeft: value,
       paddingRight: value,
     }),
-    pt: (value: keyof Theme['space'] | (number | (string & {}))) => ({
+    pt: (config) => (value: keyof Theme['space'] | (number | (string & {}))) => ({
       paddingTop: value,
     }),
-    pr: (value: keyof Theme['space'] | (number | (string & {}))) => ({
+    pr: (config) => (value: keyof Theme['space'] | (number | (string & {}))) => ({
       paddingRight: value,
     }),
-    pb: (value: keyof Theme['space'] | (number | (string & {}))) => ({
+    pb: (config) => (value: keyof Theme['space'] | (number | (string & {}))) => ({
       paddingBottom: value,
     }),
-    pl: (value: keyof Theme['space'] | (number | (string & {}))) => ({
+    pl: (config) => (value: keyof Theme['space'] | (number | (string & {}))) => ({
       paddingLeft: value,
     }),
-    px: (value: keyof Theme['space'] | (number | (string & {}))) => ({
+    px: (config) => (value: keyof Theme['space'] | (number | (string & {}))) => ({
       paddingLeft: value,
       paddingRight: value,
     }),
-    py: (value: keyof Theme['space'] | (number | (string & {}))) => ({
+    py: (config) => (value: keyof Theme['space'] | (number | (string & {}))) => ({
       paddingTop: value,
       paddingBottom: value,
     }),
-    m: (value: keyof Theme['space'] | (number | (string & {}))) => ({
+    m: (config) => (value: keyof Theme['space'] | (number | (string & {}))) => ({
       marginTop: value,
       marginBottom: value,
       marginLeft: value,
       marginRight: value,
     }),
-    mt: (value: keyof Theme['space'] | (number | (string & {}))) => ({
+    mt: (config) => (value: keyof Theme['space'] | (number | (string & {}))) => ({
       marginTop: value,
     }),
-    mr: (value: keyof Theme['space'] | (number | (string & {}))) => ({
+    mr: (config) => (value: keyof Theme['space'] | (number | (string & {}))) => ({
       marginRight: value,
     }),
-    mb: (value: keyof Theme['space'] | (number | (string & {}))) => ({
+    mb: (config) => (value: keyof Theme['space'] | (number | (string & {}))) => ({
       marginBottom: value,
     }),
-    ml: (value: keyof Theme['space'] | (number | (string & {}))) => ({
+    ml: (config) => (value: keyof Theme['space'] | (number | (string & {}))) => ({
       marginLeft: value,
     }),
-    mx: (value: keyof Theme['space'] | (number | (string & {}))) => ({
+    mx: (config) => (value: keyof Theme['space'] | (number | (string & {}))) => ({
       marginLeft: value,
       marginRight: value,
     }),
-    my: (value: keyof Theme['space'] | (number | (string & {}))) => ({
+    my: (config) => (value: keyof Theme['space'] | (number | (string & {}))) => ({
       marginTop: value,
       marginBottom: value,
     }),
 
-    bg: (value: keyof Theme['colors'] | (string & {})) => ({
+    bg: (config) => (value: keyof Theme['colors'] | (string & {})) => ({
       background: value,
     }),
-    bc: (value: keyof Theme['colors'] | (string & {})) => ({
+    bc: (config) => (value: keyof Theme['colors'] | (string & {})) => ({
       backgroundColor: value,
     }),
-    br: (value: keyof Theme['radii'] | (string & {})) => ({
+    br: (config) => (value: keyof Theme['radii'] | (string & {})) => ({
       borderRadius: value,
     }),
 
-    textSize: (value: keyof Theme['fontSizes']) => ({
+    textSize: (config) => (value: keyof Theme['fontSizes']) => ({
       fontSize: value,
       lineHeight: theme.lineHeights[value],
     }),
 
-    size: (value: keyof Theme['sizes'] | (string & {})) => ({
+    size: (config) => (value: keyof Theme['sizes'] | (string & {})) => ({
       width: value,
       height: value,
     }),
 
-    shadow: (value: keyof Theme['shadows'] | (string & {})) => ({
+    shadow: (config) => (value: keyof Theme['shadows'] | (string & {})) => ({
       boxShadow: value,
     }),
 
-    $outline: (offset: number) => ({
+    $outline: (config) => (offset: number) => ({
       [`:not(:disabled)[${attribute}]`]: {
         'outline': 'none',
         'position': 'relative',
 
-        '::before': {
+        '&::before': {
           content: `''`,
           display: 'block',
           position: 'absolute',
@@ -174,7 +174,7 @@ export const { styled, css } = createStyled({
           willChange: 'box-shadow',
         },
       },
-      ':focus': {
+      '&:focus': {
         outline: 'none',
       },
       [`:focus[${attribute}]:before`]: {
@@ -184,12 +184,14 @@ export const { styled, css } = createStyled({
   },
 });
 
-css.global({
+export const { css, styled, global } = stitchesConfig;
+
+global({
   'body': { margin: '0' },
   '*': {
     'boxSizing': 'border-box',
     'fontFamily': '$default',
-    '::before,::after': {
+    '&::before,::after': {
       boxSizing: 'border-box',
     },
   },

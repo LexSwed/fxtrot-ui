@@ -21,7 +21,7 @@ const Toggle = styled('div', {
   'transition': '0.24s ease-in-out',
   'boxShadow': '$inner',
 
-  '::before': {
+  '&::before': {
     content: `''`,
     display: 'block',
     position: 'absolute',
@@ -58,7 +58,7 @@ const Input = styled('input', {
   },
 
   [`&:focus:not(:checked) + ${Toggle}`]: {
-    '::before': {
+    '&::before': {
       boxShadow: '$md',
     },
   },
@@ -73,13 +73,13 @@ const Input = styled('input', {
   },
 
   [`&:focus:not(:checked)[${attribute}] + ${Toggle}`]: {
-    '::before': {
+    '&::before': {
       boxShadow: '0 0 0 1px $borderStill , 0 0 0 3px $borderActive',
     },
   },
 
   [`&:focus:checked[${attribute}] + ${Toggle}`]: {
-    '::before': {
+    '&::before': {
       borderColor: 'transparent',
       boxShadow: '0 0 0 1px $primaryStill, 0 0 0 3px $borderActive',
     },
@@ -88,7 +88,7 @@ const Input = styled('input', {
   [`&:checked + ${Toggle}`]: {
     'bc': '$primaryStill',
     'borderColor': '$primaryStill',
-    '::before': {
+    '&::before': {
       transform: 'translateX(12px)',
       bc: '$surfaceStill',
     },

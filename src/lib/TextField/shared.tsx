@@ -43,10 +43,10 @@ export const InteractiveBox = styled('input', {
     paddingRight: '$8',
   },
 
-  '::placeholder': {
+  '&::placeholder': {
     color: '$textSubtle',
   },
-  ':disabled': {
+  '&:disabled': {
     color: '$textDisabled',
     borderColor: '$surfaceDisabled',
     bc: '$surfaceDisabled',
@@ -57,10 +57,10 @@ export const InteractiveBox = styled('input', {
       boxed: {
         'borderColor': '$borderStill',
         'br': '$md',
-        ':hover': {
+        '&:hover': {
           borderColor: '$borderHover',
         },
-        ':focus': {
+        '&:focus': {
           borderColor: '$borderActive',
           boxShadow: '0 0 0 1px $borderActive inset',
         },
@@ -71,15 +71,15 @@ export const InteractiveBox = styled('input', {
         'backgroundImage': 'linear-gradient(to top,  var(--colors-borderStill) 2px, var(--colors-surfaceStill) 2px)',
         'backgroundSize': '100% calc(100% + 4px)',
         'backgroundPosition': '0 calc(100% + 2px)',
-        ':hover': {
+        '&:hover': {
           backgroundPosition: '0 calc(100% + 2px)',
           backgroundImage: 'linear-gradient(to top, var(--colors-primaryHover) 2px, var(--colors-surfaceStill) 2px)',
         },
-        ':focus, &[aria-expanded="true"]': {
+        '&:focus, &[aria-expanded="true"]': {
           backgroundPosition: '0 calc(100% + 1px)',
           backgroundImage: 'linear-gradient(to top,  var(--colors-primaryActive) 2px, var(--colors-surfaceStill) 2px)',
         },
-        ':disabled': {
+        '&:disabled': {
           backgroundImage: 'none',
           bc: '$surfaceDisabled',
         },
@@ -139,10 +139,10 @@ export const validityVariant = createVariant({
     },
     [`${InteractiveBox}`]: {
       'borderColor': '$danger',
-      ':hover': {
+      '&:hover': {
         borderColor: '$red700',
       },
-      ':focus': {
+      '&:focus': {
         borderColor: '$borderDefault',
       },
     },
@@ -158,7 +158,7 @@ const Input = styled(InteractiveBox, {
 
   '&[type="date"]': {
     'backgroundImage': 'none',
-    '::-webkit-calendar-picker-indicator': {
+    '&::-webkit-calendar-picker-indicator': {
       backgroundImage: 'none',
       m: 0,
       p: 0,
@@ -167,7 +167,7 @@ const Input = styled(InteractiveBox, {
   },
 
   '&[type="search"]': {
-    '::-webkit-search-cancel-button': {
+    '&::-webkit-search-cancel-button': {
       appearance: 'none',
       m: 0,
       p: 0,

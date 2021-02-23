@@ -18,14 +18,14 @@ const Item = styled(FlexBox as FlexType<'li'>, {
   'flexShrink': 0,
   'transition': '0.1s ease-in-out',
   'bc': '$flatStill',
-  ':focus:not(:active)': {
+  '&:focus:not(:active)': {
     bc: '$flatHover',
   },
   // TODO: deduplicate with focus when fixed in stitches
-  ':hover': {
+  '&:hover': {
     bc: '$flatHover',
   },
-  ':active': {
+  '&:active': {
     bc: '$flatActive',
   },
 
