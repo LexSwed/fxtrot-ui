@@ -1,11 +1,11 @@
-import type { IStyledComponent, StitchesProps, StitchesVariants } from '@stitches/react';
+import type { StitchesVariants } from '@stitches/react';
 import React from 'react';
 
 import { styled } from '../stitches.config';
 import { createVariant } from '../theme/variants';
-import type { Config, StylesObject } from '../utils/types';
+import type { CssStyles } from '../utils/types';
 
-export const iconStyles: StylesObject = {
+export const iconStyles: CssStyles = {
   position: 'absolute',
   top: 0,
   right: 0,

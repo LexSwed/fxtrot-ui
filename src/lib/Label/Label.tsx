@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { FlexBox, FlexType } from '../Flex';
+import { flexProps } from '../Flex';
 import { styled } from '../stitches.config';
 import Text from '../Text';
 import type { PropsOf } from '../utils/types';

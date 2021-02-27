@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { HiSelector } from 'react-icons/hi';
 
 import Button from '../Button';
-import Flex, { FlexVariants } from '../Flex';
+import Flex, { FlexVariants } from '../Flex/Flex';
 import { FormField, Hint, HintBox, useFormField } from '../FormField/FormField';
 import Icon from '../Icon';
 import Label from '../Label';

@@ -1,11 +1,20 @@
+import type { StitchesVariants } from '@stitches/core';
 import { styled } from '../stitches.config';
 import { gaps } from '../theme/variants';
 
-export const flexProps = {
-  variants: {
+const Flex = styled('div', {
+  '&>h1, &>h2, &>h3, &>h4, &>h5, &>h6': {
+    mt: 0,
+    mb: 0,
+  },
+
+  'variants': {
     gap: gaps,
-    inline: {
-      true: {
+    display: {
+      flex: {
+        display: 'flex',
+      },
+      inline: {
         display: 'inline-flex',
       },
     },
@@ -38,19 +47,19 @@ export const flexProps = {
       },
     },
     main: {
-      start: {
+      'start': {
         justifyContent: 'flex-start',
       },
-      center: {
+      'center': {
         justifyContent: 'center',
       },
-      end: {
+      'end': {
         justifyContent: 'flex-end',
       },
-      stretch: {
+      'stretch': {
         justifyContent: 'stretch',
       },
-      spread: {
+      'space-between': {
         justifyContent: 'space-between',
       },
     },
@@ -69,23 +78,14 @@ export const flexProps = {
       },
     },
   },
-  defaultVariants: {
+  'defaultVariants': {
     gap: 'none',
     flow: 'column',
     wrap: 'nowrap',
     display: 'flex',
   },
-} as const;
-
-const Flex = styled('div', {
-  'display': 'flex',
-
-  '&>h1, &>h2, &>h3, &>h4, &>h5, &>h6': {
-    mt: 0,
-    mb: 0,
-  },
-
-  ...flexProps,
 });
+
+export type FlexVariants = StitchesVariants<typeof Flex>;
 
 export default Flex;

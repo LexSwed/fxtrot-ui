@@ -1,4 +1,4 @@
-import type { CssWithBreakpoints } from '../utils/types';
+import type { StyledSheet } from '../utils/types';
 import { scales } from './scales';
 
 const gapScale: ScalesMap = {
@@ -12,7 +12,7 @@ const gapScale: ScalesMap = {
   '2xl': '$16',
 };
 
-export const createVariant = <Variants extends string>(config: { [K in Variants]: CssWithBreakpoints }) => config;
+export const createVariant = <Variants extends string>(config: { [K in Variants]: StyledSheet }) => config;
 
 const createScalesVariant = <P extends string = string>(
   property: P,

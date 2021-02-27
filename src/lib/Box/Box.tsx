@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { styled } from '../stitches.config';
-import { CssProperties, forwardRef, PropsOf } from '../utils/types';
+import type { CssStyles } from '../utils/types';
 
 const Div = styled('div', {});
 
-const Box = forwardRef<HTMLDivElement, Props>(({ children, css, ...props }, ref) => {
-  const [style, attrs] = Object.entries(props).reduce(
+const Box = React.forwardRef<HTMLDivElement, Props>(({ children, css = {}, ...props }, ref) => {
+  const [styles, attrs] = Object.entries(props).reduce(
     (res, [key, value]: [any, any]) => {
       if (VALID_ITEMS.has(key)) {
         res[0][key] = value;
@@ -16,11 +16,11 @@ const Box = forwardRef<HTMLDivElement, Props>(({ children, css, ...props }, ref)
 
       return res;
     },
-    [{}, {}] as [any, any]
+    [css, {}] as [any, any]
   );
 
   return (
-    <Div css={Object.assign(style, css)} {...attrs} ref={ref}>
+    <Div css={styles} {...attrs} ref={ref}>
       {children}
     </Div>
   );
@@ -102,12 +102,14 @@ const acceptedProperties = [
   'boxShadow',
   'whiteSpace',
 ] as const;
+
 /** Not all properties supported */
-export interface Props extends Omit<BoxProps, 'color'>, CustomField {}
+interface Props extends Omit<BoxProps, 'color'>, CustomField {}
 
 type CustomField = {
-  [prop in typeof acceptedProperties[number]]?: CssProperties[prop];
+  [prop in typeof acceptedProperties[number]]?: CssStyles[prop];
 };
-type BoxProps = PropsOf<typeof Div>;
 
-const VALID_ITEMS = new Set<keyof CssProperties>(acceptedProperties);
+type BoxProps = React.ComponentProps<typeof Div>;
+
+const VALID_ITEMS = new Set<keyof CssStyles>(acceptedProperties);
