@@ -81,7 +81,7 @@
     "tsdx": "^0.14.1",
     "tslib": "^2.1.0",
     "type-fest": "^0.21.2",
-    "typescript": "^4.2.2"
+    "typescript": "^4.2.x"
   },
   "peerDependencies": {
     "react": "^16.8.0",
@@ -98,7 +98,7 @@
     }
   },
   "resolutions": {
-    "typescript": "^4.1.x",
+    "typescript": "^4.2.x",
     "prettier": "^2.2.1"
   }
 }
