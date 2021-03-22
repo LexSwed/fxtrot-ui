@@ -62,18 +62,20 @@ export const theme = {
     $4: '400',
     $max: '9999',
   },
-  shadows: { ...shadows, $popper: `0 0 1px $borderStill, ${shadows.$xl}`, $none: 'none' },
+  shadows: { ...shadows, $popper: `0 0 1px $borderStill, $$shadows.xl`, $none: 'none' },
 } as const;
 
 type Theme = typeof theme;
 
 export const stitchesConfig = createCss({
   theme,
-  conditions: {
-    mobile: `@media (max-width: 320px)`,
-    tablet: `@media (max-width: 768px)`,
-    desktop: `@media (max-width: 1024px)`,
-    fullscreen: `@media (max-width: 1280px)`,
+  media: {
+    mobile: `(max-width: 320px)`,
+    tablet: `(max-width: 768px)`,
+    desktop: `(max-width: 1024px)`,
+    fullscreen: `(max-width: 1280px)`,
+    dark: '(prefers-color-scheme: dark)',
+    light: '(prefers-color-scheme: light)',
   },
   utils: {
     p: (config) => (value: keyof Theme['space'] | (number | (string & {}))) => ({

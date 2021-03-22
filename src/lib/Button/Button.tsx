@@ -1,5 +1,5 @@
 import React from 'react';
-import Flex from '../Flex';
+import { flexVariant } from '../Flex/Flex';
 
 import Icon from '../Icon/Icon';
 import { styled } from '../stitches.config';
@@ -22,6 +22,7 @@ const ButtonRoot = styled('button', {
   },
 
   'variants': {
+    ...flexVariant.variants,
     size: {
       xs: {
         height: '$6',
@@ -142,6 +143,7 @@ const ButtonRoot = styled('button', {
     },
   },
   'defaultVariants': {
+    ...flexVariant.defaultVariants,
     variant: 'secondary',
     size: 'md',
     gap: '$2',
@@ -180,27 +182,12 @@ const ButtonRoot = styled('button', {
 
 interface Props extends Omit<React.ComponentProps<typeof ButtonRoot>, 'isIconButton'> {}
 
-const Button = React.forwardRef<HTMLButtonElement, Props>(
-  ({ type = 'button', css, style, className, ...props }, ref) => {
-    const isIconButton = React.Children.toArray(props.children).every(
-      (child) => React.isValidElement(child) && child.type === Icon
-    );
+const Button = React.forwardRef<HTMLButtonElement, Props>(({ type = 'button', ...props }, ref) => {
+  const isIconButton = React.Children.toArray(props.children).every(
+    (child) => React.isValidElement(child) && child.type === Icon
+  );
 
-    return (
-      <Flex
-        as={ButtonRoot}
-        {...props}
-        className={className}
-        cross="center"
-        css={css}
-        flow="row"
-        ref={ref}
-        style={style}
-        type={type}
-        isIconButton={isIconButton}
-      />
-    );
-  }
-);
+  return <ButtonRoot {...props} cross="center" flow="row" ref={ref} type={type} isIconButton={isIconButton} />;
+});
 
 export default Button;

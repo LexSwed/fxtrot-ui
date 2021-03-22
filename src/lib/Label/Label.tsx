@@ -1,9 +1,8 @@
 import React from 'react';
 
-import { flexProps } from '../Flex';
+import { flexVariant } from '../Flex/Flex';
 import { styled } from '../stitches.config';
 import Text from '../Text';
-import type { PropsOf } from '../utils/types';
 
 const Main = styled(Text, {
   lineHeight: 1,
@@ -28,30 +27,35 @@ const Secondary = styled(Text, {
   fontWeight: 400,
 });
 
-export const LabelWrapper = styled(FlexBox as FlexType<'label'>, {
+export const LabelWrapper = styled('label', {
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
+
+  ...flexVariant,
 });
 
-interface Props extends PropsOf<typeof LabelWrapper> {
+interface Props extends React.ComponentProps<typeof LabelWrapper> {
   label: React.ReactNode;
   secondary?: React.ReactNode;
   disabled?: boolean;
+  as?: keyof JSX.IntrinsicElements;
 }
 
-const Label: React.FC<Props> = ({ label, children: _ignore, secondary, ref, as = 'label', disabled, ...props }) => {
-  return (
-    <LabelWrapper {...props} flow="row" cross="center" space="xs" display="inline" as={as} ref={ref as any}>
-      <Main size="xs" disabled={disabled}>
-        {label}
-      </Main>
-      {secondary && (
-        <Secondary size="xs" tone="light">
-          {secondary}
-        </Secondary>
-      )}
-    </LabelWrapper>
-  );
-};
+const Label = React.forwardRef<HTMLLabelElement, Props>(
+  ({ label, children: _ignore, secondary, disabled, ...props }, ref) => {
+    return (
+      <LabelWrapper {...props} flow="row" cross="center" gap="xs" display="inline" ref={ref}>
+        <Main size="xs" disabled={disabled}>
+          {label}
+        </Main>
+        {secondary && (
+          <Secondary size="xs" tone="light">
+            {secondary}
+          </Secondary>
+        )}
+      </LabelWrapper>
+    );
+  }
+);
 
 export default Label;

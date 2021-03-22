@@ -2,13 +2,8 @@ import type { StitchesVariants } from '@stitches/core';
 import { styled } from '../stitches.config';
 import { gaps } from '../theme/variants';
 
-const Flex = styled('div', {
-  '&>h1, &>h2, &>h3, &>h4, &>h5, &>h6': {
-    mt: 0,
-    mb: 0,
-  },
-
-  'variants': {
+export const flexVariant = {
+  variants: {
     gap: gaps,
     display: {
       flex: {
@@ -78,12 +73,19 @@ const Flex = styled('div', {
       },
     },
   },
-  'defaultVariants': {
+  defaultVariants: {
     gap: 'none',
     flow: 'column',
     wrap: 'nowrap',
     display: 'flex',
   },
+} as const;
+
+const Flex = styled('div', {
+  '& > *': {
+    m: 0,
+  },
+  ...flexVariant,
 });
 
 export type FlexVariants = StitchesVariants<typeof Flex>;

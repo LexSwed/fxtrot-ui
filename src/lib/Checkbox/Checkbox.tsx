@@ -2,12 +2,12 @@ import React, { useMemo } from 'react';
 import { HiCheck } from 'react-icons/hi';
 
 import Box from '../Box';
+import type { FlexVariants } from '../Flex/Flex';
 import { attribute } from '../FocusRing/focus-visible';
 import { FormField, FormFieldProps } from '../FormField/FormField';
 import Icon, { IconBox } from '../Icon/Icon';
 import Label from '../Label';
 import { styled } from '../stitches.config';
-import type { PropsOf } from '../utils/types';
 
 const CheckboxWrapper = styled(Box, {
   position: 'relative',
@@ -101,7 +101,7 @@ const Input = styled('input', {
   },
 });
 
-interface InputProps extends PropsOf<typeof Input> {
+interface InputProps extends React.ComponentProps<typeof Input>, FlexVariants {
   label?: string;
   secondaryLabel?: string;
 }
@@ -115,7 +115,7 @@ const Checkbox: React.FC<FormFieldProps & InputProps> = ({
   flow = 'row',
   label,
   secondaryLabel,
-  space = 'sm',
+  gap = 'sm',
   display,
   cross,
   disabled,
@@ -135,7 +135,7 @@ const Checkbox: React.FC<FormFieldProps & InputProps> = ({
       className={className}
       style={style}
       css={css}
-      space={space}
+      gap={gap}
       flow={flow}
       cross={cross}
     >
@@ -152,7 +152,7 @@ const Checkbox: React.FC<FormFieldProps & InputProps> = ({
           <Icon as={HiCheck} />
         </CheckMark>
       </CheckboxWrapper>
-      {label && <Label label={label} secondary={secondaryLabel} disabled={disabled} as={'span' as any} />}
+      {label && <Label label={label} secondary={secondaryLabel} disabled={disabled} as="span" />}
     </FormField>
   );
 };

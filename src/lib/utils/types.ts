@@ -2,11 +2,20 @@
 // import React from 'react';
 // import type { Merge } from 'type-fest';
 
-import type { InternalCSS,  StitchesCss } from '@stitches/react';
+import type { StitchesCss } from '@stitches/react';
 import type { stitchesConfig } from '../stitches.config';
 
 export type CssStyles = StitchesCss<typeof stitchesConfig>;
-export type StyleSheet = InternalCSS<typeof stitchesConfig>;
+export type Config = typeof stitchesConfig['config'];
+
+// export type StyledInstanceWithConfig<T> = T extends StyledInstance<
+//   infer Medias,
+//   infer Theme,
+//   infer Utils,
+//   infer ThemeMap
+// >
+//   ? StyledInstance<Medias, Theme, Utils, ThemeMap>
+//   : never;
 
 // type As = ElementType;
 
