@@ -1,11 +1,10 @@
 import React, { useMemo } from 'react';
 import { HiCheck, HiOutlineCalendar, HiOutlineExclamationCircle, HiX } from 'react-icons/hi';
 
-import type { FlexVariants } from '../Flex';
+import type { FlexVariants } from '../Flex/Flex';
 import { FormField, Hint, HintBox, useFormField } from '../FormField/FormField';
 import Icon from '../Icon';
 import Label from '../Label';
-import { forwardRef } from '../utils/types';
 import { InputField, IconWrapper, InputProps } from './shared';
 
 const icons: Record<string, React.ElementType> = {
@@ -26,7 +25,7 @@ const inputMode: Record<NonNullable<Props['type']>, InputProps['inputMode']> = {
   password: undefined,
 };
 
-const TextField = forwardRef<HTMLDivElement, Props>(
+const TextField = React.forwardRef<HTMLDivElement, Props>(
   (
     {
       label,
@@ -36,7 +35,7 @@ const TextField = forwardRef<HTMLDivElement, Props>(
       cross,
       flow,
       display,
-      space,
+      gap,
       css,
       style,
       className,
@@ -81,7 +80,7 @@ const TextField = forwardRef<HTMLDivElement, Props>(
         cross={cross}
         flow={flow}
         display={display}
-        space={space}
+        gap={gap}
         css={css}
         style={style}
         className={className}

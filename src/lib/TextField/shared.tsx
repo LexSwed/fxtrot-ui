@@ -1,9 +1,8 @@
-import type { StitchesVariants } from '@stitches/react';
+import type { StitchesComponentWithAutoCompleteForJSXElements, StitchesVariants } from '@stitches/react';
 import React from 'react';
 
 import { styled } from '../stitches.config';
-import { createVariant } from '../theme/variants';
-import type { CssStyles } from '../utils/types';
+import type { CssStyles, StyledComponent } from '../utils/types';
 
 export const iconStyles: CssStyles = {
   position: 'absolute',
@@ -123,11 +122,9 @@ export const InteractiveBox = styled('input', {
     color: '$textLight',
   },
 });
+export interface InteractiveField<T extends string> extends StyledComponent<typeof InteractiveBox, T> {}
 
-export interface InteractiveField<T extends React.ElementType>
-  extends IStyledComponent<T, StitchesVariants<typeof InteractiveBox>, Config> {}
-
-export const validityVariant = createVariant({
+export const validityVariant: Record<string, CssStyles> = {
   valid: {
     [`& ${IconWrapper}`]: {
       color: '$success',
@@ -147,7 +144,7 @@ export const validityVariant = createVariant({
       },
     },
   },
-});
+};
 
 const Input = styled(InteractiveBox, {
   //  throws warnings that inner-spin-button is not standartized
@@ -188,7 +185,7 @@ const InputWrapper = styled('div', {
   },
 });
 
-export interface InputProps extends StitchesVariants<typeof InputWrapper>, StitchesProps<typeof Input> {
+export interface InputProps extends StitchesVariants<typeof InputWrapper>, React.ComponentProps<typeof Input> {
   inputRef?: React.Ref<HTMLInputElement>;
 }
 

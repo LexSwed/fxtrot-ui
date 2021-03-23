@@ -1,12 +1,11 @@
 import React from 'react';
 
-import { FlexBox, FlexType } from '../Flex';
 import { styled } from '../stitches.config';
 import Text from '../Text';
-import { forwardRef, PropsOf } from '../utils/types';
 import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
+import { flexVariant } from '../Flex/Flex';
 
-const Item = styled(FlexBox as FlexType<'li'>, {
+const Item = styled('li', {
   'px': '$3',
   'fontSize': '$sm',
   'lineHeight': 1,
@@ -28,8 +27,13 @@ const Item = styled(FlexBox as FlexType<'li'>, {
   '&:active': {
     bc: '$flatActive',
   },
+  [`& ${Text}`]: {
+    fontSize: 'inherit',
+    lineHeight: 'inherit',
+  },
 
   'variants': {
+    ...flexVariant.variants,
     isFocused: {
       true: {
         bc: '$flatHover',
@@ -37,18 +41,16 @@ const Item = styled(FlexBox as FlexType<'li'>, {
     },
   },
 
-  [`& ${Text}`]: {
-    fontSize: 'inherit',
-    lineHeight: 'inherit',
-  },
+  'defaultVariants': flexVariant.defaultVariants,
 });
 
-export interface ListItemProps extends PropsOf<typeof Item> {
+export interface ListItemProps extends React.ComponentProps<typeof Item> {
   disabled?: boolean;
+  as?: keyof JSX.IntrinsicElements;
 }
 
-const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
-  ({ flow = 'row', cross = 'center', space = '$2', disabled, as = 'li', ...props }, ref) => {
+const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
+  ({ flow = 'row', cross = 'center', gap = '$2', disabled, ...props }, ref) => {
     const onKeyDown = useKeyboardHandles({
       'Enter': (e) => e.currentTarget.click?.(),
       ' ': (e) => e.currentTarget.click?.(),
@@ -59,10 +61,9 @@ const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
       <Item
         role="option"
         tabIndex={disabled ? undefined : -1}
-        as={as}
         flow={flow}
         cross={cross}
-        space={space}
+        gap={gap}
         {...props}
         aria-disabled={disabled}
         ref={ref}

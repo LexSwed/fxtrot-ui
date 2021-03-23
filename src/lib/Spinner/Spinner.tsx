@@ -1,16 +1,14 @@
-import type { StitchesProps } from '@stitches/react';
 import React from 'react';
 
-import { css, styled } from '../stitches.config';
-import { createVariant } from '../theme/variants';
+import { styled, keyframes } from '../stitches.config';
 
-const rotate = css.keyframes({
+const rotate = keyframes({
   '100%': {
     transform: 'rotate(360deg)',
   },
 });
 
-const dash = css.keyframes({
+const dash = keyframes({
   '0%': {
     strokeDasharray: '1, 150',
     strokeDashoffset: '0',
@@ -28,7 +26,7 @@ const dash = css.keyframes({
 const Main = styled('svg', {
   animation: `${rotate} 2s linear infinite`,
   variants: {
-    size: createVariant({
+    size: {
       sm: {
         size: '$5',
       },
@@ -41,7 +39,7 @@ const Main = styled('svg', {
       xl: {
         size: '$24',
       },
-    }),
+    },
   },
 });
 
@@ -51,7 +49,9 @@ const Circle = styled('circle', {
   animation: `${dash} 1.5s ease-in-out infinite`,
 });
 
-const Spinner: React.FC<Omit<StitchesProps<typeof Main>, 'as'>> = ({ size = 'md', ...props }) => {
+interface Props extends React.ComponentProps<typeof Main> {}
+
+const Spinner = ({ size = 'md', ...props }: Props) => {
   return (
     <Main size={size} {...props} viewBox="0 0 50 50" role="progressbar" aria-valuemin={0} aria-valuemax={100}>
       <Circle cx="25" cy="25" r="20" fill="none" strokeWidth="4" />

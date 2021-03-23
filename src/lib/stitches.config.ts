@@ -186,7 +186,7 @@ export const stitchesConfig = createCss({
   },
 });
 
-export const { css, styled, global } = stitchesConfig;
+export const { css, styled, global, keyframes } = stitchesConfig;
 
 global({
   'body': { margin: '0' },
