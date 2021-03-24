@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useMemo } from 'react';
 
-import { css, styled } from '../stitches.config';
+import { stitchesConfig, styled } from '../stitches.config';
 import { themes, createNewTheme, DefinedThemes, ShortDefinition, Swatch } from './themes';
 
 type Props = {
@@ -19,12 +19,12 @@ const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
   const themeClass = useMemo(() => {
     if (!theme) return null;
     if (isShortDefinition(theme)) {
-      return css.theme(createNewTheme(theme));
+      return stitchesConfig.theme(createNewTheme(theme));
     } else if (isFullSwatch(theme)) {
-      return css.theme(theme);
+      return stitchesConfig.theme(theme);
     }
 
-    return css.theme(themes[theme]);
+    return stitchesConfig.theme(themes[theme]);
   }, [theme]);
 
   const className = themeClass || contextTheme;

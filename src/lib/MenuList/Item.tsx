@@ -2,7 +2,6 @@ import React from 'react';
 
 import ListItem from '../ListItem/ListItem';
 import { styled } from '../stitches.config';
-import { forwardRef, PropsOf } from '../utils/types';
 
 const MenuItem = styled(ListItem, {
   'position': 'relative',
@@ -31,11 +30,11 @@ const MenuItem = styled(ListItem, {
   },
 });
 
-interface Props extends PropsOf<typeof MenuItem> {
+interface Props extends React.ComponentProps<typeof MenuItem> {
   selected?: boolean;
 }
 
-const Item = forwardRef<HTMLLIElement, Props>(({ selected, ...props }, ref) => {
+const Item = React.forwardRef<HTMLLIElement, Props>(({ selected, ...props }, ref) => {
   return (
     <MenuItem
       {...props}

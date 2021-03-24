@@ -13,70 +13,70 @@ import { ExampleBox } from '../../pages-helpers';
 
 Define gap between elements via `space` prop:
 
-`space="none"`:
+`gap="none"`:
 
 <Playground>
-  <Flex space="none">
+  <Flex gap="none">
     <ExampleBox />
     <ExampleBox />
     <ExampleBox />
   </Flex>
 </Playground>
 
-`space="xs"`:
+`gap="xs"`:
 
 <Playground>
-  <Flex space="xs">
+  <Flex gap="xs">
     <ExampleBox />
     <ExampleBox />
     <ExampleBox />
   </Flex>
 </Playground>
 
-`space="sm"`:
+`gap="sm"`:
 
 <Playground>
-  <Flex space="sm">
+  <Flex gap="sm">
     <ExampleBox />
     <ExampleBox />
     <ExampleBox />
   </Flex>
 </Playground>
 
-`space="md"`:
+`gap="md"`:
 
 <Playground>
-  <Flex space="md">
+  <Flex gap="md">
     <ExampleBox />
     <ExampleBox />
     <ExampleBox />
   </Flex>
 </Playground>
 
-`space="lg"`:
+`gap="lg"`:
 
 <Playground>
-  <Flex space="lg">
+  <Flex gap="lg">
     <ExampleBox />
     <ExampleBox />
     <ExampleBox />
   </Flex>
 </Playground>
 
-`space="xl"`:
+`gap="xl"`:
 
 <Playground>
-  <Flex space="xl">
+  <Flex gap="xl">
     <ExampleBox />
     <ExampleBox />
     <ExampleBox />
   </Flex>
 </Playground>
 
-`space="2xl"`:
+`gap="2xl"`:
 
 <Playground>
-  <Flex space="2xl">
+  <Flex gap="2xl">
     <ExampleBox />
     <ExampleBox />
     <ExampleBox />
@@ -92,12 +92,12 @@ across main axis or cross axis.
 
 <Playground>
   <React.Fragment>
-    <Flex css={{ width: '400px', bc: '$lightBlue50' }} space="md" main="start">
+    <Flex css={{ width: '400px', bc: '$lightBlue50' }} gap="md" main="start">
       <ExampleBox css={{ width: '$16' }} />
       <ExampleBox css={{ width: '$12' }} />
       <ExampleBox css={{ width: '$20' }} />
     </Flex>
-    <Flex css={{ width: '400px', bc: '$lightBlue50', mt: '$8' }} space="md" flow="row" main="start">
+    <Flex css={{ width: '400px', bc: '$lightBlue50', mt: '$8' }} gap="md" flow="row" main="start">
       <ExampleBox css={{ width: '$16' }} />
       <ExampleBox css={{ width: '$12' }} />
       <ExampleBox css={{ width: '$20' }} />
@@ -109,12 +109,12 @@ across main axis or cross axis.
 
 <Playground>
   <React.Fragment>
-    <Flex css={{ height: '220px', bc: '$lightBlue50' }} space="md" main="center">
+    <Flex css={{ height: '220px', bc: '$lightBlue50' }} gap="md" main="center">
       <ExampleBox css={{ width: '$16' }} />
       <ExampleBox css={{ width: '$12' }} />
       <ExampleBox css={{ width: '$20' }} />
     </Flex>
-    <Flex css={{ width: '400px', bc: '$lightBlue50', mt: '$8' }} space="md" flow="row" main="center">
+    <Flex css={{ width: '400px', bc: '$lightBlue50', mt: '$8' }} gap="md" flow="row" main="center">
       <ExampleBox css={{ width: '$16' }} />
       <ExampleBox css={{ width: '$12' }} />
       <ExampleBox css={{ width: '$20' }} />
@@ -126,12 +126,12 @@ across main axis or cross axis.
 
 <Playground>
   <React.Fragment>
-    <Flex css={{ width: '400px', height: '240px', bc: '$lightBlue50' }} space="md" main="end">
+    <Flex css={{ width: '400px', height: '240px', bc: '$lightBlue50' }} gap="md" main="end">
       <ExampleBox css={{ width: '$16' }} />
       <ExampleBox css={{ width: '$12' }} />
       <ExampleBox css={{ width: '$20' }} />
     </Flex>
-    <Flex css={{ width: '400px', bc: '$lightBlue50', mt: '$8' }} space="md" flow="row" main="end">
+    <Flex css={{ width: '400px', bc: '$lightBlue50', mt: '$8' }} gap="md" flow="row" main="end">
       <ExampleBox css={{ width: '$16' }} />
       <ExampleBox css={{ width: '$12' }} />
       <ExampleBox css={{ width: '$20' }} />
@@ -183,7 +183,7 @@ across main axis or cross axis.
 You can reverse the components render using `flow="column-reverse"`
 
 <Playground>
-  <Flex flow="column-reverse" space="md">
+  <Flex flow="column-reverse" gap="md">
     <ExampleBox>1</ExampleBox>
     <ExampleBox>2</ExampleBox>
     <ExampleBox>3</ExampleBox>
@@ -193,7 +193,7 @@ You can reverse the components render using `flow="column-reverse"`
 And `row-reverse`
 
 <Playground>
-  <Flex flow="row" main="center" cross="end" flow="row-reverse" space="md">
+  <Flex flow="row" main="center" cross="end" flow="row-reverse" gap="md">
     <ExampleBox css={{ height: '24px' }}>1</ExampleBox>
     <ExampleBox css={{ height: '44px' }}>2</ExampleBox>
     <ExampleBox css={{ height: '64px' }}>3</ExampleBox>
@@ -206,7 +206,7 @@ Control content wrapping via `wrap` property:
 
 <Playground>
   <Box css={{ width: 50 * 4 + (4 - 1) * 8 }}>
-    <Flex flow="row-reverse" wrap="wrap-reverse" space="sm">
+    <Flex flow="row-reverse" wrap="wrap-reverse" gap="sm">
       {Array(16)
         .fill(0)
         .map((el, i) => (

@@ -1,10 +1,30 @@
 import React from 'react';
+import type { StitchesVariants } from '@stitches/react';
 
 import Box, { Props as BoxProps } from '../Box/Box';
-import { forwardRef } from '../utils/types';
 import { gaps } from '../theme/variants';
 import { styled } from '../stitches.config';
-import type { StitchesVariants } from '@stitches/react';
+
+const Grid = React.forwardRef<HTMLDivElement, Props>(
+  ({ children, display = 'grid', rows, columns, template, areas, gap = 'none', ...props }, ref) => {
+    return (
+      <GridWithGaps
+        {...props}
+        gridTemplate={template}
+        gridTemplateAreas={areas}
+        gridTemplateRows={rows}
+        gridTemplateColumns={columns}
+        display={display}
+        gap={gap}
+        ref={ref}
+      >
+        {children}
+      </GridWithGaps>
+    );
+  }
+);
+
+export default Grid;
 
 const GridWithGaps = styled(Box, {
   variants: {
@@ -28,24 +48,3 @@ interface Props extends Omit<BoxProps, 'display' | 'gap'> {
   template?: BoxProps['gridTemplate'];
   gap?: StitchesVariants<typeof GridWithGaps>['gap'];
 }
-
-const Grid = forwardRef<HTMLDivElement, Props>(
-  ({ children, display = 'grid', rows, columns, template, areas, gap = 'none', ...props }, ref) => {
-    return (
-      <GridWithGaps
-        {...props}
-        gridTemplate={template}
-        gridTemplateAreas={areas}
-        gridTemplateRows={rows}
-        gridTemplateColumns={columns}
-        display={display}
-        gap={gap}
-        ref={ref}
-      >
-        {children}
-      </GridWithGaps>
-    );
-  }
-);
-
-export default Grid;

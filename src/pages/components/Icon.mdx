@@ -55,8 +55,8 @@ export const IconsWithFilter = () => {
   const [filterText, setText] = React.useState('');
   const [isOutline, setOutline] = React.useState(false);
   return (
-    <Flex cross="stretch" space="md">
-      <Flex flow="row" space="md" main="spread" cross="center">
+    <Flex cross="stretch" gap="md">
+      <Flex flow="row" gap="md" main="spread" cross="center">
         <TextField css={{ flexBasis: '50%' }} value={filterText} onChange={setText} placeholder="Search for an icon" />
         <Switch checked={isOutline} onChange={setOutline} label="Show outline icons" />
       </Flex>
@@ -65,7 +65,7 @@ export const IconsWithFilter = () => {
           .filter(([name]) => name.toLowerCase().includes(filterText.toLowerCase()))
           .map(([name, icon]) => (
             <IconBox
-              space="sm"
+              gap="sm"
               cross="center"
               main="center"
               key={name}

@@ -8,7 +8,7 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
 ## TextField
 
 <Playground>
-  <Flex flow="row" space="md" css={{ p: '$6', bc: '$gray50' }}>
+  <Flex flow="row" gap="md" css={{ p: '$6', bc: '$gray50' }}>
     <TextField label="Enter your name" placeholder="John Doe" />
     <TextField label="Enter your name" placeholder="John Doe" disabled />
     <TextField label="Enter your name" placeholder="John Doe" readOnly />
@@ -19,7 +19,7 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
 
 <Playground>
   <Box css={{ p: '$6', bc: '$gray50' }}>
-    <Flex space="md" cross="stretch" display="inline">
+    <Flex gap="md" cross="stretch" display="inline">
       <TextField label="Email address" secondaryLabel="(required)" type="email" />
       <TextField label="Password" secondaryLabel="(required)" type="password" />
       <TextField label="Your birth day" type="date" />
@@ -32,13 +32,13 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
 ## Variants
 
 <Playground>
-  <Flex space="lg" flow="row" css={{ p: '$6', bc: '$gray50' }}>
-    <Flex flow="column" space="md">
+  <Flex gap="lg" flow="row" css={{ p: '$6', bc: '$gray50' }}>
+    <Flex flow="column" gap="md">
       <TextField label="Boxed" hint="Default variant" placeholder="Default boxed variant" />
       <TextField variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Pretty underlined" />
       <TextField variant="transparent" hint="Not using labels" placeholder="Transparent variant" />
     </Flex>
-    <Flex flow="column" space="md">
+    <Flex flow="column" gap="md">
       <TextField
         label="Boxed"
         secondaryLabel="(disabled)"
@@ -62,23 +62,23 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
 ## Size
 
 <Playground>
-  <Flex space="lg" flow="row" css={{ p: '$6', bc: '$gray50' }}>
-    <Flex flow="column" space="md">
+  <Flex gap="lg" flow="row" css={{ p: '$6', bc: '$gray50' }}>
+    <Flex flow="column" gap="md">
       <TextField size="sm" label="Boxed" hint="Default variant" placeholder="Small size" />
       <TextField size="sm" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Small size" />
       <TextField size="sm" variant="transparent" hint="Not using labels" placeholder="Small size" />
     </Flex>
-    <Flex flow="column" space="md">
+    <Flex flow="column" gap="md">
       <TextField size="md" label="Boxed" hint="Default variant" placeholder="Default size" />
       <TextField size="md" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Default size" />
       <TextField size="md" variant="transparent" hint="Not using labels" placeholder="Default size" />
     </Flex>
-    <Flex flow="column" space="md">
+    <Flex flow="column" gap="md">
       <TextField size="lg" label="Boxed" hint="Default variant" placeholder="Large size" />
       <TextField size="lg" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Large size" />
       <TextField size="lg" variant="transparent" hint="Not using labels" placeholder="Large size" />
     </Flex>
-    <Flex flow="column" space="md">
+    <Flex flow="column" gap="md">
       <TextField size="xl" label="Boxed" hint="Default variant" placeholder="Editable heading size" />
       <TextField
         size="xl"
@@ -100,7 +100,7 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
     const isValid = React.useMemo(() => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value), [value]);
     return (
       <Box css={{ p: '$6', bc: '$gray50' }}>
-        <Flex space="md" flow="row" cross="end">
+        <Flex gap="md" flow="row" cross="end">
           <TextField
             cross="stretch"
             validity={isValid ? 'valid' : 'invalid'}

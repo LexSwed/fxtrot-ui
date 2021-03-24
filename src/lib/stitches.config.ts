@@ -137,6 +137,7 @@ export const stitchesConfig = createCss({
     bc: (config) => (value: keyof Theme['colors'] | (string & {})) => ({
       backgroundColor: value,
     }),
+
     br: (config) => (value: keyof Theme['radii'] | (string & {})) => ({
       borderRadius: value,
     }),

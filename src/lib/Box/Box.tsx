@@ -104,12 +104,12 @@ const acceptedProperties = [
 ] as const;
 
 /** Not all properties supported */
-interface Props extends Omit<BoxProps, 'color'>, CustomField {}
+export interface Props extends Omit<StyledProps, 'color'>, CustomField {}
 
 type CustomField = {
   [prop in typeof acceptedProperties[number]]?: CssStyles[prop];
 };
 
-type BoxProps = React.ComponentProps<typeof Div>;
+type StyledProps = React.ComponentProps<typeof Div>;
 
 const VALID_ITEMS = new Set<keyof CssStyles>(acceptedProperties);

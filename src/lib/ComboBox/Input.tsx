@@ -9,18 +9,18 @@ import Label from '../Label';
 import { styled } from '../stitches.config';
 import Tag from '../Tag';
 import { InputField, InteractiveBox } from '../TextField/shared';
-import type { PropsOf, StylesObject } from '../utils/types';
 import { useAllHandlers, useForkRef, useKeyboardHandles } from '../utils/hooks';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
+import type { CssStyles } from '../utils/types';
 
-const inputStyle: StylesObject = {
+const inputStyle: CssStyles = {
   // increase specificity
   '&:not(:only-child)': {
     pr: '$16',
   },
 };
 
-interface InputProps extends PropsOf<typeof InteractiveBox> {}
+interface InputProps extends React.ComponentProps<typeof InteractiveBox> {}
 export interface Props
   extends Omit<InputProps, 'onChange' | 'type' | 'value' | 'defaultValue' | 'children' | 'text' | 'as'>,
     FlexVariants {
@@ -52,7 +52,7 @@ const ComboBoxInput: React.FC<Props> = ({
   cross,
   flow,
   display,
-  space,
+  gap,
   css,
   style,
   className,
@@ -101,7 +101,7 @@ const ComboBoxInput: React.FC<Props> = ({
       cross={cross}
       flow={flow}
       display={display}
-      space={space}
+      gap={gap}
       css={css}
       style={style}
       className={className}
@@ -167,7 +167,6 @@ const ComboBoxButton = React.memo(
           aria-expanded={isOpen}
           aria-label="Open the list"
           onMouseDown={(e) => {
-            /* onClick would cause onOutside click to close the popup */
             e.preventDefault();
             e.stopPropagation();
             open();

@@ -182,12 +182,16 @@ const ButtonRoot = styled('button', {
 
 interface Props extends Omit<React.ComponentProps<typeof ButtonRoot>, 'isIconButton'> {}
 
-const Button = React.forwardRef<HTMLButtonElement, Props>(({ type = 'button', ...props }, ref) => {
-  const isIconButton = React.Children.toArray(props.children).every(
-    (child) => React.isValidElement(child) && child.type === Icon
-  );
+const Button = React.forwardRef<HTMLButtonElement, Props>(
+  ({ type = 'button', cross = 'center', main = 'center', ...props }, ref) => {
+    const isIconButton = React.Children.toArray(props.children).every(
+      (child) => React.isValidElement(child) && child.type === Icon
+    );
 
-  return <ButtonRoot {...props} cross="center" flow="row" ref={ref} type={type} isIconButton={isIconButton} />;
-});
+    return (
+      <ButtonRoot {...props} cross={cross} main={main} flow="row" ref={ref} type={type} isIconButton={isIconButton} />
+    );
+  }
+);
 
 export default Button;

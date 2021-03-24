@@ -1,8 +1,8 @@
-import type { StitchesComponentWithAutoCompleteForJSXElements, StitchesVariants } from '@stitches/react';
+import type { StitchesVariants } from '@stitches/react';
 import React from 'react';
 
 import { styled } from '../stitches.config';
-import type { CssStyles, StyledComponent } from '../utils/types';
+import type { CssStyles } from '../utils/types';
 
 export const iconStyles: CssStyles = {
   position: 'absolute',

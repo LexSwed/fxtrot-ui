@@ -13,7 +13,7 @@ const Heading = styled(Text, {
 const Section: React.FC<{ title: string } & FlexProps> = ({ title, children, ...props }) => {
   const id = useUID();
   return (
-    <Flex cross="stretch" flow="column" space="xs" {...props}>
+    <Flex cross="stretch" flow="column" gap="xs" {...props}>
       <Heading id={id} font="mono" size="xs" tone="light">
         {title}
       </Heading>

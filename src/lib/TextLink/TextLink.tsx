@@ -4,7 +4,6 @@ import { HiOutlineExternalLink } from 'react-icons/hi';
 import Icon from '../Icon';
 import { styled } from '../stitches.config';
 import Text from '../Text/Text';
-import { forwardRef, PropsOf } from '../utils/types';
 
 const ExternalIcon = styled(Icon, {});
 
@@ -38,11 +37,11 @@ const Link = styled(Text, {
   },
 });
 
-interface Props extends PropsOf<typeof Link> {
+interface Props extends React.ComponentProps<typeof Link> {
   external?: 'icon' | true;
 }
 
-const TextLink = forwardRef<HTMLAnchorElement, Props>(({ external, children, ...props }, ref) => {
+const TextLink = React.forwardRef<HTMLAnchorElement, Props>(({ external, children, ...props }, ref) => {
   const additionalProps = external ? { target: '_blank', rel: 'noopener' } : null;
 
   return (

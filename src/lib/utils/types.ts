@@ -2,22 +2,22 @@
 // import React from 'react';
 // import type { Merge } from 'type-fest';
 
-import type { StitchesCss, StitchesComponentWithAutoCompleteForJSXElements } from '@stitches/react';
+import type { StitchesCss } from '@stitches/react';
 import type { stitchesConfig } from '../stitches.config';
 
 export type CssStyles = StitchesCss<typeof stitchesConfig>;
 export type Config = typeof stitchesConfig['config'];
 
-export type StyledComponent<T, Element extends string> = T extends StitchesComponentWithAutoCompleteForJSXElements<
-  infer Elm,
-  infer Variants,
-  infer Medias,
-  infer Theme,
-  infer Utils,
-  infer ThemeMap
->
-  ? StitchesComponentWithAutoCompleteForJSXElements<Element, Variants, Medias, Theme, Utils, ThemeMap>
-  : never;
+// export type StyledComponent<T, Element extends string> = T extends StitchesComponentWithAutoCompleteForJSXElements<
+//   infer Elm,
+//   infer Variants,
+//   infer Medias,
+//   infer Theme,
+//   infer Utils,
+//   infer ThemeMap
+// >
+//   ? StitchesComponentWithAutoCompleteForJSXElements<Element, Variants, Medias, Theme, Utils, ThemeMap>
+//   : never;
 
 // export type StyledInstanceWithConfig<T> = T extends StyledInstance<
 //   infer Medias,
