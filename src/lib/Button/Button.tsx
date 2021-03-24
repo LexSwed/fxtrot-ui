@@ -5,23 +5,17 @@ import Icon from '../Icon/Icon';
 import { styled } from '../stitches.config';
 
 const ButtonRoot = styled('button', {
-  'transition': '0.2s ease-in-out',
-  '$outline': 0,
-  'fontFamily': '$default',
-  'lineHeight': 1,
-  'border': '1px solid transparent',
-  'br': '$md',
-  'cursor': 'default',
-  'whiteSpace': 'nowrap',
-  'flexShrink': 0,
+  transition: '0.2s ease-in-out',
+  $outline: 0,
+  fontFamily: '$default',
+  lineHeight: 1,
+  border: '1px solid transparent',
+  br: '$md',
+  cursor: 'default',
+  whiteSpace: 'nowrap',
+  flexShrink: 0,
 
-  '&:disabled': {
-    color: '$textDisabled',
-    borderColor: '$surfaceDisabled',
-    bc: '$surfaceDisabled',
-  },
-
-  'variants': {
+  variants: {
     ...flexVariant.variants,
     size: {
       xs: {
@@ -62,6 +56,11 @@ const ButtonRoot = styled('button', {
           borderColor: '$primaryActive',
           bc: '$primaryActive',
         },
+        '&:disabled': {
+          color: '$textDisabled',
+          borderColor: '$surfaceDisabled',
+          bc: '$surfaceDisabled',
+        },
       },
       secondary: {
         'bc': '$surfaceStill',
@@ -72,6 +71,7 @@ const ButtonRoot = styled('button', {
           bc: '$surfaceHover',
         },
         '&:disabled': {
+          color: '$textDisabled',
           borderColor: '$surfaceDisabled',
           bc: '$surfaceDisabled',
         },
@@ -94,6 +94,11 @@ const ButtonRoot = styled('button', {
           color: '$primaryActive',
           borderColor: '$primaryActive',
         },
+        '&:disabled': {
+          color: '$textDisabled',
+          borderColor: '$surfaceDisabled',
+          bc: '$surfaceDisabled',
+        },
       },
       flat: {
         'bc': '$flatStill',
@@ -105,6 +110,7 @@ const ButtonRoot = styled('button', {
           bc: '$flatActive',
         },
         '&:disabled': {
+          color: '$textDisabled',
           borderColor: 'transparent',
           bc: 'transparent',
         },
@@ -142,13 +148,13 @@ const ButtonRoot = styled('button', {
       },
     },
   },
-  'defaultVariants': {
+  defaultVariants: {
     ...flexVariant.defaultVariants,
     variant: 'secondary',
     size: 'md',
     gap: '$2',
   },
-  'compoundVariants': [
+  compoundVariants: [
     {
       isIconButton: true,
       size: 'xs',

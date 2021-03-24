@@ -136,8 +136,8 @@ export function createNewTheme({ shade, primary, accent }: ShortDefinition): Swa
       $primaryLightActive: `$${primary}100`,
 
       $flatStill: 'transparent',
-      $flatHover: convertHex(allColors[`$${shade}Gray600` as keyof typeof allColors], 0.08),
-      $flatActive: convertHex(allColors[`$${shade}Gray500` as keyof typeof allColors], 0.05),
+      $flatHover: allColors[`$${shade}Gray50` as keyof typeof allColors],
+      $flatActive: allColors[`$${shade}Gray100` as keyof typeof allColors],
       $flatDisabled: `$${shade}Gray200`,
 
       $surfaceStill: '#fff',
