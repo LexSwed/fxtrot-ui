@@ -1,4 +1,3 @@
-import type { StitchesProps } from '@stitches/react';
 import React, { useMemo } from 'react';
 
 import Box from '../Box';
@@ -99,7 +98,7 @@ const Input = styled('input', {
   },
 });
 
-interface InputProps extends StitchesProps<typeof Input> {}
+interface InputProps extends React.ComponentProps<typeof Input> {}
 
 type Props = Omit<InputProps, 'onChange'> &
   FormFieldProps & {
@@ -117,7 +116,7 @@ const Switch: React.FC<Props> = ({
   flow = 'row',
   label,
   secondaryLabel,
-  space = 'sm',
+  gap = 'sm',
   display = 'inline',
   cross,
   disabled,
@@ -136,7 +135,7 @@ const Switch: React.FC<Props> = ({
       className={className}
       style={style}
       css={css}
-      space={space}
+      gap={gap}
       flow={flow}
       cross={cross}
     >

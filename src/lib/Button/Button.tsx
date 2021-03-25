@@ -150,7 +150,6 @@ const ButtonRoot = styled(flex('button'), {
   defaultVariants: {
     variant: 'secondary',
     size: 'md',
-    gap: '$2',
   },
   compoundVariants: [
     {
@@ -187,7 +186,7 @@ const ButtonRoot = styled(flex('button'), {
 interface Props extends Omit<React.ComponentProps<typeof ButtonRoot>, 'isIconButton'> {}
 
 const Button = React.forwardRef<HTMLButtonElement, Props>(
-  ({ type = 'button', cross = 'center', main = 'center', ...props }, ref) => {
+  ({ type = 'button', cross = 'center', main = 'center', gap = '$2', ...props }, ref) => {
     const isIconButton = React.Children.toArray(props.children).every(
       (child) => React.isValidElement(child) && child.type === Icon
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { flexVariant } from '../Flex/Flex';
+import { flex } from '../Flex/Flex';
 import { styled } from '../stitches.config';
 import Text from '../Text';
 
@@ -27,11 +27,9 @@ const Secondary = styled(Text, {
   fontWeight: 400,
 });
 
-export const LabelWrapper = styled('label', {
+export const LabelWrapper = styled(flex('label'), {
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
-
-  ...flexVariant,
 });
 
 interface Props extends React.ComponentProps<typeof LabelWrapper> {

@@ -60,7 +60,7 @@ export const HeadingText = styled('h1', {
   ],
   defaultVariants: {
     variant: 'default',
-    level: 1,
+    level: '1',
   },
 });
 

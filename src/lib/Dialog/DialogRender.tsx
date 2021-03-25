@@ -10,7 +10,6 @@ import Icon from '../Icon';
 import Portal from '../Portal';
 import { styled } from '../stitches.config';
 import { useKeyboardHandles } from '../utils/hooks';
-import type { PropsOf } from '../utils/types';
 
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { DialogContext, DialogProvider, useDialog } from './utils';
@@ -74,7 +73,7 @@ export const DialogRender: React.FC<{ render: DialogContext['render'] }> = ({ re
   );
 };
 
-interface ModalProps extends PropsOf<typeof DialogWindow> {}
+interface ModalProps extends React.ComponentProps<typeof DialogWindow> {}
 
 export const ModalWindow: React.FC<ModalProps> = ({ children, ...props }) => {
   const { seed } = useDialog();

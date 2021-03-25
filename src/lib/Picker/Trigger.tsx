@@ -6,12 +6,12 @@ import { FormField, FormFieldProps, Hint, HintBox, useFormField } from '../FormF
 import Icon from '../Icon';
 import Label from '../Label';
 import { styled } from '../stitches.config';
-import { InteractiveBox, InteractiveField, validityVariant } from '../TextField/shared';
+import { InteractiveBox, makeInteractiveBox, validityVariant } from '../TextField/shared';
 import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { usePicker } from './utils';
 
-const TriggerButton = styled(InteractiveBox as InteractiveField<'button'>, {
+const TriggerButton = styled(makeInteractiveBox('button'), {
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
@@ -60,7 +60,7 @@ const Trigger: React.FC<TriggerProps> = ({
   cross,
   flow,
   display,
-  space,
+  gap,
   css,
   style,
   className,
@@ -92,7 +92,7 @@ const Trigger: React.FC<TriggerProps> = ({
       cross={cross}
       flow={flow}
       display={display}
-      space={space}
+      gap={gap}
       css={css}
       style={style}
       className={className}
@@ -110,7 +110,6 @@ const Trigger: React.FC<TriggerProps> = ({
           variant={variant}
           {...ariaProps}
           {...props}
-          as="button"
           onClick={handleClick}
           onKeyDown={onKeyDown}
           ref={triggerRef as any}
