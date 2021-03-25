@@ -3,9 +3,9 @@ import React from 'react';
 import { styled } from '../stitches.config';
 import Text from '../Text';
 import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
-import { flexVariant } from '../Flex/Flex';
+import { flex } from '../Flex/Flex';
 
-const Item = styled('li', {
+const Item = styled(flex('li'), {
   'px': '$3',
   'fontSize': '$sm',
   'lineHeight': 1,
@@ -33,15 +33,12 @@ const Item = styled('li', {
   },
 
   'variants': {
-    ...flexVariant.variants,
     isFocused: {
       true: {
         bc: '$flatHover',
       },
     },
   },
-
-  'defaultVariants': flexVariant.defaultVariants,
 });
 
 export interface ListItemProps extends React.ComponentProps<typeof Item> {

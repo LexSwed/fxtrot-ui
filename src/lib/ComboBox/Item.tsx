@@ -11,7 +11,7 @@ import { useItemSelected, useItemFocused, useFocusItem } from './atoms';
 const SelectedIcon = styled(Icon, {});
 
 const Option = styled(ListItem, {
-  [` > ${SelectedIcon}`]: {
+  [`& > ${SelectedIcon}`]: {
     color: '$primaryStill',
   },
 });

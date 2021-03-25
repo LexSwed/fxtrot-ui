@@ -58,11 +58,15 @@ export const HeadingText = styled('h1', {
       },
     },
   ],
+  defaultVariants: {
+    variant: 'default',
+    level: 1,
+  },
 });
 
 interface Props extends Omit<React.ComponentProps<typeof HeadingText>, 'as'> {}
 
-const Heading = React.forwardRef<HTMLHeadingElement, Props>(({ variant = 'default', level = 1, ...props }, ref) => {
+const Heading = React.forwardRef<HTMLHeadingElement, Props>(({ variant, level, ...props }, ref) => {
   return <HeadingText variant={variant} as={`h${level}` as any} level={level} {...props} ref={ref} />;
 });
 

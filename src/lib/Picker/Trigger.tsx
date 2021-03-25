@@ -1,8 +1,7 @@
-import type { StitchesProps } from '@stitches/react';
 import React from 'react';
 import { HiSelector } from 'react-icons/hi';
 
-import type { FlexVariants } from '../Flex';
+import type { FlexVariants } from '../Flex/Flex';
 import { FormField, FormFieldProps, Hint, HintBox, useFormField } from '../FormField/FormField';
 import Icon from '../Icon';
 import Label from '../Label';
@@ -24,7 +23,7 @@ const TriggerButton = styled(InteractiveBox as InteractiveField<'button'>, {
   textOverflow: 'ellipsis',
   cursor: 'default',
 
-  [`> ${Icon}`]: {
+  [`& > ${Icon}`]: {
     pl: '$1',
     size: '$5',
   },
@@ -41,7 +40,9 @@ const Placeholder = styled('div', {
   textOverflow: 'ellipsis',
 });
 
-export interface TriggerProps extends FlexVariants, Omit<StitchesProps<typeof TriggerButton>, 'as' | 'validity'> {
+export interface TriggerProps
+  extends FlexVariants,
+    Omit<React.ComponentProps<typeof TriggerButton>, 'as' | 'validity'> {
   id?: string;
   placeholder?: string;
   label?: string;

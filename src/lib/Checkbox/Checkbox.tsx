@@ -48,14 +48,14 @@ const Input = styled('input', {
   cursor: 'default',
   transition: '0.24s ease-in-out',
 
-  [`:hover:not(:checked) + ${CheckMark}`]: {
+  [`&:hover:not(:checked) + ${CheckMark}`]: {
     borderColor: '$borderHover',
     [`& ${IconBox}`]: {
       opacity: 0.7,
     },
   },
 
-  [`:checked + ${CheckMark}`]: {
+  [`&:checked + ${CheckMark}`]: {
     borderColor: '$primaryStill',
     bc: '$primaryStill',
     [`& ${IconBox}`]: {
@@ -63,7 +63,7 @@ const Input = styled('input', {
       fill: '#fff',
     },
   },
-  [`:checked:hover + ${CheckMark}`]: {
+  [`&:checked:hover + ${CheckMark}`]: {
     borderColor: '$primaryHover',
     bc: '$primaryHover',
     [`& ${IconBox}`]: {
@@ -72,12 +72,12 @@ const Input = styled('input', {
     },
   },
 
-  [`:focus[${attribute}] + ${CheckMark}`]: {
+  [`&:focus[${attribute}] + ${CheckMark}`]: {
     borderColor: '$borderActive',
     boxShadow: '0 0 0 1px $borderActive',
   },
 
-  [`:focus[${attribute}]:checked + ${CheckMark}`]: {
+  [`&:focus[${attribute}]:checked + ${CheckMark}`]: {
     borderColor: '$primaryStill',
     $boxOutline: '$primaryStill',
     [`& > ${IconBox}`]: {
@@ -85,7 +85,7 @@ const Input = styled('input', {
     },
   },
 
-  [`:disabled + ${CheckMark}`]: {
+  [`&:disabled + ${CheckMark}`]: {
     borderColor: '$surfaceDisabled',
     bc: '$surfaceDisabled',
     [`& > ${IconBox}`]: {
@@ -93,7 +93,7 @@ const Input = styled('input', {
     },
   },
 
-  [`:disabled:checked + ${CheckMark}`]: {
+  [`&:disabled:checked + ${CheckMark}`]: {
     [`& > ${IconBox}`]: {
       opacity: 1,
       fill: '$textDisabled',

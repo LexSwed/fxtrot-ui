@@ -3,7 +3,6 @@ import React, { useCallback, useRef } from 'react';
 
 import { styled } from '../stitches.config';
 import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
-import type { PropsOf } from '../utils/types';
 import Item from './Item';
 
 const List = styled('ul', {
@@ -12,7 +11,7 @@ const List = styled('ul', {
   $outline: -1,
 });
 
-const MenuList: React.FC<PropsOf<typeof List>> & { Item: typeof Item } = (props) => {
+const MenuList: React.FC<React.ComponentProps<typeof List>> & { Item: typeof Item } = (props) => {
   const ref = useRef<HTMLUListElement>(null);
 
   const focusElement = useCallback((fn: (walker: TreeWalker) => Node | null) => {

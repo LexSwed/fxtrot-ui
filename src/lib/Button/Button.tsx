@@ -1,10 +1,10 @@
 import React from 'react';
-import { flexVariant } from '../Flex/Flex';
 
+import { flex } from '../Flex/Flex';
 import Icon from '../Icon/Icon';
 import { styled } from '../stitches.config';
 
-const ButtonRoot = styled('button', {
+const ButtonRoot = styled(flex('button'), {
   transition: '0.2s ease-in-out',
   $outline: 0,
   fontFamily: '$default',
@@ -16,7 +16,6 @@ const ButtonRoot = styled('button', {
   flexShrink: 0,
 
   variants: {
-    ...flexVariant.variants,
     size: {
       xs: {
         height: '$6',
@@ -149,7 +148,6 @@ const ButtonRoot = styled('button', {
     },
   },
   defaultVariants: {
-    ...flexVariant.defaultVariants,
     variant: 'secondary',
     size: 'md',
     gap: '$2',

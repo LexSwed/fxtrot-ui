@@ -146,12 +146,6 @@ const ButtonContainer = styled(Flex, {
   px: '$1',
 });
 
-const ButtonStyled = styled(Button, {
-  zIndex: 2,
-  position: 'relative',
-  pointerEvents: 'all',
-});
-
 const ComboBoxButton = React.memo(
   ({ hasNewBadge, inputRef }: { hasNewBadge: boolean; inputRef: React.RefObject<HTMLInputElement> }) => {
     const isOpen = useOpenState();
@@ -160,7 +154,7 @@ const ComboBoxButton = React.memo(
     return (
       <ButtonContainer flow="row" cross="center">
         {hasNewBadge && <Tag label="NEW" size="sm" />}
-        <ButtonStyled
+        <Button
           variant="transparent"
           tabIndex={-1}
           aria-hidden={isOpen}
@@ -176,7 +170,7 @@ const ComboBoxButton = React.memo(
           size="xs"
         >
           <Icon as={HiSelector} />
-        </ButtonStyled>
+        </Button>
       </ButtonContainer>
     );
   }

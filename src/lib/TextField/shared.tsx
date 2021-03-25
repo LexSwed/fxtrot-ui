@@ -134,7 +134,7 @@ export const validityVariant: Record<string, CssStyles> = {
     [`& ${IconWrapper}`]: {
       color: '$danger',
     },
-    [`${InteractiveBox}`]: {
+    [`&${InteractiveBox}`]: {
       'borderColor': '$danger',
       '&:hover': {
         borderColor: '$red700',
