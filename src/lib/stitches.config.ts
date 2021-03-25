@@ -157,18 +157,19 @@ export const stitchesConfig = createCss({
     }),
 
     $outline: (config) => (offset: number) => ({
-      [`:not(:disabled)[${attribute}]`]: {
+      [`&:not(:disabled)[${attribute}]`]: {
         'outline': 'none',
         'position': 'relative',
+        '$$offset': `${offset}px`,
 
         '&::before': {
           content: `''`,
           display: 'block',
           position: 'absolute',
-          top: `calc(-1 * ${offset}px)`,
-          right: `calc(-1 * ${offset}px)`,
-          bottom: `calc(-1 * ${offset}px)`,
-          left: `calc(-1 * ${offset}px)`,
+          top: `calc(-1 * $$offset)`,
+          right: `calc(-1 * $$offset)`,
+          bottom: `calc(-1 * $$offset)`,
+          left: `calc(-1 * $$offset)`,
           transitionProperty: 'box-shadow',
           transitionDuration: '0.2s',
           transitionTimingFunction: 'ease-in-out',
@@ -180,7 +181,7 @@ export const stitchesConfig = createCss({
       '&:focus': {
         outline: 'none',
       },
-      [`:focus[${attribute}]:before`]: {
+      [`&:focus[${attribute}]:before`]: {
         boxShadow: '0 0 0 2px $text',
       },
     }),

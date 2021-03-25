@@ -192,7 +192,16 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
     );
 
     return (
-      <ButtonRoot {...props} cross={cross} main={main} flow="row" ref={ref} type={type} isIconButton={isIconButton} />
+      <ButtonRoot
+        {...props}
+        gap={gap}
+        cross={cross}
+        main={main}
+        flow="row"
+        ref={ref}
+        type={type}
+        isIconButton={isIconButton}
+      />
     );
   }
 );

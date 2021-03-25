@@ -26,7 +26,6 @@ const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
 
     return stitchesConfig.theme(themes[theme]);
   }, [theme]);
-
   const className = themeClass || contextTheme;
 
   if (!className) {

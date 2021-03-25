@@ -1,8 +1,11 @@
+import React from 'react';
+
 import Box from '../Box/Box';
 import { gaps } from '../theme/variants';
 import { styled } from '../stitches.config';
+import type { CssStyles } from '../utils/types';
 
-const Grid = styled(Box, {
+const GridStyled = styled(Box, {
   variants: {
     gap: gaps,
     display: {
@@ -18,6 +21,15 @@ const Grid = styled(Box, {
     display: 'grid',
     gap: 'none',
   },
+});
+
+interface Props extends React.ComponentProps<typeof GridStyled> {
+  columns: CssStyles['gridTemplateColumns'];
+  rows: CssStyles['gridTemplateRows'];
+}
+
+const Grid = React.forwardRef<HTMLDivElement, Props>(({ columns, rows, ...props }) => {
+  return <GridStyled gridTemplateColumns={columns} gridTemplateRows={rows} {...props} />;
 });
 
 export default Grid;
