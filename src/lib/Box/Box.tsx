@@ -8,7 +8,7 @@ const Div = styled('div', {});
 const Box = React.forwardRef<HTMLDivElement, Props>(({ children, css = {}, ...props }, ref) => {
   const [styles, attrs] = Object.entries(props).reduce(
     (res, [key, value]: [any, any]) => {
-      if (VALID_ITEMS.has(key)) {
+      if (VALID_ITEMS.has(key) && value) {
         res[0][key] = value;
       } else {
         res[1][key] = value;
@@ -18,7 +18,6 @@ const Box = React.forwardRef<HTMLDivElement, Props>(({ children, css = {}, ...pr
     },
     [css, {}] as [any, any]
   );
-
   return (
     <Div css={styles} {...attrs} ref={ref}>
       {children}
@@ -61,6 +60,8 @@ const acceptedProperties = [
   'left',
   'right',
   'zIndex',
+  'justifyContent',
+  'alignItems',
   'flex',
   'flexGrow',
   'flexShrink',
@@ -108,6 +109,8 @@ export interface Props extends Omit<StyledProps, 'color'>, CustomField {}
 
 type CustomField = {
   [prop in typeof acceptedProperties[number]]?: CssStyles[prop];
+} & {
+  as?: React.ElementType;
 };
 
 type StyledProps = React.ComponentProps<typeof Div>;

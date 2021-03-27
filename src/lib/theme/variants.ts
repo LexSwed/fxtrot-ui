@@ -1,15 +1,16 @@
 import type { CssStyles } from '../utils/types';
 import { scales } from './scales';
+import type { Theme } from '../stitches.config';
 
-const scalesGaps = (Object.keys(scales) as (keyof typeof scales)[]).reduce((res, key) => {
+const scalesGaps = Object.keys(scales).reduce((res, key) => {
   res[key] = {
-    gap: key,
+    gap: `$${key}`,
   };
   return res;
-}, {} as Record<keyof typeof scales, CssStyles>);
+}, {} as Record<string, CssStyles>);
 
-export const gaps: Record<keyof typeof scales | Scale, CssStyles> = {
-  ...scalesGaps,
+export const gaps: Record<keyof Theme['space'] | Scale, CssStyles> = {
+  ...(scalesGaps as any),
   'none': {
     gap: '$0',
   },
@@ -20,7 +21,7 @@ export const gaps: Record<keyof typeof scales | Scale, CssStyles> = {
     gap: '$2',
   },
   'base': {
-    gap: '$6',
+    gap: '$base',
   },
   'md': {
     gap: '$6',

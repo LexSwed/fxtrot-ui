@@ -120,35 +120,35 @@ export const themes = Object.fromEntries(
 export function createNewTheme({ shade, primary, accent }: ShortDefinition): Swatch {
   return {
     colors: {
-      $text: `$${shade}Gray900`,
-      $textDisabled: `$${shade}Gray500`,
-      $textLight: `$${shade}Gray600`,
-      $textSubtle: `$${shade}Gray500`,
-      $accent: `$${accent}600`,
-      $accentLight: `$${accent}500`,
-      $success: '$green700',
-      $danger: '$red600',
+      text: allColors[`${shade}Gray900` as keyof typeof allColors],
+      textDisabled: allColors[`${shade}Gray500` as keyof typeof allColors],
+      textLight: allColors[`${shade}Gray600` as keyof typeof allColors],
+      textSubtle: allColors[`${shade}Gray500` as keyof typeof allColors],
+      accent: allColors[`${accent}600` as keyof typeof allColors],
+      accentLight: allColors[`${accent}500` as keyof typeof allColors],
+      success: allColors['green700'],
+      danger: allColors['red600'],
 
-      $primaryStill: `$${primary}500`,
-      $primaryHover: `$${primary}600`,
-      $primaryActive: `$${primary}700`,
-      $primaryLight: `$${primary}50`,
-      $primaryLightActive: `$${primary}100`,
+      primaryStill: allColors[`${primary}500` as keyof typeof allColors],
+      primaryHover: allColors[`${primary}600` as keyof typeof allColors],
+      primaryActive: allColors[`${primary}700` as keyof typeof allColors],
+      primaryLight: allColors[`${primary}50` as keyof typeof allColors],
+      primaryLightActive: allColors[`${primary}100` as keyof typeof allColors],
 
-      $flatStill: 'transparent',
-      $flatHover: convertHex(allColors[`${shade}Gray600` as keyof typeof allColors], 0.08),
-      $flatActive: convertHex(allColors[`${shade}Gray500` as keyof typeof allColors], 0.05),
-      $flatDisabled: `$${shade}Gray200`,
+      flatStill: 'transparent',
+      flatHover: convertHex(allColors[`${shade}Gray600` as keyof typeof allColors], 0.08),
+      flatActive: convertHex(allColors[`${shade}Gray500` as keyof typeof allColors], 0.05),
+      flatDisabled: allColors[`${shade}Gray200` as keyof typeof allColors],
 
-      $surfaceStill: '#fff',
-      $surfaceHover: `$${shade}Gray100`,
-      $surfaceActive: convertHex(allColors[`${shade}Gray500` as keyof typeof allColors], 0.08),
-      $surfaceDisabled: `$${shade}Gray200`,
+      surfaceStill: '#fff',
+      surfaceHover: allColors[`${shade}Gray100` as keyof typeof allColors],
+      surfaceActive: convertHex(allColors[`${shade}Gray500` as keyof typeof allColors], 0.08),
+      surfaceDisabled: allColors[`${shade}Gray200` as keyof typeof allColors],
 
-      $borderLight: `$${shade}Gray200`,
-      $borderStill: `$${shade}Gray300`,
-      $borderHover: `$${shade}Gray400`,
-      $borderActive: `$${shade}Gray500`,
+      borderLight: allColors[`${shade}Gray200` as keyof typeof allColors],
+      borderStill: allColors[`${shade}Gray300` as keyof typeof allColors],
+      borderHover: allColors[`${shade}Gray400` as keyof typeof allColors],
+      borderActive: allColors[`${shade}Gray500` as keyof typeof allColors],
     },
   };
 }
@@ -180,35 +180,35 @@ export interface ShortDefinition {
 
 export interface Swatch {
   colors: {
-    $text: string;
-    $textDisabled: string;
-    $textLight: string;
-    $textSubtle: string;
-    $accent: string;
-    $accentLight: string;
-    $success: string;
-    $danger: string;
+    text: string;
+    textDisabled: string;
+    textLight: string;
+    textSubtle: string;
+    accent: string;
+    accentLight: string;
+    success: string;
+    danger: string;
 
-    $primaryStill: string;
-    $primaryHover: string;
-    $primaryActive: string;
-    $primaryLight: string;
-    $primaryLightActive: string;
+    primaryStill: string;
+    primaryHover: string;
+    primaryActive: string;
+    primaryLight: string;
+    primaryLightActive: string;
 
-    $flatStill: string;
-    $flatHover: string;
-    $flatActive: string;
-    $flatDisabled: string;
+    flatStill: string;
+    flatHover: string;
+    flatActive: string;
+    flatDisabled: string;
 
-    $surfaceStill: string;
-    $surfaceHover: string;
-    $surfaceActive: string;
-    $surfaceDisabled: string;
+    surfaceStill: string;
+    surfaceHover: string;
+    surfaceActive: string;
+    surfaceDisabled: string;
 
-    $borderLight: string;
-    $borderStill: string;
-    $borderHover: string;
-    $borderActive: string;
+    borderLight: string;
+    borderStill: string;
+    borderHover: string;
+    borderActive: string;
   };
 }
 

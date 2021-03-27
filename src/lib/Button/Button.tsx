@@ -1,21 +1,22 @@
 import React from 'react';
 
-import { flex } from '../Flex/Flex';
+import { flexVariants } from '../Flex/Flex';
 import Icon from '../Icon/Icon';
 import { styled } from '../stitches.config';
 
-const ButtonRoot = styled(flex('button'), {
-  transition: '0.2s ease-in-out',
-  $outline: 0,
-  fontFamily: '$default',
-  lineHeight: 1,
-  border: '1px solid transparent',
-  br: '$md',
-  cursor: 'default',
-  whiteSpace: 'nowrap',
-  flexShrink: 0,
+const ButtonRoot = styled('button', {
+  'transition': '0.2s ease-in-out',
+  '$outline': 0,
+  'fontFamily': '$default',
+  'lineHeight': 1,
+  'border': '1px solid transparent',
+  'br': '$md',
+  'cursor': 'default',
+  'whiteSpace': 'nowrap',
+  'flexShrink': 0,
 
-  variants: {
+  'variants': {
+    ...flexVariants.variants,
     size: {
       xs: {
         height: '$6',
@@ -119,14 +120,14 @@ const ButtonRoot = styled(flex('button'), {
         'color': '$accent',
         'cursor': 'pointer',
         '&:not([aria-disabled="true"]):hover': {
-          color: '$hover',
+          color: '$primaryHover',
           textDecoration: 'underline',
         },
-        '&:not([aria-disabled="true"]):active': {
-          color: '$active',
+        '&:not([aria-disabled="true"]):not([disabled]):active': {
+          color: '$primaryActive',
           textDecoration: 'underline',
         },
-        '&[aria-disabled="true"]': {
+        '&[disabled],&[aria-disabled="true"]': {
           borderColor: 'transparent',
           cursor: 'default',
           color: '$textDisabled',
@@ -147,11 +148,19 @@ const ButtonRoot = styled(flex('button'), {
       },
     },
   },
-  defaultVariants: {
+  '&[disabled],[aria-disabled="true"]': {
+    pointerEvents: 'none',
+  },
+  'defaultVariants': {
+    ...flexVariants.defaultVariants,
+    cross: 'center',
+    main: 'center',
+    flow: 'row',
+    gap: '2',
     variant: 'secondary',
     size: 'md',
   },
-  compoundVariants: [
+  'compoundVariants': [
     {
       isIconButton: true,
       size: 'xs',
@@ -185,25 +194,21 @@ const ButtonRoot = styled(flex('button'), {
 
 interface Props extends Omit<React.ComponentProps<typeof ButtonRoot>, 'isIconButton'> {}
 
-const Button = React.forwardRef<HTMLButtonElement, Props>(
-  ({ type = 'button', cross = 'center', main = 'center', gap = '$2', ...props }, ref) => {
-    const isIconButton = React.Children.toArray(props.children).every(
-      (child) => React.isValidElement(child) && child.type === Icon
-    );
+const Button = React.forwardRef<HTMLButtonElement, Props>(({ type = 'button', disabled, ...props }, ref) => {
+  const isIconButton = React.Children.toArray(props.children).every(
+    (child) => React.isValidElement(child) && child.type === Icon
+  );
 
-    return (
-      <ButtonRoot
-        {...props}
-        gap={gap}
-        cross={cross}
-        main={main}
-        flow="row"
-        ref={ref}
-        type={type}
-        isIconButton={isIconButton}
-      />
-    );
-  }
-);
+  return (
+    <ButtonRoot
+      {...props}
+      aria-disabled={disabled}
+      disabled={disabled}
+      ref={ref}
+      type={type}
+      isIconButton={isIconButton}
+    />
+  );
+});
 
 export default Button;

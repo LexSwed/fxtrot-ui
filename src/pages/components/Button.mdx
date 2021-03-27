@@ -9,7 +9,7 @@ import { Box, Flex, Grid, Button, ThemeProvider, Icon } from '@fxtrot/ui';
 ## Variant
 
 <Playground>
-  <Grid gap="lg" columns="repeat(2, auto)" display="inline" css={{ p: '$4', bc: '$gray50' }}>
+  <Grid gap="lg" cross="center" main="center" columns="repeat(2, auto)" css={{ p: '$4', bc: '$gray50' }}>
     <Button variant="primary">Primary</Button>
     <Button disabled variant="primary">
       Primary (disabled)
@@ -155,7 +155,7 @@ Use `ThemeProvider` component to change the primary color of the button.
       <Icon as={HiDotsVertical} />
       <span>Wrapped</span>
     </Button>
-    <Button gap="$2">
+    <Button variant="primary" gap="$2">
       <Icon as={HiDotsVertical} />
       Not wrapped
     </Button>

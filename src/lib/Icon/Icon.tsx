@@ -3,6 +3,7 @@ import React from 'react';
 import { styled } from '../stitches.config';
 
 export const IconBox = styled('svg', {
+  display: 'inline-block',
   flexShrink: 0,
   variants: {
     size: {
@@ -48,7 +49,8 @@ interface Props extends Omit<React.ComponentProps<typeof IconBox>, 'as'> {
 }
 
 const Icon: React.FC<Props> = ({ size = 'md', stroke, fill, css, ...props }) => {
-  return <IconBox size={size} {...props} css={{ ...css, stroke, fill } as any} />;
+  const style = stroke || fill ? ({ ...css, stroke, fill } as any) : css;
+  return <IconBox size={size} {...props} css={style} />;
 };
 
 export default Icon;

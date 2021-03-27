@@ -4,22 +4,19 @@ import { attribute } from './FocusRing/focus-visible';
 import { scales } from './theme/scales';
 import { shadows } from './theme/shadows';
 import { allColors, themes } from './ThemeProvider/themes';
-import { isServer } from './utils';
-
-const defaultPalette = {
-  ...allColors,
-  ...themes.blue.colors,
-};
 
 export const theme = {
-  colors: defaultPalette,
+  colors: {
+    ...allColors,
+    ...themes.blue.colors,
+  },
   fonts: {
     $default: '"Noto Sans", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif',
     $heading: '"Source Sans Pro", apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif',
     $mono: 'Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;',
   },
   space: scales,
-  sizes: { ...scales, $base: scales['$10'] },
+  sizes: { ...scales, base: '10' },
   fontSizes: {
     $base: '16px',
     $xs: '12px',
@@ -62,10 +59,10 @@ export const theme = {
     $4: '400',
     $max: '9999',
   },
-  shadows: { ...shadows, $popper: `0 0 1px $borderStill, $$shadows.xl`, $none: 'none' },
+  shadows,
 } as const;
 
-type Theme = typeof theme;
+export type Theme = typeof theme;
 
 export const stitchesConfig = createCss({
   theme,
@@ -147,14 +144,12 @@ export const stitchesConfig = createCss({
       lineHeight: theme.lineHeights[value],
     }),
 
-    size: (config) => (value: keyof Theme['sizes'] | (string & {})) => ({
-      width: value,
-      height: value,
-    }),
-
-    shadow: (config) => (value: keyof Theme['shadows'] | (string & {})) => ({
-      boxShadow: value,
-    }),
+    size: (config) => (value: `$${keyof Theme['sizes']}` | (string & {})) => {
+      return {
+        width: value,
+        height: value,
+      };
+    },
 
     $outline: (config) => (offset: number) => ({
       [`&:not(:disabled)[${attribute}]`]: {
@@ -188,27 +183,4 @@ export const stitchesConfig = createCss({
   },
 });
 
-export const { css, styled, global, keyframes } = stitchesConfig;
-
-global({
-  'body': { margin: '0' },
-  '*': {
-    'boxSizing': 'border-box',
-    'fontFamily': '$default',
-    '&::before,::after': {
-      boxSizing: 'border-box',
-    },
-  },
-})();
-
-(function addFont() {
-  if (isServer) {
-    return;
-  }
-  const link = document.createElement('link');
-
-  link.href = 'https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap';
-  link.rel = 'stylesheet';
-
-  document.head.appendChild(link);
-})();
+export const { css, styled, keyframes } = stitchesConfig;

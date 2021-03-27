@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useMemo } from 'react';
 
 import { stitchesConfig, styled } from '../stitches.config';
+import { Reset } from './Reset';
 import { themes, createNewTheme, DefinedThemes, ShortDefinition, Swatch } from './themes';
 
 type Props = {
@@ -33,9 +34,12 @@ const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
   }
 
   return (
-    <themeContext.Provider value={className}>
-      <ThemeWrapper className={className}>{children}</ThemeWrapper>
-    </themeContext.Provider>
+    <>
+      <themeContext.Provider value={className}>
+        <ThemeWrapper className={className}>{children}</ThemeWrapper>
+      </themeContext.Provider>
+      <Reset />
+    </>
   );
 };
 
@@ -48,5 +52,5 @@ function isShortDefinition(theme: Props['theme']): theme is ShortDefinition {
 }
 
 function isFullSwatch(theme: Props['theme']): theme is Swatch {
-  return typeof theme === 'object' && !!(theme as Swatch)?.colors?.$text;
+  return typeof theme === 'object' && !!(theme as Swatch)?.colors?.text;
 }
