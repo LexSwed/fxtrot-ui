@@ -1,17 +1,15 @@
 import React from 'react';
 import { HiCheck } from 'react-icons/hi';
 
-import Icon from '../Icon';
+import Icon, { IconBox } from '../Icon/Icon';
 import ListItem from '../ListItem';
 import type { ListItemProps } from '../ListItem/ListItem';
 import { styled } from '../stitches.config';
 import { useAllHandlers } from '../utils/hooks';
 import { useItemSelected, useItemFocused, useFocusItem } from './atoms';
 
-const SelectedIcon = styled(Icon, {});
-
 const Option = styled(ListItem, {
-  [`& > ${SelectedIcon}`]: {
+  [`& > ${IconBox}`]: {
     color: '$primaryStill',
   },
 });
@@ -48,7 +46,7 @@ const Item = React.forwardRef<HTMLLIElement, Props>(
         ref={propRef}
       >
         {label}
-        {isSelected ? <SelectedIcon as={HiCheck} size="md" /> : null}
+        {isSelected ? <Icon as={HiCheck} size="md" /> : null}
       </Option>
     );
   }
