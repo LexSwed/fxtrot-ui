@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useMemo } from 'react';
 
-import { css, styled } from '../stitches.config';
+import { stitchesConfig, styled } from '../stitches.config';
+import { Reset } from './Reset';
 import { themes, createNewTheme, DefinedThemes, ShortDefinition, Swatch } from './themes';
 
 type Props = {
@@ -19,14 +20,13 @@ const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
   const themeClass = useMemo(() => {
     if (!theme) return null;
     if (isShortDefinition(theme)) {
-      return css.theme(createNewTheme(theme));
+      return stitchesConfig.theme(createNewTheme(theme));
     } else if (isFullSwatch(theme)) {
-      return css.theme(theme);
+      return stitchesConfig.theme(theme);
     }
 
-    return css.theme(themes[theme]);
+    return stitchesConfig.theme(themes[theme]);
   }, [theme]);
-
   const className = themeClass || contextTheme;
 
   if (!className) {
@@ -34,9 +34,12 @@ const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
   }
 
   return (
-    <themeContext.Provider value={className}>
-      <ThemeWrapper className={className}>{children}</ThemeWrapper>
-    </themeContext.Provider>
+    <>
+      <themeContext.Provider value={className}>
+        <ThemeWrapper className={className}>{children}</ThemeWrapper>
+      </themeContext.Provider>
+      <Reset />
+    </>
   );
 };
 
@@ -49,5 +52,5 @@ function isShortDefinition(theme: Props['theme']): theme is ShortDefinition {
 }
 
 function isFullSwatch(theme: Props['theme']): theme is Swatch {
-  return typeof theme === 'object' && !!(theme as Swatch)?.colors?.$text;
+  return typeof theme === 'object' && !!(theme as Swatch)?.colors?.text;
 }

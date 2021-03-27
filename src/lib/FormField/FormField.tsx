@@ -2,13 +2,12 @@ import React, { useMemo } from 'react';
 import { useUID } from 'react-uid';
 
 import Box from '../Box';
-import { FlexBox } from '../Flex';
+import Flex from '../Flex/Flex';
 import { LabelWrapper } from '../Label/Label';
 import { styled } from '../stitches.config';
 import Text from '../Text';
-import { forwardRef, PropsOf } from '../utils/types';
 
-const Wrapper = styled(FlexBox, {
+const Wrapper = styled(Flex, {
   position: 'relative',
   width: '100%',
 
@@ -42,24 +41,25 @@ const HintText = styled(Text, {
   cursor: 'default',
 });
 
-export interface FormFieldProps extends PropsOf<typeof Wrapper> {
+export interface FormFieldProps extends React.ComponentProps<typeof Wrapper> {
   hasHint?: boolean;
   validity?: keyof typeof tonesMap;
+  as?: keyof JSX.IntrinsicElements;
 }
 
-const tonesMap: Record<'valid' | 'invalid', PropsOf<typeof Text>['tone']> = {
+const tonesMap: Record<'valid' | 'invalid', React.ComponentProps<typeof Text>['tone']> = {
   valid: 'success',
   invalid: 'danger',
 };
 
-export const FormField = forwardRef<HTMLDivElement, FormFieldProps>(
+export const FormField = React.forwardRef<HTMLDivElement, FormFieldProps>(
   (
     {
       main = 'stretch',
       cross = 'stretch',
       flow = 'column',
       display = 'inline',
-      space = 'xs',
+      gap = 'xs',
       css,
       style,
       className,
@@ -75,7 +75,7 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>(
         cross={cross}
         flow={flow}
         display={display}
-        space={space}
+        gap={gap}
         css={css}
         style={style}
         className={className}
@@ -88,7 +88,7 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>(
     );
   }
 );
-interface HintProps extends PropsOf<typeof Text> {
+interface HintProps extends React.ComponentProps<typeof Text> {
   validity?: FormFieldProps['validity'];
 }
 

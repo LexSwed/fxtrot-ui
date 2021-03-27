@@ -2,25 +2,25 @@ import React, { useRef } from 'react';
 import { HiSelector } from 'react-icons/hi';
 
 import Button from '../Button';
-import Flex, { FlexVariants } from '../Flex';
+import Flex, { FlexVariants } from '../Flex/Flex';
 import { FormField, Hint, HintBox, useFormField } from '../FormField/FormField';
 import Icon from '../Icon';
 import Label from '../Label';
 import { styled } from '../stitches.config';
 import Tag from '../Tag';
 import { InputField, InteractiveBox } from '../TextField/shared';
-import type { PropsOf, StylesObject } from '../utils/types';
 import { useAllHandlers, useForkRef, useKeyboardHandles } from '../utils/hooks';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
+import type { CssStyles } from '../utils/types';
 
-const inputStyle: StylesObject = {
+const inputStyle: CssStyles = {
   // increase specificity
   '&:not(:only-child)': {
     pr: '$16',
   },
 };
 
-interface InputProps extends PropsOf<typeof InteractiveBox> {}
+interface InputProps extends React.ComponentProps<typeof InteractiveBox> {}
 export interface Props
   extends Omit<InputProps, 'onChange' | 'type' | 'value' | 'defaultValue' | 'children' | 'text' | 'as'>,
     FlexVariants {
@@ -52,7 +52,7 @@ const ComboBoxInput: React.FC<Props> = ({
   cross,
   flow,
   display,
-  space,
+  gap,
   css,
   style,
   className,
@@ -101,7 +101,7 @@ const ComboBoxInput: React.FC<Props> = ({
       cross={cross}
       flow={flow}
       display={display}
-      space={space}
+      gap={gap}
       css={css}
       style={style}
       className={className}
@@ -146,12 +146,6 @@ const ButtonContainer = styled(Flex, {
   px: '$1',
 });
 
-const ButtonStyled = styled(Button, {
-  zIndex: 2,
-  position: 'relative',
-  pointerEvents: 'all',
-});
-
 const ComboBoxButton = React.memo(
   ({ hasNewBadge, inputRef }: { hasNewBadge: boolean; inputRef: React.RefObject<HTMLInputElement> }) => {
     const isOpen = useOpenState();
@@ -160,14 +154,13 @@ const ComboBoxButton = React.memo(
     return (
       <ButtonContainer flow="row" cross="center">
         {hasNewBadge && <Tag label="NEW" size="sm" />}
-        <ButtonStyled
+        <Button
           variant="transparent"
           tabIndex={-1}
           aria-hidden={isOpen}
           aria-expanded={isOpen}
           aria-label="Open the list"
           onMouseDown={(e) => {
-            /* onClick would cause onOutside click to close the popup */
             e.preventDefault();
             e.stopPropagation();
             open();
@@ -177,7 +170,7 @@ const ComboBoxButton = React.memo(
           size="xs"
         >
           <Icon as={HiSelector} />
-        </ButtonStyled>
+        </Button>
       </ButtonContainer>
     );
   }

@@ -15,8 +15,8 @@ const Portal: React.FC = ({ children }) => {
   return (
     <portalContext.Provider value={zIndex + 10}>
       {ReactDOM.createPortal(
-        <Box zIndex={zIndex} display="block" position="absolute">
-          <ThemeProvider>{children}</ThemeProvider>
+        <Box zIndex={zIndex} display="block" position="absolute" as={ThemeProvider}>
+          {children}
         </Box>,
         document.body
       )}
@@ -26,4 +26,4 @@ const Portal: React.FC = ({ children }) => {
 
 export default Portal;
 
-export const portalContext = createContext(100);
+const portalContext = createContext(100);

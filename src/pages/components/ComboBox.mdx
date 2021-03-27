@@ -12,7 +12,7 @@ import { Box, Flex, ComboBox, Text } from '@fxtrot/ui';
     const [value, setValue] = React.useState('3');
     return (
       <Box css={{ p: '$8', bc: '$surfaceStill' }}>
-        <Flex space="md" css={{ width: '$56' }}>
+        <Flex gap="md" css={{ width: '$56' }}>
           <ComboBox placeholder="Hufflepuff" label="The House you were sorted to" value={value} onChange={setValue}>
             {['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'].map((house, index) => (
               <ComboBox.Item value={`${index + 1}`} label={house} key={index} />
@@ -35,7 +35,7 @@ You can allow the selection of elements that do not exist - creating them from t
     const [newItemValue, setNewItemValue] = React.useState('');
     return (
       <Box css={{ p: '$8', bc: '$surfaceStill' }}>
-        <Flex space="md" css={{ width: '$40' }}>
+        <Flex gap="md" css={{ width: '$40' }}>
           <ComboBox
             placeholder="Hufflepuff"
             label="The House you were sorted to"
@@ -67,7 +67,7 @@ Supports same `variant`s as `TextField` component.
     const [value, setValue] = React.useState('12');
     return (
       <Box css={{ p: '$8', bc: '$surfaceStill' }}>
-        <Flex space="md" css={{ width: '$40' }} cross="stretch">
+        <Flex gap="md" css={{ width: '$40' }} cross="stretch">
           <ComboBox
             label="Item index"
             variant="underlined"
@@ -95,7 +95,7 @@ The rendering is optimized using virtualized lists
     const [value, setValue] = React.useState('12');
     return (
       <Box css={{ p: '$8', bc: '$surfaceStill' }}>
-        <Flex space="md" css={{ width: '$40' }} cross="stretch">
+        <Flex gap="md" css={{ width: '$40' }} cross="stretch">
           <ComboBox label="Item index" placeholder="1 number" value={value} onChange={setValue}>
             {Array(500)
               .fill(null)

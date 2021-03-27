@@ -11,7 +11,7 @@ Picker is a component that mimics default `<select>` element.
 
 <Playground>
   <Box css={{ p: '$8', bc: '$surfaceStill' }}>
-    <Flex space="md" css={{ width: '$40' }} cross="stretch">
+    <Flex gap="md" css={{ width: '$40' }} cross="stretch">
       <Picker label="Item index" placeholder="1 number">
         {Array(100)
           .fill(null)
@@ -30,7 +30,7 @@ Picker is a component that mimics default `<select>` element.
     const [value, setValue] = React.useState('12');
     return (
       <Box css={{ p: '$8', bc: '$surfaceStill' }}>
-        <Flex space="md" css={{ width: '$40' }}>
+        <Flex gap="md" css={{ width: '$40' }}>
           <Picker label="Item index" value={value} onChange={setValue}>
             {Array(20)
               .fill(null)
@@ -53,7 +53,7 @@ Supports same `variant`s as `TextField` component.
     const [value, setValue] = React.useState('12');
     return (
       <Box css={{ p: '$8', bc: '$surfaceStill' }}>
-        <Flex space="md" css={{ width: '$40' }} cross="stretch">
+        <Flex gap="md" css={{ width: '$40' }} cross="stretch">
           <Picker
             label="Item index"
             variant="underlined"

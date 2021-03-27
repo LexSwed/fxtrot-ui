@@ -9,9 +9,9 @@ import Trigger, { TriggerProps } from './Trigger';
 import { PickerProvider } from './utils';
 
 interface OptionType extends React.ReactElement<PickerItemProps, typeof Item> {}
-interface Props extends Omit<TriggerProps, 'value' | 'onChange' | 'children'> {
-  value?: string;
-  onChange?: (newValue: string) => void;
+interface Props<T = string> extends Omit<TriggerProps, 'value' | 'onChange' | 'children'> {
+  value?: T;
+  onChange?: (newValue: T) => void;
   children: OptionType[] | OptionType;
 }
 

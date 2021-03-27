@@ -1,4 +1,3 @@
-import type { StitchesProps } from '@stitches/react';
 import React, { useMemo } from 'react';
 
 import Box from '../Box';
@@ -21,7 +20,7 @@ const Toggle = styled('div', {
   'transition': '0.24s ease-in-out',
   'boxShadow': '$inner',
 
-  '::before': {
+  '&::before': {
     content: `''`,
     display: 'block',
     position: 'absolute',
@@ -58,7 +57,7 @@ const Input = styled('input', {
   },
 
   [`&:focus:not(:checked) + ${Toggle}`]: {
-    '::before': {
+    '&::before': {
       boxShadow: '$md',
     },
   },
@@ -73,13 +72,13 @@ const Input = styled('input', {
   },
 
   [`&:focus:not(:checked)[${attribute}] + ${Toggle}`]: {
-    '::before': {
+    '&::before': {
       boxShadow: '0 0 0 1px $borderStill , 0 0 0 3px $borderActive',
     },
   },
 
   [`&:focus:checked[${attribute}] + ${Toggle}`]: {
-    '::before': {
+    '&::before': {
       borderColor: 'transparent',
       boxShadow: '0 0 0 1px $primaryStill, 0 0 0 3px $borderActive',
     },
@@ -88,7 +87,7 @@ const Input = styled('input', {
   [`&:checked + ${Toggle}`]: {
     'bc': '$primaryStill',
     'borderColor': '$primaryStill',
-    '::before': {
+    '&::before': {
       transform: 'translateX(12px)',
       bc: '$surfaceStill',
     },
@@ -99,7 +98,7 @@ const Input = styled('input', {
   },
 });
 
-interface InputProps extends StitchesProps<typeof Input> {}
+interface InputProps extends React.ComponentProps<typeof Input> {}
 
 type Props = Omit<InputProps, 'onChange'> &
   FormFieldProps & {
@@ -117,7 +116,7 @@ const Switch: React.FC<Props> = ({
   flow = 'row',
   label,
   secondaryLabel,
-  space = 'sm',
+  gap = 'sm',
   display = 'inline',
   cross,
   disabled,
@@ -136,7 +135,7 @@ const Switch: React.FC<Props> = ({
       className={className}
       style={style}
       css={css}
-      space={space}
+      gap={gap}
       flow={flow}
       cross={cross}
     >

@@ -1,5 +1,4 @@
 import React from 'react';
-import type { StitchesProps } from '@stitches/react';
 
 import { styled } from '../stitches.config';
 
@@ -50,21 +49,24 @@ export const HeadingText = styled('h1', {
       },
     },
   },
+  compoundVariants: [
+    {
+      level: '1',
+      variant: 'default',
+      css: {
+        fontWeight: 800,
+      },
+    },
+  ],
+  defaultVariants: {
+    variant: 'default',
+    level: '1',
+  },
 });
 
-HeadingText.compoundVariant(
-  {
-    level: 1,
-    variant: 'default',
-  },
-  {
-    fontWeight: 800,
-  }
-);
+interface Props extends Omit<React.ComponentProps<typeof HeadingText>, 'as'> {}
 
-interface Props extends Omit<StitchesProps<typeof HeadingText>, 'as'> {}
-
-const Heading = React.forwardRef<HTMLHeadingElement, Props>(({ variant = 'default', level = 1, ...props }, ref) => {
+const Heading = React.forwardRef<HTMLHeadingElement, Props>(({ variant, level, ...props }, ref) => {
   return <HeadingText variant={variant} as={`h${level}` as any} level={level} {...props} ref={ref} />;
 });
 

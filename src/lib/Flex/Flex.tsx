@@ -1,19 +1,43 @@
-import type { IStyledComponent, StitchesVariants } from '@stitches/react';
-import React from 'react';
-
+import type { StitchesVariants } from '@stitches/core';
 import { styled } from '../stitches.config';
 import { gaps } from '../theme/variants';
-import { Config, forwardRef, PropsOf } from '../utils/types';
 
-export const FlexBox = styled('div', {
-  'display': 'flex',
-  '&>h1, &>h2, &>h3, &>h4, &>h5, &>h6': {
-    mt: 0,
-    mb: 0,
+export const flexMainAxisAlignment = {
+  'start': {
+    justifyContent: 'flex-start',
   },
+  'center': {
+    justifyContent: 'center',
+  },
+  'end': {
+    justifyContent: 'flex-end',
+  },
+  'stretch': {
+    justifyContent: 'stretch',
+  },
+  'space-between': {
+    justifyContent: 'space-between',
+  },
+} as const;
 
-  'variants': {
-    space: gaps,
+export const flexCrossAxisAlignment = {
+  start: {
+    alignItems: 'flex-start',
+  },
+  center: {
+    alignItems: 'center',
+  },
+  end: {
+    alignItems: 'flex-end',
+  },
+  stretch: {
+    alignItems: 'stretch',
+  },
+} as const;
+
+export const flexVariants = {
+  variants: {
+    gap: gaps,
     display: {
       flex: {
         display: 'flex',
@@ -50,49 +74,24 @@ export const FlexBox = styled('div', {
         flexDirection: 'column-reverse',
       },
     },
-    main: {
-      start: {
-        justifyContent: 'flex-start',
-      },
-      center: {
-        justifyContent: 'center',
-      },
-      end: {
-        justifyContent: 'flex-end',
-      },
-      stretch: {
-        justifyContent: 'stretch',
-      },
-      spread: {
-        justifyContent: 'space-between',
-      },
-    },
-    cross: {
-      start: {
-        alignItems: 'flex-start',
-      },
-      center: {
-        alignItems: 'center',
-      },
-      end: {
-        alignItems: 'flex-end',
-      },
-      stretch: {
-        alignItems: 'stretch',
-      },
-    },
+    main: flexMainAxisAlignment,
+    cross: flexCrossAxisAlignment,
   },
+  defaultVariants: {
+    gap: 'none',
+    display: 'flex',
+    flow: 'column',
+    wrap: 'nowrap',
+  },
+} as const;
+
+const Flex = styled('div', {
+  '& > *': {
+    m: 0,
+  },
+  ...flexVariants,
 });
 
-const Flex = forwardRef<HTMLDivElement, FlexProps>(
-  ({ space = 'none', flow = 'column', wrap = 'nowrap', display = 'flex', ...props }, ref) => {
-    return <FlexBox space={space} flow={flow} wrap={wrap} display={display} {...props} ref={ref as any} />;
-  }
-);
+export type FlexVariants = StitchesVariants<typeof Flex>;
 
 export default Flex;
-
-export interface FlexVariants extends StitchesVariants<typeof FlexBox> {}
-export interface FlexProps extends PropsOf<typeof FlexBox> {}
-export interface FlexType<C extends React.ElementType = 'div', P = {}>
-  extends IStyledComponent<C, FlexVariants & P, Config> {}

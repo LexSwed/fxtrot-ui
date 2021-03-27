@@ -1,8 +1,11 @@
-import { atom, useAtom } from 'jotai';
+import { Provider, atom, useAtom } from 'jotai';
+import React from 'react';
+
 import { useAtomValue, useUpdateAtom } from 'jotai/utils';
 import { useEffect } from 'react';
 
 const innerValue = atom<string | null>(null);
+
 interface SyncedValue {
   (propValue?: string | null, propOnChange?: (newValue: string | null) => void): readonly [
     value: string | null,
@@ -31,4 +34,13 @@ export const useItemSelected = (value: string) => value === useAtomValue(innerVa
 export const useItemFocused = (id: string) => id === useAtomValue(focusedItemId);
 export const useFocusItem = () => {
   return useUpdateAtom(focusedItemId);
+};
+
+const fxtrotScope = Symbol();
+
+innerValue.scope = fxtrotScope;
+focusedItemId.scope = fxtrotScope;
+
+export const StateProvider: React.FC = ({ children }) => {
+  return <Provider scope={fxtrotScope}>{children}</Provider>;
 };

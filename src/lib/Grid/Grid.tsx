@@ -1,12 +1,12 @@
 import React from 'react';
 
-import Box, { Props as BoxProps } from '../Box/Box';
-import { forwardRef } from '../utils/types';
+import Box from '../Box/Box';
 import { gaps } from '../theme/variants';
 import { styled } from '../stitches.config';
-import type { StitchesVariants } from '@stitches/react';
+import type { CssStyles } from '../utils/types';
+import { flexMainAxisAlignment, flexCrossAxisAlignment } from '../Flex/Flex';
 
-const GridWithGaps = styled(Box, {
+const GridStyled = styled(Box, {
   variants: {
     gap: gaps,
     display: {
@@ -17,35 +17,22 @@ const GridWithGaps = styled(Box, {
         display: 'inline-grid',
       },
     },
+    main: flexMainAxisAlignment,
+    cross: flexCrossAxisAlignment,
+  },
+  defaultVariants: {
+    display: 'grid',
+    gap: 'none',
   },
 });
 
-interface Props extends Omit<BoxProps, 'display' | 'gap'> {
-  display?: StitchesVariants<typeof GridWithGaps>['display'];
-  rows?: BoxProps['gridTemplateRows'];
-  columns?: BoxProps['gridTemplateColumns'];
-  areas?: BoxProps['gridTemplateAreas'];
-  template?: BoxProps['gridTemplate'];
-  gap?: StitchesVariants<typeof GridWithGaps>['gap'];
+interface Props extends React.ComponentProps<typeof GridStyled> {
+  columns: CssStyles['gridTemplateColumns'];
+  rows: CssStyles['gridTemplateRows'];
 }
 
-const Grid = forwardRef<HTMLDivElement, Props>(
-  ({ children, display = 'grid', rows, columns, template, areas, gap = 'none', ...props }, ref) => {
-    return (
-      <GridWithGaps
-        {...props}
-        gridTemplate={template}
-        gridTemplateAreas={areas}
-        gridTemplateRows={rows}
-        gridTemplateColumns={columns}
-        display={display}
-        gap={gap}
-        ref={ref}
-      >
-        {children}
-      </GridWithGaps>
-    );
-  }
-);
+const Grid = React.forwardRef<HTMLDivElement, Props>(({ columns, rows, ...props }, ref) => {
+  return <GridStyled gridTemplateColumns={columns} gridTemplateRows={rows} {...props} ref={ref} />;
+});
 
 export default Grid;

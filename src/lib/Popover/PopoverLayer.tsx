@@ -7,7 +7,6 @@ import { styled } from '../stitches.config';
 import { sameWidth, usePopper } from '../utils/popper';
 import { useKeyboardHandles, useOnClickOutside } from '../utils/hooks';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
-import type { StitchesProps } from '@stitches/react';
 
 const Popper = styled('div', {
   position: 'absolute',
@@ -63,7 +62,7 @@ const animations: Record<string, Variants> = {
   },
 };
 
-interface Props extends StitchesProps<typeof PopperBox> {
+interface Props extends React.ComponentProps<typeof PopperBox> {
   triggerRef: React.RefObject<HTMLElement>;
   offset?: number;
   placement?: Options['placement'];

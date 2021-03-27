@@ -14,7 +14,7 @@ const focusRingClass = css({
 interface Props extends Omit<React.ComponentPropsWithRef<typeof SpectrumFocusRing>, 'focusRingClass' | 'focusClass'> {}
 
 const FocusRing: React.FC<Props> = (props) => {
-  return <SpectrumFocusRing focusRingClass={focusRingClass} focusClass={focusClass} {...props} />;
+  return <SpectrumFocusRing focusRingClass={`${focusRingClass}`} focusClass={`${focusClass}`} {...props} />;
 };
 
 export default FocusRing;

@@ -1,4 +1,4 @@
-import type { StylesWithVariants } from './utils/types';
+import type { CssStyles } from './utils/types';
 
 export { default as Box } from './Box';
 export { default as Button } from './Button';
@@ -28,4 +28,4 @@ export { default as VisuallyHidden } from './VisuallyHidden';
 
 export * from './utils/hooks';
 
-export interface StyleRecord extends Record<string, StylesWithVariants> {}
+export interface StyleRecord extends Record<string, CssStyles> {}

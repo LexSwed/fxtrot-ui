@@ -1,18 +1,17 @@
-import type { StitchesProps } from '@stitches/react';
 import React from 'react';
 import { HiSelector } from 'react-icons/hi';
 
-import type { FlexVariants } from '../Flex';
+import type { FlexVariants } from '../Flex/Flex';
 import { FormField, FormFieldProps, Hint, HintBox, useFormField } from '../FormField/FormField';
 import Icon from '../Icon';
 import Label from '../Label';
 import { styled } from '../stitches.config';
-import { InteractiveBox, InteractiveField, validityVariant } from '../TextField/shared';
+import { InteractiveBox, makeInteractiveBox, validityVariant } from '../TextField/shared';
 import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { usePicker } from './utils';
 
-const TriggerButton = styled(InteractiveBox as InteractiveField<'button'>, {
+const TriggerButton = styled(makeInteractiveBox('button'), {
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
@@ -24,7 +23,7 @@ const TriggerButton = styled(InteractiveBox as InteractiveField<'button'>, {
   textOverflow: 'ellipsis',
   cursor: 'default',
 
-  [`> ${Icon}`]: {
+  [`& > ${Icon}`]: {
     pl: '$1',
     size: '$5',
   },
@@ -41,7 +40,9 @@ const Placeholder = styled('div', {
   textOverflow: 'ellipsis',
 });
 
-export interface TriggerProps extends FlexVariants, Omit<StitchesProps<typeof TriggerButton>, 'as' | 'validity'> {
+export interface TriggerProps
+  extends FlexVariants,
+    Omit<React.ComponentProps<typeof TriggerButton>, 'as' | 'validity'> {
   id?: string;
   placeholder?: string;
   label?: string;
@@ -59,7 +60,7 @@ const Trigger: React.FC<TriggerProps> = ({
   cross,
   flow,
   display,
-  space,
+  gap,
   css,
   style,
   className,
@@ -91,7 +92,7 @@ const Trigger: React.FC<TriggerProps> = ({
       cross={cross}
       flow={flow}
       display={display}
-      space={space}
+      gap={gap}
       css={css}
       style={style}
       className={className}
@@ -109,7 +110,6 @@ const Trigger: React.FC<TriggerProps> = ({
           variant={variant}
           {...ariaProps}
           {...props}
-          as="button"
           onClick={handleClick}
           onKeyDown={onKeyDown}
           ref={triggerRef as any}

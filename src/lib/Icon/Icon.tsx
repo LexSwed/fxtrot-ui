@@ -1,10 +1,9 @@
-import type { StitchesProps } from '@stitches/react';
 import React from 'react';
 
 import { styled } from '../stitches.config';
-import type { StylesObject } from '../utils/types';
 
 export const IconBox = styled('svg', {
+  display: 'inline-block',
   flexShrink: 0,
   variants: {
     size: {
@@ -45,12 +44,13 @@ export const IconBox = styled('svg', {
   },
 });
 
-interface Props extends Omit<StitchesProps<typeof IconBox>, 'as'> {
+interface Props extends Omit<React.ComponentProps<typeof IconBox>, 'as'> {
   as: React.ElementType;
 }
 
 const Icon: React.FC<Props> = ({ size = 'md', stroke, fill, css, ...props }) => {
-  return <IconBox size={size} {...props} css={{ ...(css as StylesObject), stroke, fill }} />;
+  const style = stroke || fill ? ({ ...css, stroke, fill } as any) : css;
+  return <IconBox size={size} {...props} css={style} />;
 };
 
 export default Icon;

@@ -1,5 +1,4 @@
 import { styled } from '../stitches.config';
-import { font, textSize } from '../theme/variants';
 
 const Text = styled('span', {
   p: 0,
@@ -7,8 +6,49 @@ const Text = styled('span', {
   fontFamily: '$default',
   textSize: '$base',
   variants: {
-    font,
-    size: textSize,
+    font: {
+      default: {
+        font: '$default',
+      },
+      mono: {
+        font: '$mono',
+      },
+    },
+    size: {
+      'xs': {
+        textSize: '$xs',
+      },
+      'sm': {
+        textSize: '$sm',
+      },
+      'md': {
+        textSize: '$md',
+      },
+      'base': {
+        textSize: '$base',
+      },
+      'lg': {
+        textSize: '$lg',
+      },
+      'xl': {
+        textSize: '$xl',
+      },
+      '2xl': {
+        textSize: '$2xl',
+      },
+      '3xl': {
+        textSize: '$3xl',
+      },
+      '4xl': {
+        textSize: '$4xl',
+      },
+      '5xl': {
+        textSize: '$5xl',
+      },
+      '6xl': {
+        textSize: '$6xl',
+      },
+    },
     tone: {
       subtle: {
         color: '$textSubtle',

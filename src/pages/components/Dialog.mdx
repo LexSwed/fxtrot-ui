@@ -24,7 +24,7 @@ import { Dialog, Button, TextField, Flex, Box, Switch } from '@fxtrot/ui';
           >
             <TextField placeholder="Carefive" name="workspace-name" label="Workspace name" />
             <Box pb="$10" />
-            <Flex flow="row-reverse" space="sm">
+            <Flex flow="row-reverse" gap="sm">
               <Button type="submit" variant="primary">
                 Create
               </Button>
@@ -46,7 +46,7 @@ import { Dialog, Button, TextField, Flex, Box, Switch } from '@fxtrot/ui';
     const [defaultOpen, setDefaultOpen] = React.useState(false);
     return (
       <Box p="$8">
-        <Flex flow="row" cross="center" main="start" space="sm">
+        <Flex flow="row" cross="center" main="start" gap="sm">
           <Box>
             <Switch label="Default open" value={defaultOpen} onChange={setDefaultOpen} />
           </Box>
@@ -66,7 +66,7 @@ import { Dialog, Button, TextField, Flex, Box, Switch } from '@fxtrot/ui';
                   >
                     <TextField placeholder="Carefive" name="workspace-name" label="Workspace name" />
                     <Box pb="$10" />
-                    <Flex flow="row-reverse" space="sm">
+                    <Flex flow="row-reverse" gap="sm">
                       <Button type="submit" variant="primary">
                         Create
                       </Button>

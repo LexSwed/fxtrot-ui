@@ -2,7 +2,6 @@ import { FocusScope, useFocusManager } from '@react-aria/focus';
 import React, { useEffect } from 'react';
 
 import { styled } from '../stitches.config';
-import { forwardRef, PropsOf } from '../utils/types';
 import { useKeyboardHandles } from '../utils/hooks';
 
 export const List = styled('ul', {
@@ -33,13 +32,13 @@ const ListInner: React.FC<{ wrap?: boolean }> = ({ wrap, ...props }) => {
 
 ListInner.displayName = 'ListBox.Inner';
 
-export interface ListBoxProps extends PropsOf<typeof List> {
+export interface ListBoxProps extends React.ComponentProps<typeof List> {
   restoreFocus?: boolean;
   contain?: boolean;
   wrap?: boolean;
 }
 
-const ListBox = forwardRef<HTMLUListElement, ListBoxProps>(
+const ListBox = React.forwardRef<HTMLUListElement, ListBoxProps>(
   ({ children, restoreFocus, contain, wrap, ...props }, ref) => {
     if (React.Children.count(children) === 0) {
       return <List role="listbox" tabIndex={-1} {...props} as="ul" ref={ref} />;
