@@ -1,0 +1,2 @@
+#!/bin/sh
+pretty-quick --pattern \"lib/**/*.*\" --staged

@@ -1,2 +1,2 @@
 #!/bin/sh
-pretty-quick --pattern \"lib/**/*.*\" --staged && run-p lint typecheck
+run-p lint typecheck

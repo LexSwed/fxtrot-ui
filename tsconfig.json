@@ -19,7 +19,7 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@fxtrot/ui": ["src/lib"]
+      "@fxtrot/ui": ["."]
     },
     "isolatedModules": true
   },
