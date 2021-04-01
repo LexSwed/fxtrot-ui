@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
-import { HiCheck, HiOutlineCalendar, HiOutlineExclamationCircle, HiX } from 'react-icons/hi';
+import { CheckIcon, XIcon } from '@heroicons/react/solid';
+import { CalendarIcon, ExclamationCircleIcon } from '@heroicons/react/outline';
 
 import type { FlexVariants } from '../Flex/Flex';
 import { FormField, Hint, HintBox, useFormField } from '../FormField/FormField';
@@ -8,10 +9,10 @@ import Label from '../Label';
 import { InputField, IconWrapper, InputProps } from './shared';
 
 const icons: Record<string, React.ElementType> = {
-  date: HiOutlineCalendar,
-  valid: HiCheck,
-  invalid: HiOutlineExclamationCircle,
-  search: HiX,
+  date: CalendarIcon,
+  valid: CheckIcon,
+  invalid: ExclamationCircleIcon,
+  search: XIcon,
 };
 
 const inputMode: Record<NonNullable<Props['type']>, InputProps['inputMode']> = {

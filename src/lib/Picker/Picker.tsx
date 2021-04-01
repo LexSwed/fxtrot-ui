@@ -26,7 +26,6 @@ const Picker: React.FC<Props> & {
   const contextValue = useMemo(
     () => ({
       value: innerValue,
-      triggerRef,
       onChange: onChangeInner,
     }),
     [onChangeInner, innerValue]
@@ -35,7 +34,7 @@ const Picker: React.FC<Props> & {
   return (
     <OpenStateProvider>
       <PickerProvider value={contextValue}>
-        <Trigger id={triggerId} {...triggerProps}>
+        <Trigger id={triggerId} ref={triggerRef} {...triggerProps}>
           {title}
         </Trigger>
         <Popover triggerRef={triggerRef}>

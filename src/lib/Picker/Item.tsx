@@ -1,22 +1,13 @@
 import React, { useCallback, useEffect, useRef } from 'react';
-import { HiCheck } from 'react-icons/hi';
+import { CheckIcon } from '@heroicons/react/solid';
 
-import Icon from '../Icon';
+import Icon from '../Icon/Icon';
 import ListItem from '../ListItem';
 import type { ListItemProps } from '../ListItem/ListItem';
 import { focusOnMouseOver } from '../ListItem/ListItem';
-import { styled } from '../stitches.config';
 import { useAllHandlers, useForkRef } from '../utils/hooks';
 import { useOpenStateControls } from '../utils/OpenStateProvider';
 import { usePicker } from './utils';
-
-const SelectedIcon = styled(Icon, {});
-
-const Option = styled(ListItem, {
-  [` > ${SelectedIcon}`]: {
-    color: '$primaryStill',
-  },
-});
 
 export interface PickerItemProps extends Omit<ListItemProps, 'children' | 'value' | 'label'> {
   value: string;
@@ -45,7 +36,7 @@ const Item = React.forwardRef<HTMLLIElement, PickerItemProps>(({ value, label, .
   const refs = useForkRef(innerRef, ref);
 
   return (
-    <Option
+    <ListItem
       {...props}
       onMouseEnter={onMouseEnter}
       aria-selected={isSelected}
@@ -54,8 +45,8 @@ const Item = React.forwardRef<HTMLLIElement, PickerItemProps>(({ value, label, .
       ref={refs}
     >
       {label}
-      {isSelected ? <SelectedIcon as={HiCheck} size="md" /> : null}
-    </Option>
+      {isSelected ? <Icon as={CheckIcon} color="$primaryStill" size="md" /> : null}
+    </ListItem>
   );
 });
 

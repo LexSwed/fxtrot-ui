@@ -4,17 +4,18 @@ name: Icon
 
 import { Playground } from 'dokz';
 import { Icon, Box, Text, TextField, Flex, Switch, styled } from '@fxtrot/ui';
-import * as icons from 'react-icons/hi';
+import * as solidIcons from '@heroicons/react/solid';
+import * as outlineIcons from '@heroicons/react/outline';
 
 ```tsx
 import { Icon } from '@complete/core';
-import { HiBadgeCheck } from 'react-icons/hi';
+import { DotsHorizontalIcon } from '@heroicons/react/solid';
 ```
 
-export const HiBadgeCheck = icons.HiBadgeCheck;
+export const DotsHorizontalIcon = solidIcons.DotsHorizontalIcon;
 
 <Playground>
-  <Icon as={HiBadgeCheck} size="xl" />
+  <Icon as={DotsHorizontalIcon} size="xl" />
 </Playground>
 
 export const Grid = styled('div', {
@@ -26,7 +27,7 @@ export const Grid = styled('div', {
 });
 
 export const IconBox = styled(Flex, {
-  'shadow': '$base',
+  'boxShadow': '$md',
   'px': '$3',
   'py': '$5',
   'transition': '0.2s ease-in-out',
@@ -34,7 +35,7 @@ export const IconBox = styled(Flex, {
   'minWidth': 0,
   'overflow': 'hidden',
   '&:hover': {
-    shadow: '$lg',
+    boxShadow: '$lg',
   },
 });
 
@@ -46,11 +47,6 @@ export function copy(text) {
   });
 }
 
-export const sortedIcons = Object.entries(icons).reduce(
-  (res, [name, icon]) => (name.includes('Outline') ? res[1].push([name, icon]) : res[0].push([name, icon]), res),
-  [[], []]
-);
-
 export const IconsWithFilter = () => {
   const [filterText, setText] = React.useState('');
   const [isOutline, setOutline] = React.useState(false);
@@ -61,7 +57,7 @@ export const IconsWithFilter = () => {
         <Switch checked={isOutline} onChange={setOutline} label="Show outline icons" />
       </Flex>
       <Grid>
-        {sortedIcons[isOutline ? 1 : 0]
+        {Object.entries(isOutline ? outlineIcons : solidIcons)
           .filter(([name]) => name.toLowerCase().includes(filterText.toLowerCase()))
           .map(([name, icon]) => (
             <IconBox
@@ -70,9 +66,9 @@ export const IconsWithFilter = () => {
               main="center"
               key={name}
               size="md"
-              onClick={() => copy(`import { ${name} } from 'react-icons/hi'`)}
+              onClick={() => copy(`import { ${name} } from '@heroicons/react/${isOutline ? 'outline' : 'solid'}'`)}
             >
-              <Icon as={icon} stroke="$primaryStill" size="xl" />
+              <Icon as={icon} color="$gray700" size="xl" />
               <Text size="xs" ellipsis>
                 {name}
               </Text>

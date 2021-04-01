@@ -4,7 +4,8 @@ name: Menu
 
 import { Playground } from 'dokz';
 import { Box, Button, Menu, Icon, Text, ThemeProvider, Dialog } from '@fxtrot/ui';
-import { HiChevronDown, HiOutlineTrash } from 'react-icons/hi';
+import { ChevronDownIcon } from '@heroicons/react/solid';
+import { TrashIcon } from '@heroicons/react/outline';
 
 ## Menu
 
@@ -15,7 +16,7 @@ For big lists use `action` prop on `Menu.Item` and `onAction` callback to handle
     <Menu onAction={typeof window !== 'undefined' ? window.alert : null}>
       <Menu.Button>
         <span>Open menu</span>
-        <Icon as={HiChevronDown} size="lg" />
+        <Icon as={ChevronDownIcon} size="lg" />
       </Menu.Button>
       <Menu.List>
         <Menu.Item action="copy">
@@ -27,7 +28,7 @@ For big lists use `action` prop on `Menu.Item` and `onAction` callback to handle
           Cut
         </Menu.Item>
         <Menu.Item action="delete" css={{ color: '$danger' }}>
-          <Icon as={HiOutlineTrash} color="$danger" />
+          <Icon as={TrashIcon} color="$danger" />
           Delete
         </Menu.Item>
       </Menu.List>
@@ -43,7 +44,7 @@ You can modify `offset` and [`placement`](https://popper.js.org/docs/v2/construc
       <Menu>
         <Menu.Button>
           <span>Open menu</span>
-          <Icon as={HiChevronDown} size="lg" />
+          <Icon as={ChevronDownIcon} size="lg" />
         </Menu.Button>
         <Menu.List offset={0} placement="right-start">
           {Array(20)
@@ -69,12 +70,12 @@ You can modify `offset` and [`placement`](https://popper.js.org/docs/v2/construc
   <Box p="$8">
     <Menu>
       <Menu.Button variant="outline">
-        <Icon as={HiChevronDown} size="lg" />
+        <Icon as={ChevronDownIcon} size="lg" />
       </Menu.Button>
       <Menu.List>
         <Dialog>
           <Dialog.Trigger as={Menu.Item} css={{ color: '$danger' }} display="flex" variant="transparent">
-            <Icon size="md" as={HiOutlineTrash} />
+            <Icon size="md" as={TrashIcon} />
             <span>Delete</span>
           </Dialog.Trigger>
           {(close) => (

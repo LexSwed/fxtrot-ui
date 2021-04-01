@@ -48,8 +48,8 @@ interface Props extends Omit<React.ComponentProps<typeof IconBox>, 'as'> {
   as: React.ElementType;
 }
 
-const Icon: React.FC<Props> = ({ size = 'md', stroke, fill, css, ...props }) => {
-  const style = stroke || fill ? ({ ...css, stroke, fill } as any) : css;
+const Icon: React.FC<Props> = ({ size = 'md', color, css, ...props }) => {
+  const style = color ? ({ ...css, color } as any) : css;
   return <IconBox size={size} {...props} css={style} />;
 };
 

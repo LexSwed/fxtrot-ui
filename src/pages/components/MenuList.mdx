@@ -4,7 +4,7 @@ name: MenuList
 
 import { Playground } from 'dokz';
 import { Box, MenuList, ListItem, Icon, Text, Section, ThemeProvider } from '@fxtrot/ui';
-import { HiOutlineUsers, HiOutlineAdjustments, HiOutlineGlobe } from 'react-icons/hi';
+import { UsersIcon, AdjustmentsIcon, GlobeIcon } from '@heroicons/react/outline';
 
 ## MenuList
 
@@ -17,15 +17,15 @@ import { HiOutlineUsers, HiOutlineAdjustments, HiOutlineGlobe } from 'react-icon
           <Section title="Settings">
             {[
               {
-                icon: HiOutlineUsers,
+                icon: UsersIcon,
                 label: 'Profiles',
               },
               {
-                icon: HiOutlineAdjustments,
+                icon: AdjustmentsIcon,
                 label: 'Appearance',
               },
               {
-                icon: HiOutlineGlobe,
+                icon: GlobeIcon,
                 label: 'Language',
               },
             ].map(({ icon, label }) => (
@@ -48,15 +48,15 @@ import { HiOutlineUsers, HiOutlineAdjustments, HiOutlineGlobe } from 'react-icon
         <Section title="Settings">
           {[
             {
-              icon: HiOutlineUsers,
+              icon: UsersIcon,
               label: 'Profiles',
             },
             {
-              icon: HiOutlineAdjustments,
+              icon: AdjustmentsIcon,
               label: 'Appearance',
             },
             {
-              icon: HiOutlineGlobe,
+              icon: GlobeIcon,
               label: 'Language',
               selected: true,
             },

@@ -1,7 +1,7 @@
 import { FocusScope } from '@react-aria/focus';
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useMemo, useRef } from 'react';
-import { HiOutlineX } from 'react-icons/hi';
+import { XIcon } from '@heroicons/react/outline';
 import { useUIDSeed } from 'react-uid';
 
 import Button from '../Button';
@@ -84,7 +84,7 @@ export const ModalWindow: React.FC<ModalProps> = ({ children, ...props }) => {
       {children}
       <CloseButtonContainer>
         <Button variant="flat" onClick={close} aria-label="Dismiss">
-          <Icon as={HiOutlineX} />
+          <Icon as={XIcon} />
         </Button>
       </CloseButtonContainer>
     </DialogWindow>

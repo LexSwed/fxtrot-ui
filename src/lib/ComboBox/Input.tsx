@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { HiSelector } from 'react-icons/hi';
+import { SelectorIcon } from '@heroicons/react/solid';
 
 import Button from '../Button';
 import Flex, { FlexVariants } from '../Flex/Flex';
@@ -169,7 +169,7 @@ const ComboBoxButton = React.memo(
           }}
           size="xs"
         >
-          <Icon as={HiSelector} />
+          <Icon as={SelectorIcon} />
         </Button>
       </ButtonContainer>
     );

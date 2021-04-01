@@ -1,11 +1,9 @@
 import React from 'react';
-import { HiOutlineExternalLink } from 'react-icons/hi';
+import { ExternalLinkIcon } from '@heroicons/react/outline';
 
-import Icon from '../Icon';
+import Icon, { IconBox } from '../Icon/Icon';
 import { styled } from '../stitches.config';
 import Text from '../Text/Text';
-
-const ExternalIcon = styled(Icon, {});
 
 const Link = styled(Text, {
   'display': 'inline-flex',
@@ -28,7 +26,7 @@ const Link = styled(Text, {
     },
   },
 
-  [`& ${ExternalIcon}`]: {
+  [`& ${IconBox}`]: {
     'display': 'inline-block',
     'ml': '$1',
     '& path': {
@@ -47,7 +45,7 @@ const TextLink = React.forwardRef<HTMLAnchorElement, Props>(({ external, childre
   return (
     <Link {...additionalProps} {...props} as="a" ref={ref as any}>
       {children}
-      {external === 'icon' ? <ExternalIcon size="md" as={HiOutlineExternalLink} /> : null}
+      {external === 'icon' ? <Icon size="md" as={ExternalLinkIcon} /> : null}
     </Link>
   );
 });

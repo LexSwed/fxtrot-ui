@@ -1,5 +1,5 @@
 import React from 'react';
-import { HiCheck } from 'react-icons/hi';
+import { CheckIcon } from '@heroicons/react/solid';
 
 import Icon, { IconBox } from '../Icon/Icon';
 import ListItem from '../ListItem';
@@ -46,7 +46,7 @@ const Item = React.forwardRef<HTMLLIElement, Props>(
         ref={propRef}
       >
         {label}
-        {isSelected ? <Icon as={HiCheck} size="md" /> : null}
+        {isSelected ? <Icon as={CheckIcon} size="md" /> : null}
       </Option>
     );
   }

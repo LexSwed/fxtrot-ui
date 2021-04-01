@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { HiCheck } from 'react-icons/hi';
+import { CheckIcon } from '@heroicons/react/outline';
 
 import Box from '../Box';
 import type { FlexVariants } from '../Flex/Flex';
@@ -149,7 +149,7 @@ const Checkbox: React.FC<FormFieldProps & InputProps> = ({
           onChange={handleChange}
         />
         <CheckMark>
-          <Icon as={HiCheck} />
+          <Icon as={CheckIcon} />
         </CheckMark>
       </CheckboxWrapper>
       {label && <Label label={label} secondary={secondaryLabel} disabled={disabled} as="span" />}
