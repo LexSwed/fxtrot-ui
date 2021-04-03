@@ -18,10 +18,10 @@
     "importHelpers": true,
     "jsx": "preserve",
     "baseUrl": ".",
+    "isolatedModules": true,
     "paths": {
-      "@fxtrot/ui": ["."]
-    },
-    "isolatedModules": true
+      "@fxtrot/ui": ["src/lib"]
+    }
   },
   "include": ["next-env.d.ts", "src/**/*"],
   "exclude": ["node_modules"]

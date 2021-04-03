@@ -1,4 +1,4 @@
-import type { StitchesVariants, StitchesExtractVariantsStyles } from '@stitches/core';
+import type { StitchesVariants } from '@stitches/core';
 
 import { styled } from '../stitches.config';
 import { gaps } from '../theme/variants';

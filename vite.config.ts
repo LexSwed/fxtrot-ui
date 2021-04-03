@@ -1,5 +1,6 @@
 import path from 'path';
 import { defineConfig } from 'vite';
+import tsConfigLib from './tsconfig.lib.json';
 
 export default defineConfig({
   build: {
@@ -18,13 +19,6 @@ export default defineConfig({
     },
   },
   esbuild: {
-    tsconfigRaw: {
-      compilerOptions: {
-        module: 'esnext',
-        target: 'esnext',
-        declaration: true,
-        strictFunctionTypes: true,
-      } as any,
-    },
+    tsconfigRaw: tsConfigLib as any,
   },
 });
