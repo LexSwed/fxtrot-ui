@@ -16,7 +16,7 @@ const ButtonRoot = styled('button', {
   'flexShrink': 0,
 
   'variants': {
-    ...flexVariants.variants,
+    ...flexVariants,
     size: {
       xs: {
         height: '$6',
@@ -152,7 +152,8 @@ const ButtonRoot = styled('button', {
     pointerEvents: 'none',
   },
   'defaultVariants': {
-    ...flexVariants.defaultVariants,
+    display: 'inline',
+    wrap: 'nowrap',
     cross: 'center',
     main: 'center',
     flow: 'row',

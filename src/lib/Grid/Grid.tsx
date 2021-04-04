@@ -1,10 +1,9 @@
 import React from 'react';
 
 import Box from '../Box/Box';
-import { gaps } from '../theme/variants';
+import { gaps, flexMainAxisAlignment, flexCrossAxisAlignment } from '../utils/variants';
 import { styled } from '../stitches.config';
 import type { CssStyles } from '../utils/types';
-import { flexMainAxisAlignment, flexCrossAxisAlignment } from '../Flex/Flex';
 
 const GridStyled = styled(Box, {
   variants: {

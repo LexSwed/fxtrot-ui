@@ -30,7 +30,13 @@ const Secondary = styled(Text, {
 export const LabelWrapper = styled('label', {
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
-  ...flexVariants,
+  variants: flexVariants,
+  defaultVariants: {
+    gap: 'none',
+    display: 'flex',
+    flow: 'column',
+    wrap: 'nowrap',
+  },
 });
 
 interface Props extends React.ComponentProps<typeof LabelWrapper> {

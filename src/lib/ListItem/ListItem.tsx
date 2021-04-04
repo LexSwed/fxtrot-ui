@@ -29,14 +29,20 @@ const Item = styled('li', {
   },
 
   'variants': {
-    ...flexVariants.variants,
+    ...flexVariants,
     isFocused: {
       true: {
         bc: '$flatHover',
       },
     },
   },
-  'defaultVariants': flexVariants.defaultVariants,
+  'defaultVariants': {
+    gap: '2',
+    display: 'flex',
+    flow: 'row',
+    cross: 'center',
+    wrap: 'nowrap',
+  },
 });
 
 export interface ListItemProps extends React.ComponentProps<typeof Item> {
@@ -44,29 +50,24 @@ export interface ListItemProps extends React.ComponentProps<typeof Item> {
   as?: keyof JSX.IntrinsicElements;
 }
 
-const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
-  ({ flow = 'row', cross = 'center', gap = '2', disabled, ...props }, ref) => {
-    const onKeyDown = useKeyboardHandles({
-      'Enter': (e) => e.currentTarget.click?.(),
-      ' ': (e) => e.currentTarget.click?.(),
-    });
-    const handleKeyDown = useAllHandlers(props.onKeyDown, onKeyDown);
+const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(({ disabled, ...props }, ref) => {
+  const onKeyDown = useKeyboardHandles({
+    'Enter': (e) => e.currentTarget.click?.(),
+    ' ': (e) => e.currentTarget.click?.(),
+  });
+  const handleKeyDown = useAllHandlers(props.onKeyDown, onKeyDown);
 
-    return (
-      <Item
-        role="option"
-        tabIndex={disabled ? undefined : -1}
-        flow={flow}
-        cross={cross}
-        gap={gap}
-        {...props}
-        aria-disabled={disabled}
-        ref={ref}
-        onKeyDown={handleKeyDown}
-      />
-    );
-  }
-);
+  return (
+    <Item
+      role="option"
+      tabIndex={disabled ? undefined : -1}
+      {...props}
+      aria-disabled={disabled}
+      ref={ref}
+      onKeyDown={handleKeyDown}
+    />
+  );
+});
 
 ListItem.displayName = 'ListItem';
 
