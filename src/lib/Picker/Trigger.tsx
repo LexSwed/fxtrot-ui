@@ -6,12 +6,14 @@ import { FormField, FormFieldProps, Hint, HintBox, useFormField } from '../FormF
 import Icon from '../Icon';
 import Label from '../Label';
 import { styled } from '../stitches.config';
-import { makeInteractiveBox, validityVariant } from '../TextField/shared';
+import { InteractiveBox, validityVariant } from '../TextField/shared';
 import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { usePicker } from './utils';
+import type { StitchesVariants } from '@stitches/core';
+import type { CssStyles } from '../utils/types';
 
-const TriggerButton = styled(makeInteractiveBox('button'), {
+const TriggerButton = styled(InteractiveBox, {
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
@@ -42,7 +44,8 @@ const Placeholder = styled('div', {
 
 export interface TriggerProps
   extends FlexVariants,
-    Omit<React.ComponentProps<typeof TriggerButton>, 'as' | 'validity'> {
+    StitchesVariants<typeof TriggerButton>,
+    Omit<React.ComponentProps<'button'>, 'validity' | 'type' | 'value'> {
   id?: string;
   placeholder?: string;
   label?: string;
@@ -50,6 +53,7 @@ export interface TriggerProps
   hint?: string;
   disabled?: boolean;
   validity?: FormFieldProps['validity'];
+  css?: CssStyles;
 }
 
 const Trigger = React.forwardRef<HTMLButtonElement, TriggerProps>(
@@ -118,6 +122,7 @@ const Trigger = React.forwardRef<HTMLButtonElement, TriggerProps>(
             onKeyDown={onKeyDown}
             ref={ref}
             value={value}
+            as="button"
             type="button"
           >
             {children || <Placeholder>{placeholder}</Placeholder>}

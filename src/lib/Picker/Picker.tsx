@@ -34,7 +34,7 @@ const Picker: React.FC<Props> & {
   return (
     <OpenStateProvider>
       <PickerProvider value={contextValue}>
-        <Trigger id={triggerId} ref={triggerRef} {...triggerProps}>
+        <Trigger id={triggerId} ref={triggerRef as any} {...triggerProps}>
           {title}
         </Trigger>
         <Popover triggerRef={triggerRef}>
