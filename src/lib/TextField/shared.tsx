@@ -1,4 +1,3 @@
-import type { StitchesVariants } from '@stitches/react';
 import React from 'react';
 
 import { styled } from '../stitches.config';
@@ -64,19 +63,18 @@ export const InteractiveBox = styled('input', {
           boxShadow: '0 0 0 1px $borderActive inset',
         },
       },
-      // TODO: replace CSS vars when stitches is fixed
       underlined: {
         'borderRadius': '$md $md 0 0',
-        'backgroundImage': 'linear-gradient(to top,  var(--colors-borderStill) 2px, var(--colors-surfaceStill) 2px)',
+        'backgroundImage': 'linear-gradient(to top, $colors$borderStill 2px, $colors$surfaceStill 2px)',
         'backgroundSize': '100% calc(100% + 4px)',
         'backgroundPosition': '0 calc(100% + 2px)',
         '&:hover': {
           backgroundPosition: '0 calc(100% + 2px)',
-          backgroundImage: 'linear-gradient(to top, var(--colors-primaryHover) 2px, var(--colors-surfaceStill) 2px)',
+          backgroundImage: 'linear-gradient(to top, $colors$primaryHover 2px, $colors$surfaceStill 2px)',
         },
         '&:focus, &[aria-expanded="true"]': {
           backgroundPosition: '0 calc(100% + 1px)',
-          backgroundImage: 'linear-gradient(to top,  var(--colors-primaryActive) 2px, var(--colors-surfaceStill) 2px)',
+          backgroundImage: 'linear-gradient(to top,  $colors$primaryActive 2px, $colors$surfaceStill 2px)',
         },
         '&:disabled': {
           backgroundImage: 'none',
@@ -114,6 +112,18 @@ export const InteractiveBox = styled('input', {
         py: '$1',
       },
     },
+    validity: {
+      valid: {
+        [`& ~ ${IconWrapper}`]: {
+          color: '$success',
+        },
+      },
+      invalid: {
+        [`& ~ ${IconWrapper}`]: {
+          color: '$danger',
+        },
+      },
+    },
   },
 
   '&[readonly]': {
@@ -121,29 +131,49 @@ export const InteractiveBox = styled('input', {
     bc: '$surfaceHover',
     color: '$textLight',
   },
-});
 
-export const validityVariant: Record<string, CssStyles> = {
-  valid: {
-    [`& ${IconWrapper}`]: {
-      color: '$success',
-    },
-  },
-  invalid: {
-    [`& ${IconWrapper}`]: {
-      color: '$danger',
-    },
-    [`&${InteractiveBox}`]: {
-      'borderColor': '$danger',
-      '&:hover': {
-        borderColor: '$red700',
-      },
-      '&:focus': {
-        borderColor: '$borderDefault',
+  'compoundVariants': [
+    {
+      variant: 'boxed',
+      validity: 'invalid',
+      css: {
+        'borderColor': '$danger',
+        '&:hover': {
+          borderColor: '$red700',
+        },
+        '&:focus': {
+          borderColor: '$borderDefault',
+        },
       },
     },
-  },
-};
+    {
+      variant: 'underlined',
+      validity: 'invalid',
+      css: {
+        'backgroundImage': 'linear-gradient(to top, $colors$danger 2px, $colors$surfaceStill 2px)',
+        '&:hover': {
+          backgroundImage: 'linear-gradient(to top, $colors$red700 2px, $colors$surfaceStill 2px)',
+        },
+        '&:focus': {
+          backgroundImage: 'linear-gradient(to top, $colors$red700 2px, $colors$surfaceStill 2px)',
+        },
+      },
+    },
+    {
+      variant: 'transparent',
+      validity: 'invalid',
+      css: {
+        'borderBottomColor': '$danger',
+        '&:hover': {
+          borderBottomColor: '$red700',
+        },
+        '&:focus': {
+          borderBottomColor: '$borderDefault',
+        },
+      },
+    },
+  ],
+});
 
 const Input = styled(InteractiveBox, {
   //  throws warnings that inner-spin-button is not standartized
@@ -178,19 +208,15 @@ const Input = styled(InteractiveBox, {
 const InputWrapper = styled('div', {
   position: 'relative',
   width: '100%',
-
-  variants: {
-    validity: validityVariant,
-  },
 });
 
-export interface InputProps extends StitchesVariants<typeof InputWrapper>, React.ComponentProps<typeof Input> {
+export interface InputProps extends React.ComponentProps<typeof Input> {
   inputRef?: React.Ref<HTMLInputElement>;
 }
 
 export const InputField: React.FC<InputProps> = ({ validity, inputRef, children, ...props }) => (
-  <InputWrapper validity={validity}>
-    <Input {...props} ref={inputRef} />
+  <InputWrapper>
+    <Input {...props} ref={inputRef} validity={validity} />
     {children}
   </InputWrapper>
 );

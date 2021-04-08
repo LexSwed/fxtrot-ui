@@ -7,7 +7,7 @@ export default function App(props: AppProps) {
   const { Component, pageProps } = props;
 
   return (
-    <ChakraProvider resetCSS>
+    <ChakraProvider>
       <DokzProvider
         headerItems={[<GithubLink key="0" url="https://github.com/LexSwed/fxtrot-ui" />]}
         sidebarOrdering={{
@@ -15,7 +15,7 @@ export default function App(props: AppProps) {
         }}
         docsRootPath="pages"
         githubUrl="LexSwed/fxtrot-ui"
-        branch="master"
+        branch="main"
         headerLogo="Fxtrot UI"
       >
         <Component {...pageProps} />

@@ -1,6 +1,6 @@
 import NextDocument, { Head, Html, Main, NextScript } from 'next/document';
 import React from 'react';
-import { stitchesConfig } from 'src/lib/stitches.config';
+import { stitchesConfig } from '@fxtrot/ui';
 
 export default class Document extends NextDocument {
   render() {

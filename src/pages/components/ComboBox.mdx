@@ -72,6 +72,8 @@ Supports same `variant`s as `TextField` component.
             label="Item index"
             variant="underlined"
             placeholder="1 number"
+            value={value}
+            onChange={setValue}
             validity={Number(value) > 10 ? 'valid' : 'invalid'}
           >
             {Array(20)

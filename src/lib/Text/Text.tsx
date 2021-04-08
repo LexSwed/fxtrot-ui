@@ -3,15 +3,13 @@ import { styled } from '../stitches.config';
 const Text = styled('span', {
   p: 0,
   m: 0,
-  fontFamily: '$default',
-  textSize: '$base',
   variants: {
     font: {
       default: {
-        font: '$default',
+        fontFamily: '$default',
       },
       mono: {
-        font: '$mono',
+        fontFamily: '$mono',
       },
     },
     size: {
@@ -47,6 +45,15 @@ const Text = styled('span', {
       },
       '6xl': {
         textSize: '$6xl',
+      },
+      '7xl': {
+        textSize: '$7xl',
+      },
+      '8xl': {
+        textSize: '$8xl',
+      },
+      '9xl': {
+        textSize: '$9xl',
       },
     },
     tone: {
@@ -85,6 +92,9 @@ const Text = styled('span', {
         textOverflow: 'ellipsis',
       },
     },
+  },
+  defaultVariants: {
+    font: 'default',
   },
 });
 

@@ -17,7 +17,6 @@ export { default as Picker } from './Picker';
 export { default as Section } from './Section';
 export { default as Popover } from './Popover';
 export { default as Spinner } from './Spinner';
-export { css, styled, theme } from './stitches.config';
 export { default as Switch } from './Switch';
 export { default as Tag } from './Tag';
 export { default as Text } from './Text';
@@ -26,6 +25,8 @@ export { default as TextLink } from './TextLink';
 export { default as ThemeProvider } from './ThemeProvider';
 export { default as VisuallyHidden } from './VisuallyHidden';
 
+export * from './stitches.config';
 export * from './utils/hooks';
 
+export type { CssStyles } from './utils/types';
 export interface StyleRecord extends Record<string, CssStyles> {}

@@ -6,7 +6,7 @@ import { FormField, FormFieldProps, Hint, HintBox, useFormField } from '../FormF
 import Icon from '../Icon';
 import Label from '../Label';
 import { styled } from '../stitches.config';
-import { InteractiveBox, validityVariant } from '../TextField/shared';
+import { InteractiveBox } from '../TextField/shared';
 import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { usePicker } from './utils';
@@ -14,24 +14,24 @@ import type { StitchesVariants } from '@stitches/core';
 import type { CssStyles } from '../utils/types';
 
 const TriggerButton = styled(InteractiveBox, {
-  position: 'relative',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  pr: '$2',
-  minWidth: 0,
-  overflow: 'hidden',
-  whiteSpace: 'nowrap',
-  textOverflow: 'ellipsis',
-  cursor: 'default',
+  'position': 'relative',
+  'display': 'flex',
+  'alignItems': 'center',
+  'justifyContent': 'space-between',
+  'pr': '$2',
+  'minWidth': 0,
+  'overflow': 'hidden',
+  'whiteSpace': 'nowrap',
+  'textOverflow': 'ellipsis',
+  'cursor': 'default',
+
+  '&:not(:only-child)': {
+    pr: '$2',
+  },
 
   [`& > ${Icon}`]: {
     pl: '$1',
     size: '$5',
-  },
-
-  variants: {
-    validity: validityVariant,
   },
 });
 

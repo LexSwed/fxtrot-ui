@@ -1,13 +1,15 @@
 import React from 'react';
 
 import Box from '../Box/Box';
-import { gaps, flexMainAxisAlignment, flexCrossAxisAlignment } from '../utils/variants';
+import { gaps, flexMainAxisAlignment, flexCrossAxisAlignment, createGaps } from '../utils/variants';
 import { styled } from '../stitches.config';
 import type { CssStyles } from '../utils/types';
 
 const GridStyled = styled(Box, {
   variants: {
     gap: gaps,
+    rowGap: createGaps('rowGap'),
+    columnGap: createGaps('columnGap'),
     display: {
       grid: {
         display: 'grid',
@@ -26,8 +28,8 @@ const GridStyled = styled(Box, {
 });
 
 interface Props extends React.ComponentProps<typeof GridStyled> {
-  columns: CssStyles['gridTemplateColumns'];
-  rows: CssStyles['gridTemplateRows'];
+  columns?: CssStyles['gridTemplateColumns'];
+  rows?: CssStyles['gridTemplateRows'];
 }
 
 const Grid = React.forwardRef<HTMLDivElement, Props>(({ columns, rows, ...props }, ref) => {

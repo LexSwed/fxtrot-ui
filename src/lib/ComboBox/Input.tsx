@@ -124,6 +124,7 @@ const ComboBoxInput: React.FC<Props> = ({
           type="text"
           variant={variant}
           css={hasNewBadge ? inputStyle : undefined}
+          validity={validity}
           inputRef={refs}
         >
           <ComboBoxButton hasNewBadge={hasNewBadge} inputRef={innerRef} />
