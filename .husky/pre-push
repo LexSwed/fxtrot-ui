@@ -1,2 +1,2 @@
 #!/bin/sh
-run-p lint typecheck
+yarn typecheck

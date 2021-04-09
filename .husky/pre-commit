@@ -1,2 +1,2 @@
 #!/bin/sh
-pretty-quick --pattern \"lib/**/*.*\" --staged
+yarn lint && yarn pretty-quick --pattern \"lib/**/*.*\" --staged
