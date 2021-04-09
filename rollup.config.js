@@ -8,6 +8,7 @@ function createConfig(output) {
     plugins: [
       esbuild({
         tsconfig: 'tsconfig.lib.json',
+        target: 'node12',
         minify: true,
       }),
     ],
