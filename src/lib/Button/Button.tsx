@@ -56,6 +56,9 @@ const ButtonRoot = styled('button', {
           borderColor: '$primaryActive',
           bc: '$primaryActive',
         },
+        '&:focus': {
+          borderColor: '$primaryActive',
+        },
         '&:disabled': {
           color: '$textDisabled',
           borderColor: '$surfaceDisabled',
@@ -75,9 +78,12 @@ const ButtonRoot = styled('button', {
           borderColor: '$surfaceDisabled',
           bc: '$surfaceDisabled',
         },
-        '&:active, &:focus': {
+        '&:active': {
           borderColor: '$borderActive',
           bc: '$surfaceActive',
+        },
+        '&:focus': {
+          borderColor: '$borderActive',
         },
       },
       outline: {
@@ -92,6 +98,9 @@ const ButtonRoot = styled('button', {
         '&:active': {
           bc: '$primaryLightActive',
           color: '$primaryActive',
+          borderColor: '$primaryActive',
+        },
+        '&:focus': {
           borderColor: '$primaryActive',
         },
         '&:disabled': {

@@ -19,14 +19,13 @@ const CheckMark = styled('div', {
   border: '1px solid $borderStill',
   size: '$5',
   position: 'relative',
-  transition: '0.24s ease-in-out',
+  transition: '0.14s ease-in-out',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
 
   [`& > ${IconBox}`]: {
-    transition: '0.14s ease-in-out',
-    size: '$4',
+    transition: 'opacity 0.14s ease-in-out',
     opacity: 0,
   },
 });
@@ -46,9 +45,11 @@ const Input = styled('input', {
   opacity: 0,
   zIndex: 1,
   cursor: 'default',
-  transition: '0.24s ease-in-out',
+  transitionProperty: 'background-color, borderColor, color',
+  transitionDuration: '0.24s',
+  transitionTimingFunction: 'ease-in-out',
 
-  [`&:hover:not(:checked) + ${CheckMark}`]: {
+  [`&:hover + ${CheckMark}`]: {
     borderColor: '$borderHover',
     [`& ${IconBox}`]: {
       opacity: 0.7,
@@ -58,9 +59,9 @@ const Input = styled('input', {
   [`&:checked + ${CheckMark}`]: {
     borderColor: '$primaryStill',
     bc: '$primaryStill',
+    color: '#fff',
     [`& ${IconBox}`]: {
       opacity: 1,
-      fill: '#fff',
     },
   },
   [`&:checked:hover + ${CheckMark}`]: {
@@ -68,13 +69,12 @@ const Input = styled('input', {
     bc: '$primaryHover',
     [`& ${IconBox}`]: {
       opacity: 1,
-      fill: '#fff',
     },
   },
 
   [`&:focus[${attribute}] + ${CheckMark}`]: {
-    borderColor: '$borderActive',
-    boxShadow: '0 0 0 1px $borderActive',
+    borderColor: '$primaryActive',
+    boxShadow: '0 0 0 2px $colors$focusRing',
   },
 
   [`&:focus[${attribute}]:checked + ${CheckMark}`]: {
@@ -85,7 +85,7 @@ const Input = styled('input', {
     },
   },
 
-  [`&:disabled + ${CheckMark}`]: {
+  [`&:disabled + ${CheckMark}, &:disabled:checked + ${CheckMark}`]: {
     borderColor: '$surfaceDisabled',
     bc: '$surfaceDisabled',
     [`& > ${IconBox}`]: {
@@ -94,9 +94,9 @@ const Input = styled('input', {
   },
 
   [`&:disabled:checked + ${CheckMark}`]: {
+    color: '$textDisabled',
     [`& > ${IconBox}`]: {
       opacity: 1,
-      fill: '$textDisabled',
     },
   },
 });

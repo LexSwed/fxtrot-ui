@@ -9,6 +9,7 @@ const Main = styled(Text, {
   fontWeight: 500,
   flexShrink: 0,
   cursor: 'default',
+  userSelect: 'none',
 
   variants: {
     disabled: {

@@ -128,6 +128,7 @@ export function createNewTheme({ shade, primary, accent }: ShortDefinition): Swa
       accentLight: allColors[`${accent}500` as keyof typeof allColors],
       success: allColors['green700'],
       danger: allColors['red600'],
+      focusRing: allColors[`${primary}200` as keyof typeof allColors],
 
       primaryStill: allColors[`${primary}500` as keyof typeof allColors],
       primaryHover: allColors[`${primary}600` as keyof typeof allColors],
@@ -188,6 +189,7 @@ export interface Swatch {
     accentLight: string;
     success: string;
     danger: string;
+    focusRing: string;
 
     primaryStill: string;
     primaryHover: string;
