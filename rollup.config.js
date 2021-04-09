@@ -1,17 +1,10 @@
-import path from 'path';
 import esbuild from 'rollup-plugin-esbuild';
-
-const { root } = path.parse(process.cwd());
-
-function external(id) {
-  return !id.startsWith('.') && !id.startsWith(root);
-}
 
 function createConfig(output) {
   return {
     input: 'src/lib/index.ts',
     output,
-    external,
+    external: ['react', 'react-dom', '@heroicons/react'],
     plugins: [
       esbuild({
         tsconfig: 'tsconfig.lib.json',

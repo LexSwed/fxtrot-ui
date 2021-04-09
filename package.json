@@ -4,20 +4,20 @@
   "license": "Apache-2.0",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
+  "source": "./src/lib/index.ts",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.esm.js",
       "require": "./dist/index.js"
     }
   },
+  "sideEffects": false,
   "files": [
     "dist",
     "src/lib"
   ],
   "version": "0.0.1",
-  "source": "src/lib/index.ts",
-  "types": "dist/index.d.ts",
-  "sideEffects": false,
   "engines": {
     "node": ">=12"
   },
