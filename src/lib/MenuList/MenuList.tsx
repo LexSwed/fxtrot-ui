@@ -1,8 +1,11 @@
-import { getFocusableTreeWalker } from '@react-aria/focus';
-import React, { useCallback, useRef } from 'react';
+import React from 'react';
+import { FocusScope, useFocusManager } from '@react-aria/focus';
+import type * as Polymorphic from '@radix-ui/react-polymorphic';
+
+import { ListBoxContext } from '../ListBox/ListBoxContext';
 
 import { styled } from '../stitches.config';
-import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
+import { useKeyboardHandles } from '../utils/hooks';
 import Item from './Item';
 
 const List = styled('ul', {
@@ -11,35 +14,29 @@ const List = styled('ul', {
   $outline: -1,
 });
 
-const MenuList: React.FC<React.ComponentProps<typeof List>> & { Item: typeof Item } = (props) => {
-  const ref = useRef<HTMLUListElement>(null);
+interface Props extends React.ComponentProps<typeof List> {}
 
-  const focusElement = useCallback((fn: (walker: TreeWalker) => Node | null) => {
-    let focusedElement = document.activeElement as HTMLElement;
-    if (!ref.current?.contains(focusedElement)) {
-      return;
-    }
+const ListInner: MenuListComponent = React.forwardRef((props, ref) => {
+  const { focusNext, focusPrevious } = useFocusManager();
 
-    // Create a DOM tree walker that matches all tabbable elements
-    let walker = getFocusableTreeWalker(document.body);
-
-    // Find the next tabbable element after the currently focused element
-    walker.currentNode = focusedElement;
-    let nextElement = fn(walker) as HTMLElement;
-    if (ref.current.contains(nextElement)) {
-      nextElement.focus();
-    }
-  }, []);
-
-  const handleNavigation = useKeyboardHandles({
-    ArrowUp: () => focusElement((walker) => walker.previousNode()),
-    ArrowDown: () => focusElement((walker) => walker.nextNode()),
+  const handleKeyDown = useKeyboardHandles({
+    ArrowDown: () => focusNext(),
+    ArrowUp: () => focusPrevious(),
   });
-  const handleHeyDown = useAllHandlers(props.onKeyDown, handleNavigation);
 
-  return <List {...props} onKeyDown={handleHeyDown} ref={ref} />;
-};
+  return <List onKeyDown={handleKeyDown} {...props} ref={ref} />;
+});
 
-MenuList.Item = Item;
+const MenuList: MenuListComponent = React.forwardRef((props, ref) => {
+  return (
+    <ListBoxContext ListItem={Item}>
+      <FocusScope>
+        <ListInner {...props} ref={ref} />
+      </FocusScope>
+    </ListBoxContext>
+  );
+});
+
+type MenuListComponent = Polymorphic.ForwardRefComponent<'div', Props>;
 
 export default MenuList;

@@ -1,11 +1,15 @@
 import React from 'react';
+import type * as Polymorphic from '@radix-ui/react-polymorphic';
 
 import { styled } from '../stitches.config';
 import Text from '../Text';
 import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
 import { flexVariants } from '../Flex/Flex';
+import type { StitchesVariants } from '@stitches/core';
+import type { CssStyles } from '../utils/types';
+import { useListBoxContext } from '../ListBox/ListBoxContext';
 
-const Item = styled('li', {
+export const StyledItem = styled('div', {
   'px': '$3',
   'fontSize': '$sm',
   'lineHeight': 1,
@@ -27,14 +31,12 @@ const Item = styled('li', {
     fontSize: 'inherit',
     lineHeight: 'inherit',
   },
+  '&[data-focused="true"]': {
+    bc: '$flatHover',
+  },
 
   'variants': {
     ...flexVariants,
-    isFocused: {
-      true: {
-        bc: '$flatHover',
-      },
-    },
   },
   'defaultVariants': {
     gap: '2',
@@ -45,12 +47,15 @@ const Item = styled('li', {
   },
 });
 
-export interface ListItemProps extends React.ComponentProps<typeof Item> {
+interface OwnProps extends StitchesVariants<typeof StyledItem> {
+  label: string;
+  value?: string;
   disabled?: boolean;
-  as?: keyof JSX.IntrinsicElements;
+  css?: CssStyles;
 }
 
-const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(({ disabled, ...props }, ref) => {
+const Item = React.forwardRef((props: React.ComponentProps<ItemComponent>, ref) => {
+  const { ListItem } = useListBoxContext();
   const onKeyDown = useKeyboardHandles({
     'Enter': (e) => e.currentTarget.click?.(),
     ' ': (e) => e.currentTarget.click?.(),
@@ -58,22 +63,25 @@ const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(({ disabled, ...
   const handleKeyDown = useAllHandlers(props.onKeyDown, onKeyDown);
 
   return (
-    <Item
+    <ListItem
       role="option"
-      tabIndex={disabled ? undefined : -1}
+      disabled={props.disabled}
       {...props}
-      aria-disabled={disabled}
-      ref={ref}
+      tabIndex={props.disabled ? undefined : -1}
+      aria-disabled={props.disabled}
+      ref={ref as any}
       onKeyDown={handleKeyDown}
     />
   );
-});
+}) as ItemComponent;
 
-ListItem.displayName = 'ListItem';
+Item.displayName = 'ListItem';
 
-export default ListItem;
+export type ItemComponent = Polymorphic.ForwardRefComponent<'div', OwnProps>;
 
-export function focusOnMouseOver(e: React.MouseEvent<HTMLLIElement, MouseEvent>) {
+export default Item;
+
+export function focusOnMouseOver(e: React.MouseEvent<HTMLElement, MouseEvent>) {
   e.currentTarget.focus({
     preventScroll: true,
   });

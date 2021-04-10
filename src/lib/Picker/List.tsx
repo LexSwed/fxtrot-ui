@@ -1,34 +1,30 @@
 import React, { useEffect, useRef } from 'react';
 
 import ListBox, { ListBoxProps } from '../ListBox/ListBox';
-import { usePicker } from './utils';
+import { ListBoxContext } from '../ListBox/ListBoxContext';
+import { useOpenState } from '../utils/OpenStateProvider';
+import Item from './Item';
 
 interface Props extends ListBoxProps {
   triggerId: string;
 }
 
 const List: React.FC<Props> = ({ triggerId, children, ...props }) => {
-  const { value } = usePicker();
+  const isOpen = useOpenState();
   const ref = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
-    // selected value is already focused
-    if (ref.current?.contains(document.activeElement)) {
-      return;
+    if (isOpen) {
+      const option = ref.current?.querySelector('[aria-selected="true"]') as HTMLDivElement;
+      if (option) {
+        option.focus?.();
+      }
     }
-
-    const option = ref.current?.querySelector('[role="option"]') as HTMLLIElement;
-
-    if (option) {
-      option?.focus?.();
-    } else {
-      ref.current?.focus();
-    }
-  }, [value]);
+  }, [isOpen]);
 
   return (
     <ListBox {...props} id={`${triggerId}-listbox`} aria-labelledby={triggerId} restoreFocus contain wrap ref={ref}>
-      {children}
+      <ListBoxContext ListItem={Item}>{children}</ListBoxContext>
     </ListBox>
   );
 };

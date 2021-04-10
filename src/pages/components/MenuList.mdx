@@ -3,7 +3,7 @@ name: MenuList
 ---
 
 import { Playground } from 'dokz';
-import { Box, MenuList, ListItem, Icon, Text, Section, ThemeProvider } from '@fxtrot/ui';
+import { Box, MenuList, Item, Icon, Text, Section, ThemeProvider } from '@fxtrot/ui';
 import { UsersIcon, AdjustmentsIcon, GlobeIcon } from '@heroicons/react/outline';
 
 ## MenuList
@@ -29,10 +29,10 @@ import { UsersIcon, AdjustmentsIcon, GlobeIcon } from '@heroicons/react/outline'
                 label: 'Language',
               },
             ].map(({ icon, label }) => (
-              <MenuList.Item key={label} selected={selected === label} onClick={() => setSelected(label)}>
+              <Item key={label} aria-selected={selected === label} onClick={() => setSelected(label)}>
                 <Icon as={icon} />
                 <Text>{label}</Text>
-              </MenuList.Item>
+              </Item>
             ))}
           </Section>
         </MenuList>
@@ -61,10 +61,10 @@ import { UsersIcon, AdjustmentsIcon, GlobeIcon } from '@heroicons/react/outline'
               selected: true,
             },
           ].map(({ icon, label, selected }) => (
-            <MenuList.Item key={label} selected={selected}>
+            <Item key={label} aria-selected={selected}>
               <Icon as={icon} />
               <Text>{label}</Text>
-            </MenuList.Item>
+            </Item>
           ))}
         </Section>
       </MenuList>

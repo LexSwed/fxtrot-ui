@@ -1,5 +1,5 @@
+import React, { useEffect, useRef } from 'react';
 import { FocusScope, useFocusManager } from '@react-aria/focus';
-import React, { useEffect } from 'react';
 
 import { styled } from '../stitches.config';
 import { useKeyboardHandles } from '../utils/hooks';
@@ -17,9 +17,14 @@ export const List = styled('ul', {
 
 const ListInner: React.FC<{ wrap?: boolean }> = ({ wrap, ...props }) => {
   const { focusNext, focusPrevious } = useFocusManager();
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    findItems()[0]?.focus();
+    /**
+     * FocusScope is fun: it filters out tabIndex=-1 elements, but allows to focusNext/Prev between them
+     * It is still handy though to not write own wrapping logic
+     */
+    (ref.current?.querySelector('[tabindex="-1"]') as HTMLElement)?.focus?.();
   }, []);
 
   const handleKeyDown = useKeyboardHandles({
@@ -27,7 +32,7 @@ const ListInner: React.FC<{ wrap?: boolean }> = ({ wrap, ...props }) => {
     ArrowUp: () => focusPrevious({ wrap }),
   });
 
-  return <div onKeyDown={handleKeyDown} {...props} />;
+  return <div onKeyDown={handleKeyDown} {...props} ref={ref} />;
 };
 
 ListInner.displayName = 'ListBox.Inner';
@@ -56,11 +61,3 @@ const ListBox = React.forwardRef<HTMLUListElement, ListBoxProps>(
 ListInner.displayName = 'ListBox';
 
 export default ListBox;
-
-/**
- * FocusScope is fun: it filters out tabIndex=-1 elements, but allows to focusNext/Prev between them
- * This is handy though to not write own wrapping logic
- */
-function findItems() {
-  return Array.from(document.querySelectorAll('[role="menuitem"]')) as HTMLElement[];
-}

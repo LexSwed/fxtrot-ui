@@ -3,7 +3,7 @@ name: ComboBox
 ---
 
 import { Playground } from 'dokz';
-import { Box, Flex, ComboBox, Text } from '@fxtrot/ui';
+import { Box, Flex, ComboBox, Item, Text } from '@fxtrot/ui';
 
 # ComboBox
 
@@ -15,7 +15,7 @@ import { Box, Flex, ComboBox, Text } from '@fxtrot/ui';
         <Flex gap="md" css={{ width: '$56' }}>
           <ComboBox placeholder="Hufflepuff" label="The House you were sorted to" value={value} onChange={setValue}>
             {['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'].map((house, index) => (
-              <ComboBox.Item value={`${index + 1}`} label={house} key={index} />
+              <Item value={`${index + 1}`} label={house} key={index} />
             ))}
           </ComboBox>
           <Text>{`Selected item index: ${value}`}</Text>
@@ -45,7 +45,7 @@ You can allow the selection of elements that do not exist - creating them from t
             hint={value || value === '' ? '' : 'New item will be created'}
           >
             {['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'].map((house, index) => (
-              <ComboBox.Item value={`${index + 1}`} label={house} key={index} />
+              <Item value={`${index + 1}`} label={house} key={index} />
             ))}
           </ComboBox>
           <Flex>
@@ -79,7 +79,7 @@ Supports same `variant`s as `TextField` component.
             {Array(20)
               .fill(null)
               .map((el, i) => (
-                <ComboBox.Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
+                <Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
               ))}
           </ComboBox>
         </Flex>
@@ -102,7 +102,7 @@ The rendering is optimized using virtualized lists
             {Array(500)
               .fill(null)
               .map((el, i) => (
-                <ComboBox.Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
+                <Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
               ))}
           </ComboBox>
         </Flex>

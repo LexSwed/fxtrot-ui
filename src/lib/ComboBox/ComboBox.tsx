@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useUIDSeed } from 'react-uid';
+import flattenChildren from 'react-keyed-flatten-children';
 
 import { OpenStateProvider, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 
@@ -9,6 +10,7 @@ import { useAllHandlers, useForkRef, useLatest } from '../utils/hooks';
 import Popover from '../Popover/PopoverLayer';
 import { StateProvider, useFocusedItemId, useSyncValue } from './atoms';
 import VirtualList from './VirtualList';
+import { ListBoxContext } from '../ListBox/ListBoxContext';
 
 interface Props
   extends Omit<
@@ -58,7 +60,7 @@ const ComboBoxInner: React.FC<Props> = ({
   const createOptionId = (value: string) => idSeed('option') + value;
   const handleSelect = () => {
     if (focusedItemId) {
-      const selected = items.find((item) => createOptionId(item.props.value) === focusedItemId);
+      const selected = items.find((item) => createOptionId(item.props.value as string) === focusedItemId);
       if (selected) {
         setFilterText(selected.props.label || '');
         setValue(selected.props.value || null);
@@ -67,9 +69,9 @@ const ComboBoxInner: React.FC<Props> = ({
     close();
   };
   const handleFocus = (createNewIndex: (oldIndex: number) => number) => {
-    const itemIndex = items.findIndex((item) => createOptionId(item.props.value) === focusedItemId);
+    const itemIndex = items.findIndex((item) => createOptionId(item.props.value as string) === focusedItemId);
     const newIndex = itemIndex > -1 ? createNewIndex(itemIndex) : 0;
-    setFocusedItemId(createOptionId(items[newIndex]?.props?.value));
+    setFocusedItemId(createOptionId(items[newIndex]?.props?.value as string));
     scrollToIndexRef.current(newIndex);
   };
   const handleFocusNext = () => {
@@ -127,10 +129,10 @@ const ComboBoxInner: React.FC<Props> = ({
             const item = items[index];
 
             return React.cloneElement(item, {
-              id: createOptionId(item.props.value),
-              onMouseUp: (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+              id: createOptionId(item.props.value as string),
+              onMouseUp: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
                 setFilterText(item.props.label);
-                setValue(item.props.value);
+                setValue(item.props.value as string);
                 close();
 
                 item.props.onClick?.(e);
@@ -143,34 +145,27 @@ const ComboBoxInner: React.FC<Props> = ({
   );
 };
 
-const ComboBox: React.FC<Props> & { Item: typeof Item } = (props) => {
+const ComboBox: React.FC<Props> = (props) => {
   return (
     <OpenStateProvider>
-      <StateProvider>
-        <ComboBoxInner {...props} />
-      </StateProvider>
+      <ListBoxContext ListItem={Item}>
+        <StateProvider>
+          <ComboBoxInner {...props} />
+        </StateProvider>
+      </ListBoxContext>
     </OpenStateProvider>
   );
 };
 
-ComboBox.Item = Item;
-
 export default ComboBox;
 
 function useFilteredItems(children: Props['children'], filterText: string) {
-  return useMemo<OptionType[]>(() => {
-    if (filterText === '') return React.Children.toArray(children) as OptionType[];
+  const items = flattenChildren(children) as OptionType[];
+  if (filterText === '') return items;
 
-    let filtered: OptionType[] = [];
-
-    React.Children.forEach(children, (item: OptionType) => {
-      if (item.props.label.toLowerCase().includes(filterText.toLowerCase())) {
-        filtered.push(item);
-      }
-    });
-
-    return filtered;
-  }, [children, filterText]);
+  return items.filter((child) => {
+    return child.props.label.toLowerCase().includes(filterText.toLowerCase());
+  });
 }
 
 function useOnInputChangeSync(onInputChange: Props['onInputChange'], filterText: string) {

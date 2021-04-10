@@ -3,16 +3,14 @@ import { useUIDSeed } from 'react-uid';
 
 import { OpenStateProvider } from '../utils/OpenStateProvider';
 import MenuButton from './MenuButton';
-import MenuItem from './MenuItem';
 import MenuList from './MenuList';
 import { MenuProvider } from './utils';
 
 const Menu: React.FC<{
   onAction?: (key: string) => void;
 }> & {
-  Button: typeof MenuButton;
+  Trigger: typeof MenuButton;
   List: typeof MenuList;
-  Item: typeof MenuItem;
 } = ({ onAction, children }) => {
   const seed = useUIDSeed();
   const triggerRef = useRef<HTMLElement>(null);
@@ -37,8 +35,7 @@ const Menu: React.FC<{
   );
 };
 
-Menu.Button = MenuButton;
+Menu.Trigger = MenuButton;
 Menu.List = MenuList;
-Menu.Item = MenuItem;
 
 export default Menu;

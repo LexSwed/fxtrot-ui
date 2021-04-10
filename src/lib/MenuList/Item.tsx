@@ -1,9 +1,9 @@
 import React from 'react';
 
-import ListItem from '../ListItem/ListItem';
-import { styled } from '../stitches.config';
+import { StyledItem, ItemComponent } from '../Item/Item';
+import { css } from '../stitches.config';
 
-const MenuItem = styled(ListItem, {
+const style = css({
   'position': 'relative',
   'textDecoration': 'none',
   'cursor': 'default',
@@ -30,19 +30,15 @@ const MenuItem = styled(ListItem, {
   },
 });
 
-interface Props extends React.ComponentProps<typeof MenuItem> {
-  selected?: boolean;
-}
-
-const Item = React.forwardRef<HTMLLIElement, Props>(({ selected, ...props }, ref) => {
+const Item: ItemComponent = React.forwardRef(({ 'aria-selected': selected, className, ...props }, ref) => {
   return (
-    <MenuItem
+    <StyledItem
       {...props}
-      flow={props.flow}
       role="treeitem"
       aria-selected={selected}
       tabIndex={selected ? 0 : -1}
       ref={ref}
+      className={`${style.className} ${className}`}
     />
   );
 });

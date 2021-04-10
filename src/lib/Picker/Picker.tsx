@@ -3,21 +3,18 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Popover from '../Popover/PopoverLayer';
 import { useId } from '../utils/hooks';
 import { OpenStateProvider } from '../utils/OpenStateProvider';
-import Item, { PickerItemProps } from './Item';
+import type { OptionType } from './Item';
 import List from './List';
 import Trigger, { TriggerProps } from './Trigger';
 import { PickerProvider } from './utils';
 
-interface OptionType extends React.ReactElement<PickerItemProps, typeof Item> {}
-interface Props<T = string> extends Omit<TriggerProps, 'value' | 'onChange' | 'children'> {
-  value?: T;
-  onChange?: (newValue: T) => void;
+interface Props extends Omit<TriggerProps, 'value' | 'onChange' | 'children'> {
+  value?: string;
+  onChange?: (newValue: string) => void;
   children: OptionType[] | OptionType;
 }
 
-const Picker: React.FC<Props> & {
-  Item: typeof Item;
-} = ({ children, id, value, onChange, ...triggerProps }) => {
+const Picker: React.FC<Props> = ({ children, id, value, onChange, ...triggerProps }) => {
   const [innerValue, onChangeInner] = useValue(value, onChange);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const triggerId = useId();
@@ -44,8 +41,6 @@ const Picker: React.FC<Props> & {
     </OpenStateProvider>
   );
 };
-
-Picker.Item = Item;
 
 export default Picker;
 

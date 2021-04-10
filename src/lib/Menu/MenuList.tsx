@@ -4,6 +4,8 @@ import type { Options } from '@popperjs/core';
 import ListBox, { ListBoxProps } from '../ListBox/ListBox';
 import Popover from '../Popover/PopoverLayer';
 import { useMenu } from './utils';
+import MenuItem from './MenuItem';
+import { ListBoxContext } from '../ListBox/ListBoxContext';
 
 interface MenuListProps extends ListBoxProps {
   offset?: number;
@@ -15,7 +17,17 @@ const MenuList: React.FC<MenuListProps> = ({ placement, offset, ...props }) => {
 
   return (
     <Popover triggerRef={triggerRef} placement={placement} offset={offset}>
-      <ListBox role={'menu'} {...props} restoreFocus contain wrap id={seed('menu')} aria-labelledby={seed('button')} />
+      <ListBoxContext ListItem={MenuItem}>
+        <ListBox
+          role={'menu'}
+          {...props}
+          restoreFocus
+          contain
+          wrap
+          id={seed('menu')}
+          aria-labelledby={seed('button')}
+        />
+      </ListBoxContext>
     </Popover>
   );
 };

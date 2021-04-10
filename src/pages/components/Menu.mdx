@@ -3,34 +3,34 @@ name: Menu
 ---
 
 import { Playground } from 'dokz';
-import { Box, Button, Menu, Icon, Text, ThemeProvider, Dialog } from '@fxtrot/ui';
+import { Box, Button, Menu, Item, Icon, Text, ThemeProvider, Dialog } from '@fxtrot/ui';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import { TrashIcon } from '@heroicons/react/outline';
 
 ## Menu
 
-For big lists use `action` prop on `Menu.Item` and `onAction` callback to handle click on the item with `action`.
+For big lists use `value` prop on `Item` and `onAction` callback to handle click on the item with `action`.
 
 <Playground>
   <Box p="$8">
     <Menu onAction={typeof window !== 'undefined' ? window.alert : null}>
-      <Menu.Button>
+      <Menu.Trigger>
         <span>Open menu</span>
         <Icon as={ChevronDownIcon} size="lg" />
-      </Menu.Button>
+      </Menu.Trigger>
       <Menu.List>
-        <Menu.Item action="copy">
+        <Item value="copy">
           <Icon as="svg" />
           Copy
-        </Menu.Item>
-        <Menu.Item action="cut">
+        </Item>
+        <Item value="cut">
           <Icon as="svg" />
           Cut
-        </Menu.Item>
-        <Menu.Item action="delete" css={{ color: '$danger' }}>
+        </Item>
+        <Item value="delete" css={{ color: '$danger' }}>
           <Icon as={TrashIcon} color="$danger" />
           Delete
-        </Menu.Item>
+        </Item>
       </Menu.List>
     </Menu>
   </Box>
@@ -42,17 +42,17 @@ You can modify `offset` and [`placement`](https://popper.js.org/docs/v2/construc
   <ThemeProvider theme="orange">
     <Box p="$8">
       <Menu>
-        <Menu.Button>
+        <Menu.Trigger>
           <span>Open menu</span>
           <Icon as={ChevronDownIcon} size="lg" />
-        </Menu.Button>
+        </Menu.Trigger>
         <Menu.List offset={0} placement="right-start">
           {Array(20)
             .fill(null)
             .map((el, i) => (
-              <Menu.Item key={i} onClick={() => window.alert(i)}>
+              <Item key={i} onClick={() => window.alert(i)}>
                 Item {i}
-              </Menu.Item>
+              </Item>
             ))}
         </Menu.List>
       </Menu>
@@ -69,12 +69,12 @@ You can modify `offset` and [`placement`](https://popper.js.org/docs/v2/construc
 <Playground>
   <Box p="$8">
     <Menu>
-      <Menu.Button variant="outline">
+      <Menu.Trigger variant="outline">
         <Icon as={ChevronDownIcon} size="lg" />
-      </Menu.Button>
+      </Menu.Trigger>
       <Menu.List>
         <Dialog>
-          <Dialog.Trigger as={Menu.Item} css={{ color: '$danger' }} display="flex" variant="transparent">
+          <Dialog.Trigger as={Item} css={{ color: '$danger' }} display="flex" variant="transparent">
             <Icon size="md" as={TrashIcon} />
             <span>Delete</span>
           </Dialog.Trigger>

@@ -71,7 +71,6 @@ const ButtonRoot = styled('button', {
         'borderColor': '$borderStill',
         '&:hover': {
           borderColor: '$borderHover',
-          bc: '$surfaceHover',
         },
         '&:disabled': {
           color: '$textDisabled',
