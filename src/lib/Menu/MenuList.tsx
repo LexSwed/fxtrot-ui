@@ -15,7 +15,7 @@ const MenuList: React.FC<MenuListProps> = ({ placement, offset, ...props }) => {
 
   return (
     <Popover triggerRef={triggerRef} placement={placement} offset={offset}>
-      <ListBox {...props} restoreFocus contain wrap role={'menu'} id={seed('menu')} aria-labelledby={seed('button')} />
+      <ListBox role={'menu'} {...props} restoreFocus contain wrap id={seed('menu')} aria-labelledby={seed('button')} />
     </Popover>
   );
 };

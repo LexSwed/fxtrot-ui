@@ -45,6 +45,7 @@
   "dependencies": {
     "@heroicons/react": "^1.0.0",
     "@popperjs/core": "^2.9.2",
+    "@radix-ui/react-polymorphic": "^0.0.10",
     "@react-aria/focus": "^3.2.4",
     "@react-aria/interactions": "^3.3.4",
     "@react-aria/visually-hidden": "^3.2.1",
