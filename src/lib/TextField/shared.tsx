@@ -33,7 +33,6 @@ export const InteractiveBox = styled('input', {
   'transition': '0.2s ease-in-out',
   'transitionProperty': 'background, border-color, box-shadow',
   'bc': '$surfaceStill',
-  'outline': 'none',
   'border': '1px solid transparent',
 
   // has icon
@@ -49,12 +48,16 @@ export const InteractiveBox = styled('input', {
     borderColor: '$surfaceDisabled',
     bc: '$surfaceDisabled',
   },
+  '&:focus': {
+    outline: 'none',
+  },
 
   'variants': {
     variant: {
       boxed: {
         'borderColor': '$borderStill',
         'br': '$md',
+        'focusRing': '$borderLight',
         '&:hover': {
           borderColor: '$borderHover',
         },
@@ -83,6 +86,7 @@ export const InteractiveBox = styled('input', {
       },
       transparent: {
         'background': 'transparent',
+        'br': '$md',
         '&:not(:disabled)': {
           px: 0,
         },

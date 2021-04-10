@@ -47,7 +47,7 @@ export const StyledItem = styled('div', {
   },
 });
 
-interface OwnProps extends StitchesVariants<typeof StyledItem> {
+interface Props extends StitchesVariants<typeof StyledItem> {
   label: string;
   value?: string;
   disabled?: boolean;
@@ -77,7 +77,7 @@ const Item = React.forwardRef((props: React.ComponentProps<ItemComponent>, ref) 
 
 Item.displayName = 'ListItem';
 
-export type ItemComponent = Polymorphic.ForwardRefComponent<'div', OwnProps>;
+export type ItemComponent = Polymorphic.ForwardRefComponent<'div', Props>;
 
 export default Item;
 

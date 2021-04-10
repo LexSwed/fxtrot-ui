@@ -11,7 +11,7 @@ import Item from './Item';
 const List = styled('ul', {
   m: 0,
   p: 0,
-  $outline: -1,
+  focusRing: '$focusRing',
 });
 
 interface Props extends React.ComponentProps<typeof List> {}

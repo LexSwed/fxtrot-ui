@@ -1,12 +1,14 @@
 import React from 'react';
+import type * as Polymorphic from '@radix-ui/react-polymorphic';
 
 import { flexVariants } from '../Flex/Flex';
 import Icon from '../Icon/Icon';
 import { styled } from '../stitches.config';
+import type { StitchesVariants } from '@stitches/core';
+import type { CssStyles } from '../utils/types';
 
 const ButtonRoot = styled('button', {
   'transition': '0.2s ease-in-out',
-  '$outline': 0,
   'fontFamily': '$default',
   'lineHeight': 1,
   'border': '1px solid transparent',
@@ -48,6 +50,7 @@ const ButtonRoot = styled('button', {
         'bc': '$primaryStill',
         'color': 'white',
         'borderColor': '$primaryStill',
+        'focusRing': '$focusRing',
         '&:hover': {
           borderColor: '$primaryHover',
           bc: '$primaryHover',
@@ -69,6 +72,7 @@ const ButtonRoot = styled('button', {
         'bc': '$surfaceStill',
         'color': '$text',
         'borderColor': '$borderStill',
+        'focusRing': '$borderLight',
         '&:hover': {
           borderColor: '$borderHover',
         },
@@ -88,6 +92,7 @@ const ButtonRoot = styled('button', {
       outline: {
         'color': '$primaryStill',
         'bc': 'transparent',
+        'focusRing': '$focusRing',
         'borderColor': '$primaryStill',
         '&:hover': {
           bc: '$primaryLight',
@@ -111,6 +116,7 @@ const ButtonRoot = styled('button', {
       flat: {
         'bc': '$flatStill',
         'color': '$text',
+        'focusRing': '$borderLight',
         '&:hover': {
           bc: '$flatHover',
         },
@@ -127,6 +133,7 @@ const ButtonRoot = styled('button', {
         'bc': 'transparent',
         'color': '$accent',
         'cursor': 'pointer',
+        'focusRing': '$focusRing',
         '&:not([aria-disabled="true"]):hover': {
           color: '$primaryHover',
           textDecoration: 'underline',
@@ -142,6 +149,7 @@ const ButtonRoot = styled('button', {
         },
       },
       transparent: {
+        focusRing: '$focusRing',
         bc: 'transparent',
         borderColor: 'transparent',
         color: '$text',
@@ -201,23 +209,29 @@ const ButtonRoot = styled('button', {
   ],
 });
 
-interface Props extends Omit<React.ComponentProps<typeof ButtonRoot>, 'isIconButton'> {}
+interface Props extends Omit<StitchesVariants<typeof ButtonRoot>, 'isIconButton'> {
+  css?: CssStyles;
+}
 
-const Button = React.forwardRef<HTMLButtonElement, Props>(({ type = 'button', disabled, ...props }, ref) => {
-  const isIconButton = React.Children.toArray(props.children).every(
-    (child) => React.isValidElement(child) && child.type === Icon
-  );
+const Button = React.forwardRef(
+  ({ type = 'button', disabled, ...props }: React.ComponentProps<ButtonComponent>, ref) => {
+    const isIconButton = React.Children.toArray(props.children).every(
+      (child) => React.isValidElement(child) && child.type === Icon
+    );
 
-  return (
-    <ButtonRoot
-      {...props}
-      aria-disabled={disabled}
-      disabled={disabled}
-      ref={ref}
-      type={type}
-      isIconButton={isIconButton}
-    />
-  );
-});
+    return (
+      <ButtonRoot
+        {...props}
+        aria-disabled={disabled}
+        disabled={disabled}
+        ref={ref as any}
+        type={type}
+        isIconButton={isIconButton}
+      />
+    );
+  }
+) as ButtonComponent;
+
+export type ButtonComponent = Polymorphic.ForwardRefComponent<'button', Props>;
 
 export default Button;

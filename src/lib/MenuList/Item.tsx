@@ -10,11 +10,16 @@ const style = css({
   '&::after': {
     position: 'absolute',
     left: 0,
-    top: '$1',
-    bottom: '$1',
+    top: 0,
+    bottom: 0,
+    transition: '0.12s ease-in-out',
+    transform: 'scaleY(0.75)',
     width: '2px',
     content: `''`,
     bc: 'transparent',
+  },
+  '&:focus:after': {
+    transform: 'none',
   },
   '&[aria-selected="true"]': {
     'bc': '$surfaceActive',

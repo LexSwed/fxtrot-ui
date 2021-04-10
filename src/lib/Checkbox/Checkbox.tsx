@@ -74,7 +74,7 @@ const Input = styled('input', {
 
   [`&:focus[${attribute}] + ${CheckMark}`]: {
     borderColor: '$primaryActive',
-    boxShadow: '0 0 0 2px $colors$focusRing',
+    boxShadow: '0 0 0 3px $colors$focusRing',
   },
 
   [`&:focus[${attribute}]:checked + ${CheckMark}`]: {

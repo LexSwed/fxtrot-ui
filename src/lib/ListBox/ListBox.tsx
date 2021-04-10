@@ -9,7 +9,7 @@ export const List = styled('ul', {
   'p': '$1',
   'overflowY': 'auto',
   'maxHeight': '240px',
-  '$outline': -1,
+  'focusRing': '$focusRing',
   '&:empty': {
     display: 'none',
   },

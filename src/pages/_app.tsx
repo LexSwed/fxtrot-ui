@@ -2,6 +2,7 @@ import React from 'react';
 import { DokzProvider, GithubLink } from 'dokz';
 import { ChakraProvider } from '@chakra-ui/react';
 import type { AppProps } from 'next/dist/next-server/lib/router/router';
+import { ThemeProvider } from '@fxtrot/ui';
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
@@ -18,7 +19,9 @@ export default function App(props: AppProps) {
         branch="main"
         headerLogo="Fxtrot UI"
       >
-        <Component {...pageProps} />
+        <ThemeProvider theme="blue">
+          <Component {...pageProps} />
+        </ThemeProvider>
       </DokzProvider>
     </ChakraProvider>
   );

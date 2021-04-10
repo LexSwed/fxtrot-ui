@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Button from '../Button';
+import type { ButtonComponent } from '../Button/Button';
 import Heading from '../Heading/Heading';
 import { useAllHandlers } from '../utils/hooks';
 import { OpenStateProvider, useOpenStateControls } from '../utils/OpenStateProvider';
@@ -27,17 +28,13 @@ const Dialog: DialogRoot = ({ defaultOpen, children }) => {
   );
 };
 
-const Trigger: React.FC<React.ComponentProps<typeof Button>> = ({ children, ...props }) => {
+const Trigger: ButtonComponent = React.forwardRef((props, ref) => {
   const { open } = useOpenStateControls();
 
   const handleClick = useAllHandlers(props.onClick, open);
 
-  return (
-    <Button {...props} onClick={handleClick}>
-      {children}
-    </Button>
-  );
-};
+  return <Button {...props} onClick={handleClick} ref={ref} />;
+});
 
 const Title: React.FC<React.ComponentProps<typeof Heading>> = (props) => {
   const { seed } = useDialog();

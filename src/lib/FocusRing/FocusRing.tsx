@@ -8,7 +8,7 @@ const focusClass = css({
 });
 
 const focusRingClass = css({
-  $outline: 0,
+  focusRing: '$focusRing',
 });
 
 interface Props extends Omit<React.ComponentPropsWithRef<typeof SpectrumFocusRing>, 'focusRingClass' | 'focusClass'> {}

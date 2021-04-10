@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useMemo } from 'react';
+import React, { createContext, useContext, useMemo, useRef } from 'react';
 
 import { stitchesConfig, styled } from '../stitches.config';
 import { Reset } from './Reset';
@@ -8,14 +8,20 @@ type Props = {
   theme?: DefinedThemes | ShortDefinition | Swatch;
 };
 
-const themeContext = createContext<string | null>(null);
+interface ThemeContext {
+  themeClassName?: string;
+  ref?: React.RefObject<HTMLDivElement>;
+}
+
+const themeContext = createContext<ThemeContext>({});
 
 const ThemeWrapper = styled('span', {
   display: 'contents',
 });
 
 const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
-  const contextTheme = useContext(themeContext);
+  const { themeClassName: contextTheme, ref: contextRef } = useContext(themeContext);
+  const innerRef = useRef<HTMLDivElement>(null);
 
   const themeClass = useMemo(() => {
     if (!theme) return null;
@@ -29,14 +35,18 @@ const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
   }, [theme]);
   const className = themeClass || contextTheme;
 
+  const value = useMemo(() => ({ themeClassName: className, ref: contextRef || innerRef }), [className, contextRef]);
+
   if (!className) {
     return <>{children}</>;
   }
 
   return (
     <>
-      <themeContext.Provider value={className}>
-        <ThemeWrapper className={className}>{children}</ThemeWrapper>
+      <themeContext.Provider value={value}>
+        <ThemeWrapper className={className} ref={contextRef ? undefined : innerRef}>
+          {children}
+        </ThemeWrapper>
       </themeContext.Provider>
       <Reset />
     </>
