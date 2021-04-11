@@ -1,49 +1,50 @@
 import { FocusScope } from '@react-aria/focus';
 import React, { useContext, useMemo, useRef } from 'react';
 import { useUID } from 'react-uid';
-import Button from '../Button';
 import Box from '../Box';
-import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
-import { OpenStateProvider, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
+import { useAllHandlers, useForkRef, useKeyboardHandles } from '../utils/hooks';
+import { OpenStateProvider, OpenStateRef, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import PopoverLayer from './PopoverLayer';
-
-interface Ref {
-  open: () => void;
-  close: () => void;
-  toggle: () => void;
-}
 interface Props {
-  children: React.ReactNode;
+  children: [React.ReactElement, React.ReactElement<ContentProps>];
 }
-const Popover = React.forwardRef<Ref, Props>(({ children }, ref) => {
+
+const PopoverInner = ({ children }: Props) => {
+  const open = useOpenState();
+  const { toggle } = useOpenStateControls();
+  const { id, triggerRef } = useContext(context);
+  const [trigger, content] = children;
+
+  const refs = useForkRef(triggerRef, (trigger as any).ref);
+  const onClick = useAllHandlers(trigger.props.onClick, toggle);
+
+  return (
+    <>
+      {React.cloneElement(trigger, {
+        'ref': refs,
+        'aria-haspopup': 'dialog',
+        'aria-expanded': open,
+        'aria-controls': open ? id : undefined,
+        onClick,
+      })}
+      {content}
+    </>
+  );
+};
+const Popover = React.forwardRef((props, ref) => {
   const id = useUID();
   const triggerRef = useRef<HTMLButtonElement>(null);
   const value = useMemo(() => ({ id, triggerRef }), [id, triggerRef]);
 
   return (
     <OpenStateProvider ref={ref}>
-      <context.Provider value={value}>{children}</context.Provider>
+      <context.Provider value={value}>
+        <PopoverInner {...props} />
+      </context.Provider>
     </OpenStateProvider>
   );
-}) as React.ForwardRefExoticComponent<Props & React.RefAttributes<Ref>> & {
-  Trigger: typeof Trigger;
+}) as React.ForwardRefExoticComponent<Props & React.RefAttributes<OpenStateRef>> & {
   Content: typeof Content;
-};
-
-const Trigger: React.FC<React.ComponentProps<typeof Button>> = (props) => {
-  const open = useOpenState();
-  const { toggle } = useOpenStateControls();
-  const { id, triggerRef } = useContext(context);
-  return (
-    <Button
-      {...props}
-      ref={triggerRef}
-      aria-haspopup="dialog"
-      aria-expanded={open}
-      aria-controls={id}
-      onClick={useAllHandlers(props.onClick, toggle)}
-    />
-  );
 };
 
 interface ContentProps extends Omit<React.ComponentProps<typeof PopoverLayer>, 'triggerRef'> {}
@@ -72,7 +73,6 @@ const Content: React.FC<ContentProps> = ({ children, ...props }) => {
 };
 
 Popover.displayName = 'Popover';
-Popover.Trigger = Trigger;
 Popover.Content = Content;
 
 export default Popover;

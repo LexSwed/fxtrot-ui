@@ -3,13 +3,13 @@ import React, { createContext, useContext, useMemo, useState, useImperativeHandl
 const menuStateContext = createContext(false);
 const menuStateControlsContext = createContext<MenuControlFunctions>({} as MenuControlFunctions);
 
-interface Ref {
+export interface OpenStateRef {
   open: () => void;
   close: () => void;
   toggle: () => void;
 }
 
-export const OpenStateProvider = React.forwardRef<Ref, { defaultOpen?: boolean; children?: React.ReactNode }>(
+export const OpenStateProvider = React.forwardRef<OpenStateRef, { defaultOpen?: boolean; children?: React.ReactNode }>(
   ({ defaultOpen, children }, ref) => {
     const [isOpen, controls] = useTogglesState(defaultOpen);
 

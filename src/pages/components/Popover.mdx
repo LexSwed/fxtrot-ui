@@ -10,12 +10,9 @@ import { Box, Flex, Text, TextField, Button, Popover } from '@fxtrot/ui';
 <Playground>
   {() => {
     const ref = React.useRef({});
-    React.useEffect(() => {
-      console.log(ref.current.close);
-    }, []);
     return (
       <Popover ref={ref}>
-        <Popover.Trigger variant="primary">Create</Popover.Trigger>
+        <Button variant="primary">Create</Button>
         <Popover.Content css={{ width: '300px' }} offset={12} placement="bottom-end">
           <Flex gap="4">
             <TextField label="Full name" placeholder="Ahsoka Tano" />

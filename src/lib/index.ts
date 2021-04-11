@@ -23,9 +23,9 @@ export { default as Text } from './Text';
 export { default as TextField } from './TextField';
 export { default as TextLink } from './TextLink';
 export { default as ThemeProvider } from './ThemeProvider';
-export { Reset } from './ThemeProvider/Reset';
 export { default as VisuallyHidden } from './VisuallyHidden';
 
+export type { OpenStateRef } from './utils/OpenStateProvider';
 export * from './stitches.config';
 export * from './utils/hooks';
 

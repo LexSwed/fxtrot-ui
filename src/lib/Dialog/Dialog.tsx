@@ -1,18 +1,16 @@
 import React from 'react';
 
-import Heading from '../Heading/Heading';
 import { useAllHandlers } from '../utils/hooks';
 import { OpenStateProvider, useOpenStateControls } from '../utils/OpenStateProvider';
-import { DialogRender, ModalWindow } from './DialogRender';
-import { DialogContext, useDialog } from './utils';
+import { DialogRender, DialogModal, DialogTitle } from './DialogRender';
 
-type DialogRoot = React.FC<{
-  children: [React.ReactElement, DialogContext['render']];
+interface Props {
+  children: [React.ReactElement, (close: () => void) => React.ReactNode];
   defaultOpen?: boolean;
-}>;
+}
 
-const DialogInner: DialogRoot = ({ children }) => {
-  const [trigger, fn] = children;
+const DialogInner = ({ children }: Props) => {
+  const [trigger, modal] = children;
   const { open } = useOpenStateControls();
 
   const onClick = useAllHandlers(trigger.props.onClick, open);
@@ -22,14 +20,14 @@ const DialogInner: DialogRoot = ({ children }) => {
       {React.cloneElement(trigger, {
         onClick,
       })}
-      <DialogRender render={fn} />
+      <DialogRender>{modal}</DialogRender>
     </>
   );
 };
 
-const Dialog: DialogRoot & {
-  Modal: typeof ModalWindow;
-  Title: typeof Title;
+const Dialog: React.FC<Props> & {
+  Modal: typeof DialogModal;
+  Title: typeof DialogTitle;
 } = ({ defaultOpen, ...props }) => {
   return (
     <OpenStateProvider defaultOpen={defaultOpen}>
@@ -38,12 +36,7 @@ const Dialog: DialogRoot & {
   );
 };
 
-const Title: React.FC<React.ComponentProps<typeof Heading>> = (props) => {
-  const { seed } = useDialog();
-  return <Heading {...props} id={seed('title')} />;
-};
-
-Dialog.Modal = ModalWindow;
-Dialog.Title = Title;
+Dialog.Modal = DialogModal;
+Dialog.Title = DialogTitle;
 
 export default Dialog;

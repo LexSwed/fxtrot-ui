@@ -4,23 +4,27 @@ import React, { useMemo, useRef } from 'react';
 import { XIcon } from '@heroicons/react/outline';
 import { useUIDSeed } from 'react-uid';
 
+import Box from '../Box';
 import Button from '../Button';
 import Flex from '../Flex';
 import Icon from '../Icon';
 import Portal from '../Portal';
-import { styled } from '../stitches.config';
+import Heading from '../Heading';
 import { useKeyboardHandles } from '../utils/hooks';
-
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
-import { DialogContext, DialogProvider, useDialog } from './utils';
-import Box from '../Box';
+import { styled } from '../stitches.config';
 
-export const DialogRender: React.FC<{ render: DialogContext['render'] }> = ({ render }) => {
+import { DialogContext, DialogProvider, useDialog } from './utils';
+
+interface Props {
+  children: (close: () => void) => React.ReactNode;
+}
+export const DialogRender = ({ children }: Props) => {
   const isOpen = useOpenState();
   const { close } = useOpenStateControls();
   const dialogRef = useRef<HTMLDivElement>(null);
   const seed = useUIDSeed();
-  const context = useMemo<DialogContext>(() => ({ seed, render }), [seed, render]);
+  const context = useMemo<DialogContext>(() => ({ seed }), [seed]);
 
   const handleKeyDown = useKeyboardHandles({
     'Escape.propagate': (e) => {
@@ -32,7 +36,7 @@ export const DialogRender: React.FC<{ render: DialogContext['render'] }> = ({ re
 
   return (
     <AnimatePresence>
-      {isOpen && render && (
+      {isOpen && children && (
         <DialogProvider value={context}>
           <Portal>
             <ClickCatcher>
@@ -62,7 +66,7 @@ export const DialogRender: React.FC<{ render: DialogContext['render'] }> = ({ re
                 ref={dialogRef}
               >
                 <FocusScope contain autoFocus restoreFocus>
-                  {render(close)}
+                  {children(close)}
                 </FocusScope>
               </ModalWrapper>
             </ClickCatcher>
@@ -75,7 +79,7 @@ export const DialogRender: React.FC<{ render: DialogContext['render'] }> = ({ re
 
 interface ModalProps extends React.ComponentProps<typeof DialogWindow> {}
 
-export const ModalWindow: React.FC<ModalProps> = ({ children, ...props }) => {
+export const DialogModal: React.FC<ModalProps> = ({ children, ...props }) => {
   const { seed } = useDialog();
   const { close } = useOpenStateControls();
 
@@ -89,6 +93,11 @@ export const ModalWindow: React.FC<ModalProps> = ({ children, ...props }) => {
       </CloseButtonContainer>
     </DialogWindow>
   );
+};
+
+export const DialogTitle: React.FC<React.ComponentProps<typeof Heading>> = (props) => {
+  const { seed } = useDialog();
+  return <Heading {...props} id={seed('title')} />;
 };
 
 const CloseButtonContainer = styled('div', {
@@ -123,7 +132,7 @@ const DialogWindow = styled('section', {
   pt: '$10',
   outline: 'none',
   maxHeight: '90vh',
-  maxWidth: '90vw',
+  maxWidth: '80vw',
   minWidth: 480,
   br: '$md',
   pointerEvents: 'auto',
