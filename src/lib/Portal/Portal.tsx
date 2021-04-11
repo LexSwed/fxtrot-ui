@@ -12,7 +12,7 @@ const Portal: React.FC = ({ children }) => {
   useEffect(() => setMounted(true), []);
 
   if (!mounted) return null;
-  console.log(zIndex);
+
   return (
     <portalContext.Provider value={zIndex + 10}>
       {ReactDOM.createPortal(

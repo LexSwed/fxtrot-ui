@@ -7,12 +7,12 @@ import { useMenu } from './utils';
 import MenuItem from './MenuItem';
 import { ListBoxContext } from '../ListBox/ListBoxContext';
 
-interface MenuListProps extends ListBoxProps {
+export interface MenuListProps extends ListBoxProps {
   offset?: number;
   placement?: Options['placement'];
 }
 
-const MenuList: React.FC<MenuListProps> = ({ placement, offset, ...props }) => {
+const MenuList = React.forwardRef<HTMLUListElement, MenuListProps>(({ placement, offset, ...props }, ref) => {
   const { triggerRef, seed } = useMenu();
 
   return (
@@ -21,6 +21,7 @@ const MenuList: React.FC<MenuListProps> = ({ placement, offset, ...props }) => {
         <ListBox
           role={'menu'}
           {...props}
+          ref={ref}
           restoreFocus
           contain
           wrap
@@ -30,6 +31,6 @@ const MenuList: React.FC<MenuListProps> = ({ placement, offset, ...props }) => {
       </ListBoxContext>
     </Popover>
   );
-};
+});
 
 export default MenuList;

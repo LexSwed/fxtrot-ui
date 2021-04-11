@@ -14,10 +14,10 @@ For big lists use `value` prop on `Item` and `onAction` callback to handle click
 <Playground>
   <Box p="$8">
     <Menu onAction={typeof window !== 'undefined' ? window.alert : null}>
-      <Menu.Trigger>
+      <Button>
         <span>Open menu</span>
         <Icon as={ChevronDownIcon} size="lg" />
-      </Menu.Trigger>
+      </Button>
       <Menu.List>
         <Item value="copy">
           <Icon as="svg" />
@@ -42,10 +42,10 @@ You can modify `offset` and [`placement`](https://popper.js.org/docs/v2/construc
   <ThemeProvider theme="orange">
     <Box p="$8">
       <Menu>
-        <Menu.Trigger>
+        <Button>
           <span>Open menu</span>
           <Icon as={ChevronDownIcon} size="lg" />
-        </Menu.Trigger>
+        </Button>
         <Menu.List offset={0} placement="right-start">
           {Array(20)
             .fill(null)
@@ -69,15 +69,15 @@ You can modify `offset` and [`placement`](https://popper.js.org/docs/v2/construc
 <Playground>
   <Box p="$8">
     <Menu>
-      <Menu.Trigger variant="outline">
+      <Button variant="outline">
         <Icon as={ChevronDownIcon} size="lg" />
-      </Menu.Trigger>
+      </Button>
       <Menu.List>
         <Dialog>
-          <Dialog.Trigger as={Item} css={{ color: '$danger' }} display="flex" variant="transparent">
+          <Item css={{ color: '$danger' }}>
             <Icon size="md" as={TrashIcon} />
             <span>Delete</span>
-          </Dialog.Trigger>
+          </Item>
           {(close) => (
             <Dialog.Modal>
               <Dialog.Title level={3}>Delete topic?</Dialog.Title>

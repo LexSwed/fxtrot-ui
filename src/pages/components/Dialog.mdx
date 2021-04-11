@@ -10,7 +10,7 @@ import { Dialog, Button, TextField, Flex, Box, Switch } from '@fxtrot/ui';
 <Playground>
   <Box p="$8">
     <Dialog>
-      <Dialog.Trigger>New workspace</Dialog.Trigger>
+      <Button>New workspace</Button>
       {(close) => (
         <Dialog.Modal>
           <Dialog.Title level={3}>Create new workspace</Dialog.Title>
@@ -52,7 +52,7 @@ import { Dialog, Button, TextField, Flex, Box, Switch } from '@fxtrot/ui';
           </Box>
           {defaultOpen && (
             <Dialog defaultOpen={defaultOpen}>
-              <Dialog.Trigger>New workspace</Dialog.Trigger>
+              <Button>New workspace</Button>
               {(close) => (
                 <Dialog.Modal>
                   <Dialog.Title level={3}>Create new workspace</Dialog.Title>

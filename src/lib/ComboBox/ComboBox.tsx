@@ -131,7 +131,7 @@ const ComboBoxInner: React.FC<Props> = ({
             return React.cloneElement(item, {
               id: createOptionId(item.props.value as string),
               onMouseUp: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-                setFilterText(item.props.label);
+                setFilterText(item.props.label as string);
                 setValue(item.props.value as string);
                 close();
 
@@ -164,7 +164,7 @@ function useFilteredItems(children: Props['children'], filterText: string) {
   if (filterText === '') return items;
 
   return items.filter((child) => {
-    return child.props.label.toLowerCase().includes(filterText.toLowerCase());
+    return (child.props.label as string).toLowerCase().includes(filterText.toLowerCase());
   });
 }
 

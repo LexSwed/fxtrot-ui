@@ -48,7 +48,7 @@ export const StyledItem = styled('div', {
 });
 
 interface Props extends StitchesVariants<typeof StyledItem> {
-  label: string;
+  label?: string;
   value?: string;
   disabled?: boolean;
   css?: CssStyles;

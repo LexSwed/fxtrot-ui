@@ -155,7 +155,7 @@ export const stitchesConfig = createCss({
       lineHeight: value,
     }),
 
-    size: (config) => (value: ThemeSize) => {
+    size: (config) => (value: ThemeSize | (number | (string & {}))) => {
       return {
         width: value,
         height: value,
