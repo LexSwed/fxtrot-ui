@@ -1,12 +1,11 @@
 import React, { createContext, useContext, useMemo } from 'react';
-import Item, { ItemComponent } from '../Item/Item';
 
 export interface ListBoxContextValue {
-  ListItem: ItemComponent;
+  ListItem: React.ElementType;
 }
 
 const context = createContext<ListBoxContextValue>({
-  ListItem: Item,
+  ListItem: () => null,
 });
 
 export const ListBoxContext: React.FC<ListBoxContextValue> = ({ children, ListItem }) => {
