@@ -16,11 +16,11 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "importHelpers": true,
-    "jsx": "preserve",
+    "jsx": "react",
     "baseUrl": ".",
     "isolatedModules": true,
     "paths": {
-      "@fxtrot/ui": ["src/lib"]
+      "@fxtrot/ui": ["."]
     }
   },
   "include": ["next-env.d.ts", "src/**/*"],

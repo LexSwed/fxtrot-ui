@@ -1,4 +1,5 @@
 import esbuild from 'rollup-plugin-esbuild';
+import pkg from './package.json';
 
 function createConfig(output) {
   return {
@@ -18,11 +19,11 @@ function createConfig(output) {
 export default function config(args) {
   return [
     createConfig({
-      file: 'dist/index.esm.js',
+      file: pkg.module,
       format: 'esm',
     }),
     createConfig({
-      file: 'dist/index.js',
+      file: pkg.main,
       format: 'cjs',
       exports: 'named',
     }),
