@@ -1,11 +1,12 @@
 import React from 'react';
+import type * as Polymorphic from '@radix-ui/react-polymorphic';
 
 import { styled } from '../stitches.config';
 import type { CssStyles } from '../utils/types';
 
 const Div = styled('div', {});
 
-const Box = React.forwardRef<HTMLDivElement, Props>(({ children, css = {}, ...props }, ref) => {
+const Box: BoxComponent = React.forwardRef(({ children, css = {}, ...props }, ref) => {
   const [styles, attrs] = Object.entries(props).reduce(
     (res, [key, value]: [any, any]) => {
       if (VALID_ITEMS.has(key) && value) {
@@ -24,6 +25,8 @@ const Box = React.forwardRef<HTMLDivElement, Props>(({ children, css = {}, ...pr
     </Div>
   );
 });
+
+type BoxComponent = Polymorphic.ForwardRefComponent<'div', Props>;
 
 export default Box;
 
@@ -105,11 +108,12 @@ const acceptedProperties = [
 ] as const;
 
 /** Not all properties supported */
-export interface Props extends Omit<StyledProps, 'color'>, CustomField {}
+export interface Props extends CustomField {}
 
 type CustomField = {
   [prop in typeof acceptedProperties[number]]?: CssStyles[prop];
 } & {
+  css?: CssStyles;
   as?: React.ElementType;
 };
 
