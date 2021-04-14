@@ -6,3 +6,11 @@
 ![Latest release](https://badgen.net/github/release/LexSwed/fxtrot-ui)
 
 Yet another React component library with an aim to be a design system for `fxtrot` products.
+
+## Installation
+
+Install this library with required peer dependencies:
+
+```bash
+yarn add @fxtrot/ui @stitches/react framer-motion @heroicons/react
+```
