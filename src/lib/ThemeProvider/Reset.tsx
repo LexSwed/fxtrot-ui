@@ -27,6 +27,7 @@ const populate = stitchesConfig.global({
     backgroundColor: 'transparent',
   },
   'html': {
+    fontSize: '12px',
     fontFamily:
       '$default, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
     overflowY: 'scroll',
@@ -42,6 +43,7 @@ const populate = stitchesConfig.global({
     textRendering: 'optimizeSpeed',
     WebkitFontSmoothing: 'antialiased',
     MozOsxFontSmoothing: 'grayscale',
+    color: '$text',
   },
   'img, embed, iframe, object, audio, video': {
     maxWidth: '100%',
