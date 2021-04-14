@@ -44,18 +44,16 @@ interface Props extends StitchesVariants<typeof Link> {
   children?: React.ReactNode;
 }
 
-const TextLink = React.forwardRef(
-  ({ external, children, css, ...props }: React.ComponentProps<TextLinkComponent>, ref) => {
-    const additionalProps = external ? { target: '_blank', rel: 'noopener' } : null;
+const TextLink = React.forwardRef(({ external, children, ...props }: React.ComponentProps<TextLinkComponent>, ref) => {
+  const additionalProps = external ? { target: '_blank', rel: 'noopener' } : null;
 
-    return (
-      <Link as="a" {...additionalProps} {...props} ref={ref}>
-        {children}
-        {external === 'icon' ? <Icon size="md" as={ExternalLinkIcon} /> : null}
-      </Link>
-    );
-  }
-) as TextLinkComponent;
+  return (
+    <Link as="a" {...additionalProps} {...props} ref={ref}>
+      {children}
+      {external === 'icon' ? <Icon size="md" as={ExternalLinkIcon} /> : null}
+    </Link>
+  );
+}) as TextLinkComponent;
 
 type TextLinkComponent = Polymorphic.ForwardRefComponent<'a', Props>;
 
