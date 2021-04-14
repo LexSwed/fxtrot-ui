@@ -43,7 +43,6 @@ const populate = stitchesConfig.global({
     textRendering: 'optimizeSpeed',
     WebkitFontSmoothing: 'antialiased',
     MozOsxFontSmoothing: 'grayscale',
-    color: '$text',
   },
   'img, embed, iframe, object, audio, video': {
     maxWidth: '100%',
