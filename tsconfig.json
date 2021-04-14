@@ -5,24 +5,38 @@
     "sourceMap": true,
     "strict": true,
     "esModuleInterop": true,
-    "types": ["react", "jest"],
+    "types": [
+      "react",
+      "jest"
+    ],
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "importsNotUsedAsValues": "error",
     "useDefineForClassFields": true,
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "noEmit": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "importHelpers": true,
-    "jsx": "react",
+    "jsx": "preserve",
     "baseUrl": ".",
     "isolatedModules": true,
     "paths": {
-      "@fxtrot/ui": ["."]
+      "@fxtrot/ui": [
+        "."
+      ]
     }
   },
-  "include": ["next-env.d.ts", "src/**/*"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

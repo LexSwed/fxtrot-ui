@@ -17,6 +17,12 @@ function createConfig(output) {
 }
 
 export default function config(args) {
+  if (args.watch) {
+    return createConfig({
+      file: pkg.module,
+      format: 'esm',
+    })
+  }
   return [
     createConfig({
       file: pkg.module,

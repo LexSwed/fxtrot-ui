@@ -13,7 +13,7 @@ export interface OptionType extends React.ReactElement<React.ComponentProps<Item
 const Item: ItemComponent = React.forwardRef(({ value, label, ...props }, ref) => {
   const { value: dropdownValue, onChange } = usePicker();
   const { close } = useOpenStateControls();
-  const isSelected = dropdownValue === value;
+  const isSelected = dropdownValue !== undefined && dropdownValue === value;
 
   const onClick = useCallback(() => {
     value && onChange?.(value);

@@ -3,7 +3,7 @@ name: Dialog
 ---
 
 import { Playground } from 'dokz';
-import { Dialog, Button, TextField, Flex, Box, Switch } from '@fxtrot/ui';
+import { Dialog, Button, TextField, Flex, Box, Picker, Item, Switch } from '@fxtrot/ui';
 
 ## Dialog
 
@@ -22,7 +22,13 @@ import { Dialog, Button, TextField, Flex, Box, Switch } from '@fxtrot/ui';
               window.alert(e.currentTarget['workspace-name'].value);
             }}
           >
-            <TextField placeholder="Carefive" name="workspace-name" label="Workspace name" />
+            <Flex flow="column" gap="2">
+              <TextField placeholder="Carefive" name="workspace-name" label="Workspace name" />
+              <Picker>
+                <Item label="Item 1" />
+                <Item label="Item 2" />
+              </Picker>
+            </Flex>
             <Box pb="$10" />
             <Flex flow="row-reverse" gap="sm">
               <Button type="submit" variant="primary">
