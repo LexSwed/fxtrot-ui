@@ -19,6 +19,7 @@ const ThemeWrapper = styled('span', {
   display: 'contents',
   color: '$text',
   fontFamily: '$default',
+  boxSizing: 'border-box',
 });
 
 const ThemeProvider: React.FC<Props> = ({ theme, children }) => {

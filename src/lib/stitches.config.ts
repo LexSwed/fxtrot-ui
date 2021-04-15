@@ -18,30 +18,30 @@ export const theme = {
   space: scales,
   sizes: { ...scales, base: scales['10'] },
   fontSizes: {
-    'xs': '0.75rem',
-    'sm': '0.875rem',
-    'md': '1rem',
-    'lg': '1.125rem',
-    'xl': '1.25rem',
-    '2xl': '1.5rem',
-    '3xl': '1.875rem',
-    '4xl': '2.25rem',
-    '5xl': '3rem',
-    '6xl': '3.75rem',
-    '7xl': '4.5rem',
-    '8xl': '6rem',
-    '9xl': '8rem',
+    'xs': '11.16px',
+    'sm': '12.50px',
+    'md': '14.00px',
+    'lg': '15.68px',
+    'xl': '17.56px',
+    '2xl': '22.03px',
+    '3xl': '27.63px',
+    '4xl': '30.95px',
+    '5xl': '38.82px',
+    '6xl': '48.70px',
+    '7xl': '61.09px',
+    '8xl': '85.83px',
+    '9xl': '107.66px',
     'base': '$md',
   },
   lineHeights: {
-    'xs': '1rem',
-    'sm': '1.25rem',
-    'md': '1.5rem',
-    'lg': '1.75rem',
-    'xl': '1.75rem',
-    '2xl': '2rem',
-    '3xl': '2.25rem',
-    '4xl': '2.5rem',
+    'xs': '1em',
+    'sm': '1.25em',
+    'md': '1.5em',
+    'lg': '1.75em',
+    'xl': '1.75em',
+    '2xl': '2em',
+    '3xl': '2.25em',
+    '4xl': '2.5em',
     '5xl': '1',
     '6xl': '1',
     '7xl': '1',
@@ -195,6 +195,35 @@ export const stitchesConfig = createCss({
     }),
   },
   prefix: 'fxtrot',
+  insertionMethod() {
+    let styleElement: HTMLElement;
+    return (cssText) => {
+      if (typeof document === 'object') {
+        if (process.env.EXTENSION_NODE) {
+          const el = document.getElementById(process.env.EXTENSION_NODE);
+          if (el?.shadowRoot) {
+            styleElement =
+              el?.shadowRoot.getElementById('fxtrot-ui') ||
+              Object.assign(document.createElement('style'), { id: 'fxtrot-ui' });
+
+            if (!styleElement.parentNode) {
+              el.shadowRoot.appendChild(styleElement);
+            }
+            styleElement.textContent = cssText.split(':root').join(':host');
+          }
+        } else {
+          styleElement =
+            document.getElementById('fxtrot-ui') || Object.assign(document.createElement('style'), { id: 'fxtrot-ui' });
+
+          let currentCssHead = document.head || document.documentElement;
+
+          if (!styleElement.parentNode) currentCssHead.append(styleElement);
+
+          styleElement.textContent = cssText;
+        }
+      }
+    };
+  },
 });
 
 export const { css, styled, keyframes } = stitchesConfig;
