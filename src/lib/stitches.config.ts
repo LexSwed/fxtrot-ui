@@ -217,7 +217,7 @@ export const stitchesConfig = createCss({
           if (!styleElement.parentNode) currentCssHead.append(styleElement);
         }
 
-        styleElement.textContent = cssText.replace(':root', ':host');
+        styleElement.textContent = cssText;
       }
     };
   },
