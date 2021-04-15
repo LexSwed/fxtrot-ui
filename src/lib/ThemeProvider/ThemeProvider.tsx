@@ -19,6 +19,7 @@ const ThemeWrapper = styled('span', {
   display: 'contents',
   color: '$text',
   fontFamily: '$default',
+  fontSize: '$md',
   boxSizing: 'border-box',
 });
 
