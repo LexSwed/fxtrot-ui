@@ -24,8 +24,8 @@ export const IconWrapper = styled('div', {
 });
 
 export const InteractiveBox = styled('input', {
-  'fontSize': '$sm',
-  'lineHeight': '$base',
+  'fontSize': '$md',
+  'lineHeight': '$md',
   'height': '$base',
   'width': '100%',
   'px': '$2',

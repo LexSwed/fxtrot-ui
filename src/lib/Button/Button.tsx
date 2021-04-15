@@ -34,7 +34,7 @@ const ButtonRoot = styled('button', {
       },
       md: {
         height: '$base',
-        fontSize: '$sm',
+        fontSize: '$md',
         fontWeight: 500,
         px: '$3',
       },

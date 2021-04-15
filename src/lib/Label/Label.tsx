@@ -1,8 +1,10 @@
 import React from 'react';
+import type * as Polymorphic from '@radix-ui/react-polymorphic';
 
-import { flexVariants } from '../Flex/Flex';
 import { styled } from '../stitches.config';
 import Text from '../Text';
+import Flex from '../Flex';
+import type { StitchesVariants } from '@stitches/core';
 
 const Main = styled(Text, {
   lineHeight: 1,
@@ -28,10 +30,9 @@ const Secondary = styled(Text, {
   fontWeight: 400,
 });
 
-export const LabelWrapper = styled('label', {
+export const LabelWrapper = styled(Flex, {
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
-  variants: flexVariants,
   defaultVariants: {
     gap: 'none',
     display: 'flex',
@@ -40,28 +41,27 @@ export const LabelWrapper = styled('label', {
   },
 });
 
-interface Props extends React.ComponentProps<typeof LabelWrapper> {
+interface Props extends StitchesVariants<typeof LabelWrapper> {
   label: React.ReactNode;
   secondary?: React.ReactNode;
   disabled?: boolean;
-  as?: keyof JSX.IntrinsicElements;
 }
 
-const Label = React.forwardRef<HTMLLabelElement, Props>(
-  ({ label, children: _ignore, secondary, disabled, ...props }, ref) => {
-    return (
-      <LabelWrapper {...props} flow="row" cross="center" gap="xs" display="inline" ref={ref}>
-        <Main size="xs" disabled={disabled}>
-          {label}
-        </Main>
-        {secondary && (
-          <Secondary size="xs" tone="light">
-            {secondary}
-          </Secondary>
-        )}
-      </LabelWrapper>
-    );
-  }
-);
+type LabelComponent = Polymorphic.ForwardRefComponent<'label', Props>;
+
+const Label: LabelComponent = React.forwardRef(({ label, secondary, disabled, ...props }: Props, ref) => {
+  return (
+    <LabelWrapper {...props} flow="row" cross="center" gap="xs" display="inline" ref={ref as any}>
+      <Main size="sm" disabled={disabled}>
+        {label}
+      </Main>
+      {secondary && (
+        <Secondary size="sm" tone="light">
+          {secondary}
+        </Secondary>
+      )}
+    </LabelWrapper>
+  );
+});
 
 export default Label;

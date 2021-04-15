@@ -9,7 +9,7 @@ const Heading = styled('h1', {
   variants: {
     level: {
       1: {
-        fontSize: '$2xl',
+        fontSize: '$3xl',
         mt: '$3',
         mb: '$5',
       },

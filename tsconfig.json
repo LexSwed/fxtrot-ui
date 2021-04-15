@@ -20,7 +20,7 @@
     "baseUrl": ".",
     "isolatedModules": true,
     "paths": {
-      "@fxtrot/ui": ["."]
+      "@fxtrot/ui": ["src/lib"]
     }
   },
   "include": ["next-env.d.ts", "src/**/*"],

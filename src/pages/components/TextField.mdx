@@ -142,11 +142,11 @@ for example to specify flow direction:
 
 <Playground>
   <Box css={{ p: '$6', bc: '$gray50' }}>
-    <Box css={{ width: '420px', tablet: { width: '300px' } }}>
+    <Box css={{ 'width': '420px', '@tablet': { width: '300px' } }}>
       <TextField
         label="Enter your name"
-        flow={{ initial: 'row', tablet: 'column' }}
-        space={{ initial: '$6', tablet: '$1' }}
+        flow={{ '@desktop': 'row', '@tablet': 'column' }}
+        gap={{ '@desktop': '6', '@tablet': '1' }}
         placeholder="John Doe"
         hint="Real name will help your friends to find you!"
       />

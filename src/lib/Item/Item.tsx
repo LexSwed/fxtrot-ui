@@ -11,7 +11,7 @@ import { useListBoxContext } from '../ListBox/ListBoxContext';
 
 export const StyledItem = styled('div', {
   'px': '$3',
-  'fontSize': '$sm',
+  'fontSize': '$md',
   'lineHeight': 1,
   'height': '$base',
   'br': '$sm',
