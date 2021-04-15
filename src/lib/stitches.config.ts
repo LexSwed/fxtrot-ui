@@ -5,6 +5,16 @@ import { scales } from './theme/scales';
 import { shadows } from './theme/shadows';
 import { allColors, themes } from './ThemeProvider/themes';
 
+let currentCssHead: HTMLElement;
+let styleElement: HTMLElement;
+
+export function modifyStitchesStyleElement(el: HTMLElement) {
+  if (styleElement && currentCssHead) {
+    currentCssHead.removeChild(styleElement);
+  }
+  styleElement = el;
+}
+
 export const theme = {
   colors: {
     ...allColors,
@@ -191,9 +201,25 @@ export const stitchesConfig = createCss({
       },
       [`&:focus[${attribute}]`]: {
         boxShadow: `0 0 0 3px $$focusRingColor`,
-        // 'outline': '2px $colors$focusRing auto',
       },
     }),
+  },
+  prefix: 'fxtrot',
+  insertionMethod() {
+    return (cssText) => {
+      if (typeof document === 'object') {
+        if (!styleElement) {
+          styleElement =
+            document.getElementById('fxtrot-ui') || Object.assign(document.createElement('style'), { id: 'fxtrot-ui' });
+
+          if (!currentCssHead) currentCssHead = document.head || document.documentElement;
+
+          if (!styleElement.parentNode) currentCssHead.append(styleElement);
+        }
+
+        styleElement.textContent = cssText.replace(':root', ':host');
+      }
+    };
   },
 });
 

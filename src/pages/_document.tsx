@@ -8,7 +8,7 @@ export default class Document extends NextDocument {
       <Html lang="en">
         <Head>
           <link href="https://fonts.googleapis.com/css?family=Fira+Code" rel="stylesheet" key="google-font-Fira" />
-          <style id="stitches" dangerouslySetInnerHTML={{ __html: stitchesConfig.getCssString() }} />
+          <style id="fxtrot-ui" dangerouslySetInnerHTML={{ __html: stitchesConfig.getCssString() }} />
         </Head>
         <body>
           <Main />

@@ -18,6 +18,7 @@ const themeContext = createContext<ThemeContext>({});
 const ThemeWrapper = styled('span', {
   display: 'contents',
   color: '$text',
+  fontFamily: '$default',
 });
 
 const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
