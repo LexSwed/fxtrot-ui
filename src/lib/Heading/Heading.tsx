@@ -9,33 +9,32 @@ const Heading = styled('h1', {
   variants: {
     level: {
       1: {
-        fontSize: '$3xl',
+        fontSize: '$5xl',
         mt: '$3',
         mb: '$5',
       },
       2: {
-        fontSize: '$2xl',
+        fontSize: '$4xl',
         mt: '$2',
         mb: '$4',
       },
       3: {
-        fontSize: '$xl',
+        fontSize: '$3xl',
         mt: '$2',
         mb: '$4',
       },
       4: {
-        fontSize: '$lg',
+        fontSize: '$2xl',
         mt: '$1',
         mb: '$3',
       },
       5: {
-        fontSize: '$lg',
-        textTransform: 'uppercase',
+        fontSize: '$xl',
         mt: '$1',
         mb: '$2',
       },
       6: {
-        fontSize: '$md',
+        fontSize: '$xl',
       },
     },
     variant: {
