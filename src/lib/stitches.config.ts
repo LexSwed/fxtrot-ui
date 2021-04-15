@@ -196,29 +196,43 @@ export const stitchesConfig = createCss({
   },
   prefix: 'fxtrot',
   insertionMethod() {
-    let styleElement: HTMLElement;
+    let styleElement: HTMLElement | undefined;
+    const styleId = 'fxtrot-ui';
+    // @ts-ignore
+    const extensionRootId = typeof process === 'object' ? process.env.EXTENSION_NODE : null;
+
+    function createShadowRootStyleElement(id: string) {
+      const el = document.getElementById(id);
+      if (el?.shadowRoot) {
+        const style =
+          el?.shadowRoot.getElementById(styleId) || Object.assign(document.createElement('style'), { id: styleId });
+
+        if (!style.parentNode) {
+          el.shadowRoot.appendChild(style);
+        }
+        return style;
+      }
+    }
+
+    function createDocumentStyleElement() {
+      const style = document.getElementById(styleId) || Object.assign(document.createElement('style'), { id: styleId });
+
+      let currentCssHead = document.head || document.documentElement;
+
+      if (!style.parentNode) currentCssHead.append(style);
+
+      return style;
+    }
+
     return (cssText) => {
       if (typeof document === 'object') {
-        if (process.env.EXTENSION_NODE) {
-          const el = document.getElementById(process.env.EXTENSION_NODE);
-          if (el?.shadowRoot) {
-            styleElement =
-              el?.shadowRoot.getElementById('fxtrot-ui') ||
-              Object.assign(document.createElement('style'), { id: 'fxtrot-ui' });
-
-            if (!styleElement.parentNode) {
-              el.shadowRoot.appendChild(styleElement);
-            }
-            styleElement.textContent = cssText.split(':root').join(':host');
-          }
-        } else {
-          styleElement =
-            document.getElementById('fxtrot-ui') || Object.assign(document.createElement('style'), { id: 'fxtrot-ui' });
-
-          let currentCssHead = document.head || document.documentElement;
-
-          if (!styleElement.parentNode) currentCssHead.append(styleElement);
-
+        if (!styleElement) {
+          styleElement = extensionRootId ? createShadowRootStyleElement(extensionRootId) : createDocumentStyleElement();
+        }
+        if (extensionRootId) {
+          cssText = cssText.split(':root').join(':host');
+        }
+        if (styleElement) {
           styleElement.textContent = cssText;
         }
       }
