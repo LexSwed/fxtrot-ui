@@ -23,6 +23,7 @@
   },
   "scripts": {
     "build": "rm -rf ./dist && run-p build:*",
+    "build:watch": "yarn build:lib --watch & yarn build:types --watch",
     "build:lib": "rollup -c",
     "build:types": "tsc --project tsconfig.lib.json",
     "dev": "yarn run dokz:dev & yarn run build:lib --watch",
