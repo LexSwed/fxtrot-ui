@@ -1,7 +1,6 @@
-import React, { createContext, useContext, useMemo, useState, useImperativeHandle } from 'react';
-
-const menuStateContext = createContext(false);
-const menuStateControlsContext = createContext<MenuControlFunctions>({} as MenuControlFunctions);
+import { atom, Provider } from 'jotai';
+import { useAtomValue, useUpdateAtom } from 'jotai/utils';
+import React, { useMemo, useImperativeHandle } from 'react';
 
 export interface OpenStateRef {
   open: () => void;
@@ -9,26 +8,25 @@ export interface OpenStateRef {
   toggle: () => void;
 }
 
+const openStateAtom = atom(false);
+openStateAtom.scope = Symbol('OpenState');
+
 export const OpenStateProvider = React.forwardRef<OpenStateRef, { defaultOpen?: boolean; children?: React.ReactNode }>(
   ({ defaultOpen, children }, ref) => {
-    const [isOpen, controls] = useTogglesState(defaultOpen);
+    const controls = useOpenStateControls();
 
     useImperativeHandle(ref, () => controls, [controls]);
 
     return (
-      <menuStateControlsContext.Provider value={controls}>
-        <menuStateContext.Provider value={isOpen}>{children}</menuStateContext.Provider>
-      </menuStateControlsContext.Provider>
+      <Provider initialValues={[[openStateAtom, defaultOpen]]} scope={openStateAtom.scope}>
+        {children}
+      </Provider>
     );
   }
 );
 
 export function useOpenState() {
-  return useContext(menuStateContext);
-}
-
-export function useOpenStateControls() {
-  return useContext(menuStateControlsContext);
+  return useAtomValue(openStateAtom);
 }
 
 interface MenuControlFunctions {
@@ -37,10 +35,10 @@ interface MenuControlFunctions {
   toggle: () => void;
 }
 
-function useTogglesState(defaultOpen = false): [isOpen: boolean, controls: MenuControlFunctions] {
-  const [isOpen, setOpen] = useState(defaultOpen);
+export function useOpenStateControls(): MenuControlFunctions {
+  const setOpen = useUpdateAtom(openStateAtom);
 
-  const controls = useMemo<MenuControlFunctions>(
+  return useMemo<MenuControlFunctions>(
     () => ({
       open: () => {
         setOpen(true);
@@ -52,8 +50,6 @@ function useTogglesState(defaultOpen = false): [isOpen: boolean, controls: MenuC
         setOpen((open) => !open);
       },
     }),
-    []
+    [setOpen]
   );
-
-  return [isOpen, controls];
 }

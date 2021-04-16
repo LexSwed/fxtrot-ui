@@ -3,7 +3,7 @@ name: Menu
 ---
 
 import { Playground } from 'dokz';
-import { Box, Button, Menu, Item, Icon, Text, ThemeProvider, Dialog } from '@fxtrot/ui';
+import { Box, Button, Menu, Item, Icon, Text, ThemeProvider, Dialog, Picker } from '@fxtrot/ui';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import { TrashIcon } from '@heroicons/react/outline';
 
@@ -81,7 +81,10 @@ You can modify `offset` and [`placement`](https://popper.js.org/docs/v2/construc
           {(close) => (
             <Dialog.Modal>
               <Dialog.Title level={3}>Delete topic?</Dialog.Title>
-              <div onClick={(e) => console.log(e.defaultPrevented, 'click')}>divkda;dka;s</div>
+              <Picker>
+                <Item label="Item 1" />
+                <Item label="Item 2" />
+              </Picker>
             </Dialog.Modal>
           )}
         </Dialog>

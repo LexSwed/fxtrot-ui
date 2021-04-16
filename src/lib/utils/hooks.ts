@@ -1,5 +1,6 @@
-import React, { useCallback,  useEffect, useLayoutEffect,  useRef } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useRef } from 'react';
 import { useUID } from 'react-uid';
+import { clickCatcherAttrs } from '../ClickCatcher/ClickCatcher';
 
 type PossibleRef<T> = React.Ref<T> | ((instance: T | null) => void) | null | undefined;
 
@@ -99,25 +100,30 @@ const events: HandledEventsType[] = [MOUSEDOWN, TOUCHSTART, POINTERDOWN];
 
 export function useOnClickOutside(handler: Handler | null, isActive: boolean, ...refs: React.RefObject<HTMLElement>[]) {
   const handlerRef = useLatest(handler);
-
   useEffect(() => {
     if (!isActive) {
       return;
     }
     const listener = (event: PossibleEvent) => {
-      if (refs.some((ref) => ref.current?.contains?.(event.target as Node))) {
+      // event.target is not available in shadow DOM
+      const target = event.composedPath()?.[0] as Node;
+      if (refs.some((ref) => ref.current?.contains?.(target))) {
         return;
       }
       handlerRef.current?.(event);
     };
 
+    // I know it's not good but it's way simpler than any other solution I could come up with
+    const host = (document.querySelector(`[data-fxtrotui="${clickCatcherAttrs['data-fxtrotui']}"]`) ||
+      document) as HTMLElement;
+
     events.forEach((event) => {
-      document.addEventListener(event, listener);
+      host.addEventListener(event, listener);
     });
 
     return () => {
       events.forEach((event) => {
-        document.removeEventListener(event, listener);
+        host.removeEventListener(event, listener);
       });
     };
   }, [handlerRef, isActive, ...refs]); //eslint-disable-line react-hooks/exhaustive-deps

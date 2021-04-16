@@ -10,6 +10,7 @@ import Flex from '../Flex';
 import Icon from '../Icon';
 import Portal from '../Portal';
 import Heading from '../Heading';
+import ClickCatcher from '../ClickCatcher';
 import { useKeyboardHandles } from '../utils/hooks';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { styled } from '../stitches.config';
@@ -138,16 +139,3 @@ const DialogWindow = styled('section', {
   pointerEvents: 'auto',
   position: 'relative',
 });
-
-/**
- * Allows Dialog to remain open when opened by a trigger
- * inside the Menu that registers outside click listener to close the menu
- */
-function preventClick(e: React.PointerEvent | React.TouchEvent | React.MouseEvent) {
-  e.stopPropagation();
-}
-const ClickCatcher: React.FC = ({ children }) => (
-  <Box display="contents" onMouseDown={preventClick} onTouchStart={preventClick} onPointerDown={preventClick}>
-    {children}
-  </Box>
-);

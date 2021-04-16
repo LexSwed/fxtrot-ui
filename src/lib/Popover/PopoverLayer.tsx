@@ -8,60 +8,6 @@ import { sameWidth, usePopper } from '../utils/popper';
 import { useKeyboardHandles, useOnClickOutside } from '../utils/hooks';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 
-const Popper = styled('div', {
-  position: 'absolute',
-});
-
-const PopperBox = styled(motion.div, {
-  bc: '$surfaceStill',
-  br: '$md',
-  outline: 'none',
-  boxShadow: '$popper',
-});
-
-const animations: Record<string, Variants> = {
-  top: {
-    initial: {
-      opacity: 0,
-      y: 5,
-    },
-    animate: {
-      opacity: 1,
-      y: 0,
-    },
-  },
-  bottom: {
-    initial: {
-      opacity: 0,
-      y: -5,
-    },
-    animate: {
-      opacity: 1,
-      y: 0,
-    },
-  },
-  right: {
-    initial: {
-      opacity: 0,
-      x: -5,
-    },
-    animate: {
-      opacity: 1,
-      x: 0,
-    },
-  },
-  left: {
-    initial: {
-      opacity: 0,
-      x: 5,
-    },
-    animate: {
-      opacity: 1,
-      x: 0,
-    },
-  },
-};
-
 interface Props extends React.ComponentProps<typeof PopperBox> {
   triggerRef: React.RefObject<HTMLElement>;
   offset?: number;
@@ -116,3 +62,57 @@ const PopoverLayer: React.FC<Props> = ({ children, triggerRef, offset = 8, place
 };
 
 export default PopoverLayer;
+
+const Popper = styled('div', {
+  position: 'absolute',
+});
+
+const PopperBox = styled(motion.div, {
+  bc: '$surfaceStill',
+  br: '$md',
+  outline: 'none',
+  boxShadow: '$popper',
+});
+
+const animations: Record<string, Variants> = {
+  top: {
+    initial: {
+      opacity: 0,
+      y: 5,
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+    },
+  },
+  bottom: {
+    initial: {
+      opacity: 0,
+      y: -5,
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+    },
+  },
+  right: {
+    initial: {
+      opacity: 0,
+      x: -5,
+    },
+    animate: {
+      opacity: 1,
+      x: 0,
+    },
+  },
+  left: {
+    initial: {
+      opacity: 0,
+      x: 5,
+    },
+    animate: {
+      opacity: 1,
+      x: 0,
+    },
+  },
+};

@@ -36,25 +36,25 @@
     "postpublish": "pinst --enable"
   },
   "dependencies": {
-    "@heroicons/react": "^1.0.0",
+    "@heroicons/react": "^1.0.1",
     "@popperjs/core": "^2.9.2",
     "@radix-ui/react-polymorphic": "^0.0.10",
     "@react-aria/focus": "^3.2.4",
     "@react-aria/interactions": "^3.3.4",
     "@react-aria/visually-hidden": "^3.2.1",
     "@stitches/react": "^0.1.7",
-    "framer-motion": "^4.1.3",
-    "jotai": "^0.16.0",
+    "framer-motion": "^4.1.4",
+    "jotai": "^0.16.1",
     "react-keyed-flatten-children": "^1.3.0",
     "react-uid": "^2.3.1",
-    "react-virtual": "^2.6.2"
+    "react-virtual": "^2.7.1"
   },
   "devDependencies": {
     "@chakra-ui/react": "^1.5.1",
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.3.0",
     "@types/jest": "^26.0.22",
-    "@types/node": "^14.14.37",
+    "@types/node": "^14.14.41",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
@@ -63,7 +63,7 @@
     "babel-eslint": "^10.1.0",
     "babel-preset-react-app": "^10.0.0",
     "dokz": "^2.0.7",
-    "esbuild": "^0.11.10",
+    "esbuild": "^0.11.11",
     "eslint": "^7.24.0",
     "eslint-config-react-app": "^6.0.0",
     "eslint-plugin-flowtype": "^5.7.0",
@@ -82,7 +82,7 @@
     "react-dom": "^17.0.2",
     "react-view": "^2.3.6",
     "rollup": "^2.45.2",
-    "rollup-plugin-esbuild": "^3.0.2",
+    "rollup-plugin-esbuild": "^4.0.1",
     "typescript": "^4.2.4"
   },
   "peerDependencies": {
