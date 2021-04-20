@@ -49,19 +49,21 @@ interface Props extends StitchesVariants<typeof LabelWrapper> {
 
 type LabelComponent = Polymorphic.ForwardRefComponent<'label', Props>;
 
-const Label: LabelComponent = React.forwardRef(({ label, secondary, disabled, ...props }: Props, ref) => {
-  return (
-    <LabelWrapper {...props} flow="row" cross="center" gap="xs" display="inline" ref={ref as any}>
-      <Main size="sm" disabled={disabled}>
-        {label}
-      </Main>
-      {secondary && (
-        <Secondary size="sm" tone="light">
-          {secondary}
-        </Secondary>
-      )}
-    </LabelWrapper>
-  );
-});
+const Label: LabelComponent = React.forwardRef(
+  ({ label, secondary, disabled, as = 'label', ...props }: React.ComponentProps<LabelComponent>, ref) => {
+    return (
+      <LabelWrapper {...props} as={as} flow="row" cross="center" gap="xs" display="inline" ref={ref as any}>
+        <Main size="sm" disabled={disabled}>
+          {label}
+        </Main>
+        {secondary && (
+          <Secondary size="sm" tone="light">
+            {secondary}
+          </Secondary>
+        )}
+      </LabelWrapper>
+    );
+  }
+);
 
 export default Label;
