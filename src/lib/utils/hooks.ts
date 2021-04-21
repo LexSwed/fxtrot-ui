@@ -75,7 +75,7 @@ export function useKeyboardHandles(handlers: KeyboardHandlers): KeyboardHandler 
   return useCallback<(event: React.KeyboardEvent<any>) => void>((event) => {
     const handlers = handlersRef.current;
     let handler = handlers[event.key];
-    if (handler) {
+    if (handler && event.currentTarget.contains(event.target)) {
       event.preventDefault();
       return handler(event);
     }
