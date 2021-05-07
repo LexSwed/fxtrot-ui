@@ -37,8 +37,6 @@ const Flex = styled('div', {
   'defaultVariants': {
     gap: 'none',
     display: 'flex',
-    flow: 'column',
-    wrap: 'nowrap',
   },
 });
 
