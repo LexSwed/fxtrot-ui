@@ -153,7 +153,7 @@ const ComboBoxButton = React.memo(
     const { open } = useOpenStateControls();
 
     return (
-      <ButtonContainer flow="row" cross="center">
+      <ButtonContainer cross="center">
         {hasNewBadge && <Tag label="NEW" size="sm" />}
         <Button
           variant="transparent"

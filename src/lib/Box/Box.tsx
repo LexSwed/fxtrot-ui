@@ -117,6 +117,4 @@ type CustomField = {
   as?: React.ElementType;
 };
 
-type StyledProps = React.ComponentProps<typeof Div>;
-
 const VALID_ITEMS = new Set<keyof CssStyles>(acceptedProperties);

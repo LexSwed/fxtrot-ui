@@ -33,12 +33,6 @@ const Secondary = styled(Text, {
 export const LabelWrapper = styled(Flex, {
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
-  defaultVariants: {
-    gap: 'none',
-    display: 'flex',
-    flow: 'column',
-    wrap: 'nowrap',
-  },
 });
 
 interface Props extends StitchesVariants<typeof LabelWrapper> {
@@ -52,7 +46,7 @@ type LabelComponent = Polymorphic.ForwardRefComponent<'label', Props>;
 const Label: LabelComponent = React.forwardRef(
   ({ label, secondary, disabled, as = 'label', ...props }: React.ComponentProps<LabelComponent>, ref) => {
     return (
-      <LabelWrapper {...props} as={as} flow="row" cross="center" gap="xs" display="inline" ref={ref as any}>
+      <LabelWrapper {...props} as={as} cross="center" gap="xs" display="inline" ref={ref as any}>
         <Main size="sm" disabled={disabled}>
           {label}
         </Main>

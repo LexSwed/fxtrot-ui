@@ -10,7 +10,7 @@ import { Flex, TextLink } from '@fxtrot/ui';
 `Text` component as `anchor`. Enables additional props, such as `external` to ease the use and security of `target="_blank"`
 
 <Playground>
-  <Flex gap="8">
+  <Flex flow="column" gap="8">
     <TextLink href="https://random.dog/">Make visited</TextLink>
     <TextLink size="sm">size prop of Text component</TextLink>
   </Flex>
@@ -19,7 +19,7 @@ import { Flex, TextLink } from '@fxtrot/ui';
 ### External
 
 <Playground>
-  <Flex gap="8">
+  <Flex flow="column" gap="8">
     <TextLink href="https://random.dog/" external>
       Just external
     </TextLink>

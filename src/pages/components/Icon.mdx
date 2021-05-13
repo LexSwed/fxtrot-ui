@@ -18,24 +18,19 @@ export const DotsHorizontalIcon = solidIcons.DotsHorizontalIcon;
   <Icon as={DotsHorizontalIcon} size="xl" />
 </Playground>
 
-export const Grid = styled('div', {
-  display: 'grid',
-  gridAutoFlow: 'row',
-  gridTemplateColumns: 'repeat(auto-fill, minmax(150px, auto))',
-  gap: '$2',
-  py: '$4',
-});
-
-export const IconBox = styled(Flex, {
-  'boxShadow': '$md',
-  'px': '$3',
-  'py': '$5',
+export const IconBox = styled('div', {
+  'display': 'flex',
+  'alignItems': 'center',
+  'gap': '$4',
+  'boxShadow': '$sm',
+  'p': '$6',
   'transition': '0.2s ease-in-out',
   'cursor': 'pointer',
   'minWidth': 0,
   'overflow': 'hidden',
+  'bc': '#fff',
   '&:hover': {
-    boxShadow: '$lg',
+    boxShadow: '$md',
   },
 });
 
@@ -50,32 +45,32 @@ export function copy(text) {
 export const IconsWithFilter = () => {
   const [filterText, setText] = React.useState('');
   const [isOutline, setOutline] = React.useState(false);
+  function handleClick(e) {
+    copy(`import { ${e.target.dataset.name} } from '@heroicons/react/${isOutline ? 'outline' : 'solid'}'`);
+  }
   return (
-    <Flex cross="stretch" gap="md">
-      <Flex flow="row" gap="md" main="spread" cross="center">
-        <TextField css={{ flexBasis: '50%' }} value={filterText} onChange={setText} placeholder="Search for an icon" />
-        <Switch checked={isOutline} onChange={setOutline} label="Show outline icons" />
+    <Box bc="$lightBlue50" p="$6">
+      <Flex flow="column" cross="stretch" gap="md">
+        <Flex gap="md" main="spread" cross="center">
+          <TextField
+            css={{ flexBasis: '50%' }}
+            value={filterText}
+            onChange={setText}
+            placeholder="Search for an icon"
+          />
+          <Switch checked={isOutline} onChange={setOutline} label="Show outline icons" />
+        </Flex>
+        <Flex flow="row" wrap="wrap" gap="4">
+          {Object.entries(isOutline ? outlineIcons : solidIcons)
+            .filter(([name]) => name.toLowerCase().includes(filterText.toLowerCase()))
+            .map(([name, icon]) => (
+              <IconBox key={name} data-name={name} title={name} onClick={handleClick}>
+                <Icon as={icon} color="$gray700" size="xl" />
+              </IconBox>
+            ))}
+        </Flex>
       </Flex>
-      <Grid>
-        {Object.entries(isOutline ? outlineIcons : solidIcons)
-          .filter(([name]) => name.toLowerCase().includes(filterText.toLowerCase()))
-          .map(([name, icon]) => (
-            <IconBox
-              gap="sm"
-              cross="center"
-              main="center"
-              key={name}
-              size="md"
-              onClick={() => copy(`import { ${name} } from '@heroicons/react/${isOutline ? 'outline' : 'solid'}'`)}
-            >
-              <Icon as={icon} color="$gray700" size="xl" />
-              <Text size="xs" ellipsis>
-                {name}
-              </Text>
-            </IconBox>
-          ))}
-      </Grid>
-    </Flex>
+    </Box>
   );
 };
 

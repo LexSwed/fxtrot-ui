@@ -14,16 +14,20 @@ import { Box, Flex, Text, TextField, Button, Popover } from '@fxtrot/ui';
       <Popover ref={ref}>
         <Button variant="primary">Create</Button>
         <Popover.Content css={{ width: '300px' }} offset={12} placement="bottom-end">
-          <Flex gap="4">
+          <Flex gap="4" flow="column">
             <TextField label="Full name" placeholder="Ahsoka Tano" />
-            <Button
-              css={{ alignSelf: 'flex-end' }}
-              onClick={() => {
-                ref.current.close();
-              }}
-            >
-              Submit
-            </Button>
+            <Flex gap="2" main="end">
+              <Button
+                onClick={() => {
+                  ref.current.close();
+                }}
+              >
+                Cancel
+              </Button>
+              <Button variant="primary" css={{ alignSelf: 'flex-end' }}>
+                Submit
+              </Button>
+            </Flex>
           </Flex>
         </Popover.Content>
       </Popover>

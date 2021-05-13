@@ -6,10 +6,6 @@ import { FormField, FormFieldProps } from '../FormField/FormField';
 import Label from '../Label';
 import { styled } from '../stitches.config';
 
-const SwitchWrapper = styled(Box, {
-  position: 'relative',
-});
-
 const Toggle = styled('div', {
   'br': '$pill',
   'bc': '$borderStill',
@@ -118,7 +114,7 @@ const Switch: React.FC<Props> = ({
   secondaryLabel,
   gap = 'sm',
   display = 'inline',
-  cross,
+  cross = 'center',
   disabled,
   ...props
 }) => {
@@ -130,7 +126,7 @@ const Switch: React.FC<Props> = ({
 
   return (
     <FormField
-      as={'label' as any}
+      as="label"
       display={display}
       className={className}
       style={style}
@@ -139,7 +135,7 @@ const Switch: React.FC<Props> = ({
       flow={flow}
       cross={cross}
     >
-      <SwitchWrapper>
+      <Box position="relative">
         <Input
           aria-checked={checked}
           checked={checked}
@@ -150,7 +146,7 @@ const Switch: React.FC<Props> = ({
           onChange={handleChange}
         />
         <Toggle />
-      </SwitchWrapper>
+      </Box>
       {label && <Label label={label} secondary={secondaryLabel} disabled={disabled} as="div" />}
     </FormField>
   );

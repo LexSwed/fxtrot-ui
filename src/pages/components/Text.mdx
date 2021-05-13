@@ -34,7 +34,7 @@ import { Flex, Text } from '@fxtrot/ui';
 ## Alignments
 
 <Playground>
-  <Flex gap="sm" cross="stretch">
+  <Flex flow="column" gap="sm" cross="stretch" css={{ p: '$4' }}>
     <Text>Default align</Text>
     <Text align="start">Start align</Text>
     <Text align="center">Center align</Text>
@@ -45,7 +45,7 @@ import { Flex, Text } from '@fxtrot/ui';
 ## Size
 
 <Playground>
-  <Flex gap="sm" cross="stretch">
+  <Flex flow="column" gap="sm" cross="stretch" css={{ p: '$4' }}>
     <Text size="xs">
       Size{' '}
       <Text as="code" font="mono">

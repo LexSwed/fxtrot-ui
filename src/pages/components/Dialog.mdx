@@ -52,10 +52,8 @@ import { Dialog, Button, TextField, Flex, Box, Picker, Item, Switch } from '@fxt
     const [defaultOpen, setDefaultOpen] = React.useState(false);
     return (
       <Box p="$8">
-        <Flex flow="row" cross="center" main="start" gap="sm">
-          <Box>
-            <Switch label="Default open" value={defaultOpen} onChange={setDefaultOpen} />
-          </Box>
+        <Flex cross="center" main="start" gap="sm">
+          <Switch label="Default open" value={defaultOpen} onChange={setDefaultOpen} />
           {defaultOpen && (
             <Dialog defaultOpen={defaultOpen}>
               <Button>New workspace</Button>

@@ -38,8 +38,8 @@ import { Box, Flex, Grid, Button, ThemeProvider, Icon } from '@fxtrot/ui';
 ## Size
 
 <Playground>
-  <Flex gap="xl" css={{ py: '$8', bc: '$gray50' }}>
-    <Flex flow="row" gap="sm" css={{ px: '$10' }}>
+  <Flex flow="column" gap="xl" css={{ py: '$8', bc: '$gray50' }}>
+    <Flex gap="sm" css={{ px: '$10' }}>
       <Button size="xs" variant="primary">
         Primary
       </Button>
@@ -56,7 +56,7 @@ import { Box, Flex, Grid, Button, ThemeProvider, Icon } from '@fxtrot/ui';
         Link
       </Button>
     </Flex>
-    <Flex flow="row" gap="sm" css={{ px: '$10' }}>
+    <Flex gap="sm" css={{ px: '$10' }}>
       <Button size="sm" variant="primary">
         Primary
       </Button>
@@ -73,7 +73,7 @@ import { Box, Flex, Grid, Button, ThemeProvider, Icon } from '@fxtrot/ui';
         Link
       </Button>
     </Flex>
-    <Flex flow="row" gap="sm" css={{ px: '$10' }}>
+    <Flex gap="sm" css={{ px: '$10' }}>
       <Button size="md" variant="primary">
         Primary
       </Button>
@@ -90,7 +90,7 @@ import { Box, Flex, Grid, Button, ThemeProvider, Icon } from '@fxtrot/ui';
         Link
       </Button>
     </Flex>
-    <Flex flow="row" gap="sm" css={{ px: '$10' }}>
+    <Flex gap="sm" css={{ px: '$10' }}>
       <Button size="lg" variant="primary">
         Primary
       </Button>
@@ -116,26 +116,26 @@ Use `ThemeProvider` component to change the primary color of the button.
 
 <Playground>
   <ThemeProvider theme="purple">
-    <Flex gap="xl" css={{ py: '$8', bc: '$surfaceStill' }}>
-      <Flex flow="row" gap="sm" css={{ px: '$10' }}>
+    <Flex flow="column" gap="xl" css={{ py: '$8', bc: '$surfaceStill' }}>
+      <Flex gap="sm" css={{ px: '$10' }}>
         <Button variant="primary">Primary</Button>
         <Button disabled variant="primary">
           Primary (disabled)
         </Button>
       </Flex>
-      <Flex flow="row" gap="sm" css={{ px: '$10' }}>
+      <Flex gap="sm" css={{ px: '$10' }}>
         <Button variant="secondary">Secondary</Button>
         <Button variant="secondary" disabled>
           Secondary (disabled)
         </Button>
       </Flex>
-      <Flex flow="row" gap="sm" css={{ px: '$10' }}>
+      <Flex gap="sm" css={{ px: '$10' }}>
         <Button variant="flat">Flat</Button>
         <Button variant="flat" disabled>
           Flat (disabled)
         </Button>
       </Flex>
-      <Flex flow="row" gap="sm" css={{ px: '$10' }}>
+      <Flex gap="sm" css={{ px: '$10' }}>
         <Button variant="link" as="a" href="#">
           Link
         </Button>
@@ -150,7 +150,7 @@ Use `ThemeProvider` component to change the primary color of the button.
 ## With elements
 
 <Playground>
-  <Flex cross="start" gap="xl" css={{ p: '$8', bc: '$gray50' }}>
+  <Flex flow="column" cross="start" gap="xl" css={{ p: '$8', bc: '$gray50' }}>
     <Button variant="primary" gap="2">
       <Icon as={DotsVerticalIcon} />
       <span>Wrapped</span>

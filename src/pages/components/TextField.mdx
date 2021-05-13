@@ -8,7 +8,7 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
 ## TextField
 
 <Playground>
-  <Flex flow="row" gap="md" css={{ p: '$6', bc: '$gray50' }}>
+  <Flex gap="md" css={{ p: '$6', bc: '$gray50' }}>
     <TextField label="Enter your name" placeholder="John Doe" />
     <TextField label="Enter your name" placeholder="John Doe" disabled />
     <TextField label="Enter your name" placeholder="John Doe" readOnly />
@@ -18,21 +18,23 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
 ## Types
 
 <Playground>
-  <Box css={{ p: '$6', bc: '$gray50' }}>
-    <Flex gap="md" cross="stretch" display="inline">
-      <TextField label="Email address" secondaryLabel="(required)" type="email" />
-      <TextField label="Password" secondaryLabel="(required)" type="password" />
-      <TextField label="Your birth day" type="date" />
-      <TextField label="Your age" type="number" min="18" />
-      <TextField label="City" type="search" placeholder="Tartu" />
-    </Flex>
+  <Box bc="$gray50">
+    <Box width={300} p="$6">
+      <Flex flow="column" gap="md">
+        <TextField label="Email address" secondaryLabel="(required)" type="email" />
+        <TextField label="Password" secondaryLabel="(required)" type="password" />
+        <TextField label="Your birth day" type="date" />
+        <TextField label="Your age" type="number" min="18" />
+        <TextField label="City" type="search" placeholder="Tartu" />
+      </Flex>
+    </Box>
   </Box>
 </Playground>
 
 ## Variants
 
 <Playground>
-  <Flex gap="lg" flow="row" css={{ p: '$6', bc: '$gray50' }}>
+  <Flex gap="lg" css={{ p: '$6', bc: '$gray50' }}>
     <Flex flow="column" gap="md">
       <TextField label="Boxed" hint="Default variant" placeholder="Default boxed variant" />
       <TextField variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Pretty underlined" />
@@ -62,7 +64,7 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
 ## Size
 
 <Playground>
-  <Flex gap="lg" flow="row" css={{ p: '$6', bc: '$gray50' }}>
+  <Flex gap="lg" css={{ p: '$6', bc: '$gray50' }}>
     <Flex flow="column" gap="md">
       <TextField size="sm" label="Boxed" hint="Default variant" placeholder="Small size" />
       <TextField size="sm" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Small size" />
@@ -100,7 +102,7 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
     const isValid = React.useMemo(() => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value), [value]);
     return (
       <Box css={{ p: '$6', bc: '$gray50' }}>
-        <Flex gap="md" flow="row" cross="end">
+        <Flex gap="md" cross="end">
           <TextField
             cross="stretch"
             validity={isValid ? 'valid' : 'invalid'}
@@ -146,7 +148,7 @@ for example to specify flow direction:
       <TextField
         label="Enter your name"
         flow={{ '@desktop': 'row', '@tablet': 'column' }}
-        gap={{ '@desktop': '6', '@tablet': '1' }}
+        gap={{ '@desktop': '6', '@initial': '2' }}
         placeholder="John Doe"
         hint="Real name will help your friends to find you!"
       />

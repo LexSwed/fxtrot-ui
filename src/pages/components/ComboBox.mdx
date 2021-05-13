@@ -12,7 +12,7 @@ import { Box, Flex, ComboBox, Item, Text } from '@fxtrot/ui';
     const [value, setValue] = React.useState('3');
     return (
       <Box css={{ p: '$8', bc: '$surfaceStill' }}>
-        <Flex gap="md" css={{ width: '$56' }}>
+        <Flex flow="column" gap="md" css={{ width: '$56' }}>
           <ComboBox placeholder="Hufflepuff" label="The House you were sorted to" value={value} onChange={setValue}>
             {['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'].map((house, index) => (
               <Item value={`${index + 1}`} label={house} key={index} />
@@ -35,20 +35,22 @@ You can allow the selection of elements that do not exist - creating them from t
     const [newItemValue, setNewItemValue] = React.useState('');
     return (
       <Box css={{ p: '$8', bc: '$surfaceStill' }}>
-        <Flex gap="md" css={{ width: '$40' }}>
-          <ComboBox
-            placeholder="Hufflepuff"
-            label="The House you were sorted to"
-            value={value}
-            onChange={setValue}
-            onInputChange={setNewItemValue}
-            hint={value || value === '' ? '' : 'New item will be created'}
-          >
-            {['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'].map((house, index) => (
-              <Item value={`${index + 1}`} label={house} key={index} />
-            ))}
-          </ComboBox>
-          <Flex>
+        <Flex flow="column" gap="md">
+          <Box width="240px">
+            <ComboBox
+              placeholder="Hufflepuff"
+              label="The House you were sorted to"
+              value={value}
+              onChange={setValue}
+              onInputChange={setNewItemValue}
+              hint={value || value === '' ? '' : 'New item will be created'}
+            >
+              {['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'].map((house, index) => (
+                <Item value={`${index + 1}`} label={house} key={index} />
+              ))}
+            </ComboBox>
+          </Box>
+          <Flex flow="column">
             <div>{`Selected item index: ${value}`}</div>
             <div>{`Current input text: ${newItemValue}`}</div>
           </Flex>
@@ -67,22 +69,20 @@ Supports same `variant`s as `TextField` component.
     const [value, setValue] = React.useState('12');
     return (
       <Box css={{ p: '$8', bc: '$surfaceStill' }}>
-        <Flex gap="md" css={{ width: '$40' }} cross="stretch">
-          <ComboBox
-            label="Item index"
-            variant="underlined"
-            placeholder="1 number"
-            value={value}
-            onChange={setValue}
-            validity={Number(value) > 10 ? 'valid' : 'invalid'}
-          >
-            {Array(20)
-              .fill(null)
-              .map((el, i) => (
-                <Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
-              ))}
-          </ComboBox>
-        </Flex>
+        <ComboBox
+          label="Item index"
+          variant="underlined"
+          placeholder="1 number"
+          value={value}
+          onChange={setValue}
+          validity={Number(value) > 10 ? 'valid' : 'invalid'}
+        >
+          {Array(20)
+            .fill(null)
+            .map((el, i) => (
+              <Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
+            ))}
+        </ComboBox>
       </Box>
     );
   }}
@@ -97,15 +97,13 @@ The rendering is optimized using virtualized lists
     const [value, setValue] = React.useState('12');
     return (
       <Box css={{ p: '$8', bc: '$surfaceStill' }}>
-        <Flex gap="md" css={{ width: '$40' }} cross="stretch">
-          <ComboBox label="Item index" placeholder="1 number" value={value} onChange={setValue}>
-            {Array(500)
-              .fill(null)
-              .map((el, i) => (
-                <Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
-              ))}
-          </ComboBox>
-        </Flex>
+        <ComboBox label="Item index" placeholder="1 number" value={value} onChange={setValue}>
+          {Array(500)
+            .fill(null)
+            .map((el, i) => (
+              <Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
+            ))}
+        </ComboBox>
       </Box>
     );
   }}
