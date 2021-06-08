@@ -2,23 +2,12 @@
 name: Palette
 ---
 
-import { Box } from '@fxtrot/ui';
+import { Box, Flex, Grid } from '@fxtrot/ui';
 import * as colors from 'src/lib/theme/colors';
 
 # Palette
 
 export const styles = {
-  wrapper: {
-    display: 'grid',
-    gridAutoFlow: 'row',
-    gridTemplateColumns: 'repeat(auto-fill, 220px)',
-    gap: '$2',
-  },
-  swatch: {
-    display: 'flex',
-    gap: '$3',
-    alignItems: 'center',
-  },
   text: {
     textSize: '$sm',
     fontWeight: '600',
@@ -29,11 +18,16 @@ export const styles = {
     color: '$gray700',
   },
   colorItem: {
-    flexShrink: 0,
-    size: '32px',
-    transition: '0.2s',
-    cursor: 'pointer',
-    boxShadow: '$xl',
+    'flexShrink': 0,
+    'width': '100%',
+    'height': '50px',
+    'transition': '0.24s',
+    'cursor': 'pointer',
+    'boxShadow': '$xl',
+    'br': '$md',
+    '&:hover': {
+      boxShadow: '$xs',
+    },
   },
 };
 
@@ -41,17 +35,21 @@ export const styles = {
   {Object.entries(colors).map(([title, colors]) => (
     <React.Fragment key={title}>
       <h2>{title}</h2>
-      <Box css={styles.wrapper}>
+      <Flex gap="4" wrap="nowrap" css={{ overflow: 'auto' }}>
         {Object.entries(colors).map(([name, color]) => (
-          <Box css={styles.swatch} key={name}>
-            <Box css={{ ...styles.colorItem, bc: name }} />
+          <Flex flow="column" cross="start" gap="3" key={name}>
+            <Box
+              css={styles.colorItem}
+              bc={`$${name}`}
+              boxShadow={`0 4px 6px -1px $colors$${name}, 0 2px 4px -1px rgba(0, 0, 0, 0.06)`}
+            />
             <div>
               <Box css={styles.text}>{name}</Box>
               <Box css={styles.text2}>{color}</Box>
             </div>
-          </Box>
+          </Flex>
         ))}
-      </Box>
+      </Flex>
     </React.Fragment>
   ))}
 </Box>
