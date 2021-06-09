@@ -29,12 +29,8 @@ export const flexVariants: FlexProps = {
 };
 
 const Flex = styled('div', {
-  '& > *': {
-    // I' sorry but margins on flex children are why
-    m: '0 !important',
-  },
-  'variants': flexVariants,
-  'defaultVariants': {
+  variants: flexVariants,
+  defaultVariants: {
     gap: 'none',
     display: 'flex',
   },

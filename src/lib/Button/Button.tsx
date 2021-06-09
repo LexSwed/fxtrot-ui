@@ -215,9 +215,9 @@ interface Props extends Omit<StitchesVariants<typeof ButtonRoot>, 'isIconButton'
 
 const Button = React.forwardRef(
   ({ type = 'button', disabled, ...props }: React.ComponentProps<ButtonComponent>, ref) => {
-    const isIconButton = React.Children.toArray(props.children).every(
-      (child) => React.isValidElement(child) && child.type === Icon
-    );
+    const isIconButton =
+      React.Children.count(props.children) === 1 &&
+      React.Children.toArray(props.children).every((child) => React.isValidElement(child) && child.type === Icon);
 
     return (
       <ButtonRoot

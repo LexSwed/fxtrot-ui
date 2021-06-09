@@ -135,8 +135,8 @@ export function useId(id?: string) {
   return id || newId;
 }
 
-export function useDerivedState<V = any>(propValue?: V, propOnChange?: (newValue: V) => void) {
-  const [value, setValue] = useState(propValue);
+export function useDerivedState<V = any>(propValue?: V, propOnChange?: (newValue: V) => void, defaultValue?: V) {
+  const [value, setValue] = useState(propValue || defaultValue);
 
   const onChange = useCallback<NonNullable<typeof propOnChange>>(
     (newValue) => {

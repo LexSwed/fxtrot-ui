@@ -1,67 +1,64 @@
 import React from 'react';
 import type * as Polymorphic from '@radix-ui/react-polymorphic';
+import * as Toggle from '@radix-ui/react-toggle';
+import { Slot } from '@radix-ui/react-slot';
 
 import Button from '../Button';
-import { useAllHandlers, useDerivedState } from '../utils/hooks';
 import { styled } from '../stitches.config';
 
 const ToggleButtonRoot = styled(Button, {
   variants: {
-    pressed: {
-      true: {},
+    'data-state': {
+      on: {},
+      off: {},
     },
-    _variant: {
+    '_variant': {
       flat: {},
       secondary: {},
     },
   },
   compoundVariants: [
     {
-      _variant: 'flat',
-      pressed: true,
-      css: {
+      '_variant': 'flat',
+      'data-state': 'on',
+      'css': {
         color: '$primaryStill',
       },
     },
     {
-      _variant: 'secondary',
-      pressed: true,
-      css: {
+      '_variant': 'secondary',
+      'data-state': 'on',
+      'css': {
         bc: '$surfaceActive',
       },
     },
   ],
 });
 
-interface Props extends Omit<React.ComponentProps<typeof Button>, 'variant'> {
-  /** The pressed state of the toggle when it is initially rendered. Use when you do not need to control its pressed state. */
-  defaultPressed?: boolean;
-  /** The controlled pressed state of the toggle. Must be used in conjunction with in conjunction with onPressedChange. */
-  pressed?: boolean;
-  /** Event handler called when the pressed state of the toggle changes. */
-  onPressedChange?: (pressed: boolean) => void;
-  variant?: 'flat' | 'secondary';
-}
+type Props = Toggle.ToggleOwnProps &
+  Omit<React.ComponentProps<typeof Button>, 'variant'> & {
+    variant?: 'flat' | 'secondary';
+  };
 
 const ToggleButton = React.forwardRef(
-  ({ pressed = false, onPressedChange, variant = 'flat', ...props }: React.ComponentProps<ButtonComponent>, ref) => {
-    const [state, setState] = useDerivedState(pressed, onPressedChange);
-    const handleClick = useAllHandlers(props.onClick, () => setState(!state));
-
+  (
+    {
+      pressed,
+      onPressedChange,
+      defaultPressed,
+      variant = 'flat',
+      ...props
+    }: React.ComponentProps<ToggleButtonComponent>,
+    ref
+  ) => {
     return (
-      <ToggleButtonRoot
-        {...props}
-        variant={variant}
-        _variant={variant}
-        pressed={state}
-        aria-pressed={state}
-        onClick={handleClick}
-        ref={ref}
-      />
+      <Toggle.Root as={Slot} pressed={pressed} defaultPressed={defaultPressed} onPressedChange={onPressedChange}>
+        <ToggleButtonRoot {...props} variant={variant} _variant={variant} ref={ref} />
+      </Toggle.Root>
     );
   }
-) as ButtonComponent;
+) as ToggleButtonComponent;
 
-export type ButtonComponent = Polymorphic.ForwardRefComponent<'button', Props>;
+export type ToggleButtonComponent = Polymorphic.ForwardRefComponent<'button', Props>;
 
 export default ToggleButton;

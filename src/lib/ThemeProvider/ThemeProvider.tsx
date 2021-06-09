@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useMemo, useRef } from 'react';
+import { IdProvider } from '@radix-ui/react-id';
 
 import { stitchesConfig, styled } from '../stitches.config';
 import { Reset } from './Reset';
@@ -46,14 +47,16 @@ const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
   }
 
   return (
-    <>
-      <themeContext.Provider value={value}>
-        <ThemeWrapper className={className} ref={contextRef ? undefined : innerRef}>
-          {children}
-        </ThemeWrapper>
-      </themeContext.Provider>
-      <Reset />
-    </>
+    <IdProvider>
+      <>
+        <themeContext.Provider value={value}>
+          <ThemeWrapper className={className} ref={contextRef ? undefined : innerRef}>
+            {children}
+          </ThemeWrapper>
+        </themeContext.Provider>
+        <Reset />
+      </>
+    </IdProvider>
   );
 };
 

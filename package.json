@@ -46,7 +46,11 @@
   "dependencies": {
     "@heroicons/react": "^1.0.1",
     "@popperjs/core": "^2.9.2",
+    "@radix-ui/react-id": "^0.0.6",
     "@radix-ui/react-polymorphic": "^0.0.11",
+    "@radix-ui/react-slot": "^0.0.10",
+    "@radix-ui/react-toggle": "^0.0.8",
+    "@radix-ui/react-toggle-group": "^0.0.8",
     "@react-aria/focus": "^3.3.0",
     "@react-aria/visually-hidden": "^3.2.2",
     "@stitches/react": "^0.1.9",

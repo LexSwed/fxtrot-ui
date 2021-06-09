@@ -1,5 +1,6 @@
 import type { CssStyles } from './utils/types';
 
+export { ActionGroup } from './ActionGroup';
 export { default as Box } from './Box';
 export { default as Button } from './Button';
 export { default as Checkbox } from './Checkbox';

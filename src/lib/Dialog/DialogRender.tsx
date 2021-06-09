@@ -4,7 +4,6 @@ import React, { useMemo, useRef } from 'react';
 import { XIcon } from '@heroicons/react/outline';
 import { useUIDSeed } from 'react-uid';
 
-import Box from '../Box';
 import Button from '../Button';
 import Flex from '../Flex';
 import Icon from '../Icon';
