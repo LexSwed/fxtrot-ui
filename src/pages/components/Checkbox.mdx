@@ -23,3 +23,20 @@ import { Flex, Checkbox, TextLink } from '@fxtrot/ui';
     <Checkbox label="Accept conditions" secondaryLabel="(required)" required />
   </Flex>
 </Playground>
+
+## Stateful
+
+<Playground>
+  {() => {
+    const [checked, setChecked] = React.useState(false);
+    return (
+      <Checkbox
+        label="Accept conditions"
+        checked={checked}
+        onChange={setChecked}
+        secondaryLabel="(required)"
+        required
+      />
+    );
+  }}
+</Playground>

@@ -4,7 +4,7 @@ import { CheckIcon } from '@heroicons/react/outline';
 import Box from '../Box';
 import type { FlexVariants } from '../Flex/Flex';
 import { attribute } from '../FocusRing/focus-visible';
-import { FormField, FormFieldProps } from '../FormField/FormField';
+import { FormField } from '../FormField/FormField';
 import Icon, { IconBox } from '../Icon/Icon';
 import Label from '../Label';
 import { styled } from '../stitches.config';
@@ -101,12 +101,15 @@ const Input = styled('input', {
   },
 });
 
-interface InputProps extends React.ComponentProps<typeof Input>, FlexVariants {
+interface InputProps extends Omit<React.ComponentProps<typeof Input>, 'onChange'>, FlexVariants {
   label?: string;
   secondaryLabel?: string;
+  onChange?: (checked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Checkbox: React.FC<FormFieldProps & InputProps> = ({
+type Props = FlexVariants & InputProps;
+
+const Checkbox: React.FC<Props> = ({
   checked,
   onChange,
   css,
@@ -125,7 +128,7 @@ const Checkbox: React.FC<FormFieldProps & InputProps> = ({
   const handleChange = useMemo(() => {
     if (typeof onChange !== 'function') return;
 
-    return (ev: React.ChangeEvent<HTMLInputElement>) => ev.target.checked;
+    return (ev: React.ChangeEvent<HTMLInputElement>) => onChange(ev.target.checked, ev);
   }, [onChange]);
 
   return (

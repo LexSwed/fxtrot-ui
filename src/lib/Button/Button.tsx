@@ -7,7 +7,7 @@ import { styled } from '../stitches.config';
 import type { StitchesVariants } from '@stitches/core';
 import type { CssStyles } from '../utils/types';
 
-const ButtonRoot = styled('button', {
+export const ButtonRoot = styled('button', {
   'transition': '0.2s ease-in-out',
   'fontFamily': '$default',
   'lineHeight': 1,

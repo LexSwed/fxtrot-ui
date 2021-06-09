@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useLayoutEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useState, useRef } from 'react';
 import { useUID } from 'react-uid';
 import { clickCatcherAttrs } from '../ClickCatcher/ClickCatcher';
 
@@ -133,4 +133,26 @@ export function useId(id?: string) {
   let newId = useUID();
 
   return id || newId;
+}
+
+export function useDerivedState<V = any>(propValue?: V, propOnChange?: (newValue: V) => void) {
+  const [value, setValue] = useState(propValue);
+
+  const onChange = useCallback<NonNullable<typeof propOnChange>>(
+    (newValue) => {
+      // we expect `propOnChange` to change also `value` prop, so useEffect would update internal value
+      if (typeof propOnChange === 'function') {
+        propOnChange?.(newValue);
+      } else {
+        setValue(newValue);
+      }
+    },
+    [propOnChange]
+  );
+
+  useEffect(() => {
+    setValue(propValue);
+  }, [propValue]);
+
+  return [value, onChange] as const;
 }

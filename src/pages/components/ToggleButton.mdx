@@ -1,0 +1,36 @@
+---
+name: ToggleButton
+---
+
+import { Playground } from 'dokz';
+import { Flex, Icon, ToggleButton, Box } from '@fxtrot/ui';
+import { BsTypeBold } from 'react-icons/bs';
+
+## ToggleButton
+
+A two-state button that can be either on or off.
+
+<Playground>
+  <Flex flow="column" gap="2" cross="center">
+    <ToggleButton variant="secondary">Toggle</ToggleButton>
+    <ToggleButton variant="flat">Toggle</ToggleButton>
+  </Flex>
+</Playground>
+
+## Stateful
+
+<Playground>
+  {() => {
+    const [bold, setBold] = React.useState(false);
+    return (
+      <ToggleButton
+        pressed={bold}
+        onPressedChange={setBold}
+        size="sm"
+        aria-label={bold ? 'Turn off bold' : 'Turn on bold'}
+      >
+        <Icon as={BsTypeBold} />
+      </ToggleButton>
+    );
+  }}
+</Playground>

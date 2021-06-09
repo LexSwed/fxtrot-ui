@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 import Popover from '../Popover/PopoverLayer';
-import { useId } from '../utils/hooks';
+import { useDerivedState, useId } from '../utils/hooks';
 import { OpenStateProvider } from '../utils/OpenStateProvider';
 import type { OptionType } from './Item';
 import List from './List';
@@ -15,7 +15,7 @@ interface Props extends Omit<TriggerProps, 'value' | 'onChange' | 'children'> {
 }
 
 const Picker: React.FC<Props> = ({ children, id, value, onChange, ...triggerProps }) => {
-  const [innerValue, onChangeInner] = useValue(value, onChange);
+  const [innerValue, onChangeInner] = useDerivedState(value, onChange);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const triggerId = useId();
   const title = useTitle({ children, value: innerValue });
@@ -60,29 +60,4 @@ function useTitle({ children, value }: { children: Props['children']; value?: st
   }, [value, children]);
 
   return title;
-}
-
-/**
- * Duplicate state to be able to use the element uncontrolled
- */
-function useValue(propValue: Props['value'], propOnChange: Props['onChange']) {
-  const [value, setValue] = useState(propValue);
-
-  const onChange = useCallback<Required<Props>['onChange']>(
-    (newValue) => {
-      // we expect `propOnChange` to change also `value` prop, so useEffect would update internal value
-      if (typeof propOnChange === 'function') {
-        propOnChange?.(newValue);
-      } else {
-        setValue(newValue);
-      }
-    },
-    [propOnChange]
-  );
-
-  useEffect(() => {
-    setValue(propValue);
-  }, [propValue]);
-
-  return [value, onChange] as const;
 }
