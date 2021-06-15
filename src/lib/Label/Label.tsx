@@ -4,7 +4,7 @@ import type * as Polymorphic from '@radix-ui/react-polymorphic';
 import { styled } from '../stitches.config';
 import Text from '../Text';
 import Flex from '../Flex';
-import type { StitchesVariants } from '@stitches/core';
+import type { StitchesVariants } from '@stitches/react';
 
 const Main = styled(Text, {
   lineHeight: 1,

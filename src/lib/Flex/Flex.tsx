@@ -1,4 +1,4 @@
-import type { StitchesVariants } from '@stitches/core';
+import type { StitchesVariants } from '@stitches/react';
 
 import { styled } from '../stitches.config';
 import {

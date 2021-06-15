@@ -1,11 +1,11 @@
 import React from 'react';
 import type * as Polymorphic from '@radix-ui/react-polymorphic';
+import type { StitchesVariants } from '@stitches/react';
 
 import { styled } from '../stitches.config';
 import Text from '../Text';
 import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
 import { flexVariants } from '../Flex/Flex';
-import type { StitchesVariants } from '@stitches/core';
 import type { CssStyles } from '../utils/types';
 import { useListBoxContext } from '../ListBox/ListBoxContext';
 

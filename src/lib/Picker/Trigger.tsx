@@ -10,7 +10,7 @@ import { InteractiveBox } from '../TextField/shared';
 import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { usePicker } from './utils';
-import type { StitchesVariants } from '@stitches/core';
+import type { StitchesVariants } from '@stitches/react';
 import type { CssStyles } from '../utils/types';
 
 const TriggerButton = styled(InteractiveBox, {

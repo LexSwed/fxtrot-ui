@@ -22,6 +22,7 @@ const MenuList = React.forwardRef<HTMLUListElement, MenuListProps>(({ placement,
           role={'menu'}
           {...props}
           ref={ref}
+          autoFocus
           restoreFocus
           contain
           wrap

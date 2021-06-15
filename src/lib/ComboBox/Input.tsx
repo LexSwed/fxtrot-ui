@@ -20,7 +20,7 @@ const inputStyle: CssStyles = {
   },
 };
 
-interface InputProps extends React.ComponentProps<typeof InteractiveBox> {}
+interface InputProps extends React.ComponentProps<typeof InteractiveBox>, FlexVariants {}
 export interface Props
   extends Omit<InputProps, 'onChange' | 'type' | 'value' | 'defaultValue' | 'children' | 'text' | 'as'>,
     FlexVariants {
@@ -165,6 +165,9 @@ const ComboBoxButton = React.memo(
             e.preventDefault();
             e.stopPropagation();
             open();
+            setTimeout(() => {
+              console.log(document.activeElement);
+            }, 100);
             inputRef.current?.focus();
             inputRef.current?.select();
           }}

@@ -5,7 +5,7 @@ import type * as Polymorphic from '@radix-ui/react-polymorphic';
 import Icon, { IconBox } from '../Icon/Icon';
 import { styled } from '../stitches.config';
 import Text from '../Text/Text';
-import type { StitchesVariants } from '@stitches/core';
+import type { StitchesVariants } from '@stitches/react';
 import type { CssStyles } from '../utils/types';
 
 const Link = styled(Text, {

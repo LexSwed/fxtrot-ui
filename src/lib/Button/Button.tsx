@@ -4,7 +4,7 @@ import type * as Polymorphic from '@radix-ui/react-polymorphic';
 import { flexVariants } from '../Flex/Flex';
 import Icon from '../Icon/Icon';
 import { styled } from '../stitches.config';
-import type { StitchesVariants } from '@stitches/core';
+import type { StitchesVariants } from '@stitches/react';
 import type { CssStyles } from '../utils/types';
 
 export const ButtonRoot = styled('button', {
