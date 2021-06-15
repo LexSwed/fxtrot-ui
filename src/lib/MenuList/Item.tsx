@@ -21,29 +21,33 @@ const style = css({
   '&:focus:after': {
     transform: 'none',
   },
-  '&[aria-selected="true"]': {
-    'bc': '$surfaceActive',
-    'color': '$accentLight',
-    '&::after': {
-      bc: '$accent',
-    },
-  },
-  '&[aria-selected="false"]': {
-    '&::after': {
-      bc: 'transparent',
+  'variants': {
+    selected: {
+      true: {
+        'bc': '$surfaceActive',
+        'color': '$accentLight',
+        '&::after': {
+          bc: '$accent',
+        },
+      },
+      false: {
+        '&::after': {
+          bc: 'transparent',
+        },
+      },
     },
   },
 });
 
-const Item: ItemComponent = React.forwardRef(({ 'aria-selected': selected, className, ...props }, ref) => {
+const Item: ItemComponent = React.forwardRef(({ className, ...props }, ref) => {
+  const selected = props['aria-selected'];
   return (
     <StyledItem
       {...props}
       role="treeitem"
-      aria-selected={selected}
       tabIndex={selected ? 0 : -1}
       ref={ref}
-      className={`${style.className} ${className}`}
+      className={`${style({ selected })}${className ? ` ${className}` : ''}`}
     />
   );
 });

@@ -15,17 +15,19 @@ export const List = styled('ul', {
   },
 });
 
-const ListInner: React.FC<{ wrap?: boolean }> = ({ wrap, ...props }) => {
+const ListInner: React.FC<{ wrap?: boolean; autoFocus?: boolean }> = ({ wrap, autoFocus, ...props }) => {
   const { focusNext, focusPrevious } = useFocusManager();
   const ref = useRef<HTMLDivElement>(null);
 
-  // useEffect(() => {
-  //   /**
-  //    * FocusScope is fun: it filters out tabIndex=-1 elements, but allows to focusNext/Prev between them
-  //    * It is still handy though to not write own wrapping logic
-  //    */
-  //   (ref.current?.querySelector('[tabindex="-1"]') as HTMLElement)?.focus?.();
-  // }, []);
+  useEffect(() => {
+    /**
+     * FocusScope is fun: it filters out tabIndex=-1 elements, but allows to focusNext/Prev between them
+     * It is still handy though to not write own wrapping logic
+     */
+    if (autoFocus) {
+      (ref.current?.querySelector('[tabindex="-1"]') as HTMLElement)?.focus?.();
+    }
+  }, [autoFocus]);
 
   const handleKeyDown = useKeyboardHandles({
     ArrowDown: () => focusNext({ wrap }),
@@ -53,7 +55,9 @@ const ListBox = React.forwardRef<HTMLUListElement, Props>(
     return (
       <List role="listbox" tabIndex={-1} {...props} as="ul" ref={ref}>
         <FocusScope autoFocus={autoFocus} contain={contain} restoreFocus={restoreFocus}>
-          <ListInner wrap={wrap}>{children}</ListInner>
+          <ListInner wrap={wrap} autoFocus={autoFocus}>
+            {children}
+          </ListInner>
         </FocusScope>
       </List>
     );
