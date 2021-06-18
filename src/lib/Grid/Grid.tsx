@@ -36,4 +36,6 @@ const Grid = React.forwardRef<HTMLDivElement, Props>(({ columns, rows, ...props 
   return <GridStyled gridTemplateColumns={columns} gridTemplateRows={rows} {...props} ref={ref} />;
 });
 
+Grid.displayName = 'Grid';
+
 export default Grid;

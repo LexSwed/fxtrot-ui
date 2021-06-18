@@ -232,6 +232,8 @@ const Button = React.forwardRef(
   }
 ) as ButtonComponent;
 
+Button.displayName = 'Button';
+
 export type ButtonComponent = Polymorphic.ForwardRefComponent<'button', Props>;
 
 export default Button;

@@ -38,4 +38,6 @@ const Item: ItemComponent = React.forwardRef(({ value, label, ...props }, ref) =
   );
 });
 
+Item.displayName = 'PickerItem';
+
 export default Item;

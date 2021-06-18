@@ -26,6 +26,8 @@ const Box: BoxComponent = React.forwardRef(({ children, css = {}, ...props }, re
   );
 });
 
+Box.displayName = 'Box';
+
 type BoxComponent = Polymorphic.ForwardRefComponent<'div', Props>;
 
 export default Box;

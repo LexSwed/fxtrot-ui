@@ -34,4 +34,6 @@ const MenuList = React.forwardRef<HTMLUListElement, MenuListProps>(({ placement,
   );
 });
 
+MenuList.displayName = 'MenuList';
+
 export default MenuList;

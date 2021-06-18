@@ -37,6 +37,8 @@ const MenuList: MenuListComponent = React.forwardRef((props, ref) => {
   );
 });
 
+MenuList.displayName = 'MenuList';
+
 type MenuListComponent = Polymorphic.ForwardRefComponent<'div', Props>;
 
 export default MenuList;

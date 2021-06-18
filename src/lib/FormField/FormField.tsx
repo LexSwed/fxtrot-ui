@@ -88,6 +88,9 @@ export const FormField = React.forwardRef<HTMLDivElement, FormFieldProps>(
     );
   }
 );
+
+FormField.displayName = 'FormField';
+
 interface HintProps extends React.ComponentProps<typeof Text> {
   validity?: FormFieldProps['validity'];
 }

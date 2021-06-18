@@ -23,6 +23,8 @@ export const OpenStateProvider = React.forwardRef<OpenStateRef, { defaultOpen?: 
   }
 );
 
+OpenStateProvider.displayName = 'OpenStateProvider';
+
 export function useOpenState() {
   return useContext(menuStateContext);
 }

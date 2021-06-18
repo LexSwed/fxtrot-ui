@@ -60,4 +60,6 @@ const Label: LabelComponent = React.forwardRef(
   }
 );
 
+Label.displayName = 'Label';
+
 export default Label;

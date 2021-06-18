@@ -64,6 +64,7 @@ const ListBox = React.forwardRef<HTMLUListElement, Props>(
   }
 );
 
-ListInner.displayName = 'ListBox';
+ListInner.displayName = 'ListBoxInner';
+ListBox.displayName = 'ListBox';
 
 export default ListBox;

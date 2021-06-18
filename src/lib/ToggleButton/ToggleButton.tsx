@@ -59,6 +59,8 @@ const ToggleButton = React.forwardRef(
   }
 ) as ToggleButtonComponent;
 
+ToggleButton.displayName = 'ToggleButton';
+
 export type ToggleButtonComponent = Polymorphic.ForwardRefComponent<'button', Props>;
 
 export default ToggleButton;

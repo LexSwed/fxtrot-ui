@@ -47,6 +47,8 @@ const Popover = React.forwardRef((props, ref) => {
   Content: typeof Content;
 };
 
+Popover.displayName = 'Popover';
+
 interface ContentProps extends Omit<React.ComponentProps<typeof PopoverLayer>, 'triggerRef'> {}
 const Content: React.FC<ContentProps> = ({ children, ...props }) => {
   const { id, triggerRef } = useContext(context);

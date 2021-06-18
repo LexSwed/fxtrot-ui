@@ -1,13 +1,17 @@
-import NextDocument, { Head, Html, Main, NextScript } from 'next/document';
 import React from 'react';
 import { stitchesConfig } from '@fxtrot/ui';
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 
-export default class Document extends NextDocument {
+export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
         <Head>
-          <link href="https://fonts.googleapis.com/css?family=Fira+Code" rel="stylesheet" key="google-font-Fira" />
+          <link
+            href="https://fonts.googleapis.com/css?family=Fira+Code&display=optional"
+            rel="stylesheet"
+            key="google-font-Fira"
+          />
           <style id="fxtrot-ui" dangerouslySetInnerHTML={{ __html: stitchesConfig.getCssString() }} />
         </Head>
         <body>

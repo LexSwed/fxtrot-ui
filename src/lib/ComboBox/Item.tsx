@@ -46,4 +46,6 @@ const Item: ItemComponent = React.forwardRef(
   }
 );
 
+Item.displayName = 'Item';
+
 export default Item;

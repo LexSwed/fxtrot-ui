@@ -52,4 +52,6 @@ const Item: ItemComponent = React.forwardRef(({ className, ...props }, ref) => {
   );
 });
 
+Item.displayName = 'MenuListItem';
+
 export default Item;
