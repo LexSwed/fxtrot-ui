@@ -5,7 +5,7 @@ function createConfig(output) {
   return {
     input: 'src/lib/index.ts',
     output,
-    external: ['react', 'react-dom', '@heroicons/react'],
+    external: ['react', 'react-dom'],
     plugins: [
       esbuild({
         tsconfig: 'tsconfig.lib.json',
@@ -21,7 +21,7 @@ export default function config(args) {
     return createConfig({
       file: pkg.module,
       format: 'esm',
-    })
+    });
   }
   return [
     createConfig({

@@ -1,3 +1,3 @@
-import { VisuallyHidden } from '@react-aria/visually-hidden';
+import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 
-export default VisuallyHidden;
+export default VisuallyHidden.Root;
