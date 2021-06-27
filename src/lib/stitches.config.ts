@@ -162,39 +162,42 @@ export const stitchesConfig = createCss({
       };
     },
 
-    focusRing: (config) => (color: ThemeColor = '$focusRing') => ({
-      // [`&:not(:disabled)[${attribute}]`]: {
-      // [`&:not(:disabled)]`]: {
-      //   'outline': 'none',
-      //   'position': 'relative',
-      //   '$$offset': `${offset}px`,
+    focusRing:
+      (config) =>
+      (color: ThemeColor = '$focusRing') => ({
+        // [`&:not(:disabled)[${attribute}]`]: {
+        // [`&:not(:disabled)]`]: {
+        //   'outline': 'none',
+        //   'position': 'relative',
+        //   '$$offset': `${offset}px`,
 
-      //   '&::before': {
-      //     content: `''`,
-      //     display: 'block',
-      //     position: 'absolute',
-      //     top: `calc(-1 * $$offset)`,
-      //     right: `calc(-1 * $$offset)`,
-      //     bottom: `calc(-1 * $$offset)`,
-      //     left: `calc(-1 * $$offset)`,
-      //     transitionProperty: 'box-shadow, border-color',
-      //     transitionDuration: '0.2s',
-      //     transitionTimingFunction: 'ease-in-out',
-      //     pointerEvents: 'none',
-      //     border: '1px solid transparent',
-      //     br: 'inherit',
-      //   },
-      // },
-      '$$focusRingColor': `$colors${color}`,
-      '&:focus': {
-        outline: 'none',
-      },
-      [`&:focus[${attribute}]`]: {
-        boxShadow: `0 0 0 3px $$focusRingColor`,
-      },
-    }),
+        //   '&::before': {
+        //     content: `''`,
+        //     display: 'block',
+        //     position: 'absolute',
+        //     top: `calc(-1 * $$offset)`,
+        //     right: `calc(-1 * $$offset)`,
+        //     bottom: `calc(-1 * $$offset)`,
+        //     left: `calc(-1 * $$offset)`,
+        //     transitionProperty: 'box-shadow, border-color',
+        //     transitionDuration: '0.2s',
+        //     transitionTimingFunction: 'ease-in-out',
+        //     pointerEvents: 'none',
+        //     border: '1px solid transparent',
+        //     br: 'inherit',
+        //   },
+        // },
+        '$$focusRingColor': `$colors${color}`,
+        '&:focus': {
+          outline: 'none',
+        },
+        [`&:focus[${attribute}]`]: {
+          boxShadow: `0 0 0 3px $$focusRingColor`,
+        },
+      }),
   },
   prefix: 'fxtrot',
+  // This method is basically for the extension to render in shadow DOM to not pollute global page styles
   insertionMethod() {
     let styleElement: HTMLElement | undefined;
     const styleId = 'fxtrot-ui';

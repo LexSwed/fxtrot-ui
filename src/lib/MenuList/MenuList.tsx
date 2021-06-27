@@ -7,11 +7,24 @@ import { ListBoxContext } from '../ListBox/ListBoxContext';
 import { styled } from '../stitches.config';
 import { useKeyboardHandles } from '../utils/hooks';
 import Item from './Item';
+import { StyledItem } from '../Item/Item';
 
 const List = styled('ul', {
   m: 0,
   p: 0,
   focusRing: '$focusRing',
+
+  [`& ${StyledItem} + ${StyledItem}:not(:first-child):not(:last-child)`]: {
+    br: 0,
+  },
+  [`& ${StyledItem}:first-child:not(:only-child)`]: {
+    borderBottomLeftRadius: 0,
+    borderBottomRightRadius: 0,
+  },
+  [`& ${StyledItem}:last-child:not(:only-child)`]: {
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
+  },
 });
 
 interface Props extends React.ComponentProps<typeof List> {}
