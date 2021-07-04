@@ -8,7 +8,7 @@ import Icon from '../Icon';
 import Label from '../Label';
 import { styled } from '../stitches.config';
 import Tag from '../Tag';
-import { InputField, InteractiveBox } from '../TextField/shared';
+import { InputField, InputProps } from '../TextField/shared';
 import { useAllHandlers, useForkRef, useKeyboardHandles } from '../utils/hooks';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import type { CssStyles } from '../utils/types';
@@ -20,7 +20,6 @@ const inputStyle: CssStyles = {
   },
 };
 
-interface InputProps extends React.ComponentProps<typeof InteractiveBox>, FlexVariants {}
 export interface Props
   extends Omit<InputProps, 'onChange' | 'type' | 'value' | 'defaultValue' | 'children' | 'text' | 'as'>,
     FlexVariants {

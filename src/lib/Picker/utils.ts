@@ -1,8 +1,10 @@
 import { createContext, useContext } from 'react';
+import type { ItemProps } from '../Item/Item';
 
-interface PickerContext {
+export interface PickerContext {
   value?: string;
   onChange?: (newValue: string) => void;
+  size?: ItemProps['size'];
 }
 
 const context = createContext({} as PickerContext);

@@ -1,3 +1,4 @@
+import type { StitchesVariants } from '@stitches/react';
 import React from 'react';
 
 import { styled } from '../stitches.config';
@@ -11,6 +12,7 @@ export const iconStyles: CssStyles = {
   height: 'inherit',
   width: '$8',
   outline: 'none',
+  br: '$md',
 };
 
 export const IconWrapper = styled('div', {
@@ -98,7 +100,7 @@ export const InteractiveBox = styled('input', {
         },
       },
     },
-    size: {
+    fieldSize: {
       sm: {
         height: '$8',
       },
@@ -179,6 +181,10 @@ export const InteractiveBox = styled('input', {
   ],
 });
 
+export type InteractiveBoxVariants = Omit<StitchesVariants<typeof InteractiveBox>, 'fieldSize'> & {
+  size: StitchesVariants<typeof InteractiveBox>['fieldSize'];
+};
+
 const Input = styled(InteractiveBox, {
   //  throws warnings that inner-spin-button is not standartized
   // '&[type="number"]::-webkit-inner-spin-button, &[type="number"]::-webkit-outer-spin-button': {
@@ -214,13 +220,15 @@ const InputWrapper = styled('div', {
   width: '100%',
 });
 
-export interface InputProps extends React.ComponentProps<typeof Input> {
+export interface InputProps extends Omit<React.ComponentProps<typeof Input>, 'size' | 'fieldSize'> {
   inputRef?: React.Ref<HTMLInputElement>;
+  size?: React.ComponentProps<typeof Input>['fieldSize'];
+  width?: HTMLInputElement['size'];
 }
 
-export const InputField: React.FC<InputProps> = ({ validity, inputRef, children, ...props }) => (
+export const InputField: React.FC<InputProps> = ({ validity, inputRef, children, size, width, ...props }) => (
   <InputWrapper>
-    <Input {...props} ref={inputRef} validity={validity} />
+    <Input {...props} ref={inputRef} validity={validity} fieldSize={size} size={width} />
     {children}
   </InputWrapper>
 );

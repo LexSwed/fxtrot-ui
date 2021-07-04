@@ -7,16 +7,17 @@ import { OpenStateProvider } from '../utils/OpenStateProvider';
 import type { OptionType } from './Item';
 import List from './List';
 import Trigger, { TriggerProps } from './Trigger';
-import { PickerProvider } from './utils';
+import { PickerProvider, PickerContext } from './utils';
 
-interface Props extends Omit<TriggerProps, 'value' | 'onChange' | 'defaultValue' | 'children'> {
+interface Props extends Omit<TriggerProps, 'value' | 'onChange' | 'defaultValue' | 'children' | 'size'> {
   value?: string;
   defaultValue?: string;
   onChange?: (newValue: string) => void;
   children: OptionType[] | OptionType;
+  size: PickerContext['size'];
 }
 
-const Picker: React.FC<Props> = ({ children, id, value, defaultValue, onChange, ...triggerProps }) => {
+const Picker: React.FC<Props> = ({ children, id, value, defaultValue, onChange, size, ...triggerProps }) => {
   const [innerValue, onChangeInner] = useDerivedState(value, onChange, defaultValue);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const triggerId = useUID();
@@ -26,14 +27,15 @@ const Picker: React.FC<Props> = ({ children, id, value, defaultValue, onChange, 
     () => ({
       value: innerValue,
       onChange: onChangeInner,
+      size,
     }),
-    [onChangeInner, innerValue]
+    [onChangeInner, innerValue, size]
   );
 
   return (
     <OpenStateProvider>
       <PickerProvider value={contextValue}>
-        <Trigger id={triggerId} ref={triggerRef as any} {...triggerProps}>
+        <Trigger id={triggerId} ref={triggerRef as any} size={size} {...triggerProps}>
           {title}
         </Trigger>
         <Popover triggerRef={triggerRef}>

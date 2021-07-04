@@ -11,7 +11,7 @@ import { usePicker } from './utils';
 export interface OptionType extends React.ReactElement<React.ComponentProps<ItemComponent>, ItemComponent> {}
 
 const Item: ItemComponent = React.forwardRef(({ value, label, ...props }, ref) => {
-  const { value: dropdownValue, onChange } = usePicker();
+  const { value: dropdownValue, onChange, size } = usePicker();
   const { close } = useOpenStateControls();
   const isSelected = dropdownValue !== undefined && dropdownValue === value;
 
@@ -30,6 +30,7 @@ const Item: ItemComponent = React.forwardRef(({ value, label, ...props }, ref) =
       aria-selected={isSelected}
       onClick={onClick}
       main="space-between"
+      size={size}
       ref={ref}
     >
       {label}

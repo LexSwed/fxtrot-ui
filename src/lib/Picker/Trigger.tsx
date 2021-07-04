@@ -6,11 +6,10 @@ import { FormField, FormFieldProps, Hint, HintBox, useFormField } from '../FormF
 import Icon from '../Icon';
 import Label from '../Label';
 import { styled } from '../stitches.config';
-import { InteractiveBox } from '../TextField/shared';
+import { InteractiveBox, InteractiveBoxVariants } from '../TextField/shared';
 import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { usePicker } from './utils';
-import type { StitchesVariants } from '@stitches/react';
 import type { CssStyles } from '../utils/types';
 
 const TriggerButton = styled(InteractiveBox, {
@@ -44,7 +43,7 @@ const Placeholder = styled('div', {
 
 export interface TriggerProps
   extends FlexVariants,
-    StitchesVariants<typeof TriggerButton>,
+    InteractiveBoxVariants,
     Omit<React.ComponentProps<'button'>, 'validity' | 'type' | 'value'> {
   id?: string;
   placeholder?: string;
@@ -76,6 +75,7 @@ const Trigger = React.forwardRef<HTMLButtonElement, TriggerProps>(
       placeholder = 'Select an option',
       variant = 'boxed',
       children,
+      size,
       ...props
     },
     ref
@@ -118,6 +118,7 @@ const Trigger = React.forwardRef<HTMLButtonElement, TriggerProps>(
             variant={variant}
             {...ariaProps}
             {...props}
+            fieldSize={size}
             onClick={handleClick}
             onKeyDown={onKeyDown}
             ref={ref}

@@ -1,12 +1,10 @@
 import React from 'react';
 import type * as Polymorphic from '@radix-ui/react-polymorphic';
-import type { StitchesVariants } from '@stitches/react';
 
 import { styled } from '../stitches.config';
 import Text from '../Text';
 import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
 import { flexVariants } from '../Flex/Flex';
-import type { CssStyles } from '../utils/types';
 import { useListBoxContext } from '../ListBox/ListBoxContext';
 
 export const StyledItem = styled('div', {
@@ -37,6 +35,17 @@ export const StyledItem = styled('div', {
 
   'variants': {
     ...flexVariants,
+    size: {
+      sm: {
+        height: '$8',
+      },
+      md: {
+        height: '$base',
+      },
+      lg: {
+        height: '$base',
+      },
+    },
   },
   'defaultVariants': {
     gap: '2',
@@ -44,14 +53,14 @@ export const StyledItem = styled('div', {
     flow: 'row',
     cross: 'center',
     wrap: 'nowrap',
+    size: 'md',
   },
 });
 
-interface Props extends StitchesVariants<typeof StyledItem> {
+export interface ItemProps extends React.ComponentProps<typeof StyledItem> {
   label?: string;
   value?: string;
   disabled?: boolean;
-  css?: CssStyles;
 }
 
 const Item = React.forwardRef((props: React.ComponentProps<ItemComponent>, ref) => {
@@ -77,7 +86,7 @@ const Item = React.forwardRef((props: React.ComponentProps<ItemComponent>, ref) 
 
 Item.displayName = 'ListItem';
 
-export type ItemComponent = Polymorphic.ForwardRefComponent<'div', Props>;
+export type ItemComponent = Polymorphic.ForwardRefComponent<'div', ItemProps>;
 
 export default Item;
 

@@ -18,16 +18,14 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
 ## Types
 
 <Playground>
-  <Box bc="$gray50">
-    <Box width={300} p="$6">
-      <Flex flow="column" gap="md">
-        <TextField label="Email address" secondaryLabel="(required)" type="email" />
-        <TextField label="Password" secondaryLabel="(required)" type="password" />
-        <TextField label="Your birth day" type="date" />
-        <TextField label="Your age" type="number" min="18" />
-        <TextField label="City" type="search" placeholder="Tartu" />
-      </Flex>
-    </Box>
+  <Box width={300} p="$6">
+    <Flex flow="column" gap="md">
+      <TextField label="Email address" secondaryLabel="(required)" type="email" />
+      <TextField label="Password" secondaryLabel="(required)" type="password" />
+      <TextField label="Your birth day" type="date" />
+      <TextField label="Your age" type="number" min="18" />
+      <TextField label="City" type="search" placeholder="Tartu" />
+    </Flex>
   </Box>
 </Playground>
 
