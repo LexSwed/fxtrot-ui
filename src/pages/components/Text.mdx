@@ -3,7 +3,7 @@ name: Text
 ---
 
 import { Playground } from 'dokz';
-import { Flex, Text } from '@fxtrot/ui';
+import { Box, Flex, Text } from '@fxtrot/ui';
 
 ## Text
 
@@ -124,5 +124,38 @@ import { Flex, Text } from '@fxtrot/ui';
         9xl
       </Text>
     </Text>
+  </Flex>
+</Playground>
+
+## Clamping
+
+You can specify whether to truncate the text on one line or multiple:
+
+export const loremIpsum = `
+row scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm. Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard grog black jack gangway rutters.
+Deadlights jack lad schooner scallywag dance the hempen jig carouser broadside cable strike colors. Bring a spring upon her cable holystone blow the man down spanker Shiver me timbers to go on account lookout wherry doubloon chase. Belay yo-ho-ho keelhaul squiffy black spot yardarm spyglass sheet transom heave to.
+Trysail Sail ho Corsair red ensign hulk smartly boom jib rum gangway. Case shot Shiver me timbers gangplank crack Jennys tea cup ballast Blimey lee snow crow's nest rutters. Fluke jib scourge of the seven seas boatswain schooner gaff booty Jack Tar transom spirits.
+`;
+
+<Playground>
+  <Flex flow="column" gap="md" cross="stretch" css={{ p: '$4' }}>
+    <Box bc="$surfaceHover" p="$2" br="$md" height={160} width={300} overflow="hidden">
+      <Text lineClamp={1}>{loremIpsum}</Text>
+    </Box>
+    <Box bc="$surfaceHover" p="$2" br="$md" height={160} width={300} overflow="hidden">
+      <Text lineClamp={2}>{loremIpsum}</Text>
+    </Box>
+    <Box bc="$surfaceHover" p="$2" br="$md" height={160} width={300} overflow="hidden">
+      <Text lineClamp={3}>{loremIpsum}</Text>
+    </Box>
+    <Box bc="$surfaceHover" p="$2" br="$md" height={160} width={300} overflow="hidden">
+      <Text lineClamp={4}>{loremIpsum}</Text>
+    </Box>
+    <Box bc="$surfaceHover" p="$2" br="$md" height={160} width={300} overflow="hidden">
+      <Text lineClamp={5}>{loremIpsum}</Text>
+    </Box>
+    <Box bc="$surfaceHover" p="$2" br="$md" height={160} width={300} overflow="hidden">
+      <Text lineClamp={6}>{loremIpsum}</Text>
+    </Box>
   </Flex>
 </Playground>

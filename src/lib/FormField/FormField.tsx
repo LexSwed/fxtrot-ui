@@ -98,7 +98,7 @@ interface HintProps extends React.ComponentProps<typeof Text> {
 export const Hint: React.FC<HintProps> = ({ validity, children, ...props }) => {
   return (
     <HintText
-      ellipsis
+      lineClamp={1}
       size="xs"
       title={typeof children === 'string' ? children : undefined}
       tone={validity ? tonesMap[validity] : 'light'}

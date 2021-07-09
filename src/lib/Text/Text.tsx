@@ -84,12 +84,42 @@ const Text = styled('span', {
         textAlign: 'justify',
       },
     },
-    ellipsis: {
-      true: {
-        minWidth: 0,
+    lineClamp: {
+      1: {
+        display: '-webkit-inline-box',
+        WebkitBoxOrient: 'vertical',
+        WebkitLineClamp: 1,
         overflow: 'hidden',
-        whiteSpace: 'nowrap',
-        textOverflow: 'ellipsis',
+      },
+      2: {
+        display: '-webkit-inline-box',
+        WebkitBoxOrient: 'vertical',
+        WebkitLineClamp: 2,
+        overflow: 'hidden',
+      },
+      3: {
+        display: '-webkit-inline-box',
+        WebkitBoxOrient: 'vertical',
+        WebkitLineClamp: 3,
+        overflow: 'hidden',
+      },
+      4: {
+        display: '-webkit-inline-box',
+        WebkitBoxOrient: 'vertical',
+        WebkitLineClamp: 4,
+        overflow: 'hidden',
+      },
+      5: {
+        display: '-webkit-inline-box',
+        WebkitBoxOrient: 'vertical',
+        WebkitLineClamp: 5,
+        overflow: 'hidden',
+      },
+      6: {
+        display: '-webkit-inline-box',
+        WebkitBoxOrient: 'vertical',
+        WebkitLineClamp: 6,
+        overflow: 'hidden',
       },
     },
   },
