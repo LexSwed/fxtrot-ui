@@ -1,13 +1,12 @@
 import React, { useMemo } from 'react';
 import { useUID } from 'react-uid';
 
-import Box from '../Box';
-import Flex from '../Flex/Flex';
+import Flex, { flexVariants } from '../Flex/Flex';
 import { LabelWrapper } from '../Label/Label';
 import { styled } from '../stitches.config';
 import Text from '../Text';
 
-const Wrapper = styled(Flex, {
+export const FormField = styled(Flex, {
   position: 'relative',
   width: '100%',
 
@@ -16,15 +15,23 @@ const Wrapper = styled(Flex, {
   },
 
   variants: {
+    ...flexVariants,
     hasHint: {
       true: {
         pb: '$5',
       },
     },
   },
+  defaultVariants: {
+    main: 'stretch',
+    cross: 'stretch',
+    flow: 'column',
+    display: 'inline',
+    gap: 'xs',
+  },
 });
 
-export const HintBox = styled(Box, {
+export const HintBox = styled('div', {
   position: 'relative',
   minWidth: 0,
   flex: 2,
@@ -41,7 +48,7 @@ const HintText = styled(Text, {
   cursor: 'default',
 });
 
-export interface FormFieldProps extends React.ComponentProps<typeof Wrapper> {
+export interface FormFieldProps extends React.ComponentProps<typeof FormField> {
   hasHint?: boolean;
   validity?: keyof typeof tonesMap;
   as?: keyof JSX.IntrinsicElements;
@@ -51,45 +58,6 @@ const tonesMap: Record<'valid' | 'invalid', React.ComponentProps<typeof Text>['t
   valid: 'success',
   invalid: 'danger',
 };
-
-export const FormField = React.forwardRef<HTMLDivElement, FormFieldProps>(
-  (
-    {
-      main = 'stretch',
-      cross = 'stretch',
-      flow = 'column',
-      display = 'inline',
-      gap = 'xs',
-      css,
-      style,
-      className,
-      children,
-      hasHint,
-      as,
-    },
-    ref
-  ) => {
-    return (
-      <Wrapper
-        main={main}
-        cross={cross}
-        flow={flow}
-        display={display}
-        gap={gap}
-        css={css}
-        style={style}
-        className={className}
-        hasHint={hasHint}
-        ref={ref}
-        as={as as any}
-      >
-        {children}
-      </Wrapper>
-    );
-  }
-);
-
-FormField.displayName = 'FormField';
 
 interface HintProps extends React.ComponentProps<typeof Text> {
   validity?: FormFieldProps['validity'];

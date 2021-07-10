@@ -45,7 +45,7 @@ export const InteractiveBox = styled('input', {
   '&::placeholder': {
     color: '$textSubtle',
   },
-  '&:disabled': {
+  '&:disabled:not(.plus1):not(.plus2)': {
     color: '$textDisabled',
     borderColor: '$surfaceDisabled',
     bc: '$surfaceDisabled',
@@ -69,17 +69,17 @@ export const InteractiveBox = styled('input', {
         },
       },
       underlined: {
+        '$$color': '$colors$borderStill',
         'borderRadius': '$md $md 0 0',
-        'backgroundImage': 'linear-gradient(to top, $colors$borderStill 2px, $colors$surfaceStill 2px)',
-        'backgroundSize': '100% calc(100% + 4px)',
-        'backgroundPosition': '0 calc(100% + 2px)',
+        'backgroundImage': 'linear-gradient(to top, $$color 2px, $colors$surfaceStill 2px)',
+        'backgroundSize': '100% 1px',
+        'backgroundPosition': '0 100%',
         '&:hover': {
-          backgroundPosition: '0 calc(100% + 2px)',
-          backgroundImage: 'linear-gradient(to top, $colors$primaryHover 2px, $colors$surfaceStill 2px)',
+          $$color: '$colors$primaryHover',
         },
         '&:focus, &[aria-expanded="true"]': {
-          backgroundPosition: '0 calc(100% + 1px)',
-          backgroundImage: 'linear-gradient(to top,  $colors$primaryActive 2px, $colors$surfaceStill 2px)',
+          $$color: '$colors$primaryActive',
+          backgroundSize: '100% 2px',
         },
         '&:disabled': {
           backgroundImage: 'none',
@@ -97,6 +97,19 @@ export const InteractiveBox = styled('input', {
         },
         '&:focus': {
           borderBottomColor: '$borderStill',
+        },
+      },
+      flat: {
+        'bc': '$flatStill',
+        'color': '$text',
+        'px': '$3',
+        'br': '$md',
+        '&:hover:not(:focus)': {
+          bc: '$flatHover',
+        },
+        '&:focus': {
+          borderColor: '$borderActive',
+          boxShadow: '0 0 0 1px $borderActive inset',
         },
       },
     },

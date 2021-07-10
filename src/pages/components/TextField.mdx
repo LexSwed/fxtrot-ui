@@ -3,7 +3,7 @@ name: TextField
 ---
 
 import { Playground } from 'dokz';
-import { Box, Flex, TextField } from '@fxtrot/ui';
+import { Box, Button, Flex, TextField } from '@fxtrot/ui';
 
 ## TextField
 
@@ -37,6 +37,7 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
       <TextField label="Boxed" hint="Default variant" placeholder="Default boxed variant" />
       <TextField variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Pretty underlined" />
       <TextField variant="transparent" hint="Not using labels" placeholder="Transparent variant" />
+      <TextField variant="flat" label="Flat variant" hint="Press Esc to cancel" placeholder="Flat variant" />
     </Flex>
     <Flex flow="column" gap="md">
       <TextField
@@ -55,6 +56,7 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
         disabled
       />
       <TextField variant="transparent" hint="Not using labels" placeholder="Transparent variant" disabled />
+      <TextField disabled variant="flat" label="Flat variant" hint="Press Esc to cancel" placeholder="Flat variant" />
     </Flex>
   </Flex>
 </Playground>
