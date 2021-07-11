@@ -85,10 +85,13 @@ const Text = styled('span', {
       },
     },
     lineClamp: {
+      // line clamp doesn't really work within flex layout
       1: {
-        display: '-webkit-inline-box',
-        WebkitBoxOrient: 'vertical',
-        WebkitLineClamp: 1,
+        display: 'inline-block',
+        minWidth: 0,
+        maxWidth: '100%',
+        whiteSpace: 'nowrap',
+        textOverflow: 'ellipsis',
         overflow: 'hidden',
       },
       2: {
