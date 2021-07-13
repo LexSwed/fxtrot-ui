@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useMemo, useRef } from 'react';
+import React, { createContext, useContext, useMemo } from 'react';
 import { IdProvider } from '@radix-ui/react-id';
 
 import { stitchesConfig, styled } from '../stitches.config';
@@ -25,7 +25,6 @@ const ThemeWrapper = styled('span', {
 
 const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
   const { themeClassName: contextTheme } = useContext(themeContext);
-  const innerRef = useRef<HTMLDivElement>(null);
 
   const themeClass = useMemo(() => {
     if (!theme) return null;
