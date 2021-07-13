@@ -3,15 +3,11 @@ import React, { createContext, useContext, useMemo, useState, useImperativeHandl
 const menuStateContext = createContext(false);
 const menuStateControlsContext = createContext<MenuControlFunctions>({} as MenuControlFunctions);
 
-export interface OpenStateRef {
-  open: () => void;
-  close: () => void;
-  toggle: () => void;
-}
+export interface OpenStateRef extends MenuControlFunctions {}
 
 export const OpenStateProvider = React.forwardRef<OpenStateRef, { defaultOpen?: boolean; children?: React.ReactNode }>(
-  ({ defaultOpen, children }, ref) => {
-    const [isOpen, controls] = useTogglesState(defaultOpen);
+  ({ children, defaultOpen }, ref) => {
+    const [isOpen, controls] = useToggleState({ defaultOpen }, ref);
 
     useImperativeHandle(ref, () => controls, [controls]);
 
@@ -22,6 +18,15 @@ export const OpenStateProvider = React.forwardRef<OpenStateRef, { defaultOpen?: 
     );
   }
 );
+
+export function useToggleState({ defaultOpen }: { defaultOpen?: boolean }, ref: React.ForwardedRef<OpenStateRef>) {
+  const handles = useBooleanState(defaultOpen);
+  const controls = handles[1];
+
+  useImperativeHandle(ref, () => controls, [controls]);
+
+  return handles;
+}
 
 OpenStateProvider.displayName = 'OpenStateProvider';
 
@@ -35,8 +40,9 @@ interface MenuControlFunctions {
   open: () => void;
   close: () => void;
   toggle: () => void;
+  switch: (value: boolean) => void;
 }
-function useTogglesState(defaultOpen = false): [isOpen: boolean, controls: MenuControlFunctions] {
+function useBooleanState(defaultOpen = false): [isOpen: boolean, controls: MenuControlFunctions] {
   const [isOpen, setOpen] = useState(defaultOpen);
   const controls = useMemo<MenuControlFunctions>(
     () => ({
@@ -48,6 +54,9 @@ function useTogglesState(defaultOpen = false): [isOpen: boolean, controls: MenuC
       },
       toggle: () => {
         setOpen((open) => !open);
+      },
+      switch: (value) => {
+        setOpen(value);
       },
     }),
     []

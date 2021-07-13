@@ -11,7 +11,6 @@ type Props = {
 
 interface ThemeContext {
   themeClassName?: string;
-  ref?: React.RefObject<HTMLDivElement>;
 }
 
 const themeContext = createContext<ThemeContext>({});
@@ -25,7 +24,7 @@ const ThemeWrapper = styled('span', {
 });
 
 const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
-  const { themeClassName: contextTheme, ref: contextRef } = useContext(themeContext);
+  const { themeClassName: contextTheme } = useContext(themeContext);
   const innerRef = useRef<HTMLDivElement>(null);
 
   const themeClass = useMemo(() => {
@@ -40,7 +39,7 @@ const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
   }, [theme]);
   const className = themeClass || contextTheme;
 
-  const value = useMemo(() => ({ themeClassName: className, ref: contextRef || innerRef }), [className, contextRef]);
+  const value = useMemo(() => ({ themeClassName: className }), [className]);
 
   if (!className) {
     return <>{children}</>;
@@ -50,9 +49,7 @@ const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
     <IdProvider>
       <>
         <themeContext.Provider value={value}>
-          <ThemeWrapper className={className} ref={contextRef ? undefined : innerRef}>
-            {children}
-          </ThemeWrapper>
+          <ThemeWrapper className={className}>{children}</ThemeWrapper>
         </themeContext.Provider>
         <Reset />
       </>
