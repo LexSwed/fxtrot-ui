@@ -1,71 +1,47 @@
-import type { Options } from '@popperjs/core';
 import { AnimatePresence, motion, Variants } from 'framer-motion';
-import React, { useMemo } from 'react';
+import React from 'react';
+import * as Radix from '@radix-ui/react-popover';
 
-import Portal from '../Portal';
 import { styled } from '../stitches.config';
 import { sameWidth, usePopper } from '../utils/popper';
 import { useKeyboardHandles, useOnClickOutside } from '../utils/hooks';
-import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
+import { useOpenState, useOpenStateControls, useToggleStateAtom } from '../utils/OpenStateProvider';
 
-interface Props extends React.ComponentProps<typeof PopperBox> {
-  triggerRef: React.RefObject<HTMLElement>;
-  offset?: number;
-  placement?: Options['placement'];
-}
+type RadixProps = Pick<React.ComponentProps<typeof Radix.Content>, 'align' | 'side' | 'alignOffset' | 'sideOffset'>;
 
-const PopoverLayer: React.FC<Props> = ({ children, triggerRef, offset = 8, placement = 'bottom-start', ...props }) => {
-  const isOpen = useOpenState();
-  const { close } = useOpenStateControls();
-  const [popperRef, state] = usePopper(
-    triggerRef,
-    useMemo<Options>(
-      () => ({
-        placement,
-        strategy: 'fixed',
-        modifiers: [{ name: 'offset', options: { offset: [0, offset] } }, sameWidth],
-      }),
-      [placement, offset]
-    )
-  );
+interface Props extends Omit<React.ComponentProps<typeof PopperBox>, 'align'>, RadixProps {}
 
-  useOnClickOutside(close, isOpen, popperRef, triggerRef);
-
-  const handleKeyDown = useKeyboardHandles({
-    'Escape.propagate': (e) => {
-      if (popperRef.current?.contains(e.target as Node)) {
-        close();
-      }
-    },
-  });
+const PopoverLayer: React.FC<Props> = ({
+  children,
+  align = 'start',
+  alignOffset,
+  sideOffset = 8,
+  side = 'bottom',
+  ...props
+}) => {
+  const [open] = useToggleStateAtom();
 
   return (
     <AnimatePresence>
-      {isOpen && (
-        <Portal>
-          <Popper ref={popperRef as any} onKeyDown={handleKeyDown}>
-            <PopperBox
-              {...props}
-              variants={state?.placement ? animations[state?.placement.split('-')[0]] : animations.bottom}
-              initial="initial"
-              animate="animate"
-              exit="initial"
-              transition={{ duration: 0.15, type: 'tween' }}
-            >
-              {children}
-            </PopperBox>
-          </Popper>
-        </Portal>
+      {open && (
+        <Radix.Content align={align} side={side} alignOffset={alignOffset} sideOffset={sideOffset} forceMount>
+          <PopperBox
+            {...props}
+            // variants={state?.placement ? animations[state?.placement.split('-')[0]] : animations.bottom}
+            // initial="initial"
+            // animate="animate"
+            // exit="initial"
+            // transition={{ duration: 0.15, type: 'tween' }}
+          >
+            {children}
+          </PopperBox>
+        </Radix.Content>
       )}
     </AnimatePresence>
   );
 };
 
 export default PopoverLayer;
-
-const Popper = styled('div', {
-  position: 'absolute',
-});
 
 const PopperBox = styled(motion.div, {
   bc: '$surfaceStill',

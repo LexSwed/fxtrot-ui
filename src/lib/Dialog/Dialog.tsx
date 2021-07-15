@@ -6,7 +6,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { DialogModal, DialogTitle } from './DialogModal';
 import { styled } from '../stitches.config';
 import Flex from '../Flex';
-import Portal from '../Portal';
 
 interface Props {
   children: [React.ReactElement, (close: () => void) => React.ReactNode];
@@ -24,26 +23,14 @@ const Dialog = ({ children, ...props }: Props) => {
       <Trigger as={Slot}>{trigger}</Trigger>
       <AnimatePresence>
         {open && content && (
-          <Portal>
-            <Overlay as={Slot}>
+          <>
+            <Overlay as={Slot} forceMount>
               <OverlayStyled as={motion.div} />
             </Overlay>
-            <ModalWrapper
-              main="center"
-              cross="center"
-              as={motion.div as any}
-              initial={{ opacity: 0, y: 5 }}
-              animate={{
-                opacity: 1,
-                y: 0,
-                transition: { opacity: { duration: 0.2 }, y: { duration: 0.2 } },
-              }}
-              exit={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.1, type: 'tween' }}
-            >
+            <ModalWrapper main="center" cross="center">
               {content(close)}
             </ModalWrapper>
-          </Portal>
+          </>
         )}
       </AnimatePresence>
     </Root>

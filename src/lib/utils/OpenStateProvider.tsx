@@ -1,3 +1,4 @@
+import { atom, useAtom, WritableAtom, SetStateAction } from 'jotai';
 import React, { createContext, useContext, useMemo, useState, useImperativeHandle } from 'react';
 
 const menuStateContext = createContext(false);
@@ -7,7 +8,7 @@ export interface OpenStateRef extends MenuControlFunctions {}
 
 export const OpenStateProvider = React.forwardRef<OpenStateRef, { defaultOpen?: boolean; children?: React.ReactNode }>(
   ({ children, defaultOpen }, ref) => {
-    const [isOpen, controls] = useToggleState({ defaultOpen }, ref);
+    const [isOpen, controls] = useBooleanState({ defaultOpen }, ref);
 
     useImperativeHandle(ref, () => controls, [controls]);
 
@@ -19,13 +20,40 @@ export const OpenStateProvider = React.forwardRef<OpenStateRef, { defaultOpen?: 
   }
 );
 
+const defaultAtom = atom<boolean | undefined>(false);
+const openStateAtomContext = createContext<typeof defaultAtom>(defaultAtom);
+export const ToggleStateScope: React.FC<{ atom: typeof defaultAtom }> = ({ children, atom }) => {
+  return <openStateAtomContext.Provider value={atom}>{children}</openStateAtomContext.Provider>;
+};
+
 export function useToggleState({ defaultOpen }: { defaultOpen?: boolean }, ref: React.ForwardedRef<OpenStateRef>) {
-  const handles = useBooleanState(defaultOpen);
-  const controls = handles[1];
+  const [openStateAtom] = useState(() => atom(defaultOpen));
+  const [isOpen, setOpen] = useAtom(openStateAtom);
+
+  const controls = useMemo<MenuControlFunctions>(
+    () => ({
+      open: () => {
+        setOpen(true);
+      },
+      close: () => {
+        setOpen(false);
+      },
+      toggle: () => {
+        setOpen((open) => !open);
+      },
+      switch: (value) => {
+        setOpen(value);
+      },
+    }),
+    [setOpen]
+  );
 
   useImperativeHandle(ref, () => controls, [controls]);
 
-  return handles;
+  return [isOpen, controls, openStateAtom] as const;
+}
+export function useToggleStateAtom() {
+  return useAtom(useContext(openStateAtomContext));
 }
 
 OpenStateProvider.displayName = 'OpenStateProvider';
