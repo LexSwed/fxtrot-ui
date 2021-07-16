@@ -17,7 +17,7 @@ export { default as MenuList } from './MenuList';
 export { default as Picker } from './Picker';
 export { default as Portal } from './Portal';
 export { default as Section } from './Section';
-export { default as Popover } from './Popover';
+export { Popover, usePopoverRef } from './Popover';
 export { default as Spinner } from './Spinner';
 export { default as Switch } from './Switch';
 export { default as Tag } from './Tag';

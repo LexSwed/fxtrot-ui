@@ -2,21 +2,20 @@ import { AnimatePresence, motion, Variants } from 'framer-motion';
 import React from 'react';
 import * as Radix from '@radix-ui/react-popover';
 
-import { styled } from '../stitches.config';
-import { sameWidth, usePopper } from '../utils/popper';
-import { useKeyboardHandles, useOnClickOutside } from '../utils/hooks';
-import { useOpenState, useOpenStateControls, useToggleStateAtom } from '../utils/OpenStateProvider';
+import { keyframes, styled } from '../stitches.config';
+import { useToggleStateAtom } from '../utils/OpenStateProvider';
+import { Slot } from '@radix-ui/react-slot';
 
 type RadixProps = Pick<React.ComponentProps<typeof Radix.Content>, 'align' | 'side' | 'alignOffset' | 'sideOffset'>;
 
-interface Props extends Omit<React.ComponentProps<typeof PopperBox>, 'align'>, RadixProps {}
+interface Props extends Omit<React.ComponentProps<'div'>, 'align' | 'ref'>, RadixProps {}
 
 const PopoverLayer: React.FC<Props> = ({
   children,
   align = 'start',
+  side = 'bottom',
   alignOffset,
   sideOffset = 8,
-  side = 'bottom',
   ...props
 }) => {
   const [open] = useToggleStateAtom();
@@ -24,17 +23,8 @@ const PopoverLayer: React.FC<Props> = ({
   return (
     <AnimatePresence>
       {open && (
-        <Radix.Content align={align} side={side} alignOffset={alignOffset} sideOffset={sideOffset} forceMount>
-          <PopperBox
-            {...props}
-            // variants={state?.placement ? animations[state?.placement.split('-')[0]] : animations.bottom}
-            // initial="initial"
-            // animate="animate"
-            // exit="initial"
-            // transition={{ duration: 0.15, type: 'tween' }}
-          >
-            {children}
-          </PopperBox>
+        <Radix.Content align={align} side={side} alignOffset={alignOffset} sideOffset={sideOffset} as={Slot} forceMount>
+          <InnerBox {...props}>{children}</InnerBox>
         </Radix.Content>
       )}
     </AnimatePresence>
@@ -43,11 +33,50 @@ const PopoverLayer: React.FC<Props> = ({
 
 export default PopoverLayer;
 
+const InnerBox = React.forwardRef<HTMLDivElement, Props & { 'data-side'?: RadixProps['side'] }>((props, ref) => {
+  return (
+    <PopperBox
+      ref={ref}
+      {...(props as any)}
+      variants={props['data-side'] ? animations[props['data-side']] : undefined}
+      initial="initial"
+      animate="animate"
+      exit="initial"
+      transition={{ duration: 0.15, type: 'tween' }}
+    />
+  );
+});
+
+const slideDown = keyframes({
+  '0%': { opacity: 0, transform: 'translateY(-5px)' },
+  '100%': { opacity: 1, transform: 'translateY(0)' },
+});
+
+const slideUp = keyframes({
+  '0%': { opacity: 0, transform: 'translateY(5px)' },
+  '100%': { opacity: 1, transform: 'translateY(0)' },
+});
+const slideRight = keyframes({
+  '0%': { opacity: 0, transform: 'translateX(5px)' },
+  '100%': { opacity: 1, transform: 'translateX(0)' },
+});
+const slideLeft = keyframes({
+  '0%': { opacity: 0, transform: 'translateX(-5px)' },
+  '100%': { opacity: 1, transform: 'translateX(0)' },
+});
+
 const PopperBox = styled(motion.div, {
-  bc: '$surfaceStill',
-  br: '$md',
-  outline: 'none',
-  boxShadow: '$popper',
+  'bc': '$surfaceStill',
+  'br': '$md',
+  'outline': 'none',
+  'boxShadow': '$popper',
+
+  '&[data-side="top"]': { animationName: slideUp },
+  '&[data-side="bottom"]': { animationName: slideDown },
+  '&[data-side="left"]': { animationName: slideRight },
+  '&[data-side="right"]': { animationName: slideLeft },
+  'animationDuration': '0.2s',
+  'animationTimingFunction': 'cubic-bezier(0.16, 1, 0.3, 1)',
 });
 
 const animations: Record<string, Variants> = {

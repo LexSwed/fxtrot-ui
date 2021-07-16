@@ -1,25 +1,16 @@
-import { FocusScope } from '@react-aria/focus';
-import React, { useContext, useMemo, useRef } from 'react';
-import { useUID } from 'react-uid';
+import React, { useRef } from 'react';
 import * as Radix from '@radix-ui/react-popover';
 import { Slot } from '@radix-ui/react-slot';
 
 import Box from '../Box';
-import { useAllHandlers, useForkRef, useKeyboardHandles } from '../utils/hooks';
-import {
-  useToggleState,
-  OpenStateRef,
-  useOpenState,
-  useOpenStateControls,
-  ToggleStateScope,
-} from '../utils/OpenStateProvider';
+import { useToggleState, OpenStateRef, ToggleStateScope } from '../utils/OpenStateProvider';
 import PopoverLayer from './PopoverLayer';
 interface Props {
   children: [React.ReactElement, React.ReactElement<ContentProps>];
   defaultOpen?: boolean;
 }
 
-const Popover = React.forwardRef<OpenStateRef, Props>(({ children, defaultOpen }, ref) => {
+export const Popover = React.forwardRef<OpenStateRef, Props>(({ children, defaultOpen }, ref) => {
   const [open, controls, atom] = useToggleState({ defaultOpen }, ref);
   const [trigger, content] = children;
 
@@ -49,4 +40,6 @@ const Content: React.FC<ContentProps> = ({ children, ...props }) => {
 Popover.displayName = 'Popover';
 Popover.Content = Content;
 
-export default Popover;
+export function usePopoverRef() {
+  return useRef<OpenStateRef>();
+}
