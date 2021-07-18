@@ -2,7 +2,7 @@ import React from 'react';
 import type { Options } from '@popperjs/core';
 
 import ListBox, { ListBoxProps } from '../ListBox/ListBox';
-import Popover from '../Popover/PopoverLayer';
+import { PopoverLayerDeprecated } from '../Popover/LayerDeprectated';
 import { useMenu } from './utils';
 import MenuItem from './MenuItem';
 import { ListBoxContext } from '../ListBox/ListBoxContext';
@@ -16,7 +16,7 @@ const MenuList = React.forwardRef<HTMLUListElement, MenuListProps>(({ placement,
   const { triggerRef, seed } = useMenu();
 
   return (
-    <Popover triggerRef={triggerRef} placement={placement} offset={offset}>
+    <PopoverLayerDeprecated triggerRef={triggerRef} placement={placement} offset={offset}>
       <ListBoxContext ListItem={MenuItem}>
         <ListBox
           role={'menu'}
@@ -30,7 +30,7 @@ const MenuList = React.forwardRef<HTMLUListElement, MenuListProps>(({ placement,
           aria-labelledby={seed('button')}
         />
       </ListBoxContext>
-    </Popover>
+    </PopoverLayerDeprecated>
   );
 });
 

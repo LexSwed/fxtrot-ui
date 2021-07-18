@@ -7,7 +7,7 @@ import { OpenStateProvider, useOpenState, useOpenStateControls } from '../utils/
 import Input, { Props as InputProps } from './Input';
 import Item, { OptionType } from './Item';
 import { useAllHandlers, useForkRef, useLatest } from '../utils/hooks';
-import Popover from '../Popover/PopoverLayer';
+import { PopoverLayerDeprecated } from '../Popover/LayerDeprectated';
 import { StateProvider, useFocusedItemId, useSyncValue } from './atoms';
 import VirtualList from './VirtualList';
 import { ListBoxContext } from '../ListBox/ListBoxContext';
@@ -118,7 +118,7 @@ const ComboBoxInner: React.FC<Props> = ({
         onFocusNext={handleFocusNext}
         onFocusPrev={handleFocusPrev}
       />
-      <Popover triggerRef={triggerRef}>
+      <PopoverLayerDeprecated triggerRef={triggerRef}>
         <VirtualList
           id={listboxId}
           aria-labelledby={idSeed('input')}
@@ -140,7 +140,7 @@ const ComboBoxInner: React.FC<Props> = ({
             });
           }}
         </VirtualList>
-      </Popover>
+      </PopoverLayerDeprecated>
     </>
   );
 };

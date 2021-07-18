@@ -20,7 +20,7 @@ export const OpenStateProvider = React.forwardRef<OpenStateRef, { defaultOpen?: 
   }
 );
 
-const defaultAtom = atom<boolean | undefined>(false);
+const defaultAtom = atom<boolean>(false);
 const openStateAtomContext = createContext<typeof defaultAtom>(defaultAtom);
 export const ToggleStateScope: React.FC<{ atom: typeof defaultAtom }> = ({ children, atom }) => {
   return <openStateAtomContext.Provider value={atom}>{children}</openStateAtomContext.Provider>;
