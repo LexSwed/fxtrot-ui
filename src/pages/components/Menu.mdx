@@ -3,34 +3,34 @@ name: Menu
 ---
 
 import { Playground } from 'dokz';
-import { Box, Button, Menu, Item, Icon, Text, ThemeProvider, Dialog, Picker } from '@fxtrot/ui';
+import { Box, Button, Menu, Icon, Text, ThemeProvider, Dialog, Picker } from '@fxtrot/ui';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import { TrashIcon } from '@heroicons/react/outline';
 
 ## Menu
 
-For big lists use `value` prop on `Item` and `onAction` callback to handle click on the item with `action`.
+For big lists use `value` prop on `Menu.Item` and `onAction` callback to handle click on the Menu.Item with `action`.
 
 <Playground>
   <Box p="$8">
-    <Menu onAction={typeof window !== 'undefined' ? window.alert : null}>
+    <Menu>
       <Button>
         <span>Open menu</span>
         <Icon as={ChevronDownIcon} size="lg" />
       </Button>
       <Menu.List>
-        <Item value="copy">
+        <Menu.Item onSelect={() => console.log('copy')}>
           <Icon as="svg" />
           Copy
-        </Item>
-        <Item value="cut">
+        </Menu.Item>
+        <Menu.Item onSelect={() => console.log('cut')}>
           <Icon as="svg" />
           Cut
-        </Item>
-        <Item value="delete" css={{ color: '$danger' }}>
+        </Menu.Item>
+        <Menu.Item onSelect={() => console.log('delete')} css={{ color: '$danger' }}>
           <Icon as={TrashIcon} color="$danger" />
           Delete
-        </Item>
+        </Menu.Item>
       </Menu.List>
     </Menu>
   </Box>
@@ -50,9 +50,9 @@ You can modify `offset` and [`placement`](https://popper.js.org/docs/v2/construc
           {Array(20)
             .fill(null)
             .map((el, i) => (
-              <Item key={i} onClick={() => window.alert(i)}>
-                Item {i}
-              </Item>
+              <Menu.Item key={i} onSelect={() => window.alert(i)}>
+                Menu.Item {i}
+              </Menu.Item>
             ))}
         </Menu.List>
       </Menu>
@@ -74,16 +74,16 @@ You can modify `offset` and [`placement`](https://popper.js.org/docs/v2/construc
       </Button>
       <Menu.List>
         <Dialog>
-          <Item css={{ color: '$danger' }}>
+          <Menu.Item css={{ color: '$danger' }}>
             <Icon size="md" as={TrashIcon} />
             <span>Delete</span>
-          </Item>
+          </Menu.Item>
           {(close) => (
             <Dialog.Modal>
               <Dialog.Title level={3}>Delete topic?</Dialog.Title>
               <Picker>
-                <Item label="Item 1" />
-                <Item label="Item 2" />
+                <Menu.Item label="Menu.Item 1" />
+                <Menu.Item label="Menu.Item 2" />
               </Picker>
             </Dialog.Modal>
           )}

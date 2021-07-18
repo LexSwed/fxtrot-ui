@@ -12,7 +12,7 @@ export { default as Heading } from './Heading';
 export { default as Icon } from './Icon';
 export { default as Label } from './Label';
 export { default as Item } from './Item';
-export { default as Menu } from './Menu';
+export { Menu } from './Menu';
 export { default as MenuList } from './MenuList';
 export { default as Picker } from './Picker';
 export { default as Portal } from './Portal';

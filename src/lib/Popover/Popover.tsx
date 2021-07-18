@@ -4,7 +4,7 @@ import { Slot } from '@radix-ui/react-slot';
 
 import Box from '../Box';
 import { useToggleState, OpenStateRef, ToggleStateScope } from '../utils/OpenStateProvider';
-import PopoverLayer from './PopoverLayer';
+import { PopoverLayer } from './PopoverLayer';
 interface Props {
   children: [React.ReactElement, React.ReactElement<ContentProps>];
   defaultOpen?: boolean;
@@ -31,7 +31,7 @@ Popover.displayName = 'Popover';
 interface ContentProps extends React.ComponentProps<typeof PopoverLayer> {}
 const Content: React.FC<ContentProps> = ({ children, ...props }) => {
   return (
-    <PopoverLayer {...props}>
+    <PopoverLayer {...props} radixElement={Radix.Content}>
       <Box p="$4">{children}</Box>
     </PopoverLayer>
   );
