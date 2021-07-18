@@ -33,19 +33,21 @@ const PopoverLayer: React.FC<Props> = ({
 
 export default PopoverLayer;
 
-const InnerBox = React.forwardRef<HTMLDivElement, Props & { 'data-side'?: RadixProps['side'] }>((props, ref) => {
-  return (
-    <PopperBox
-      ref={ref}
-      {...(props as any)}
-      variants={props['data-side'] ? animations[props['data-side']] : undefined}
-      initial="initial"
-      animate="animate"
-      exit="initial"
-      transition={{ duration: 0.15, type: 'tween' }}
-    />
-  );
-});
+const InnerBox = React.forwardRef<HTMLDivElement, Props & { 'data-side'?: RadixProps['side'] }>(
+  ({ style, ...props }, ref) => {
+    return (
+      <PopperBox
+        ref={ref}
+        {...(props as any)}
+        variants={props['data-side'] ? animations[props['data-side']] : animations.notReady}
+        initial="initial"
+        animate="animate"
+        exit="initial"
+        transition={{ duration: 0.15, type: 'tween' }}
+      />
+    );
+  }
+);
 
 const slideDown = keyframes({
   '0%': { opacity: 0, transform: 'translateY(-5px)' },

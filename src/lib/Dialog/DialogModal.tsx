@@ -1,46 +1,32 @@
 import React from 'react';
 import { XIcon } from '@heroicons/react/outline';
-import { Slot } from '@radix-ui/react-slot';
-import { Content, Title, Close } from '@radix-ui/react-dialog';
-import { motion } from 'framer-motion';
+import { Close } from '@radix-ui/react-dialog';
+import { motion, Variants } from 'framer-motion';
 
 import Button from '../Button';
 import Icon from '../Icon';
-import Heading from '../Heading';
 import { styled } from '../stitches.config';
 
 interface ModalProps extends React.ComponentProps<'div'> {}
 
 export const DialogModal: React.FC<ModalProps> = ({ children, ...props }) => {
   return (
-    <Content as={Slot} forceMount>
-      <DialogWindow
-        as={motion.div}
-        initial={{ opacity: 0, y: 5 }}
-        animate={{
-          opacity: 1,
-          y: 0,
-          transition: { opacity: { duration: 0.2 }, y: { duration: 0.2 } },
-        }}
-        exit={{ opacity: 0, y: 20 }}
-        transition={{ duration: 0.1, type: 'tween' }}
-        {...props}
-      >
-        {children}
-        <CloseButtonContainer>
-          <Close as={Slot}>
-            <Button variant="flat">
-              <Icon as={XIcon} />
-            </Button>
-          </Close>
-        </CloseButtonContainer>
-      </DialogWindow>
-    </Content>
+    <DialogWindow
+      variants={variants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      transition={{ duration: 0.1, type: 'tween' }}
+      {...(props as any)}
+    >
+      {children}
+      <CloseButtonContainer>
+        <Close as={Button} variant="flat">
+          <Icon as={XIcon} />
+        </Close>
+      </CloseButtonContainer>
+    </DialogWindow>
   );
-};
-
-export const DialogTitle: React.FC<React.ComponentProps<typeof Heading>> = (props) => {
-  return <Title {...props} as={Heading} />;
 };
 
 const CloseButtonContainer = styled('div', {
@@ -49,15 +35,30 @@ const CloseButtonContainer = styled('div', {
   right: '$2',
 });
 
-const DialogWindow = styled(Content, {
+const DialogWindow = styled(motion.div, {
   bc: '$surfaceStill',
   p: '$8',
   pt: '$10',
   outline: 'none',
-  maxHeight: '90vh',
   maxWidth: '80vw',
-  minWidth: 480,
   br: '$md',
   pointerEvents: 'auto',
-  position: 'relative',
+  position: 'fixed',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  minWidth: 200,
+  maxHeight: '85vh',
+  mt: '-5vh',
 });
+
+const variants: Variants = {
+  initial: { opacity: 0, y: 'calc(-50% + 10px)', x: '-50%' },
+  animate: {
+    opacity: 1,
+    y: '-50%',
+    x: '-50%',
+    transition: { opacity: { duration: 0.2 }, y: { duration: 0.2 } },
+  },
+  exit: { opacity: 0, y: 'calc(-50% + 20px)', x: '-50%' },
+};

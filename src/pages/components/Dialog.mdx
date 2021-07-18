@@ -15,7 +15,11 @@ import { Dialog, Button, TextField, Flex, Box, Picker, Item, Switch } from '@fxt
         <Dialog.Modal>
           <Dialog.Title level={3}>Create new workspace</Dialog.Title>
           <Box
-            pt="$4"
+            css={{
+              'pt': '$4',
+              '@initial': { minWidth: 400 },
+              '@mobile': { minWidth: 320 },
+            }}
             as="form"
             onSubmit={(e) => {
               e.preventDefault();

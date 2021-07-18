@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from 'react';
-import { Root, Trigger, Overlay } from '@radix-ui/react-dialog';
+import { Root, Trigger, Content, Title, Overlay } from '@radix-ui/react-dialog';
 import { Slot } from '@radix-ui/react-slot';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import { DialogModal, DialogTitle } from './DialogModal';
+import { DialogModal } from './DialogModal';
 import { styled } from '../stitches.config';
-import Flex from '../Flex';
+import Heading from '../Heading';
 
 interface Props {
   children: [React.ReactElement, (close: () => void) => React.ReactNode];
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const Dialog = ({ children, ...props }: Props) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(props.defaultOpen);
   const [trigger, content] = children;
 
   const close = useCallback(() => setOpen(false), []);
@@ -25,11 +25,16 @@ const Dialog = ({ children, ...props }: Props) => {
         {open && content && (
           <>
             <Overlay as={Slot} forceMount>
-              <OverlayStyled as={motion.div} />
+              <OverlayStyled
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3, type: 'tween' }}
+              />
             </Overlay>
-            <ModalWrapper main="center" cross="center">
+            <Content as={Slot} forceMount>
               {content(close)}
-            </ModalWrapper>
+            </Content>
           </>
         )}
       </AnimatePresence>
@@ -37,20 +42,14 @@ const Dialog = ({ children, ...props }: Props) => {
   );
 };
 
+const DialogTitle: React.FC<React.ComponentProps<typeof Heading>> = (props) => {
+  return <Title {...props} as={Heading} />;
+};
+
 Dialog.Modal = DialogModal;
 Dialog.Title = DialogTitle;
 
-const ModalWrapper = styled(Flex, {
-  width: '100vw',
-  height: '100vh',
-  position: 'fixed',
-  top: 0,
-  right: 0,
-  bottom: 0,
-  pointerEvents: 'none',
-});
-
-const OverlayStyled = styled(Overlay, {
+const OverlayStyled = styled(motion.div, {
   backgroundColor: 'rgba(0,0,0,0.6)',
   position: 'fixed',
   top: 0,

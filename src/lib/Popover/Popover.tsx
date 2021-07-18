@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const Popover = React.forwardRef<OpenStateRef, Props>(({ children, defaultOpen }, ref) => {
-  const [open, controls, atom] = useToggleState({ defaultOpen }, ref);
+  const [open, controls, atom] = useToggleState(defaultOpen, ref);
   const [trigger, content] = children;
 
   return (

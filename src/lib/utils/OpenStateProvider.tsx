@@ -1,4 +1,4 @@
-import { atom, useAtom, WritableAtom, SetStateAction } from 'jotai';
+import { atom, useAtom } from 'jotai';
 import React, { createContext, useContext, useMemo, useState, useImperativeHandle } from 'react';
 
 const menuStateContext = createContext(false);
@@ -8,7 +8,7 @@ export interface OpenStateRef extends MenuControlFunctions {}
 
 export const OpenStateProvider = React.forwardRef<OpenStateRef, { defaultOpen?: boolean; children?: React.ReactNode }>(
   ({ children, defaultOpen }, ref) => {
-    const [isOpen, controls] = useBooleanState({ defaultOpen }, ref);
+    const [isOpen, controls] = useBooleanState(defaultOpen);
 
     useImperativeHandle(ref, () => controls, [controls]);
 
@@ -26,7 +26,7 @@ export const ToggleStateScope: React.FC<{ atom: typeof defaultAtom }> = ({ child
   return <openStateAtomContext.Provider value={atom}>{children}</openStateAtomContext.Provider>;
 };
 
-export function useToggleState({ defaultOpen }: { defaultOpen?: boolean }, ref: React.ForwardedRef<OpenStateRef>) {
+export function useToggleState(defaultOpen = false, ref?: React.ForwardedRef<OpenStateRef>) {
   const [openStateAtom] = useState(() => atom(defaultOpen));
   const [isOpen, setOpen] = useAtom(openStateAtom);
 
