@@ -59,17 +59,17 @@
     "@react-aria/focus": "^3.4.0",
     "@stitches/react": "^0.2.2",
     "framer-motion": "^4.1.17",
-    "jotai": "^1.1.3",
+    "jotai": "^1.2.1",
     "react-keyed-flatten-children": "^1.3.0",
     "react-uid": "^2.3.1",
-    "react-virtual": "^2.7.2"
+    "react-virtual": "^2.8.0"
   },
   "devDependencies": {
     "@chakra-ui/react": "^1.6.5",
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
     "@types/jest": "^26.0.24",
-    "@types/node": "^16.3.1",
+    "@types/node": "^16.3.3",
     "@types/react": "^17.0.14",
     "@types/react-dom": "^17.0.9",
     "@typescript-eslint/eslint-plugin": "^4.28.3",
@@ -77,7 +77,7 @@
     "babel-eslint": "^10.1.0",
     "dokz": "^2.0.7",
     "esbuild": "^0.12.15",
-    "eslint": "^7.30.0",
+    "eslint": "^7.31.0",
     "eslint-config-next": "^11.0.1",
     "eslint-config-react-app": "^6.0.0",
     "eslint-plugin-flowtype": "^5.8.0",
@@ -95,12 +95,12 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",
-    "rollup": "^2.53.1",
+    "rollup": "^2.53.2",
     "rollup-plugin-esbuild": "^4.5.0",
     "typescript": "^4.3.5"
   },
   "peerDependencies": {
-    "@stitches/react": "^0.1.0",
+    "@stitches/react": "^0.2.0",
     "framer-motion": "^4.0.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0"
