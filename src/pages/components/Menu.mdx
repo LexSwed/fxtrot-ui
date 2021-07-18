@@ -3,7 +3,7 @@ name: Menu
 ---
 
 import { Playground } from 'dokz';
-import { Box, Button, Menu, Icon, Text, ThemeProvider, Dialog, Picker } from '@fxtrot/ui';
+import { Box, Button, Menu, Icon, Text, ThemeProvider, Dialog, Picker, Item } from '@fxtrot/ui';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import { TrashIcon } from '@heroicons/react/outline';
 
@@ -83,8 +83,8 @@ You can modify `offset` from the `side` and along the `align`ment.
             <Dialog.Modal>
               <Dialog.Title level={3}>Delete topic?</Dialog.Title>
               <Picker>
-                <Menu.Item label="Menu.Item 1" />
-                <Menu.Item label="Menu.Item 2" />
+                <Item label="Item 1" />
+                <Item label="Item 2" />
               </Picker>
             </Dialog.Modal>
           )}
