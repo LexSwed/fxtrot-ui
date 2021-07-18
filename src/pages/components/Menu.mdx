@@ -19,15 +19,16 @@ For big lists use `value` prop on `Menu.Item` and `onAction` callback to handle 
         <Icon as={ChevronDownIcon} size="lg" />
       </Button>
       <Menu.List>
-        <Menu.Item onSelect={() => console.log('copy')}>
+        <Menu.Item onSelect={() => window.alert('copy')}>
           <Icon as="svg" />
           Copy
         </Menu.Item>
-        <Menu.Item onSelect={() => console.log('cut')}>
+        <Menu.Item onSelect={() => window.alert('cut')}>
           <Icon as="svg" />
           Cut
         </Menu.Item>
-        <Menu.Item onSelect={() => console.log('delete')} css={{ color: '$danger' }}>
+        <Menu.Separator />
+        <Menu.Item onSelect={() => window.alert('delete')} css={{ color: '$danger' }}>
           <Icon as={TrashIcon} color="$danger" />
           Delete
         </Menu.Item>
@@ -36,7 +37,7 @@ For big lists use `value` prop on `Menu.Item` and `onAction` callback to handle 
   </Box>
 </Playground>
 
-You can modify `offset` and [`placement`](https://popper.js.org/docs/v2/constructors/#options) of the dropdown menu.
+You can modify `offset` from the `side` and along the `align`ment.
 
 <Playground>
   <ThemeProvider theme="orange">
@@ -46,12 +47,12 @@ You can modify `offset` and [`placement`](https://popper.js.org/docs/v2/construc
           <span>Open menu</span>
           <Icon as={ChevronDownIcon} size="lg" />
         </Button>
-        <Menu.List offset={0} placement="right-start">
+        <Menu.List sideOffset={12} side="right" align="start">
           {Array(20)
             .fill(null)
             .map((el, i) => (
               <Menu.Item key={i} onSelect={() => window.alert(i)}>
-                Menu.Item {i}
+                Item {i}
               </Menu.Item>
             ))}
         </Menu.List>
@@ -72,7 +73,7 @@ You can modify `offset` and [`placement`](https://popper.js.org/docs/v2/construc
       <Button variant="outline">
         <Icon as={ChevronDownIcon} size="lg" />
       </Button>
-      <Menu.List>
+      <Menu.List align="start" side="bottom">
         <Dialog>
           <Menu.Item css={{ color: '$danger' }}>
             <Icon size="md" as={TrashIcon} />

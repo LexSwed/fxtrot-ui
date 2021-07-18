@@ -7,6 +7,7 @@ import { styled } from '../stitches.config';
 import { ListBoxContext } from '../ListBox/ListBoxContext';
 import { ToggleStateScope, useToggleState } from '../utils/OpenStateProvider';
 import { StyledItem } from '../Item/Item';
+import Label from '../Label';
 import type { CssStyles } from '../utils/types';
 
 interface MenuListProps {
@@ -49,16 +50,30 @@ const MenuItem = React.forwardRef<HTMLDivElement, MenuItemProps>(({ onSelect, di
   );
 });
 
+const Separator = styled(DropdownMenu.Separator, {
+  height: 1,
+  bc: '$borderLight',
+  my: '$1',
+  mx: '-$1',
+});
+
+const MenuLabel: typeof Label = React.forwardRef((props, ref) => {
+  return (
+    <DropdownMenu.Label as={Slot}>
+      <Label {...props} ref={ref} />
+    </DropdownMenu.Label>
+  );
+});
+
 Menu.List = List;
 Menu.Item = MenuItem;
+Menu.Separator = Separator;
+Menu.Label = MenuLabel;
 
-const StyledList = styled('ul', {
-  'm': 0,
-  'p': '$1',
-  'overflowY': 'auto',
-  'maxHeight': '240px',
-  'focusRing': '$focusRing',
-  '&:empty': {
-    display: 'none',
-  },
+const StyledList = styled('div', {
+  width: '100%',
+  m: 0,
+  p: '$1',
+  overflowY: 'auto',
+  maxHeight: '240px',
 });

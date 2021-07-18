@@ -32,6 +32,9 @@ export const StyledItem = styled('div', {
   '&[data-focused="true"]': {
     bc: '$flatHover',
   },
+  '&[data-disabled="true"]': {
+    color: '$textDisabled',
+  },
 
   'variants': {
     ...flexVariants,

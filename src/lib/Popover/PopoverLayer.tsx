@@ -1,8 +1,8 @@
 import { AnimatePresence, motion, Variants } from 'framer-motion';
-import React, { useEffect, useLayoutEffect, useState } from 'react';
-import type { PopoverContentOwnProps, PopoverContentPrimitive } from '@radix-ui/react-popover';
+import React, { useLayoutEffect, useState } from 'react';
+import type { PopoverContentOwnProps } from '@radix-ui/react-popover';
 
-import { keyframes, styled } from '../stitches.config';
+import { styled } from '../stitches.config';
 import { useToggleStateAtom } from '../utils/OpenStateProvider';
 import { Slot } from '@radix-ui/react-slot';
 import type { CssStyles } from '../utils/types';
@@ -17,11 +17,13 @@ export const PopoverLayer: React.FC<
   PopoverLayerProps & {
     radixElement: React.ElementType<
       RadixProps & {
-        as: any;
-        disableOutsideScroll?: PopoverContentOwnProps['disableOutsideScroll'];
+        as?: any;
         forceMount?: PopoverContentOwnProps['forceMount'];
+        disableOutsideScroll?: PopoverContentOwnProps['disableOutsideScroll'];
       }
     >;
+    disableOutsideScroll?: PopoverContentOwnProps['disableOutsideScroll'];
+    as?: React.ElementType;
   }
 > = ({
   children,
@@ -47,17 +49,22 @@ export const PopoverLayer: React.FC<
           forceMount
           disableOutsideScroll={disableOutsideScroll}
         >
-          <InnerBox {...props}>{children}</InnerBox>
+          <InnerBox {...props} side={side}>
+            {children}
+          </InnerBox>
         </RadixElement>
       )}
     </AnimatePresence>
   );
 };
 
-const InnerBox = React.forwardRef<
-  HTMLDivElement,
-  PopoverLayerProps & { 'data-side'?: RadixProps['side']; 'as'?: React.ElementType }
->(({ style, ...props }, ref) => {
+interface InnerBoxProps extends PopoverLayerProps {
+  'data-side'?: RadixProps['side'];
+  'side'?: PopoverLayerProps['side'];
+  'as'?: React.ElementType;
+}
+
+const InnerBox = React.forwardRef<HTMLDivElement, InnerBoxProps>(({ as, side, ...props }, ref) => {
   const [minWidth, setMinWidth] = useState<number>();
 
   useLayoutEffect(() => {
@@ -67,44 +74,27 @@ const InnerBox = React.forwardRef<
     }
   }, [props.id]);
 
-  return <PopperBox ref={ref} style={{ ...style, minWidth }} {...(props as any)} />;
+  const transitionSide = props['data-side'] || side;
+
+  return (
+    <PopperBox
+      style={{ minWidth }}
+      variants={transitionSide ? animations[transitionSide] : undefined}
+      initial="initial"
+      animate="animate"
+      exit="initial"
+      transition={{ duration: 0.15, type: 'tween' }}
+    >
+      {React.createElement(as || 'div', { ...props, ref })}
+    </PopperBox>
+  );
 });
 
-/**
- * Preserve both, CSS animation for mount and framer-motion for unmount
- * otherwise data-side doesn't get value until the component is mounted
- * and so framer-motion doesn't get correct animation variant
- */
-const slideDown = keyframes({
-  '0%': { opacity: 0, transform: 'translateY(-5px)' },
-  '100%': { opacity: 1, transform: 'translateY(0)' },
-});
-
-const slideUp = keyframes({
-  '0%': { opacity: 0, transform: 'translateY(5px)' },
-  '100%': { opacity: 1, transform: 'translateY(0)' },
-});
-const slideRight = keyframes({
-  '0%': { opacity: 0, transform: 'translateX(5px)' },
-  '100%': { opacity: 1, transform: 'translateX(0)' },
-});
-const slideLeft = keyframes({
-  '0%': { opacity: 0, transform: 'translateX(-5px)' },
-  '100%': { opacity: 1, transform: 'translateX(0)' },
-});
-
-const PopperBox = styled('div', {
-  'bc': '$surfaceStill',
-  'br': '$md',
-  'outline': 'none',
-  'boxShadow': '$popper',
-
-  '&[data-side="top"]': { animationName: slideUp },
-  '&[data-side="bottom"]': { animationName: slideDown },
-  '&[data-side="left"]': { animationName: slideRight },
-  '&[data-side="right"]': { animationName: slideLeft },
-  'animationDuration': '0.2s',
-  'animationTimingFunction': 'cubic-bezier(0.16, 1, 0.3, 1)',
+const PopperBox = styled(motion.div, {
+  bc: '$surfaceStill',
+  br: '$md',
+  outline: 'none',
+  boxShadow: '$popper',
 });
 
 const animations: Record<string, Variants> = {

@@ -218,6 +218,7 @@ const Button = React.forwardRef(
     const isIconButton =
       React.Children.count(props.children) === 1 &&
       React.Children.toArray(props.children).every((child) => React.isValidElement(child) && child.type === Icon);
+
     return (
       <ButtonRoot
         {...props}
