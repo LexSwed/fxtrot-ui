@@ -4,7 +4,6 @@ import { Slot } from '@radix-ui/react-slot';
 
 import { PopoverLayer, PopoverLayerProps } from '../Popover/PopoverLayer';
 import { styled } from '../stitches.config';
-import { ListBoxContext } from '../ListBox/ListBoxContext';
 import { ToggleStateScope, useToggleState } from '../utils/OpenStateProvider';
 import { StyledItem } from '../Item/Item';
 import Label from '../Label';
@@ -30,11 +29,9 @@ export const Menu = ({ children }: MenuListProps) => {
 
 const List = ({ children, ...props }: PopoverLayerProps) => {
   return (
-    <ListBoxContext ListItem={MenuItem}>
-      <PopoverLayer {...props} as={StyledList} disableOutsideScroll={false} radixElement={DropdownMenu.Content}>
-        {children}
-      </PopoverLayer>
-    </ListBoxContext>
+    <PopoverLayer {...props} as={StyledList} disableOutsideScroll={false} radixElement={DropdownMenu.Content}>
+      {children}
+    </PopoverLayer>
   );
 };
 

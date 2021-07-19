@@ -35,7 +35,7 @@ export const LabelWrapper = styled(Flex, {
   whiteSpace: 'nowrap',
 });
 
-interface Props extends StitchesVariants<typeof LabelWrapper> {
+export interface Props extends StitchesVariants<typeof LabelWrapper> {
   label: React.ReactNode;
   secondary?: React.ReactNode;
   disabled?: boolean;

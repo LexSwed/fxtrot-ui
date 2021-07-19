@@ -7,7 +7,7 @@ import Button from '../Button';
 import Icon from '../Icon';
 import { styled } from '../stitches.config';
 
-interface ModalProps extends React.ComponentProps<'div'> {}
+export interface ModalProps extends React.ComponentProps<'div'> {}
 
 export const DialogModal: React.FC<ModalProps> = ({ children, ...props }) => {
   return (
