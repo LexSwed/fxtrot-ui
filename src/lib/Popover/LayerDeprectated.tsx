@@ -48,20 +48,18 @@ export const PopoverLayerDeprecated: React.FC<Props> = ({
   return (
     <AnimatePresence>
       {isOpen && (
-        <Portal>
-          <Popper ref={popperRef as any} onKeyDown={handleKeyDown}>
-            <PopperBox
-              {...props}
-              variants={state?.placement ? animations[state?.placement.split('-')[0]] : animations.bottom}
-              initial="initial"
-              animate="animate"
-              exit="initial"
-              transition={{ duration: 0.15, type: 'tween' }}
-            >
-              {children}
-            </PopperBox>
-          </Popper>
-        </Portal>
+        <Popper ref={popperRef as any} onKeyDown={handleKeyDown}>
+          <PopperBox
+            {...props}
+            variants={state?.placement ? animations[state?.placement.split('-')[0]] : animations.bottom}
+            initial="initial"
+            animate="animate"
+            exit="initial"
+            transition={{ duration: 0.15, type: 'tween' }}
+          >
+            {children}
+          </PopperBox>
+        </Popper>
       )}
     </AnimatePresence>
   );

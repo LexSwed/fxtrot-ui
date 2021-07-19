@@ -60,36 +60,3 @@ You can modify `offset` from the `side` and along the `align`ment.
     </Box>
   </ThemeProvider>
 </Playground>
-
-## Issues
-
-- `ArrowUp` and `ArrowDown` just open the menu, first option is always focused
-- No <kbd>Home</kbd>, <kbd>End</kbd>, <kbd>Page Up</kbd> or <kbd>Page Down</kbd> support
-- No typeahead support
-
-<Playground>
-  <Box p="$8">
-    <Menu>
-      <Button variant="outline">
-        <Icon as={ChevronDownIcon} size="lg" />
-      </Button>
-      <Menu.List align="start" side="bottom">
-        <Dialog>
-          <Menu.Item css={{ color: '$danger' }}>
-            <Icon size="md" as={TrashIcon} />
-            <span>Delete</span>
-          </Menu.Item>
-          {(close) => (
-            <Dialog.Modal>
-              <Dialog.Title level={3}>Delete topic?</Dialog.Title>
-              <Picker>
-                <Item label="Item 1" />
-                <Item label="Item 2" />
-              </Picker>
-            </Dialog.Modal>
-          )}
-        </Dialog>
-      </Menu.List>
-    </Menu>
-  </Box>
-</Playground>
