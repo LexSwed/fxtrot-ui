@@ -23,7 +23,7 @@ export const PopoverLayer: React.FC<
       }
     >;
     disableOutsideScroll?: PopoverContentOwnProps['disableOutsideScroll'];
-    as?: React.ElementType;
+    as?: InnerBoxProps['as'];
   }
 > = ({
   children,
@@ -85,10 +85,12 @@ const InnerBox = React.forwardRef<HTMLDivElement, InnerBoxProps>(({ as, side, ..
       exit="initial"
       transition={{ duration: 0.15, type: 'tween' }}
     >
-      {React.createElement(as || 'div', { ...props, ref })}
+      <PopperInner as={as as any} {...props} ref={ref} />
     </PopperBox>
   );
 });
+
+const PopperInner = styled('div', {});
 
 const PopperBox = styled(motion.div, {
   bc: '$surfaceStill',
