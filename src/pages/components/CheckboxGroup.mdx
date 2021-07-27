@@ -1,0 +1,24 @@
+---
+name: CheckboxGroup
+---
+
+import { Playground } from 'dokz';
+import { Box, CheckboxGroup, Checkbox } from '@fxtrot/ui';
+
+# CheckboxGroup
+
+<Playground>
+  {() => {
+    const [colors, setColors] = React.useState(['red']);
+    return (
+      <Box p="$4">
+        <CheckboxGroup label="Select favorite colors" value={colors} onChange={setColors}>
+          <Checkbox label="Red" value="red" />
+          <Checkbox label="Blue" value="blue" defaultChecked />
+          <Checkbox label="Green" value="green" />
+          <Checkbox label="Black" disabled />
+        </CheckboxGroup>
+      </Box>
+    );
+  }}
+</Playground>

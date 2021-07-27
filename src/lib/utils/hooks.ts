@@ -154,5 +154,5 @@ export function useDerivedState<V = any>(propValue?: V, propOnChange?: (newValue
     setValue(propValue);
   }, [propValue]);
 
-  return [value, onChange] as const;
+  return [value, onChange] as [V, typeof onChange];
 }
