@@ -1,7 +1,7 @@
-import React, { FormEvent } from 'react';
+import React, { useEffect } from 'react';
 import type * as Polymorphic from '@radix-ui/react-polymorphic';
 import flattenChildren from 'react-keyed-flatten-children';
-import { Checkbox, CheckboxFormField, CheckMark } from '../Checkbox/Checkbox';
+import { Checkbox, CheckboxProps, CheckboxFormField, CheckMark } from '../Checkbox/Checkbox';
 import Flex from '../Flex';
 import { styled } from '../stitches.config';
 import { useDerivedState } from '../utils/hooks';
@@ -19,26 +19,41 @@ interface Props extends Omit<React.ComponentProps<typeof CheckboxGroupWrapper>, 
 export const CheckboxGroup = React.forwardRef(
   ({ children, label, value = [], onChange, flow = 'column', ...props }, ref) => {
     const [checkedItems, setValue] = useDerivedState(value, onChange);
-    function handleChange(e: any) {
-      const { value, checked } = e.target as { value: string; checked: boolean };
+
+    useEffect(() => {
+      React.Children.forEach(children, (child) => {
+        if (isCheckboxChild(child)) {
+          const { defaultChecked, value } = child.props as CheckboxProps;
+          console.log(child.props);
+          if (defaultChecked && value) {
+            setValue((items) => [...items, value]);
+          }
+        }
+      });
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    console.log({ checkedItems });
+    const handleChange: CheckboxProps['onChange'] = (checked, event) => {
+      const { value } = event.target;
       if (checked) {
         setValue([...checkedItems, value]);
       } else {
         setValue(checkedItems.filter((v) => v !== value));
       }
-    }
-    console.log({ checkedItems });
+    };
+
     return (
       <Flex gap="md" flow={flow}>
         {label && <Label label={label} />}
-        <CheckboxGroupWrapper {...props} flow={flow} onChange={handleChange} ref={ref}>
-          {(flattenChildren(children) as CheckboxChild[]).map((child: CheckboxChild) => {
-            if (React.isValidElement(child) && child.type === Checkbox) {
+        <CheckboxGroupWrapper {...props} flow={flow} ref={ref}>
+          {flattenChildren(children).map((child) => {
+            if (isCheckboxChild(child)) {
               return React.cloneElement(child, {
-                defaultChecked: false,
-                checked: checkedItems?.includes((child.props as any).value),
-                onChange: undefined,
-              } as React.ComponentProps<typeof Checkbox>);
+                checked: checkedItems.includes((child.props as any).value),
+                onChange: handleChange,
+                defaultChecked: undefined,
+              } as CheckboxProps);
             }
             return child;
           })}
@@ -53,7 +68,6 @@ export type CheckboxGroupComponent = Polymorphic.ForwardRefComponent<'div', Prop
 const CheckboxGroupWrapper = styled(Flex, {
   [`& ${CheckboxFormField}`]: {
     p: '$2',
-    boxShadow: 'xs',
   },
   [`& ${CheckMark}`]: {
     br: '$round',
@@ -62,3 +76,7 @@ const CheckboxGroupWrapper = styled(Flex, {
     flow: 'column',
   },
 });
+
+function isCheckboxChild(child: React.ReactNode): child is CheckboxChild {
+  return React.isValidElement(child) && child.type === Checkbox;
+}

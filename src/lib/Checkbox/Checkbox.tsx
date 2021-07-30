@@ -9,13 +9,17 @@ import Icon, { IconBox } from '../Icon/Icon';
 import Label from '../Label';
 import { styled } from '../stitches.config';
 
-interface InputProps extends Omit<React.ComponentProps<typeof Input>, 'onChange'>, FlexVariants {
+interface InputProps extends Omit<React.ComponentProps<typeof Input>, 'onChange' | 'value'>, FlexVariants {
   label?: string;
   secondaryLabel?: string;
+  value?: string;
   onChange?: (checked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
+// internal props
 type Props = FlexVariants & InputProps;
+// external props
+export interface CheckboxProps extends Props {}
 
 export const Checkbox: React.FC<Props> = ({
   checked,
