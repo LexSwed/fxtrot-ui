@@ -10,7 +10,7 @@ import Label from '../Label';
 type CheckboxChild = React.ReactElement<typeof Checkbox>;
 
 interface Props extends Omit<React.ComponentProps<typeof CheckboxGroupWrapper>, 'value' | 'onChange'> {
-  children: CheckboxChild | CheckboxChild[];
+  children: CheckboxChild | CheckboxChild[] | null | undefined;
   label?: string;
   value?: string[];
   onChange?: (value: string[]) => void;
