@@ -106,7 +106,7 @@ const Trigger = React.forwardRef<HTMLButtonElement, TriggerProps>(
         className={className}
         hasHint={!!hint}
       >
-        {label && (
+        {label !== undefined && (
           <Label label={label} secondary={secondaryLabel} id={ariaProps['aria-labelledby']} disabled={disabled} />
         )}
         <HintBox>

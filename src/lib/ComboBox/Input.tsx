@@ -106,7 +106,9 @@ const ComboBoxInput: React.FC<Props> = ({
       className={className}
       hasHint={!!hint}
     >
-      {label && <Label label={label} secondary={secondaryLabel} htmlFor={ariaProps.id} disabled={disabled} />}
+      {label !== undefined && (
+        <Label label={label} secondary={secondaryLabel} htmlFor={ariaProps.id} disabled={disabled} />
+      )}
       <HintBox>
         <InputField
           {...props}

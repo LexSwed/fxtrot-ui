@@ -67,7 +67,7 @@ export const Checkbox: React.FC<Props> = ({
           <Icon as={CheckIcon} />
         </CheckMark>
       </CheckboxWrapper>
-      {label && <Label label={label} secondary={secondaryLabel} disabled={disabled} as="span" />}
+      {label !== undefined && <Label label={label} secondary={secondaryLabel} disabled={disabled} as="span" />}
     </CheckboxFormField>
   );
 };
