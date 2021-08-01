@@ -53,7 +53,7 @@ export type CheckboxGroupComponent = Polymorphic.ForwardRefComponent<'div', Prop
 
 const CheckboxGroupWrapper = styled(Flex, {
   [`& > ${CheckboxFormField}`]: {
-    p: '$2',
+    py: '$2',
   },
   [`& ${CheckMark}`]: {
     br: '$round',
