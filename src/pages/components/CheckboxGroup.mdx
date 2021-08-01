@@ -9,14 +9,14 @@ import { Box, CheckboxGroup, Checkbox } from '@fxtrot/ui';
 
 <Playground>
   {() => {
-    const [colors, setColors] = React.useState(['red']);
+    const [colors, setColors] = React.useState(['black']);
     return (
       <Box p="$4">
         <CheckboxGroup label="Select favorite colors" value={colors} onChange={setColors}>
           <Checkbox label="Red" value="red" />
           <Checkbox label="Blue" value="blue" />
           <Checkbox label="Green" value="green" />
-          <Checkbox label="Black" value="black" hint="Life is always black" defaultChecked disabled />
+          <Checkbox label="Black" value="black" disabled />
         </CheckboxGroup>
       </Box>
     );

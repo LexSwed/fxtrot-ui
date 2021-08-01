@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import type * as Polymorphic from '@radix-ui/react-polymorphic';
 import flattenChildren from 'react-keyed-flatten-children';
 import { Checkbox, CheckboxProps, CheckboxFormField, CheckMark } from '../Checkbox/Checkbox';
@@ -20,20 +20,6 @@ export const CheckboxGroup = React.forwardRef(
   ({ children, label, value = [], onChange, flow = 'column', ...props }, ref) => {
     const [checkedItems, setValue] = useDerivedState(value, onChange);
 
-    useEffect(() => {
-      React.Children.forEach(children, (child) => {
-        if (isCheckboxChild(child)) {
-          const { defaultChecked, value } = child.props as CheckboxProps;
-          console.log(child.props);
-          if (defaultChecked && value) {
-            setValue((items) => [...items, value]);
-          }
-        }
-      });
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    console.log({ checkedItems });
     const handleChange: CheckboxProps['onChange'] = (checked, event) => {
       const { value } = event.target;
       if (checked) {
@@ -44,7 +30,7 @@ export const CheckboxGroup = React.forwardRef(
     };
 
     return (
-      <Flex gap="md" flow={flow}>
+      <Flex gap="sm" flow={flow}>
         {label && <Label label={label} />}
         <CheckboxGroupWrapper {...props} flow={flow} ref={ref}>
           {flattenChildren(children).map((child) => {
@@ -66,7 +52,7 @@ export const CheckboxGroup = React.forwardRef(
 export type CheckboxGroupComponent = Polymorphic.ForwardRefComponent<'div', Props>;
 
 const CheckboxGroupWrapper = styled(Flex, {
-  [`& ${CheckboxFormField}`]: {
+  [`& > ${CheckboxFormField}`]: {
     p: '$2',
   },
   [`& ${CheckMark}`]: {

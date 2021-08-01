@@ -117,13 +117,13 @@ const Input = styled('input', {
   [`&:hover + ${CheckMark}`]: {
     borderColor: '$borderHover',
     [`& ${IconBox}`]: {
-      opacity: 0.7,
+      opacity: 0.3,
     },
   },
 
   [`&:checked + ${CheckMark}`]: {
     borderColor: '$primaryStill',
-    bc: '$primaryStill',
+    borderWidth: 10,
     color: '#fff',
     [`& ${IconBox}`]: {
       opacity: 1,
