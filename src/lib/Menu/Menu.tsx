@@ -29,11 +29,18 @@ export const Menu = ({ children }: MenuListProps) => {
 
 const List = ({ children, ...props }: PopoverLayerProps) => {
   return (
-    <PopoverLayer {...props} as={StyledList} disableOutsideScroll={false} radixElement={DropdownMenu.Content}>
+    <PopoverLayer {...props} as={StyledList} radixElement={DropdownMenu.Content}>
       {children}
     </PopoverLayer>
   );
 };
+const StyledList = styled('div', {
+  width: '100%',
+  m: 0,
+  p: '$1',
+  overflowY: 'auto',
+  maxHeight: '240px',
+});
 
 interface MenuItemProps extends Omit<React.ComponentProps<typeof DropdownMenu.Item>, 'as'> {
   css?: CssStyles;
@@ -54,23 +61,15 @@ const Separator = styled(DropdownMenu.Separator, {
   mx: '-$1',
 });
 
-const MenuLabel: typeof Label = React.forwardRef((props, ref) => {
+const MenuLabel = React.forwardRef((props, ref) => {
   return (
     <DropdownMenu.Label as={Slot}>
       <Label {...props} ref={ref} />
     </DropdownMenu.Label>
   );
-});
+}) as typeof Label;
 
 Menu.List = List;
 Menu.Item = MenuItem;
 Menu.Separator = Separator;
 Menu.Label = MenuLabel;
-
-const StyledList = styled('div', {
-  width: '100%',
-  m: 0,
-  p: '$1',
-  overflowY: 'auto',
-  maxHeight: '240px',
-});

@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { Root, Trigger, Content, Title, Overlay } from '@radix-ui/react-dialog';
+import { Root, Trigger, Title, Overlay } from '@radix-ui/react-dialog';
 import { Slot } from '@radix-ui/react-slot';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -32,9 +32,7 @@ const Dialog = ({ children, ...props }: Props) => {
                 transition={{ duration: 0.3, type: 'tween' }}
               />
             </Overlay>
-            <Content as={Slot} forceMount>
-              {content(close)}
-            </Content>
+            {content(close)}
           </>
         )}
       </AnimatePresence>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { XIcon } from '@heroicons/react/outline';
-import { Close } from '@radix-ui/react-dialog';
+import { Close, Content } from '@radix-ui/react-dialog';
+import { Slot } from '@radix-ui/react-slot';
 import { motion, Variants } from 'framer-motion';
 
 import Button from '../Button';
@@ -11,21 +12,23 @@ export interface ModalProps extends React.ComponentProps<'div'> {}
 
 export const DialogModal: React.FC<ModalProps> = ({ children, ...props }) => {
   return (
-    <DialogWindow
-      variants={variants}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-      transition={{ duration: 0.1, type: 'tween' }}
-      {...(props as any)}
-    >
-      {children}
-      <CloseButtonContainer>
-        <Close as={Button} variant="flat">
-          <Icon as={XIcon} />
-        </Close>
-      </CloseButtonContainer>
-    </DialogWindow>
+    <Content as={Slot}>
+      <DialogWindow
+        variants={variants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        transition={{ duration: 0.1, type: 'tween' }}
+        {...(props as any)}
+      >
+        {children}
+        <CloseButtonContainer>
+          <Close as={Button} variant="flat">
+            <Icon as={XIcon} />
+          </Close>
+        </CloseButtonContainer>
+      </DialogWindow>
+    </Content>
   );
 };
 

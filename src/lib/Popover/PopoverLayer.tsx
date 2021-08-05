@@ -7,22 +7,14 @@ import { useToggleStateAtom } from '../utils/OpenStateProvider';
 import { Slot } from '@radix-ui/react-slot';
 import type { CssStyles } from '../utils/types';
 
-type RadixProps = Pick<PopoverContentOwnProps, 'align' | 'side' | 'alignOffset' | 'sideOffset'>;
+type RadixAlignmentProps = Pick<PopoverContentOwnProps, 'align' | 'side' | 'alignOffset' | 'sideOffset'>;
 
-export interface PopoverLayerProps extends Omit<React.ComponentProps<'div'>, 'align' | 'ref'>, RadixProps {
+export interface PopoverLayerProps extends Omit<React.ComponentProps<'div'>, 'align' | 'ref'>, RadixAlignmentProps {
   css?: CssStyles;
 }
-
 export const PopoverLayer: React.FC<
   PopoverLayerProps & {
-    radixElement: React.ElementType<
-      RadixProps & {
-        as?: any;
-        forceMount?: PopoverContentOwnProps['forceMount'];
-        disableOutsideScroll?: PopoverContentOwnProps['disableOutsideScroll'];
-      }
-    >;
-    disableOutsideScroll?: PopoverContentOwnProps['disableOutsideScroll'];
+    radixElement: React.ComponentType<RadixAlignmentProps & Record<string, any>>;
     as?: InnerBoxProps['as'];
   }
 > = ({
@@ -31,7 +23,6 @@ export const PopoverLayer: React.FC<
   side = 'bottom',
   alignOffset,
   sideOffset = 8,
-  disableOutsideScroll,
   radixElement: RadixElement,
   ...props
 }) => {
@@ -45,9 +36,8 @@ export const PopoverLayer: React.FC<
           side={side}
           alignOffset={alignOffset}
           sideOffset={sideOffset}
-          as={Slot as any}
           forceMount
-          disableOutsideScroll={disableOutsideScroll}
+          as={Slot as any}
         >
           <InnerBox {...props} side={side}>
             {children}
@@ -59,7 +49,7 @@ export const PopoverLayer: React.FC<
 };
 
 interface InnerBoxProps extends PopoverLayerProps {
-  'data-side'?: RadixProps['side'];
+  'data-side'?: PopoverLayerProps['side'];
   'side'?: PopoverLayerProps['side'];
   'as'?: React.ElementType;
 }
