@@ -130,24 +130,32 @@ export function useId(id?: string) {
   return id || newId;
 }
 
-export function useDerivedState<V = any>(propValue?: V, propOnChange?: (newValue: V) => void, defaultValue?: V) {
+export function useDerivedState<V extends string | string[] | number | number[]>(
+  propValue?: V,
+  propOnChange?: (newValue: V) => void,
+  defaultValue?: V
+) {
   const [value, setValue] = useState(propValue || defaultValue);
+  const valueRef = useLatest(value);
+  const propOnChangeRef = useLatest(propOnChange);
 
-  const onChange = useCallback<NonNullable<typeof propOnChange>>(
-    (newValue) => {
+  const onChange = useCallback(
+    (newValue: V | ((currentState: V) => V)) => {
+      let updatedValue: V = typeof newValue === 'function' ? newValue(valueRef.current as any) : newValue;
+
       // we expect `propOnChange` to change also `value` prop, so useEffect would update internal value
-      if (typeof propOnChange === 'function') {
-        propOnChange?.(newValue);
+      if (typeof propOnChangeRef.current === 'function') {
+        propOnChangeRef.current(updatedValue);
       } else {
-        setValue(newValue);
+        setValue(updatedValue);
       }
     },
-    [propOnChange]
+    [propOnChangeRef, valueRef]
   );
 
   useEffect(() => {
     setValue(propValue);
   }, [propValue]);
 
-  return [value, onChange] as const;
+  return [value, onChange] as [V, typeof onChange];
 }

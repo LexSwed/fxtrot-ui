@@ -88,7 +88,9 @@ const TextField = React.forwardRef<HTMLDivElement, Props>(
         hasHint={!!hint}
         ref={ref}
       >
-        {label && <Label label={label} secondary={secondaryLabel} htmlFor={ariaProps.id} disabled={disabled} />}
+        {label !== undefined && (
+          <Label label={label} secondary={secondaryLabel} htmlFor={ariaProps.id} disabled={disabled} />
+        )}
         <HintBox>
           <InputField
             validity={validity}

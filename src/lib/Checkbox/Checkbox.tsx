@@ -9,11 +9,76 @@ import Icon, { IconBox } from '../Icon/Icon';
 import Label from '../Label';
 import { styled } from '../stitches.config';
 
+interface InputProps extends Omit<React.ComponentProps<typeof Input>, 'onChange' | 'value'>, FlexVariants {
+  label?: string;
+  secondaryLabel?: string;
+  value?: string;
+  onChange?: (checked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+// internal props
+type Props = FlexVariants & InputProps;
+// external props
+export interface CheckboxProps extends Props {}
+
+export const Checkbox: React.FC<Props> = ({
+  checked,
+  onChange,
+  css,
+  style,
+  className,
+  flow = 'row',
+  label,
+  secondaryLabel,
+  gap = 'sm',
+  display,
+  cross,
+  disabled,
+  id,
+  ...props
+}) => {
+  const handleChange = useMemo(() => {
+    if (typeof onChange !== 'function') return;
+
+    return (ev: React.ChangeEvent<HTMLInputElement>) => onChange(ev.target.checked, ev);
+  }, [onChange]);
+
+  return (
+    <CheckboxFormField
+      as={'label' as any}
+      display={display}
+      className={className}
+      style={style}
+      css={css}
+      gap={gap}
+      flow={flow}
+      cross={cross}
+    >
+      <CheckboxWrapper>
+        <Input
+          aria-checked={checked}
+          checked={checked}
+          {...props}
+          type="checkbox"
+          disabled={disabled}
+          onChange={handleChange}
+        />
+        <CheckMark>
+          <Icon as={CheckIcon} />
+        </CheckMark>
+      </CheckboxWrapper>
+      {label !== undefined && <Label label={label} secondary={secondaryLabel} disabled={disabled} as="span" />}
+    </CheckboxFormField>
+  );
+};
+
+export const CheckboxFormField = styled(FormField, {});
+
 const CheckboxWrapper = styled(Box, {
   position: 'relative',
 });
 
-const CheckMark = styled('div', {
+export const CheckMark = styled('div', {
   br: '$md',
   bc: 'transparent',
   border: '1px solid $borderStill',
@@ -52,13 +117,13 @@ const Input = styled('input', {
   [`&:hover + ${CheckMark}`]: {
     borderColor: '$borderHover',
     [`& ${IconBox}`]: {
-      opacity: 0.7,
+      opacity: 0.3,
     },
   },
 
   [`&:checked + ${CheckMark}`]: {
     borderColor: '$primaryStill',
-    bc: '$primaryStill',
+    borderWidth: 10,
     color: '#fff',
     [`& ${IconBox}`]: {
       opacity: 1,
@@ -100,64 +165,3 @@ const Input = styled('input', {
     },
   },
 });
-
-interface InputProps extends Omit<React.ComponentProps<typeof Input>, 'onChange'>, FlexVariants {
-  label?: string;
-  secondaryLabel?: string;
-  onChange?: (checked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
-type Props = FlexVariants & InputProps;
-
-const Checkbox: React.FC<Props> = ({
-  checked,
-  onChange,
-  css,
-  style,
-  className,
-  flow = 'row',
-  label,
-  secondaryLabel,
-  gap = 'sm',
-  display,
-  cross,
-  disabled,
-  id,
-  ...props
-}) => {
-  const handleChange = useMemo(() => {
-    if (typeof onChange !== 'function') return;
-
-    return (ev: React.ChangeEvent<HTMLInputElement>) => onChange(ev.target.checked, ev);
-  }, [onChange]);
-
-  return (
-    <FormField
-      as={'label' as any}
-      display={display}
-      className={className}
-      style={style}
-      css={css}
-      gap={gap}
-      flow={flow}
-      cross={cross}
-    >
-      <CheckboxWrapper>
-        <Input
-          aria-checked={checked}
-          checked={checked}
-          {...props}
-          type="checkbox"
-          disabled={disabled}
-          onChange={handleChange}
-        />
-        <CheckMark>
-          <Icon as={CheckIcon} />
-        </CheckMark>
-      </CheckboxWrapper>
-      {label && <Label label={label} secondary={secondaryLabel} disabled={disabled} as="span" />}
-    </FormField>
-  );
-};
-
-export default Checkbox;
