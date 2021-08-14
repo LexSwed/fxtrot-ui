@@ -6,7 +6,7 @@ import type { CssStyles } from '../utils/types';
 
 const Div = styled('div', {});
 
-const Box: BoxComponent = React.forwardRef(({ children, css = {}, ...props }, ref) => {
+const Box = React.forwardRef(({ children, css = {}, ...props }, ref) => {
   const [styles, attrs] = Object.entries(props).reduce(
     (res, [key, value]: [any, any]) => {
       if (VALID_ITEMS.has(key)) {
@@ -24,7 +24,7 @@ const Box: BoxComponent = React.forwardRef(({ children, css = {}, ...props }, re
       {children}
     </Div>
   );
-});
+}) as BoxComponent;
 
 Box.displayName = 'Box';
 

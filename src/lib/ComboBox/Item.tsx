@@ -15,36 +15,34 @@ const ownStyle = css({
 
 export interface OptionType extends React.ReactElement<React.ComponentProps<ItemComponent>, ItemComponent> {}
 
-const Item: ItemComponent = React.forwardRef(
-  ({ id, value, label, main = 'space-between', className, ...props }, propRef) => {
-    const isSelected = useItemSelected(value as string);
-    const isFocused = useItemFocused(id as string);
+const Item = React.forwardRef(({ id, value, label, main = 'space-between', className, ...props }, propRef) => {
+  const isSelected = useItemSelected(value as string);
+  const isFocused = useItemFocused(id as string);
 
-    const updateFocusedItemId = useFocusItem();
-    const onMouseOver = useAllHandlers(props.onMouseOver, () => updateFocusedItemId(id as string));
-    const preventMouseDown = useAllHandlers(props.onMouseDown, (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-    });
+  const updateFocusedItemId = useFocusItem();
+  const onMouseOver = useAllHandlers(props.onMouseOver, () => updateFocusedItemId(id as string));
+  const preventMouseDown = useAllHandlers(props.onMouseDown, (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  });
 
-    return (
-      <StyledItem
-        {...props}
-        id={id}
-        data-focused={isFocused}
-        aria-selected={isSelected}
-        onMouseOver={onMouseOver}
-        onMouseDown={preventMouseDown}
-        main={main}
-        ref={propRef}
-        className={`${ownStyle} ${className}`}
-      >
-        {label}
-        {isSelected ? <Icon as={CheckIcon} size="md" /> : null}
-      </StyledItem>
-    );
-  }
-);
+  return (
+    <StyledItem
+      {...props}
+      id={id}
+      data-focused={isFocused}
+      aria-selected={isSelected}
+      onMouseOver={onMouseOver}
+      onMouseDown={preventMouseDown}
+      main={main}
+      ref={propRef}
+      className={`${ownStyle} ${className}`}
+    >
+      {label}
+      {isSelected ? <Icon as={CheckIcon} size="md" /> : null}
+    </StyledItem>
+  );
+}) as ItemComponent;
 
 Item.displayName = 'Item';
 

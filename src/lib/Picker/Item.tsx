@@ -10,7 +10,7 @@ import { usePicker } from './utils';
 
 export interface OptionType extends React.ReactElement<React.ComponentProps<ItemComponent>, ItemComponent> {}
 
-const Item: ItemComponent = React.forwardRef(({ value, label, ...props }, ref) => {
+const Item = React.forwardRef(({ value, label, ...props }, ref) => {
   const { value: dropdownValue, onChange, size } = usePicker();
   const { close } = useOpenStateControls();
   const isSelected = dropdownValue !== undefined && dropdownValue === value;
@@ -37,7 +37,7 @@ const Item: ItemComponent = React.forwardRef(({ value, label, ...props }, ref) =
       {isSelected ? <Icon as={CheckIcon} color="$primaryStill" size="md" /> : null}
     </StyledItem>
   );
-});
+}) as ItemComponent;
 
 Item.displayName = 'PickerItem';
 
