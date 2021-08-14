@@ -1,8 +1,8 @@
 import React from 'react';
 import { DokzProvider, GithubLink } from 'dokz';
 import { ChakraProvider } from '@chakra-ui/react';
-import type { AppProps } from 'next/dist/next-server/lib/router/router';
 import { ThemeProvider } from '@fxtrot/ui';
+import type { AppProps } from 'next/dist/shared/lib/router/router';
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;

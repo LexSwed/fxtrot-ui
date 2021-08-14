@@ -29,7 +29,7 @@ const List = styled('ul', {
 
 interface Props extends React.ComponentProps<typeof List> {}
 
-const ListInner: MenuListComponent = React.forwardRef((props, ref) => {
+const ListInner = React.forwardRef((props, ref) => {
   const { focusNext, focusPrevious } = useFocusManager();
 
   const handleKeyDown = useKeyboardHandles({
@@ -38,9 +38,9 @@ const ListInner: MenuListComponent = React.forwardRef((props, ref) => {
   });
 
   return <List onKeyDown={handleKeyDown} {...props} ref={ref} />;
-});
+}) as MenuListComponent;
 
-const MenuList: MenuListComponent = React.forwardRef((props, ref) => {
+const MenuList = React.forwardRef((props, ref) => {
   return (
     <ListBoxContext ListItem={Item}>
       <FocusScope>
@@ -48,7 +48,7 @@ const MenuList: MenuListComponent = React.forwardRef((props, ref) => {
       </FocusScope>
     </ListBoxContext>
   );
-});
+}) as MenuListComponent;
 
 MenuList.displayName = 'MenuList';
 

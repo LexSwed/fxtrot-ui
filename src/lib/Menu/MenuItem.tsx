@@ -5,7 +5,7 @@ import { useAllHandlers } from '../utils/hooks';
 import { useOpenStateControls } from '../utils/OpenStateProvider';
 import { useMenu } from './utils';
 
-const MenuItem: ItemComponent = React.forwardRef(({ value, disabled, ...props }, ref) => {
+const MenuItem = React.forwardRef(({ value, disabled, ...props }, ref) => {
   const { onAction } = useMenu();
   const { close } = useOpenStateControls();
 
@@ -17,7 +17,7 @@ const MenuItem: ItemComponent = React.forwardRef(({ value, disabled, ...props },
   }, props.onClick);
 
   return <StyledItem role="menuitem" {...props} onClick={onClick} onMouseEnter={onMouseEnter} ref={ref} />;
-});
+}) as ItemComponent;
 
 MenuItem.displayName = 'MenuItem';
 

@@ -39,7 +39,7 @@ const style = css({
   },
 });
 
-const Item: ItemComponent = React.forwardRef(({ className, ...props }, ref) => {
+const Item = React.forwardRef(({ className, ...props }, ref) => {
   const selected = props['aria-selected'];
   return (
     <StyledItem
@@ -50,7 +50,7 @@ const Item: ItemComponent = React.forwardRef(({ className, ...props }, ref) => {
       className={`${style({ selected })}${className ? ` ${className}` : ''}`}
     />
   );
-});
+}) as ItemComponent;
 
 Item.displayName = 'MenuListItem';
 
