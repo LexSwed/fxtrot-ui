@@ -163,6 +163,11 @@ export const ButtonRoot = styled('button', {
         alignItems: 'center',
       },
     },
+    as: {
+      a: {
+        textDecoration: 'none',
+      },
+    },
   },
   '&[disabled],[aria-disabled="true"]': {
     pointerEvents: 'none',
