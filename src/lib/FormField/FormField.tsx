@@ -32,6 +32,7 @@ export const FormField = styled(Flex, {
 });
 
 export const HintBox = styled('div', {
+  display: 'flex',
   position: 'relative',
   minWidth: 0,
   flex: 2,

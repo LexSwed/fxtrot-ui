@@ -23,6 +23,7 @@ export { default as Spinner } from './Spinner';
 export { default as Switch } from './Switch';
 export { default as Tag } from './Tag';
 export { default as Text } from './Text';
+export { TextArea } from './TextArea';
 export { default as TextField } from './TextField';
 export { default as TextLink } from './TextLink';
 export { default as ThemeProvider } from './ThemeProvider';
