@@ -1,7 +1,8 @@
 import type { StitchesVariants } from '@stitches/react';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import { styled } from '../stitches.config';
+import { useForkRef } from '../utils/hooks';
 import type { CssStyles } from '../utils/types';
 
 export const iconStyles: CssStyles = {
@@ -45,6 +46,7 @@ export const InteractiveBox = styled('input', {
   '&::placeholder': {
     color: '$textSubtle',
   },
+  // artificially increase selector specificity
   '&:disabled:not(.plus1):not(.plus2)': {
     color: '$textDisabled',
     borderColor: '$surfaceDisabled',
@@ -69,17 +71,18 @@ export const InteractiveBox = styled('input', {
         },
       },
       underlined: {
+        // TODO: learn gradients and simplify
         '$$color': '$colors$borderStill',
-        'borderRadius': '$md $md 0 0',
         'backgroundImage': 'linear-gradient(to top, $$color 2px, $colors$surfaceStill 2px)',
-        'backgroundSize': '100% 1px',
-        'backgroundPosition': '0 100%',
+        'backgroundSize': '100% calc(100% + 4px)',
+        'backgroundPosition': '0 calc(100% + 2px)',
         '&:hover': {
+          backgroundPosition: '0 calc(100% + 2px)',
           $$color: '$colors$primaryHover',
         },
         '&:focus, &[aria-expanded="true"]': {
+          backgroundPosition: '0 calc(100% + 1px)',
           $$color: '$colors$primaryActive',
-          backgroundSize: '100% 2px',
         },
         '&:disabled': {
           backgroundImage: 'none',
@@ -108,6 +111,7 @@ export const InteractiveBox = styled('input', {
           bc: '$flatHover',
         },
         '&:focus': {
+          bc: '$surfaceStill',
           borderColor: '$borderActive',
           boxShadow: '0 0 0 1px $borderActive inset',
         },
@@ -239,9 +243,11 @@ export interface InputProps extends Omit<React.ComponentProps<typeof Input>, 'si
   width?: HTMLInputElement['size'];
 }
 
-export const InputField: React.FC<InputProps> = ({ validity, inputRef, children, size, width, ...props }) => (
-  <InputWrapper>
-    <Input {...props} ref={inputRef} validity={validity} fieldSize={size} size={width} />
-    {children}
-  </InputWrapper>
-);
+export const InputField: React.FC<InputProps> = ({ validity, inputRef, children, size, width, ...props }) => {
+  return (
+    <InputWrapper>
+      <Input {...props} ref={inputRef} validity={validity} fieldSize={size} size={width} />
+      {children}
+    </InputWrapper>
+  );
+};
