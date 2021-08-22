@@ -1,0 +1,180 @@
+---
+name: LinkLinkButton
+---
+
+import { Playground } from 'dokz';
+import { DotsVerticalIcon } from '@heroicons/react/solid';
+import { Box, Flex, Grid, LinkButton, ThemeProvider, Icon } from '@fxtrot/ui';
+
+## Variant
+
+<Playground>
+  <Grid gap="lg" cross="center" main="center" columns="repeat(2, auto)" css={{ p: '$4', bc: '$gray50' }}>
+    <LinkButton href="#" variant="primary">
+      Primary
+    </LinkButton>
+    <LinkButton href="#" disabled variant="primary">
+      Primary (disabled)
+    </LinkButton>
+    <LinkButton href="#" variant="outline">
+      Outline
+    </LinkButton>
+    <LinkButton href="#" variant="outline" disabled>
+      Outline (disabled)
+    </LinkButton>
+    <LinkButton href="#" variant="secondary">
+      Secondary (default)
+    </LinkButton>
+    <LinkButton href="#" variant="secondary" disabled>
+      Secondary (disabled)
+    </LinkButton>
+    <LinkButton href="#" variant="flat">
+      Flat
+    </LinkButton>
+    <LinkButton href="#" variant="flat" disabled>
+      Flat (disabled)
+    </LinkButton>
+    <LinkButton href="#" variant="link">
+      Link
+    </LinkButton>
+    <LinkButton href="#" variant="link" disabled>
+      Link (disabled)
+    </LinkButton>
+  </Grid>
+</Playground>
+
+## Size
+
+<Playground>
+  <Flex flow="column" gap="xl" css={{ py: '$8', bc: '$gray50' }}>
+    <Flex gap="sm" css={{ px: '$10' }}>
+      <LinkButton href="#" size="xs" variant="primary">
+        Primary
+      </LinkButton>
+      <LinkButton href="#" size="xs" variant="outline">
+        Outline
+      </LinkButton>
+      <LinkButton href="#" size="xs" variant="secondary">
+        Secondary
+      </LinkButton>
+      <LinkButton href="#" size="xs" variant="flat">
+        Flat
+      </LinkButton>
+      <LinkButton href="#" size="xs" variant="link">
+        Link
+      </LinkButton>
+    </Flex>
+    <Flex gap="sm" css={{ px: '$10' }}>
+      <LinkButton href="#" size="sm" variant="primary">
+        Primary
+      </LinkButton>
+      <LinkButton href="#" size="sm" variant="outline">
+        Outline
+      </LinkButton>
+      <LinkButton href="#" size="sm" variant="secondary">
+        Secondary
+      </LinkButton>
+      <LinkButton href="#" size="sm" variant="flat">
+        Flat
+      </LinkButton>
+      <LinkButton href="#" size="sm" variant="link">
+        Link
+      </LinkButton>
+    </Flex>
+    <Flex gap="sm" css={{ px: '$10' }}>
+      <LinkButton href="#" size="md" variant="primary">
+        Primary
+      </LinkButton>
+      <LinkButton href="#" size="md" variant="outline">
+        Outline
+      </LinkButton>
+      <LinkButton href="#" size="md" variant="secondary">
+        Secondary
+      </LinkButton>
+      <LinkButton href="#" size="md" variant="flat">
+        Flat
+      </LinkButton>
+      <LinkButton href="#" size="md" variant="link">
+        Link
+      </LinkButton>
+    </Flex>
+    <Flex gap="sm" css={{ px: '$10' }}>
+      <LinkButton href="#" size="lg" variant="primary">
+        Primary
+      </LinkButton>
+      <LinkButton href="#" size="lg" variant="outline">
+        Outline
+      </LinkButton>
+      <LinkButton href="#" size="lg" variant="secondary">
+        Secondary
+      </LinkButton>
+      <LinkButton href="#" size="lg" variant="flat">
+        Flat
+      </LinkButton>
+      <LinkButton href="#" size="lg" variant="link">
+        Link
+      </LinkButton>
+    </Flex>
+  </Flex>
+</Playground>
+
+## Theming
+
+Use `ThemeProvider` component to change the primary color of the LinkButton.
+
+<Playground>
+  <ThemeProvider theme="purple">
+    <Flex flow="column" gap="xl" css={{ py: '$8', bc: '$surfaceStill' }}>
+      <Flex gap="sm" css={{ px: '$10' }}>
+        <LinkButton href="#" variant="primary">
+          Primary
+        </LinkButton>
+        <LinkButton href="#" disabled variant="primary">
+          Primary (disabled)
+        </LinkButton>
+      </Flex>
+      <Flex gap="sm" css={{ px: '$10' }}>
+        <LinkButton href="#" variant="secondary">
+          Secondary
+        </LinkButton>
+        <LinkButton href="#" variant="secondary" disabled>
+          Secondary (disabled)
+        </LinkButton>
+      </Flex>
+      <Flex gap="sm" css={{ px: '$10' }}>
+        <LinkButton href="#" variant="flat">
+          Flat
+        </LinkButton>
+        <LinkButton href="#" variant="flat" disabled>
+          Flat (disabled)
+        </LinkButton>
+      </Flex>
+      <Flex gap="sm" css={{ px: '$10' }}>
+        <LinkButton href="#" variant="link">
+          Link
+        </LinkButton>
+        <LinkButton href="#" variant="link" disabled>
+          Link (disabled)
+        </LinkButton>
+      </Flex>
+    </Flex>
+  </ThemeProvider>
+</Playground>
+
+## With elements
+
+<Playground>
+  <Flex flow="column" cross="start" gap="xl" css={{ p: '$8', bc: '$gray50' }}>
+    <LinkButton href="#" variant="primary" gap="2">
+      <Icon as={DotsVerticalIcon} />
+      <span>Wrapped</span>
+    </LinkButton>
+    <LinkButton href="#" variant="primary" gap="2">
+      <Icon as={DotsVerticalIcon} />
+      Not wrapped
+    </LinkButton>
+    <LinkButton href="#" variant="outline">
+      <Icon as={DotsVerticalIcon} variant="secondary" />
+    </LinkButton>
+  </Flex>
+</Playground>

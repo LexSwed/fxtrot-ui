@@ -6,8 +6,7 @@ import { PopoverLayer, PopoverLayerProps } from '../Popover/PopoverLayer';
 import { styled } from '../stitches.config';
 import { ToggleStateScope, useToggleState } from '../utils/OpenStateProvider';
 import { StyledItem } from '../Item/Item';
-import Label from '../Label';
-import type { CssStyles } from '../utils/types';
+import { Label } from '../Label';
 
 interface MenuListProps {
   children: [trigger: React.ReactElement, menuList: React.ReactElement];
@@ -19,7 +18,7 @@ export const Menu = ({ children }: MenuListProps) => {
 
   return (
     <ToggleStateScope atom={atom}>
-      <DropdownMenu.Root open={open} onOpenChange={controls.switch}>
+      <DropdownMenu.Root open={open} onOpenChange={controls.switch} modal={false}>
         <DropdownMenu.Trigger as={Slot}>{trigger}</DropdownMenu.Trigger>
         {menuList}
       </DropdownMenu.Root>
@@ -42,9 +41,7 @@ const StyledList = styled('div', {
   maxHeight: '240px',
 });
 
-interface MenuItemProps extends Omit<React.ComponentProps<typeof DropdownMenu.Item>, 'as'> {
-  css?: CssStyles;
-}
+interface MenuItemProps extends Omit<React.ComponentProps<typeof DropdownMenu.Item>, 'as'> {}
 
 const MenuItem = React.forwardRef<HTMLDivElement, MenuItemProps>(({ onSelect, disabled, textValue, ...props }, ref) => {
   return (

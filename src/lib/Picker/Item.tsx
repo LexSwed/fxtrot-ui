@@ -1,16 +1,16 @@
 import React, { useCallback } from 'react';
 import { CheckIcon } from '@heroicons/react/solid';
 
-import Icon from '../Icon/Icon';
-import { ItemComponent, StyledItem } from '../Item/Item';
+import { Icon } from '../Icon/Icon';
+import { StyledItem, ItemProps } from '../Item/Item';
 import { focusOnMouseOver } from '../Item/Item';
 import { useAllHandlers } from '../utils/hooks';
 import { useOpenStateControls } from '../utils/OpenStateProvider';
 import { usePicker } from './utils';
 
-export interface OptionType extends React.ReactElement<React.ComponentProps<ItemComponent>, ItemComponent> {}
+export interface OptionType extends React.ReactElement<ItemProps, typeof Item> {}
 
-const Item = React.forwardRef(({ value, label, ...props }, ref) => {
+const Item = React.forwardRef<HTMLDivElement, ItemProps>(({ value, label, ...props }, ref) => {
   const { value: dropdownValue, onChange, size } = usePicker();
   const { close } = useOpenStateControls();
   const isSelected = dropdownValue !== undefined && dropdownValue === value;
@@ -37,7 +37,7 @@ const Item = React.forwardRef(({ value, label, ...props }, ref) => {
       {isSelected ? <Icon as={CheckIcon} color="$primaryStill" size="md" /> : null}
     </StyledItem>
   );
-}) as ItemComponent;
+});
 
 Item.displayName = 'PickerItem';
 

@@ -1,16 +1,15 @@
 import React from 'react';
 import { useUID } from 'react-uid';
 
-import { Flex } from '../Flex';
+import { Flex, FlexVariants } from '../Flex/Flex';
 import { styled } from '../stitches.config';
 import { Text } from '../Text';
 
-const Heading = styled(Text, {
-  pr: '$2',
-  textTransform: 'uppercase',
-});
+interface Props extends FlexVariants {
+  title: string;
+}
 
-export const Section: React.FC<{ title: string } & FlexVariants> = ({ title, children, ...props }) => {
+export const Section: React.FC<Props> = ({ title, children, ...props }) => {
   const id = useUID();
   return (
     <Flex cross="stretch" flow="column" gap="xs" {...props}>
@@ -23,3 +22,8 @@ export const Section: React.FC<{ title: string } & FlexVariants> = ({ title, chi
     </Flex>
   );
 };
+
+const Heading = styled(Text, {
+  pr: '$2',
+  textTransform: 'uppercase',
+});

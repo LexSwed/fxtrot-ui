@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import * as Radix from '@radix-ui/react-popover';
 import { Slot } from '@radix-ui/react-slot';
 
-import Box from '../Box';
+import { Box } from '../Box';
 import { useToggleState, OpenStateRef, ToggleStateScope } from '../utils/OpenStateProvider';
 import { PopoverLayer } from './PopoverLayer';
 interface Props {

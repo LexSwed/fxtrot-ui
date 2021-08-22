@@ -1,6 +1,4 @@
 import React from 'react';
-import type * as Polymorphic from '@radix-ui/react-polymorphic';
-import type { VariantProps } from '@stitches/react';
 
 import { styled } from '../stitches.config';
 import { Text } from '../Text';
@@ -30,34 +28,30 @@ const Secondary = styled(Text, {
   fontWeight: 400,
 });
 
-export const LabelWrapper = styled(Flex, {
+export const LabelWrapper = styled('label', Flex, {
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
 });
 
-export interface Props extends VariantProps<typeof LabelWrapper> {
+export interface Props extends React.ComponentProps<typeof LabelWrapper> {
   label: React.ReactNode;
   secondary?: React.ReactNode;
   disabled?: boolean;
 }
 
-type LabelComponent = Polymorphic.ForwardRefComponent<'label', Props>;
-
-export const Label = React.forwardRef(
-  ({ label, secondary, disabled, as = 'label', ...props }: React.ComponentProps<LabelComponent>, ref) => {
-    return (
-      <LabelWrapper {...props} as={as} cross="center" gap="xs" display="inline" ref={ref as any}>
-        <Main size="sm" disabled={disabled}>
-          {label}
-        </Main>
-        {secondary && (
-          <Secondary size="sm" tone="light">
-            {secondary}
-          </Secondary>
-        )}
-      </LabelWrapper>
-    );
-  }
-) as LabelComponent;
+export const Label = React.forwardRef<HTMLLabelElement, Props>(({ label, secondary, disabled, ...props }, ref) => {
+  return (
+    <LabelWrapper {...props} cross="center" gap="xs" display="inline" ref={ref as any}>
+      <Main size="sm" disabled={disabled}>
+        {label}
+      </Main>
+      {secondary && (
+        <Secondary size="sm" tone="light">
+          {secondary}
+        </Secondary>
+      )}
+    </LabelWrapper>
+  );
+});
 
 Label.displayName = 'Label';

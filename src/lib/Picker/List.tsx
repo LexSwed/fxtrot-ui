@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-import ListBox, { ListBoxProps } from '../ListBox/ListBox';
+import { ListBox, ListBoxProps } from '../ListBox/ListBox';
 import { ListBoxContext } from '../ListBox/ListBoxContext';
 import { useOpenState } from '../utils/OpenStateProvider';
 import Item from './Item';
@@ -11,7 +11,7 @@ interface Props extends ListBoxProps {
 
 const List: React.FC<Props> = ({ triggerId, children, ...props }) => {
   const isOpen = useOpenState();
-  const ref = useRef<HTMLUListElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (isOpen) {

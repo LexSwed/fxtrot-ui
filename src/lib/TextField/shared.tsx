@@ -2,9 +2,8 @@ import React from 'react';
 import type { VariantProps } from '@stitches/react';
 
 import { styled, css } from '../stitches.config';
-import type { CssStyles } from '../utils/types';
 
-export const iconStyles: CssStyles = {
+export const iconStyles = css({
   position: 'absolute',
   top: 0,
   right: 0,
@@ -13,10 +12,9 @@ export const iconStyles: CssStyles = {
   width: '$8',
   outline: 'none',
   br: '$md',
-};
+});
 
-export const IconWrapper = styled('div', {
-  ...iconStyles,
+export const IconWrapper = styled('div', iconStyles, {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',

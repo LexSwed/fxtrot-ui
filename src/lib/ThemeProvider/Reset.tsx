@@ -30,7 +30,6 @@ const populate = stitchesConfig.globalCss({
   'html': {
     fontSize: '14px',
     fontFamily: '$default',
-    overflowY: 'scroll',
     boxSizing: 'border-box',
     scrollBehavior: 'smooth',
   },

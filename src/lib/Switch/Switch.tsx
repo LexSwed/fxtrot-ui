@@ -4,7 +4,7 @@ import { attribute } from '../utils/focus-visible';
 import { FormField } from '../FormField/FormField';
 import { Label } from '../Label';
 import { styled } from '../stitches.config';
-import type { FlexVariants } from '../Flex/Flex';
+import { Flex, FlexVariants } from '../Flex/Flex';
 
 interface Props extends Omit<React.ComponentProps<typeof Input>, 'onChange'>, FlexVariants {
   label?: string;
@@ -34,8 +34,7 @@ export const Switch: React.FC<Props> = ({
   }, [onChange]);
 
   return (
-    <FormField
-      as="label"
+    <SwitchFormField
       display={display}
       className={className}
       style={style}
@@ -56,10 +55,12 @@ export const Switch: React.FC<Props> = ({
         />
         <Toggle />
       </div>
-      {label && <Label label={label} secondary={secondaryLabel} disabled={disabled} as="div" />}
-    </FormField>
+      {label && <Label label={label} secondary={secondaryLabel} disabled={disabled} />}
+    </SwitchFormField>
   );
 };
+
+const SwitchFormField = styled('label', Flex, FormField, {});
 
 const Toggle = styled('div', {
   'br': '$pill',

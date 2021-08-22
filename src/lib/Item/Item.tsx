@@ -1,10 +1,9 @@
 import React from 'react';
-import type * as Polymorphic from '@radix-ui/react-polymorphic';
 
 import { styled } from '../stitches.config';
 import { Text } from '../Text';
 import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
-import { Flex } from '../Flex/Flex';
+import { Flex, FlexVariants } from '../Flex/Flex';
 import { useListBoxContext } from '../ListBox/ListBoxContext';
 
 export interface ItemProps extends React.ComponentProps<typeof StyledItem> {
@@ -13,7 +12,7 @@ export interface ItemProps extends React.ComponentProps<typeof StyledItem> {
   disabled?: boolean;
 }
 
-export const Item = React.forwardRef((props: React.ComponentProps<ItemComponent>, ref) => {
+export const Item = React.forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
   const { ListItem } = useListBoxContext();
   const onKeyDown = useKeyboardHandles({
     'Enter': (e) => e.currentTarget.click?.(),
@@ -32,17 +31,20 @@ export const Item = React.forwardRef((props: React.ComponentProps<ItemComponent>
       onKeyDown={handleKeyDown}
     />
   );
-}) as ItemComponent;
+});
 
 Item.displayName = 'ListItem';
-
-export type ItemComponent = Polymorphic.ForwardRefComponent<'div', ItemProps>;
 
 export function focusOnMouseOver(e: React.MouseEvent<HTMLElement, MouseEvent>) {
   e.currentTarget.focus({
     preventScroll: true,
   });
 }
+
+const flexDefaultProps: FlexVariants = {
+  gap: 'sm',
+  cross: 'center',
+};
 
 export const StyledItem = styled('div', Flex, {
   'px': '$3',
@@ -87,11 +89,7 @@ export const StyledItem = styled('div', Flex, {
     },
   },
   'defaultVariants': {
-    gap: '2',
-    display: 'flex',
-    flow: 'row',
-    cross: 'center',
-    wrap: 'nowrap',
+    ...flexDefaultProps,
     size: 'md',
   },
 });

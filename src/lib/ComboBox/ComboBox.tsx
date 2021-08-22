@@ -4,12 +4,12 @@ import flattenChildren from 'react-keyed-flatten-children';
 
 import { OpenStateProvider, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 
-import Input, { Props as InputProps } from './Input';
-import Item, { OptionType } from './Item';
+import { ComboBoxInput, Props as InputProps } from './Input';
+import { Item, OptionType } from './Item';
 import { useAllHandlers, useForkRef, useLatest } from '../utils/hooks';
 import { PopoverLayerDeprecated } from '../Popover/LayerDeprectated';
 import { StateProvider, useFocusedItemId, useSyncValue } from './atoms';
-import VirtualList from './VirtualList';
+import { VirtualList } from './VirtualList';
 import { ListBoxContext } from '../ListBox/ListBoxContext';
 
 interface Props
@@ -105,7 +105,7 @@ const ComboBoxInner: React.FC<Props> = ({
 
   return (
     <>
-      <Input
+      <ComboBoxInput
         {...textFieldProps}
         aria-controls={isOpen ? listboxId : ''}
         aria-activedescendant={focusedItemId as string}

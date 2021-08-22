@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import { DialogModal } from './DialogModal';
 import { styled } from '../stitches.config';
-import Heading from '../Heading';
+import { Heading } from '../Heading';
 
 interface Props {
   children: [React.ReactElement, (close: () => void) => React.ReactNode];
@@ -19,7 +19,7 @@ export const Dialog = ({ children, ...props }: Props) => {
   const close = useCallback(() => setOpen(false), []);
 
   return (
-    <Root open={open} onOpenChange={setOpen} defaultOpen={props.defaultOpen}>
+    <Root open={open} onOpenChange={setOpen} defaultOpen={props.defaultOpen} modal={false}>
       <Trigger as={Slot}>{trigger}</Trigger>
       <AnimatePresence>
         {open && content && (

@@ -1,6 +1,5 @@
 import React from 'react';
 import { FocusScope, useFocusManager } from '@react-aria/focus';
-import type * as Polymorphic from '@radix-ui/react-polymorphic';
 
 import { ListBoxContext } from '../ListBox/ListBoxContext';
 
@@ -9,9 +8,9 @@ import { useKeyboardHandles } from '../utils/hooks';
 import Item from './Item';
 import { StyledItem } from '../Item/Item';
 
-interface Props extends React.ComponentProps<typeof List> {}
+interface Props extends React.ComponentProps<typeof ListStyled> {}
 
-export const MenuList = React.forwardRef((props, ref) => {
+export const MenuList = React.forwardRef<HTMLUListElement, Props>((props, ref) => {
   return (
     <ListBoxContext ListItem={Item}>
       <FocusScope>
@@ -19,13 +18,11 @@ export const MenuList = React.forwardRef((props, ref) => {
       </FocusScope>
     </ListBoxContext>
   );
-}) as MenuListComponent;
+});
 
 MenuList.displayName = 'MenuList';
 
-type MenuListComponent = Polymorphic.ForwardRefComponent<'div', Props>;
-
-const ListInner = React.forwardRef((props, ref) => {
+const ListInner = React.forwardRef<HTMLUListElement, Props>((props, ref) => {
   const { focusNext, focusPrevious } = useFocusManager();
 
   const handleKeyDown = useKeyboardHandles({
@@ -33,10 +30,10 @@ const ListInner = React.forwardRef((props, ref) => {
     ArrowUp: () => focusPrevious(),
   });
 
-  return <List onKeyDown={handleKeyDown} {...props} ref={ref} />;
-}) as MenuListComponent;
+  return <ListStyled onKeyDown={handleKeyDown} {...props} ref={ref} />;
+});
 
-const List = styled('ul', {
+const ListStyled = styled('ul', {
   m: 0,
   p: 0,
   focusRing: '$focusRing',

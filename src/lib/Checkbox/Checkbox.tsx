@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { CheckIcon } from '@heroicons/react/outline';
 
-import type { FlexVariants } from '../Flex/Flex';
+import { Flex, FlexVariants } from '../Flex/Flex';
 import { attribute } from '../utils/focus-visible';
 import { FormField } from '../FormField/FormField';
 import { Icon, IconBox } from '../Icon/Icon';
@@ -14,12 +14,9 @@ interface InputProps extends Omit<React.ComponentProps<typeof Input>, 'onChange'
   onChange?: (checked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-// internal props
-type Props = FlexVariants & InputProps;
-// external props
-export interface CheckboxProps extends Props {}
+export interface CheckboxProps extends InputProps, FlexVariants {}
 
-export const Checkbox: React.FC<Props> = ({
+export const Checkbox: React.FC<CheckboxProps> = ({
   checked,
   onChange,
   css,
@@ -46,7 +43,6 @@ export const Checkbox: React.FC<Props> = ({
       className={className}
       style={style}
       css={css}
-      as="label"
       display={display}
       gap={gap}
       flow={flow}
@@ -65,12 +61,12 @@ export const Checkbox: React.FC<Props> = ({
           <Icon as={CheckIcon} />
         </CheckMark>
       </CheckboxWrapper>
-      {label !== undefined && <Label label={label} secondary={secondaryLabel} disabled={disabled} as="span" />}
+      {label !== undefined && <Label label={label} secondary={secondaryLabel} disabled={disabled} />}
     </CheckboxFormField>
   );
 };
 
-export const CheckboxFormField = styled('label', FormField, {});
+export const CheckboxFormField = styled('label', FormField, Flex, {});
 
 const CheckboxWrapper = styled('div', {
   size: '$5',

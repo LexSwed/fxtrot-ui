@@ -12,13 +12,13 @@ interface Props extends React.ComponentProps<typeof List> {
   wrap?: boolean;
 }
 
-export const ListBox = React.forwardRef<HTMLUListElement, Props>(
+export const ListBox = React.forwardRef<HTMLDivElement, Props>(
   ({ children, autoFocus, restoreFocus, contain, wrap, ...props }, ref) => {
     if (React.Children.count(children) === 0) {
-      return <List role="listbox" tabIndex={-1} {...props} as="ul" ref={ref} />;
+      return <List role="listbox" tabIndex={-1} {...props} ref={ref} />;
     }
     return (
-      <List role="listbox" tabIndex={-1} {...props} as="ul" ref={ref}>
+      <List role="listbox" tabIndex={-1} {...props} ref={ref}>
         <FocusScope autoFocus={autoFocus} contain={contain} restoreFocus={restoreFocus}>
           <ListInner wrap={wrap} autoFocus={autoFocus}>
             {children}
@@ -31,7 +31,7 @@ export const ListBox = React.forwardRef<HTMLUListElement, Props>(
 
 ListBox.displayName = 'ListBox';
 
-export const List = styled('ul', {
+export const List = styled('div', {
   'm': 0,
   'p': '$1',
   'overflowY': 'auto',

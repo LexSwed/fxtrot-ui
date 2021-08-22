@@ -3,10 +3,9 @@ import React, { useEffect, useRef } from 'react';
 import type { FlexVariants } from '../Flex/Flex';
 import { FormField, Hint, HintBox, useFormField } from '../FormField/FormField';
 import { Label } from '../Label';
-import { styled } from '../stitches.config';
+import { styled, CssStyles } from '../stitches.config';
 import { fieldBox, FieldBoxVariants } from '../TextField/shared';
 import { useForkRef } from '../utils/hooks';
-import type { CssStyles } from '../utils/types';
 
 export const TextArea = React.forwardRef<HTMLDivElement, Props>(
   (

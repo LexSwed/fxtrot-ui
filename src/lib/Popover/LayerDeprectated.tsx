@@ -2,7 +2,7 @@ import type { Options } from '@popperjs/core';
 import { AnimatePresence, motion, Variants } from 'framer-motion';
 import React, { useMemo } from 'react';
 
-import Portal from '../Portal';
+// import { Portal } from '../Portal';
 import { styled } from '../stitches.config';
 import { sameWidth, usePopper } from '../utils/popper';
 import { useKeyboardHandles, useOnClickOutside } from '../utils/hooks';
@@ -67,6 +67,7 @@ export const PopoverLayerDeprecated: React.FC<Props> = ({
 
 const Popper = styled('div', {
   position: 'absolute',
+  zIndex: 2147483647,
 });
 
 const PopperBox = styled(motion.div, {

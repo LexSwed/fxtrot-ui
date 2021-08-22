@@ -15,12 +15,12 @@ export const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
   const themeClass = useMemo(() => {
     if (!theme) return null;
     if (isShortDefinition(theme)) {
-      return stitchesConfig.createTheme(createNewTheme(theme));
+      return stitchesConfig.createTheme(createNewTheme(theme) as any);
     } else if (isFullTheme(theme)) {
-      return stitchesConfig.createTheme(theme);
+      return stitchesConfig.createTheme(theme as any);
     }
 
-    return stitchesConfig.createTheme(themes[theme]);
+    return stitchesConfig.createTheme(themes[theme] as any);
   }, [theme]);
   const className = themeClass || contextTheme;
 

@@ -3,6 +3,18 @@ import React from 'react';
 import { IconBox } from '../Icon/Icon';
 import { styled } from '../stitches.config';
 
+interface Props extends Omit<React.ComponentProps<typeof Block>, 'children'> {
+  label: string;
+}
+
+export const Tag = ({ size = 'md', variant = 'primary', label, ...props }: Props) => {
+  return (
+    <Block size={size} variant={variant} {...props}>
+      {label}
+    </Block>
+  );
+};
+
 const Block = styled('div', {
   transition: '0.2s ease-in-out',
   fontFamily: '$default',
@@ -60,15 +72,3 @@ const Block = styled('div', {
     },
   },
 });
-
-interface Props extends Omit<React.ComponentProps<typeof Block>, 'children'> {
-  label: string;
-}
-
-export const Tag = ({ size = 'md', variant = 'primary', label, ...props }: Props) => {
-  return (
-    <Block size={size} variant={variant} {...props}>
-      {label}
-    </Block>
-  );
-};

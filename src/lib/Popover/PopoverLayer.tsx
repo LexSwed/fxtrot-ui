@@ -2,10 +2,9 @@ import { AnimatePresence, motion, Variants } from 'framer-motion';
 import React, { useLayoutEffect, useState } from 'react';
 import type { PopoverContentOwnProps } from '@radix-ui/react-popover';
 
-import { styled } from '../stitches.config';
+import { styled, CssStyles } from '../stitches.config';
 import { useToggleStateAtom } from '../utils/OpenStateProvider';
 import { Slot } from '@radix-ui/react-slot';
-import type { CssStyles } from '../utils/types';
 
 type RadixAlignmentProps = Pick<PopoverContentOwnProps, 'align' | 'side' | 'alignOffset' | 'sideOffset'>;
 
@@ -54,7 +53,7 @@ interface InnerBoxProps extends PopoverLayerProps {
   'as'?: React.ElementType;
 }
 
-const InnerBox = React.forwardRef<HTMLDivElement, InnerBoxProps>(({ as, side, ...props }, ref) => {
+const InnerBox = React.forwardRef<HTMLDivElement, InnerBoxProps>(({ side, ...props }, ref) => {
   const [minWidth, setMinWidth] = useState<number>();
 
   useLayoutEffect(() => {
@@ -75,7 +74,7 @@ const InnerBox = React.forwardRef<HTMLDivElement, InnerBoxProps>(({ as, side, ..
       exit="initial"
       transition={{ duration: 0.15, type: 'tween' }}
     >
-      <PopperInner as={as as any} {...props} ref={ref} />
+      <PopperInner {...(props as any)} ref={ref} />
     </PopperBox>
   );
 });

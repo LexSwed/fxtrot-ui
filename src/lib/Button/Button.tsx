@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Flex } from '../Flex/Flex';
+import { Flex, FlexVariants } from '../Flex/Flex';
 import { Icon } from '../Icon/Icon';
 import { css, styled } from '../stitches.config';
 
@@ -46,7 +46,16 @@ export const Button = React.forwardRef<HTMLButtonElement, Props>(
 
 Button.displayName = 'Button';
 
-export const buttonStyle = css({
+const flexDefaults: FlexVariants = {
+  display: 'inline',
+  wrap: 'nowrap',
+  cross: 'center',
+  main: 'center',
+  flow: 'row',
+  gap: 'sm',
+};
+
+export const buttonStyle = css(Flex, {
   'transition': '0.2s ease-in-out',
   'fontFamily': '$default',
   'lineHeight': 1,
@@ -206,6 +215,7 @@ export const buttonStyle = css({
     },
   },
   'defaultVariants': {
+    ...flexDefaults,
     variant: 'secondary',
     size: 'md',
   },
@@ -241,4 +251,4 @@ export const buttonStyle = css({
   ],
 });
 
-export const ButtonRoot = styled('button', Flex, buttonStyle);
+export const ButtonRoot = styled('button', buttonStyle);
