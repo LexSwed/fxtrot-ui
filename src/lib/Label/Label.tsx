@@ -1,10 +1,10 @@
 import React from 'react';
 import type * as Polymorphic from '@radix-ui/react-polymorphic';
+import type { VariantProps } from '@stitches/react';
 
 import { styled } from '../stitches.config';
-import Text from '../Text';
-import Flex from '../Flex';
-import type { StitchesVariants } from '@stitches/react';
+import { Text } from '../Text';
+import { Flex } from '../Flex';
 
 const Main = styled(Text, {
   lineHeight: 1,
@@ -35,7 +35,7 @@ export const LabelWrapper = styled(Flex, {
   whiteSpace: 'nowrap',
 });
 
-export interface Props extends StitchesVariants<typeof LabelWrapper> {
+export interface Props extends VariantProps<typeof LabelWrapper> {
   label: React.ReactNode;
   secondary?: React.ReactNode;
   disabled?: boolean;
@@ -43,7 +43,7 @@ export interface Props extends StitchesVariants<typeof LabelWrapper> {
 
 type LabelComponent = Polymorphic.ForwardRefComponent<'label', Props>;
 
-const Label = React.forwardRef(
+export const Label = React.forwardRef(
   ({ label, secondary, disabled, as = 'label', ...props }: React.ComponentProps<LabelComponent>, ref) => {
     return (
       <LabelWrapper {...props} as={as} cross="center" gap="xs" display="inline" ref={ref as any}>
@@ -61,5 +61,3 @@ const Label = React.forwardRef(
 ) as LabelComponent;
 
 Label.displayName = 'Label';
-
-export default Label;

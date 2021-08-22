@@ -145,7 +145,7 @@ const ComboBoxInner: React.FC<Props> = ({
   );
 };
 
-const ComboBox: React.FC<Props> = (props) => {
+export const ComboBox: React.FC<Props> = (props) => {
   return (
     <OpenStateProvider>
       <ListBoxContext ListItem={Item}>
@@ -156,8 +156,6 @@ const ComboBox: React.FC<Props> = (props) => {
     </OpenStateProvider>
   );
 };
-
-export default ComboBox;
 
 function useFilteredItems(children: Props['children'], filterText: string) {
   const items = flattenChildren(children) as OptionType[];

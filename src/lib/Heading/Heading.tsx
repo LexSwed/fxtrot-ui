@@ -1,6 +1,6 @@
 import { styled } from '../stitches.config';
 
-const Heading = styled('h1', {
+export const Heading = styled('h1', {
   fontFamily: '$heading',
   margin: 0,
   lineHeight: 1,
@@ -60,5 +60,3 @@ const Heading = styled('h1', {
     level: '1',
   },
 });
-
-export default Heading;

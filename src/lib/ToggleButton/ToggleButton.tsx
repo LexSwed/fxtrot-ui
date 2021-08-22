@@ -1,10 +1,25 @@
 import React from 'react';
-import type * as Polymorphic from '@radix-ui/react-polymorphic';
 import * as Toggle from '@radix-ui/react-toggle';
 import { Slot } from '@radix-ui/react-slot';
 
-import Button from '../Button';
+import { Button } from '../Button';
 import { styled } from '../stitches.config';
+
+interface Props extends Toggle.ToggleOwnProps, Omit<React.ComponentProps<typeof Button>, 'variant'> {
+  variant?: 'flat' | 'secondary';
+}
+
+export const ToggleButton = React.forwardRef<HTMLButtonElement, Props>(
+  ({ pressed, onPressedChange, defaultPressed, variant = 'flat', ...props }, ref) => {
+    return (
+      <Toggle.Root as={Slot} pressed={pressed} defaultPressed={defaultPressed} onPressedChange={onPressedChange}>
+        <ToggleButtonRoot {...props} variant={variant} _variant={variant} ref={ref} />
+      </Toggle.Root>
+    );
+  }
+);
+
+ToggleButton.displayName = 'ToggleButton';
 
 const ToggleButtonRoot = styled(Button, {
   variants: {
@@ -34,33 +49,3 @@ const ToggleButtonRoot = styled(Button, {
     },
   ],
 });
-
-type Props = Toggle.ToggleOwnProps &
-  Omit<React.ComponentProps<typeof Button>, 'variant'> & {
-    variant?: 'flat' | 'secondary';
-  };
-
-const ToggleButton = React.forwardRef(
-  (
-    {
-      pressed,
-      onPressedChange,
-      defaultPressed,
-      variant = 'flat',
-      ...props
-    }: React.ComponentProps<ToggleButtonComponent>,
-    ref
-  ) => {
-    return (
-      <Toggle.Root as={Slot} pressed={pressed} defaultPressed={defaultPressed} onPressedChange={onPressedChange}>
-        <ToggleButtonRoot {...props} variant={variant} _variant={variant} ref={ref} />
-      </Toggle.Root>
-    );
-  }
-) as ToggleButtonComponent;
-
-ToggleButton.displayName = 'ToggleButton';
-
-export type ToggleButtonComponent = Polymorphic.ForwardRefComponent<'button', Props>;
-
-export default ToggleButton;

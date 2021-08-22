@@ -9,6 +9,33 @@ import { useKeyboardHandles } from '../utils/hooks';
 import Item from './Item';
 import { StyledItem } from '../Item/Item';
 
+interface Props extends React.ComponentProps<typeof List> {}
+
+export const MenuList = React.forwardRef((props, ref) => {
+  return (
+    <ListBoxContext ListItem={Item}>
+      <FocusScope>
+        <ListInner {...props} ref={ref} />
+      </FocusScope>
+    </ListBoxContext>
+  );
+}) as MenuListComponent;
+
+MenuList.displayName = 'MenuList';
+
+type MenuListComponent = Polymorphic.ForwardRefComponent<'div', Props>;
+
+const ListInner = React.forwardRef((props, ref) => {
+  const { focusNext, focusPrevious } = useFocusManager();
+
+  const handleKeyDown = useKeyboardHandles({
+    ArrowDown: () => focusNext(),
+    ArrowUp: () => focusPrevious(),
+  });
+
+  return <List onKeyDown={handleKeyDown} {...props} ref={ref} />;
+}) as MenuListComponent;
+
 const List = styled('ul', {
   m: 0,
   p: 0,
@@ -26,32 +53,3 @@ const List = styled('ul', {
     borderTopRightRadius: 0,
   },
 });
-
-interface Props extends React.ComponentProps<typeof List> {}
-
-const ListInner = React.forwardRef((props, ref) => {
-  const { focusNext, focusPrevious } = useFocusManager();
-
-  const handleKeyDown = useKeyboardHandles({
-    ArrowDown: () => focusNext(),
-    ArrowUp: () => focusPrevious(),
-  });
-
-  return <List onKeyDown={handleKeyDown} {...props} ref={ref} />;
-}) as MenuListComponent;
-
-const MenuList = React.forwardRef((props, ref) => {
-  return (
-    <ListBoxContext ListItem={Item}>
-      <FocusScope>
-        <ListInner {...props} ref={ref} />
-      </FocusScope>
-    </ListBoxContext>
-  );
-}) as MenuListComponent;
-
-MenuList.displayName = 'MenuList';
-
-type MenuListComponent = Polymorphic.ForwardRefComponent<'div', Props>;
-
-export default MenuList;

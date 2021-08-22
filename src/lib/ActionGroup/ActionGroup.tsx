@@ -3,11 +3,10 @@ import * as ToggleGroup from '@radix-ui/react-toggle-group';
 import flattenChildren from 'react-keyed-flatten-children';
 import { Slot } from '@radix-ui/react-slot';
 
-import Flex from '../Flex';
+import { Flex } from '../Flex';
 import type { FlexVariants } from '../Flex/Flex';
-import type { CssStyles } from '../utils/types';
-import ToggleButton from '../ToggleButton';
-import { styled } from '../stitches.config';
+import { ToggleButton } from '../ToggleButton';
+import { styled, CssStyles } from '../stitches.config';
 import { gaps } from '../utils/variants';
 import { ButtonRoot } from '../Button/Button';
 

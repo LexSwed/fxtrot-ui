@@ -4,8 +4,8 @@ import { Close, Content } from '@radix-ui/react-dialog';
 import { Slot } from '@radix-ui/react-slot';
 import { motion, Variants } from 'framer-motion';
 
-import Button from '../Button';
-import Icon from '../Icon';
+import { Button } from '../Button';
+import { Icon } from '../Icon';
 import { styled } from '../stitches.config';
 
 export interface ModalProps extends React.ComponentProps<'div'> {}
@@ -51,7 +51,6 @@ const DialogWindow = styled(motion.div, {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   minWidth: 200,
-  maxHeight: '85vh',
   mt: '-5vh',
 });
 

@@ -1,11 +1,11 @@
 import React from 'react';
 import { ExternalLinkIcon } from '@heroicons/react/outline';
+import type { VariantProps } from '@stitches/react';
 import type * as Polymorphic from '@radix-ui/react-polymorphic';
 
-import Icon, { IconBox } from '../Icon/Icon';
 import { styled } from '../stitches.config';
-import Text from '../Text/Text';
-import type { StitchesVariants } from '@stitches/react';
+import { Icon, IconBox } from '../Icon/Icon';
+import { Text } from '../Text';
 import type { CssStyles } from '../utils/types';
 
 const Link = styled(Text, {
@@ -38,25 +38,25 @@ const Link = styled(Text, {
   },
 });
 
-interface Props extends StitchesVariants<typeof Link> {
+interface Props extends VariantProps<typeof Link> {
   external?: 'icon' | true;
   css?: CssStyles;
   children?: React.ReactNode;
 }
 
-const TextLink = React.forwardRef(({ external, children, ...props }: React.ComponentProps<TextLinkComponent>, ref) => {
-  const additionalProps = external ? { target: '_blank', rel: 'noopener' } : null;
+export const TextLink = React.forwardRef(
+  ({ external, children, ...props }: React.ComponentProps<TextLinkComponent>, ref) => {
+    const additionalProps = external ? { target: '_blank', rel: 'noopener' } : null;
 
-  return (
-    <Link as="a" {...additionalProps} {...props} ref={ref}>
-      {children}
-      {external === 'icon' ? <Icon size="md" as={ExternalLinkIcon} /> : null}
-    </Link>
-  );
-}) as TextLinkComponent;
+    return (
+      <Link as="a" {...additionalProps} {...props} ref={ref}>
+        {children}
+        {external === 'icon' ? <Icon size="md" as={ExternalLinkIcon} /> : null}
+      </Link>
+    );
+  }
+) as TextLinkComponent;
 
 type TextLinkComponent = Polymorphic.ForwardRefComponent<'a', Props>;
 
 TextLink.displayName = 'TextLink';
-
-export default TextLink;

@@ -4,6 +4,33 @@ import { FocusScope, useFocusManager } from '@react-aria/focus';
 import { styled } from '../stitches.config';
 import { useKeyboardHandles } from '../utils/hooks';
 
+export interface ListBoxProps extends Omit<Props, 'autoFocus' | 'restoreFocus' | 'contain' | 'wrap'> {}
+interface Props extends React.ComponentProps<typeof List> {
+  autoFocus?: boolean;
+  restoreFocus?: boolean;
+  contain?: boolean;
+  wrap?: boolean;
+}
+
+export const ListBox = React.forwardRef<HTMLUListElement, Props>(
+  ({ children, autoFocus, restoreFocus, contain, wrap, ...props }, ref) => {
+    if (React.Children.count(children) === 0) {
+      return <List role="listbox" tabIndex={-1} {...props} as="ul" ref={ref} />;
+    }
+    return (
+      <List role="listbox" tabIndex={-1} {...props} as="ul" ref={ref}>
+        <FocusScope autoFocus={autoFocus} contain={contain} restoreFocus={restoreFocus}>
+          <ListInner wrap={wrap} autoFocus={autoFocus}>
+            {children}
+          </ListInner>
+        </FocusScope>
+      </List>
+    );
+  }
+);
+
+ListBox.displayName = 'ListBox';
+
 export const List = styled('ul', {
   'm': 0,
   'p': '$1',
@@ -38,33 +65,3 @@ const ListInner: React.FC<{ wrap?: boolean; autoFocus?: boolean }> = ({ wrap, au
 };
 
 ListInner.displayName = 'ListBox.Inner';
-
-export interface ListBoxProps extends Omit<Props, 'autoFocus' | 'restoreFocus' | 'contain' | 'wrap'> {}
-interface Props extends React.ComponentProps<typeof List> {
-  autoFocus?: boolean;
-  restoreFocus?: boolean;
-  contain?: boolean;
-  wrap?: boolean;
-}
-
-const ListBox = React.forwardRef<HTMLUListElement, Props>(
-  ({ children, autoFocus, restoreFocus, contain, wrap, ...props }, ref) => {
-    if (React.Children.count(children) === 0) {
-      return <List role="listbox" tabIndex={-1} {...props} as="ul" ref={ref} />;
-    }
-    return (
-      <List role="listbox" tabIndex={-1} {...props} as="ul" ref={ref}>
-        <FocusScope autoFocus={autoFocus} contain={contain} restoreFocus={restoreFocus}>
-          <ListInner wrap={wrap} autoFocus={autoFocus}>
-            {children}
-          </ListInner>
-        </FocusScope>
-      </List>
-    );
-  }
-);
-
-ListInner.displayName = 'ListBoxInner';
-ListBox.displayName = 'ListBox';
-
-export default ListBox;

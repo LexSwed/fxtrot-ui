@@ -1,8 +1,7 @@
-import type { StitchesVariants } from '@stitches/react';
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
+import type { VariantProps } from '@stitches/react';
 
-import { styled } from '../stitches.config';
-import { useForkRef } from '../utils/hooks';
+import { styled, css } from '../stitches.config';
 import type { CssStyles } from '../utils/types';
 
 export const iconStyles: CssStyles = {
@@ -26,7 +25,7 @@ export const IconWrapper = styled('div', {
   pr: '$1',
 });
 
-export const InteractiveBox = styled('input', {
+export const fieldBox = css({
   'fontSize': '$md',
   'lineHeight': '$md',
   'height': '$base',
@@ -130,7 +129,7 @@ export const InteractiveBox = styled('input', {
       },
       xl: {
         height: 'auto',
-        fontWeight: '600',
+        fontWeight: 600,
         fontSize: '$2xl',
         py: '$1',
       },
@@ -198,11 +197,11 @@ export const InteractiveBox = styled('input', {
   ],
 });
 
-export type InteractiveBoxVariants = Omit<StitchesVariants<typeof InteractiveBox>, 'fieldSize'> & {
-  size: StitchesVariants<typeof InteractiveBox>['fieldSize'];
+export type FieldBoxVariants = Omit<VariantProps<typeof fieldBox>, 'fieldSize'> & {
+  size: VariantProps<typeof fieldBox>['fieldSize'];
 };
 
-const Input = styled(InteractiveBox, {
+const Input = styled('input', fieldBox, {
   //  throws warnings that inner-spin-button is not standartized
   // '&[type="number"]::-webkit-inner-spin-button, &[type="number"]::-webkit-outer-spin-button': {
   //   '-webkit-appearance': 'inner-spin-button !important',

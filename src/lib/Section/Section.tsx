@@ -1,16 +1,16 @@
 import React from 'react';
 import { useUID } from 'react-uid';
 
-import Flex, { FlexVariants } from '../Flex/Flex';
+import { Flex } from '../Flex';
 import { styled } from '../stitches.config';
-import Text from '../Text';
+import { Text } from '../Text';
 
 const Heading = styled(Text, {
   pr: '$2',
   textTransform: 'uppercase',
 });
 
-const Section: React.FC<{ title: string } & FlexVariants> = ({ title, children, ...props }) => {
+export const Section: React.FC<{ title: string } & FlexVariants> = ({ title, children, ...props }) => {
   const id = useUID();
   return (
     <Flex cross="stretch" flow="column" gap="xs" {...props}>
@@ -23,5 +23,3 @@ const Section: React.FC<{ title: string } & FlexVariants> = ({ title, children, 
     </Flex>
   );
 };
-
-export default Section;

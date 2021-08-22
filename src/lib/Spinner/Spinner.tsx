@@ -2,6 +2,16 @@ import React from 'react';
 
 import { styled, keyframes } from '../stitches.config';
 
+interface Props extends React.ComponentProps<typeof Main> {}
+
+export const Spinner = ({ size = 'md', ...props }: Props) => {
+  return (
+    <Main size={size} {...props} viewBox="0 0 50 50" role="progressbar" aria-valuemin={0} aria-valuemax={100}>
+      <Circle cx="25" cy="25" r="20" fill="none" strokeWidth="4" />
+    </Main>
+  );
+};
+
 const rotate = keyframes({
   '100%': {
     transform: 'rotate(360deg)',
@@ -48,15 +58,3 @@ const Circle = styled('circle', {
   strokeLinecap: 'round',
   animation: `${dash} 1.5s ease-in-out infinite`,
 });
-
-interface Props extends React.ComponentProps<typeof Main> {}
-
-const Spinner = ({ size = 'md', ...props }: Props) => {
-  return (
-    <Main size={size} {...props} viewBox="0 0 50 50" role="progressbar" aria-valuemin={0} aria-valuemax={100}>
-      <Circle cx="25" cy="25" r="20" fill="none" strokeWidth="4" />
-    </Main>
-  );
-};
-
-export default Spinner;

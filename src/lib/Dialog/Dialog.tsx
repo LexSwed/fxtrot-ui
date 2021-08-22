@@ -12,7 +12,7 @@ interface Props {
   defaultOpen?: boolean;
 }
 
-const Dialog = ({ children, ...props }: Props) => {
+export const Dialog = ({ children, ...props }: Props) => {
   const [open, setOpen] = useState(props.defaultOpen);
   const [trigger, content] = children;
 
@@ -56,5 +56,3 @@ const OverlayStyled = styled(motion.div, {
   left: 0,
   overflow: 'hidden',
 });
-
-export default Dialog;

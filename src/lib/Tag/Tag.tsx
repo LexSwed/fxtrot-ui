@@ -65,12 +65,10 @@ interface Props extends Omit<React.ComponentProps<typeof Block>, 'children'> {
   label: string;
 }
 
-const Tag: React.FC<Props> = ({ size = 'md', variant = 'primary', label, ...props }) => {
+export const Tag = ({ size = 'md', variant = 'primary', label, ...props }: Props) => {
   return (
     <Block size={size} variant={variant} {...props}>
       {label}
     </Block>
   );
 };
-
-export default Tag;

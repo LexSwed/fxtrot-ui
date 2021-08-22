@@ -1,11 +1,12 @@
-import React, { useEffect, useLayoutEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import type { FlexVariants } from '../Flex/Flex';
 import { FormField, Hint, HintBox, useFormField } from '../FormField/FormField';
-import Label from '../Label';
+import { Label } from '../Label';
 import { styled } from '../stitches.config';
-import { InputProps, InteractiveBox } from '../TextField/shared';
+import { fieldBox, FieldBoxVariants } from '../TextField/shared';
 import { useForkRef } from '../utils/hooks';
+import type { CssStyles } from '../utils/types';
 
 export const TextArea = React.forwardRef<HTMLDivElement, Props>(
   (
@@ -16,6 +17,7 @@ export const TextArea = React.forwardRef<HTMLDivElement, Props>(
       main,
       cross,
       flow,
+      wrap,
       display,
       gap,
       css,
@@ -58,6 +60,7 @@ export const TextArea = React.forwardRef<HTMLDivElement, Props>(
         flow={flow}
         display={display}
         gap={gap}
+        wrap={wrap}
         css={css}
         style={style}
         className={className}
@@ -80,7 +83,6 @@ export const TextArea = React.forwardRef<HTMLDivElement, Props>(
             variant={variant}
             ref={refs}
             fieldSize={size}
-            as={'textarea' as any}
           />
           {hint && (
             <Hint id={ariaProps['aria-describedby']} validity={validity}>
@@ -95,22 +97,19 @@ export const TextArea = React.forwardRef<HTMLDivElement, Props>(
 
 TextArea.displayName = 'TextArea';
 
-type Props = Pick<InputProps, 'size' | 'variant' | 'validity' | 'css'> &
-  React.ComponentProps<'textarea'> &
-  FlexVariants & {
-    label?: string;
-    secondaryLabel?: string;
-    hint?: string;
-    validity?: 'valid' | 'invalid';
-    inputRef?: React.Ref<HTMLTextAreaElement>;
-    value?: string;
-    defaultValue?: string;
-    onChange?: (value: string, event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  };
+interface Props extends FlexVariants, FieldBoxVariants, Omit<React.ComponentProps<'textarea'>, 'wrap' | 'onChange'> {
+  label?: string;
+  secondaryLabel?: string;
+  hint?: string;
+  validity?: 'valid' | 'invalid';
+  inputRef?: React.Ref<HTMLTextAreaElement>;
+  onChange?: (value: string, event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  css?: CssStyles;
+}
 
-const TextAreaField = styled(InteractiveBox, {
+const TextAreaField = styled('textarea', fieldBox, {
   resize: 'none',
-  pr: '$0 !important',
+  pr: '$0',
   py: '$2',
   height: 'auto',
   maxHeight: '10em',

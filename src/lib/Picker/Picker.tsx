@@ -17,7 +17,7 @@ interface Props extends Omit<TriggerProps, 'value' | 'onChange' | 'defaultValue'
   size: PickerContext['size'];
 }
 
-const Picker: React.FC<Props> = ({ children, id, value, defaultValue, onChange, size, ...triggerProps }) => {
+export const Picker: React.FC<Props> = ({ children, id, value, defaultValue, onChange, size, ...triggerProps }) => {
   const [innerValue, onChangeInner] = useDerivedState(value, onChange, defaultValue);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const triggerId = useUID();
@@ -45,8 +45,6 @@ const Picker: React.FC<Props> = ({ children, id, value, defaultValue, onChange, 
     </OpenStateProvider>
   );
 };
-
-export default Picker;
 
 function useTitle({ children, value }: { children: Props['children']; value?: string }) {
   const [title, setTitle] = useState<string>('');

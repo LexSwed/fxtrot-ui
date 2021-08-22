@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useVirtual } from 'react-virtual';
-import ListBox from '../ListBox';
+import { ListBox } from '../ListBox';
 import type { ListBoxProps } from '../ListBox/ListBox';
 
 interface Props extends Omit<ListBoxProps, 'children'> {

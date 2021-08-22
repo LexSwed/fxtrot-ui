@@ -1,18 +1,16 @@
 import React, { useMemo } from 'react';
 import { CheckIcon } from '@heroicons/react/outline';
 
-import Box from '../Box';
 import type { FlexVariants } from '../Flex/Flex';
-import { attribute } from '../FocusRing/focus-visible';
+import { attribute } from '../utils/focus-visible';
 import { FormField } from '../FormField/FormField';
-import Icon, { IconBox } from '../Icon/Icon';
-import Label from '../Label';
+import { Icon, IconBox } from '../Icon/Icon';
+import { Label } from '../Label';
 import { styled } from '../stitches.config';
 
 interface InputProps extends Omit<React.ComponentProps<typeof Input>, 'onChange' | 'value'>, FlexVariants {
   label?: string;
   secondaryLabel?: string;
-  value?: string;
   onChange?: (checked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -45,11 +43,11 @@ export const Checkbox: React.FC<Props> = ({
 
   return (
     <CheckboxFormField
-      as={'label' as any}
-      display={display}
       className={className}
       style={style}
       css={css}
+      as="label"
+      display={display}
       gap={gap}
       flow={flow}
       cross={cross}
@@ -72,10 +70,10 @@ export const Checkbox: React.FC<Props> = ({
   );
 };
 
-export const CheckboxFormField = styled(FormField, {});
+export const CheckboxFormField = styled('label', FormField, {});
 
-const CheckboxWrapper = styled(Box, {
-  position: 'relative',
+const CheckboxWrapper = styled('div', {
+  size: '$5',
 });
 
 export const CheckMark = styled('div', {

@@ -1,4 +1,4 @@
-import * as colors from '../theme/colors';
+import * as colors from './colors';
 
 export const allColors = {
   ...colors.blueGray,
@@ -115,9 +115,9 @@ const themeDefinitions: Record<DefinedThemes, ShortDefinition> = {
 
 export const themes = Object.fromEntries(
   Object.entries(themeDefinitions).map(([name, definition]) => [name, createNewTheme(definition)] as const)
-) as Record<DefinedThemes, Swatch>;
+) as Record<DefinedThemes, ThemeColors>;
 
-export function createNewTheme({ shade, primary, accent }: ShortDefinition): Swatch {
+export function createNewTheme({ shade, primary, accent }: ShortDefinition): ThemeColors {
   return {
     colors: {
       text: allColors[`${shade}Gray900` as keyof typeof allColors],
@@ -179,7 +179,7 @@ export interface ShortDefinition {
   shade: 'true' | 'cool' | 'blue' | 'warm';
 }
 
-export interface Swatch {
+export interface ThemeColors {
   colors: {
     text: string;
     textDisabled: string;
