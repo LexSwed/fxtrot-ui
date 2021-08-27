@@ -35,19 +35,8 @@ export const fieldBox = css({
   'bc': '$surfaceStill',
   'border': '1px solid transparent',
 
-  // has icon
-  '&:not(:only-child)': {
-    paddingRight: '$8',
-  },
-
   '&::placeholder': {
     color: '$textSubtle',
-  },
-  // artificially increase selector specificity
-  '&:disabled:not(.plus1):not(.plus2)': {
-    color: '$textDisabled',
-    borderColor: '$surfaceDisabled',
-    bc: '$surfaceDisabled',
   },
   '&:focus': {
     outline: 'none',
@@ -144,6 +133,16 @@ export const fieldBox = css({
         },
       },
     },
+  },
+
+  '&[type="date"]::-webkit-calendar-picker-indicator, &[type="search"]::-webkit-search-cancel-button': {
+    opacity: 0,
+  },
+
+  '&:disabled': {
+    color: '$textDisabled',
+    borderColor: '$surfaceDisabled',
+    bc: '$surfaceDisabled',
   },
 
   '&[readonly]': {
