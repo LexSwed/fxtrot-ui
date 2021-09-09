@@ -1,6 +1,5 @@
 import React from 'react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import { Slot } from '@radix-ui/react-slot';
 
 import { PopoverLayer, PopoverLayerProps } from '../Popover/PopoverLayer';
 import { styled } from '../stitches.config';
@@ -10,16 +9,20 @@ import { Label } from '../Label';
 
 interface MenuListProps {
   children: [trigger: React.ReactElement, menuList: React.ReactElement];
+  /**
+   * The modality of the dropdown menu. When set to true, interaction with outside elements will be disabled and only menu content will be visible to screen readers.
+   */
+  modal?: boolean;
 }
 
-export const Menu = ({ children }: MenuListProps) => {
+export const Menu = ({ children, modal }: MenuListProps) => {
   const [open, controls, atom] = useToggleState();
   const [trigger, menuList] = children;
 
   return (
     <ToggleStateScope atom={atom}>
-      <DropdownMenu.Root open={open} onOpenChange={controls.switch} modal={false}>
-        <DropdownMenu.Trigger as={Slot}>{trigger}</DropdownMenu.Trigger>
+      <DropdownMenu.Root open={open} onOpenChange={controls.switch} modal={modal}>
+        <DropdownMenu.Trigger asChild>{trigger}</DropdownMenu.Trigger>
         {menuList}
       </DropdownMenu.Root>
     </ToggleStateScope>
@@ -45,7 +48,7 @@ interface MenuItemProps extends Omit<React.ComponentProps<typeof DropdownMenu.It
 
 const MenuItem = React.forwardRef<HTMLDivElement, MenuItemProps>(({ onSelect, disabled, textValue, ...props }, ref) => {
   return (
-    <DropdownMenu.Item onSelect={onSelect} disabled={disabled} textValue={textValue} as={Slot}>
+    <DropdownMenu.Item onSelect={onSelect} disabled={disabled} textValue={textValue} asChild>
       <StyledItem {...props} ref={ref} />
     </DropdownMenu.Item>
   );
@@ -60,7 +63,7 @@ const Separator = styled(DropdownMenu.Separator, {
 
 const MenuLabel = React.forwardRef((props, ref) => {
   return (
-    <DropdownMenu.Label as={Slot}>
+    <DropdownMenu.Label asChild>
       <Label {...props} ref={ref} />
     </DropdownMenu.Label>
   );

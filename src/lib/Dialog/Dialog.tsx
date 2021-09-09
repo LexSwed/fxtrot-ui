@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { Root, Trigger, Title, Overlay } from '@radix-ui/react-dialog';
-import { Slot } from '@radix-ui/react-slot';
+import { Root, Trigger, Title, Overlay, DialogTitleProps } from '@radix-ui/react-dialog';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { DialogModal } from './DialogModal';
@@ -10,21 +9,25 @@ import { Heading } from '../Heading';
 interface Props {
   children: [React.ReactElement, (close: () => void) => React.ReactNode];
   defaultOpen?: boolean;
+  /**
+   * The modality of the dialog. When set to true, interaction with outside elements will be disabled and only dialog content will be visible to screen readers.
+   */
+  modal?: boolean;
 }
 
-export const Dialog = ({ children, ...props }: Props) => {
+export const Dialog = ({ children, modal, ...props }: Props) => {
   const [open, setOpen] = useState(props.defaultOpen);
   const [trigger, content] = children;
 
   const close = useCallback(() => setOpen(false), []);
 
   return (
-    <Root open={open} onOpenChange={setOpen} defaultOpen={props.defaultOpen} modal={false}>
-      <Trigger as={Slot}>{trigger}</Trigger>
+    <Root open={open} onOpenChange={setOpen} defaultOpen={props.defaultOpen} modal={modal}>
+      <Trigger asChild>{trigger}</Trigger>
       <AnimatePresence>
         {open && content && (
           <>
-            <Overlay as={Slot} forceMount>
+            <Overlay asChild forceMount>
               <OverlayStyled
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -40,8 +43,12 @@ export const Dialog = ({ children, ...props }: Props) => {
   );
 };
 
-const DialogTitle: React.FC<React.ComponentProps<typeof Heading>> = (props) => {
-  return <Title {...props} as={Heading} />;
+const DialogTitle: React.FC<DialogTitleProps & React.ComponentProps<typeof Heading>> = ({ ...props }) => {
+  return (
+    <Title asChild>
+      <Heading {...props} />
+    </Title>
+  );
 };
 
 Dialog.Modal = DialogModal;

@@ -1,12 +1,11 @@
 import { AnimatePresence, motion, Variants } from 'framer-motion';
 import React, { useLayoutEffect, useState } from 'react';
-import type { PopoverContentOwnProps } from '@radix-ui/react-popover';
+import type { PopoverContentProps } from '@radix-ui/react-popover';
 
 import { styled, CssStyles } from '../stitches.config';
 import { useToggleStateAtom } from '../utils/OpenStateProvider';
-import { Slot } from '@radix-ui/react-slot';
 
-type RadixAlignmentProps = Pick<PopoverContentOwnProps, 'align' | 'side' | 'alignOffset' | 'sideOffset'>;
+type RadixAlignmentProps = Pick<PopoverContentProps, 'align' | 'side' | 'alignOffset' | 'sideOffset'>;
 
 export interface PopoverLayerProps extends Omit<React.ComponentProps<'div'>, 'align' | 'ref'>, RadixAlignmentProps {
   css?: CssStyles;
@@ -30,14 +29,7 @@ export const PopoverLayer: React.FC<
   return (
     <AnimatePresence>
       {open && (
-        <RadixElement
-          align={align}
-          side={side}
-          alignOffset={alignOffset}
-          sideOffset={sideOffset}
-          forceMount
-          as={Slot as any}
-        >
+        <RadixElement align={align} side={side} alignOffset={alignOffset} sideOffset={sideOffset} forceMount asChild>
           <InnerBox {...props} side={side}>
             {children}
           </InnerBox>

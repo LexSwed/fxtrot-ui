@@ -1,7 +1,6 @@
 import React from 'react';
 import { XIcon } from '@heroicons/react/outline';
 import { Close, Content } from '@radix-ui/react-dialog';
-import { Slot } from '@radix-ui/react-slot';
 import { motion, Variants } from 'framer-motion';
 
 import { Button } from '../Button';
@@ -12,7 +11,7 @@ export interface ModalProps extends React.ComponentProps<'div'> {}
 
 export const DialogModal: React.FC<ModalProps> = ({ children, ...props }) => {
   return (
-    <Content as={Slot}>
+    <Content asChild>
       <DialogWindow
         variants={variants}
         initial="initial"
@@ -23,8 +22,10 @@ export const DialogModal: React.FC<ModalProps> = ({ children, ...props }) => {
       >
         {children}
         <CloseButtonContainer>
-          <Close as={Button} variant="flat">
-            <Icon as={XIcon} />
+          <Close asChild>
+            <Button variant="flat">
+              <Icon as={XIcon} />
+            </Button>
           </Close>
         </CloseButtonContainer>
       </DialogWindow>
@@ -52,6 +53,7 @@ const DialogWindow = styled(motion.div, {
   transform: 'translate(-50%, -50%)',
   minWidth: 200,
   mt: '-5vh',
+  boxShadow: '$lg',
 });
 
 const variants: Variants = {

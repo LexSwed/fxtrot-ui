@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import * as Radix from '@radix-ui/react-popover';
-import { Slot } from '@radix-ui/react-slot';
 
 import { Box } from '../Box';
 import { useToggleState, OpenStateRef, ToggleStateScope } from '../utils/OpenStateProvider';
@@ -17,7 +16,7 @@ export const Popover = React.forwardRef<OpenStateRef, Props>(({ children, defaul
   return (
     <ToggleStateScope atom={atom}>
       <Radix.Root open={open} onOpenChange={controls.switch} defaultOpen={defaultOpen}>
-        <Radix.Trigger as={Slot}>{trigger}</Radix.Trigger>
+        <Radix.Trigger asChild>{trigger}</Radix.Trigger>
         {content}
       </Radix.Root>
     </ToggleStateScope>

@@ -1,19 +1,18 @@
 import React from 'react';
 import * as Toggle from '@radix-ui/react-toggle';
-import { Slot } from '@radix-ui/react-slot';
 
 import { Button } from '../Button';
 import { styled } from '../stitches.config';
 
-interface Props extends Toggle.ToggleOwnProps, Omit<React.ComponentProps<typeof Button>, 'variant'> {
+interface Props extends Toggle.ToggleProps, Omit<React.ComponentProps<typeof Button>, 'variant'> {
   variant?: 'flat' | 'secondary';
 }
 
 export const ToggleButton = React.forwardRef<HTMLButtonElement, Props>(
   ({ pressed, onPressedChange, defaultPressed, variant = 'flat', ...props }, ref) => {
     return (
-      <Toggle.Root as={Slot} pressed={pressed} defaultPressed={defaultPressed} onPressedChange={onPressedChange}>
-        <ToggleButtonRoot {...props} variant={variant} _variant={variant} ref={ref} />
+      <Toggle.Root asChild pressed={pressed} defaultPressed={defaultPressed} onPressedChange={onPressedChange}>
+        <ToggleButtonRoot {...props} variant={variant} ref={ref} />
       </Toggle.Root>
     );
   }
@@ -27,21 +26,17 @@ const ToggleButtonRoot = styled(Button, {
       on: {},
       off: {},
     },
-    '_variant': {
-      flat: {},
-      secondary: {},
-    },
   },
   compoundVariants: [
     {
-      '_variant': 'flat',
+      'variant': 'flat',
       'data-state': 'on',
       'css': {
         color: '$primaryStill',
       },
     },
     {
-      '_variant': 'secondary',
+      'variant': 'secondary',
       'data-state': 'on',
       'css': {
         bc: '$surfaceActive',
