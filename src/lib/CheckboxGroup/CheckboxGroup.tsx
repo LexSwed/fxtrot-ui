@@ -1,11 +1,11 @@
 import React from 'react';
-import type * as Polymorphic from '@radix-ui/react-polymorphic';
 import flattenChildren from 'react-keyed-flatten-children';
+
 import { Checkbox, CheckboxProps, CheckboxFormField, CheckMark } from '../Checkbox/Checkbox';
-import Flex from '../Flex';
+import { Flex } from '../Flex';
+import { Label } from '../Label';
 import { styled } from '../stitches.config';
 import { useDerivedState } from '../utils/hooks';
-import Label from '../Label';
 
 type CheckboxChild = React.ReactElement<typeof Checkbox>;
 
@@ -16,7 +16,7 @@ interface Props extends Omit<React.ComponentProps<typeof CheckboxGroupWrapper>, 
   onChange?: (value: string[]) => void;
 }
 
-export const CheckboxGroup = React.forwardRef(
+export const CheckboxGroup = React.forwardRef<HTMLDivElement, Props>(
   ({ children, label, value = [], onChange, flow = 'column', ...props }, ref) => {
     const [checkedItems, setValue] = useDerivedState(value, onChange);
 
@@ -47,9 +47,7 @@ export const CheckboxGroup = React.forwardRef(
       </Flex>
     );
   }
-) as CheckboxGroupComponent;
-
-export type CheckboxGroupComponent = Polymorphic.ForwardRefComponent<'div', Props>;
+);
 
 const CheckboxGroupWrapper = styled(Flex, {
   [`& > ${CheckboxFormField}`]: {

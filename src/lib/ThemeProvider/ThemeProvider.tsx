@@ -1,17 +1,49 @@
-import React, { createContext, useContext, useMemo, useRef } from 'react';
+import React, { createContext, useContext, useMemo } from 'react';
 import { IdProvider } from '@radix-ui/react-id';
 
 import { stitchesConfig, styled } from '../stitches.config';
 import { Reset } from './Reset';
-import { themes, createNewTheme, DefinedThemes, ShortDefinition, Swatch } from './themes';
+import { themes, createNewTheme, DefinedThemes, ShortDefinition, ThemeColors } from '../theme/creator';
 
 type Props = {
-  theme?: DefinedThemes | ShortDefinition | Swatch;
+  theme?: DefinedThemes | ShortDefinition | ThemeColors;
+};
+
+export const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
+  const { themeClassName: contextTheme } = useContext(themeContext);
+
+  const themeClass = useMemo(() => {
+    if (!theme) return null;
+    if (isShortDefinition(theme)) {
+      return stitchesConfig.createTheme(createNewTheme(theme) as any);
+    } else if (isFullTheme(theme)) {
+      return stitchesConfig.createTheme(theme as any);
+    }
+
+    return stitchesConfig.createTheme(themes[theme] as any);
+  }, [theme]);
+  const className = themeClass || contextTheme;
+
+  const value = useMemo(() => ({ themeClassName: className }), [className]);
+
+  if (!className) {
+    return <>{children}</>;
+  }
+
+  return (
+    <IdProvider>
+      <>
+        <themeContext.Provider value={value}>
+          <ThemeWrapper className={className}>{children}</ThemeWrapper>
+        </themeContext.Provider>
+        <Reset />
+      </>
+    </IdProvider>
+  );
 };
 
 interface ThemeContext {
   themeClassName?: string;
-  ref?: React.RefObject<HTMLDivElement>;
 }
 
 const themeContext = createContext<ThemeContext>({});
@@ -24,50 +56,12 @@ const ThemeWrapper = styled('span', {
   boxSizing: 'border-box',
 });
 
-const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
-  const { themeClassName: contextTheme, ref: contextRef } = useContext(themeContext);
-  const innerRef = useRef<HTMLDivElement>(null);
-
-  const themeClass = useMemo(() => {
-    if (!theme) return null;
-    if (isShortDefinition(theme)) {
-      return stitchesConfig.theme(createNewTheme(theme));
-    } else if (isFullSwatch(theme)) {
-      return stitchesConfig.theme(theme);
-    }
-
-    return stitchesConfig.theme(themes[theme]);
-  }, [theme]);
-  const className = themeClass || contextTheme;
-
-  const value = useMemo(() => ({ themeClassName: className, ref: contextRef || innerRef }), [className, contextRef]);
-
-  if (!className) {
-    return <>{children}</>;
-  }
-
-  return (
-    <IdProvider>
-      <>
-        <themeContext.Provider value={value}>
-          <ThemeWrapper className={className} ref={contextRef ? undefined : innerRef}>
-            {children}
-          </ThemeWrapper>
-        </themeContext.Provider>
-        <Reset />
-      </>
-    </IdProvider>
-  );
-};
-
-export default ThemeProvider;
-
 export const useTheme = () => useContext(themeContext);
 
 function isShortDefinition(theme: Props['theme']): theme is ShortDefinition {
-  return typeof theme === 'object' && !!(theme as ShortDefinition)?.primary;
+  return typeof theme === 'object' && 'primary' in theme;
 }
 
-function isFullSwatch(theme: Props['theme']): theme is Swatch {
-  return typeof theme === 'object' && !!(theme as Swatch)?.colors?.text;
+function isFullTheme(theme: Props['theme']): theme is ThemeColors {
+  return typeof theme === 'object' && 'colors' in theme;
 }

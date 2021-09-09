@@ -1,13 +1,61 @@
 import React from 'react';
-import type * as Polymorphic from '@radix-ui/react-polymorphic';
 
-import { flexVariants } from '../Flex/Flex';
-import Icon from '../Icon/Icon';
-import { styled } from '../stitches.config';
-import type { StitchesVariants } from '@stitches/react';
-import type { CssStyles } from '../utils/types';
+import { Flex, FlexVariants } from '../Flex/Flex';
+import { Icon } from '../Icon/Icon';
+import { css, styled } from '../stitches.config';
 
-export const ButtonRoot = styled('button', {
+interface Props extends Omit<React.ComponentProps<typeof ButtonRoot>, 'isIconButton'> {}
+
+export const Button = React.forwardRef<HTMLButtonElement, Props>(
+  (
+    {
+      type = 'button',
+      display = 'inline',
+      wrap = 'nowrap',
+      cross = 'center',
+      main = 'center',
+      flow = 'row',
+      gap = 'sm',
+      disabled,
+      ...props
+    },
+    ref
+  ) => {
+    const isIconButton =
+      React.Children.count(props.children) === 1 &&
+      React.Children.toArray(props.children).every((child) => React.isValidElement(child) && child.type === Icon);
+
+    return (
+      <ButtonRoot
+        {...props}
+        wrap={wrap}
+        cross={cross}
+        main={main}
+        type={type}
+        flow={flow}
+        gap={gap}
+        display={display}
+        aria-disabled={disabled}
+        disabled={disabled}
+        isIconButton={isIconButton}
+        ref={ref}
+      />
+    );
+  }
+);
+
+Button.displayName = 'Button';
+
+const flexDefaults: FlexVariants = {
+  display: 'inline',
+  wrap: 'nowrap',
+  cross: 'center',
+  main: 'center',
+  flow: 'row',
+  gap: 'sm',
+};
+
+export const buttonStyle = css(Flex, {
   'transition': '0.2s ease-in-out',
   'fontFamily': '$default',
   'lineHeight': 1,
@@ -16,9 +64,11 @@ export const ButtonRoot = styled('button', {
   'cursor': 'default',
   'whiteSpace': 'nowrap',
   'flexShrink': 0,
+  '&[disabled],[aria-disabled="true"]': {
+    pointerEvents: 'none',
+  },
 
   'variants': {
-    ...flexVariants,
     size: {
       xs: {
         height: '$6',
@@ -163,22 +213,9 @@ export const ButtonRoot = styled('button', {
         alignItems: 'center',
       },
     },
-    as: {
-      a: {
-        textDecoration: 'none',
-      },
-    },
-  },
-  '&[disabled],[aria-disabled="true"]': {
-    pointerEvents: 'none',
   },
   'defaultVariants': {
-    display: 'inline',
-    wrap: 'nowrap',
-    cross: 'center',
-    main: 'center',
-    flow: 'row',
-    gap: '2',
+    ...flexDefaults,
     variant: 'secondary',
     size: 'md',
   },
@@ -214,31 +251,4 @@ export const ButtonRoot = styled('button', {
   ],
 });
 
-interface Props extends Omit<StitchesVariants<typeof ButtonRoot>, 'isIconButton'> {
-  css?: CssStyles;
-}
-
-const Button = React.forwardRef(
-  ({ type = 'button', disabled, ...props }: React.ComponentProps<ButtonComponent>, ref) => {
-    const isIconButton =
-      React.Children.count(props.children) === 1 &&
-      React.Children.toArray(props.children).every((child) => React.isValidElement(child) && child.type === Icon);
-
-    return (
-      <ButtonRoot
-        {...props}
-        aria-disabled={disabled}
-        disabled={disabled}
-        ref={ref as any}
-        type={type}
-        isIconButton={isIconButton}
-      />
-    );
-  }
-) as ButtonComponent;
-
-Button.displayName = 'Button';
-
-export type ButtonComponent = Polymorphic.ForwardRefComponent<'button', Props>;
-
-export default Button;
+export const ButtonRoot = styled('button', buttonStyle);

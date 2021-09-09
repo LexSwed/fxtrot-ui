@@ -1,1 +1,1 @@
-export { default } from './Picker';
+export { Picker } from './Picker';

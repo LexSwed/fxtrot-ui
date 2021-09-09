@@ -4,29 +4,11 @@ import { CalendarIcon, ExclamationCircleIcon } from '@heroicons/react/outline';
 
 import type { FlexVariants } from '../Flex/Flex';
 import { FormField, Hint, HintBox, useFormField } from '../FormField/FormField';
-import Icon from '../Icon';
-import Label from '../Label';
+import { Icon } from '../Icon';
+import { Label } from '../Label';
 import { InputField, IconWrapper, InputProps } from './shared';
 
-const icons: Record<string, React.ElementType> = {
-  date: CalendarIcon,
-  valid: CheckIcon,
-  invalid: ExclamationCircleIcon,
-  search: XIcon,
-};
-
-const inputMode: Record<NonNullable<Props['type']>, InputProps['inputMode']> = {
-  number: 'numeric',
-  tel: 'tel',
-  text: 'text',
-  url: 'url',
-  email: 'email',
-  search: 'search',
-  date: undefined,
-  password: undefined,
-};
-
-const TextField = React.forwardRef<HTMLDivElement, Props>(
+export const TextField = React.forwardRef<HTMLDivElement, Props>(
   (
     {
       label,
@@ -36,6 +18,7 @@ const TextField = React.forwardRef<HTMLDivElement, Props>(
       cross,
       flow,
       display,
+      wrap,
       gap,
       css,
       style,
@@ -82,6 +65,7 @@ const TextField = React.forwardRef<HTMLDivElement, Props>(
         flow={flow}
         display={display}
         gap={gap}
+        wrap={wrap}
         css={css}
         style={style}
         className={className}
@@ -124,8 +108,6 @@ const TextField = React.forwardRef<HTMLDivElement, Props>(
 );
 
 TextField.displayName = 'TextField';
-
-export default TextField;
 
 type Props = Omit<InputProps, 'onChange' | 'type' | 'value' | 'defaultValue' | 'children'> &
   FlexVariants & {
@@ -171,3 +153,21 @@ interface DateChange {
 interface StringChange {
   (value: string, event: React.ChangeEvent<HTMLInputElement>): void;
 }
+
+const icons: Record<string, React.ElementType> = {
+  date: CalendarIcon,
+  valid: CheckIcon,
+  invalid: ExclamationCircleIcon,
+  search: XIcon,
+};
+
+const inputMode: Record<NonNullable<Props['type']>, InputProps['inputMode']> = {
+  number: 'numeric',
+  tel: 'tel',
+  text: 'text',
+  url: 'url',
+  email: 'email',
+  search: 'search',
+  date: undefined,
+  password: undefined,
+};

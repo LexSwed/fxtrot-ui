@@ -1,77 +1,75 @@
-import React, { useMemo, useRef } from 'react';
-import { useUIDSeed } from 'react-uid';
-import { useAllHandlers, useForkRef, useKeyboardHandles } from '../utils/hooks';
+import React from 'react';
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 
-import { OpenStateProvider, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
-import MenuList from './MenuList';
-import { MenuProvider, useMenu } from './utils';
+import { PopoverLayer, PopoverLayerProps } from '../Popover/PopoverLayer';
+import { styled } from '../stitches.config';
+import { ToggleStateScope, useToggleState } from '../utils/OpenStateProvider';
+import { StyledItem } from '../Item/Item';
+import { Label } from '../Label';
 
 interface MenuListProps {
   children: [trigger: React.ReactElement, menuList: React.ReactElement];
+  /**
+   * The modality of the dropdown menu. When set to true, interaction with outside elements will be disabled and only menu content will be visible to screen readers.
+   */
+  modal?: boolean;
 }
 
-const MenuInner = ({ children }: MenuListProps) => {
+export const Menu = ({ children, modal }: MenuListProps) => {
+  const [open, controls, atom] = useToggleState();
   const [trigger, menuList] = children;
-  const isOpen = useOpenState();
-  const { open, close, toggle } = useOpenStateControls();
-  const { seed, triggerRef } = useMenu();
-  const onClick = useAllHandlers(trigger.props.onClick, toggle);
-
-  const handleKeyDown = useKeyboardHandles({
-    ArrowDown: open,
-    ArrowUp: open,
-    Escape: close,
-  });
-
-  const onKeyDown = useAllHandlers(trigger.props.onKeyDown, handleKeyDown);
-
-  const refs = useForkRef(triggerRef, (trigger as any).ref);
 
   return (
-    <>
-      {React.cloneElement(trigger, {
-        'aria-expanded': isOpen,
-        'aria-haspopup': true,
-        'aria-controls': isOpen ? seed('menu') : undefined,
-        'id': seed('button'),
-        onClick,
-        onKeyDown,
-        'ref': refs,
-      })}
-      {menuList}
-    </>
+    <ToggleStateScope atom={atom}>
+      <DropdownMenu.Root open={open} onOpenChange={controls.switch} modal={modal}>
+        <DropdownMenu.Trigger asChild>{trigger}</DropdownMenu.Trigger>
+        {menuList}
+      </DropdownMenu.Root>
+    </ToggleStateScope>
   );
 };
 
-const Menu = ({
-  onAction,
-  ...props
-}: MenuListProps & {
-  onAction?: (key: string) => void;
-}) => {
-  const seed = useUIDSeed();
-  const triggerRef = useRef<HTMLElement>(null);
-  const listRef = useRef<HTMLElement>(null);
-
-  const menuContextValue = useMemo(
-    () => ({
-      triggerRef,
-      listRef,
-      seed,
-      onAction,
-    }),
-    [triggerRef, listRef, seed, onAction]
-  );
-
+const List = ({ children, ...props }: PopoverLayerProps) => {
   return (
-    <MenuProvider value={menuContextValue}>
-      <OpenStateProvider>
-        <MenuInner {...props} />
-      </OpenStateProvider>
-    </MenuProvider>
+    <PopoverLayer {...props} as={StyledList} radixElement={DropdownMenu.Content}>
+      {children}
+    </PopoverLayer>
   );
 };
+const StyledList = styled('div', {
+  width: '100%',
+  m: 0,
+  p: '$1',
+  overflowY: 'auto',
+  maxHeight: '240px',
+});
 
-Menu.List = MenuList;
+interface MenuItemProps extends Omit<React.ComponentProps<typeof DropdownMenu.Item>, 'as'> {}
 
-export default Menu;
+const MenuItem = React.forwardRef<HTMLDivElement, MenuItemProps>(({ onSelect, disabled, textValue, ...props }, ref) => {
+  return (
+    <DropdownMenu.Item onSelect={onSelect} disabled={disabled} textValue={textValue} asChild>
+      <StyledItem {...props} ref={ref} />
+    </DropdownMenu.Item>
+  );
+});
+
+const Separator = styled(DropdownMenu.Separator, {
+  height: 1,
+  bc: '$borderLight',
+  my: '$1',
+  mx: '-$1',
+});
+
+const MenuLabel = React.forwardRef((props, ref) => {
+  return (
+    <DropdownMenu.Label asChild>
+      <Label {...props} ref={ref} />
+    </DropdownMenu.Label>
+  );
+}) as typeof Label;
+
+Menu.List = List;
+Menu.Item = MenuItem;
+Menu.Separator = Separator;
+Menu.Label = MenuLabel;

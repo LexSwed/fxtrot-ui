@@ -12,7 +12,8 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             key="google-font-Fira"
           />
-          <style id="fxtrot-ui" dangerouslySetInnerHTML={{ __html: stitchesConfig.getCssString() }} />
+          <style id="fxtrot-ui" dangerouslySetInnerHTML={{ __html: stitchesConfig.getCssText() }} />
+          <style id="fxtrot-ui" dangerouslySetInnerHTML={{ __html: `body:not(:empty) { overflow: initial; }` }} />
         </Head>
         <body>
           <Main />

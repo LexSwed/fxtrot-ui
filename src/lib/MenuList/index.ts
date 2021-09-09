@@ -1,1 +1,1 @@
-export { default } from './MenuList';
+export { MenuList } from './MenuList';

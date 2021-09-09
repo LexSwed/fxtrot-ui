@@ -4,12 +4,12 @@ import flattenChildren from 'react-keyed-flatten-children';
 
 import { OpenStateProvider, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 
-import Input, { Props as InputProps } from './Input';
-import Item, { OptionType } from './Item';
+import { ComboBoxInput, Props as InputProps } from './Input';
+import { Item, OptionType } from './Item';
 import { useAllHandlers, useForkRef, useLatest } from '../utils/hooks';
-import Popover from '../Popover/PopoverLayer';
+import { PopoverLayerDeprecated } from '../Popover/LayerDeprectated';
 import { StateProvider, useFocusedItemId, useSyncValue } from './atoms';
-import VirtualList from './VirtualList';
+import { VirtualList } from './VirtualList';
 import { ListBoxContext } from '../ListBox/ListBoxContext';
 
 interface Props
@@ -105,7 +105,7 @@ const ComboBoxInner: React.FC<Props> = ({
 
   return (
     <>
-      <Input
+      <ComboBoxInput
         {...textFieldProps}
         aria-controls={isOpen ? listboxId : ''}
         aria-activedescendant={focusedItemId as string}
@@ -118,7 +118,7 @@ const ComboBoxInner: React.FC<Props> = ({
         onFocusNext={handleFocusNext}
         onFocusPrev={handleFocusPrev}
       />
-      <Popover triggerRef={triggerRef}>
+      <PopoverLayerDeprecated triggerRef={triggerRef}>
         <VirtualList
           id={listboxId}
           aria-labelledby={idSeed('input')}
@@ -140,12 +140,12 @@ const ComboBoxInner: React.FC<Props> = ({
             });
           }}
         </VirtualList>
-      </Popover>
+      </PopoverLayerDeprecated>
     </>
   );
 };
 
-const ComboBox: React.FC<Props> = (props) => {
+export const ComboBox: React.FC<Props> = (props) => {
   return (
     <OpenStateProvider>
       <ListBoxContext ListItem={Item}>
@@ -156,8 +156,6 @@ const ComboBox: React.FC<Props> = (props) => {
     </OpenStateProvider>
   );
 };
-
-export default ComboBox;
 
 function useFilteredItems(children: Props['children'], filterText: string) {
   const items = flattenChildren(children) as OptionType[];

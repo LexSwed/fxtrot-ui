@@ -1,17 +1,16 @@
 import React, { useRef } from 'react';
 import { SelectorIcon } from '@heroicons/react/solid';
 
-import Button from '../Button';
-import Flex, { FlexVariants } from '../Flex/Flex';
+import { Button } from '../Button';
+import { Flex, FlexVariants } from '../Flex/Flex';
 import { FormField, Hint, HintBox, useFormField } from '../FormField/FormField';
-import Icon from '../Icon';
-import Label from '../Label';
-import { styled } from '../stitches.config';
-import Tag from '../Tag';
+import { Icon } from '../Icon';
+import { Label } from '../Label';
+import { styled, CssStyles } from '../stitches.config';
+import { Tag } from '../Tag';
 import { InputField, InputProps } from '../TextField/shared';
 import { useAllHandlers, useForkRef, useKeyboardHandles } from '../utils/hooks';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
-import type { CssStyles } from '../utils/types';
 
 const inputStyle: CssStyles = {
   // increase specificity
@@ -43,7 +42,7 @@ export interface Props
   'onChange': (newValue: string) => void;
 }
 
-const ComboBoxInput: React.FC<Props> = ({
+export const ComboBoxInput: React.FC<Props> = ({
   label,
   secondaryLabel,
   hint,
@@ -166,9 +165,6 @@ const ComboBoxButton = React.memo(
             e.preventDefault();
             e.stopPropagation();
             open();
-            setTimeout(() => {
-              console.log(document.activeElement);
-            }, 100);
             inputRef.current?.focus();
             inputRef.current?.select();
           }}
@@ -182,5 +178,3 @@ const ComboBoxButton = React.memo(
 );
 
 ComboBoxButton.displayName = 'ComboBoxButton';
-
-export default ComboBoxInput;

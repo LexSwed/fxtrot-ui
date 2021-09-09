@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useVirtual } from 'react-virtual';
-import ListBox from '../ListBox';
+import { ListBox } from '../ListBox';
 import type { ListBoxProps } from '../ListBox/ListBox';
 
 interface Props extends Omit<ListBoxProps, 'children'> {
@@ -10,8 +10,8 @@ interface Props extends Omit<ListBoxProps, 'children'> {
   scrollToIndexRef: React.MutableRefObject<(index: number) => void>;
 }
 
-const VirtualList: React.FC<Props> = ({ size, children, scrollToIndexRef, ...props }) => {
-  const listRef = useRef<HTMLUListElement>(null);
+export const VirtualList: React.FC<Props> = React.memo(({ size, children, scrollToIndexRef, ...props }) => {
+  const listRef = useRef<HTMLDivElement>(null);
   const rowVirtualizer = useVirtual({
     size,
     parentRef: listRef,
@@ -55,6 +55,6 @@ const VirtualList: React.FC<Props> = ({ size, children, scrollToIndexRef, ...pro
       </div>
     </ListBox>
   );
-};
+});
 
-export default React.memo(VirtualList);
+VirtualList.displayName = 'ComboboxVirtualList';

@@ -1,6 +1,6 @@
 import { styled } from '../stitches.config';
 
-const Text = styled('span', {
+export const Text = styled('span', {
   p: 0,
   m: 0,
   variants: {
@@ -130,5 +130,3 @@ const Text = styled('span', {
     font: 'default',
   },
 });
-
-export default Text;

@@ -1,1 +1,1 @@
-export { default } from './ListBox';
+export { ListBox } from './ListBox';

@@ -1,15 +1,47 @@
 import React from 'react';
+import type { PropertyValue } from '@stitches/react';
 
-import Box from '../Box/Box';
-import { gaps, flexMainAxisAlignment, flexCrossAxisAlignment, createGaps } from '../utils/variants';
+import { createScale } from '../utils/variants';
 import { styled } from '../stitches.config';
-import type { CssStyles } from '../utils/types';
+import { mainAxisAlignment, crossAxisAlignment } from '../Flex/Flex';
 
-const GridStyled = styled(Box, {
+interface Props extends React.ComponentProps<typeof GridStyled> {
+  columns?: PropertyValue<'gridTemplateColumns'>;
+  rows?: PropertyValue<'gridTemplateRows'>;
+  template?: PropertyValue<'gridTemplate'>;
+  areas?: PropertyValue<'gridTemplateAreas'>;
+  autoColumns?: PropertyValue<'gridAutoColumns'>;
+  autoRows?: PropertyValue<'gridAutoRows'>;
+  autoFlow?: PropertyValue<'gridAutoFlow'>;
+}
+
+export const Grid = React.forwardRef<HTMLDivElement, Props>(
+  ({ columns, rows, template, areas, autoColumns, autoRows, autoFlow, css, ...props }, ref) => {
+    return (
+      <GridStyled
+        css={
+          {
+            gridTemplateColumns: columns,
+            gridTemplateRows: rows,
+            gridTemplate: template,
+            gridTemplateAreas: areas,
+            gridAutoColumns: autoColumns,
+            gridAutoRows: autoRows,
+            gridAutoFlow: autoFlow,
+            ...css,
+          } as any
+        }
+        {...props}
+        ref={ref}
+      />
+    );
+  }
+);
+
+Grid.displayName = 'Grid';
+
+const GridStyled = styled('div', mainAxisAlignment, crossAxisAlignment, {
   variants: {
-    gap: gaps,
-    rowGap: createGaps('rowGap'),
-    columnGap: createGaps('columnGap'),
     display: {
       grid: {
         display: 'grid',
@@ -18,24 +50,11 @@ const GridStyled = styled(Box, {
         display: 'inline-grid',
       },
     },
-    main: flexMainAxisAlignment,
-    cross: flexCrossAxisAlignment,
+    gap: createScale('gap'),
+    rowGap: createScale('rowGap'),
+    columnGap: createScale('columnGap'),
   },
   defaultVariants: {
     display: 'grid',
-    gap: 'none',
   },
 });
-
-interface Props extends React.ComponentProps<typeof GridStyled> {
-  columns?: CssStyles['gridTemplateColumns'];
-  rows?: CssStyles['gridTemplateRows'];
-}
-
-const Grid = React.forwardRef<HTMLDivElement, Props>(({ columns, rows, ...props }, ref) => {
-  return <GridStyled gridTemplateColumns={columns} gridTemplateRows={rows} {...props} ref={ref} />;
-});
-
-Grid.displayName = 'Grid';
-
-export default Grid;

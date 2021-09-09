@@ -3,40 +3,41 @@ name: Menu
 ---
 
 import { Playground } from 'dokz';
-import { Box, Button, Menu, Item, Icon, Text, ThemeProvider, Dialog, Picker } from '@fxtrot/ui';
+import { Box, Button, Menu, Icon, Text, ThemeProvider, Dialog, Picker, Item } from '@fxtrot/ui';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import { TrashIcon } from '@heroicons/react/outline';
 
 ## Menu
 
-For big lists use `value` prop on `Item` and `onAction` callback to handle click on the item with `action`.
+For big lists use `value` prop on `Menu.Item` and `onAction` callback to handle click on the Menu.Item with `action`.
 
 <Playground>
   <Box p="$8">
-    <Menu onAction={typeof window !== 'undefined' ? window.alert : null}>
+    <Menu>
       <Button>
         <span>Open menu</span>
         <Icon as={ChevronDownIcon} size="lg" />
       </Button>
       <Menu.List>
-        <Item value="copy">
-          <Icon as="svg" />
+        <Menu.Item onSelect={() => window.alert('copy')}>
+          <Icon />
           Copy
-        </Item>
-        <Item value="cut">
-          <Icon as="svg" />
+        </Menu.Item>
+        <Menu.Item onSelect={() => window.alert('cut')}>
+          <Icon />
           Cut
-        </Item>
-        <Item value="delete" css={{ color: '$danger' }}>
+        </Menu.Item>
+        <Menu.Separator />
+        <Menu.Item onSelect={() => window.alert('delete')} css={{ color: '$danger' }}>
           <Icon as={TrashIcon} color="$danger" />
           Delete
-        </Item>
+        </Menu.Item>
       </Menu.List>
     </Menu>
   </Box>
 </Playground>
 
-You can modify `offset` and [`placement`](https://popper.js.org/docs/v2/constructors/#options) of the dropdown menu.
+You can modify `offset` from the `side` and along the `align`ment.
 
 <Playground>
   <ThemeProvider theme="orange">
@@ -46,13 +47,13 @@ You can modify `offset` and [`placement`](https://popper.js.org/docs/v2/construc
           <span>Open menu</span>
           <Icon as={ChevronDownIcon} size="lg" />
         </Button>
-        <Menu.List offset={0} placement="right-start">
+        <Menu.List sideOffset={12} side="right" align="start">
           {Array(20)
             .fill(null)
             .map((el, i) => (
-              <Item key={i} onClick={() => window.alert(i)}>
+              <Menu.Item key={i} onSelect={() => window.alert(i)}>
                 Item {i}
-              </Item>
+              </Menu.Item>
             ))}
         </Menu.List>
       </Menu>
@@ -60,35 +61,53 @@ You can modify `offset` and [`placement`](https://popper.js.org/docs/v2/construc
   </ThemeProvider>
 </Playground>
 
-## Issues
-
-- `ArrowUp` and `ArrowDown` just open the menu, first option is always focused
-- No <kbd>Home</kbd>, <kbd>End</kbd>, <kbd>Page Up</kbd> or <kbd>Page Down</kbd> support
-- No typeahead support
+## With Dialog
 
 <Playground>
-  <Box p="$8">
-    <Menu>
-      <Button variant="outline">
-        <Icon as={ChevronDownIcon} size="lg" />
-      </Button>
-      <Menu.List>
-        <Dialog>
-          <Item css={{ color: '$danger' }}>
-            <Icon size="md" as={TrashIcon} />
-            <span>Delete</span>
-          </Item>
-          {(close) => (
-            <Dialog.Modal>
-              <Dialog.Title level={3}>Delete topic?</Dialog.Title>
-              <Picker>
-                <Item label="Item 1" />
-                <Item label="Item 2" />
-              </Picker>
-            </Dialog.Modal>
-          )}
-        </Dialog>
-      </Menu.List>
-    </Menu>
-  </Box>
+  {() => {
+    const modalOpenRef = React.useRef();
+    return (
+      <Box p="$8">
+        <Menu>
+          <Button variant="outline">
+            <Icon as={ChevronDownIcon} size="lg" />
+            More
+          </Button>
+          <Menu.List
+            onCloseAutoFocus={(event) => {
+              // prevent focusing dropdown trigger when it closes from a dialog trigger
+              if (modalOpenRef.current) event.preventDefault();
+            }}
+          >
+            <Dialog>
+              <Menu.Item
+                css={{ color: '$danger' }}
+                onSelect={(event) => {
+                  event.preventDefault();
+                  modalOpenRef.current = true;
+                }}
+              >
+                <Icon size="md" as={TrashIcon} />
+                <span>Delete</span>
+              </Menu.Item>
+              {(close) => (
+                <Dialog.Modal>
+                  <Dialog.Title level={3}>Delete topic?</Dialog.Title>
+                  <Picker
+                    onChange={() => {
+                      modalOpenRef.current = false;
+                      close();
+                    }}
+                  >
+                    <Item label="Item 1" />
+                    <Item label="Item 2" />
+                  </Picker>
+                </Dialog.Modal>
+              )}
+            </Dialog>
+          </Menu.List>
+        </Menu>
+      </Box>
+    );
+  }}
 </Playground>

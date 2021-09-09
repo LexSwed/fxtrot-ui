@@ -15,7 +15,11 @@ import { Dialog, Button, TextField, Flex, Box, Picker, Item, Switch } from '@fxt
         <Dialog.Modal>
           <Dialog.Title level={3}>Create new workspace</Dialog.Title>
           <Box
-            pt="$4"
+            css={{
+              'pt': '$4',
+              '@initial': { minWidth: 400 },
+              '@mobile': { minWidth: 320 },
+            }}
             as="form"
             onSubmit={(e) => {
               e.preventDefault();
@@ -23,10 +27,12 @@ import { Dialog, Button, TextField, Flex, Box, Picker, Item, Switch } from '@fxt
             }}
           >
             <Flex flow="column" gap="2">
-              <TextField placeholder="Carefive" name="workspace-name" label="Workspace name" />
+              <TextField placeholder="Carefive" name="workspace-name" label="Workspace name" autoFocus />
               <Picker>
-                <Item label="Item 1" />
-                <Item label="Item 2" />
+                <Item label="Item 1" value="1" />
+                <Item label="Item 2" value="2" />
+                <Item label="Item 3" value="3" />
+                <Item label="Item 4" value="4" />
               </Picker>
             </Flex>
             <Box pb="$10" />

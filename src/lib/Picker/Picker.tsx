@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useUID } from 'react-uid';
 
-import Popover from '../Popover/PopoverLayer';
+import { PopoverLayerDeprecated } from '../Popover/LayerDeprectated';
 import { useDerivedState } from '../utils/hooks';
 import { OpenStateProvider } from '../utils/OpenStateProvider';
 import type { OptionType } from './Item';
@@ -17,7 +17,7 @@ interface Props extends Omit<TriggerProps, 'value' | 'onChange' | 'defaultValue'
   size: PickerContext['size'];
 }
 
-const Picker: React.FC<Props> = ({ children, id, value, defaultValue, onChange, size, ...triggerProps }) => {
+export const Picker: React.FC<Props> = ({ children, id, value, defaultValue, onChange, size, ...triggerProps }) => {
   const [innerValue, onChangeInner] = useDerivedState(value, onChange, defaultValue);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const triggerId = useUID();
@@ -38,15 +38,13 @@ const Picker: React.FC<Props> = ({ children, id, value, defaultValue, onChange, 
         <Trigger id={triggerId} ref={triggerRef as any} size={size} {...triggerProps}>
           {title}
         </Trigger>
-        <Popover triggerRef={triggerRef}>
+        <PopoverLayerDeprecated triggerRef={triggerRef}>
           <List triggerId={triggerId}>{children}</List>
-        </Popover>
+        </PopoverLayerDeprecated>
       </PickerProvider>
     </OpenStateProvider>
   );
 };
-
-export default Picker;
 
 function useTitle({ children, value }: { children: Props['children']; value?: string }) {
   const [title, setTitle] = useState<string>('');

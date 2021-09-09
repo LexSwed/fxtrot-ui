@@ -1,18 +1,17 @@
 import React from 'react';
 import { SelectorIcon } from '@heroicons/react/solid';
 
+import { styled, CssStyles } from '../stitches.config';
 import type { FlexVariants } from '../Flex/Flex';
 import { FormField, FormFieldProps, Hint, HintBox, useFormField } from '../FormField/FormField';
-import Icon from '../Icon';
-import Label from '../Label';
-import { styled } from '../stitches.config';
-import { InteractiveBox, InteractiveBoxVariants } from '../TextField/shared';
+import { Icon } from '../Icon';
+import { Label } from '../Label';
+import { fieldBox, FieldBoxVariants } from '../TextField/shared';
 import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { usePicker } from './utils';
-import type { CssStyles } from '../utils/types';
 
-const TriggerButton = styled(InteractiveBox, {
+const TriggerButton = styled('div', fieldBox, {
   'position': 'relative',
   'display': 'flex',
   'alignItems': 'center',
@@ -43,7 +42,7 @@ const Placeholder = styled('div', {
 
 export interface TriggerProps
   extends FlexVariants,
-    InteractiveBoxVariants,
+    FieldBoxVariants,
     Omit<React.ComponentProps<'button'>, 'validity' | 'type' | 'value'> {
   id?: string;
   placeholder?: string;

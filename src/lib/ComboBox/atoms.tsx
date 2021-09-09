@@ -5,6 +5,7 @@ import { useAtomValue, useUpdateAtom } from 'jotai/utils';
 import { useEffect } from 'react';
 
 const innerValue = atom<string | null>(null);
+const fxtrotScope = Symbol('Combobox scope');
 
 interface SyncedValue {
   (propValue?: string | null, propOnChange?: (newValue: string | null) => void): readonly [
@@ -13,7 +14,7 @@ interface SyncedValue {
   ];
 }
 export const useSyncValue: SyncedValue = (propValue, onChange = () => {}) => {
-  const [value, setValue] = useAtom(innerValue);
+  const [value, setValue] = useAtom(innerValue, fxtrotScope);
 
   useEffect(() => {
     if (typeof propValue !== 'undefined') {
@@ -29,17 +30,10 @@ export const useSyncValue: SyncedValue = (propValue, onChange = () => {}) => {
 };
 
 const focusedItemId = atom<string | null>(null);
-export const useFocusedItemId = () => useAtom(focusedItemId);
-export const useItemSelected = (value: string) => value === useAtomValue(innerValue);
-export const useItemFocused = (id: string) => id === useAtomValue(focusedItemId);
-export const useFocusItem = () => {
-  return useUpdateAtom(focusedItemId);
-};
-
-const fxtrotScope = Symbol();
-
-innerValue.scope = fxtrotScope;
-focusedItemId.scope = fxtrotScope;
+export const useFocusedItemId = () => useAtom(focusedItemId, fxtrotScope);
+export const useItemSelected = (value: string) => value === useAtomValue(innerValue, fxtrotScope);
+export const useItemFocused = (id: string) => id === useAtomValue(focusedItemId, fxtrotScope);
+export const useFocusItem = () => useUpdateAtom(focusedItemId, fxtrotScope);
 
 export const StateProvider: React.FC = ({ children }) => {
   return <Provider scope={fxtrotScope}>{children}</Provider>;

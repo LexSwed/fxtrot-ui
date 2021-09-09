@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useLayoutEffect, useState, useRef } from 'react';
 import { useUID } from 'react-uid';
-import { clickCatcherAttrs } from '../ClickCatcher/ClickCatcher';
 
 type PossibleRef<T> = React.Ref<T> | ((instance: T | null) => void) | null | undefined;
 
@@ -113,17 +112,13 @@ export function useOnClickOutside(handler: Handler | null, isActive: boolean, ..
       handlerRef.current?.(event);
     };
 
-    // I know it's not good but it's way simpler than any other solution I could come up with
-    const host = (document.querySelector(`[data-fxtrotui="${clickCatcherAttrs['data-fxtrotui']}"]`) ||
-      document) as HTMLElement;
-
     events.forEach((event) => {
-      host.addEventListener(event, listener);
+      document.addEventListener(event, listener);
     });
 
     return () => {
       events.forEach((event) => {
-        host.removeEventListener(event, listener);
+        document.removeEventListener(event, listener);
       });
     };
   }, [handlerRef, isActive, ...refs]); //eslint-disable-line react-hooks/exhaustive-deps

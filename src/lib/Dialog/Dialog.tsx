@@ -1,42 +1,65 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
+import { Root, Trigger, Title, Overlay, DialogTitleProps } from '@radix-ui/react-dialog';
+import { AnimatePresence, motion } from 'framer-motion';
 
-import { useAllHandlers } from '../utils/hooks';
-import { OpenStateProvider, useOpenStateControls } from '../utils/OpenStateProvider';
-import { DialogRender, DialogModal, DialogTitle } from './DialogRender';
+import { DialogModal } from './DialogModal';
+import { styled } from '../stitches.config';
+import { Heading } from '../Heading';
 
 interface Props {
   children: [React.ReactElement, (close: () => void) => React.ReactNode];
   defaultOpen?: boolean;
+  /**
+   * The modality of the dialog. When set to true, interaction with outside elements will be disabled and only dialog content will be visible to screen readers.
+   */
+  modal?: boolean;
 }
 
-const DialogInner = ({ children }: Props) => {
-  const [trigger, modal] = children;
-  const { open } = useOpenStateControls();
+export const Dialog = ({ children, modal, ...props }: Props) => {
+  const [open, setOpen] = useState(props.defaultOpen);
+  const [trigger, content] = children;
 
-  const onClick = useAllHandlers(trigger.props.onClick, open);
+  const close = useCallback(() => setOpen(false), []);
 
   return (
-    <>
-      {React.cloneElement(trigger, {
-        onClick,
-      })}
-      <DialogRender>{modal}</DialogRender>
-    </>
+    <Root open={open} onOpenChange={setOpen} defaultOpen={props.defaultOpen} modal={modal}>
+      <Trigger asChild>{trigger}</Trigger>
+      <AnimatePresence>
+        {open && content && (
+          <>
+            <Overlay asChild forceMount>
+              <OverlayStyled
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3, type: 'tween' }}
+              />
+            </Overlay>
+            {content(close)}
+          </>
+        )}
+      </AnimatePresence>
+    </Root>
   );
 };
 
-const Dialog: React.FC<Props> & {
-  Modal: typeof DialogModal;
-  Title: typeof DialogTitle;
-} = ({ defaultOpen, ...props }) => {
+const DialogTitle: React.FC<DialogTitleProps & React.ComponentProps<typeof Heading>> = ({ ...props }) => {
   return (
-    <OpenStateProvider defaultOpen={defaultOpen}>
-      <DialogInner {...props} />
-    </OpenStateProvider>
+    <Title asChild>
+      <Heading {...props} />
+    </Title>
   );
 };
 
 Dialog.Modal = DialogModal;
 Dialog.Title = DialogTitle;
 
-export default Dialog;
+const OverlayStyled = styled(motion.div, {
+  backgroundColor: 'rgba(0,0,0,0.6)',
+  position: 'fixed',
+  top: 0,
+  right: 0,
+  bottom: 0,
+  left: 0,
+  overflow: 'hidden',
+});

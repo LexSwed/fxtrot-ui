@@ -1,12 +1,11 @@
 import React from 'react';
 import type * as Polymorphic from '@radix-ui/react-polymorphic';
 
-import { styled } from '../stitches.config';
-import type { CssStyles } from '../utils/types';
+import { styled, CssStyles } from '../stitches.config';
 
 const Div = styled('div', {});
 
-const Box = React.forwardRef(({ children, css = {}, ...props }, ref) => {
+export const Box = React.forwardRef(({ children, css = {}, ...props }, ref) => {
   const [styles, attrs] = Object.entries(props).reduce(
     (res, [key, value]: [any, any]) => {
       if (VALID_ITEMS.has(key)) {
@@ -29,8 +28,6 @@ const Box = React.forwardRef(({ children, css = {}, ...props }, ref) => {
 Box.displayName = 'Box';
 
 type BoxComponent = Polymorphic.ForwardRefComponent<'div', Props>;
-
-export default Box;
 
 const acceptedProperties = [
   'tablet',

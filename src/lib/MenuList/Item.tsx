@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StyledItem, ItemComponent } from '../Item/Item';
+import { StyledItem, ItemProps } from '../Item/Item';
 import { css } from '../stitches.config';
 
 const style = css({
@@ -39,7 +39,7 @@ const style = css({
   },
 });
 
-const Item = React.forwardRef(({ className, ...props }, ref) => {
+const Item = React.forwardRef<HTMLDivElement, ItemProps>(({ className, ...props }, ref) => {
   const selected = props['aria-selected'];
   return (
     <StyledItem
@@ -50,7 +50,7 @@ const Item = React.forwardRef(({ className, ...props }, ref) => {
       className={`${style({ selected })}${className ? ` ${className}` : ''}`}
     />
   );
-}) as ItemComponent;
+});
 
 Item.displayName = 'MenuListItem';
 

@@ -19,4 +19,5 @@ export const scales = {
   '48': '192px',
   '56': '224px',
   '64': '256px',
+  'base': '$10',
 };

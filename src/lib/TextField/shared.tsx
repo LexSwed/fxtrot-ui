@@ -1,11 +1,9 @@
-import type { StitchesVariants } from '@stitches/react';
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
+import type { VariantProps } from '@stitches/react';
 
-import { styled } from '../stitches.config';
-import { useForkRef } from '../utils/hooks';
-import type { CssStyles } from '../utils/types';
+import { styled, css } from '../stitches.config';
 
-export const iconStyles: CssStyles = {
+export const iconStyles = css({
   position: 'absolute',
   top: 0,
   right: 0,
@@ -14,10 +12,9 @@ export const iconStyles: CssStyles = {
   width: '$8',
   outline: 'none',
   br: '$md',
-};
+});
 
-export const IconWrapper = styled('div', {
-  ...iconStyles,
+export const IconWrapper = styled('div', iconStyles, {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -26,7 +23,7 @@ export const IconWrapper = styled('div', {
   pr: '$1',
 });
 
-export const InteractiveBox = styled('input', {
+export const fieldBox = css({
   'fontSize': '$md',
   'lineHeight': '$md',
   'height': '$base',
@@ -38,19 +35,8 @@ export const InteractiveBox = styled('input', {
   'bc': '$surfaceStill',
   'border': '1px solid transparent',
 
-  // has icon
-  '&:not(:only-child)': {
-    paddingRight: '$8',
-  },
-
   '&::placeholder': {
     color: '$textSubtle',
-  },
-  // artificially increase selector specificity
-  '&:disabled:not(.plus1):not(.plus2)': {
-    color: '$textDisabled',
-    borderColor: '$surfaceDisabled',
-    bc: '$surfaceDisabled',
   },
   '&:focus': {
     outline: 'none',
@@ -130,7 +116,7 @@ export const InteractiveBox = styled('input', {
       },
       xl: {
         height: 'auto',
-        fontWeight: '600',
+        fontWeight: 600,
         fontSize: '$2xl',
         py: '$1',
       },
@@ -147,6 +133,16 @@ export const InteractiveBox = styled('input', {
         },
       },
     },
+  },
+
+  '&[type="date"]::-webkit-calendar-picker-indicator, &[type="search"]::-webkit-search-cancel-button': {
+    opacity: 0,
+  },
+
+  '&:disabled': {
+    color: '$textDisabled',
+    borderColor: '$surfaceDisabled',
+    bc: '$surfaceDisabled',
   },
 
   '&[readonly]': {
@@ -198,11 +194,11 @@ export const InteractiveBox = styled('input', {
   ],
 });
 
-export type InteractiveBoxVariants = Omit<StitchesVariants<typeof InteractiveBox>, 'fieldSize'> & {
-  size: StitchesVariants<typeof InteractiveBox>['fieldSize'];
+export type FieldBoxVariants = Omit<VariantProps<typeof fieldBox>, 'fieldSize'> & {
+  size: VariantProps<typeof fieldBox>['fieldSize'];
 };
 
-const Input = styled(InteractiveBox, {
+const Input = styled('input', fieldBox, {
   //  throws warnings that inner-spin-button is not standartized
   // '&[type="number"]::-webkit-inner-spin-button, &[type="number"]::-webkit-outer-spin-button': {
   //   '-webkit-appearance': 'inner-spin-button !important',

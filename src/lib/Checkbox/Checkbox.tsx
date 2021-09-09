@@ -1,27 +1,22 @@
 import React, { useMemo } from 'react';
 import { CheckIcon } from '@heroicons/react/outline';
 
-import Box from '../Box';
-import type { FlexVariants } from '../Flex/Flex';
-import { attribute } from '../FocusRing/focus-visible';
+import { Flex, FlexVariants } from '../Flex/Flex';
+import { attribute } from '../utils/focus-visible';
 import { FormField } from '../FormField/FormField';
-import Icon, { IconBox } from '../Icon/Icon';
-import Label from '../Label';
+import { Icon, IconBox } from '../Icon/Icon';
+import { Label } from '../Label';
 import { styled } from '../stitches.config';
 
 interface InputProps extends Omit<React.ComponentProps<typeof Input>, 'onChange' | 'value'>, FlexVariants {
   label?: string;
   secondaryLabel?: string;
-  value?: string;
   onChange?: (checked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-// internal props
-type Props = FlexVariants & InputProps;
-// external props
-export interface CheckboxProps extends Props {}
+export interface CheckboxProps extends InputProps, FlexVariants {}
 
-export const Checkbox: React.FC<Props> = ({
+export const Checkbox: React.FC<CheckboxProps> = ({
   checked,
   onChange,
   css,
@@ -45,11 +40,10 @@ export const Checkbox: React.FC<Props> = ({
 
   return (
     <CheckboxFormField
-      as={'label' as any}
-      display={display}
       className={className}
       style={style}
       css={css}
+      display={display}
       gap={gap}
       flow={flow}
       cross={cross}
@@ -67,15 +61,15 @@ export const Checkbox: React.FC<Props> = ({
           <Icon as={CheckIcon} />
         </CheckMark>
       </CheckboxWrapper>
-      {label !== undefined && <Label label={label} secondary={secondaryLabel} disabled={disabled} as="span" />}
+      {label !== undefined && <Label label={label} secondary={secondaryLabel} disabled={disabled} />}
     </CheckboxFormField>
   );
 };
 
-export const CheckboxFormField = styled(FormField, {});
+export const CheckboxFormField = styled('label', FormField, Flex, {});
 
-const CheckboxWrapper = styled(Box, {
-  position: 'relative',
+const CheckboxWrapper = styled('div', {
+  size: '$5',
 });
 
 export const CheckMark = styled('div', {

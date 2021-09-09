@@ -1,6 +1,5 @@
 import React from 'react';
 import { FocusScope, useFocusManager } from '@react-aria/focus';
-import type * as Polymorphic from '@radix-ui/react-polymorphic';
 
 import { ListBoxContext } from '../ListBox/ListBoxContext';
 
@@ -9,7 +8,32 @@ import { useKeyboardHandles } from '../utils/hooks';
 import Item from './Item';
 import { StyledItem } from '../Item/Item';
 
-const List = styled('ul', {
+interface Props extends React.ComponentProps<typeof ListStyled> {}
+
+export const MenuList = React.forwardRef<HTMLUListElement, Props>((props, ref) => {
+  return (
+    <ListBoxContext ListItem={Item}>
+      <FocusScope>
+        <ListInner {...props} ref={ref} />
+      </FocusScope>
+    </ListBoxContext>
+  );
+});
+
+MenuList.displayName = 'MenuList';
+
+const ListInner = React.forwardRef<HTMLUListElement, Props>((props, ref) => {
+  const { focusNext, focusPrevious } = useFocusManager();
+
+  const handleKeyDown = useKeyboardHandles({
+    ArrowDown: () => focusNext(),
+    ArrowUp: () => focusPrevious(),
+  });
+
+  return <ListStyled onKeyDown={handleKeyDown} {...props} ref={ref} />;
+});
+
+const ListStyled = styled('ul', {
   m: 0,
   p: 0,
   focusRing: '$focusRing',
@@ -26,32 +50,3 @@ const List = styled('ul', {
     borderTopRightRadius: 0,
   },
 });
-
-interface Props extends React.ComponentProps<typeof List> {}
-
-const ListInner = React.forwardRef((props, ref) => {
-  const { focusNext, focusPrevious } = useFocusManager();
-
-  const handleKeyDown = useKeyboardHandles({
-    ArrowDown: () => focusNext(),
-    ArrowUp: () => focusPrevious(),
-  });
-
-  return <List onKeyDown={handleKeyDown} {...props} ref={ref} />;
-}) as MenuListComponent;
-
-const MenuList = React.forwardRef((props, ref) => {
-  return (
-    <ListBoxContext ListItem={Item}>
-      <FocusScope>
-        <ListInner {...props} ref={ref} />
-      </FocusScope>
-    </ListBoxContext>
-  );
-}) as MenuListComponent;
-
-MenuList.displayName = 'MenuList';
-
-type MenuListComponent = Polymorphic.ForwardRefComponent<'div', Props>;
-
-export default MenuList;

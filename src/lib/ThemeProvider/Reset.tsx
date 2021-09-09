@@ -15,21 +15,21 @@ export const Reset = () => {
   return null;
 };
 
-const populate = stitchesConfig.global({
+const populate = stitchesConfig.globalCss({
   '@import': '"https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"',
-  'html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, code, em, img, small, strong, sub, sup, ol, ul, li, fieldset, form, label, legend, table, tbody, tfoot, thead, tr, th, td, article, aside, footer, header, nav, section, time, audio, video': {
-    fontSize: '100%',
-    fontWeight: 'inherit',
-    margin: '0',
-    padding: '0',
-    verticalAlign: 'baseline',
-    border: '0',
-    backgroundColor: 'transparent',
-  },
+  'html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, code, em, img, small, strong, sub, sup, ol, ul, li, fieldset, form, label, legend, table, tbody, tfoot, thead, tr, th, td, article, aside, footer, header, nav, section, time, audio, video':
+    {
+      fontSize: '100%',
+      fontWeight: 'inherit',
+      margin: '0',
+      padding: '0',
+      verticalAlign: 'baseline',
+      border: '0',
+      backgroundColor: 'transparent',
+    },
   'html': {
     fontSize: '14px',
     fontFamily: '$default',
-    overflowY: 'scroll',
     boxSizing: 'border-box',
     scrollBehavior: 'smooth',
   },

@@ -1,71 +1,77 @@
-import type { Options } from '@popperjs/core';
 import { AnimatePresence, motion, Variants } from 'framer-motion';
-import React, { useMemo } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
+import type { PopoverContentProps } from '@radix-ui/react-popover';
 
-import Portal from '../Portal';
-import { styled } from '../stitches.config';
-import { sameWidth, usePopper } from '../utils/popper';
-import { useKeyboardHandles, useOnClickOutside } from '../utils/hooks';
-import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
+import { styled, CssStyles } from '../stitches.config';
+import { useToggleStateAtom } from '../utils/OpenStateProvider';
 
-interface Props extends React.ComponentProps<typeof PopperBox> {
-  triggerRef: React.RefObject<HTMLElement>;
-  offset?: number;
-  placement?: Options['placement'];
+type RadixAlignmentProps = Pick<PopoverContentProps, 'align' | 'side' | 'alignOffset' | 'sideOffset'>;
+
+export interface PopoverLayerProps extends Omit<React.ComponentProps<'div'>, 'align' | 'ref'>, RadixAlignmentProps {
+  css?: CssStyles;
 }
-
-const PopoverLayer: React.FC<Props> = ({ children, triggerRef, offset = 8, placement = 'bottom-start', ...props }) => {
-  const isOpen = useOpenState();
-  const { close } = useOpenStateControls();
-  const [popperRef, state] = usePopper(
-    triggerRef,
-    useMemo<Options>(
-      () => ({
-        placement,
-        strategy: 'fixed',
-        modifiers: [{ name: 'offset', options: { offset: [0, offset] } }, sameWidth],
-      }),
-      [placement, offset]
-    )
-  );
-
-  useOnClickOutside(close, isOpen, popperRef, triggerRef);
-
-  const handleKeyDown = useKeyboardHandles({
-    'Escape.propagate': (e) => {
-      if (popperRef.current?.contains(e.target as Node)) {
-        close();
-      }
-    },
-  });
+export const PopoverLayer: React.FC<
+  PopoverLayerProps & {
+    radixElement: React.ComponentType<RadixAlignmentProps & Record<string, any>>;
+    as?: InnerBoxProps['as'];
+  }
+> = ({
+  children,
+  align = 'start',
+  side = 'bottom',
+  alignOffset,
+  sideOffset = 8,
+  radixElement: RadixElement,
+  ...props
+}) => {
+  const [open] = useToggleStateAtom();
 
   return (
     <AnimatePresence>
-      {isOpen && (
-        <Portal>
-          <Popper ref={popperRef as any} onKeyDown={handleKeyDown}>
-            <PopperBox
-              {...props}
-              variants={state?.placement ? animations[state?.placement.split('-')[0]] : animations.bottom}
-              initial="initial"
-              animate="animate"
-              exit="initial"
-              transition={{ duration: 0.15, type: 'tween' }}
-            >
-              {children}
-            </PopperBox>
-          </Popper>
-        </Portal>
+      {open && (
+        <RadixElement align={align} side={side} alignOffset={alignOffset} sideOffset={sideOffset} forceMount asChild>
+          <InnerBox {...props} side={side}>
+            {children}
+          </InnerBox>
+        </RadixElement>
       )}
     </AnimatePresence>
   );
 };
 
-export default PopoverLayer;
+interface InnerBoxProps extends PopoverLayerProps {
+  'data-side'?: PopoverLayerProps['side'];
+  'side'?: PopoverLayerProps['side'];
+  'as'?: React.ElementType;
+}
 
-const Popper = styled('div', {
-  position: 'absolute',
+const InnerBox = React.forwardRef<HTMLDivElement, InnerBoxProps>(({ side, ...props }, ref) => {
+  const [minWidth, setMinWidth] = useState<number>();
+
+  useLayoutEffect(() => {
+    const triggerEl = document.querySelector(`[aria-controls="${props.id}"]`);
+    if (triggerEl) {
+      setMinWidth((triggerEl as HTMLElement).getBoundingClientRect().width);
+    }
+  }, [props.id]);
+
+  const transitionSide = props['data-side'] || side;
+
+  return (
+    <PopperBox
+      style={{ minWidth }}
+      variants={transitionSide ? animations[transitionSide] : undefined}
+      initial="initial"
+      animate="animate"
+      exit="initial"
+      transition={{ duration: 0.15, type: 'tween' }}
+    >
+      <PopperInner {...(props as any)} ref={ref} />
+    </PopperBox>
+  );
 });
+
+const PopperInner = styled('div', {});
 
 const PopperBox = styled(motion.div, {
   bc: '$surfaceStill',
