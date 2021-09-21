@@ -12,5 +12,5 @@ Yet another React component library with an aim to be a design system for `fxtro
 Install this library with required peer dependencies:
 
 ```bash
-yarn add @fxtrot/ui @stitches/react framer-motion
+yarn add @fxtrot/ui @heroicons/react @stitches/react framer-motion
 ```
