@@ -1,48 +1,13 @@
 import React from 'react';
 
-import { Flex, FlexVariants } from '../Flex/Flex';
-import { Icon } from '../Icon/Icon';
+import { flexCss, FlexVariants } from '../Flex/Flex';
 import { css, styled } from '../stitches.config';
 
-interface Props extends Omit<React.ComponentProps<typeof ButtonRoot>, 'isIconButton'> {}
+interface Props extends React.ComponentProps<typeof ButtonRoot> {}
 
-export const Button = React.forwardRef<HTMLButtonElement, Props>(
-  (
-    {
-      type = 'button',
-      display = 'inline',
-      wrap = 'nowrap',
-      cross = 'center',
-      main = 'center',
-      flow = 'row',
-      gap = 'sm',
-      disabled,
-      ...props
-    },
-    ref
-  ) => {
-    const isIconButton =
-      React.Children.count(props.children) === 1 &&
-      React.Children.toArray(props.children).every((child) => React.isValidElement(child) && child.type === Icon);
-
-    return (
-      <ButtonRoot
-        {...props}
-        wrap={wrap}
-        cross={cross}
-        main={main}
-        type={type}
-        flow={flow}
-        gap={gap}
-        display={display}
-        aria-disabled={disabled}
-        disabled={disabled}
-        isIconButton={isIconButton}
-        ref={ref}
-      />
-    );
-  }
-);
+export const Button = React.forwardRef<HTMLButtonElement, Props>(({ type = 'button', ...props }, ref) => {
+  return <ButtonRoot {...props} aria-disabled={props.disabled} type={type} ref={ref} />;
+});
 
 Button.displayName = 'Button';
 
@@ -55,7 +20,7 @@ const flexDefaults: FlexVariants = {
   gap: 'sm',
 };
 
-export const buttonStyle = css(Flex, {
+export const buttonCss = css(flexCss, {
   'transition': '0.2s ease-in-out',
   'fontFamily': '$default',
   'lineHeight': 1,
@@ -205,50 +170,12 @@ export const buttonStyle = css(Flex, {
         color: '$text',
       },
     },
-    isIconButton: {
-      true: {
-        position: 'relative',
-        padding: 0,
-        justifyContent: 'center',
-        alignItems: 'center',
-      },
-    },
   },
   'defaultVariants': {
     ...flexDefaults,
     variant: 'secondary',
     size: 'md',
   },
-  'compoundVariants': [
-    {
-      isIconButton: true,
-      size: 'xs',
-      css: {
-        width: '$6',
-      },
-    },
-    {
-      isIconButton: true,
-      size: 'md',
-      css: {
-        width: '$base',
-      },
-    },
-    {
-      isIconButton: true,
-      size: 'sm',
-      css: {
-        width: '$8',
-      },
-    },
-    {
-      isIconButton: true,
-      size: 'lg',
-      css: {
-        width: '$12',
-      },
-    },
-  ],
 });
 
-export const ButtonRoot = styled('button', buttonStyle);
+export const ButtonRoot = styled('button', buttonCss);

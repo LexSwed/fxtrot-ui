@@ -1,6 +1,6 @@
-import { buttonStyle } from '../Button/Button';
+import { buttonCss } from '../Button/Button';
 import { styled } from '../stitches.config';
 
-export const LinkButton = styled('a', buttonStyle, {
+export const LinkButton = styled('a', buttonCss, {
   textDecoration: 'none',
 });

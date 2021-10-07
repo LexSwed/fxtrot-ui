@@ -1,0 +1,129 @@
+---
+name: IconButton
+---
+
+import { Playground } from 'dokz';
+import { ArrowNarrowRightIcon } from '@heroicons/react/solid';
+import { Box, Flex, Grid, IconButton, ThemeProvider, Icon } from '@fxtrot/ui';
+
+# IconButton
+
+Same as [`Button`](/components/Button) component, but when used only with an icon inside. Provides prop check for `ARIA` label and applies some light styling. All the existing props of the [`Button`](/components/Button) are supported as well.
+
+## Example
+
+<Playground>
+  <Flex flow="column" gap="lg" css={{ py: '$8', bc: '$gray50' }}>
+    <Flex gap="md" css={{ px: '$10' }}>
+      <IconButton size="xs" variant="primary">
+        <Icon as={ArrowNarrowRightIcon} size="sm" />
+      </IconButton>
+      <IconButton size="xs" variant="outline">
+        <Icon as={ArrowNarrowRightIcon} size="sm" />
+      </IconButton>
+      <IconButton size="xs" variant="secondary">
+        <Icon as={ArrowNarrowRightIcon} size="sm" />
+      </IconButton>
+      <IconButton size="xs" variant="flat">
+        <Icon as={ArrowNarrowRightIcon} size="sm" />
+      </IconButton>
+      <IconButton size="xs" variant="link">
+        <Icon as={ArrowNarrowRightIcon} size="sm" />
+      </IconButton>
+    </Flex>
+    <Flex gap="md" css={{ px: '$10' }}>
+      <IconButton size="sm" variant="primary">
+        <Icon as={ArrowNarrowRightIcon} />
+      </IconButton>
+      <IconButton size="sm" variant="outline">
+        <Icon as={ArrowNarrowRightIcon} />
+      </IconButton>
+      <IconButton size="sm" variant="secondary">
+        <Icon as={ArrowNarrowRightIcon} />
+      </IconButton>
+      <IconButton size="sm" variant="flat">
+        <Icon as={ArrowNarrowRightIcon} />
+      </IconButton>
+      <IconButton size="sm" variant="link">
+        <Icon as={ArrowNarrowRightIcon} />
+      </IconButton>
+    </Flex>
+    <Flex gap="md" css={{ px: '$10' }}>
+      <IconButton size="md" variant="primary">
+        <Icon as={ArrowNarrowRightIcon} />
+      </IconButton>
+      <IconButton size="md" variant="outline">
+        <Icon as={ArrowNarrowRightIcon} />
+      </IconButton>
+      <IconButton size="md" variant="secondary">
+        <Icon as={ArrowNarrowRightIcon} />
+      </IconButton>
+      <IconButton size="md" variant="flat">
+        <Icon as={ArrowNarrowRightIcon} />
+      </IconButton>
+      <IconButton size="md" variant="link">
+        <Icon as={ArrowNarrowRightIcon} />
+      </IconButton>
+    </Flex>
+    <Flex gap="md" css={{ px: '$10' }}>
+      <IconButton size="lg" variant="primary">
+        <Icon as={ArrowNarrowRightIcon} />
+      </IconButton>
+      <IconButton size="lg" variant="outline">
+        <Icon as={ArrowNarrowRightIcon} />
+      </IconButton>
+      <IconButton size="lg" variant="secondary">
+        <Icon as={ArrowNarrowRightIcon} />
+      </IconButton>
+      <IconButton size="lg" variant="flat">
+        <Icon as={ArrowNarrowRightIcon} />
+      </IconButton>
+      <IconButton size="lg" variant="link">
+        <Icon as={ArrowNarrowRightIcon} />
+      </IconButton>
+    </Flex>
+  </Flex>
+</Playground>
+
+## Theming
+
+Use `ThemeProvider` component to change the primary color of the button.
+
+<Playground>
+  <ThemeProvider theme="purple">
+    <Flex flow="column" gap="xl" css={{ py: '$8', bc: '$surfaceStill' }}>
+      <Flex gap="md" css={{ px: '$10' }}>
+        <IconButton variant="primary">
+          <Icon as={ArrowNarrowRightIcon} />
+        </IconButton>
+        <IconButton disabled variant="primary">
+          <Icon as={ArrowNarrowRightIcon} />
+        </IconButton>
+      </Flex>
+      <Flex gap="md" css={{ px: '$10' }}>
+        <IconButton variant="secondary">
+          <Icon as={ArrowNarrowRightIcon} />
+        </IconButton>
+        <IconButton variant="secondary" disabled>
+          <Icon as={ArrowNarrowRightIcon} />
+        </IconButton>
+      </Flex>
+      <Flex gap="md" css={{ px: '$10' }}>
+        <IconButton variant="flat">
+          <Icon as={ArrowNarrowRightIcon} />
+        </IconButton>
+        <IconButton variant="flat" disabled>
+          <Icon as={ArrowNarrowRightIcon} />
+        </IconButton>
+      </Flex>
+      <Flex gap="md" css={{ px: '$10' }}>
+        <IconButton variant="link">
+          <Icon as={ArrowNarrowRightIcon} />
+        </IconButton>
+        <IconButton variant="link" disabled>
+          <Icon as={ArrowNarrowRightIcon} />
+        </IconButton>
+      </Flex>
+    </Flex>
+  </ThemeProvider>
+</Playground>

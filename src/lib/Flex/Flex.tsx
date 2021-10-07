@@ -44,7 +44,7 @@ export const crossAxisAlignment = css({
   },
 });
 
-export const Flex = styled('div', mainAxisAlignment, crossAxisAlignment, {
+export const flexCss = css(mainAxisAlignment, crossAxisAlignment, {
   variants: {
     display: {
       flex: {
@@ -89,5 +89,7 @@ export const Flex = styled('div', mainAxisAlignment, crossAxisAlignment, {
     display: 'flex',
   },
 });
+
+export const Flex = styled('div', flexCss);
 
 export type FlexVariants = VariantProps<typeof Flex>;

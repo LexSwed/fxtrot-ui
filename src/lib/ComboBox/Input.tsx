@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { SelectorIcon } from '@heroicons/react/solid';
 
-import { Button } from '../Button';
+import { IconButton } from '../IconButton';
 import { Flex, FlexVariants } from '../Flex/Flex';
 import { FormField, Hint, HintBox, useFormField } from '../FormField/FormField';
 import { Icon } from '../Icon';
@@ -155,7 +155,7 @@ const ComboBoxButton = React.memo(
     return (
       <ButtonContainer cross="center">
         {hasNewBadge && <Tag label="NEW" size="sm" />}
-        <Button
+        <IconButton
           variant="transparent"
           tabIndex={-1}
           aria-hidden={isOpen}
@@ -171,7 +171,7 @@ const ComboBoxButton = React.memo(
           size="xs"
         >
           <Icon as={SelectorIcon} />
-        </Button>
+        </IconButton>
       </ButtonContainer>
     );
   }

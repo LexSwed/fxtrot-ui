@@ -8,7 +8,7 @@ import { Box, Flex, Grid, Button, ThemeProvider, Icon } from '@fxtrot/ui';
 
 ## Variant
 
-Do not use `variant="link"` with actual links, use `LinkButton` component instead.
+Do not use `variant="link"` with actual links, use [`LinkButton`](/components/LinkButton) component instead.
 
 <Playground>
   <Grid gap="lg" cross="center" main="center" columns="repeat(2, auto)" css={{ p: '$4', bc: '$gray50' }}>
@@ -147,18 +147,13 @@ Use `ThemeProvider` component to change the primary color of the button.
 
 ## With elements
 
+If you only want to put [`Icon`](/components/Icon) inside the `Button`, use [`IconButton`](/components/IconButton) component instead.
+
 <Playground>
   <Flex flow="column" cross="start" gap="xl" css={{ p: '$8', bc: '$gray50' }}>
     <Button variant="primary" gap="2">
       <Icon as={DotsVerticalIcon} />
-      <span>Wrapped</span>
-    </Button>
-    <Button variant="primary" gap="2">
-      <Icon as={DotsVerticalIcon} />
-      Not wrapped
-    </Button>
-    <Button variant="outline">
-      <Icon as={DotsVerticalIcon} variant="secondary" />
+      More
     </Button>
   </Flex>
 </Playground>

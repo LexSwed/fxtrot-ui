@@ -3,7 +3,7 @@ import { XIcon } from '@heroicons/react/outline';
 import { Close, Content } from '@radix-ui/react-dialog';
 import { motion, Variants } from 'framer-motion';
 
-import { Button } from '../Button';
+import { IconButton } from '../IconButton';
 import { Icon } from '../Icon';
 import { styled } from '../stitches.config';
 
@@ -23,9 +23,9 @@ export const DialogModal: React.FC<ModalProps> = ({ children, ...props }) => {
         {children}
         <CloseButtonContainer>
           <Close asChild>
-            <Button variant="flat">
+            <IconButton variant="flat" aria-label="Close the dialog">
               <Icon as={XIcon} />
-            </Button>
+            </IconButton>
           </Close>
         </CloseButtonContainer>
       </DialogWindow>

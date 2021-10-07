@@ -9,6 +9,7 @@ export * from './Flex';
 export * from './Grid';
 export * from './Heading';
 export * from './Icon';
+export * from './IconButton';
 export * from './Label';
 export * from './LinkButton';
 export * from './Item';

@@ -1,46 +1,48 @@
 import React from 'react';
 import * as Toggle from '@radix-ui/react-toggle';
 
-import { Button } from '../Button';
-import { styled } from '../stitches.config';
+import { Button } from '../Button/Button';
+import { css } from '../stitches.config';
+import { IconButton } from '../IconButton';
+import { Icon } from '../Icon';
 
 interface Props extends Toggle.ToggleProps, Omit<React.ComponentProps<typeof Button>, 'variant'> {
   variant?: 'flat' | 'secondary';
 }
 
-export const ToggleButton = React.forwardRef<HTMLButtonElement, Props>(
-  ({ pressed, onPressedChange, defaultPressed, variant = 'flat', ...props }, ref) => {
-    return (
-      <Toggle.Root asChild pressed={pressed} defaultPressed={defaultPressed} onPressedChange={onPressedChange}>
-        <ToggleButtonRoot {...props} variant={variant} ref={ref} />
-      </Toggle.Root>
-    );
-  }
+export const ToggleButton = React.memo(
+  React.forwardRef<HTMLButtonElement, Props>(
+    ({ pressed, onPressedChange, defaultPressed, variant = 'flat', ...props }, ref) => {
+      const isIconButton =
+        React.Children.count(props.children) === 1 &&
+        React.Children.toArray(props.children).every((child) => React.isValidElement(child) && child.type === Icon);
+
+      const ButtonComponent = isIconButton ? IconButton : Button;
+
+      return (
+        <Toggle.Root asChild pressed={pressed} defaultPressed={defaultPressed} onPressedChange={onPressedChange}>
+          <ButtonComponent {...(props as any)} className={toggleButtonCss({ variant })} variant={variant} ref={ref} />
+        </Toggle.Root>
+      );
+    }
+  )
 );
 
 ToggleButton.displayName = 'ToggleButton';
 
-const ToggleButtonRoot = styled(Button, {
+const toggleButtonCss = css({
   variants: {
-    'data-state': {
-      on: {},
-      off: {},
+    variant: {
+      flat: {
+        '&[data-state="on"]': {
+          color: '$primaryStill',
+        },
+      },
+      secondary: {
+        '&[data-state="off"]': {
+          bc: '$surfaceActive',
+        },
+      },
     },
   },
-  compoundVariants: [
-    {
-      'variant': 'flat',
-      'data-state': 'on',
-      'css': {
-        color: '$primaryStill',
-      },
-    },
-    {
-      'variant': 'secondary',
-      'data-state': 'on',
-      'css': {
-        bc: '$surfaceActive',
-      },
-    },
-  ],
 });
