@@ -46,14 +46,7 @@ interface InnerBoxProps extends PopoverLayerProps {
 }
 
 const InnerBox = React.forwardRef<HTMLDivElement, InnerBoxProps>(({ side, ...props }, ref) => {
-  const [minWidth, setMinWidth] = useState<number>();
-
-  useLayoutEffect(() => {
-    const triggerEl = document.querySelector(`[aria-controls="${props.id}"]`);
-    if (triggerEl) {
-      setMinWidth((triggerEl as HTMLElement).getBoundingClientRect().width);
-    }
-  }, [props.id]);
+  const minWidth = useTriggerWidth(props.id);
 
   const transitionSide = props['data-side'] || side;
 
@@ -70,6 +63,19 @@ const InnerBox = React.forwardRef<HTMLDivElement, InnerBoxProps>(({ side, ...pro
     </PopperBox>
   );
 });
+
+function useTriggerWidth(triggerElementId?: string) {
+  const [width, setWidth] = useState<number>();
+
+  useLayoutEffect(() => {
+    const triggerEl = document.querySelector(`[aria-controls="${triggerElementId}"]`);
+    if (triggerEl) {
+      setWidth((triggerEl as HTMLElement).getBoundingClientRect().width);
+    }
+  }, [triggerElementId]);
+
+  return width;
+}
 
 const PopperInner = styled('div', {});
 
