@@ -21,7 +21,8 @@
     "isolatedModules": true,
     "paths": {
       "@fxtrot/ui": ["src/lib"]
-    }
+    },
+    "incremental": true
   },
   "include": ["next-env.d.ts", "src/**/*"],
   "exclude": ["node_modules"]
