@@ -1,3 +1,6 @@
 {
-  "extends": ["react-app", "plugin:@next/next/recommended"]
+  "extends": ["react-app", "plugin:@next/next/recommended"],
+  "rules": {
+    "no-console": ["error"]
+  }
 }

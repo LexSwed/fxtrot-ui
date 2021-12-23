@@ -51,9 +51,10 @@ const DialogWindow = styled(motion.div, {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  minWidth: 200,
+  minWidth: 320,
   mt: '-5vh',
   boxShadow: '$lg',
+  zIndex: 10,
 });
 
 const variants: Variants = {
