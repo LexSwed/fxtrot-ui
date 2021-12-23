@@ -1,5 +1,4 @@
-import React, { createContext, useContext, useMemo } from 'react';
-import { IdProvider } from '@radix-ui/react-id';
+import React, { createContext, useContext, useMemo, useRef } from 'react';
 
 import { stitchesConfig, styled } from '../stitches.config';
 import { Reset } from './Reset';
@@ -11,6 +10,7 @@ type Props = {
 
 export const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
   const { themeClassName: contextTheme } = useContext(themeContext);
+  const ref = useRef<HTMLDivElement>(null);
 
   const themeClass = useMemo(() => {
     if (!theme) return null;
@@ -31,14 +31,16 @@ export const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
   }
 
   return (
-    <IdProvider>
-      <>
+    <>
+      <rootRefContext.Provider value={ref}>
         <themeContext.Provider value={value}>
-          <ThemeWrapper className={className}>{children}</ThemeWrapper>
+          <ThemeWrapper className={className} ref={ref}>
+            {children}
+          </ThemeWrapper>
         </themeContext.Provider>
-        <Reset />
-      </>
-    </IdProvider>
+      </rootRefContext.Provider>
+      <Reset />
+    </>
   );
 };
 
@@ -65,3 +67,7 @@ function isShortDefinition(theme: Props['theme']): theme is ShortDefinition {
 function isFullTheme(theme: Props['theme']): theme is ThemeColors {
   return typeof theme === 'object' && 'colors' in theme;
 }
+
+const rootRefContext = createContext<React.RefObject<HTMLDivElement>>({ current: null });
+
+export const useRootElementRef = () => useContext(rootRefContext);
