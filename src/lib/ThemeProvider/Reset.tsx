@@ -34,7 +34,7 @@ const populate = stitchesConfig.globalCss({
     scrollBehavior: 'smooth',
   },
   '*, *::before, *::after': {
-    boxSizing: 'inherit',
+    boxSizing: 'border-box',
     backgroundRepeat: 'no-repeat',
   },
   'body': {
