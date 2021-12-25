@@ -6,31 +6,40 @@ import { Icon, IconBox } from '../Icon/Icon';
 import { Text } from '../Text';
 
 const Link = styled('a', Text, {
-  'display': 'inline-flex',
-  'alignItems': 'center',
   'color': '$primaryStill',
   'textDecoration': 'none',
   'boxSizing': 'border-box',
   'cursor': 'pointer',
   'fontWeight': 600,
-  '&:hover': {
-    textDecoration: 'underline',
-  },
-  '&:focus': {
-    textDecoration: 'underline',
+  '& > span:first-child': {
+    'textDecoration': 'underline solid transparent 2px',
+    'transition': 'text-decoration 0.1s ease-in',
+    '&:hover, &:hover': {
+      textDecorationColor: 'currentColor',
+    },
   },
   '&:visited': {
-    'color': '$primaryActive',
-    '& path': {
+    color: '$primaryActive',
+    [`& ${IconBox} path`]: {
       stroke: '$primaryActive',
     },
   },
 
-  [`& ${IconBox}`]: {
-    'display': 'inline-block',
-    'ml': '$1',
-    '& path': {
-      stroke: '$primaryStill',
+  'variants': {
+    external: {
+      true: {},
+      icon: {
+        position: 'relative',
+        [`& ${IconBox}`]: {
+          'position': 'absolute',
+          'top': '50%',
+          'transform': 'translateY(-50%)',
+          '& path': {
+            stroke: '$primaryStill',
+          },
+        },
+        pr: '$5',
+      },
     },
   },
 });
@@ -43,8 +52,8 @@ export const TextLink = React.forwardRef<HTMLAnchorElement, Props>(({ external, 
   const additionalProps = external ? { target: '_blank', rel: 'noopener' } : null;
 
   return (
-    <Link {...additionalProps} {...props} ref={ref}>
-      {children}
+    <Link {...additionalProps} external={external} {...props} ref={ref}>
+      <span>{children}</span>
       {external === 'icon' ? <Icon size="md" as={ExternalLinkIcon} /> : null}
     </Link>
   );
