@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from 'react';
-import { Root, Trigger, Title, Overlay, Portal, DialogTitleProps } from '@radix-ui/react-dialog';
+import { Root, Trigger, Title, Overlay, DialogTitleProps } from '@radix-ui/react-dialog';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { DialogModal } from './DialogModal';
 import { styled } from '../stitches.config';
 import { Heading } from '../Heading';
-import { useRootElementRef } from '../ThemeProvider/ThemeProvider';
+import { Portal } from '../Portal';
 
 interface Props {
   children: [React.ReactElement, (close: () => void) => React.ReactNode];
@@ -19,7 +19,6 @@ interface Props {
 export const Dialog = ({ children, modal, ...props }: Props) => {
   const [open, setOpen] = useState(props.defaultOpen);
   const [trigger, content] = children;
-  const rootRef = useRootElementRef();
 
   const close = useCallback(() => setOpen(false), []);
 
@@ -28,7 +27,7 @@ export const Dialog = ({ children, modal, ...props }: Props) => {
       <Trigger asChild>{trigger}</Trigger>
       <AnimatePresence>
         {open && content && (
-          <Portal container={rootRef.current}>
+          <Portal>
             <Overlay asChild forceMount>
               <OverlayStyled
                 initial={{ opacity: 0 }}
@@ -64,5 +63,4 @@ const OverlayStyled = styled(motion.div, {
   bottom: 0,
   left: 0,
   overflow: 'hidden',
-  zIndex: 10,
 });

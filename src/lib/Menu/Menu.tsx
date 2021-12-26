@@ -1,11 +1,12 @@
 import React from 'react';
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+import * as RdxMenu from '@radix-ui/react-dropdown-menu';
 
 import { PopoverLayer, PopoverLayerProps } from '../Popover/PopoverLayer';
-import { styled } from '../stitches.config';
-import { ToggleStateScope, useToggleState } from '../utils/OpenStateProvider';
+import { styled, CssStyles } from '../stitches.config';
+import { OpenStateProvider, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { StyledItem } from '../Item/Item';
 import { Label } from '../Label';
+import { Portal } from '../Portal';
 
 interface MenuListProps {
   children: [trigger: React.ReactElement, menuList: React.ReactElement];
@@ -15,46 +16,56 @@ interface MenuListProps {
   modal?: boolean;
 }
 
-export const Menu = ({ children, modal }: MenuListProps) => {
-  const [open, controls, atom] = useToggleState();
+const MenuInner = ({ children, modal }: MenuListProps) => {
+  const open = useOpenState();
+  const controls = useOpenStateControls();
   const [trigger, menuList] = children;
 
   return (
-    <ToggleStateScope atom={atom}>
-      <DropdownMenu.Root open={open} onOpenChange={controls.switch} modal={modal}>
-        <DropdownMenu.Trigger asChild>{trigger}</DropdownMenu.Trigger>
-        {menuList}
-      </DropdownMenu.Root>
-    </ToggleStateScope>
+    <RdxMenu.Root open={open} onOpenChange={controls.switch} modal={modal}>
+      <RdxMenu.Trigger asChild>{trigger}</RdxMenu.Trigger>
+      {menuList}
+    </RdxMenu.Root>
   );
 };
 
-const List = ({ children, ...props }: PopoverLayerProps) => {
+const MenuRoot = (props: MenuListProps) => {
   return (
-    <PopoverLayer {...props} as={StyledList} radixElement={DropdownMenu.Content}>
-      {children}
-    </PopoverLayer>
+    <OpenStateProvider>
+      <MenuInner {...props} />
+    </OpenStateProvider>
   );
 };
-const StyledList = styled('div', {
+
+const listStyles: CssStyles = {
   width: '100%',
   m: 0,
   p: '$1',
   overflowY: 'auto',
   maxHeight: '240px',
-});
+  focusRing: '$focusRing',
+};
+const List = ({ children, ...props }: PopoverLayerProps) => {
+  return (
+    <Portal>
+      <PopoverLayer {...props} css={listStyles} portalled={false} forceMount radixElement={RdxMenu.Content}>
+        {children}
+      </PopoverLayer>
+    </Portal>
+  );
+};
 
-interface MenuItemProps extends Omit<React.ComponentProps<typeof DropdownMenu.Item>, 'as'> {}
+interface MenuItemProps extends Omit<React.ComponentProps<typeof RdxMenu.Item>, 'as'> {}
 
 const MenuItem = React.forwardRef<HTMLDivElement, MenuItemProps>(({ onSelect, disabled, textValue, ...props }, ref) => {
   return (
-    <DropdownMenu.Item onSelect={onSelect} disabled={disabled} textValue={textValue} asChild>
+    <RdxMenu.Item onSelect={onSelect} disabled={disabled} textValue={textValue} asChild>
       <StyledItem {...props} ref={ref} />
-    </DropdownMenu.Item>
+    </RdxMenu.Item>
   );
 });
 
-const Separator = styled(DropdownMenu.Separator, {
+const Separator = styled(RdxMenu.Separator, {
   height: 1,
   bc: '$borderLight',
   my: '$1',
@@ -63,13 +74,14 @@ const Separator = styled(DropdownMenu.Separator, {
 
 const MenuLabel = React.forwardRef((props, ref) => {
   return (
-    <DropdownMenu.Label asChild>
+    <RdxMenu.Label asChild>
       <Label {...props} ref={ref} />
-    </DropdownMenu.Label>
+    </RdxMenu.Label>
   );
 }) as typeof Label;
 
-Menu.List = List;
-Menu.Item = MenuItem;
-Menu.Separator = Separator;
-Menu.Label = MenuLabel;
+export const Menu = MenuRoot;
+MenuRoot.List = List;
+MenuRoot.Item = MenuItem;
+MenuRoot.Separator = Separator;
+MenuRoot.Label = MenuLabel;

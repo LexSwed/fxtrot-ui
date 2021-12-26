@@ -32,13 +32,11 @@ export const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
 
   return (
     <>
-      <rootRefContext.Provider value={ref}>
-        <themeContext.Provider value={value}>
-          <ThemeWrapper className={className} ref={ref}>
-            {children}
-          </ThemeWrapper>
-        </themeContext.Provider>
-      </rootRefContext.Provider>
+      <themeContext.Provider value={value}>
+        <ThemeWrapper className={className} ref={ref}>
+          {children}
+        </ThemeWrapper>
+      </themeContext.Provider>
       <Reset />
     </>
   );
@@ -67,7 +65,3 @@ function isShortDefinition(theme: Props['theme']): theme is ShortDefinition {
 function isFullTheme(theme: Props['theme']): theme is ThemeColors {
   return typeof theme === 'object' && 'colors' in theme;
 }
-
-const rootRefContext = createContext<React.RefObject<HTMLDivElement>>({ current: null });
-
-export const useRootElementRef = () => useContext(rootRefContext);

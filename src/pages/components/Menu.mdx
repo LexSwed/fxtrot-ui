@@ -9,8 +9,6 @@ import { TrashIcon } from '@heroicons/react/outline';
 
 ## Menu
 
-For big lists use `value` prop on `Menu.Item` and `onAction` callback to handle click on the Menu.Item with `action`.
-
 <Playground>
   <Box p="$8">
     <Menu>
@@ -43,7 +41,7 @@ You can modify `offset` from the `side` and along the `align`ment.
   <ThemeProvider theme="orange">
     <Box p="$8">
       <Menu>
-        <Button>
+        <Button variant="outline">
           Open menu
           <Icon as={ChevronDownIcon} size="lg" />
         </Button>
@@ -66,6 +64,7 @@ You can modify `offset` from the `side` and along the `align`ment.
 <Playground>
   {() => {
     const modalOpenRef = React.useRef();
+    const [selection, setSelection] = React.useState();
     return (
       <Box p="$8">
         <Menu>
@@ -94,13 +93,17 @@ You can modify `offset` from the `side` and along the `align`ment.
                 <Dialog.Modal>
                   <Dialog.Title level={3}>Delete topic?</Dialog.Title>
                   <Picker
-                    onChange={() => {
-                      modalOpenRef.current = false;
-                      close();
+                    value={selection}
+                    onChange={(value) => {
+                      setSelection(value);
+                      setTimeout(() => {
+                        modalOpenRef.current = false;
+                        close();
+                      }, 300);
                     }}
                   >
-                    <Item label="Item 1" />
-                    <Item label="Item 2" />
+                    <Item label="Item 1" value="1" />
+                    <Item label="Item 2" value="2" />
                   </Picker>
                 </Dialog.Modal>
               )}

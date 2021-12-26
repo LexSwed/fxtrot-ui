@@ -82,7 +82,7 @@ export function useFormField({ id, hint, label }: { id?: string; hint?: string; 
     () => ({
       'id': newId,
       'aria-describedby': hint ? `${newId}-hint` : undefined,
-      'aria-labelledby': label ? `${label}-label` : undefined,
+      'aria-labelledby': label ? `${newId}-label` : undefined,
     }),
     [hint, newId, label]
   );
