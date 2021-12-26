@@ -3,34 +3,35 @@ import React, { useLayoutEffect, useState } from 'react';
 import type { PopoverContentProps } from '@radix-ui/react-popover';
 
 import { styled, CssStyles } from '../stitches.config';
-import { useToggleStateAtom } from '../utils/OpenStateProvider';
+import { useOpenState } from '../utils/OpenStateProvider';
 
-type RadixAlignmentProps = Pick<PopoverContentProps, 'align' | 'side' | 'alignOffset' | 'sideOffset'>;
+type RadixProps = Pick<
+  PopoverContentProps,
+  'align' | 'side' | 'alignOffset' | 'sideOffset' | 'forceMount' | 'portalled' | 'onCloseAutoFocus'
+>;
 
-export interface PopoverLayerProps extends Omit<React.ComponentProps<'div'>, 'align' | 'ref'>, RadixAlignmentProps {
+export interface PopoverLayerProps
+  extends Omit<React.ComponentProps<typeof PopperBox>, 'css' | 'align' | 'ref'>,
+    RadixProps {}
+interface Props extends PopoverLayerProps {
+  radixElement: React.ComponentType<any>;
   css?: CssStyles;
 }
-export const PopoverLayer: React.FC<
-  PopoverLayerProps & {
-    radixElement: React.ComponentType<RadixAlignmentProps & Record<string, any>>;
-    as?: InnerBoxProps['as'];
-  }
-> = ({
+export const PopoverLayer: React.FC<Props> = ({
   children,
   align = 'start',
   side = 'bottom',
-  alignOffset,
   sideOffset = 8,
   radixElement: RadixElement,
+  css,
   ...props
 }) => {
-  const [open] = useToggleStateAtom();
-
+  const open = useOpenState();
   return (
     <AnimatePresence>
       {open && (
-        <RadixElement align={align} side={side} alignOffset={alignOffset} sideOffset={sideOffset} forceMount asChild>
-          <InnerBox {...props} side={side}>
+        <RadixElement align={align} side={side} sideOffset={sideOffset} asChild {...props}>
+          <InnerBox css={css} side={side}>
             {children}
           </InnerBox>
         </RadixElement>
@@ -42,25 +43,23 @@ export const PopoverLayer: React.FC<
 interface InnerBoxProps extends PopoverLayerProps {
   'data-side'?: PopoverLayerProps['side'];
   'side'?: PopoverLayerProps['side'];
-  'as'?: React.ElementType;
+  'css'?: CssStyles;
 }
 
-const InnerBox = React.forwardRef<HTMLDivElement, InnerBoxProps>(({ side, ...props }, ref) => {
+const InnerBox = React.forwardRef<HTMLDivElement, InnerBoxProps>(({ side, style = {}, ...props }, ref) => {
   const minWidth = useTriggerWidth(props.id);
-
   const transitionSide = props['data-side'] || side;
-
   return (
     <PopperBox
-      style={{ minWidth }}
+      style={{ ...style, minWidth }}
       variants={transitionSide ? animations[transitionSide] : undefined}
       initial="initial"
       animate="animate"
       exit="initial"
       transition={{ duration: 0.15, type: 'tween' }}
-    >
-      <PopperInner {...(props as any)} ref={ref} />
-    </PopperBox>
+      {...props}
+      ref={ref}
+    />
   );
 });
 
@@ -76,8 +75,6 @@ function useTriggerWidth(triggerElementId?: string) {
 
   return width;
 }
-
-const PopperInner = styled('div', {});
 
 const PopperBox = styled(motion.div, {
   bc: '$surfaceStill',

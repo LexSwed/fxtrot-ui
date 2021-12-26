@@ -54,7 +54,6 @@ const DialogWindow = styled(motion.div, {
   minWidth: 320,
   mt: '-5vh',
   boxShadow: '$lg',
-  zIndex: 10,
 });
 
 const variants: Variants = {

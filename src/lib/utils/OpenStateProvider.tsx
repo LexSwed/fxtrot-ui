@@ -1,4 +1,3 @@
-import { atom, useAtom } from 'jotai';
 import React, { createContext, useContext, useMemo, useState, useImperativeHandle } from 'react';
 
 const menuStateContext = createContext(false);
@@ -7,8 +6,25 @@ const menuStateControlsContext = createContext<MenuControlFunctions>({} as MenuC
 export interface OpenStateRef extends MenuControlFunctions {}
 
 export const OpenStateProvider = React.forwardRef<OpenStateRef, { defaultOpen?: boolean; children?: React.ReactNode }>(
-  ({ children, defaultOpen }, ref) => {
-    const [isOpen, controls] = useBooleanState(defaultOpen);
+  ({ children, defaultOpen = false }, ref) => {
+    const [isOpen, setOpen] = useState<boolean>(defaultOpen);
+    const controls = useMemo<MenuControlFunctions>(
+      () => ({
+        open: () => {
+          setOpen(true);
+        },
+        close: () => {
+          setOpen(false);
+        },
+        toggle: () => {
+          setOpen((open) => !open);
+        },
+        switch: (value: boolean) => {
+          setOpen(value);
+        },
+      }),
+      []
+    );
 
     useImperativeHandle(ref, () => controls, [controls]);
 
@@ -19,42 +35,6 @@ export const OpenStateProvider = React.forwardRef<OpenStateRef, { defaultOpen?: 
     );
   }
 );
-
-const defaultAtom = atom<boolean>(false);
-const openStateAtomContext = createContext<typeof defaultAtom>(defaultAtom);
-export const ToggleStateScope: React.FC<{ atom: typeof defaultAtom }> = ({ children, atom }) => {
-  return <openStateAtomContext.Provider value={atom}>{children}</openStateAtomContext.Provider>;
-};
-
-export function useToggleState(defaultOpen = false, ref?: React.ForwardedRef<OpenStateRef>) {
-  const [openStateAtom] = useState(() => atom(defaultOpen));
-  const [isOpen, setOpen] = useAtom(openStateAtom);
-
-  const controls = useMemo<MenuControlFunctions>(
-    () => ({
-      open: () => {
-        setOpen(true);
-      },
-      close: () => {
-        setOpen(false);
-      },
-      toggle: () => {
-        setOpen((open) => !open);
-      },
-      switch: (value) => {
-        setOpen(value);
-      },
-    }),
-    [setOpen]
-  );
-
-  useImperativeHandle(ref, () => controls, [controls]);
-
-  return [isOpen, controls, openStateAtom] as const;
-}
-export function useToggleStateAtom() {
-  return useAtom(useContext(openStateAtomContext));
-}
 
 OpenStateProvider.displayName = 'OpenStateProvider';
 
@@ -69,25 +49,4 @@ interface MenuControlFunctions {
   close: () => void;
   toggle: () => void;
   switch: (value: boolean) => void;
-}
-function useBooleanState(defaultOpen = false): [isOpen: boolean, controls: MenuControlFunctions] {
-  const [isOpen, setOpen] = useState(defaultOpen);
-  const controls = useMemo<MenuControlFunctions>(
-    () => ({
-      open: () => {
-        setOpen(true);
-      },
-      close: () => {
-        setOpen(false);
-      },
-      toggle: () => {
-        setOpen((open) => !open);
-      },
-      switch: (value) => {
-        setOpen(value);
-      },
-    }),
-    []
-  );
-  return [isOpen, controls];
 }

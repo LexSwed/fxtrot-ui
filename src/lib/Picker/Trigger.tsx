@@ -11,7 +11,7 @@ import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { usePicker } from './utils';
 
-const TriggerButton = styled('div', fieldBox, {
+const TriggerButton = styled('button', fieldBox, {
   'position': 'relative',
   'display': 'flex',
   'alignItems': 'center',
@@ -122,7 +122,6 @@ const Trigger = React.forwardRef<HTMLButtonElement, TriggerProps>(
             onKeyDown={onKeyDown}
             ref={ref}
             value={value}
-            as="button"
             type="button"
           >
             {children || <Placeholder>{placeholder}</Placeholder>}
