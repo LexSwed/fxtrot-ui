@@ -4,6 +4,7 @@ import * as Radix from '@radix-ui/react-popover';
 import { Box } from '../Box';
 import { OpenStateProvider, OpenStateRef, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { PopoverLayer } from './PopoverLayer';
+import { Portal } from '../Portal';
 interface Props {
   children: [React.ReactElement, React.ReactElement<ContentProps>];
   defaultOpen?: boolean;
@@ -37,9 +38,11 @@ PopoverRoot.displayName = 'Popover';
 interface ContentProps extends React.ComponentProps<typeof PopoverLayer> {}
 const Content: React.FC<ContentProps> = ({ children, ...props }) => {
   return (
-    <PopoverLayer {...props} forceMount radixElement={Radix.Content}>
-      <Box p="$4">{children}</Box>
-    </PopoverLayer>
+    <Portal>
+      <PopoverLayer {...props} forceMount portalled={false} radixElement={Radix.Content}>
+        <Box p="$4">{children}</Box>
+      </PopoverLayer>
+    </Portal>
   );
 };
 

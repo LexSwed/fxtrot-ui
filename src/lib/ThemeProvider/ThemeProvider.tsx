@@ -10,6 +10,7 @@ type Props = {
 
 export const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
   const { themeClassName: contextTheme } = useContext(themeContext);
+  const rootRef = useFxtrotRootRef();
   const ref = useRef<HTMLDivElement>(null);
 
   const themeClass = useMemo(() => {
@@ -31,14 +32,14 @@ export const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
   }
 
   return (
-    <>
+    <rootRefContext.Provider value={rootRef.current ? rootRef : ref}>
       <themeContext.Provider value={value}>
         <ThemeWrapper className={className} ref={ref}>
           {children}
         </ThemeWrapper>
       </themeContext.Provider>
       <Reset />
-    </>
+    </rootRefContext.Provider>
   );
 };
 
@@ -47,6 +48,10 @@ interface ThemeContext {
 }
 
 const themeContext = createContext<ThemeContext>({});
+export const useTheme = () => useContext(themeContext);
+
+const rootRefContext = createContext<React.RefObject<HTMLElement>>({ current: null });
+export const useFxtrotRootRef = () => useContext(rootRefContext);
 
 const ThemeWrapper = styled('span', {
   display: 'contents',
@@ -55,8 +60,6 @@ const ThemeWrapper = styled('span', {
   fontSize: '$md',
   boxSizing: 'border-box',
 });
-
-export const useTheme = () => useContext(themeContext);
 
 function isShortDefinition(theme: Props['theme']): theme is ShortDefinition {
   return typeof theme === 'object' && 'primary' in theme;
