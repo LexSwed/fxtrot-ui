@@ -7,6 +7,7 @@ import { OpenStateProvider, useOpenState, useOpenStateControls } from '../utils/
 import { StyledItem } from '../Item/Item';
 import { Label } from '../Label';
 import { Portal } from '../Portal';
+import type { VariantProps } from '@stitches/react';
 
 interface MenuListProps {
   children: [trigger: React.ReactElement, menuList: React.ReactElement];
@@ -55,7 +56,9 @@ const List = ({ children, ...props }: PopoverLayerProps) => {
   );
 };
 
-interface MenuItemProps extends Omit<React.ComponentProps<typeof RdxMenu.Item>, 'as'> {}
+interface MenuItemProps
+  extends Omit<React.ComponentProps<typeof RdxMenu.Item>, 'as'>,
+    VariantProps<typeof StyledItem> {}
 
 const MenuItem = React.forwardRef<HTMLDivElement, MenuItemProps>(({ onSelect, disabled, textValue, ...props }, ref) => {
   return (
