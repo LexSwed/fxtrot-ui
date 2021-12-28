@@ -1,16 +1,7 @@
-import { useEffect } from 'react';
 import { stitchesConfig } from '../stitches.config';
 
-let applied = false;
-
 export const Reset = () => {
-  useEffect(() => {
-    if (applied) {
-      return;
-    }
-    populate();
-    applied = true;
-  }, []);
+  populate();
 
   return null;
 };

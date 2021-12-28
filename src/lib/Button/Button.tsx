@@ -96,7 +96,7 @@ export const buttonCss = css(flexCss, {
           borderColor: '$surfaceDisabled',
           bc: '$surfaceDisabled',
         },
-        '&:active': {
+        '&:active, &[data-state="open"]': {
           borderColor: '$borderActive',
           bc: '$surfaceActive',
         },
@@ -114,7 +114,7 @@ export const buttonCss = css(flexCss, {
           color: '$primaryHover',
           borderColor: '$primaryHover',
         },
-        '&:active': {
+        '&:active, &[data-state="open"]': {
           bc: '$primaryLightActive',
           color: '$primaryActive',
           borderColor: '$primaryActive',
@@ -135,7 +135,7 @@ export const buttonCss = css(flexCss, {
         '&:hover': {
           bc: '$flatHover',
         },
-        '&:active': {
+        '&:active, &[data-state="open"]': {
           bc: '$flatActive',
         },
         '&:disabled': {
