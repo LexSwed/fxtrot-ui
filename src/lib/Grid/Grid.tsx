@@ -1,18 +1,18 @@
 import React from 'react';
-import type { PropertyValue } from '@stitches/react';
 
 import { createScale } from '../utils/variants';
 import { styled } from '../stitches.config';
 import { mainAxisAlignment, crossAxisAlignment } from '../Flex/Flex';
+import type { CssStyles } from '..';
 
 interface Props extends React.ComponentProps<typeof GridStyled> {
-  columns?: PropertyValue<'gridTemplateColumns'>;
-  rows?: PropertyValue<'gridTemplateRows'>;
-  template?: PropertyValue<'gridTemplate'>;
-  areas?: PropertyValue<'gridTemplateAreas'>;
-  autoColumns?: PropertyValue<'gridAutoColumns'>;
-  autoRows?: PropertyValue<'gridAutoRows'>;
-  autoFlow?: PropertyValue<'gridAutoFlow'>;
+  columns?: CssStyles['gridTemplateColumns'];
+  rows?: CssStyles['gridTemplateRows'];
+  template?: CssStyles['gridTemplate'];
+  areas?: CssStyles['gridTemplateAreas'];
+  autoColumns?: CssStyles['gridAutoColumns'];
+  autoRows?: CssStyles['gridAutoRows'];
+  autoFlow?: CssStyles['gridAutoFlow'];
 }
 
 export const Grid = React.forwardRef<HTMLDivElement, Props>(
