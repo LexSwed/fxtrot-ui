@@ -87,7 +87,7 @@ export const buttonCss = css(flexCss, {
         'bc': '$surfaceStill',
         'color': '$text',
         'borderColor': '$borderStill',
-        'focusRing': '$borderLight',
+        'focusRing': '$borderStill',
         '&:hover': {
           borderColor: '$borderHover',
         },
@@ -131,7 +131,7 @@ export const buttonCss = css(flexCss, {
       flat: {
         'bc': '$flatStill',
         'color': '$text',
-        'focusRing': '$borderLight',
+        'focusRing': '$borderStill',
         '&:hover': {
           bc: '$flatHover',
         },

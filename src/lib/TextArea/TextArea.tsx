@@ -108,7 +108,6 @@ interface Props extends FlexVariants, FieldBoxVariants, Omit<React.ComponentProp
 
 const TextAreaField = styled('textarea', fieldBox, {
   resize: 'none',
-  pr: '$0',
   py: '$2',
   height: 'auto',
   maxHeight: '10em',

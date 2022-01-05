@@ -128,7 +128,7 @@ export function createNewTheme({ shade, primary, accent }: ShortDefinition): The
       accentLight: allColors[`${accent}500` as keyof typeof allColors],
       success: allColors['green700'],
       danger: allColors['red600'],
-      focusRing: allColors[`${primary}200` as keyof typeof allColors],
+      focusRing: allColors[`${primary}300` as keyof typeof allColors],
 
       primaryStill: allColors[`${primary}500` as keyof typeof allColors],
       primaryHover: allColors[`${primary}600` as keyof typeof allColors],
