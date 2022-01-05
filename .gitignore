@@ -21,6 +21,7 @@ sidebar.json
 # misc
 .DS_Store
 .env*
+.npmrc
 
 # debug
 npm-debug.log*
