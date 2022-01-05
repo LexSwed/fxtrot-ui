@@ -34,7 +34,7 @@ export const stitchesConfig = createStitches({
       'base': '$md',
     },
     lineHeights: {
-      'xs': '1em',
+      'xs': '1.1em',
       'sm': '1.25em',
       'md': '1.5em',
       'lg': '1.75em',

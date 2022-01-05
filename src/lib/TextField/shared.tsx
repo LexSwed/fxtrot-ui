@@ -45,9 +45,9 @@ export const fieldBox = css({
   'variants': {
     variant: {
       boxed: {
-        'borderColor': '$borderStill',
         'br': '$md',
-        'focusRing': '$borderLight',
+        'borderColor': '$borderStill',
+        'focusRing': '$borderStill',
         '&:hover': {
           borderColor: '$borderHover',
         },
@@ -93,6 +93,7 @@ export const fieldBox = css({
         'color': '$text',
         'px': '$3',
         'br': '$md',
+        'focusRing': '$borderStill',
         '&:hover:not(:focus)': {
           bc: '$flatHover',
         },
