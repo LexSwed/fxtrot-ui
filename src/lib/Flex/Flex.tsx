@@ -40,6 +40,9 @@ export const crossAxisAlignment = css({
       stretch: {
         alignItems: 'stretch',
       },
+      baseline: {
+        alignItems: 'baseline',
+      },
     },
   },
 });
