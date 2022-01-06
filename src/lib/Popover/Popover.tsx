@@ -36,11 +36,13 @@ const PopoverRoot = React.forwardRef<OpenStateRef, Props>((props, ref) => {
 PopoverRoot.displayName = 'Popover';
 
 interface ContentProps extends PopoverLayerProps {}
-const Content: React.FC<ContentProps> = ({ children, ...props }) => {
+const Content: React.FC<ContentProps> = ({ children, css, ...props }) => {
   return (
     <Portal>
       <PopoverLayer {...props} forceMount portalled={false} radixElement={Radix.Content}>
-        <Box p="$4">{children}</Box>
+        <Box p="$4" css={css}>
+          {children}
+        </Box>
       </PopoverLayer>
     </Portal>
   );
