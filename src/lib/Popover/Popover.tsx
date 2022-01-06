@@ -3,7 +3,7 @@ import * as Radix from '@radix-ui/react-popover';
 
 import { Box } from '../Box';
 import { OpenStateProvider, OpenStateRef, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
-import { PopoverLayer } from './PopoverLayer';
+import { PopoverLayer, PopoverLayerProps } from './PopoverLayer';
 import { Portal } from '../Portal';
 interface Props {
   children: [React.ReactElement, React.ReactElement<ContentProps>];
@@ -35,7 +35,7 @@ const PopoverRoot = React.forwardRef<OpenStateRef, Props>((props, ref) => {
 
 PopoverRoot.displayName = 'Popover';
 
-interface ContentProps extends React.ComponentProps<typeof PopoverLayer> {}
+interface ContentProps extends PopoverLayerProps {}
 const Content: React.FC<ContentProps> = ({ children, ...props }) => {
   return (
     <Portal>
