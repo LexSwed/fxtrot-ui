@@ -8,9 +8,11 @@ const Div = styled('div', {});
 export const Box = React.forwardRef(({ children, css = {}, ...props }, ref) => {
   const [styles, attrs] = Object.entries(props).reduce(
     (res, [key, value]: [any, any]) => {
-      // css props should override any values passed directly, e.g. p="$2" and css={{ p: '$4' }} should keep p="$4"
-      if (VALID_ITEMS.has(key) && !css[key]) {
-        res[0][key] = value;
+      if (VALID_ITEMS.has(key)) {
+        // css props should override any values passed directly, e.g. p="$2" and css={{ p: '$4' }} should keep p="$4"
+        if (!css[key]) {
+          res[0][key] = value;
+        }
       } else {
         res[1][key] = value;
       }
