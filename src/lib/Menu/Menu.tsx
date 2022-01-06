@@ -56,9 +56,9 @@ const List = ({ children, ...props }: PopoverLayerProps) => {
   );
 };
 
-interface MenuItemProps
-  extends Omit<React.ComponentProps<typeof RdxMenu.Item>, 'as'>,
-    VariantProps<typeof StyledItem> {}
+interface MenuItemProps extends Omit<React.ComponentProps<typeof RdxMenu.Item>, 'as'>, VariantProps<typeof StyledItem> {
+  css?: CssStyles;
+}
 
 const MenuItem = React.forwardRef<HTMLDivElement, MenuItemProps>(({ onSelect, disabled, textValue, ...props }, ref) => {
   return (
