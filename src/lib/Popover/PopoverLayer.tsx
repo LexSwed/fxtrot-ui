@@ -12,10 +12,11 @@ type RadixProps = Pick<
 
 export interface PopoverLayerProps
   extends Omit<React.ComponentProps<typeof PopperBox>, 'css' | 'align' | 'ref'>,
-    RadixProps {}
+    RadixProps {
+  css?: CssStyles;
+}
 interface Props extends PopoverLayerProps {
   radixElement: React.ComponentType<any>;
-  css?: CssStyles;
 }
 export const PopoverLayer: React.FC<Props> = ({
   children,

@@ -196,7 +196,7 @@ export const fieldBox = css({
 });
 
 export type FieldBoxVariants = Omit<VariantProps<typeof fieldBox>, 'fieldSize'> & {
-  size: VariantProps<typeof fieldBox>['fieldSize'];
+  size?: VariantProps<typeof fieldBox>['fieldSize'];
 };
 
 const Input = styled('input', fieldBox, {

@@ -12,7 +12,7 @@ const Link = styled('a', Text, {
   'cursor': 'pointer',
   'fontWeight': 600,
   '& > span:first-child': {
-    'textDecoration': 'underline solid transparent 2px',
+    'textDecoration': 'underline solid transparent 1px',
     'transition': 'text-decoration 0.1s ease-in',
     '&:hover, &:hover': {
       textDecorationColor: 'currentColor',
