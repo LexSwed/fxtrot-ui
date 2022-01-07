@@ -15,19 +15,13 @@ export const DialogModal = React.forwardRef<HTMLDivElement, ModalProps>(
   ({ children, hasCloseButton = true, ...props }, ref) => {
     return (
       <Overlay asChild forceMount>
-        <OverlayStyled
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3, type: 'tween' }}
-        >
-          <Content asChild>
+        <OverlayStyled variants={overlayVariants} initial="initial" animate="animate" exit="exit">
+          <Content asChild forceMount>
             <DialogWindow
               variants={variants}
               initial="initial"
               animate="animate"
               exit="exit"
-              transition={{ duration: 0.1, type: 'tween' }}
               {...(props as any)}
               ref={ref}
             >
@@ -82,8 +76,33 @@ const variants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
+      duration: 0.3,
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: 20,
+    transition: {
       duration: 0.2,
     },
   },
-  exit: { opacity: 0, y: 20 },
+};
+
+const overlayVariants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      duration: 0.3,
+    },
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 0.2,
+      delay: 0.1,
+    },
+  },
 };
