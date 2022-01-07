@@ -145,6 +145,7 @@ export function createNewTheme({ shade, primary, accent }: ShortDefinition): The
       surfaceHover: allColors[`${shade}Gray100` as keyof typeof allColors],
       surfaceActive: convertHex(allColors[`${shade}Gray500` as keyof typeof allColors], 0.08),
       surfaceDisabled: allColors[`${shade}Gray200` as keyof typeof allColors],
+      surfaceLayer: '#fff',
 
       borderLight: allColors[`${shade}Gray200` as keyof typeof allColors],
       borderStill: allColors[`${shade}Gray300` as keyof typeof allColors],
@@ -206,6 +207,7 @@ export interface ThemeColors {
     surfaceHover: string;
     surfaceActive: string;
     surfaceDisabled: string;
+    surfaceLayer: string;
 
     borderLight: string;
     borderStill: string;
