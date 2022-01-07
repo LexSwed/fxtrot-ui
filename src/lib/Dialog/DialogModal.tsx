@@ -1,40 +1,49 @@
 import React from 'react';
-import { XIcon } from '@heroicons/react/outline';
-import { Close, Content } from '@radix-ui/react-dialog';
+import { Content, Overlay } from '@radix-ui/react-dialog';
 import { motion, Variants } from 'framer-motion';
 
-import { IconButton } from '../IconButton';
-import { Icon } from '../Icon';
 import { styled } from '../stitches.config';
 import type { CssStyles } from '..';
+import { DialogClose } from './DialogClose';
 
 export interface ModalProps extends React.ComponentProps<'div'> {
+  hasCloseButton?: boolean;
   css?: CssStyles;
 }
 
-export const DialogModal: React.FC<ModalProps> = ({ children, ...props }) => {
-  return (
-    <Content asChild>
-      <DialogWindow
-        variants={variants}
-        initial="initial"
-        animate="animate"
-        exit="exit"
-        transition={{ duration: 0.1, type: 'tween' }}
-        {...(props as any)}
-      >
-        {children}
-        <CloseButtonContainer>
-          <Close asChild>
-            <IconButton variant="flat" aria-label="Close the dialog">
-              <Icon as={XIcon} />
-            </IconButton>
-          </Close>
-        </CloseButtonContainer>
-      </DialogWindow>
-    </Content>
-  );
-};
+export const DialogModal = React.forwardRef<HTMLDivElement, ModalProps>(
+  ({ children, hasCloseButton = true, ...props }, ref) => {
+    return (
+      <Overlay asChild forceMount>
+        <OverlayStyled
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3, type: 'tween' }}
+        >
+          <Content asChild>
+            <DialogWindow
+              variants={variants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={{ duration: 0.1, type: 'tween' }}
+              {...(props as any)}
+              ref={ref}
+            >
+              {children}
+              {hasCloseButton && (
+                <CloseButtonContainer>
+                  <DialogClose />
+                </CloseButtonContainer>
+              )}
+            </DialogWindow>
+          </Content>
+        </OverlayStyled>
+      </Overlay>
+    );
+  }
+);
 
 const CloseButtonContainer = styled('div', {
   position: 'absolute',
@@ -50,22 +59,31 @@ const DialogWindow = styled(motion.div, {
   maxWidth: '80vw',
   br: '$md',
   pointerEvents: 'auto',
-  position: 'fixed',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
   minWidth: 320,
-  mt: '-5vh',
   boxShadow: '$lg',
+  position: 'relative',
+});
+
+const OverlayStyled = styled(motion.div, {
+  backgroundColor: 'rgba(0,0,0,0.6)',
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  display: 'grid',
+  placeItems: 'center',
+  overflowY: 'auto',
 });
 
 const variants: Variants = {
-  initial: { opacity: 0, y: 'calc(-50% + 10px)', x: '-50%' },
+  initial: { opacity: 0, y: 10 },
   animate: {
     opacity: 1,
-    y: '-50%',
-    x: '-50%',
-    transition: { opacity: { duration: 0.2 }, y: { duration: 0.2 } },
+    y: 0,
+    transition: {
+      duration: 0.2,
+    },
   },
-  exit: { opacity: 0, y: 'calc(-50% + 20px)', x: '-50%' },
+  exit: { opacity: 0, y: 20 },
 };

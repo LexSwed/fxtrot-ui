@@ -38,7 +38,7 @@ export const PopoverLayerDeprecated: React.FC<Props> = ({
   useOnClickOutside(close, isOpen, popperRef, triggerRef);
 
   const handleKeyDown = useKeyboardHandles({
-    'Escape.propagate': (e) => {
+    Escape: (e) => {
       if (popperRef.current?.contains(e.target as Node)) {
         close();
       }

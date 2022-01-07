@@ -1,11 +1,13 @@
-import React, { useCallback, useState } from 'react';
-import { Root, Trigger, Title, Overlay, DialogTitleProps } from '@radix-ui/react-dialog';
+import React, { useRef } from 'react';
+import { Root, Trigger, Overlay } from '@radix-ui/react-dialog';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { DialogModal } from './DialogModal';
 import { styled } from '../stitches.config';
-import { Heading } from '../Heading';
 import { Portal } from '../Portal';
+import { OpenStateProvider, OpenStateRef, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
+import { DialogClose } from './DialogClose';
+import { DialogTitle } from './DialogTitle';
 
 interface Props {
   children: [React.ReactElement, (close: () => void) => React.ReactNode];
@@ -16,51 +18,35 @@ interface Props {
   modal?: boolean;
 }
 
-export const Dialog = ({ children, modal, ...props }: Props) => {
-  const [open, setOpen] = useState(props.defaultOpen);
+const DialogInner = ({ children, modal, ...props }: Props) => {
+  const open = useOpenState();
+  const controls = useOpenStateControls();
   const [trigger, content] = children;
 
-  const close = useCallback(() => setOpen(false), []);
-
   return (
-    <Root open={open} onOpenChange={setOpen} defaultOpen={props.defaultOpen} modal={modal}>
+    <Root open={open} onOpenChange={controls.switch} defaultOpen={props.defaultOpen} modal={modal}>
       <Trigger asChild>{trigger}</Trigger>
-      <AnimatePresence>
-        {open && content && (
-          <Portal>
-            <Overlay asChild forceMount>
-              <OverlayStyled
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3, type: 'tween' }}
-              />
-            </Overlay>
-            {content(close)}
-          </Portal>
-        )}
-      </AnimatePresence>
+      <AnimatePresence>{open && content && <Portal>{content(controls.close)}</Portal>}</AnimatePresence>
     </Root>
   );
 };
 
-const DialogTitle: React.FC<DialogTitleProps & React.ComponentProps<typeof Heading>> = ({ ...props }) => {
+export const Dialog = React.forwardRef<OpenStateRef, Props>((props, ref) => {
   return (
-    <Title asChild>
-      <Heading {...props} />
-    </Title>
+    <OpenStateProvider defaultOpen={props.defaultOpen} ref={ref}>
+      <DialogInner {...props} />
+    </OpenStateProvider>
   );
+}) as React.ForwardRefExoticComponent<Props & React.RefAttributes<OpenStateRef>> & {
+  Modal: typeof DialogModal;
+  Close: typeof DialogClose;
+  Title: typeof DialogTitle;
 };
 
 Dialog.Modal = DialogModal;
+Dialog.Close = DialogClose;
 Dialog.Title = DialogTitle;
 
-const OverlayStyled = styled(motion.div, {
-  backgroundColor: 'rgba(0,0,0,0.6)',
-  position: 'fixed',
-  top: 0,
-  right: 0,
-  bottom: 0,
-  left: 0,
-  overflow: 'hidden',
-});
+export function useDialogRef() {
+  return useRef<OpenStateRef>();
+}
