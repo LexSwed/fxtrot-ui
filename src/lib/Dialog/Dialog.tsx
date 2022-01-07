@@ -47,5 +47,5 @@ Dialog.Close = DialogClose;
 Dialog.Title = DialogTitle;
 
 export function useDialogRef() {
-  return useRef<OpenStateRef>();
+  return useRef<OpenStateRef>(null);
 }

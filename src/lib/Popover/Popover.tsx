@@ -53,5 +53,5 @@ PopoverRoot.displayName = 'Popover';
 PopoverRoot.Content = Content;
 
 export function usePopoverRef() {
-  return useRef<OpenStateRef>();
+  return useRef<OpenStateRef>(null);
 }
