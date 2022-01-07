@@ -1,9 +1,8 @@
 import React, { useRef } from 'react';
-import { Root, Trigger, Overlay } from '@radix-ui/react-dialog';
-import { AnimatePresence, motion } from 'framer-motion';
+import { Root, Trigger } from '@radix-ui/react-dialog';
+import { AnimatePresence } from 'framer-motion';
 
 import { DialogModal } from './DialogModal';
-import { styled } from '../stitches.config';
 import { Portal } from '../Portal';
 import { OpenStateProvider, OpenStateRef, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { DialogClose } from './DialogClose';
