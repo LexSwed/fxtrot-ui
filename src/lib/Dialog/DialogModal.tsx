@@ -25,6 +25,7 @@ export const DialogModal = React.forwardRef<HTMLDivElement, ModalProps>(
               animate="animate"
               exit="exit"
               {...(props as any)}
+              css={css}
               ref={ref}
             >
               {children}
