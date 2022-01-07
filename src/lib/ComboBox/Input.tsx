@@ -160,7 +160,7 @@ const ComboBoxButton = React.memo(
           tabIndex={-1}
           aria-hidden={isOpen}
           aria-expanded={isOpen}
-          aria-label="Open the list"
+          label="Open the list"
           onMouseDown={(e) => {
             e.preventDefault();
             e.stopPropagation();

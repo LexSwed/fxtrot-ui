@@ -3,12 +3,29 @@ import React from 'react';
 import { ButtonRoot } from '../Button/Button';
 import { styled } from '../stitches.config';
 
-type AriaProps = { 'aria-label': string } | { 'aria-labelledby': string };
+type LabelProps =
+  | {
+      label: string;
+    }
+  | {
+      'label'?: string;
+      'aria-labelledby': string;
+    };
 
-type Props = React.ComponentProps<typeof ButtonRoot> & AriaProps;
+type Props = React.ComponentProps<typeof ButtonRoot> & LabelProps;
 
-export const IconButton = React.forwardRef<HTMLButtonElement, Props>(({ type = 'button', ...props }, ref) => {
-  return <IconButtonRoot {...props} aria-disabled={props.disabled} _size={props.size} type={type} ref={ref} />;
+export const IconButton = React.forwardRef<HTMLButtonElement, Props>(({ type = 'button', label, ...props }, ref) => {
+  return (
+    <IconButtonRoot
+      aria-label={label}
+      title={label}
+      {...props}
+      aria-disabled={props.disabled}
+      _size={props.size}
+      type={type}
+      ref={ref}
+    />
+  );
 });
 
 export const IconButtonRoot = styled(ButtonRoot, {
