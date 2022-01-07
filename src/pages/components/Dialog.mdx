@@ -3,7 +3,7 @@ name: Dialog
 ---
 
 import { Playground } from 'dokz';
-import { Dialog, Button, TextField, Flex, Box, Picker, Item, Switch } from '@fxtrot/ui';
+import { Dialog, Button, TextField, Flex, Box, Picker, Item, Switch, useDialogRef } from '@fxtrot/ui';
 
 ## Dialog
 
@@ -53,15 +53,31 @@ import { Dialog, Button, TextField, Flex, Box, Picker, Item, Switch } from '@fxt
 
 ## Default Open
 
+This Example demonstrates the usage of `defaultOpen`, e.g. when you need to open a dialog on a new page when certain conditions are met.
+
+It also shows how you can manipulate the dialog open state outside its modal, via dialog `ref`. It will use the `ref.current.close()` to close the dialog after 1 second.
+
 <Playground>
   {() => {
     const [defaultOpen, setDefaultOpen] = React.useState(false);
+    const ref = useDialogRef();
+    React.useEffect(() => {
+      if (defaultOpen) {
+        const id = setTimeout(() => {
+          ref.current.close();
+        }, 1000);
+        return () => {
+          setDefaultOpen(false);
+          clearTimeout(id);
+        };
+      }
+    }, [defaultOpen]);
     return (
       <Box p="$8">
         <Flex cross="center" main="start" gap="sm">
           <Switch label="Default open" value={defaultOpen} onChange={setDefaultOpen} />
           {defaultOpen && (
-            <Dialog defaultOpen={defaultOpen}>
+            <Dialog defaultOpen={defaultOpen} ref={ref}>
               <Button>New workspace</Button>
               {(close) => (
                 <Dialog.Modal>
