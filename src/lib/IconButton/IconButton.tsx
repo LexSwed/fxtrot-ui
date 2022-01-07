@@ -10,6 +10,10 @@ type LabelProps =
   | {
       'label'?: string;
       'aria-labelledby': string;
+    }
+  | {
+      'label'?: string;
+      'aria-label': string;
     };
 
 type Props = React.ComponentProps<typeof ButtonRoot> & LabelProps;
