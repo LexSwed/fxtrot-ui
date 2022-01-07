@@ -6,8 +6,11 @@ import { motion, Variants } from 'framer-motion';
 import { IconButton } from '../IconButton';
 import { Icon } from '../Icon';
 import { styled } from '../stitches.config';
+import type { CssStyles } from '..';
 
-export interface ModalProps extends React.ComponentProps<'div'> {}
+export interface ModalProps extends React.ComponentProps<'div'> {
+  css?: CssStyles;
+}
 
 export const DialogModal: React.FC<ModalProps> = ({ children, ...props }) => {
   return (
