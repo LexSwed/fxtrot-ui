@@ -1,5 +1,5 @@
 import React from 'react';
-import { Content, Overlay } from '@radix-ui/react-dialog';
+import { Content, DialogContentProps, Overlay } from '@radix-ui/react-dialog';
 import { motion, Variants } from 'framer-motion';
 
 import { styled } from '../stitches.config';
@@ -8,17 +8,41 @@ import { DialogClose } from './DialogClose';
 
 export interface ModalProps extends React.ComponentProps<'div'> {
   hasCloseButton?: boolean;
+  onOpenAutoFocus?: DialogContentProps['onOpenAutoFocus'];
+  onCloseAutoFocus?: DialogContentProps['onCloseAutoFocus'];
+  onEscapeKeyDown?: DialogContentProps['onEscapeKeyDown'];
+  onPointerDownOutside?: DialogContentProps['onPointerDownOutside'];
+  onInteractOutside?: DialogContentProps['onInteractOutside'];
   css?: CssStyles & {
     overlay?: CssStyles;
   };
 }
 
 export const DialogModal = React.forwardRef<HTMLDivElement, ModalProps>(
-  ({ children, hasCloseButton = true, css, ...props }, ref) => {
+  (
+    {
+      children,
+      hasCloseButton = true,
+      css,
+      onOpenAutoFocus,
+      onCloseAutoFocus,
+      onEscapeKeyDown,
+      onPointerDownOutside,
+      ...props
+    },
+    ref
+  ) => {
     return (
       <Overlay asChild forceMount>
         <OverlayStyled variants={overlayVariants} initial="initial" animate="animate" exit="exit" css={css?.overlay}>
-          <Content asChild forceMount>
+          <Content
+            asChild
+            forceMount
+            onOpenAutoFocus={onOpenAutoFocus}
+            onCloseAutoFocus={onCloseAutoFocus}
+            onEscapeKeyDown={onEscapeKeyDown}
+            onPointerDownOutside={onPointerDownOutside}
+          >
             <DialogWindow
               variants={variants}
               initial="initial"
