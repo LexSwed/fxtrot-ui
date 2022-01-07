@@ -8,14 +8,16 @@ import { DialogClose } from './DialogClose';
 
 export interface ModalProps extends React.ComponentProps<'div'> {
   hasCloseButton?: boolean;
-  css?: CssStyles;
+  css?: CssStyles & {
+    overlay?: CssStyles;
+  };
 }
 
 export const DialogModal = React.forwardRef<HTMLDivElement, ModalProps>(
-  ({ children, hasCloseButton = true, ...props }, ref) => {
+  ({ children, hasCloseButton = true, css, ...props }, ref) => {
     return (
       <Overlay asChild forceMount>
-        <OverlayStyled variants={overlayVariants} initial="initial" animate="animate" exit="exit">
+        <OverlayStyled variants={overlayVariants} initial="initial" animate="animate" exit="exit" css={css?.overlay}>
           <Content asChild forceMount>
             <DialogWindow
               variants={variants}
