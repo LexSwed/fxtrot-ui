@@ -142,10 +142,10 @@ export const stitchesConfig = createStitches({
       marginBottom: value,
     }),
 
-    bg: (value: ScaleValue<'colors'> | string) => ({
+    bg: (value: PropertyValue<'backgroundColor'> | string) => ({
       background: value,
     }),
-    bc: (value: ScaleValue<'colors'> | string) => ({
+    bc: (value: PropertyValue<'backgroundColor'> | string) => ({
       backgroundColor: value,
     }),
 
