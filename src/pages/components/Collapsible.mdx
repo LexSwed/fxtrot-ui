@@ -1,0 +1,25 @@
+---
+name: Collapsible
+---
+
+import { Playground } from 'dokz';
+import { Box, Flex, Collapsible } from '@fxtrot/ui';
+import { ExampleBox } from '../../pages-helpers';
+
+# Collapsible
+
+<Playground>
+  <Box width={320} p="$3">
+    <Collapsible>
+      <Collapsible.Trigger variant="flat">Section</Collapsible.Trigger>
+      <Collapsible.Content>
+        <Box p="$3">
+          <Flex gap="4" flow="row">
+            <ExampleBox />
+            <ExampleBox width="80%" />
+          </Flex>
+        </Box>
+      </Collapsible.Content>
+    </Collapsible>
+  </Box>
+</Playground>
