@@ -19,7 +19,6 @@ const populate = stitchesConfig.globalCss({
       backgroundColor: 'transparent',
     },
   'html': {
-    fontSize: '14px',
     fontFamily: '$default',
     boxSizing: 'border-box',
     scrollBehavior: 'smooth',
