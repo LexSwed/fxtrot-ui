@@ -1,0 +1,18 @@
+---
+name: Column
+---
+
+import { Playground } from 'dokz';
+import { Box, Column } from '@fxtrot/ui';
+
+import { ExampleBox } from '../../pages-helpers';
+
+# Column
+
+<Playground>
+  <Column css={{ width: '400px', height: '240px', bc: '$lightBlue50' }} gap="md" cross="center" main="end">
+    <ExampleBox width="$16" />
+    <ExampleBox width="$12" />
+    <ExampleBox width="$20" />
+  </Column>
+</Playground>

@@ -95,4 +95,36 @@ export const flexCss = css(mainAxisAlignment, crossAxisAlignment, {
 
 export const Flex = styled('div', flexCss);
 
+export const Row = styled('div', flexCss, {
+  variants: {
+    flow: {
+      row: {
+        flexDirection: 'row',
+      },
+      reverse: {
+        flexDirection: 'row-reverse',
+      },
+    },
+  },
+  defaultVariants: {
+    flow: 'row',
+  },
+});
+
+export const Column = styled('div', flexCss, {
+  variants: {
+    flow: {
+      column: {
+        flexDirection: 'column',
+      },
+      reverse: {
+        flexDirection: 'column-reverse',
+      },
+    },
+  },
+  defaultVariants: {
+    flow: 'column',
+  },
+});
+
 export type FlexVariants = VariantProps<typeof Flex>;

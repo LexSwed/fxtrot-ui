@@ -1,0 +1,18 @@
+---
+name: Row
+---
+
+import { Playground } from 'dokz';
+import { Box, Row, Text, styled } from '@fxtrot/ui';
+
+import { ExampleBox } from '../../pages-helpers';
+
+# Row
+
+<Playground>
+  <Row css={{ width: '400px', bc: '$lightBlue50' }} gap="md" main="end" cross="center">
+    <ExampleBox height="24px">1</ExampleBox>
+    <ExampleBox height="44px">2</ExampleBox>
+    <ExampleBox height="64px">3</ExampleBox>
+  </Row>
+</Playground>
