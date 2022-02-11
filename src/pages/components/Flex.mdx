@@ -9,6 +9,8 @@ import { ExampleBox } from '../../pages-helpers';
 
 # Flex
 
+`Flex` is a parent reusable component for many other primitives, like `Button`, that allows to easily align the content. However, for layouts it is recommended to use [Row](/components/Row) or [Column](/components/Column) as they are faster to understand. Use `Flex` when you need to change content alignment on different screen sizes, using [responsive props](https://stitches.dev/docs/responsive-styles).
+
 ## Space
 
 Define gap between elements via `space` prop:
@@ -93,14 +95,14 @@ across main axis or cross axis.
 <Playground>
   <React.Fragment>
     <Flex css={{ width: '400px', bc: '$lightBlue50' }} flow="column" gap="md" main="start">
-      <ExampleBox css={{ width: '$16' }} />
-      <ExampleBox css={{ width: '$12' }} />
-      <ExampleBox css={{ width: '$20' }} />
+      <ExampleBox width="$16" />
+      <ExampleBox width="$12" />
+      <ExampleBox width="$20" />
     </Flex>
     <Flex css={{ width: '400px', bc: '$lightBlue50', mt: '$8' }} flow="row" gap="md" main="start">
-      <ExampleBox css={{ width: '$16' }} />
-      <ExampleBox css={{ width: '$12' }} />
-      <ExampleBox css={{ width: '$20' }} />
+      <ExampleBox width="$16" />
+      <ExampleBox width="$12" />
+      <ExampleBox width="$20" />
     </Flex>
   </React.Fragment>
 </Playground>
@@ -110,14 +112,14 @@ across main axis or cross axis.
 <Playground>
   <React.Fragment>
     <Flex css={{ height: '220px', bc: '$lightBlue50' }} gap="md" flow="column" main="center">
-      <ExampleBox css={{ width: '$16' }} />
-      <ExampleBox css={{ width: '$12' }} />
-      <ExampleBox css={{ width: '$20' }} />
+      <ExampleBox width="$16" />
+      <ExampleBox width="$12" />
+      <ExampleBox width="$20" />
     </Flex>
     <Flex css={{ width: '400px', bc: '$lightBlue50', mt: '$8' }} gap="md" flow="row" main="center">
-      <ExampleBox css={{ width: '$16' }} />
-      <ExampleBox css={{ width: '$12' }} />
-      <ExampleBox css={{ width: '$20' }} />
+      <ExampleBox width="$16" />
+      <ExampleBox width="$12" />
+      <ExampleBox width="$20" />
     </Flex>
   </React.Fragment>
 </Playground>
@@ -127,14 +129,14 @@ across main axis or cross axis.
 <Playground>
   <React.Fragment>
     <Flex css={{ width: '400px', height: '240px', bc: '$lightBlue50' }} gap="md" flow="column" main="end">
-      <ExampleBox css={{ width: '$16' }} />
-      <ExampleBox css={{ width: '$12' }} />
-      <ExampleBox css={{ width: '$20' }} />
+      <ExampleBox width="$16" />
+      <ExampleBox width="$12" />
+      <ExampleBox width="$20" />
     </Flex>
     <Flex css={{ width: '400px', bc: '$lightBlue50', mt: '$8' }} gap="md" flow="row" main="end">
-      <ExampleBox css={{ width: '$16' }} />
-      <ExampleBox css={{ width: '$12' }} />
-      <ExampleBox css={{ width: '$20' }} />
+      <ExampleBox width="$16" />
+      <ExampleBox width="$12" />
+      <ExampleBox width="$20" />
     </Flex>
   </React.Fragment>
 </Playground>
@@ -144,14 +146,14 @@ across main axis or cross axis.
 <Playground>
   <React.Fragment>
     <Flex css={{ width: '400px', height: '240px', bc: '$lightBlue50' }} flow="column" main="space-between">
-      <ExampleBox css={{ width: '$16' }} />
-      <ExampleBox css={{ width: '$12' }} />
-      <ExampleBox css={{ width: '$20' }} />
+      <ExampleBox width="$16" />
+      <ExampleBox width="$12" />
+      <ExampleBox width="$20" />
     </Flex>
     <Flex css={{ width: '400px', bc: '$lightBlue50', mt: '$8' }} flow="row" main="space-between">
-      <ExampleBox css={{ width: '$16' }} />
-      <ExampleBox css={{ width: '$12' }} />
-      <ExampleBox css={{ width: '$20' }} />
+      <ExampleBox width="$16" />
+      <ExampleBox width="$12" />
+      <ExampleBox width="$20" />
     </Flex>
   </React.Fragment>
 </Playground>
@@ -166,9 +168,9 @@ across main axis or cross axis.
       cross="center"
       main="space-between"
     >
-      <ExampleBox css={{ width: '$16' }} />
-      <ExampleBox css={{ width: '$12' }} />
-      <ExampleBox css={{ width: '$20' }} />
+      <ExampleBox width="$16" />
+      <ExampleBox width="$12" />
+      <ExampleBox width="$20" />
     </Flex>
     <Flex
       css={{ width: '400px', bc: '$lightBlue50', height: '100px', mt: '$8' }}
@@ -176,9 +178,9 @@ across main axis or cross axis.
       cross="center"
       main="space-between"
     >
-      <ExampleBox css={{ width: '$16' }} />
-      <ExampleBox css={{ width: '$12' }} />
-      <ExampleBox css={{ width: '$20' }} />
+      <ExampleBox width="$16" />
+      <ExampleBox width="$12" />
+      <ExampleBox width="$20" />
     </Flex>
   </React.Fragment>
 </Playground>
@@ -199,9 +201,9 @@ And `row-reverse`
 
 <Playground>
   <Flex flow="row" main="center" cross="end" flow="row-reverse" gap="md">
-    <ExampleBox css={{ height: '24px' }}>1</ExampleBox>
-    <ExampleBox css={{ height: '44px' }}>2</ExampleBox>
-    <ExampleBox css={{ height: '64px' }}>3</ExampleBox>
+    <ExampleBox height="24px">1</ExampleBox>
+    <ExampleBox height="44px">2</ExampleBox>
+    <ExampleBox height="64px">3</ExampleBox>
   </Flex>
 </Playground>
 
