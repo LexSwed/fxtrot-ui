@@ -45,19 +45,19 @@ export const buttonCss = css(flexCss, {
         height: '$8',
         fontSize: '$sm',
         fontWeight: 400,
-        px: '$2',
+        px: '$3',
       },
       md: {
         height: '$base',
         fontSize: '$md',
         fontWeight: 500,
-        px: '$3',
+        px: '$5',
       },
       lg: {
         height: '$12',
         fontSize: '$md',
         fontWeight: 500,
-        px: '$4',
+        px: '$6',
       },
     },
     variant: {

@@ -52,8 +52,8 @@ export const stitchesConfig = createStitches({
     radii: {
       '0': '0',
       'sm': '2px',
-      'md': '4px',
-      'lg': '8px',
+      'md': '6px',
+      'lg': '12px',
       'xl': '16px',
       'round': '50%',
       'pill': '9999px',
@@ -153,7 +153,7 @@ export const stitchesConfig = createStitches({
       borderRadius: value,
     }),
 
-    textSize: (value: ScaleValue<'space'> | number | string) => ({
+    textSize: (value: ScaleValue<'fontSize'> | number | string) => ({
       fontSize: value,
       lineHeight: value,
     }),
@@ -199,50 +199,6 @@ export const stitchesConfig = createStitches({
       } as any),
   },
   prefix: 'fxtrot',
-  // This method is basically for the extension to render in shadow DOM to not pollute global page styles
-  // insertionMethod() {
-  //   let styleElement: HTMLElement | undefined;
-  //   const styleId = 'fxtrot-ui';
-  //   // @ts-ignore
-  //   const extensionRootId = typeof process === 'object' ? process.env.EXTENSION_NODE : null;
-
-  //   function createShadowRootStyleElement(id: string) {
-  //     const el = document.getElementById(id);
-  //     if (el?.shadowRoot) {
-  //       const style =
-  //         el?.shadowRoot.getElementById(styleId) || Object.assign(document.createElement('style'), { id: styleId });
-
-  //       if (!style.parentNode) {
-  //         el.shadowRoot.appendChild(style);
-  //       }
-  //       return style;
-  //     }
-  //   }
-
-  //   function createDocumentStyleElement() {
-  //     const style = document.getElementById(styleId) || Object.assign(document.createElement('style'), { id: styleId });
-
-  //     let currentCssHead = document.head || document.documentElement;
-
-  //     if (!style.parentNode) currentCssHead.append(style);
-
-  //     return style;
-  //   }
-
-  //   return (cssText: string) => {
-  //     if (typeof document === 'object') {
-  //       if (!styleElement) {
-  //         styleElement = extensionRootId ? createShadowRootStyleElement(extensionRootId) : createDocumentStyleElement();
-  //       }
-  //       if (extensionRootId) {
-  //         cssText = cssText.split(':root').join(':host');
-  //       }
-  //       if (styleElement) {
-  //         styleElement.textContent = cssText;
-  //       }
-  //     }
-  //   };
-  // },
 });
 
 export type Theme = typeof stitchesConfig['theme'];
