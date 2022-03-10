@@ -24,8 +24,7 @@ export const IconWrapper = styled('div', iconStyles, {
 });
 
 export const fieldBox = css({
-  'fontSize': '$md',
-  'lineHeight': '$md',
+  'textSize': '$sm',
   'height': '$base',
   'width': '100%',
   'px': '$2',

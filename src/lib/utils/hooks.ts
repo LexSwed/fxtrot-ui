@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useLayoutEffect, useState, useRef } from 'react';
-import { useUID } from 'react-uid';
 
 type PossibleRef<T> = React.Ref<T> | ((instance: T | null) => void) | null | undefined;
 
@@ -122,12 +121,6 @@ export function useOnClickOutside(handler: Handler | null, isActive: boolean, ..
       });
     };
   }, [handlerRef, isActive, ...refs]); //eslint-disable-line react-hooks/exhaustive-deps
-}
-
-export function useId(id?: string) {
-  let newId = useUID();
-
-  return id || newId;
 }
 
 export function useDerivedState<V extends string | string[] | number | number[]>(

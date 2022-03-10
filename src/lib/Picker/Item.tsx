@@ -4,7 +4,6 @@ import * as RdxSelect from '@radix-ui/react-select';
 
 import { Icon } from '../Icon/Icon';
 import { StyledItem, ItemProps } from '../Item/Item';
-import { Text } from '../Text';
 
 export interface OptionType extends React.ReactElement<ItemProps, typeof Item> {}
 

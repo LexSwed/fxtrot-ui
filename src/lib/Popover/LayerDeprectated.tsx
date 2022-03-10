@@ -1,17 +1,22 @@
-import type { Options } from '@popperjs/core';
+import React, { useLayoutEffect, useEffect } from 'react';
+import {
+  useFloating,
+  shift,
+  offset as floatingOffset,
+  autoUpdate,
+  AlignedPlacement,
+  flip,
+} from '@floating-ui/react-dom';
 import { AnimatePresence, motion, Variants } from 'framer-motion';
-import React, { useMemo } from 'react';
 
-// import { Portal } from '../Portal';
 import { styled } from '../stitches.config';
-import { sameWidth, usePopper } from '../utils/popper';
 import { useKeyboardHandles, useOnClickOutside } from '../utils/hooks';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 
 interface Props extends React.ComponentProps<typeof PopperBox> {
   triggerRef: React.RefObject<HTMLElement>;
   offset?: number;
-  placement?: Options['placement'];
+  placement?: AlignedPlacement;
 }
 
 export const PopoverLayerDeprecated: React.FC<Props> = ({
@@ -23,23 +28,36 @@ export const PopoverLayerDeprecated: React.FC<Props> = ({
 }) => {
   const isOpen = useOpenState();
   const { close } = useOpenStateControls();
-  const [popperRef, state] = usePopper(
-    triggerRef,
-    useMemo<Options>(
-      () => ({
-        placement,
-        strategy: 'fixed',
-        modifiers: [{ name: 'offset', options: { offset: [0, offset] } }, sameWidth],
-      }),
-      [placement, offset]
-    )
-  );
+  const {
+    x,
+    y,
+    reference,
+    floating,
+    refs,
+    update,
+    placement: resultingPlacement,
+  } = useFloating({
+    placement,
+    middleware: [shift(), flip(), floatingOffset(offset)],
+  });
 
-  useOnClickOutside(close, isOpen, popperRef, triggerRef);
+  useLayoutEffect(() => {
+    reference(triggerRef.current);
+  }, [triggerRef.current, reference]);
+
+  useEffect(() => {
+    if (!refs.reference.current || !refs.floating.current) {
+      return;
+    }
+    // Only call this when the floating element is rendered
+    return autoUpdate(refs.reference.current, refs.floating.current, update);
+  }, [refs.reference.current, refs.floating.current, update]);
+
+  useOnClickOutside(close, isOpen, refs.floating, triggerRef);
 
   const handleKeyDown = useKeyboardHandles({
     Escape: (e) => {
-      if (popperRef.current?.contains(e.target as Node)) {
+      if (refs.floating.current?.contains(e.target as Node)) {
         close();
       }
     },
@@ -48,10 +66,18 @@ export const PopoverLayerDeprecated: React.FC<Props> = ({
   return (
     <AnimatePresence>
       {isOpen && (
-        <Popper ref={popperRef as any} onKeyDown={handleKeyDown}>
+        <Popper
+          ref={floating}
+          style={{
+            top: y ?? '',
+            left: x ?? '',
+            minWidth: refs.reference.current?.getBoundingClientRect().width,
+          }}
+          onKeyDown={handleKeyDown}
+        >
           <PopperBox
             {...props}
-            variants={state?.placement ? animations[state?.placement.split('-')[0]] : animations.bottom}
+            variants={resultingPlacement ? animations[resultingPlacement.split('-')[0]] : animations.bottom}
             initial="initial"
             animate="animate"
             exit="initial"

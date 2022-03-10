@@ -21,11 +21,7 @@ export const Item = React.forwardRef<HTMLDivElement, ItemProps>(
     const isFocused = useItemFocused(id as string);
 
     const updateFocusedItemId = useFocusItem();
-    const onMouseOver = useAllHandlers(props.onMouseOver, () => updateFocusedItemId(id as string));
-    const preventMouseDown = useAllHandlers(props.onMouseDown, (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-    });
+    const handlePointerOver = useAllHandlers(props.onPointerOver, () => updateFocusedItemId(id as string));
 
     return (
       <StyledItem
@@ -33,8 +29,7 @@ export const Item = React.forwardRef<HTMLDivElement, ItemProps>(
         id={id}
         data-focused={isFocused}
         aria-selected={isSelected}
-        onMouseOver={onMouseOver}
-        onMouseDown={preventMouseDown}
+        onPointerOver={handlePointerOver}
         main={main}
         ref={propRef}
         className={`${ownStyle} ${className}`}

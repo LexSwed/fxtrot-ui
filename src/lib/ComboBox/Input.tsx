@@ -6,18 +6,11 @@ import { Flex, FlexVariants } from '../Flex/Flex';
 import { FormField, Hint, HintBox, useFormField } from '../FormField/FormField';
 import { Icon } from '../Icon';
 import { Label } from '../Label';
-import { styled, CssStyles } from '../stitches.config';
+import { styled } from '../stitches.config';
 import { Tag } from '../Tag';
 import { InputField, InputProps } from '../TextField/shared';
 import { useAllHandlers, useForkRef, useKeyboardHandles } from '../utils/hooks';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
-
-const inputStyle: CssStyles = {
-  // increase specificity
-  '&:not(:only-child)': {
-    pr: '$16',
-  },
-};
 
 export interface Props
   extends Omit<InputProps, 'onChange' | 'type' | 'value' | 'defaultValue' | 'children' | 'text' | 'as'>,
@@ -75,7 +68,6 @@ export const ComboBoxInput: React.FC<Props> = ({
   const refs = useForkRef(inputRef, innerRef);
 
   const handleChange = useAllHandlers((e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value), open);
-
   const keydownControls = useKeyboardHandles({
     'ArrowDown': () => {
       open();
@@ -109,7 +101,7 @@ export const ComboBoxInput: React.FC<Props> = ({
         <Label label={label} secondary={secondaryLabel} htmlFor={ariaProps.id} disabled={disabled} />
       )}
       <HintBox>
-        <InputField
+        <InputFieldWrapper
           {...props}
           {...ariaProps}
           aria-expanded={isOpen}
@@ -123,12 +115,12 @@ export const ComboBoxInput: React.FC<Props> = ({
           onKeyDown={handleKeyDown}
           type="text"
           variant={variant}
-          css={hasNewBadge ? inputStyle : undefined}
+          hasNewBadge={hasNewBadge}
           validity={validity}
           inputRef={refs}
         >
           <ComboBoxButton hasNewBadge={hasNewBadge} inputRef={innerRef} />
-        </InputField>
+        </InputFieldWrapper>
         {hint && (
           <Hint id={ariaProps['aria-describedby']} validity={validity}>
             {hint}
@@ -138,6 +130,16 @@ export const ComboBoxInput: React.FC<Props> = ({
     </FormField>
   );
 };
+
+const InputFieldWrapper = styled(InputField, {
+  variants: {
+    hasNewBadge: {
+      true: {
+        pr: '$16',
+      },
+    },
+  },
+});
 
 const ButtonContainer = styled(Flex, {
   position: 'absolute',
@@ -150,7 +152,7 @@ const ButtonContainer = styled(Flex, {
 const ComboBoxButton = React.memo(
   ({ hasNewBadge, inputRef }: { hasNewBadge: boolean; inputRef: React.RefObject<HTMLInputElement> }) => {
     const isOpen = useOpenState();
-    const { open } = useOpenStateControls();
+    const { toggle } = useOpenStateControls();
 
     return (
       <ButtonContainer cross="center">
@@ -161,10 +163,10 @@ const ComboBoxButton = React.memo(
           aria-hidden={isOpen}
           aria-expanded={isOpen}
           label="Open the list"
-          onMouseDown={(e) => {
+          onPointerDown={(e) => {
             e.preventDefault();
             e.stopPropagation();
-            open();
+            toggle();
             inputRef.current?.focus();
             inputRef.current?.select();
           }}

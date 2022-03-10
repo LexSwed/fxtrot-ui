@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { useUIDSeed } from 'react-uid';
 import flattenChildren from 'react-keyed-flatten-children';
 
@@ -9,7 +9,7 @@ import { Item, OptionType } from './Item';
 import { useAllHandlers, useForkRef, useLatest } from '../utils/hooks';
 import { PopoverLayerDeprecated } from '../Popover/LayerDeprectated';
 import { StateProvider, useFocusedItemId, useSyncValue } from './atoms';
-import { VirtualList } from './VirtualList';
+import { ListBox } from '../ListBox';
 import { ListBoxContext } from '../ListBox/ListBoxContext';
 
 interface Props
@@ -47,20 +47,21 @@ const ComboBoxInner: React.FC<Props> = ({
   const [filterText, setFilterText] = useState('');
   const [focusedItemId, setFocusedItemId] = useFocusedItemId();
   const { close } = useOpenStateControls();
-  const scrollToIndexRef = useRef<(index: number) => void>(() => {});
 
   const allowNewElement = !!onInputChange;
   const listboxId = idSeed('listbox');
 
-  const items = useFilteredItems(children, filterText);
+  const filteredItems = useFilteredItems(children, filterText);
+  const itemMatchingFilterText = filteredItems.find((item) => item.props.label === filterText);
+  const hasNewBadge = allowNewElement && !itemMatchingFilterText && !value && !!filterText;
 
   useUpdateTextWithLabel(value, children, setFilterText, allowNewElement);
   useOnInputChangeSync(onInputChange, filterText);
 
-  const createOptionId = (value: string) => idSeed('option') + value;
+  const createOptionId = (value: string) => idSeed('option' + value);
   const handleSelect = () => {
     if (focusedItemId) {
-      const selected = items.find((item) => createOptionId(item.props.value as string) === focusedItemId);
+      const selected = filteredItems.find((item) => createOptionId(item.props.value as string) === focusedItemId);
       if (selected) {
         setFilterText(selected.props.label || '');
         setValue(selected.props.value || null);
@@ -68,30 +69,54 @@ const ComboBoxInner: React.FC<Props> = ({
     }
     close();
   };
+
+  // useScrollToFocusedItemOnOpen
+  useLayoutEffect(() => {
+    if (isOpen) {
+      const item = filteredItems.find((item) => createOptionId(item.props.value as string) === value);
+      if (item) {
+        document
+          .getElementById(createOptionId(item.props.value as string))
+          ?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    } else {
+      setFocusedItemId(null);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen]);
+
   const handleFocus = (createNewIndex: (oldIndex: number) => number) => {
-    const itemIndex = items.findIndex((item) => createOptionId(item.props.value as string) === focusedItemId);
+    const itemIndex = focusedItemId
+      ? filteredItems.findIndex((item) => createOptionId(item.props.value as string) === focusedItemId)
+      : 0;
     const newIndex = itemIndex > -1 ? createNewIndex(itemIndex) : 0;
-    setFocusedItemId(createOptionId(items[newIndex]?.props?.value as string));
-    scrollToIndexRef.current(newIndex);
+    const newFocusedItemId = createOptionId(filteredItems[newIndex]?.props?.value as string);
+    setFocusedItemId(newFocusedItemId);
+    // we don't do it in the useEffect with focusedItemId because we don't want to scroll when using mouse
+    document.getElementById(newFocusedItemId)?.scrollIntoView({ block: 'nearest' });
   };
   const handleFocusNext = () => {
-    handleFocus((index) => (index < items.length - 1 ? index + 1 : 0));
+    handleFocus((index) => (index < filteredItems.length - 1 ? index + 1 : 0));
   };
   const handleFocusPrev = () => {
-    handleFocus((index) => (index > 0 ? index - 1 : items.length - 1));
+    handleFocus((index) => (index > 0 ? index - 1 : filteredItems.length - 1));
   };
 
   const handleBlur = useAllHandlers(
     textFieldProps.onBlur,
     allowNewElement
-      ? undefined
+      ? () => {
+          if (itemMatchingFilterText) {
+            setValue(itemMatchingFilterText.props.value);
+          }
+        }
       : () => {
           if (filterText === '') {
             setValue(null);
-          } else if (value) {
-            const selected = items.find((item) => item.props.value === value);
-            setFilterText(selected?.props?.label || '');
+          } else if (itemMatchingFilterText) {
+            setValue(itemMatchingFilterText.props.value);
           } else {
+            setValue(null);
             setFilterText('');
           }
         }
@@ -110,7 +135,7 @@ const ComboBoxInner: React.FC<Props> = ({
         aria-controls={isOpen ? listboxId : ''}
         aria-activedescendant={focusedItemId as string}
         inputRef={inputRefs}
-        hasNewBadge={allowNewElement && !value && !!filterText}
+        hasNewBadge={hasNewBadge}
         value={filterText}
         onChange={handleFilterChange}
         onBlur={handleBlur}
@@ -119,27 +144,20 @@ const ComboBoxInner: React.FC<Props> = ({
         onFocusPrev={handleFocusPrev}
       />
       <PopoverLayerDeprecated triggerRef={triggerRef}>
-        <VirtualList
-          id={listboxId}
-          aria-labelledby={idSeed('input')}
-          scrollToIndexRef={scrollToIndexRef}
-          size={items.length}
-        >
-          {(index) => {
-            const item = items[index];
-
-            return React.cloneElement(item, {
-              id: createOptionId(item.props.value as string),
+        <ListBox id={listboxId} role="listbox" aria-labelledby={idSeed('input')}>
+          {filteredItems.map((child, index) => {
+            return React.cloneElement(child, {
+              id: createOptionId(child.props.value as string),
               onMouseUp: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-                setFilterText(item.props.label as string);
-                setValue(item.props.value as string);
+                setFilterText(child.props.label as string);
+                setValue(child.props.value as string);
                 close();
 
-                item.props.onClick?.(e);
+                child.props.onClick?.(e);
               },
             });
-          }}
-        </VirtualList>
+          })}
+        </ListBox>
       </PopoverLayerDeprecated>
     </>
   );
@@ -181,7 +199,8 @@ function useUpdateTextWithLabel(
   allowNewElement: boolean
 ) {
   useEffect(() => {
-    const item = (React.Children.toArray(children) as OptionType[]).find((item) => item.props.value === value);
+    const items = flattenChildren(children) as OptionType[];
+    const item = items.find((item) => item.props.value === value);
     setFilterText((text) => item?.props?.label || (allowNewElement ? text : ''));
   }, [value, children, setFilterText, allowNewElement]);
 }
