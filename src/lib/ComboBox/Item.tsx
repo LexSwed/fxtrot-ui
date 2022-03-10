@@ -7,7 +7,7 @@ import { useAllHandlers } from '../utils/hooks';
 import { useItemSelected, useItemFocused, useFocusItem } from './atoms';
 import { ListItem } from '../shared/ListItem';
 
-interface Props extends React.ComponentProps<typeof ListItem> {
+export interface Props extends React.ComponentProps<typeof ListItem> {
   value: string;
   label?: string;
   disabled?: boolean;

@@ -5,7 +5,7 @@ function createConfig(output) {
   return {
     input: 'src/lib/index.ts',
     output,
-    external: ['react', 'react-dom'],
+    external: Object.keys(pkg.peerDependencies),
     plugins: [
       esbuild({
         tsconfig: 'tsconfig.lib.json',

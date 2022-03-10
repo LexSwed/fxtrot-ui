@@ -5,7 +5,7 @@ import * as RdxSelect from '@radix-ui/react-select';
 import { Icon } from '../Icon/Icon';
 import { ListItem } from '../shared/ListItem';
 
-interface Props extends React.ComponentProps<typeof ListItem> {
+export interface Props extends React.ComponentProps<typeof ListItem> {
   value: string;
   label?: string;
   disabled?: boolean;
