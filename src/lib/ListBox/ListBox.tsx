@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import { FocusScope, useFocusManager } from '@react-aria/focus';
 
-import { styled } from '../stitches.config';
 import { useKeyboardHandles } from '../utils/hooks';
+import { FloatingList } from './FloatingList';
 
 export interface ListBoxProps extends Omit<Props, 'autoFocus' | 'restoreFocus' | 'contain' | 'wrap'> {}
-interface Props extends React.ComponentProps<typeof List> {
+interface Props extends React.ComponentProps<typeof FloatingList> {
   autoFocus?: boolean;
   restoreFocus?: boolean;
   contain?: boolean;
@@ -15,32 +15,21 @@ interface Props extends React.ComponentProps<typeof List> {
 export const ListBox = React.forwardRef<HTMLDivElement, Props>(
   ({ children, autoFocus, restoreFocus, contain, wrap, ...props }, ref) => {
     if (React.Children.count(children) === 0) {
-      return <List role="listbox" tabIndex={-1} {...props} ref={ref} />;
+      return <FloatingList role="listbox" tabIndex={-1} {...props} ref={ref} />;
     }
     return (
-      <List role="listbox" tabIndex={-1} {...props} ref={ref}>
+      <FloatingList role="listbox" tabIndex={-1} {...props} ref={ref}>
         <FocusScope autoFocus={autoFocus} contain={contain} restoreFocus={restoreFocus}>
           <ListInner wrap={wrap} autoFocus={autoFocus}>
             {children}
           </ListInner>
         </FocusScope>
-      </List>
+      </FloatingList>
     );
   }
 );
 
 ListBox.displayName = 'ListBox';
-
-export const List = styled('div', {
-  'm': 0,
-  'p': '$1',
-  'overflowY': 'auto',
-  'maxHeight': '240px',
-  'focusRing': '$focusRing',
-  '&:empty': {
-    display: 'none',
-  },
-});
 
 const ListInner: React.FC<{ wrap?: boolean; autoFocus?: boolean }> = ({ wrap, autoFocus, ...props }) => {
   const { focusNext, focusPrevious } = useFocusManager();

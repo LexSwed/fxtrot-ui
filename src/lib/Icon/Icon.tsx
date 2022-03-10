@@ -6,10 +6,12 @@ interface Props extends Omit<React.ComponentProps<typeof IconBox>, 'as'> {
   as: React.ElementType;
 }
 
-export const Icon: React.FC<Props> = ({ size = 'md', color, css, ...props }) => {
-  const style = color ? ({ ...css, color } as any) : css;
-  return <IconBox size={size} {...props} css={style} />;
-};
+export const Icon: React.FC<Props> = React.forwardRef<SVGSVGElement, Props>(
+  ({ size = 'md', color, css, ...props }, ref) => {
+    const style = color ? ({ ...css, color } as any) : css;
+    return <IconBox size={size} {...props} css={style} ref={ref} />;
+  }
+);
 
 export const IconBox = styled('svg', {
   display: 'inline-block',

@@ -1,12 +1,28 @@
 import React from 'react';
 
 import { flexCss, FlexVariants } from '../Flex/Flex';
+import { Icon, IconBox } from '../Icon/Icon';
 import { css, styled } from '../stitches.config';
 
 interface Props extends React.ComponentProps<typeof ButtonRoot> {}
 
-export const Button = React.forwardRef<HTMLButtonElement, Props>(({ type = 'button', ...props }, ref) => {
-  return <ButtonRoot {...props} aria-disabled={props.disabled} type={type} ref={ref} />;
+export const Button = React.forwardRef<HTMLButtonElement, Props>(({ type = 'button', children, ...props }, ref) => {
+  let childCount = React.Children.count(children);
+  return (
+    <ButtonRoot {...props} aria-disabled={props.disabled} type={type} ref={ref}>
+      {childCount < 2
+        ? children
+        : React.Children.map(children, (child, i) => {
+            if (React.isValidElement(child) && child.type === Icon) {
+              const alignment: 'left' | 'right' | null = i === 0 ? 'left' : i === childCount - 1 ? 'right' : null;
+              if (alignment) {
+                return React.cloneElement(child, { 'data-fxtrot-icon-button-align': alignment });
+              }
+            }
+            return child;
+          })}
+    </ButtonRoot>
+  );
 });
 
 Button.displayName = 'Button';
@@ -40,24 +56,48 @@ export const buttonCss = css(flexCss, {
         fontSize: '$xs',
         fontWeight: 400,
         px: '$2',
+        [`& > ${IconBox}[data-fxtrot-icon-button-align="left"]`]: {
+          ml: '-$1',
+        },
+        [`& > ${IconBox}[data-fxtrot-icon-button-align="right"]`]: {
+          mr: '-$1',
+        },
       },
       sm: {
         height: '$8',
         fontSize: '$sm',
         fontWeight: 400,
-        px: '$3',
+        px: '$4',
+        [`& > ${IconBox}[data-fxtrot-icon-button-align="left"]`]: {
+          ml: '-$1',
+        },
+        [`& > ${IconBox}[data-fxtrot-icon-button-align="right"]`]: {
+          mr: '-$1',
+        },
       },
       md: {
         height: '$base',
-        fontSize: '$md',
+        fontSize: '$sm',
         fontWeight: 500,
-        px: '$5',
+        px: '$4',
+        [`& > ${IconBox}[data-fxtrot-icon-button-align="left"]`]: {
+          ml: '-$1',
+        },
+        [`& > ${IconBox}[data-fxtrot-icon-button-align="right"]`]: {
+          mr: '-$1',
+        },
       },
       lg: {
         height: '$12',
         fontSize: '$md',
         fontWeight: 500,
         px: '$6',
+        [`& > ${IconBox}[data-fxtrot-icon-button-align="left"]`]: {
+          ml: '-$3',
+        },
+        [`& > ${IconBox}[data-fxtrot-icon-button-align="right"]`]: {
+          mr: '-$3',
+        },
       },
     },
     variant: {

@@ -48,7 +48,7 @@ const Block = styled('div', {
       lg: {
         height: '$8',
         lineHeight: '$8',
-        textSize: '$md',
+        textSize: '$base',
         fontWeight: 500,
         px: '$3',
       },

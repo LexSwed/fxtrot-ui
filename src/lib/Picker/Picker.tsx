@@ -1,65 +1,62 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { useUID } from 'react-uid';
+import React from 'react';
+import * as RdxSelect from '@radix-ui/react-select';
 
-import { PopoverLayerDeprecated } from '../Popover/LayerDeprectated';
-import { useDerivedState } from '../utils/hooks';
-import { OpenStateProvider } from '../utils/OpenStateProvider';
 import type { OptionType } from './Item';
-import List from './List';
-import Trigger, { TriggerProps } from './Trigger';
-import { PickerProvider, PickerContext } from './utils';
+import { PickerTrigger, PickerTriggerProps } from './Trigger';
+import Item from './Item';
+import { styled } from '../stitches.config';
+import { ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/outline';
+import { Icon } from '../Icon';
 
-interface Props extends Omit<TriggerProps, 'value' | 'onChange' | 'defaultValue' | 'children' | 'size'> {
+interface Props extends Omit<PickerTriggerProps, 'value' | 'onChange' | 'defaultValue' | 'children' | 'size'> {
   value?: string;
   defaultValue?: string;
   onChange?: (newValue: string) => void;
+  size?: PickerTriggerProps['size'];
   children: OptionType[] | OptionType;
-  size: PickerContext['size'];
 }
 
-export const Picker: React.FC<Props> = ({ children, id, value, defaultValue, onChange, size, ...triggerProps }) => {
-  const [innerValue, onChangeInner] = useDerivedState(value, onChange, defaultValue);
-  const triggerRef = useRef<HTMLButtonElement>(null);
-  const triggerId = useUID();
-  const title = useTitle({ children, value: innerValue });
-
-  const contextValue = useMemo(
-    () => ({
-      value: innerValue,
-      onChange: onChangeInner,
-      size,
-    }),
-    [onChangeInner, innerValue, size]
-  );
-
+export const Picker = ({ children, name, onChange, value, defaultValue = '', ...triggerProps }: Props) => {
   return (
-    <OpenStateProvider>
-      <PickerProvider value={contextValue}>
-        <Trigger id={triggerId} ref={triggerRef as any} size={size} {...triggerProps}>
-          {title}
-        </Trigger>
-        <PopoverLayerDeprecated triggerRef={triggerRef}>
-          <List triggerId={triggerId}>{children}</List>
-        </PopoverLayerDeprecated>
-      </PickerProvider>
-    </OpenStateProvider>
+    <RdxSelect.Root value={value} defaultValue={defaultValue} onValueChange={onChange} name={name}>
+      <PickerTrigger {...triggerProps} />
+      <Content>
+        <SelectArrow as={RdxSelect.SelectScrollUpButton}>
+          <Icon as={ChevronUpIcon} size="sm" />
+        </SelectArrow>
+        <Viewport>
+          {defaultValue === '' ? <EmptyItem value="" size="sm" label="" /> : null}
+          {children}
+        </Viewport>
+        <SelectArrow as={RdxSelect.SelectScrollDownButton}>
+          <Icon as={ChevronDownIcon} size="sm" />
+        </SelectArrow>
+      </Content>
+    </RdxSelect.Root>
   );
 };
 
-function useTitle({ children, value }: { children: Props['children']; value?: string }) {
-  const [title, setTitle] = useState<string>('');
+Picker.Item = Item;
 
-  useEffect(() => {
-    if (!value) return;
-    const selectedOption = (React.Children.toArray(children) as OptionType[]).find(
-      (option) => option.props.value === value
-    );
-    const label = selectedOption?.props?.label;
+const EmptyItem = styled(Item, {
+  height: '$4 !important',
+});
 
-    if (label) {
-      setTitle(label);
-    }
-  }, [value, children]);
+const Content = styled(RdxSelect.Content, {
+  bc: '$surfaceStill',
+  br: '$md',
+  outline: 'none',
+  boxShadow: '$popper',
+});
 
-  return title;
-}
+const Viewport = styled(RdxSelect.Viewport, {
+  p: '$1',
+  focusRing: '$focusRing',
+});
+
+const SelectArrow = styled('div', {
+  py: '$1',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+});

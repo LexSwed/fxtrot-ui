@@ -193,6 +193,9 @@ export const fieldBox = css({
       },
     },
   ],
+  'defaultVariants': {
+    fieldSize: 'md',
+  },
 });
 
 export type FieldBoxVariants = Omit<VariantProps<typeof fieldBox>, 'fieldSize'> & {

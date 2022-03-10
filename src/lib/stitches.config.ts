@@ -34,7 +34,7 @@ export const stitchesConfig = createStitches({
       'base': '$md',
     },
     lineHeights: {
-      'xs': '1.1em',
+      'xs': '1rem',
       'sm': '1.25em',
       'md': '1.5em',
       'lg': '1.75em',
@@ -90,10 +90,7 @@ export const stitchesConfig = createStitches({
   },
   utils: {
     p: (value: ScaleValue<'space'> | number | string) => ({
-      paddingTop: value,
-      paddingBottom: value,
-      paddingLeft: value,
-      paddingRight: value,
+      padding: value,
     }),
     pt: (value: ScaleValue<'space'> | number | string) => ({
       paddingTop: value,
@@ -116,10 +113,7 @@ export const stitchesConfig = createStitches({
       paddingBottom: value,
     }),
     m: (value: ScaleValue<'space'> | number | string) => ({
-      marginTop: value,
-      marginBottom: value,
-      marginLeft: value,
-      marginRight: value,
+      margin: value,
     }),
     mt: (value: ScaleValue<'space'> | number | string) => ({
       marginTop: value,
@@ -141,23 +135,16 @@ export const stitchesConfig = createStitches({
       marginTop: value,
       marginBottom: value,
     }),
-
-    bg: (value: PropertyValue<'backgroundColor'> | string) => ({
-      background: value,
-    }),
     bc: (value: PropertyValue<'backgroundColor'> | string) => ({
       backgroundColor: value,
     }),
-
     br: (value: ScaleValue<'radii'>) => ({
       borderRadius: value,
     }),
-
     textSize: (value: ScaleValue<'fontSize'> | number | string) => ({
       fontSize: value,
       lineHeight: value,
     }),
-
     size: (value: ScaleValue<'space'> | number | string) => {
       return {
         width: value,

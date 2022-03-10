@@ -8,6 +8,7 @@ import { StyledItem } from '../Item/Item';
 import { Label } from '../Label';
 import { Portal } from '../Portal';
 import type { VariantProps } from '@stitches/react';
+import { listStyles } from '../ListBox/FloatingList';
 
 interface MenuListProps {
   children: [trigger: React.ReactElement, menuList: React.ReactElement];
@@ -38,18 +39,10 @@ const MenuRoot = (props: MenuListProps) => {
   );
 };
 
-const listStyles: CssStyles = {
-  width: '100%',
-  m: 0,
-  p: '$1',
-  overflowY: 'auto',
-  maxHeight: '240px',
-  focusRing: '$focusRing',
-};
-const List = ({ children, ...props }: PopoverLayerProps) => {
+const List = ({ children, css = {}, ...props }: PopoverLayerProps) => {
   return (
     <Portal>
-      <PopoverLayer {...props} css={listStyles} portalled={false} forceMount radixElement={RdxMenu.Content}>
+      <PopoverLayer {...props} css={{ ...css, listStyles }} portalled={false} forceMount radixElement={RdxMenu.Content}>
         {children}
       </PopoverLayer>
     </Portal>

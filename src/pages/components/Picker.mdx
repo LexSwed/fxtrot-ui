@@ -3,7 +3,7 @@ name: Picker
 ---
 
 import { Playground } from 'dokz';
-import { Box, Flex, Picker, Item, TextLink } from '@fxtrot/ui';
+import { Box, Flex, Picker, TextLink } from '@fxtrot/ui';
 
 # Picker
 
@@ -16,7 +16,7 @@ Picker is a component that mimics default `<select>` element.
         {Array(100)
           .fill(null)
           .map((el, i) => (
-            <Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
+            <Picker.Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
           ))}
       </Picker>
     </Flex>
@@ -35,7 +35,7 @@ Picker is a component that mimics default `<select>` element.
             {Array(20)
               .fill(null)
               .map((el, i) => (
-                <Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
+                <Picker.Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
               ))}
           </Picker>
         </Flex>
@@ -66,7 +66,7 @@ Supports same `variant`s as `Picker` component.
             {Array(20)
               .fill(null)
               .map((el, i) => (
-                <Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
+                <Picker.Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
               ))}
           </Picker>
         </Flex>
@@ -81,40 +81,40 @@ Supports same `variant`s as `Picker` component.
   <Flex gap="lg" css={{ p: '$6', bc: '$gray50' }}>
     <Flex flow="column" gap="md">
       <Picker size="sm" label="Boxed" hint="Default variant" placeholder="Small size">
-        <Item label="Only option" />
+        <Picker.Item label="Only option" />
       </Picker>
       <Picker size="sm" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Small size">
-        <Item label="Only option" />
+        <Picker.Item label="Only option" />
       </Picker>
       <Picker size="sm" variant="transparent" hint="Not using labels" placeholder="Small size">
-        <Item label="Only option" />
+        <Picker.Item label="Only option" />
       </Picker>
     </Flex>
     <Flex flow="column" gap="md">
       <Picker size="md" label="Boxed" hint="Default variant" placeholder="Default size">
-        <Item label="Only option" />
+        <Picker.Item label="Only option" />
       </Picker>
       <Picker size="md" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Default size">
-        <Item label="Only option" />
+        <Picker.Item label="Only option" />
       </Picker>
       <Picker size="md" variant="transparent" hint="Not using labels" placeholder="Default size">
-        <Item label="Only option" />
+        <Picker.Item label="Only option" />
       </Picker>
     </Flex>
     <Flex flow="column" gap="md">
       <Picker size="lg" label="Boxed" hint="Default variant" placeholder="Large size">
-        <Item label="Only option" />
+        <Picker.Item label="Only option" />
       </Picker>
       <Picker size="lg" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Large size">
-        <Item label="Only option" />
+        <Picker.Item label="Only option" />
       </Picker>
       <Picker size="lg" variant="transparent" hint="Not using labels" placeholder="Large size">
-        <Item label="Only option" />
+        <Picker.Item label="Only option" />
       </Picker>
     </Flex>
     <Flex flow="column" gap="md">
       <Picker size="xl" label="Boxed" hint="Default variant" placeholder="Editable heading size">
-        <Item label="Only option" />
+        <Picker.Item label="Only option" />
       </Picker>
       <Picker
         size="xl"
@@ -123,10 +123,10 @@ Supports same `variant`s as `Picker` component.
         label="Underlined"
         placeholder="Editable heading size"
       >
-        <Item label="Only option" />
+        <Picker.Item label="Only option" />
       </Picker>
       <Picker size="xl" variant="transparent" hint="Not using labels" placeholder="Editable heading size">
-        <Item label="Only option" />
+        <Picker.Item label="Only option" />
       </Picker>
     </Flex>
   </Flex>

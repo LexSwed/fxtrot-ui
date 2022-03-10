@@ -54,4 +54,7 @@ export const IconButtonRoot = styled(ButtonRoot, {
       },
     },
   },
+  defaultVariants: {
+    _size: 'md',
+  },
 });

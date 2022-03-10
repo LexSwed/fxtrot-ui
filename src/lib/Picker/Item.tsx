@@ -1,41 +1,25 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { CheckIcon } from '@heroicons/react/solid';
+import * as RdxSelect from '@radix-ui/react-select';
 
 import { Icon } from '../Icon/Icon';
 import { StyledItem, ItemProps } from '../Item/Item';
-import { focusOnMouseOver } from '../Item/Item';
-import { useAllHandlers } from '../utils/hooks';
-import { useOpenStateControls } from '../utils/OpenStateProvider';
-import { usePicker } from './utils';
+import { Text } from '../Text';
 
 export interface OptionType extends React.ReactElement<ItemProps, typeof Item> {}
 
-const Item = React.forwardRef<HTMLDivElement, ItemProps>(({ value, label, ...props }, ref) => {
-  const { value: dropdownValue, onChange, size } = usePicker();
-  const { close } = useOpenStateControls();
-  const isSelected = dropdownValue !== undefined && dropdownValue === value;
-
-  const onClick = useCallback(() => {
-    value && onChange?.(value);
-    close();
-  }, [close, onChange, value]);
-
-  const onMouseEnter = useAllHandlers(props.onMouseEnter, focusOnMouseOver);
-
+const Item = React.forwardRef<HTMLDivElement, ItemProps>(({ value, label, disabled, ...props }, ref) => {
   return (
-    <StyledItem
-      {...props}
-      role="option"
-      onMouseEnter={onMouseEnter}
-      aria-selected={isSelected}
-      onClick={onClick}
-      main="space-between"
-      size={size}
-      ref={ref}
-    >
-      {label}
-      {isSelected ? <Icon as={CheckIcon} color="$primaryStill" size="md" /> : null}
-    </StyledItem>
+    <RdxSelect.Item value={value} disabled={disabled} textValue={label} asChild>
+      <StyledItem {...props} main="space-between" ref={ref}>
+        <RdxSelect.ItemText>{label}</RdxSelect.ItemText>
+        {value && (
+          <RdxSelect.ItemIndicator asChild>
+            <Icon as={CheckIcon} color="$primaryStill" size="md" />
+          </RdxSelect.ItemIndicator>
+        )}
+      </StyledItem>
+    </RdxSelect.Item>
   );
 });
 
