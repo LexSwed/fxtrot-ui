@@ -15,7 +15,7 @@ import { Box, Flex, ComboBox, Item, Text } from '@fxtrot/ui';
         <Flex flow="column" gap="md" css={{ width: '$56' }}>
           <ComboBox placeholder="Hufflepuff" label="The House you were sorted to" value={value} onChange={setValue}>
             {['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'].map((house, index) => (
-              <Item value={`${index + 1}`} label={house} key={house} />
+              <ComboBox.Item value={`${index + 1}`} label={house} key={house} />
             ))}
           </ComboBox>
           <Text>{`Selected item index: ${value}`}</Text>
@@ -43,10 +43,10 @@ You can allow the selection of elements that do not exist - creating them from t
               value={value}
               onChange={setValue}
               onInputChange={setNewItemValue}
-              hint={value || value === '' ? '' : 'New item will be created'}
+              hint={value || value === '' || !newItemValue ? '' : 'New item will be created'}
             >
               {['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'].map((house, index) => (
-                <Item value={`${index + 1}`} label={house} key={house} />
+                <ComboBox.Item value={`${index + 1}`} label={house} key={house} />
               ))}
             </ComboBox>
           </Box>
@@ -80,7 +80,7 @@ Supports same `variant`s as `TextField` component.
           {Array(400)
             .fill(null)
             .map((el, i) => (
-              <Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
+              <ComboBox.Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
             ))}
         </ComboBox>
       </Box>

@@ -9,10 +9,17 @@ interface Props extends FlexVariants {
   title: string;
 }
 
-export const Section: React.FC<Props> = ({ title, children, ...props }) => {
+export const Section: React.FC<Props> = ({
+  title,
+  children,
+  cross = 'stretch',
+  flow = 'column',
+  gap = 'xs',
+  ...props
+}) => {
   const id = useUID();
   return (
-    <Flex cross="stretch" flow="column" gap="xs" {...props}>
+    <Flex cross={cross} flow={flow} gap={gap} {...props}>
       <Heading id={id} font="mono" size="xs" tone="light">
         {title}
       </Heading>

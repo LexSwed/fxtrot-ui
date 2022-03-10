@@ -13,7 +13,6 @@ export * from './Icon';
 export * from './IconButton';
 export * from './Label';
 export * from './LinkButton';
-export * from './Item';
 export * from './Menu';
 export * from './MenuList';
 export * from './Picker';

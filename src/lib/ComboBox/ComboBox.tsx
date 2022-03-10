@@ -9,8 +9,7 @@ import { Item, OptionType } from './Item';
 import { useAllHandlers, useForkRef, useLatest } from '../utils/hooks';
 import { PopoverLayerDeprecated } from '../Popover/LayerDeprectated';
 import { StateProvider, useFocusedItemId, useSyncValue } from './atoms';
-import { ListBox } from '../ListBox';
-import { ListBoxContext } from '../ListBox/ListBoxContext';
+import { FloatingList } from '../shared/FloatingList';
 
 interface Props
   extends Omit<
@@ -144,7 +143,7 @@ const ComboBoxInner: React.FC<Props> = ({
         onFocusPrev={handleFocusPrev}
       />
       <PopoverLayerDeprecated triggerRef={triggerRef}>
-        <ListBox id={listboxId} role="listbox" aria-labelledby={idSeed('input')}>
+        <FloatingList id={listboxId} role="listbox" aria-labelledby={idSeed('input')}>
           {filteredItems.map((child, index) => {
             return React.cloneElement(child, {
               id: createOptionId(child.props.value as string),
@@ -157,23 +156,23 @@ const ComboBoxInner: React.FC<Props> = ({
               },
             });
           })}
-        </ListBox>
+        </FloatingList>
       </PopoverLayerDeprecated>
     </>
   );
 };
 
-export const ComboBox: React.FC<Props> = (props) => {
+export const ComboBox = (props: Props) => {
   return (
     <OpenStateProvider>
-      <ListBoxContext ListItem={Item}>
-        <StateProvider>
-          <ComboBoxInner {...props} />
-        </StateProvider>
-      </ListBoxContext>
+      <StateProvider>
+        <ComboBoxInner {...props} />
+      </StateProvider>
     </OpenStateProvider>
   );
 };
+
+ComboBox.Item = Item;
 
 function useFilteredItems(children: Props['children'], filterText: string) {
   const items = flattenChildren(children) as OptionType[];

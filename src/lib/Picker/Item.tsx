@@ -3,21 +3,26 @@ import { CheckIcon } from '@heroicons/react/solid';
 import * as RdxSelect from '@radix-ui/react-select';
 
 import { Icon } from '../Icon/Icon';
-import { StyledItem, ItemProps } from '../Item/Item';
+import { ListItem } from '../shared/ListItem';
 
-export interface OptionType extends React.ReactElement<ItemProps, typeof Item> {}
+interface Props extends React.ComponentProps<typeof ListItem> {
+  value: string;
+  label?: string;
+  disabled?: boolean;
+}
+export interface OptionType extends React.ReactElement<Props, typeof Item> {}
 
-const Item = React.forwardRef<HTMLDivElement, ItemProps>(({ value, label, disabled, ...props }, ref) => {
+const Item = React.forwardRef<HTMLDivElement, Props>(({ value, label, disabled, ...props }, ref) => {
   return (
     <RdxSelect.Item value={value} disabled={disabled} textValue={label} asChild>
-      <StyledItem {...props} main="space-between" ref={ref}>
+      <ListItem {...props} main="space-between" ref={ref}>
         <RdxSelect.ItemText>{label}</RdxSelect.ItemText>
         {value && (
           <RdxSelect.ItemIndicator asChild>
             <Icon as={CheckIcon} color="$primaryStill" size="md" />
           </RdxSelect.ItemIndicator>
         )}
-      </StyledItem>
+      </ListItem>
     </RdxSelect.Item>
   );
 });

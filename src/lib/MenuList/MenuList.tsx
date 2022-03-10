@@ -1,37 +1,23 @@
 import React from 'react';
-import { FocusScope, useFocusManager } from '@react-aria/focus';
-
-import { ListBoxContext } from '../ListBox/ListBoxContext';
+import * as RovingFocusGroup from '@radix-ui/react-roving-focus';
 
 import { styled } from '../stitches.config';
-import { useKeyboardHandles } from '../utils/hooks';
-import Item from './Item';
-import { StyledItem } from '../Item/Item';
+import { Item, StyledItem } from './Item';
 
 interface Props extends React.ComponentProps<typeof ListStyled> {}
 
-export const MenuList = React.forwardRef<HTMLUListElement, Props>((props, ref) => {
+export const MenuList = React.forwardRef((props: Props, ref) => {
   return (
-    <ListBoxContext ListItem={Item}>
-      <FocusScope>
-        <ListInner {...props} ref={ref} />
-      </FocusScope>
-    </ListBoxContext>
+    <RovingFocusGroup.Root asChild>
+      <ListStyled {...props} ref={ref} />
+    </RovingFocusGroup.Root>
   );
-});
+}) as React.ForwardRefExoticComponent<React.PropsWithoutRef<Props> & React.RefAttributes<HTMLUListElement>> & {
+  Item: typeof Item;
+};
 
 MenuList.displayName = 'MenuList';
-
-const ListInner = React.forwardRef<HTMLUListElement, Props>((props, ref) => {
-  const { focusNext, focusPrevious } = useFocusManager();
-
-  const handleKeyDown = useKeyboardHandles({
-    ArrowDown: () => focusNext(),
-    ArrowUp: () => focusPrevious(),
-  });
-
-  return <ListStyled onKeyDown={handleKeyDown} {...props} ref={ref} />;
-});
+MenuList.Item = Item;
 
 const ListStyled = styled('ul', {
   m: 0,

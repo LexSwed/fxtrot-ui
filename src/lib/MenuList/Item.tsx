@@ -1,12 +1,52 @@
 import React from 'react';
+import * as RovingFocusGroup from '@radix-ui/react-roving-focus';
 
-import { StyledItem, ItemProps } from '../Item/Item';
-import { css } from '../stitches.config';
+import { styled } from '../stitches.config';
+import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
+import { ListItem } from '../shared/ListItem';
 
-const style = css({
+interface Props extends React.ComponentProps<typeof StyledItem> {}
+
+export const Item = React.forwardRef<HTMLButtonElement, Props>((props, ref) => {
+  const onKeyDown = useKeyboardHandles({
+    'Enter': (e) => e.currentTarget.click?.(),
+    ' ': (e) => e.currentTarget.click?.(),
+  });
+  const handleKeyDown = useAllHandlers(props.onKeyDown, onKeyDown);
+
+  return (
+    <RovingFocusGroup.Item asChild focusable={!props.disabled} active={props['aria-selected'] === true}>
+      <StyledItem {...props} aria-disabled={props.disabled} role="treeitem" onKeyDown={handleKeyDown} ref={ref} />
+    </RovingFocusGroup.Item>
+  );
+});
+
+Item.displayName = 'MenuListItem';
+
+export const StyledItem = styled('button', ListItem, {
+  'display': 'block',
   'position': 'relative',
   'textDecoration': 'none',
   'cursor': 'default',
+  '&[aria-selected="true"]': {
+    'bc': '$surfaceActive',
+    'color': '$primaryStill',
+    '&::after': {
+      bc: '$primaryStill',
+    },
+    '&:focus': {
+      'color': '$primaryActive',
+      '&:after': {
+        transform: 'none',
+        bc: '$primaryActive',
+      },
+    },
+  },
+  '&[aria-selected="false"]': {
+    '&::after': {
+      bc: 'transparent',
+    },
+  },
   '&::after': {
     position: 'absolute',
     left: 0,
@@ -18,40 +58,4 @@ const style = css({
     content: `''`,
     bc: 'transparent',
   },
-  '&:focus:after': {
-    transform: 'none',
-  },
-  'variants': {
-    selected: {
-      true: {
-        'bc': '$surfaceActive',
-        'color': '$accentLight',
-        '&::after': {
-          bc: '$accent',
-        },
-      },
-      false: {
-        '&::after': {
-          bc: 'transparent',
-        },
-      },
-    },
-  },
 });
-
-const Item = React.forwardRef<HTMLDivElement, ItemProps>(({ className, ...props }, ref) => {
-  const selected = props['aria-selected'];
-  return (
-    <StyledItem
-      {...props}
-      role="treeitem"
-      tabIndex={selected ? 0 : -1}
-      ref={ref}
-      className={`${style({ selected })}${className ? ` ${className}` : ''}`}
-    />
-  );
-});
-
-Item.displayName = 'MenuListItem';
-
-export default Item;

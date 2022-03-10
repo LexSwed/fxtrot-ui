@@ -29,10 +29,10 @@ import { UsersIcon, AdjustmentsIcon, GlobeIcon } from '@heroicons/react/outline'
                 label: 'Language',
               },
             ].map(({ icon, label }) => (
-              <Item key={label} aria-selected={selected === label} onClick={() => setSelected(label)}>
+              <MenuList.Item key={label} aria-selected={selected === label} onClick={() => setSelected(label)}>
                 <Icon as={icon} />
                 <Text>{label}</Text>
-              </Item>
+              </MenuList.Item>
             ))}
           </Section>
         </MenuList>
@@ -61,10 +61,10 @@ import { UsersIcon, AdjustmentsIcon, GlobeIcon } from '@heroicons/react/outline'
               selected: true,
             },
           ].map(({ icon, label, selected }) => (
-            <Item key={label} aria-selected={selected}>
+            <MenuList.Item key={label} aria-selected={selected}>
               <Icon as={icon} />
               <Text>{label}</Text>
-            </Item>
+            </MenuList.Item>
           ))}
         </Section>
       </MenuList>

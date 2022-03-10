@@ -4,11 +4,11 @@ import * as RdxMenu from '@radix-ui/react-dropdown-menu';
 import { PopoverLayer, PopoverLayerProps } from '../Popover/PopoverLayer';
 import { styled, CssStyles } from '../stitches.config';
 import { OpenStateProvider, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
-import { StyledItem } from '../Item/Item';
 import { Label } from '../Label';
 import { Portal } from '../Portal';
 import type { VariantProps } from '@stitches/react';
-import { listStyles } from '../ListBox/FloatingList';
+import { listStyles } from '../shared/FloatingList';
+import { ListItem } from '../shared/ListItem';
 
 interface MenuListProps {
   children: [trigger: React.ReactElement, menuList: React.ReactElement];
@@ -49,14 +49,14 @@ const List = ({ children, css = {}, ...props }: PopoverLayerProps) => {
   );
 };
 
-interface MenuItemProps extends Omit<React.ComponentProps<typeof RdxMenu.Item>, 'as'>, VariantProps<typeof StyledItem> {
+interface MenuItemProps extends Omit<React.ComponentProps<typeof RdxMenu.Item>, 'as'>, VariantProps<typeof ListItem> {
   css?: CssStyles;
 }
 
 const MenuItem = React.forwardRef<HTMLDivElement, MenuItemProps>(({ onSelect, disabled, textValue, ...props }, ref) => {
   return (
     <RdxMenu.Item onSelect={onSelect} disabled={disabled} textValue={textValue} asChild>
-      <StyledItem {...props} ref={ref} />
+      <ListItem {...props} ref={ref} />
     </RdxMenu.Item>
   );
 });
