@@ -95,7 +95,7 @@ const TriggerButton = styled('button', fieldBox, {
   '& > span:first-child': {
     '&:empty:before': {
       content: 'attr(placeholder)',
-      color: '$textSubtle',
+      color: '$text--light',
       overflow: 'hidden',
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',

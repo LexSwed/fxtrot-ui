@@ -55,19 +55,19 @@ const Block = styled('div', {
     },
     variant: {
       primary: {
-        bc: '$primaryStill',
-        color: 'white',
-        borderColor: '$primaryStill',
+        bc: '$shape-accent',
+        color: '$text-onAccent',
+        borderColor: '$border-accent',
       },
       secondary: {
-        bc: '$surfaceStill',
+        bc: '$surface',
         color: '$text',
-        borderColor: '$borderStill',
+        borderColor: '$border',
       },
       outline: {
-        color: '$primaryActive',
-        bc: '$primaryLightActive',
-        borderColor: '$primaryStill',
+        color: '$text-accent',
+        bc: '$shape-accent-light',
+        borderColor: '$border-accent',
       },
     },
   },

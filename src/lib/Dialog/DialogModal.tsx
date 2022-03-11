@@ -73,7 +73,7 @@ const CloseButtonContainer = styled('div', {
 });
 
 const DialogWindow = styled(motion.div, {
-  bc: '$surfaceStill',
+  bc: '$surface',
   p: '$8',
   pt: '$10',
   outline: 'none',

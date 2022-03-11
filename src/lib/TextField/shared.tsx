@@ -27,15 +27,16 @@ export const fieldBox = css({
   'textSize': '$sm',
   'height': '$base',
   'width': '100%',
+  'color': '$text',
   'px': '$2',
   'display': 'inline-flex',
   'transition': '0.2s ease-in-out',
   'transitionProperty': 'background, border-color, box-shadow',
-  'bc': '$surfaceStill',
+  'bc': '$surface',
   'border': '1px solid transparent',
 
   '&::placeholder': {
-    color: '$textSubtle',
+    color: '$text--light',
   },
   '&:focus': {
     outline: 'none',
@@ -44,62 +45,65 @@ export const fieldBox = css({
   'variants': {
     variant: {
       boxed: {
-        'br': '$md',
-        'borderColor': '$borderStill',
-        'focusRing': '$borderStill',
+        'br': '$base',
+        'borderColor': '$border',
+        'focusRing': '$border',
         '&:hover': {
-          borderColor: '$borderHover',
+          borderColor: '$border--hover',
         },
         '&:focus': {
-          borderColor: '$borderActive',
-          boxShadow: '0 0 0 1px $borderActive inset',
+          borderColor: '$border--active',
+          boxShadow: '0 0 0 1px $border--active inset',
         },
       },
       underlined: {
-        // TODO: learn gradients and simplify
-        '$$color': '$colors$borderStill',
-        'backgroundImage': 'linear-gradient(to top, $$color 2px, $colors$surfaceStill 2px)',
+        '$$borderColor': '$colors$border',
+        'bc': '$shape',
+        'borderTopLeftRadius': '$base',
+        'borderTopRightRadius': '$base',
+        'backgroundImage': 'linear-gradient(to top, $$borderColor 2px, $colors$surface 2px)',
         'backgroundSize': '100% calc(100% + 4px)',
         'backgroundPosition': '0 calc(100% + 2px)',
         '&:hover': {
           backgroundPosition: '0 calc(100% + 2px)',
-          $$color: '$colors$primaryHover',
+          $$borderColor: '$colors$shape-accent--hover',
         },
         '&:focus, &[aria-expanded="true"]': {
           backgroundPosition: '0 calc(100% + 1px)',
-          $$color: '$colors$primaryActive',
+          $$borderColor: '$colors$shape-accent--active',
         },
         '&:disabled': {
           backgroundImage: 'none',
-          bc: '$surfaceDisabled',
+          bc: '$shape--disabled',
         },
       },
       transparent: {
         'background': 'transparent',
-        'br': '$md',
+        '&:disabled': {
+          br: '$base',
+        },
         '&:not(:disabled)': {
           px: 0,
         },
         '&:hover': {
-          borderBottomColor: '$borderLight',
+          borderBottomColor: '$border--light',
         },
         '&:focus': {
-          borderBottomColor: '$borderStill',
+          borderBottomColor: '$border--active',
         },
       },
       flat: {
-        'bc': '$flatStill',
-        'color': '$text',
+        'bc': '$shape',
         'px': '$3',
-        'br': '$md',
-        'focusRing': '$borderStill',
+        'br': '$base',
+        'focusRing': '$border',
         '&:hover:not(:focus)': {
-          bc: '$flatHover',
+          bc: '$shape--hover',
         },
         '&:focus': {
-          bc: '$surfaceStill',
-          borderColor: '$borderActive',
-          boxShadow: '0 0 0 1px $borderActive inset',
+          bc: '$surface',
+          borderColor: '$border--active',
+          boxShadow: '0 0 0 1px $border--active inset',
         },
       },
     },
@@ -129,7 +133,7 @@ export const fieldBox = css({
       },
       invalid: {
         [`& ~ ${IconWrapper}`]: {
-          color: '$danger',
+          color: '$text-danger',
         },
       },
     },
@@ -140,15 +144,15 @@ export const fieldBox = css({
   },
 
   '&:disabled': {
-    color: '$textDisabled',
-    borderColor: '$surfaceDisabled',
-    bc: '$surfaceDisabled',
+    color: '$text--disabled',
+    borderColor: '$shape--disabled',
+    bc: '$shape--disabled',
   },
 
   '&[readonly]': {
     cursor: 'default',
-    bc: '$surfaceHover',
-    color: '$textLight',
+    bc: '$surface--hover',
+    color: '$text--light',
   },
 
   'compoundVariants': [
@@ -156,12 +160,12 @@ export const fieldBox = css({
       variant: 'boxed',
       validity: 'invalid',
       css: {
-        'borderColor': '$danger',
+        'borderColor': '$shape-danger',
         '&:hover': {
-          borderColor: '$red700',
+          borderColor: '$shape-danger--hover',
         },
         '&:focus': {
-          borderColor: '$borderDefault',
+          borderColor: '$shape-danger--active',
         },
       },
     },
@@ -169,12 +173,12 @@ export const fieldBox = css({
       variant: 'underlined',
       validity: 'invalid',
       css: {
-        'backgroundImage': 'linear-gradient(to top, $colors$danger 2px, $colors$surfaceStill 2px)',
+        'backgroundImage': 'linear-gradient(to top, $colors$shape-danger 2px, $colors$surface 2px)',
         '&:hover': {
-          backgroundImage: 'linear-gradient(to top, $colors$red700 2px, $colors$surfaceStill 2px)',
+          backgroundImage: 'linear-gradient(to top, $colors$shape-danger--hover 2px, $colors$surface 2px)',
         },
         '&:focus': {
-          backgroundImage: 'linear-gradient(to top, $colors$red700 2px, $colors$surfaceStill 2px)',
+          backgroundImage: 'linear-gradient(to top, $colors$shape-danger--active 2px, $colors$surface 2px)',
         },
       },
     },
@@ -182,12 +186,12 @@ export const fieldBox = css({
       variant: 'transparent',
       validity: 'invalid',
       css: {
-        'borderBottomColor': '$danger',
+        'borderBottomColor': '$shape-danger',
         '&:hover': {
-          borderBottomColor: '$red700',
+          borderBottomColor: '$shape-danger--hover',
         },
         '&:focus': {
-          borderBottomColor: '$borderDefault',
+          borderBottomColor: '$shape-danger--active',
         },
       },
     },

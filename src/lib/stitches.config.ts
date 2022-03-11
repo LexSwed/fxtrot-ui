@@ -2,14 +2,11 @@ import { createStitches, PropertyValue, ScaleValue, CSS } from '@stitches/react'
 
 import { attribute } from './utils/focus-visible';
 import { scales } from './theme/scales';
-import { allColors, themes } from './theme/creator';
+import { defaultColors } from './theme/default';
 
 export const stitchesConfig = createStitches({
   theme: {
-    colors: {
-      ...allColors,
-      ...themes.blue.colors,
-    },
+    colors: { ...defaultColors },
     fonts: {
       default: '"Noto Sans", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif',
       heading: '"Source Sans Pro", apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif',
@@ -51,12 +48,14 @@ export const stitchesConfig = createStitches({
     },
     radii: {
       '0': '0',
-      'sm': '2px',
+      'xs': '2px',
+      'sm': '4px',
       'md': '6px',
       'lg': '12px',
       'xl': '16px',
       'round': '50%',
       'pill': '9999px',
+      'base': '$md',
     },
     zIndices: {
       '1': '100',
@@ -74,7 +73,7 @@ export const stitchesConfig = createStitches({
       '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
       '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
       'inner': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
-      'popper': `0 0 1px $colors$borderStill, $shadows$lg`,
+      'popper': `0 0 1px $colors$border, $shadows$lg`,
       'base': '$xs',
       'base:hover': '$sm, $sm',
       'none': 'none',
@@ -135,7 +134,7 @@ export const stitchesConfig = createStitches({
       marginTop: value,
       marginBottom: value,
     }),
-    bc: (value: PropertyValue<'backgroundColor'> | string) => ({
+    bc: (value: PropertyValue<'backgroundColor'>) => ({
       backgroundColor: value,
     }),
     br: (value: ScaleValue<'radii'>) => ({
@@ -181,7 +180,7 @@ export const stitchesConfig = createStitches({
           outline: 'none',
         },
         [`&:focus[${attribute}]`]: {
-          boxShadow: `0 0 0 3px $$focusRingColor`,
+          boxShadow: `0 0 0 2px $$focusRingColor`,
         },
       } as any),
   },

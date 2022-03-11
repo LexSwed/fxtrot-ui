@@ -32,7 +32,6 @@ const StyledTrigger = styled('button', flexCss, {
   'width': '100%',
   'cursor': 'default',
   'br': '$md',
-  'focusRing': '$borderStill',
   'transition': '0.2s ease-in-out',
   'fontFamily': '$default',
   'border': '1px solid transparent',
@@ -50,17 +49,21 @@ const StyledTrigger = styled('button', flexCss, {
   'variants': {
     variant: {
       flat: {
-        'bc': '$flatStill',
+        'bc': '$shape',
         'color': '$text',
-        'focusRing': '$borderStill',
+        'focusRing': '$focusRing',
         '&:hover': {
-          bc: '$flatHover',
+          bc: '$shape--hover',
+        },
+        '&:focus': {
+          bc: '$shape--hover',
+          borderColor: '$border--light',
         },
         '&:active, &[data-state="open"]': {
-          bc: '$flatActive',
+          bc: '$shape--active',
         },
         '&:disabled': {
-          color: '$textDisabled',
+          color: '$text--disabled',
           borderColor: 'transparent',
           bc: 'transparent',
         },

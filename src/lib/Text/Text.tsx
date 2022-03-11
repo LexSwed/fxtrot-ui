@@ -58,16 +58,16 @@ export const Text = styled('span', {
     },
     tone: {
       subtle: {
-        color: '$textSubtle',
+        color: '$text--light',
       },
       light: {
-        color: '$textLight',
+        color: '$text--light',
       },
       success: {
-        color: '$success',
+        color: '$text-success',
       },
       danger: {
-        color: '$danger',
+        color: '$text-danger',
       },
     },
     align: {

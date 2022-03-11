@@ -12,7 +12,8 @@ export const Button = React.forwardRef<HTMLButtonElement, Props>(({ type = 'butt
     <ButtonRoot {...props} aria-disabled={props.disabled} type={type} ref={ref}>
       {childCount < 2
         ? children
-        : React.Children.map(children, (child, i) => {
+        : // align icons with text to button paddings
+          React.Children.map(children, (child, i) => {
             if (React.isValidElement(child) && child.type === Icon) {
               const alignment: 'left' | 'right' | null = i === 0 ? 'left' : i === childCount - 1 ? 'right' : null;
               if (alignment) {
@@ -41,12 +42,27 @@ export const buttonCss = css(flexCss, {
   'fontFamily': '$default',
   'lineHeight': 1,
   'border': '1px solid transparent',
-  'br': '$md',
   'cursor': 'default',
   'whiteSpace': 'nowrap',
   'flexShrink': 0,
   '&[disabled],[aria-disabled="true"]': {
     pointerEvents: 'none',
+  },
+
+  '&:disabled': {
+    color: '$text--disabled',
+    borderColor: '$border-accent--disabled',
+    bc: '$shape-accent--disabled',
+    cursor: 'default',
+  },
+
+  [`& > ${IconBox}[data-fxtrot-icon-button-align="left"]`]: {
+    ml: '-4%',
+    mr: '4%',
+  },
+  [`& > ${IconBox}[data-fxtrot-icon-button-align="right"]`]: {
+    ml: '4%',
+    mr: '-4%',
   },
 
   'variants': {
@@ -56,151 +72,110 @@ export const buttonCss = css(flexCss, {
         fontSize: '$xs',
         fontWeight: 400,
         px: '$2',
-        [`& > ${IconBox}[data-fxtrot-icon-button-align="left"]`]: {
-          ml: '-$1',
-        },
-        [`& > ${IconBox}[data-fxtrot-icon-button-align="right"]`]: {
-          mr: '-$1',
-        },
+        br: '$sm',
       },
       sm: {
         height: '$8',
         fontSize: '$sm',
         fontWeight: 400,
         px: '$4',
-        [`& > ${IconBox}[data-fxtrot-icon-button-align="left"]`]: {
-          ml: '-$1',
-        },
-        [`& > ${IconBox}[data-fxtrot-icon-button-align="right"]`]: {
-          mr: '-$1',
-        },
+        br: '$sm',
       },
       md: {
         height: '$base',
         fontSize: '$sm',
         fontWeight: 500,
         px: '$4',
-        [`& > ${IconBox}[data-fxtrot-icon-button-align="left"]`]: {
-          ml: '-$1',
-        },
-        [`& > ${IconBox}[data-fxtrot-icon-button-align="right"]`]: {
-          mr: '-$1',
-        },
+        br: '$base',
       },
       lg: {
         height: '$12',
         fontSize: '$md',
         fontWeight: 500,
         px: '$6',
-        [`& > ${IconBox}[data-fxtrot-icon-button-align="left"]`]: {
-          ml: '-$3',
-        },
-        [`& > ${IconBox}[data-fxtrot-icon-button-align="right"]`]: {
-          mr: '-$3',
-        },
+        br: '$base',
       },
     },
     variant: {
       primary: {
-        'bc': '$primaryStill',
-        'color': 'white',
-        'borderColor': '$primaryStill',
-        'focusRing': '$focusRing',
+        'bc': '$shape-accent',
+        'color': '$text-onAccent',
+        'borderColor': '$border-accent',
+        'focusRing': '$border-accent--active',
         '&:hover': {
-          borderColor: '$primaryHover',
-          bc: '$primaryHover',
+          borderColor: '$border-accent--hover',
+          bc: '$shape-accent--hover',
         },
         '&:active': {
-          borderColor: '$primaryActive',
-          bc: '$primaryActive',
+          borderColor: '$border-accent--active',
+          bc: '$shape-accent--active',
         },
         '&:focus': {
-          borderColor: '$primaryActive',
-        },
-        '&:disabled': {
-          color: '$textDisabled',
-          borderColor: '$surfaceDisabled',
-          bc: '$surfaceDisabled',
+          borderColor: '$border-accent--active',
         },
       },
       secondary: {
-        'bc': '$surfaceStill',
+        'bc': '$shape',
         'color': '$text',
-        'borderColor': '$borderStill',
-        'focusRing': '$borderStill',
+        'borderColor': '$border',
+        'focusRing': '$focusRing',
         '&:hover': {
-          borderColor: '$borderHover',
-        },
-        '&:disabled': {
-          color: '$textDisabled',
-          borderColor: '$surfaceDisabled',
-          bc: '$surfaceDisabled',
+          bc: '$shape--hover',
+          borderColor: '$border--hover',
         },
         '&:active, &[data-state="open"]': {
-          borderColor: '$borderActive',
-          bc: '$surfaceActive',
+          bc: '$shape--active',
+          borderColor: '$border--active',
         },
         '&:focus': {
-          borderColor: '$borderActive',
+          borderColor: '$border--active',
         },
       },
       outline: {
-        'color': '$primaryStill',
-        'bc': 'transparent',
-        'focusRing': '$focusRing',
-        'borderColor': '$primaryStill',
+        'color': '$text-accent',
+        'bc': '$shape-accent-light',
+        'borderColor': '$border-accent',
+        'focusRing': '$border-accent--active',
         '&:hover': {
-          bc: '$primaryLight',
-          color: '$primaryHover',
-          borderColor: '$primaryHover',
+          bc: '$shape-accent-light--hover',
+          color: '$text-accent',
+          borderColor: '$border-accent--hover',
         },
         '&:active, &[data-state="open"]': {
-          bc: '$primaryLightActive',
-          color: '$primaryActive',
-          borderColor: '$primaryActive',
+          bc: '$shape-accent-light--active',
+          color: '$text-accent',
+          borderColor: '$border-accent--active',
         },
         '&:focus': {
-          borderColor: '$primaryActive',
-        },
-        '&:disabled': {
-          color: '$textDisabled',
-          borderColor: '$surfaceDisabled',
-          bc: '$surfaceDisabled',
+          borderColor: '$border-accent--active',
         },
       },
       flat: {
-        'bc': '$flatStill',
+        'bc': '$shape',
         'color': '$text',
-        'focusRing': '$borderStill',
+        'focusRing': '$focusRing',
         '&:hover': {
-          bc: '$flatHover',
+          bc: '$shape--hover',
+        },
+        '&:focus': {
+          bc: '$shape--hover',
+          borderColor: '$border--light',
         },
         '&:active, &[data-state="open"]': {
-          bc: '$flatActive',
-        },
-        '&:disabled': {
-          color: '$textDisabled',
-          borderColor: 'transparent',
-          bc: 'transparent',
+          bc: '$shape--active',
         },
       },
       link: {
         'bc': 'transparent',
-        'color': '$accent',
+        'color': '$text-accent',
         'cursor': 'pointer',
         'focusRing': '$focusRing',
         '&:not([aria-disabled="true"]):hover': {
-          color: '$primaryHover',
-          textDecoration: 'underline',
-        },
-        '&:not([aria-disabled="true"]):not([disabled]):active': {
-          color: '$primaryActive',
           textDecoration: 'underline',
         },
         '&[disabled],&[aria-disabled="true"]': {
+          bc: 'transparent',
           borderColor: 'transparent',
-          cursor: 'default',
-          color: '$textDisabled',
         },
       },
       transparent: {

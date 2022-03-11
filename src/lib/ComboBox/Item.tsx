@@ -48,6 +48,6 @@ Item.displayName = 'Item';
 
 const StyledItem = styled(ListItem, {
   [`& > ${IconBox}`]: {
-    color: '$primaryStill',
+    color: '$text-accent',
   },
 });

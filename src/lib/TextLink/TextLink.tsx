@@ -6,7 +6,7 @@ import { Icon, IconBox } from '../Icon/Icon';
 import { Text } from '../Text';
 
 const Link = styled('a', Text, {
-  'color': '$primaryStill',
+  'color': '$text-accent',
   'textDecoration': 'none',
   'boxSizing': 'border-box',
   'cursor': 'pointer',
@@ -16,12 +16,6 @@ const Link = styled('a', Text, {
     'transition': 'text-decoration 0.1s ease-in',
     '&:hover, &:hover': {
       textDecorationColor: 'currentColor',
-    },
-  },
-  '&:visited': {
-    color: '$primaryActive',
-    [`& ${IconBox} path`]: {
-      stroke: '$primaryActive',
     },
   },
 
@@ -35,7 +29,7 @@ const Link = styled('a', Text, {
           'top': '50%',
           'transform': 'translateY(-50%)',
           '& path': {
-            stroke: '$primaryStill',
+            stroke: '$text-accent',
           },
         },
         pr: '$5',

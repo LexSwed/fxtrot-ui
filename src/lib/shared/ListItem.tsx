@@ -20,22 +20,22 @@ export const ListItem = styled('div', flexCss, {
   'userSelect': 'none',
   'flexShrink': 0,
   'transition': '0.1s ease-in-out',
-  'bc': '$flatStill',
+  'bc': '$shape',
   '&:focus:not(:active), &:hover': {
-    bc: '$flatHover',
+    bc: '$shape--hover',
   },
   '&:active': {
-    bc: '$flatActive',
+    bc: '$shape--active',
   },
   [`& ${Text}`]: {
     fontSize: 'inherit',
     lineHeight: 'inherit',
   },
   '&[data-focused="true"]': {
-    bc: '$flatHover',
+    bc: '$shape--hover',
   },
   '&[data-disabled="true"]': {
-    color: '$textDisabled',
+    color: '$text--disabled',
   },
 
   'variants': {

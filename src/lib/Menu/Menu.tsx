@@ -63,7 +63,7 @@ const MenuItem = React.forwardRef<HTMLDivElement, MenuItemProps>(({ onSelect, di
 
 const Separator = styled(RdxMenu.Separator, {
   height: 1,
-  bc: '$borderLight',
+  bc: '$border--light',
   my: '$1',
   mx: '-$1',
 });

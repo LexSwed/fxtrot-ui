@@ -26,8 +26,8 @@ import { TrashIcon } from '@heroicons/react/outline';
           Cut
         </Menu.Item>
         <Menu.Separator />
-        <Menu.Item onSelect={() => window.alert('delete')} css={{ color: '$danger' }}>
-          <Icon as={TrashIcon} color="$danger" />
+        <Menu.Item onSelect={() => window.alert('delete')} css={{ color: '$text-danger' }}>
+          <Icon as={TrashIcon} color="$text-danger" />
           Delete
         </Menu.Item>
       </Menu.List>
@@ -80,7 +80,7 @@ You can modify `offset` from the `side` and along the `align`ment.
           >
             <Dialog>
               <Menu.Item
-                css={{ color: '$danger' }}
+                css={{ color: '$text-danger' }}
                 onSelect={(event) => {
                   event.preventDefault();
                   modalOpenRef.current = true;

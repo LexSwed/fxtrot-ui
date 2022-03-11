@@ -35,12 +35,12 @@ const toggleButtonCss = css({
     variant: {
       flat: {
         '&[data-state="on"]': {
-          color: '$primaryStill',
+          color: '$text-accent',
         },
       },
       secondary: {
         '&[data-state="off"]': {
-          bc: '$surfaceActive',
+          bc: '$shape--active',
         },
       },
     },

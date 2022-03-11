@@ -14,7 +14,7 @@ const Main = styled(Text, {
   variants: {
     disabled: {
       true: {
-        color: '$textDisabled',
+        color: '$text--disabled',
       },
       false: {
         color: '$text',

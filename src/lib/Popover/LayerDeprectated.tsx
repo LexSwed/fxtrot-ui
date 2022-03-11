@@ -97,7 +97,7 @@ const Popper = styled('div', {
 });
 
 const PopperBox = styled(motion.div, {
-  bc: '$surfaceStill',
+  bc: '$surface',
   br: '$md',
   outline: 'none',
   boxShadow: '$popper',

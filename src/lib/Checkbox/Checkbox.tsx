@@ -2,7 +2,6 @@ import React, { useMemo } from 'react';
 import { CheckIcon } from '@heroicons/react/outline';
 
 import { Flex, FlexVariants } from '../Flex/Flex';
-import { attribute } from '../utils/focus-visible';
 import { FormField } from '../FormField/FormField';
 import { Icon, IconBox } from '../Icon/Icon';
 import { Label } from '../Label';
@@ -75,7 +74,7 @@ const CheckboxWrapper = styled('div', {
 export const CheckMark = styled('div', {
   br: '$md',
   bc: 'transparent',
-  border: '1px solid $borderStill',
+  border: '1px solid $border',
   size: '$5',
   position: 'relative',
   transition: '0.14s ease-in-out',
@@ -109,14 +108,19 @@ const Input = styled('input', {
   transitionTimingFunction: 'ease-in-out',
 
   [`&:hover + ${CheckMark}`]: {
-    borderColor: '$borderHover',
+    borderColor: '$border--hover',
     [`& ${IconBox}`]: {
       opacity: 0.3,
     },
   },
 
+  [`&:focus + ${CheckMark}`]: {
+    borderColor: '$border-accent--active',
+    boxShadow: '0 0 0 3px $colors$focusRing',
+  },
+
   [`&:checked + ${CheckMark}`]: {
-    borderColor: '$primaryStill',
+    borderColor: '$shape-accent',
     borderWidth: 10,
     color: '#fff',
     [`& ${IconBox}`]: {
@@ -124,38 +128,32 @@ const Input = styled('input', {
     },
   },
   [`&:checked:hover + ${CheckMark}`]: {
-    borderColor: '$primaryHover',
-    bc: '$primaryHover',
+    borderColor: '$shape-accent--hover',
     [`& ${IconBox}`]: {
       opacity: 1,
     },
   },
 
-  [`&:focus[${attribute}] + ${CheckMark}`]: {
-    borderColor: '$primaryActive',
-    boxShadow: '0 0 0 3px $colors$focusRing',
-  },
-
-  [`&:focus[${attribute}]:checked + ${CheckMark}`]: {
-    borderColor: '$primaryStill',
-    $boxOutline: '$primaryStill',
+  [`&:checked:focus + ${CheckMark}`]: {
+    borderColor: '$border-accent--active',
+    boxShadow: '0 0 0 3px $colors$border-accent',
     [`& > ${IconBox}`]: {
       opacity: 1,
     },
   },
 
   [`&:disabled + ${CheckMark}, &:disabled:checked + ${CheckMark}`]: {
-    borderColor: '$surfaceDisabled',
-    bc: '$surfaceDisabled',
+    borderColor: '$border--disabled',
+    bc: '$shape--disabled',
     [`& > ${IconBox}`]: {
       opacity: 0,
     },
   },
 
   [`&:disabled:checked + ${CheckMark}`]: {
-    color: '$textDisabled',
+    color: '$text--disabled',
     [`& > ${IconBox}`]: {
-      opacity: 1,
+      opacity: 0.7,
     },
   },
 });

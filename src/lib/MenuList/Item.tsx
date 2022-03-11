@@ -29,16 +29,16 @@ export const StyledItem = styled('button', ListItem, {
   'textDecoration': 'none',
   'cursor': 'default',
   '&[aria-selected="true"]': {
-    'bc': '$surfaceActive',
-    'color': '$primaryStill',
+    'bc': '$shape--hover',
+    'color': '$text-accent',
     '&::after': {
-      bc: '$primaryStill',
+      bc: '$shape-accent',
     },
     '&:focus': {
-      'color': '$primaryActive',
+      'color': '$text-accent',
       '&:after': {
         transform: 'none',
-        bc: '$primaryActive',
+        bc: '$shape-accent--active',
       },
     },
   },

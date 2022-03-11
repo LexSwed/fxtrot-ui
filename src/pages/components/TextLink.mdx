@@ -12,10 +12,9 @@ import { Flex, TextLink } from '@fxtrot/ui';
 <Playground>
   <Flex flow="column" gap="8">
     <p>
-      <TextLink href="https://random.dog/">Make visited</TextLink>
-    </p>
-    <p>
-      <TextLink size="sm">size prop of Text component</TextLink>
+      <TextLink size="sm" href="https://random.dog/">
+        Small size
+      </TextLink>
     </p>
   </Flex>
 </Playground>
@@ -32,7 +31,10 @@ import { Flex, TextLink } from '@fxtrot/ui';
       <TextLink href="https://random.dog/" external="icon">
         dog
       </TextLink>
-      , but can't make it. And this will be a very looong link. <TextLink href="https://random.dog/" external>
+      , but can't make it, or maybe can but we just don't know. And this will be a very looong link. <TextLink
+        href="https://random.dog/"
+        external
+      >
         How? This is how? How how? This is how.
       </TextLink>
     </p>

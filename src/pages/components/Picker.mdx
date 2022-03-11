@@ -10,7 +10,7 @@ import { Box, Flex, Picker, TextLink } from '@fxtrot/ui';
 Picker is a component that mimics default `<select>` element.
 
 <Playground>
-  <Box css={{ p: '$8', bc: '$surfaceStill' }}>
+  <Box css={{ p: '$8', bc: '$surface' }}>
     <Flex gap="md" css={{ width: '$40' }} cross="stretch">
       <Picker label="Item index" placeholder="1 number">
         {Array(100)
@@ -29,7 +29,7 @@ Picker is a component that mimics default `<select>` element.
   {() => {
     const [value, setValue] = React.useState('12');
     return (
-      <Box css={{ p: '$8', bc: '$surfaceStill' }}>
+      <Box css={{ p: '$8', bc: '$surface' }}>
         <Flex gap="md" css={{ width: '$40' }}>
           <Picker label="Item index" value={value} onChange={setValue}>
             {Array(20)
@@ -52,7 +52,7 @@ Supports same `variant`s as `Picker` component.
   {() => {
     const [value, setValue] = React.useState('12');
     return (
-      <Box css={{ p: '$8', bc: '$surfaceStill' }}>
+      <Box css={{ p: '$8', bc: '$surface' }}>
         <Flex gap="md" css={{ width: '$40' }} cross="stretch">
           <Picker
             label="Item index"

@@ -64,8 +64,8 @@ const SwitchFormField = styled('label', Flex, FormField, {});
 
 const Toggle = styled('div', {
   'br': '$pill',
-  'bc': '$borderStill',
-  'border': '1px solid $borderStill',
+  'bc': '$shape--active',
+  'border': '1px solid $shape--active',
   'height': '$5',
   'width': '30px',
   'position': 'relative',
@@ -77,7 +77,7 @@ const Toggle = styled('div', {
     display: 'block',
     position: 'absolute',
     size: '14px',
-    bc: '#fff',
+    bc: '$surface',
     br: '$round',
     transition: '0.24s ease-in-out',
     top: '2px',
@@ -102,50 +102,55 @@ const Input = styled('input', {
   cursor: 'default',
   transition: '0.24s ease-in-out',
 
-  [`&:hover:not(:checked) + ${Toggle}`]: {
+  [`&:hover + ${Toggle}`]: {
+    'bc': '$shape-accent-light--active',
+    'borderColor': '$border--hover',
     '&::before': {
-      boxShadow: '$sm',
+      boxShadow: '$sm, $sm',
     },
   },
 
   [`&:focus:not(:checked) + ${Toggle}`]: {
     '&::before': {
-      boxShadow: '$md',
+      boxShadow: '0 0 0 1px $colors$border, 0 0 0 3px $colors$border--active',
     },
   },
 
-  [`&:disabled + ${Toggle}`]: {
-    'bc': '$primaryLightActive',
-    'borderColor': '$primaryLightActive',
-
+  [`&:focus:checked + ${Toggle}`]: {
     '&::before': {
-      bc: '$surfaceStill',
-    },
-  },
-
-  [`&:focus:not(:checked)[${attribute}] + ${Toggle}`]: {
-    '&::before': {
-      boxShadow: '0 0 0 1px $borderStill , 0 0 0 3px $borderActive',
-    },
-  },
-
-  [`&:focus:checked[${attribute}] + ${Toggle}`]: {
-    '&::before': {
-      borderColor: 'transparent',
-      boxShadow: '0 0 0 1px $primaryStill, 0 0 0 3px $borderActive',
+      boxShadow: '0 0 0 1px $colors$surface, 0 0 0 3px $colors$border--active',
     },
   },
 
   [`&:checked + ${Toggle}`]: {
-    'bc': '$primaryStill',
-    'borderColor': '$primaryStill',
+    'bc': '$shape-accent--active',
+    'borderColor': '$border-accent--active',
     '&::before': {
       transform: 'translateX(12px)',
-      bc: '$surfaceStill',
+      bc: '$surface',
     },
   },
   [`&:checked:hover + ${Toggle}, &:checked:focus + ${Toggle}`]: {
-    bc: '$primaryHover',
-    borderColor: '$primaryHover',
+    bc: '$shape-accent--hover',
+    borderColor: '$border-accent--hover',
+  },
+
+  [`&:disabled:not(:checked) + ${Toggle}`]: {
+    'bc': '$shape--disabled',
+    'borderColor': '$border--disabled',
+    '&::before': {
+      bc: '$text--disabled',
+      opacity: 0.5,
+    },
+  },
+
+  [`&:disabled:checked + ${Toggle}`]: {
+    'bc': '$shape-accent-light--active',
+    'borderColor': '$border--disabled',
+
+    '&::before': {
+      bc: '$text--disabled',
+      opacity: 0.5,
+    },
   },
 });

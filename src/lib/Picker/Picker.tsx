@@ -43,7 +43,7 @@ const EmptyItem = styled(Item, {
 });
 
 const Content = styled(RdxSelect.Content, {
-  bc: '$surfaceStill',
+  bc: '$surface',
   br: '$md',
   outline: 'none',
   boxShadow: '$popper',

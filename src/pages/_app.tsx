@@ -19,7 +19,7 @@ export default function App(props: AppProps) {
         branch="main"
         headerLogo="Fxtrot UI"
       >
-        <ThemeProvider theme="blue">
+        <ThemeProvider>
           <Component {...pageProps} />
         </ThemeProvider>
       </DokzProvider>
