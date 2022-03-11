@@ -2,28 +2,18 @@
 name: Palette
 ---
 
-import { Box, Flex, Grid } from '@fxtrot/ui';
-import * as colors from 'src/lib/theme/colors';
+import { Box, Row, Heading, Column, Text, Grid } from '@fxtrot/ui';
+import { defaultColors } from 'src/lib/theme/default';
 
 # Palette
 
 export const styles = {
-  text: {
-    textSize: '$sm',
-    fontWeight: '600',
-  },
-  text2: {
-    textSize: '$sm',
-    fontFamily: '$mono',
-    color: '$gray700',
-  },
   colorItem: {
     'flexShrink': 0,
-    'width': '100%',
+    'width': '50px',
     'height': '50px',
     'transition': '0.24s',
     'cursor': 'pointer',
-    'boxShadow': '$xl',
     'br': '$md',
     '&:hover': {
       boxShadow: '$xs',
@@ -32,24 +22,42 @@ export const styles = {
 };
 
 <Box>
-  {Object.entries(colors).map(([title, colors]) => (
-    <React.Fragment key={title}>
-      <h2>{title}</h2>
-      <Flex gap="4" wrap="nowrap" css={{ overflow: 'auto' }}>
-        {Object.entries(colors).map(([name, color]) => (
-          <Flex flow="column" cross="start" gap="3" key={name}>
-            <Box
-              css={styles.colorItem}
-              bc={`$${name}`}
-              boxShadow={`0 4px 6px -1px $colors$${name}, 0 2px 4px -1px rgba(0, 0, 0, 0.06)`}
-            />
-            <div>
-              <Box css={styles.text}>{name}</Box>
-              <Box css={styles.text2}>{color}</Box>
-            </div>
-          </Flex>
-        ))}
-      </Flex>
-    </React.Fragment>
-  ))}
+  {Object.entries(defaultColors)
+    .reduce((res, [name, color]) => {
+      const prefix = name.split('-')[0];
+      const prefixInTheMap = res.find(([title]) => title === prefix);
+      if (prefixInTheMap) {
+        prefixInTheMap[1][name] = color;
+      } else {
+        res.push([prefix, { [name]: color }]);
+      }
+      return res;
+    }, [])
+    .map(([title, colors]) => (
+      <React.Fragment key={title}>
+        <Heading level="3" as="h2">
+          {title}
+        </Heading>
+        <Row wrap="wrap" gap="8">
+          {Object.entries(colors).map(([name, color]) => (
+            <Column gap="3" css={{ width: '140px' }} key={name}>
+              <Box
+                css={styles.colorItem}
+                bc={`$${name}`}
+                boxShadow={`$xs, 0 4px 6px -1px $colors$${name}`}
+                title={name}
+              />
+              <Column gap="2">
+                <Text size="sm" lineClamp="1" title={name}>
+                  ${name}
+                </Text>
+                <Text size="sm" font="mono" tone="light" lineClamp="1" title={color}>
+                  {color}
+                </Text>
+              </Column>
+            </Column>
+          ))}
+        </Row>
+      </React.Fragment>
+    ))}
 </Box>

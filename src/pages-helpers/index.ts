@@ -1,13 +1,13 @@
 import { Box, styled } from '@fxtrot/ui';
 
 export const ExampleBox = styled(Box, {
-  bc: '$gray50',
-  border: '2px dashed $gray200',
+  bc: '$shape--hover',
+  border: '2px dashed $border',
   height: '50px',
   minWidth: '50px',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  color: '$gray500',
+  color: '$text--light',
   fontSize: '$sm',
 });

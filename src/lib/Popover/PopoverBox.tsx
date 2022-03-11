@@ -1,6 +1,7 @@
 import type { PopoverContentProps } from '@radix-ui/react-popover';
 import { motion, Variants } from 'framer-motion';
 import React, { useLayoutEffect, useState } from 'react';
+import { listStyles } from '../shared/FloatingList';
 import { CssStyles, styled } from '../stitches.config';
 
 interface InnerBoxProps extends React.ComponentProps<'div'> {
@@ -40,10 +41,9 @@ function useTriggerWidth(triggerElementId?: string) {
   return width;
 }
 
-const StyledBox = styled(motion.div, {
+const StyledBox = styled(motion.div, listStyles, {
+  br: '$base',
   bc: '$surface',
-  br: '$md',
-  outline: 'none',
   boxShadow: '$popper',
 });
 

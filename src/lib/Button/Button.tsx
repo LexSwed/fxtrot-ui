@@ -48,6 +48,7 @@ export const buttonCss = css(flexCss, {
   '&[disabled],[aria-disabled="true"]': {
     pointerEvents: 'none',
   },
+  'focusRing': '$focusRing',
 
   '&:disabled': {
     color: '$text--disabled',
@@ -101,7 +102,6 @@ export const buttonCss = css(flexCss, {
         'bc': '$shape-accent',
         'color': '$text-onAccent',
         'borderColor': '$border-accent',
-        'focusRing': '$border-accent--active',
         '&:hover': {
           borderColor: '$border-accent--hover',
           bc: '$shape-accent--hover',
@@ -118,7 +118,6 @@ export const buttonCss = css(flexCss, {
         'bc': '$shape',
         'color': '$text',
         'borderColor': '$border',
-        'focusRing': '$focusRing',
         '&:hover': {
           bc: '$shape--hover',
           borderColor: '$border--hover',
@@ -135,7 +134,6 @@ export const buttonCss = css(flexCss, {
         'color': '$text-accent',
         'bc': '$shape-accent-light',
         'borderColor': '$border-accent',
-        'focusRing': '$border-accent--active',
         '&:hover': {
           bc: '$shape-accent-light--hover',
           color: '$text-accent',
@@ -153,7 +151,6 @@ export const buttonCss = css(flexCss, {
       flat: {
         'bc': '$shape',
         'color': '$text',
-        'focusRing': '$focusRing',
         '&:hover': {
           bc: '$shape--hover',
         },
@@ -169,7 +166,6 @@ export const buttonCss = css(flexCss, {
         'bc': 'transparent',
         'color': '$text-accent',
         'cursor': 'pointer',
-        'focusRing': '$focusRing',
         '&:not([aria-disabled="true"]):hover': {
           textDecoration: 'underline',
         },
@@ -179,7 +175,6 @@ export const buttonCss = css(flexCss, {
         },
       },
       transparent: {
-        focusRing: '$focusRing',
         bc: 'transparent',
         borderColor: 'transparent',
         color: '$text',

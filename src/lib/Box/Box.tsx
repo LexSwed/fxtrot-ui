@@ -6,20 +6,20 @@ import { styled, CssStyles } from '../stitches.config';
 const Div = styled('div', {});
 
 export const Box = React.forwardRef(({ children, css = {}, ...props }, ref) => {
-  const [styles, attrs] = Object.entries(props).reduce(
+  const { styles, attrs } = Object.entries(props).reduce(
     (res, [key, value]: [any, any]) => {
       if (VALID_ITEMS.has(key)) {
         // css props should override any values passed directly, e.g. p="$2" and css={{ p: '$4' }} should keep p="$4"
         if (!css[key]) {
-          res[0][key] = value;
+          res.styles[key] = value;
         }
       } else {
-        res[1][key] = value;
+        res.attrs[key] = value;
       }
 
       return res;
     },
-    [css, {}] as [any, any]
+    { styles: { ...css }, attrs: {} } as { styles: NonNullable<Props['css']>; attrs: any }
   );
   return (
     <Div css={styles} {...attrs} ref={ref}>
@@ -53,60 +53,60 @@ const acceptedProperties = [
   'bg',
   'bc',
   'br',
-  'color',
-  'textAlign',
-  'textSize',
-  'size',
-  'shadow',
-  'display',
-  'position',
-  'top',
-  'bottom',
-  'left',
-  'right',
-  'zIndex',
-  'justifyContent',
   'alignItems',
+  'alignSelf',
+  'border',
+  'borderBottom',
+  'borderColor',
+  'borderLeft',
+  'borderRadius',
+  'borderRight',
+  'borderTop',
+  'borderWidth',
+  'bottom',
+  'boxShadow',
+  'color',
+  'display',
   'flex',
+  'flexBasis',
   'flexGrow',
   'flexShrink',
-  'flexBasis',
-  'alignSelf',
-  'justifySelf',
-  'order',
+  'gap',
+  'grid',
+  'gridArea',
+  'gridAutoColumns',
+  'gridAutoFlow',
+  'gridAutoRows',
+  'gridColumn',
+  'gridColumnEnd',
+  'gridColumnStart',
+  'gridRow',
+  'gridRowEnd',
+  'gridRowStart',
   'gridTemplate',
   'gridTemplateAreas',
   'gridTemplateColumns',
   'gridTemplateRows',
-  'grid',
-  'gap',
-  'gridAutoFlow',
-  'gridAutoColumns',
-  'gridAutoRows',
-  'gridArea',
-  'gridColumn',
-  'gridRow',
-  'gridColumnStart',
-  'gridColumnEnd',
-  'gridRowStart',
-  'gridRowEnd',
-  'overflow',
-  'width',
-  'maxWidth',
-  'minWidth',
   'height',
+  'justifyContent',
+  'justifySelf',
+  'left',
   'maxHeight',
+  'maxWidth',
   'minHeight',
-  'border',
-  'borderWidth',
-  'borderColor',
-  'borderRadius',
-  'borderTop',
-  'borderRight',
-  'borderBottom',
-  'borderLeft',
-  'boxShadow',
+  'minWidth',
+  'order',
+  'overflow',
+  'position',
+  'right',
+  'shadow',
+  'size',
+  'textAlign',
+  'textSize',
+  'top',
   'whiteSpace',
+  'width',
+  'zIndex',
 ] as const;
 
 /** Not all properties supported */

@@ -36,6 +36,7 @@ export const StyledItem = styled('button', ListItem, {
     },
     '&:focus': {
       'color': '$text-accent',
+      'bc': '$shape--active',
       '&:after': {
         transform: 'none',
         bc: '$shape-accent--active',

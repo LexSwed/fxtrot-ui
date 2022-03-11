@@ -57,9 +57,6 @@ export const Text = styled('span', {
       },
     },
     tone: {
-      subtle: {
-        color: '$text--light',
-      },
       light: {
         color: '$text--light',
       },

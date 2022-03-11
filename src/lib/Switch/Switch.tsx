@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 
-import { attribute } from '../utils/focus-visible';
 import { FormField } from '../FormField/FormField';
 import { Label } from '../Label';
 import { styled } from '../stitches.config';

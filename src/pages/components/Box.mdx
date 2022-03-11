@@ -13,11 +13,11 @@ for example a box with `padding`. It creates a `css` prop based on passed props,
 so all the same rules as for `css` prop apply.
 
 <Playground>
-  <Box display="grid" gridTemplate="100px / 100px 100px" gap="$4" aria-selected="false">
-    <Box bc="$gray200" textAlign="center">
+  <Box display="grid" gridTemplate="100px / 100px 100px" gap="$4">
+    <Box bc="$shape--active" textAlign="center">
       Styled
     </Box>
-    <Box bc="$indigo600" textAlign="center" color="white">
+    <Box bc="$shape-accent" textAlign="center" color="$text-onAccent">
       boxes
     </Box>
   </Box>

@@ -8,7 +8,7 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
 ## TextField
 
 <Playground>
-  <Flex gap="md" css={{ p: '$6', bc: '$gray50' }}>
+  <Flex gap="md" css={{ p: '$6', bc: '$surface' }}>
     <TextField label="Enter your name" placeholder="John Doe" />
     <TextField label="Enter your name" placeholder="John Doe" disabled />
     <TextField label="Enter your name" placeholder="John Doe" readOnly />
@@ -32,7 +32,7 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
 ## Variants
 
 <Playground>
-  <Flex gap="lg" css={{ p: '$6', bc: '$gray50' }}>
+  <Flex gap="lg" css={{ p: '$6', bc: '$surface' }}>
     <Flex flow="column" gap="md">
       <TextField label="Boxed" hint="Default variant" placeholder="Default boxed variant" />
       <TextField variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Pretty underlined" />
@@ -64,7 +64,7 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
 ## Size
 
 <Playground>
-  <Flex gap="lg" css={{ p: '$6', bc: '$gray50' }}>
+  <Flex gap="lg" css={{ p: '$6', bc: '$surface' }}>
     <Flex flow="column" gap="md">
       <TextField size="sm" label="Boxed" hint="Default variant" placeholder="Small size" />
       <TextField size="sm" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Small size" />
@@ -101,7 +101,7 @@ import { Box, Flex, TextField } from '@fxtrot/ui';
     const [value, setValue] = React.useState('me@email.com');
     const isValid = React.useMemo(() => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value), [value]);
     return (
-      <Box css={{ p: '$6', bc: '$gray50' }}>
+      <Box css={{ p: '$6', bc: '$surface' }}>
         <Flex gap="md" cross="end">
           <TextField
             cross="stretch"
@@ -143,7 +143,7 @@ Since input is wrapped in `Flex` component, you can easily pass any props `Flex`
 for example to specify flow direction:
 
 <Playground>
-  <Box css={{ p: '$6', bc: '$gray50' }}>
+  <Box css={{ p: '$6', bc: '$surface' }}>
     <Box css={{ 'width': '420px', '@tablet': { width: '300px' } }}>
       <TextField
         label="Enter your name"

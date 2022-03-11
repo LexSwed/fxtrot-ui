@@ -49,7 +49,7 @@ export const IconsWithFilter = () => {
     copy(`import { ${e.target.dataset.name} } from '@heroicons/react/${isOutline ? 'outline' : 'solid'}'`);
   }
   return (
-    <Box bc="$lightBlue50" p="$6">
+    <Box bc="$surface--elevated" p="$6">
       <Flex flow="column" cross="stretch" gap="md">
         <Flex gap="md" main="spread" cross="center">
           <TextField
@@ -65,7 +65,7 @@ export const IconsWithFilter = () => {
             .filter(([name]) => name.toLowerCase().includes(filterText.toLowerCase()))
             .map(([name, icon]) => (
               <IconBox key={name} data-name={name} title={name} onClick={handleClick}>
-                <Icon as={icon} color="$gray700" size="xl" />
+                <Icon as={icon} color="$text--light" size="xl" />
               </IconBox>
             ))}
         </Flex>

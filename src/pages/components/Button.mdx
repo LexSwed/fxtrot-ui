@@ -11,7 +11,7 @@ import { Box, Flex, Grid, Button, ThemeProvider, Icon } from '@fxtrot/ui';
 Do not use `variant="link"` with actual links, use [`LinkButton`](/components/LinkButton) component instead.
 
 <Playground>
-  <Grid gap="lg" cross="center" main="center" columns="repeat(2, auto)" css={{ p: '$4', bc: '$gray50' }}>
+  <Grid gap="lg" cross="center" main="center" columns="repeat(2, auto)" css={{ p: '$4' }}>
     <Button variant="primary">Primary</Button>
     <Button disabled variant="primary">
       Primary (disabled)
@@ -38,7 +38,7 @@ Do not use `variant="link"` with actual links, use [`LinkButton`](/components/Li
 ## Size
 
 <Playground>
-  <Flex flow="column" gap="xl" css={{ py: '$8', bc: '$gray50' }}>
+  <Flex flow="column" gap="xl" css={{ py: '$8' }}>
     <Flex gap="sm" css={{ px: '$10' }}>
       <Button size="xs" variant="primary">
         Primary
@@ -120,7 +120,7 @@ Use `ThemeProvider` component to change the primary color of the button.
 
 <Playground>
   <ThemeProvider theme="purple">
-    <Flex flow="column" gap="xl" css={{ py: '$8', bc: '$surface' }}>
+    <Flex flow="column" gap="xl" css={{ py: '$8' }}>
       <Flex gap="sm" css={{ px: '$10' }}>
         <Button variant="primary">Primary</Button>
         <Button disabled variant="primary">
@@ -154,7 +154,7 @@ Use `ThemeProvider` component to change the primary color of the button.
 If you only want to put [`Icon`](/components/Icon) inside the `Button`, use [`IconButton`](/components/IconButton) component instead.
 
 <Playground>
-  <Flex flow="column" cross="start" gap="xl" css={{ p: '$8', bc: '$gray50' }}>
+  <Flex flow="column" cross="start" gap="xl" css={{ p: '$8' }}>
     <Button variant="primary" gap="2">
       <Icon as={DotsVerticalIcon} />
       More

@@ -3,7 +3,7 @@ import * as colors from './colors';
 export const defaultColors: ThemeColors = {
   'surface': '#fff',
   'surface--hover': colors.slate.slate1,
-  'surface--elevated': colors.slate.slate1,
+  'surface--elevated': colors.slate.slate2,
 
   'surface-accent': colors.indigoA.indigoA1,
   'surface-accent--hover': colors.indigoA.indigoA2,
@@ -63,7 +63,7 @@ export const defaultColors: ThemeColors = {
   'text-success': colors.green.green11,
   'text-danger': colors.red.red11,
 
-  'focusRing': colors.slate.slate10,
+  'focusRing': colors.slateA.slateA11,
 };
 
 // use dashed syntax to align with CSS vars syntax, stitches doesn't do any sanitization
