@@ -4,7 +4,7 @@ import { stitchesConfig, styled } from '../stitches.config';
 import { Reset } from './Reset';
 
 type Props = {
-  theme?: typeof stitchesConfig.theme;
+  theme?: Parameters<typeof stitchesConfig.createTheme>[0];
 };
 
 export const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
@@ -29,20 +29,6 @@ export const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
       </themeContext.Provider>
       <Reset />
     </rootRefContext.Provider>
-  );
-};
-
-const Provider = () => {
-  return (
-    <ThemeProvider
-      theme={{
-        colors: {
-          surface: '#fff',
-        },
-      }}
-    >
-      child
-    </ThemeProvider>
   );
 };
 
