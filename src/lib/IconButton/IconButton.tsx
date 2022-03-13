@@ -41,9 +41,11 @@ export const IconButtonRoot = styled(ButtonRoot, {
   variants: {
     _size: {
       xs: {
+        px: 0,
         width: '$6',
       },
       sm: {
+        px: 0,
         width: '$8',
       },
       md: {

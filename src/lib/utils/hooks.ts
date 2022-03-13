@@ -37,10 +37,6 @@ export const useLatest = <T>(value: T): { readonly current: T } => {
   return ref;
 };
 
-export function joinNonEmpty(...strings: Array<string | undefined>) {
-  return strings.filter(Boolean).join(' ');
-}
-
 export function useAllHandlers<E = React.SyntheticEvent<any, Event>>(
   ...handlers: (
     | (E extends React.SyntheticEvent<any, Event> ? React.EventHandler<E> : (...args: any[]) => void)
@@ -151,4 +147,40 @@ export function useDerivedState<V extends string | string[] | number | number[]>
   }, [propValue]);
 
   return [value, onChange] as [V, typeof onChange];
+}
+
+export function useCopyToClipboard() {
+  const [isCopied, setCopied] = useState(false);
+  const timeoutId = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutId.current) {
+        clearTimeout(timeoutId.current);
+      }
+    };
+  }, []);
+
+  const copy = useCallback(async (text: string) => {
+    if (timeoutId.current) {
+      clearTimeout(timeoutId.current);
+      timeoutId.current = null;
+    }
+    if (!navigator?.clipboard) {
+      // eslint-disable-next-line no-console
+      console.error('Clipboard not supported');
+      return false;
+    }
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      timeoutId.current = setTimeout(() => {
+        setCopied(false);
+      }, 1200);
+    } catch (err) {
+      setCopied(false);
+    }
+  }, []);
+
+  return [isCopied, copy] as const;
 }

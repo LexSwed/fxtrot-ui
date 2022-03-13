@@ -57,6 +57,12 @@ export const Text = styled('span', {
       },
     },
     tone: {
+      default: {
+        color: '$text',
+      },
+      accent: {
+        color: '$text-accent',
+      },
       light: {
         color: '$text--light',
       },
@@ -125,5 +131,7 @@ export const Text = styled('span', {
   },
   defaultVariants: {
     font: 'default',
+    size: 'base',
+    tone: 'default',
   },
 });

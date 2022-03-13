@@ -6,7 +6,6 @@ import { Icon, IconBox } from '../Icon/Icon';
 import { Text } from '../Text';
 
 const Link = styled('a', Text, {
-  'color': '$text-accent',
   'textDecoration': 'none',
   'boxSizing': 'border-box',
   'cursor': 'pointer',
