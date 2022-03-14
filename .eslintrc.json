@@ -1,6 +1,14 @@
 {
   "extends": ["react-app", "plugin:@next/next/recommended"],
   "rules": {
-    "no-console": ["error"]
-  }
+    "no-console": ["warn"]
+  },
+  "overrides": [
+    {
+      "files": ["src/lib/**/*.(t|j)sx?"],
+      "rules": {
+        "no-console": ["error"]
+      }
+    }
+  ]
 }

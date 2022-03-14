@@ -1,63 +1,60 @@
----
-name: Palette
----
-
 import { Box, Row, Heading, Column, Text, Grid } from '@fxtrot/ui';
 import { defaultColors } from 'src/lib/theme/default';
+import { Meta, CopyButton, ColorBlock } from '../../pages-helpers';
+
+<Meta title="Pallete" />
 
 # Palette
 
-export const styles = {
-  colorItem: {
-    'flexShrink': 0,
-    'width': '50px',
-    'height': '50px',
-    'transition': '0.24s',
-    'cursor': 'pointer',
-    'br': '$md',
-    '&:hover': {
-      boxShadow: '$xs',
-    },
-  },
+The colours and system is taken from [Radix Colors](https://www.radix-ui.com/docs/colors).
+It uses next naming system:
+
+```
+{{ type of UI element }}-{{ category }}--{{ state }}
+```
+
+For example: `shape-accent--hover` will be used for `:hover` effect of an interactive element.
+
+export const Colors = ({ colorsMap }) => {
+  return (
+    <Row wrap="wrap" gap="8">
+      {Object.entries(colorsMap).map(([name, color]) => (
+        <ColorBlock key={name} name={name} color={color} />
+      ))}
+    </Row>
+  );
 };
 
-<Box>
-  {Object.entries(defaultColors)
-    .reduce((res, [name, color]) => {
-      const prefix = name.split('-')[0];
-      const prefixInTheMap = res.find(([title]) => title === prefix);
-      if (prefixInTheMap) {
-        prefixInTheMap[1][name] = color;
-      } else {
-        res.push([prefix, { [name]: color }]);
-      }
-      return res;
-    }, [])
-    .map(([title, colors]) => (
-      <React.Fragment key={title}>
-        <Heading level="3" as="h2">
-          {title}
-        </Heading>
-        <Row wrap="wrap" gap="8">
-          {Object.entries(colors).map(([name, color]) => (
-            <Column gap="3" css={{ width: '140px' }} key={name}>
-              <Box
-                css={styles.colorItem}
-                bc={`$${name}`}
-                boxShadow={`$xs, 0 4px 6px -1px $colors$${name}`}
-                title={name}
-              />
-              <Column gap="2">
-                <Text size="sm" lineClamp="1" title={name}>
-                  ${name}
-                </Text>
-                <Text size="sm" font="mono" tone="light" lineClamp="1" title={color}>
-                  {color}
-                </Text>
-              </Column>
-            </Column>
-          ))}
-        </Row>
-      </React.Fragment>
-    ))}
-</Box>
+export function extractPallete(suffix) {
+  const colors = {};
+  Object.entries(defaultColors).forEach(([name, color]) => {
+    if (name.startsWith(suffix)) {
+      colors[name] = color;
+    }
+  });
+  return colors;
+}
+
+## Surface
+
+Used for non-interactive backgrounds.
+
+<Colors colorsMap={extractPallete('surface')} />
+
+## Shape
+
+Used for backgrounds of interactive elements.
+
+<Colors colorsMap={extractPallete('shape')} />
+
+## Text
+
+Used for different texts.
+
+<Colors colorsMap={extractPallete('text')} />
+
+## Border
+
+Used for borders of interactive and non-interactive elements, for example content separators would use `$border--light`.
+
+<Colors colorsMap={extractPallete('border')} />

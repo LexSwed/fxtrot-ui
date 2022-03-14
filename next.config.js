@@ -1,5 +1,18 @@
-const { withDokz } = require('dokz/dist/plugin');
+const withMDX = require('@next/mdx')({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [import('rehype-slug')],
+    providerImportSource: '@mdx-js/react',
+  },
+});
 
-module.exports = withDokz({
-  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+module.exports = withMDX({
+  // Append the default value with md extensions
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+  experimental: {
+    plugins: true,
+    concurrentFeatures: false,
+    scrollRestoration: true,
+  },
 });

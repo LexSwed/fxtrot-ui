@@ -11,3 +11,8 @@ export const ExampleBox = styled(Box, {
   color: '$text--light',
   fontSize: '$sm',
 });
+
+export { MultilineCode, Code } from './Code';
+export { CopyButton } from './CopyButton';
+export { ColorBlock } from './ColorBlock';
+export { Meta } from './Meta';
