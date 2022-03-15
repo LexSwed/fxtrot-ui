@@ -15,13 +15,12 @@ type MultilineProps = {
   className?: string;
 };
 
-export const MultilineCode = ({ children, className }: MultilineProps) => {
+export const MultilineCode = ({ children, ...props }: MultilineProps) => {
   if (!(React.Children.only(children) && React.isValidElement(children))) {
     return null;
   }
   const code = children.props.children.trim();
-  const language = className?.replace('language-', '');
-
+  const language = children.props.className?.replace('language-', '');
   return (
     <Highlight {...defaultProps} theme={theme} code={code} language={language as Language}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (

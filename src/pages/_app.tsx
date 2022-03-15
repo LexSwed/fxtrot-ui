@@ -6,7 +6,6 @@ import { MainLayout } from 'src/pages-helpers/MainLayout';
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
-
   return (
     <MdxProvider>
       <MainLayout>

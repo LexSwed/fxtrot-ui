@@ -1,7 +1,7 @@
 import * as colors from './colors';
 
 export const defaultColors: ThemeColors = {
-  'surface': '#fff',
+  'surface': 'hsl(0deg 0% 100%)',
   'surface--hover': colors.slate.slate1,
   'surface--elevated': colors.slate.slate2,
 
@@ -57,7 +57,7 @@ export const defaultColors: ThemeColors = {
   'text-accent--light': colors.indigo.indigo8,
   'text-accent--disabled': '$text--disabled',
 
-  'text-onAccent': '#fff',
+  'text-onAccent': 'hsl(0deg 0% 100%)',
   'text-onAccent--disabled': '$text--disabled',
 
   'text-success': colors.green.green11,
