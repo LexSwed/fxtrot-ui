@@ -1,6 +1,8 @@
 import React from 'react';
 import * as RovingFocusGroup from '@radix-ui/react-roving-focus';
 
+import type * as Polymorphic from '@radix-ui/react-polymorphic';
+
 import { styled } from '../stitches.config';
 import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
 import { ListItem } from '../shared/ListItem';
@@ -19,9 +21,11 @@ export const Item = React.forwardRef<HTMLButtonElement, Props>((props, ref) => {
       <StyledItem {...props} aria-disabled={props.disabled} role="treeitem" onKeyDown={handleKeyDown} ref={ref} />
     </RovingFocusGroup.Item>
   );
-});
+}) as ItemComponent;
 
 Item.displayName = 'MenuListItem';
+
+type ItemComponent = Polymorphic.ForwardRefComponent<'div', Props>;
 
 export const StyledItem = styled('button', ListItem, {
   'display': 'block',

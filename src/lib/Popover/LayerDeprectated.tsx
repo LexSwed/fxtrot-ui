@@ -43,6 +43,7 @@ export const PopoverLayerDeprecated: React.FC<Props> = ({
 
   useLayoutEffect(() => {
     reference(triggerRef.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [triggerRef.current, reference]);
 
   useEffect(() => {
@@ -51,6 +52,7 @@ export const PopoverLayerDeprecated: React.FC<Props> = ({
     }
     // Only call this when the floating element is rendered
     return autoUpdate(refs.reference.current, refs.floating.current, update);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refs.reference.current, refs.floating.current, update]);
 
   useOnClickOutside(close, isOpen, refs.floating, triggerRef);

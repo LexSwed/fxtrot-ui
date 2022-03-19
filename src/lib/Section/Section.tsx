@@ -20,7 +20,7 @@ export const Section: React.FC<Props> = ({
   const id = useUID();
   return (
     <Flex cross={cross} flow={flow} gap={gap} {...props}>
-      <Heading id={id} font="mono" size="xs" tone="light">
+      <Heading id={id} size="xs" tone="light">
         {title}
       </Heading>
       <div role="group" aria-labelledby={id}>

@@ -8,7 +8,6 @@ const flexDefaultProps: FlexVariants = {
 };
 
 export const ListItem = styled('div', flexCss, {
-  'width': '100%',
   'px': '$3',
   'font': '$default',
   'fontSize': '$sm',
@@ -21,6 +20,7 @@ export const ListItem = styled('div', flexCss, {
   'flexShrink': 0,
   'transition': '0.1s ease-in-out',
   'bc': '$shape',
+  'color': '$text',
   '&:focus:not(:active), &:hover': {
     bc: '$shape--hover',
   },

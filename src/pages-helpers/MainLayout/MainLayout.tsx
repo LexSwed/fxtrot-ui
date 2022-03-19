@@ -1,11 +1,12 @@
 import React from 'react';
-import { Icon, Row, TextLink, ThemeProvider, stitchesConfig, styled } from '@fxtrot/ui';
+import { Icon, Row, TextLink, stitchesConfig, styled } from '@fxtrot/ui';
 import Link from 'next/link';
 import Head from 'next/head';
+import { SideNav } from './SideNav';
 
-type Props = { meta: { title: string } };
+type Props = { meta: { title: string }; docs: React.ComponentProps<typeof SideNav>['docs'] };
 
-export const MainLayout: React.FC<Props> = ({ children, meta }) => {
+export const MainLayout: React.FC<Props> = ({ children, meta, docs }) => {
   globalStyles();
 
   return (
@@ -14,32 +15,32 @@ export const MainLayout: React.FC<Props> = ({ children, meta }) => {
         <title>{['Fxtrot UI', meta.title].join(' | ')}</title>
         <meta name="keywords" content="react, fxtrot, components, component library, design system" />
       </Head>
-      <ThemeProvider>
-        <ContentWrapper>
-          <Main>
-            <Header>
-              <Row main="space-between">
-                <Link href="/" passHref>
-                  <TextLink size="lg">Fxtrot UI</TextLink>
-                </Link>
-                <Row>
-                  <TextLink
-                    href="https://github.com/LexSwed/fxtrot-ui"
-                    external
-                    tone="default"
-                    title="Open the source on GitHub"
-                  >
-                    <Icon as={GitHubIcon} size="sm" />
-                  </TextLink>
-                </Row>
+      <ContentWrapper>
+        <Main>
+          <Header>
+            <Row main="space-between">
+              <Link href="/" passHref>
+                <TextLink size="lg">Fxtrot UI</TextLink>
+              </Link>
+              <Row>
+                <TextLink
+                  href="https://github.com/LexSwed/fxtrot-ui"
+                  external
+                  tone="default"
+                  title="Open the source on GitHub"
+                >
+                  <Icon as={GitHubIcon} size="sm" />
+                </TextLink>
               </Row>
-            </Header>
-            <NavPanel />
-            <Content>{children}</Content>
-            <TableOfContents />
-          </Main>
-        </ContentWrapper>
-      </ThemeProvider>
+            </Row>
+          </Header>
+          <NavPanel>
+            <SideNav docs={docs} />
+          </NavPanel>
+          <Content>{children}</Content>
+          <TableOfContents />
+        </Main>
+      </ContentWrapper>
     </>
   );
 };
@@ -48,6 +49,7 @@ const ContentWrapper = styled('div', {
   maxWidth: '1280px',
   position: 'relative',
   mx: 'auto',
+  pb: '$8',
 });
 
 const Header = styled('header', {
@@ -69,8 +71,8 @@ const Main = styled('main', {
   gridTemplateAreas: `"header header header"
   "sidepanel content toc"`,
   alignItems: 'flex-start',
-  gridTemplateColumns: '260px 1fr 260px',
-  columnGap: '$4',
+  gridTemplateColumns: '260px 1fr 220px',
+  columnGap: '$16',
 });
 
 const Content = styled('section', {

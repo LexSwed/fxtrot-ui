@@ -15,7 +15,7 @@ type MultilineProps = {
   className?: string;
 };
 
-export const MultilineCode = ({ children, ...props }: MultilineProps) => {
+export const MultilineCode = ({ children }: MultilineProps) => {
   if (!(React.Children.only(children) && React.isValidElement(children))) {
     return null;
   }

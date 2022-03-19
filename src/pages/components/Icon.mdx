@@ -1,13 +1,14 @@
 ---
-name: Icon
+title: Icon
 ---
 
-import { Icon, Box, Text, TextField, Flex, Switch, styled } from '@fxtrot/ui';
+import React from 'react';
+import { Icon, Box, Text, TextField, Row, Column, Switch, useCopyToClipboard, styled } from '@fxtrot/ui';
 import * as solidIcons from '@heroicons/react/solid';
 import * as outlineIcons from '@heroicons/react/outline';
 
 ```tsx
-import { Icon } from '@complete/core';
+import { Icon } from '@fxtrot/ui';
 import { DotsHorizontalIcon } from '@heroicons/react/solid';
 ```
 
@@ -33,24 +34,17 @@ export const IconBox = styled('div', {
   },
 });
 
-export function copy(text) {
-  navigator.permissions.query({ name: 'clipboard-write' }).then((result) => {
-    if (result.state == 'granted' || result.state == 'prompt') {
-      navigator.clipboard.writeText(text);
-    }
-  });
-}
-
 export const IconsWithFilter = () => {
   const [filterText, setText] = React.useState('');
   const [isOutline, setOutline] = React.useState(false);
+  const [copied, copy] = useCopyToClipboard();
   function handleClick(e) {
     copy(`import { ${e.target.dataset.name} } from '@heroicons/react/${isOutline ? 'outline' : 'solid'}'`);
   }
   return (
     <Box bc="$surface--elevated" p="$6">
-      <Flex flow="column" cross="stretch" gap="md">
-        <Flex gap="md" main="spread" cross="center">
+      <Column cross="stretch" gap="md">
+        <Row gap="md" main="spread" cross="center">
           <TextField
             css={{ flexBasis: '50%' }}
             value={filterText}
@@ -58,8 +52,8 @@ export const IconsWithFilter = () => {
             placeholder="Search for an icon"
           />
           <Switch checked={isOutline} onChange={setOutline} label="Show outline icons" />
-        </Flex>
-        <Flex flow="row" wrap="wrap" gap="4">
+        </Row>
+        <Row wrap="wrap" gap="4">
           {Object.entries(isOutline ? outlineIcons : solidIcons)
             .filter(([name]) => name.toLowerCase().includes(filterText.toLowerCase()))
             .map(([name, icon]) => (
@@ -67,8 +61,8 @@ export const IconsWithFilter = () => {
                 <Icon as={icon} color="$text--light" size="xl" />
               </IconBox>
             ))}
-        </Flex>
-      </Flex>
+        </Row>
+      </Column>
     </Box>
   );
 };

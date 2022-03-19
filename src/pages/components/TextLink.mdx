@@ -1,27 +1,25 @@
 ---
-name: TextLink
+title: TextLink
 ---
 
-import { Flex, TextLink } from '@fxtrot/ui';
+import { Column, TextLink } from '@fxtrot/ui';
 
 ## TextLink
 
 `Text` component as `anchor`. Enables additional props, such as `external` to ease the use and security of `target="_blank"`
 
 <Playground>
-  <Flex flow="column" gap="8">
-    <p>
-      <TextLink size="sm" href="https://random.dog/">
-        Small size
-      </TextLink>
-    </p>
-  </Flex>
+  <Column gap="8">
+    <TextLink size="sm" href="https://random.dog/">
+      Small size
+    </TextLink>
+  </Column>
 </Playground>
 
 ### External
 
 <Playground>
-  <Flex flow="column" gap="8">
+  <Column gap="8">
     <TextLink href="https://random.dog/" external>
       Just external
     </TextLink>
@@ -30,12 +28,10 @@ import { Flex, TextLink } from '@fxtrot/ui';
       <TextLink href="https://random.dog/" external="icon">
         dog
       </TextLink>
-      , but can't make it, or maybe can but we just don't know. And this will be a very looong link. <TextLink
-        href="https://random.dog/"
-        external
-      >
+      , but can't make it, or maybe can but we just don't know. And this will be a very looong link.
+      <TextLink href="https://random.dog/" external>
         How? This is how? How how? This is how.
       </TextLink>
     </p>
-  </Flex>
+  </Column>
 </Playground>

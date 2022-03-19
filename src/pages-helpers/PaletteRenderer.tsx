@@ -1,4 +1,4 @@
-import { Column, Text, styled, Row } from '@fxtrot/ui';
+import { Column, Text, Grid, styled, Row } from '@fxtrot/ui';
 import React from 'react';
 import { CopyButton } from './CopyButton';
 import { defaultColors } from 'src/lib/theme/default';
@@ -9,11 +9,11 @@ type Props = {
 export const PaletteRenderer = ({ color }: Props) => {
   const colorsMap = extractPallete(color);
   return (
-    <Row wrap="wrap" gap="8">
+    <Grid columns="repeat(auto-fill, minmax(160px, 1fr))" gap="8">
       {Object.entries(colorsMap).map(([name, color]) => (
         <ColorBlock key={name} name={name} color={color} />
       ))}
-    </Row>
+    </Grid>
   );
 };
 
@@ -35,7 +35,7 @@ type ColorBlockProps = {
 const ColorBlock = ({ name, color }: ColorBlockProps) => {
   const token = `$${name}`;
   return (
-    <Column gap="3" css={{ width: '140px' }} key={name}>
+    <Column gap="3" key={name}>
       <ColorBox title={name} css={{ $$boxColor: `$colors${token}` }} />
       <Column gap="1">
         <RowTextWrapper cross="center" gap="4">
