@@ -4,6 +4,7 @@ import { MDXProvider } from '@mdx-js/react';
 import Image from 'next/image';
 import * as PageHelpers from '../pages-helpers';
 import { Heading, Text } from '@fxtrot/ui';
+import { MainLayout } from './MainLayout';
 
 export const components = {
   ...PageHelpers,
@@ -16,6 +17,9 @@ export const components = {
   // @ts-expect-error
   pre: dynamic(() => import('../pages-helpers/Code').then(({ MultilineCode }) => MultilineCode), { ssr: false }),
   strong: (props: any) => <Text {...props} as="b" />,
+  wrapper: (props: any) => {
+    return <MainLayout {...props} />;
+  },
 };
 
 export const MdxProvider: React.FC = ({ children }) => {

@@ -36,6 +36,7 @@ export const MainLayout: React.FC<Props> = ({ children, meta }) => {
             </Header>
             <NavPanel />
             <Content>{children}</Content>
+            <TableOfContents />
           </Main>
         </ContentWrapper>
       </ThemeProvider>
@@ -44,7 +45,7 @@ export const MainLayout: React.FC<Props> = ({ children, meta }) => {
 };
 
 const ContentWrapper = styled('div', {
-  maxWidth: '1080px',
+  maxWidth: '1280px',
   position: 'relative',
   mx: 'auto',
 });
@@ -52,17 +53,23 @@ const ContentWrapper = styled('div', {
 const Header = styled('header', {
   py: '$4',
   gridArea: 'header',
+  gridColumn: '2 / 2',
 });
 
 const NavPanel = styled('aside', {
   gridArea: 'sidepanel',
 });
 
+const TableOfContents = styled('div', {
+  gridArea: 'toc',
+});
+
 const Main = styled('main', {
   display: 'grid',
-  gridTemplateAreas: `"empty header"
-  "sidepanel content"`,
-  gridTemplateColumns: '320px 1fr',
+  gridTemplateAreas: `"header header header"
+  "sidepanel content toc"`,
+  alignItems: 'flex-start',
+  gridTemplateColumns: '260px 1fr 260px',
   columnGap: '$4',
 });
 
