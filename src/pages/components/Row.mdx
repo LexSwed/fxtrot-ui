@@ -2,7 +2,6 @@
 name: Row
 ---
 
-import { Playground } from 'dokz';
 import { Box, Row, Text, styled } from '@fxtrot/ui';
 
 import { ExampleBox } from '../../pages-helpers';
@@ -16,3 +15,5 @@ import { ExampleBox } from '../../pages-helpers';
     <ExampleBox height="64px">3</ExampleBox>
   </Row>
 </Playground>
+
+export default (props) => <MainLayout {...props} meta={meta} />;

@@ -1,13 +1,38 @@
 import { Column, Text, styled, Row } from '@fxtrot/ui';
 import React from 'react';
 import { CopyButton } from './CopyButton';
+import { defaultColors } from 'src/lib/theme/default';
 
 type Props = {
+  color: string;
+};
+export const PaletteRenderer = ({ color }: Props) => {
+  const colorsMap = extractPallete(color);
+  return (
+    <Row wrap="wrap" gap="8">
+      {Object.entries(colorsMap).map(([name, color]) => (
+        <ColorBlock key={name} name={name} color={color} />
+      ))}
+    </Row>
+  );
+};
+
+function extractPallete(suffix: string) {
+  const colors: Record<string, string> = {};
+  Object.entries(defaultColors).forEach(([name, color]) => {
+    if (name.startsWith(suffix)) {
+      colors[name] = color;
+    }
+  });
+  return colors;
+}
+
+type ColorBlockProps = {
   name: string;
   color: string;
 };
 
-export const ColorBlock = ({ name, color }: Props) => {
+const ColorBlock = ({ name, color }: ColorBlockProps) => {
   const token = `$${name}`;
   return (
     <Column gap="3" css={{ width: '140px' }} key={name}>

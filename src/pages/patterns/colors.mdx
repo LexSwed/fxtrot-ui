@@ -2,12 +2,6 @@
 title: Pallete
 ---
 
-export default (props) => <Layout meta={meta} {...props} />;
-
-import { Box, Row, Heading, Column, Text, Grid } from '@fxtrot/ui';
-import { defaultColors } from 'src/lib/theme/default';
-import { CopyButton, ColorBlock } from '../../pages-helpers';
-
 # Palette
 
 The colours and system is taken from [Radix Colors](https://www.radix-ui.com/docs/colors).
@@ -19,46 +13,28 @@ It uses next naming system:
 
 For example: `shape-accent--hover` will be used for `:hover` effect of an interactive element.
 
-export const Colors = ({ colorsMap }) => {
-  return (
-    <Row wrap="wrap" gap="8">
-      {Object.entries(colorsMap).map(([name, color]) => (
-        <ColorBlock key={name} name={name} color={color} />
-      ))}
-    </Row>
-  );
-};
-
-export function extractPallete(suffix) {
-  const colors = {};
-  Object.entries(defaultColors).forEach(([name, color]) => {
-    if (name.startsWith(suffix)) {
-      colors[name] = color;
-    }
-  });
-  return colors;
-}
-
 ## Surface
 
 Used for non-interactive backgrounds.
 
-<Colors colorsMap={extractPallete('surface')} />
+<PaletteRenderer color="surface" />
 
 ## Shape
 
 Used for backgrounds of interactive elements.
 
-<Colors colorsMap={extractPallete('shape')} />
+<PaletteRenderer color="shape" />
 
 ## Text
 
 Used for different texts.
 
-<Colors colorsMap={extractPallete('text')} />
+<PaletteRenderer color="text" />
 
 ## Border
 
 Used for borders of interactive and non-interactive elements, for example content separators would use `$border--light`.
 
-<Colors colorsMap={extractPallete('border')} />
+<PaletteRenderer color="border" />
+
+export default (props) => <MainLayout {...props} meta={meta} />;

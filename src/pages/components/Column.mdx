@@ -2,7 +2,6 @@
 name: Column
 ---
 
-import { Playground } from 'dokz';
 import { Box, Column } from '@fxtrot/ui';
 
 import { ExampleBox } from '../../pages-helpers';
@@ -16,3 +15,5 @@ import { ExampleBox } from '../../pages-helpers';
     <ExampleBox width="$20" />
   </Column>
 </Playground>
+
+export default (props) => <MainLayout {...props} meta={meta} />;

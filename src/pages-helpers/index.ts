@@ -14,5 +14,6 @@ export const ExampleBox = styled(Box, {
 
 export { MultilineCode, Code } from './Code';
 export { CopyButton } from './CopyButton';
-export { ColorBlock } from './ColorBlock';
-export { Meta } from './Meta';
+export { PaletteRenderer } from './PaletteRenderer';
+export { Playground } from './Playground';
+export { MainLayout } from './MainLayout';

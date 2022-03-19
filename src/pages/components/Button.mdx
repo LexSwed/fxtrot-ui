@@ -2,7 +2,6 @@
 name: Button
 ---
 
-import { Playground } from 'dokz';
 import { DotsVerticalIcon } from '@heroicons/react/solid';
 import { Box, Flex, Grid, Button, ThemeProvider, Icon } from '@fxtrot/ui';
 
@@ -161,3 +160,5 @@ If you only want to put [`Icon`](/components/Icon) inside the `Button`, use [`Ic
     </Button>
   </Flex>
 </Playground>
+
+export default (props) => <MainLayout {...props} meta={meta} />;

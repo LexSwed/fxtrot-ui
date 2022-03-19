@@ -2,7 +2,6 @@
 name: Flex
 ---
 
-import { Playground } from 'dokz';
 import { Box, Flex, Text, styled } from '@fxtrot/ui';
 
 import { ExampleBox } from '../../pages-helpers';
@@ -222,3 +221,5 @@ Control content wrapping via `wrap` property:
     </Flex>
   </Box>
 </Playground>
+
+export default (props) => <MainLayout {...props} meta={meta} />;

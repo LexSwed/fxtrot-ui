@@ -19,5 +19,6 @@ export default withMDX({
     plugins: true,
     concurrentFeatures: false,
     scrollRestoration: true,
+    esmExternals: true,
   },
 });

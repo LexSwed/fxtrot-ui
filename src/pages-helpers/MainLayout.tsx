@@ -1,36 +1,45 @@
 import React from 'react';
 import { Icon, Row, TextLink, ThemeProvider, stitchesConfig, styled } from '@fxtrot/ui';
 import Link from 'next/link';
+import Head from 'next/head';
 
-export const MainLayout: React.FC = ({ children }) => {
+type Props = { meta: { title: string } };
+
+export const MainLayout: React.FC<Props> = ({ children, meta }) => {
   globalStyles();
 
   return (
-    <ThemeProvider>
-      <ContentWrapper>
-        <Main>
-          <Header>
-            <Row main="space-between">
-              <Link href="/" passHref>
-                <TextLink size="lg">Fxtrot UI</TextLink>
-              </Link>
-              <Row>
-                <TextLink
-                  href="https://github.com/LexSwed/fxtrot-ui"
-                  external
-                  tone="default"
-                  title="Open the source on GitHub"
-                >
-                  <Icon as={GitHubIcon} size="sm" />
-                </TextLink>
+    <>
+      <Head>
+        <title>{['Fxtrot UI', meta.title].join(' | ')}</title>
+        <meta name="keywords" content="react, fxtrot, components, component library, design system" />
+      </Head>
+      <ThemeProvider>
+        <ContentWrapper>
+          <Main>
+            <Header>
+              <Row main="space-between">
+                <Link href="/" passHref>
+                  <TextLink size="lg">Fxtrot UI</TextLink>
+                </Link>
+                <Row>
+                  <TextLink
+                    href="https://github.com/LexSwed/fxtrot-ui"
+                    external
+                    tone="default"
+                    title="Open the source on GitHub"
+                  >
+                    <Icon as={GitHubIcon} size="sm" />
+                  </TextLink>
+                </Row>
               </Row>
-            </Row>
-          </Header>
-          <NavPanel />
-          <Content>{children}</Content>
-        </Main>
-      </ContentWrapper>
-    </ThemeProvider>
+            </Header>
+            <NavPanel />
+            <Content>{children}</Content>
+          </Main>
+        </ContentWrapper>
+      </ThemeProvider>
+    </>
   );
 };
 

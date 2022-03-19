@@ -2,7 +2,6 @@
 name: Menu
 ---
 
-import { Playground } from 'dokz';
 import { Box, Button, Menu, Icon, Text, ThemeProvider, Dialog, Picker, Item } from '@fxtrot/ui';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import { TrashIcon } from '@heroicons/react/outline';
@@ -114,3 +113,5 @@ You can modify `offset` from the `side` and along the `align`ment.
     );
   }}
 </Playground>
+
+export default (props) => <MainLayout {...props} meta={meta} />;
