@@ -12,7 +12,7 @@ export const MainLayout: React.FC<Props> = ({ children, meta, docs }) => {
   return (
     <>
       <Head>
-        <title>{['Fxtrot UI', meta.title].join(' | ')}</title>
+        <title>{[meta.title, 'Fxtrot UI'].join(' | ')}</title>
         <meta name="keywords" content="react, fxtrot, components, component library, design system" />
       </Head>
       <ContentWrapper>

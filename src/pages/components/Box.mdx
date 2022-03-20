@@ -2,8 +2,6 @@
 title: Box
 ---
 
-import { Box } from '@fxtrot/ui';
-
 ## Box
 
 `Box` component allows you to avoid creating a new component or styles object
@@ -11,13 +9,13 @@ import { Box } from '@fxtrot/ui';
 for example a box with `padding`. It creates a `css` prop based on passed props,
 so all the same rules as for `css` prop apply.
 
-<Playground>
-  <Box display="grid" gridTemplate="100px / 100px 100px" gap="$4">
-    <Box bc="$shape--active" textAlign="center">
-      Styled
-    </Box>
-    <Box bc="$shape-accent" textAlign="center" color="$text-onAccent">
-      boxes
-    </Box>
+```tsx preview
+<Box display="grid" gridTemplate="100px / 100px 100px" gap="$4">
+  <Box bc="$shape--active" textAlign="center">
+    Styled
   </Box>
-</Playground>
+  <Box bc="$shape-accent" br="$pill" textAlign="center" color="$text-onAccent" as={Flex} main="center" cross="center">
+    boxes
+  </Box>
+</Box>
+```

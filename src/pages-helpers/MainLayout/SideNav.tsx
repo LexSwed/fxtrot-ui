@@ -28,7 +28,7 @@ export const SideNav = ({ docs }: Props) => {
           return <LinksList links={links} key="index routes" />;
         }
         return (
-          <Section title={section} key={section}>
+          <Section title={section} gap="4" key={section}>
             <LinksList links={links} />
           </Section>
         );

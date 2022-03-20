@@ -1,5 +1,5 @@
+import { useId } from '@radix-ui/react-id';
 import React from 'react';
-import { useUID } from 'react-uid';
 
 import { Flex, FlexVariants } from '../Flex/Flex';
 import { styled } from '../stitches.config';
@@ -17,7 +17,7 @@ export const Section: React.FC<Props> = ({
   gap = 'xs',
   ...props
 }) => {
-  const id = useUID();
+  const id = useId();
   return (
     <Flex cross={cross} flow={flow} gap={gap} {...props}>
       <Heading id={id} size="xs" tone="light">

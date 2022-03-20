@@ -3,6 +3,7 @@ import { remarkMdxFrontmatter } from 'remark-mdx-frontmatter';
 import rehypeSlug from 'rehype-slug';
 import createWithMdx from '@next/mdx';
 import remarkGfm from 'remark-gfm';
+import { remarkMdxCodeMeta } from 'remark-mdx-code-meta';
 import { remarkNextStaticProps } from './plugins/remark-next-static-props.mjs';
 
 const metaPropName = 'meta';
@@ -11,10 +12,11 @@ const withMDX = createWithMdx({
   extension: /\.mdx?$/,
   options: {
     remarkPlugins: [
-      remarkFrontmatter,
+      [remarkFrontmatter],
       [remarkMdxFrontmatter, { name: metaPropName }],
       [remarkNextStaticProps, { name: metaPropName }],
-      remarkGfm,
+      [remarkMdxCodeMeta],
+      [remarkGfm],
     ],
     rehypePlugins: [rehypeSlug],
     providerImportSource: '@mdx-js/react',

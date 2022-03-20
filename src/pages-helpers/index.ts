@@ -12,7 +12,5 @@ export const ExampleBox = styled(Box, {
   fontSize: '$sm',
 });
 
-export { MultilineCode, Code } from './Code';
 export { CopyButton } from './CopyButton';
-export { Playground } from './Playground';
 export { MainLayout } from './MainLayout/MainLayout';

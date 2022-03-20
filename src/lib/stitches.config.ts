@@ -75,7 +75,7 @@ export const stitchesConfig = createStitches({
       'inner': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
       'popper': `0 0 1px $colors$border, $shadows$lg`,
       'base': '$xs',
-      'base:hover': '$sm, $sm',
+      'base--hover': '$sm, $sm',
       'none': 'none',
     },
   },
@@ -89,7 +89,10 @@ export const stitchesConfig = createStitches({
   },
   utils: {
     p: (value: ScaleValue<'space'> | number | string) => ({
-      padding: value,
+      paddingTop: value,
+      paddingRight: value,
+      paddingBottom: value,
+      paddingLeft: value,
     }),
     pt: (value: ScaleValue<'space'> | number | string) => ({
       paddingTop: value,

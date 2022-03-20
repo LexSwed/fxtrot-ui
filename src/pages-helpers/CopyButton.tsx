@@ -8,7 +8,7 @@ export const CopyButton = ({ text, color }: Props) => {
   const [copied, copy] = useCopyToClipboard();
   return (
     <IconButton aria-label="Copy code" onClick={() => copy(text)} variant="transparent" size="sm">
-      <Icon color={color} size="lg" as={copied ? CheckIcon : ClipboardCopyIcon} />
+      <Icon color={color} size="md" as={copied ? CheckIcon : ClipboardCopyIcon} />
     </IconButton>
   );
 };
