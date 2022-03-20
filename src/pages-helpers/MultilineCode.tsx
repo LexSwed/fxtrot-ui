@@ -3,23 +3,13 @@ import { styled } from '@fxtrot/ui';
 import Highlight, { defaultProps, Language } from 'prism-react-renderer';
 import theme from 'prism-react-renderer/themes/nightOwl';
 import { CopyButton } from './CopyButton';
-import { Playground } from './Playground';
 
 type Props = {
-  children: React.ReactChild;
-  preview?: boolean;
-  className?: string;
+  code: string;
+  language: string;
 };
 
-export const MultilineCode = ({ children, preview = false }: Props) => {
-  if (!(React.Children.only(children) && React.isValidElement(children))) {
-    return null;
-  }
-  const code = children.props.children.trim();
-  const language = children.props.className?.replace('language-', '');
-  if (preview) {
-    return <Playground code={code} language={language} />;
-  }
+export const MultilineCode = ({ code, language }: Props) => {
   return (
     <Highlight {...defaultProps} theme={theme} code={code} language={language as Language}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (

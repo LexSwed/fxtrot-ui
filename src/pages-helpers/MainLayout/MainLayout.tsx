@@ -71,7 +71,7 @@ const Main = styled('main', {
   gridTemplateAreas: `"header header header"
   "sidepanel content toc"`,
   alignItems: 'flex-start',
-  gridTemplateColumns: '260px 1fr 220px',
+  gridTemplateColumns: '220px 1fr 220px',
   columnGap: '$16',
 });
 

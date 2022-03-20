@@ -2,43 +2,39 @@
 title: Switch
 ---
 
-import { ThemeProvider, Flex, Switch } from '@fxtrot/ui';
-
 ## Switch
 
-<Playground>
-  <Flex gap="xl" css={{ p: '$8' }}>
-    <Switch label="Default" />
-    <Switch label="Disabled" disabled />
-    <Switch label="Checked disabled" disabled defaultChecked />
-  </Flex>
-</Playground>
+```tsx preview
+<Row gap="xl">
+  <Switch label="Default" />
+  <Switch label="Disabled" disabled />
+  <Switch label="Checked disabled" disabled defaultChecked />
+</Row>
+```
 
 ## Secondary text
 
-<Playground>
-  <Flex gap="xl" css={{ p: '$8' }}>
-    <Switch label="Format on save" secondaryLabel="(required)" required />
-  </Flex>
-</Playground>
+```tsx preview
+<Switch label="Format on save" secondaryLabel="(required)" required />
+```
 
 ## Theming
 
 Use `ThemeProvider` component to change the primary color of the button.
 
-<Playground>
-  <Flex flow="column" gap="xl" css={{ p: '$8' }}>
-    <Flex flow="row" gap="md">
-      <ThemeProvider theme="rose">
-        <Switch label="Format on save" gap="md" />
-        <Switch label="Format on save (disabled)" disabled gap="md" />
-      </ThemeProvider>
-    </Flex>
-    <Flex flow="row" gap="md">
-      <ThemeProvider theme="green">
-        <Switch label="Format on save" />
-        <Switch label="Format on save (disabled)" disabled />
-      </ThemeProvider>
-    </Flex>
-  </Flex>
-</Playground>
+```tsx preview
+<Column gap="xl">
+  <Row gap="md">
+    <ThemeProvider theme="rose">
+      <Switch label="Format on save" gap="md" />
+      <Switch label="Format on save (disabled)" disabled gap="md" />
+    </ThemeProvider>
+  </Row>
+  <Row gap="md">
+    <ThemeProvider theme="green">
+      <Switch label="Format on save" />
+      <Switch label="Format on save (disabled)" disabled />
+    </ThemeProvider>
+  </Row>
+</Column>
+```

@@ -2,8 +2,6 @@
 title: Flex
 ---
 
-import { Box, Flex, Text, styled } from '@fxtrot/ui';
-
 # Flex
 
 `Flex` is a parent reusable component for many other primitives, like `Button`, that allows to easily align the content. However, for layouts it is recommended to use [Row](/components/Row) or [Column](/components/Column) as they are faster to understand. Use `Flex` when you need to change content alignment on different screen sizes, using [responsive props](https://stitches.dev/docs/responsive-styles).
@@ -14,73 +12,73 @@ Define gap between elements via `space` prop:
 
 `gap="none"`:
 
-<Playground>
-  <Flex gap="none">
-    <ExampleBox />
-    <ExampleBox />
-    <ExampleBox />
-  </Flex>
-</Playground>
+```tsx preview
+<Flex gap="none">
+  <ExampleBox />
+  <ExampleBox />
+  <ExampleBox />
+</Flex>
+```
 
 `gap="xs"`:
 
-<Playground>
-  <Flex gap="xs">
-    <ExampleBox />
-    <ExampleBox />
-    <ExampleBox />
-  </Flex>
-</Playground>
+```tsx preview
+<Flex gap="xs">
+  <ExampleBox />
+  <ExampleBox />
+  <ExampleBox />
+</Flex>
+```
 
 `gap="sm"`:
 
-<Playground>
-  <Flex gap="sm">
-    <ExampleBox />
-    <ExampleBox />
-    <ExampleBox />
-  </Flex>
-</Playground>
+```tsx preview
+<Flex gap="sm">
+  <ExampleBox />
+  <ExampleBox />
+  <ExampleBox />
+</Flex>
+```
 
 `gap="md"`:
 
-<Playground>
-  <Flex gap="md">
-    <ExampleBox />
-    <ExampleBox />
-    <ExampleBox />
-  </Flex>
-</Playground>
+```tsx preview
+<Flex gap="md">
+  <ExampleBox />
+  <ExampleBox />
+  <ExampleBox />
+</Flex>
+```
 
 `gap="lg"`:
 
-<Playground>
-  <Flex gap="lg">
-    <ExampleBox />
-    <ExampleBox />
-    <ExampleBox />
-  </Flex>
-</Playground>
+```tsx preview
+<Flex gap="lg">
+  <ExampleBox />
+  <ExampleBox />
+  <ExampleBox />
+</Flex>
+```
 
 `gap="xl"`:
 
-<Playground>
-  <Flex gap="xl">
-    <ExampleBox />
-    <ExampleBox />
-    <ExampleBox />
-  </Flex>
-</Playground>
+```tsx preview
+<Flex gap="xl">
+  <ExampleBox />
+  <ExampleBox />
+  <ExampleBox />
+</Flex>
+```
 
 `gap="2xl"`:
 
-<Playground>
-  <Flex gap="2xl">
-    <ExampleBox />
-    <ExampleBox />
-    <ExampleBox />
-  </Flex>
-</Playground>
+```tsx preview
+<Flex gap="2xl">
+  <ExampleBox />
+  <ExampleBox />
+  <ExampleBox />
+</Flex>
+```
 
 ## Alignment
 
@@ -89,133 +87,133 @@ across main axis or cross axis.
 
 `main="start"` (default)
 
-<Playground>
-  <React.Fragment>
-    <Flex css={{ width: '400px', bc: '$surface--elevated' }} flow="column" gap="md" main="start">
-      <ExampleBox width="$16" />
-      <ExampleBox width="$12" />
-      <ExampleBox width="$20" />
-    </Flex>
-    <Flex css={{ width: '400px', bc: '$surface--elevated', mt: '$8' }} flow="row" gap="md" main="start">
-      <ExampleBox width="$16" />
-      <ExampleBox width="$12" />
-      <ExampleBox width="$20" />
-    </Flex>
-  </React.Fragment>
-</Playground>
+```tsx preview
+<React.Fragment>
+  <Flex css={{ width: '400px', bc: '$surface--elevated' }} flow="column" gap="md" main="start">
+    <ExampleBox width="$16" />
+    <ExampleBox width="$12" />
+    <ExampleBox width="$20" />
+  </Flex>
+  <Flex css={{ width: '400px', bc: '$surface--elevated', mt: '$8' }} flow="row" gap="md" main="start">
+    <ExampleBox width="$16" />
+    <ExampleBox width="$12" />
+    <ExampleBox width="$20" />
+  </Flex>
+</React.Fragment>
+```
 
 `main="center"`
 
-<Playground>
-  <React.Fragment>
-    <Flex css={{ height: '220px', bc: '$surface--elevated' }} gap="md" flow="column" main="center">
-      <ExampleBox width="$16" />
-      <ExampleBox width="$12" />
-      <ExampleBox width="$20" />
-    </Flex>
-    <Flex css={{ width: '400px', bc: '$surface--elevated', mt: '$8' }} gap="md" flow="row" main="center">
-      <ExampleBox width="$16" />
-      <ExampleBox width="$12" />
-      <ExampleBox width="$20" />
-    </Flex>
-  </React.Fragment>
-</Playground>
+```tsx preview
+<React.Fragment>
+  <Flex css={{ height: '220px', bc: '$surface--elevated' }} gap="md" flow="column" main="center">
+    <ExampleBox width="$16" />
+    <ExampleBox width="$12" />
+    <ExampleBox width="$20" />
+  </Flex>
+  <Flex css={{ width: '400px', bc: '$surface--elevated', mt: '$8' }} gap="md" flow="row" main="center">
+    <ExampleBox width="$16" />
+    <ExampleBox width="$12" />
+    <ExampleBox width="$20" />
+  </Flex>
+</React.Fragment>
+```
 
 `main="end"`
 
-<Playground>
-  <React.Fragment>
-    <Flex css={{ width: '400px', height: '240px', bc: '$surface--elevated' }} gap="md" flow="column" main="end">
-      <ExampleBox width="$16" />
-      <ExampleBox width="$12" />
-      <ExampleBox width="$20" />
-    </Flex>
-    <Flex css={{ width: '400px', bc: '$surface--elevated', mt: '$8' }} gap="md" flow="row" main="end">
-      <ExampleBox width="$16" />
-      <ExampleBox width="$12" />
-      <ExampleBox width="$20" />
-    </Flex>
-  </React.Fragment>
-</Playground>
+```tsx preview
+<React.Fragment>
+  <Flex css={{ width: '400px', height: '240px', bc: '$surface--elevated' }} gap="md" flow="column" main="end">
+    <ExampleBox width="$16" />
+    <ExampleBox width="$12" />
+    <ExampleBox width="$20" />
+  </Flex>
+  <Flex css={{ width: '400px', bc: '$surface--elevated', mt: '$8' }} gap="md" flow="row" main="end">
+    <ExampleBox width="$16" />
+    <ExampleBox width="$12" />
+    <ExampleBox width="$20" />
+  </Flex>
+</React.Fragment>
+```
 
 `main="space-between"` – spacing between items is now controlled by the container size:
 
-<Playground>
-  <React.Fragment>
-    <Flex css={{ width: '400px', height: '240px', bc: '$surface--elevated' }} flow="column" main="space-between">
-      <ExampleBox width="$16" />
-      <ExampleBox width="$12" />
-      <ExampleBox width="$20" />
-    </Flex>
-    <Flex css={{ width: '400px', bc: '$surface--elevated', mt: '$8' }} flow="row" main="space-between">
-      <ExampleBox width="$16" />
-      <ExampleBox width="$12" />
-      <ExampleBox width="$20" />
-    </Flex>
-  </React.Fragment>
-</Playground>
+```tsx preview
+<React.Fragment>
+  <Flex css={{ width: '400px', height: '240px', bc: '$surface--elevated' }} flow="column" main="space-between">
+    <ExampleBox width="$16" />
+    <ExampleBox width="$12" />
+    <ExampleBox width="$20" />
+  </Flex>
+  <Flex css={{ width: '400px', bc: '$surface--elevated', mt: '$8' }} flow="row" main="space-between">
+    <ExampleBox width="$16" />
+    <ExampleBox width="$12" />
+    <ExampleBox width="$20" />
+  </Flex>
+</React.Fragment>
+```
 
 `main="space-between" cross="center"`
 
-<Playground>
-  <React.Fragment>
-    <Flex
-      css={{ width: '400px', height: '240px', bc: '$surface--elevated' }}
-      flow="column"
-      cross="center"
-      main="space-between"
-    >
-      <ExampleBox width="$16" />
-      <ExampleBox width="$12" />
-      <ExampleBox width="$20" />
-    </Flex>
-    <Flex
-      css={{ width: '400px', bc: '$surface--elevated', height: '100px', mt: '$8' }}
-      flow="row"
-      cross="center"
-      main="space-between"
-    >
-      <ExampleBox width="$16" />
-      <ExampleBox width="$12" />
-      <ExampleBox width="$20" />
-    </Flex>
-  </React.Fragment>
-</Playground>
+```tsx preview
+<React.Fragment>
+  <Flex
+    css={{ width: '400px', height: '240px', bc: '$surface--elevated' }}
+    flow="column"
+    cross="center"
+    main="space-between"
+  >
+    <ExampleBox width="$16" />
+    <ExampleBox width="$12" />
+    <ExampleBox width="$20" />
+  </Flex>
+  <Flex
+    css={{ width: '400px', bc: '$surface--elevated', height: '100px', mt: '$8' }}
+    flow="row"
+    cross="center"
+    main="space-between"
+  >
+    <ExampleBox width="$16" />
+    <ExampleBox width="$12" />
+    <ExampleBox width="$20" />
+  </Flex>
+</React.Fragment>
+```
 
 ## Flow
 
 You can reverse the components render using `flow="column-reverse"`
 
-<Playground>
-  <Flex flow="column-reverse" gap="md">
-    <ExampleBox>1</ExampleBox>
-    <ExampleBox>2</ExampleBox>
-    <ExampleBox>3</ExampleBox>
-  </Flex>
-</Playground>
+```tsx preview
+<Flex flow="column-reverse" gap="md">
+  <ExampleBox>1</ExampleBox>
+  <ExampleBox>2</ExampleBox>
+  <ExampleBox>3</ExampleBox>
+</Flex>
+```
 
 And `row-reverse`
 
-<Playground>
-  <Flex flow="row" main="center" cross="end" flow="row-reverse" gap="md">
-    <ExampleBox height="24px">1</ExampleBox>
-    <ExampleBox height="44px">2</ExampleBox>
-    <ExampleBox height="64px">3</ExampleBox>
-  </Flex>
-</Playground>
+```tsx preview
+<Flex flow="row" main="center" cross="end" flow="row-reverse" gap="md">
+  <ExampleBox height="24px">1</ExampleBox>
+  <ExampleBox height="44px">2</ExampleBox>
+  <ExampleBox height="64px">3</ExampleBox>
+</Flex>
+```
 
 ## Wrap
 
 Control content wrapping via `wrap` property:
 
-<Playground>
-  <Box css={{ width: 50 * 4 + (4 - 1) * 8 }}>
-    <Flex flow="row-reverse" wrap="wrap-reverse" gap="sm">
-      {Array(16)
-        .fill(0)
-        .map((el, i) => (
-          <ExampleBox key={i}>{i + 1}</ExampleBox>
-        ))}
-    </Flex>
-  </Box>
-</Playground>
+```tsx preview
+<Box css={{ width: 50 * 4 + (4 - 1) * 8 }}>
+  <Flex flow="row-reverse" wrap="wrap-reverse" gap="sm">
+    {Array(16)
+      .fill(0)
+      .map((el, i) => (
+        <ExampleBox key={i}>{i + 1}</ExampleBox>
+      ))}
+  </Flex>
+</Box>
+```

@@ -8,6 +8,7 @@ const flexDefaultProps: FlexVariants = {
 };
 
 export const ListItem = styled('div', flexCss, {
+  'width': '100%',
   'px': '$3',
   'font': '$default',
   'fontSize': '$sm',

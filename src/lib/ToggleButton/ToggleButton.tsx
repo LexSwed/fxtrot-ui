@@ -7,7 +7,7 @@ import { IconButton } from '../IconButton';
 import { Icon } from '../Icon';
 
 interface Props extends Toggle.ToggleProps, Omit<React.ComponentProps<typeof Button>, 'variant'> {
-  variant?: 'flat' | 'secondary';
+  variant?: 'flat';
 }
 
 export const ToggleButton = React.memo(
@@ -35,12 +35,8 @@ const toggleButtonCss = css({
     variant: {
       flat: {
         '&[data-state="on"]': {
-          color: '$text-accent',
-        },
-      },
-      secondary: {
-        '&[data-state="off"]': {
           bc: '$shape--active',
+          color: '$text-accent',
         },
       },
     },

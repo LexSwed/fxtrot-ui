@@ -34,15 +34,14 @@ const Block = styled('div', {
     size: {
       sm: {
         height: '$4',
-        fontSize: '10px',
+        fontSize: '9px',
         fontWeight: 400,
         px: '$1',
       },
       md: {
         height: '$6',
         lineHeight: '$6',
-        textSize: '$sm',
-        fontWeight: 500,
+        textSize: '$xs',
         px: '$2',
       },
       lg: {

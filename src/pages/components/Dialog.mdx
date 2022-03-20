@@ -2,53 +2,49 @@
 title: Dialog
 ---
 
-import { Dialog, Button, TextField, Flex, Box, Picker, Item, Switch, useDialogRef } from '@fxtrot/ui';
-
 ## Dialog
 
-<Playground>
-  <Box p="$8">
-    <Dialog>
-      <Button>New workspace</Button>
-      {(close) => (
-        <Dialog.Modal>
-          <Dialog.Title level={3}>Create new workspace</Dialog.Title>
-          <Box
-            css={{
-              'pt': '$4',
-              '@initial': { minWidth: 400 },
-              '@mobile': { minWidth: 320 },
-            }}
-            as="form"
-            onSubmit={(e) => {
-              e.preventDefault();
-              window.alert(e.currentTarget['workspace-name'].value);
-            }}
-          >
-            <Flex flow="column" gap="2">
-              <TextField placeholder="Carefive" name="workspace-name" label="Workspace name" autoFocus />
-              <Picker>
-                <Picker.Item label="Item 1" value="1" />
-                <Picker.Item label="Item 2" value="2" />
-                <Picker.Item label="Item 3" value="3" />
-                <Picker.Item label="Item 4" value="4" />
-              </Picker>
-            </Flex>
-            <Box pb="$10" />
-            <Flex flow="row-reverse" gap="sm">
-              <Button type="submit" variant="primary">
-                Create
-              </Button>
-              <Button onClick={close} variant="flat">
-                Cancel
-              </Button>
-            </Flex>
-          </Box>
-        </Dialog.Modal>
-      )}
-    </Dialog>
-  </Box>
-</Playground>
+```tsx preview
+<Dialog>
+  <Button>New workspace</Button>
+  {(close) => (
+    <Dialog.Modal>
+      <Dialog.Title level={3}>Create new workspace</Dialog.Title>
+      <Box
+        css={{
+          'pt': '$4',
+          '@initial': { minWidth: 400 },
+          '@mobile': { minWidth: 320 },
+        }}
+        as="form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          window.alert(e.currentTarget['workspace-name'].value);
+        }}
+      >
+        <Flex flow="column" gap="2">
+          <TextField placeholder="Carefive" name="workspace-name" label="Workspace name" autoFocus />
+          <Picker>
+            <Picker.Item label="Item 1" value="1" />
+            <Picker.Item label="Item 2" value="2" />
+            <Picker.Item label="Item 3" value="3" />
+            <Picker.Item label="Item 4" value="4" />
+          </Picker>
+        </Flex>
+        <Box pb="$10" />
+        <Flex flow="row-reverse" gap="sm">
+          <Button type="submit" variant="primary">
+            Create
+          </Button>
+          <Button onClick={close} variant="flat">
+            Cancel
+          </Button>
+        </Flex>
+      </Box>
+    </Dialog.Modal>
+  )}
+</Dialog>
+```
 
 ## Default Open
 
@@ -56,56 +52,54 @@ This Example demonstrates the usage of `defaultOpen`, e.g. when you need to open
 
 It also shows how you can manipulate the dialog open state outside its modal, via dialog `ref`. It will use the `ref.current.close()` to close the dialog after 1 second.
 
-<Playground>
-  {() => {
-    const [defaultOpen, setDefaultOpen] = React.useState(false);
-    const ref = useDialogRef();
-    React.useEffect(() => {
-      if (defaultOpen) {
-        const id = setTimeout(() => {
-          ref.current.close();
-        }, 1000);
-        return () => {
-          setDefaultOpen(false);
-          clearTimeout(id);
-        };
-      }
-    }, [defaultOpen]);
-    return (
-      <Box p="$8">
-        <Flex cross="center" main="start" gap="sm">
-          <Switch label="Default open" value={defaultOpen} onChange={setDefaultOpen} />
-          {defaultOpen && (
-            <Dialog defaultOpen={defaultOpen} ref={ref}>
-              <Button>New workspace</Button>
-              {(close) => (
-                <Dialog.Modal>
-                  <Dialog.Title level={3}>Create new workspace</Dialog.Title>
-                  <Box
-                    pt="$4"
-                    as="form"
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      window.alert(e.currentTarget['workspace-name'].value);
-                    }}
-                  >
-                    <TextField placeholder="Carefive" name="workspace-name" label="Workspace name" />
-                    <Box pb="$10" />
-                    <Flex flow="row-reverse" gap="sm">
-                      <Button type="submit" variant="primary">
-                        Create
-                      </Button>
-                      <Button onClick={close} variant="flat">
-                        Cancel
-                      </Button>
-                    </Flex>
-                  </Box>
-                </Dialog.Modal>
-              )}
-            </Dialog>
+```tsx preview
+() => {
+  const [defaultOpen, setDefaultOpen] = React.useState(false);
+  const ref = useDialogRef();
+  React.useEffect(() => {
+    if (defaultOpen) {
+      const id = setTimeout(() => {
+        ref.current.close();
+      }, 1000);
+      return () => {
+        setDefaultOpen(false);
+        clearTimeout(id);
+      };
+    }
+  }, [defaultOpen]);
+  return (
+    <Row cross="center" main="start" gap="sm">
+      <Switch label="Default open" value={defaultOpen} onChange={setDefaultOpen} />
+      {defaultOpen && (
+        <Dialog defaultOpen={defaultOpen} ref={ref}>
+          <Button>New workspace</Button>
+          {(close) => (
+            <Dialog.Modal>
+              <Dialog.Title level={3}>Create new workspace</Dialog.Title>
+              <Box
+                pt="$4"
+                as="form"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  window.alert(e.currentTarget['workspace-name'].value);
+                }}
+              >
+                <TextField placeholder="Carefive" name="workspace-name" label="Workspace name" />
+                <Box pb="$10" />
+                <Flex flow="row-reverse" gap="sm">
+                  <Button type="submit" variant="primary">
+                    Create
+                  </Button>
+                  <Button onClick={close} variant="flat">
+                    Cancel
+                  </Button>
+                </Flex>
+              </Box>
+            </Dialog.Modal>
           )}
-        </Flex>
-      </Box>
-    );
-  }}
-</Playground>
+        </Dialog>
+      )}
+    </Row>
+  );
+};
+```

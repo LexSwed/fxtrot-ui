@@ -2,47 +2,13 @@
 title: MenuList
 ---
 
-import { Box, MenuList, Item, Icon, Text, Section, ThemeProvider } from '@fxtrot/ui';
-import { UsersIcon, AdjustmentsIcon, GlobeIcon } from '@heroicons/react/outline';
-
 ## MenuList
 
-<Playground>
-  {() => {
-    const [selected, setSelected] = React.useState('Appearance');
-    return (
-      <Box width="$56" p="$4">
-        <MenuList role="navigation">
-          <Section title="Settings">
-            {[
-              {
-                icon: UsersIcon,
-                label: 'Profiles',
-              },
-              {
-                icon: AdjustmentsIcon,
-                label: 'Appearance',
-              },
-              {
-                icon: GlobeIcon,
-                label: 'Language',
-              },
-            ].map(({ icon, label }) => (
-              <MenuList.Item key={label} aria-selected={selected === label} onClick={() => setSelected(label)}>
-                <Icon as={icon} />
-                <Text>{label}</Text>
-              </MenuList.Item>
-            ))}
-          </Section>
-        </MenuList>
-      </Box>
-    );
-  }}
-</Playground>
-
-<Playground>
-  <ThemeProvider theme="orange">
-    <Box width="$56" p="$4">
+```tsx preview
+() => {
+  const [selected, setSelected] = React.useState('Appearance');
+  return (
+    <Box width="$56">
       <MenuList role="navigation">
         <Section title="Settings">
           {[
@@ -57,10 +23,9 @@ import { UsersIcon, AdjustmentsIcon, GlobeIcon } from '@heroicons/react/outline'
             {
               icon: GlobeIcon,
               label: 'Language',
-              selected: true,
             },
-          ].map(({ icon, label, selected }) => (
-            <MenuList.Item key={label} aria-selected={selected}>
+          ].map(({ icon, label }) => (
+            <MenuList.Item key={label} aria-selected={selected === label} onClick={() => setSelected(label)}>
               <Icon as={icon} />
               <Text>{label}</Text>
             </MenuList.Item>
@@ -68,5 +33,37 @@ import { UsersIcon, AdjustmentsIcon, GlobeIcon } from '@heroicons/react/outline'
         </Section>
       </MenuList>
     </Box>
-  </ThemeProvider>
-</Playground>
+  );
+};
+```
+
+```tsx preview
+<ThemeProvider theme="orange">
+  <Box width="$56">
+    <MenuList role="navigation">
+      <Section title="Settings">
+        {[
+          {
+            icon: UsersIcon,
+            label: 'Profiles',
+          },
+          {
+            icon: AdjustmentsIcon,
+            label: 'Appearance',
+          },
+          {
+            icon: GlobeIcon,
+            label: 'Language',
+            selected: true,
+          },
+        ].map(({ icon, label, selected }) => (
+          <MenuList.Item key={label} aria-selected={selected}>
+            <Icon as={icon} />
+            <Text>{label}</Text>
+          </MenuList.Item>
+        ))}
+      </Section>
+    </MenuList>
+  </Box>
+</ThemeProvider>
+```

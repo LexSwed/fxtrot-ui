@@ -16,10 +16,6 @@ export const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
 
   const value = useMemo(() => ({ themeClassName: className }), [className]);
 
-  if (!className) {
-    return <>{children}</>;
-  }
-
   return (
     <rootRefContext.Provider value={rootRef.current ? rootRef : ref}>
       <themeContext.Provider value={value}>

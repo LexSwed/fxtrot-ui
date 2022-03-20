@@ -2,14 +2,15 @@
 title: Column
 ---
 
-import { Box, Column } from '@fxtrot/ui';
+Renders its children in a row.
+Use [`Flex`](/components/Flex) when you need to change content alignment on different screen sizes, using [responsive props](https://stitches.dev/docs/responsive-styles).
 
 # Column
 
-<Playground>
-  <Column css={{ width: '400px', height: '240px', bc: '$surface--elevated' }} gap="md" cross="center" main="end">
-    <ExampleBox width="$16" />
-    <ExampleBox width="$12" />
-    <ExampleBox width="$20" />
-  </Column>
-</Playground>
+```tsx preview
+<Column css={{ width: '400px', height: '240px', bc: '$surface--elevated' }} gap="md" cross="center" main="end">
+  <ExampleBox width="$16" />
+  <ExampleBox width="$12" />
+  <ExampleBox width="$20" />
+</Column>
+```

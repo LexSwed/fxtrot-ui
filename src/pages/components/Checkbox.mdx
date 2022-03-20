@@ -2,40 +2,30 @@
 title: Checkbox
 ---
 
-import { Flex, Checkbox, TextLink } from '@fxtrot/ui';
-
 # Checkbox
 
-<Playground>
-  <Flex flow="column" gap="md" css={{ p: '$8', bc: '$surface' }}>
-    <Checkbox label="Accept conditions" />
-    <Checkbox label="Accept conditions" defaultChecked />
-    <Checkbox label="Accept conditions (disabled)" disabled />
-    <Checkbox label="Accept conditions (disabled)" disabled defaultChecked />
-  </Flex>
-</Playground>
+```tsx preview
+<Column gap="md">
+  <Checkbox label="Accept conditions" />
+  <Checkbox label="Accept conditions" defaultChecked />
+  <Checkbox label="Accept conditions (disabled)" disabled />
+  <Checkbox label="Accept conditions (disabled)" disabled defaultChecked />
+</Column>
+```
 
 ## Secondary text
 
-<Playground>
-  <Flex gap="md" css={{ p: '$8', bc: '$surface' }}>
-    <Checkbox label="Accept conditions" secondaryLabel="(required)" required />
-  </Flex>
-</Playground>
+```tsx preview
+<Checkbox label="Accept conditions" secondaryLabel="(required)" required />
+```
 
 ## Stateful
 
-<Playground>
-  {() => {
-    const [checked, setChecked] = React.useState(false);
-    return (
-      <Checkbox
-        label="Accept conditions"
-        checked={checked}
-        onChange={setChecked}
-        secondaryLabel="(required)"
-        required
-      />
-    );
-  }}
-</Playground>
+```tsx preview
+() => {
+  const [checked, setChecked] = React.useState(false);
+  return (
+    <Checkbox label="Accept conditions" checked={checked} onChange={setChecked} secondaryLabel="(required)" required />
+  );
+};
+```

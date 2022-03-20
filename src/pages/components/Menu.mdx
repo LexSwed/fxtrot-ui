@@ -2,114 +2,104 @@
 title: Menu
 ---
 
-import { Box, Button, Menu, Icon, Text, ThemeProvider, Dialog, Picker, Item } from '@fxtrot/ui';
-import { ChevronDownIcon } from '@heroicons/react/solid';
-import { TrashIcon } from '@heroicons/react/outline';
-
 ## Menu
 
-<Playground>
-  <Box p="$8">
-    <Menu>
-      <Button>
-        Open menu
-        <Icon as={ChevronDownIcon} size="lg" />
-      </Button>
-      <Menu.List>
-        <Menu.Item onSelect={() => window.alert('copy')}>
-          <Icon />
-          Copy
-        </Menu.Item>
-        <Menu.Item onSelect={() => window.alert('cut')}>
-          <Icon />
-          Cut
-        </Menu.Item>
-        <Menu.Separator />
-        <Menu.Item onSelect={() => window.alert('delete')} css={{ color: '$text-danger' }}>
-          <Icon as={TrashIcon} color="$text-danger" />
-          Delete
-        </Menu.Item>
-      </Menu.List>
-    </Menu>
-  </Box>
-</Playground>
+```tsx preview
+<Menu>
+  <Button>
+    Open menu
+    <Icon as={ChevronDownIcon} size="lg" />
+  </Button>
+  <Menu.List>
+    <Menu.Item onSelect={() => window.alert('copy')}>
+      <Icon />
+      Copy
+    </Menu.Item>
+    <Menu.Item onSelect={() => window.alert('cut')}>
+      <Icon />
+      Cut
+    </Menu.Item>
+    <Menu.Separator />
+    <Menu.Item onSelect={() => window.alert('delete')} css={{ color: '$text-danger' }}>
+      <Icon as={TrashIcon} color="$text-danger" />
+      Delete
+    </Menu.Item>
+  </Menu.List>
+</Menu>
+```
 
 You can modify `offset` from the `side` and along the `align`ment.
 
-<Playground>
-  <ThemeProvider theme="orange">
-    <Box p="$8">
-      <Menu>
-        <Button variant="outline">
-          Open menu
-          <Icon as={ChevronDownIcon} size="lg" />
-        </Button>
-        <Menu.List sideOffset={12} side="right" align="start">
-          {Array(20)
-            .fill(null)
-            .map((el, i) => (
-              <Menu.Item key={i} onSelect={() => window.alert(i)}>
-                Item {i}
-              </Menu.Item>
-            ))}
-        </Menu.List>
-      </Menu>
-    </Box>
-  </ThemeProvider>
-</Playground>
+```tsx preview
+<ThemeProvider theme="orange">
+  <Menu>
+    <Button variant="outline">
+      Open menu
+      <Icon as={ChevronDownIcon} size="lg" />
+    </Button>
+    <Menu.List sideOffset={12} side="right" align="start">
+      {Array(20)
+        .fill(null)
+        .map((el, i) => (
+          <Menu.Item key={i} onSelect={() => window.alert(i)}>
+            Item {i}
+          </Menu.Item>
+        ))}
+    </Menu.List>
+  </Menu>
+</ThemeProvider>
+```
 
 ## With Dialog
 
-<Playground>
-  {() => {
-    const modalOpenRef = React.useRef();
-    const [selection, setSelection] = React.useState();
-    return (
-      <Box p="$8">
-        <Menu>
-          <Button variant="outline">
-            <Icon as={ChevronDownIcon} size="lg" />
-            More
-          </Button>
-          <Menu.List
-            onCloseAutoFocus={(event) => {
-              // prevent focusing dropdown trigger when it closes from a dialog trigger
-              if (modalOpenRef.current) event.preventDefault();
+```tsx preview
+() => {
+  const modalOpenRef = React.useRef();
+  const [selection, setSelection] = React.useState();
+  return (
+    <Menu>
+      <Button variant="outline">
+        <Icon as={ChevronDownIcon} size="lg" />
+        More
+      </Button>
+      <Menu.List
+        onCloseAutoFocus={(event) => {
+          // prevent focusing dropdown trigger when it closes from a dialog trigger
+          if (modalOpenRef.current) event.preventDefault();
+        }}
+      >
+        <Dialog>
+          <Menu.Item
+            css={{ color: '$text-danger' }}
+            onSelect={(event) => {
+              event.preventDefault();
+              modalOpenRef.current = true;
             }}
           >
-            <Dialog>
-              <Menu.Item
-                css={{ color: '$text-danger' }}
-                onSelect={(event) => {
-                  event.preventDefault();
-                  modalOpenRef.current = true;
+            <Icon size="md" as={TrashIcon} />
+            Delete
+          </Menu.Item>
+          {(close) => (
+            <Dialog.Modal>
+              <Dialog.Title level={3}>Delete topic?</Dialog.Title>
+              <Picker
+                value={selection}
+                onChange={(value) => {
+                  setSelection(value);
+                  setTimeout(() => {
+                    modalOpenRef.current = false;
+                    close();
+                  }, 300);
                 }}
               >
-                <Icon size="md" as={TrashIcon} />
-                Delete
-              </Menu.Item>
-              {(close) => (
-                <Dialog.Modal>
-                  <Dialog.Title level={3}>Delete topic?</Dialog.Title>
-                  <Picker
-                    value={selection}
-                    onChange={(value) => {
-                      setSelection(value);
-                      setTimeout(() => {
-                        modalOpenRef.current = false;
-                        close();
-                      }, 300);
-                    }}
-                  >
-                    <Picker.Item label="Item 1" value="1" />
-                    <Picker.Item label="Item 2" value="2" />
-                  </Picker>
-                </Dialog.Modal>
-              )}
-            </Dialog>
-          </Menu.List>
-        </Menu>
-      </Box>
-    );
-  }}
-</Playground>
+                <Picker.Item label="Item 1" value="1" />
+                <Picker.Item label="Item 2" value="2" />
+              </Picker>
+            </Dialog.Modal>
+          )}
+        </Dialog>
+      </Menu.List>
+    </Menu>
+  );
+};
+```

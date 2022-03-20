@@ -116,7 +116,7 @@ const Input = styled('input', {
 
   [`&:focus + ${CheckMark}`]: {
     borderColor: '$border-accent--active',
-    boxShadow: '0 0 0 3px $colors$focusRing',
+    boxShadow: '0 0 0 3px $colors$border-accent--light',
   },
 
   [`&:checked + ${CheckMark}`]: {
@@ -136,7 +136,6 @@ const Input = styled('input', {
 
   [`&:checked:focus + ${CheckMark}`]: {
     borderColor: '$border-accent--active',
-    boxShadow: '0 0 0 3px $colors$border-accent',
     [`& > ${IconBox}`]: {
       opacity: 1,
     },

@@ -2,155 +2,149 @@
 title: TextField
 ---
 
-import { Box, Flex, TextField } from '@fxtrot/ui';
-
 # TextField
 
-<Playground>
-  <Flex gap="md" css={{ p: '$6', bc: '$surface' }}>
-    <TextField label="Enter your name" placeholder="John Doe" />
-    <TextField label="Enter your name" placeholder="John Doe" disabled />
-    <TextField label="Enter your name" placeholder="John Doe" readOnly />
-  </Flex>
-</Playground>
+```tsx preview
+<Row gap="md">
+  <TextField label="Enter your name" placeholder="John Doe" />
+  <TextField label="Enter your name" placeholder="John Doe" disabled />
+  <TextField label="Enter your name" placeholder="John Doe" readOnly />
+</Row>
+```
 
 ## Types
 
-<Playground>
-  <Box width={300} p="$6">
-    <Flex flow="column" gap="md">
-      <TextField label="Email address" secondaryLabel="(required)" type="email" />
-      <TextField label="Password" secondaryLabel="(required)" type="password" />
-      <TextField label="Your birth day" type="date" />
-      <TextField label="Your age" type="number" min="18" />
-      <TextField label="City" type="search" placeholder="Tartu" />
-    </Flex>
-  </Box>
-</Playground>
+```tsx preview
+<Box width={300}>
+  <Column gap="md">
+    <TextField label="Email address" secondaryLabel="(required)" type="email" />
+    <TextField label="Password" secondaryLabel="(required)" type="password" />
+    <TextField label="Your birth day" type="date" />
+    <TextField label="Your age" type="number" min="18" />
+    <TextField label="City" type="search" placeholder="Tartu" />
+  </Column>
+</Box>
+```
 
 ## Variants
 
-<Playground>
-  <Flex gap="lg" css={{ p: '$6', bc: '$surface' }}>
-    <Flex flow="column" gap="md">
-      <TextField label="Boxed" hint="Default variant" placeholder="Default boxed variant" />
-      <TextField variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Pretty underlined" />
-      <TextField variant="transparent" hint="Not using labels" placeholder="Transparent variant" />
-      <TextField variant="flat" label="Flat variant" hint="Press Esc to cancel" placeholder="Flat variant" />
-    </Flex>
-    <Flex flow="column" gap="md">
-      <TextField
-        label="Boxed"
-        secondaryLabel="(disabled)"
-        hint="Default variant"
-        placeholder="Default boxed variant"
-        disabled
-      />
-      <TextField
-        variant="underlined"
-        hint="Pretty variant"
-        secondaryLabel="(disabled)"
-        label="Underlined"
-        placeholder="Pretty underlined"
-        disabled
-      />
-      <TextField variant="transparent" hint="Not using labels" placeholder="Transparent variant" disabled />
-      <TextField disabled variant="flat" label="Flat variant" hint="Press Esc to cancel" placeholder="Flat variant" />
-    </Flex>
-  </Flex>
-</Playground>
+```tsx preview
+<Row gap="lg">
+  <Column gap="md">
+    <TextField label="Boxed" hint="Default variant" placeholder="Default boxed variant" />
+    <TextField variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Pretty underlined" />
+    <TextField variant="transparent" hint="Not using labels" placeholder="Transparent variant" />
+    <TextField variant="flat" label="Flat variant" hint="Press Esc to cancel" placeholder="Flat variant" />
+  </Column>
+  <Column gap="md">
+    <TextField
+      label="Boxed"
+      secondaryLabel="(disabled)"
+      hint="Default variant"
+      placeholder="Default boxed variant"
+      disabled
+    />
+    <TextField
+      variant="underlined"
+      hint="Pretty variant"
+      secondaryLabel="(disabled)"
+      label="Underlined"
+      placeholder="Pretty underlined"
+      disabled
+    />
+    <TextField variant="transparent" hint="Not using labels" placeholder="Transparent variant" disabled />
+    <TextField disabled variant="flat" label="Flat variant" hint="Press Esc to cancel" placeholder="Flat variant" />
+  </Column>
+</Row>
+```
 
 ## Size
 
-<Playground>
-  <Flex gap="lg" css={{ p: '$6', bc: '$surface' }}>
-    <Flex flow="column" gap="md">
-      <TextField size="sm" label="Boxed" hint="Default variant" placeholder="Small size" />
-      <TextField size="sm" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Small size" />
-      <TextField size="sm" variant="transparent" hint="Not using labels" placeholder="Small size" />
-    </Flex>
-    <Flex flow="column" gap="md">
-      <TextField size="md" label="Boxed" hint="Default variant" placeholder="Default size" />
-      <TextField size="md" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Default size" />
-      <TextField size="md" variant="transparent" hint="Not using labels" placeholder="Default size" />
-    </Flex>
-    <Flex flow="column" gap="md">
-      <TextField size="lg" label="Boxed" hint="Default variant" placeholder="Large size" />
-      <TextField size="lg" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Large size" />
-      <TextField size="lg" variant="transparent" hint="Not using labels" placeholder="Large size" />
-    </Flex>
-    <Flex flow="column" gap="md">
-      <TextField size="xl" label="Boxed" hint="Default variant" placeholder="Editable heading size" />
-      <TextField
-        size="xl"
-        variant="underlined"
-        hint="Pretty variant"
-        label="Underlined"
-        placeholder="Editable heading size"
-      />
-      <TextField size="xl" variant="transparent" hint="Not using labels" placeholder="Editable heading size" />
-    </Flex>
-  </Flex>
-</Playground>
+```tsx preview
+<Row gap="lg">
+  <Column gap="md">
+    <TextField size="sm" label="Boxed" hint="Default variant" placeholder="Small size" />
+    <TextField size="sm" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Small size" />
+    <TextField size="sm" variant="transparent" hint="Not using labels" placeholder="Small size" />
+  </Column>
+  <Column gap="md">
+    <TextField size="md" label="Boxed" hint="Default variant" placeholder="Default size" />
+    <TextField size="md" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Default size" />
+    <TextField size="md" variant="transparent" hint="Not using labels" placeholder="Default size" />
+  </Column>
+  <Column gap="md">
+    <TextField size="lg" label="Boxed" hint="Default variant" placeholder="Large size" />
+    <TextField size="lg" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Large size" />
+    <TextField size="lg" variant="transparent" hint="Not using labels" placeholder="Large size" />
+  </Column>
+  <Column gap="md">
+    <TextField size="xl" label="Boxed" hint="Default variant" placeholder="Editable heading size" />
+    <TextField
+      size="xl"
+      variant="underlined"
+      hint="Pretty variant"
+      label="Underlined"
+      placeholder="Editable heading size"
+    />
+    <TextField size="xl" variant="transparent" hint="Not using labels" placeholder="Editable heading size" />
+  </Column>
+</Row>
+```
 
 ## Validity
 
-<Playground>
-  {() => {
-    const [value, setValue] = React.useState('me@email.com');
-    const isValid = React.useMemo(() => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value), [value]);
-    return (
-      <Box css={{ p: '$6', bc: '$surface' }}>
-        <Flex gap="md" cross="end">
-          <TextField
-            cross="stretch"
-            validity={isValid ? 'valid' : 'invalid'}
-            label="Email"
-            hint={!isValid ? 'Check that your email is typed correctly' : ' '}
-            placeholder="john.doe@mail.com"
-            value={value}
-            onChange={setValue}
-          />
-          <TextField
-            cross="stretch"
-            validity={isValid ? 'valid' : 'invalid'}
-            label="Email"
-            hint={!isValid ? 'Check that your email is typed correctly' : ' '}
-            placeholder="john.doe@mail.com"
-            value={value}
-            onChange={setValue}
-            variant="underlined"
-          />
-          <TextField
-            cross="stretch"
-            validity={isValid ? 'valid' : 'invalid'}
-            hint={!isValid ? 'Check that your email is typed correctly' : ' '}
-            placeholder="john.doe@mail.com"
-            value={value}
-            onChange={setValue}
-            variant="transparent"
-          />
-        </Flex>
-      </Box>
-    );
-  }}
-</Playground>
+```tsx preview
+() => {
+  const [value, setValue] = React.useState('me@email.com');
+  const isValid = React.useMemo(() => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value), [value]);
+  return (
+    <Row gap="md" cross="end">
+      <TextField
+        cross="stretch"
+        validity={isValid ? 'valid' : 'invalid'}
+        label="Email"
+        hint={!isValid ? 'Check that your email is typed correctly' : ' '}
+        placeholder="john.doe@mail.com"
+        value={value}
+        onChange={setValue}
+      />
+      <TextField
+        cross="stretch"
+        validity={isValid ? 'valid' : 'invalid'}
+        label="Email"
+        hint={!isValid ? 'Check that your email is typed correctly' : ' '}
+        placeholder="john.doe@mail.com"
+        value={value}
+        onChange={setValue}
+        variant="underlined"
+      />
+      <TextField
+        cross="stretch"
+        validity={isValid ? 'valid' : 'invalid'}
+        hint={!isValid ? 'Check that your email is typed correctly' : ' '}
+        placeholder="john.doe@mail.com"
+        value={value}
+        onChange={setValue}
+        variant="transparent"
+      />
+    </Row>
+  );
+};
+```
 
 ## Label alignment
 
 Since input is wrapped in `Flex` component, you can easily pass any props `Flex` supports,
 for example to specify flow direction:
 
-<Playground>
-  <Box css={{ p: '$6', bc: '$surface' }}>
-    <Box css={{ 'width': '420px', '@tablet': { width: '300px' } }}>
-      <TextField
-        label="Enter your name"
-        flow={{ '@desktop': 'row', '@tablet': 'column' }}
-        gap={{ '@desktop': '6', '@initial': '2' }}
-        placeholder="John Doe"
-        hint="Real name will help your friends to find you!"
-      />
-    </Box>
-  </Box>
-</Playground>
+```tsx preview
+<Box css={{ 'width': '420px', '@tablet': { width: '300px' } }}>
+  <TextField
+    label="Enter your name"
+    flow={{ '@desktop': 'row', '@tablet': 'column' }}
+    gap={{ '@desktop': '6', '@initial': '2' }}
+    placeholder="John Doe"
+    hint="Real name will help your friends to find you!"
+  />
+</Box>
+```

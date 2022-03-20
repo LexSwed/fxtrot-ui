@@ -2,38 +2,36 @@
 title: Tag
 ---
 
-import { Box, Flex, Tag, ThemeProvider, Icon } from '@fxtrot/ui';
-
 ## Variant
 
-<Playground>
-  <Flex gap="xl" css={{ p: '$8', bc: '$surface' }}>
-    <Tag label="Primary" />
-    <Tag variant="outline" label="Outline" />
-    <Tag variant="secondary" label="Secondary" />
-  </Flex>
-</Playground>
+```tsx preview
+<Row gap="xl">
+  <Tag label="Primary" />
+  <Tag variant="outline" label="Outline" />
+  <Tag variant="secondary" label="Secondary" />
+</Row>
+```
 
 ## Size
 
-<Playground>
-  <Flex gap="xl" css={{ p: '$8', bc: '$surface' }}>
-    <Tag label="Small (sm)" size="sm" />
-    <Tag label="Medium (md)" size="md" />
-    <Tag label="Large (lg)" size="lg" />
-  </Flex>
-</Playground>
+```tsx preview
+<Row gap="xl">
+  <Tag label="Small (sm)" size="sm" />
+  <Tag label="Medium (md)" size="md" />
+  <Tag label="Large (lg)" size="lg" />
+</Row>
+```
 
 ## Theming
 
 Use `ThemeProvider` component to change the primary color of the Tag.
 
-<Playground>
-  <ThemeProvider theme="orange">
-    <Flex gap="xl" css={{ p: '$8' }}>
-      <Tag label="Primary" />
-      <Tag variant="outline" label="Secondary" />
-      <Tag variant="secondary" label="Secondary" />
-    </Flex>
-  </ThemeProvider>
-</Playground>
+```tsx preview
+<ThemeProvider theme="orange">
+  <Row gap="xl">
+    <Tag label="Primary" />
+    <Tag variant="outline" label="Secondary" />
+    <Tag variant="secondary" label="Secondary" />
+  </Row>
+</ThemeProvider>
+```

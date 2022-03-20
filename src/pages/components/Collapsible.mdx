@@ -2,22 +2,20 @@
 title: Collapsible
 ---
 
-import { Box, Flex, Collapsible } from '@fxtrot/ui';
-
 # Collapsible
 
-<Playground>
-  <Box width={320} p="$3">
-    <Collapsible>
-      <Collapsible.Trigger variant="flat">Section</Collapsible.Trigger>
-      <Collapsible.Content>
-        <Box p="$3">
-          <Flex gap="4" flow="row">
-            <ExampleBox />
-            <ExampleBox width="80%" />
-          </Flex>
-        </Box>
-      </Collapsible.Content>
-    </Collapsible>
-  </Box>
-</Playground>
+```tsx preview
+<Box width={240}>
+  <Collapsible>
+    <Collapsible.Trigger variant="flat">Section</Collapsible.Trigger>
+    <Collapsible.Content>
+      <Box p="$3">
+        <Flex gap="4" flow="row">
+          <ExampleBox />
+          <ExampleBox width="80%" />
+        </Flex>
+      </Box>
+    </Collapsible.Content>
+  </Collapsible>
+</Box>
+```

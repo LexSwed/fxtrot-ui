@@ -38,13 +38,14 @@ export const PickerTrigger = ({
   id,
   validity,
   disabled,
-  placeholder = 'Select an option',
+  placeholder,
   variant = 'boxed',
   children,
   size,
   ...props
 }: PickerTriggerProps) => {
   const ariaProps = useFormField({ id, hint, label });
+
   return (
     <FormField
       main={main}
@@ -80,31 +81,21 @@ export const PickerTrigger = ({
 };
 
 const TriggerButton = styled('button', fieldBox, {
-  'position': 'relative',
-  'display': 'flex',
-  'alignItems': 'center',
-  'justifyContent': 'space-between',
-  'fontSize': '$sm',
-  'pr': '$2',
-  'minWidth': 0,
-  'overflow': 'hidden',
-  'whiteSpace': 'nowrap',
-  'textOverflow': 'ellipsis',
-  'cursor': 'default',
+  position: 'relative',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  fontSize: '$sm',
 
-  '& > span:first-child': {
-    '&:empty:before': {
-      content: 'attr(placeholder)',
-      color: '$text--light',
-      overflow: 'hidden',
-      whiteSpace: 'nowrap',
-      textOverflow: 'ellipsis',
-    },
-  },
-
-  '&:not(:only-child)': {
-    pr: '$2',
-  },
+  // '& > span:first-of-type': {
+  //   'minWidth': 0,
+  //   'overflow': 'hidden',
+  //   'whiteSpace': 'nowrap',
+  //   'textOverflow': 'ellipsis',
+  //   '&[placeholder]': {
+  //     color: '$text--light',
+  //   },
+  // },
 
   [`& > ${Icon}`]: {
     pl: '$1',

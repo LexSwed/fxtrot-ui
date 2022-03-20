@@ -2,127 +2,132 @@
 title: IconButton
 ---
 
-import { ArrowNarrowRightIcon } from '@heroicons/react/solid';
-import { Box, Flex, Grid, IconButton, ThemeProvider, Icon } from '@fxtrot/ui';
-
 # IconButton
 
 Same as [`Button`](/components/Button) component, but when used only with an icon inside. Provides prop check for `ARIA` label and applies some light styling. All the existing props of the [`Button`](/components/Button) are supported as well.
 
 ## Example
 
-<Playground>
-  <Flex flow="column" gap="lg" css={{ py: '$8', bc: '$surface' }}>
-    <Flex gap="md" css={{ px: '$10' }}>
-      <IconButton label="Move right" size="xs" variant="primary">
-        <Icon as={ArrowNarrowRightIcon} size="sm" />
-      </IconButton>
-      <IconButton label="Move right" size="xs" variant="outline">
-        <Icon as={ArrowNarrowRightIcon} size="sm" />
-      </IconButton>
-      <IconButton label="Move right" size="xs" variant="secondary">
-        <Icon as={ArrowNarrowRightIcon} size="sm" />
-      </IconButton>
-      <IconButton label="Move right" size="xs" variant="flat">
-        <Icon as={ArrowNarrowRightIcon} size="sm" />
-      </IconButton>
-      <IconButton label="Move right" size="xs" variant="link">
-        <Icon as={ArrowNarrowRightIcon} size="sm" />
-      </IconButton>
-    </Flex>
-    <Flex gap="md" css={{ px: '$10' }}>
-      <IconButton label="Move right" size="sm" variant="primary">
-        <Icon as={ArrowNarrowRightIcon} />
-      </IconButton>
-      <IconButton label="Move right" size="sm" variant="outline">
-        <Icon as={ArrowNarrowRightIcon} />
-      </IconButton>
-      <IconButton label="Move right" size="sm" variant="secondary">
-        <Icon as={ArrowNarrowRightIcon} />
-      </IconButton>
-      <IconButton label="Move right" size="sm" variant="flat">
-        <Icon as={ArrowNarrowRightIcon} />
-      </IconButton>
-      <IconButton label="Move right" size="sm" variant="link">
-        <Icon as={ArrowNarrowRightIcon} />
-      </IconButton>
-    </Flex>
-    <Flex gap="md" css={{ px: '$10' }}>
-      <IconButton label="Move right" size="md" variant="primary">
-        <Icon as={ArrowNarrowRightIcon} />
-      </IconButton>
-      <IconButton label="Move right" size="md" variant="outline">
-        <Icon as={ArrowNarrowRightIcon} />
-      </IconButton>
-      <IconButton label="Move right" size="md" variant="secondary">
-        <Icon as={ArrowNarrowRightIcon} />
-      </IconButton>
-      <IconButton label="Move right" size="md" variant="flat">
-        <Icon as={ArrowNarrowRightIcon} />
-      </IconButton>
-      <IconButton label="Move right" size="md" variant="link">
-        <Icon as={ArrowNarrowRightIcon} />
-      </IconButton>
-    </Flex>
-    <Flex gap="md" css={{ px: '$10' }}>
-      <IconButton label="Move right" size="lg" variant="primary">
-        <Icon as={ArrowNarrowRightIcon} />
-      </IconButton>
-      <IconButton label="Move right" size="lg" variant="outline">
-        <Icon as={ArrowNarrowRightIcon} />
-      </IconButton>
-      <IconButton label="Move right" size="lg" variant="secondary">
-        <Icon as={ArrowNarrowRightIcon} />
-      </IconButton>
-      <IconButton label="Move right" size="lg" variant="flat">
-        <Icon as={ArrowNarrowRightIcon} />
-      </IconButton>
-      <IconButton label="Move right" size="lg" variant="link">
-        <Icon as={ArrowNarrowRightIcon} />
-      </IconButton>
-    </Flex>
-  </Flex>
-</Playground>
+```tsx preview
+<Column gap="lg">
+  <Row gap="md" css={{ px: '$10' }}>
+    <IconButton label="Move right" size="xs" variant="primary">
+      <Icon as={ArrowNarrowRightIcon} size="sm" />
+    </IconButton>
+    <IconButton label="Move right" size="xs" variant="outline">
+      <Icon as={ArrowNarrowRightIcon} size="sm" />
+    </IconButton>
+    <IconButton label="Move right" size="xs" variant="secondary">
+      <Icon as={ArrowNarrowRightIcon} size="sm" />
+    </IconButton>
+    <IconButton label="Move right" size="xs" variant="flat">
+      <Icon as={ArrowNarrowRightIcon} size="sm" />
+    </IconButton>
+    <IconButton label="Move right" size="xs" variant="link">
+      <Icon as={ArrowNarrowRightIcon} size="sm" />
+    </IconButton>
+  </Row>
+  <Row gap="md" css={{ px: '$10' }}>
+    <IconButton label="Move right" size="sm" variant="primary">
+      <Icon as={ArrowNarrowRightIcon} />
+    </IconButton>
+    <IconButton label="Move right" size="sm" variant="outline">
+      <Icon as={ArrowNarrowRightIcon} />
+    </IconButton>
+    <IconButton label="Move right" size="sm" variant="secondary">
+      <Icon as={ArrowNarrowRightIcon} />
+    </IconButton>
+    <IconButton label="Move right" size="sm" variant="flat">
+      <Icon as={ArrowNarrowRightIcon} />
+    </IconButton>
+    <IconButton label="Move right" size="sm" variant="link">
+      <Icon as={ArrowNarrowRightIcon} />
+    </IconButton>
+  </Row>
+  <Row gap="md" css={{ px: '$10' }}>
+    <IconButton label="Move right" size="md" variant="primary">
+      <Icon as={ArrowNarrowRightIcon} />
+    </IconButton>
+    <IconButton label="Move right" size="md" variant="outline">
+      <Icon as={ArrowNarrowRightIcon} />
+    </IconButton>
+    <IconButton label="Move right" size="md" variant="secondary">
+      <Icon as={ArrowNarrowRightIcon} />
+    </IconButton>
+    <IconButton label="Move right" size="md" variant="flat">
+      <Icon as={ArrowNarrowRightIcon} />
+    </IconButton>
+    <IconButton label="Move right" size="md" variant="link">
+      <Icon as={ArrowNarrowRightIcon} />
+    </IconButton>
+  </Row>
+  <Row gap="md" css={{ px: '$10' }}>
+    <IconButton label="Move right" size="lg" variant="primary">
+      <Icon as={ArrowNarrowRightIcon} />
+    </IconButton>
+    <IconButton label="Move right" size="lg" variant="outline">
+      <Icon as={ArrowNarrowRightIcon} />
+    </IconButton>
+    <IconButton label="Move right" size="lg" variant="secondary">
+      <Icon as={ArrowNarrowRightIcon} />
+    </IconButton>
+    <IconButton label="Move right" size="lg" variant="flat">
+      <Icon as={ArrowNarrowRightIcon} />
+    </IconButton>
+    <IconButton label="Move right" size="lg" variant="link">
+      <Icon as={ArrowNarrowRightIcon} />
+    </IconButton>
+  </Row>
+</Column>
+```
 
 ## Theming
 
 Use `ThemeProvider` component to change the primary color of the button.
 
-<Playground>
-  <ThemeProvider theme="purple">
-    <Flex flow="column" gap="xl" css={{ py: '$8', bc: '$surface' }}>
-      <Flex gap="md" css={{ px: '$10' }}>
-        <IconButton label="Move right" variant="primary">
-          <Icon as={ArrowNarrowRightIcon} />
-        </IconButton>
-        <IconButton label="Move right" disabled variant="primary">
-          <Icon as={ArrowNarrowRightIcon} />
-        </IconButton>
-      </Flex>
-      <Flex gap="md" css={{ px: '$10' }}>
-        <IconButton label="Move right" variant="secondary">
-          <Icon as={ArrowNarrowRightIcon} />
-        </IconButton>
-        <IconButton label="Move right" variant="secondary" disabled>
-          <Icon as={ArrowNarrowRightIcon} />
-        </IconButton>
-      </Flex>
-      <Flex gap="md" css={{ px: '$10' }}>
-        <IconButton label="Move right" variant="flat">
-          <Icon as={ArrowNarrowRightIcon} />
-        </IconButton>
-        <IconButton label="Move right" variant="flat" disabled>
-          <Icon as={ArrowNarrowRightIcon} />
-        </IconButton>
-      </Flex>
-      <Flex gap="md" css={{ px: '$10' }}>
-        <IconButton label="Move right" variant="link">
-          <Icon as={ArrowNarrowRightIcon} />
-        </IconButton>
-        <IconButton label="Move right" variant="link" disabled>
-          <Icon as={ArrowNarrowRightIcon} />
-        </IconButton>
-      </Flex>
-    </Flex>
-  </ThemeProvider>
-</Playground>
+```tsx preview
+<ThemeProvider theme="purple">
+  <Column gap="xl">
+    <Row gap="md" css={{ px: '$10' }}>
+      <IconButton label="Move right" variant="primary">
+        <Icon as={ArrowNarrowRightIcon} />
+      </IconButton>
+      <IconButton label="Move right" disabled variant="primary">
+        <Icon as={ArrowNarrowRightIcon} />
+      </IconButton>
+    </Row>
+    <Row gap="md" css={{ px: '$10' }}>
+      <IconButton label="Move right" variant="secondary">
+        <Icon as={ArrowNarrowRightIcon} />
+      </IconButton>
+      <IconButton label="Move right" variant="secondary" disabled>
+        <Icon as={ArrowNarrowRightIcon} />
+      </IconButton>
+    </Row>
+    <Row gap="md" css={{ px: '$10' }}>
+      <IconButton label="Move right" variant="flat">
+        <Icon as={ArrowNarrowRightIcon} />
+      </IconButton>
+      <IconButton label="Move right" variant="flat" disabled>
+        <Icon as={ArrowNarrowRightIcon} />
+      </IconButton>
+    </Row>
+    <Row gap="md" css={{ px: '$10' }}>
+      <IconButton label="Move right" variant="outline">
+        <Icon as={ArrowNarrowRightIcon} />
+      </IconButton>
+      <IconButton label="Move right" variant="outline" disabled>
+        <Icon as={ArrowNarrowRightIcon} />
+      </IconButton>
+    </Row>
+    <Row gap="md" css={{ px: '$10' }}>
+      <IconButton label="Move right" variant="link">
+        <Icon as={ArrowNarrowRightIcon} />
+      </IconButton>
+      <IconButton label="Move right" variant="link" disabled>
+        <Icon as={ArrowNarrowRightIcon} />
+      </IconButton>
+    </Row>
+  </Column>
+</ThemeProvider>
+```

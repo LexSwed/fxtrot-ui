@@ -28,7 +28,7 @@ const Link = styled('a', Text, {
           'top': '50%',
           'transform': 'translateY(-50%)',
           '& path': {
-            stroke: '$text-accent',
+            stroke: 'currentColor',
           },
         },
         pr: '$5',

@@ -8,6 +8,7 @@ import { ToggleButton } from '../ToggleButton';
 import { styled, CssStyles } from '../stitches.config';
 import { gaps } from '../utils/variants';
 import { ButtonRoot } from '../Button/Button';
+import { IconButtonRoot } from '../IconButton/IconButton';
 
 type Props = FlexVariants &
   Omit<

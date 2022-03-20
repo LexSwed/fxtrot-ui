@@ -2,131 +2,114 @@
 title: Picker
 ---
 
-import { Box, Flex, Picker, TextLink } from '@fxtrot/ui';
-
 # Picker
 
 Picker is a component that mimics default `<select>` element.
 
-<Playground>
-  <Box css={{ p: '$8', bc: '$surface' }}>
-    <Flex gap="md" css={{ width: '$40' }} cross="stretch">
-      <Picker label="Item index" placeholder="1 number">
-        {Array(100)
+```tsx preview
+<Box width={200}>
+  <Picker label="Item index" placeholder="Pick a number">
+    {Array(100)
+      .fill(null)
+      .map((el, i) => (
+        <Picker.Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
+      ))}
+  </Picker>
+</Box>
+```
+
+## Controlled with validation
+
+```tsx preview
+() => {
+  const [value, setValue] = React.useState('12');
+  return (
+    <Box width={200}>
+      <Picker
+        label="Pick item > 10"
+        value={value}
+        onChange={setValue}
+        validity={Number(value) > 10 ? 'valid' : 'invalid'}
+        hint={Number(value) > 10 ? '' : 'Oh no what did you do'}
+      >
+        {Array(20)
           .fill(null)
           .map((el, i) => (
             <Picker.Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
           ))}
       </Picker>
-    </Flex>
-  </Box>
-</Playground>
-
-## Controlled
-
-<Playground>
-  {() => {
-    const [value, setValue] = React.useState('12');
-    return (
-      <Box css={{ p: '$8', bc: '$surface' }}>
-        <Flex gap="md" css={{ width: '$40' }}>
-          <Picker label="Item index" value={value} onChange={setValue}>
-            {Array(20)
-              .fill(null)
-              .map((el, i) => (
-                <Picker.Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
-              ))}
-          </Picker>
-        </Flex>
-      </Box>
-    );
-  }}
-</Playground>
+    </Box>
+  );
+};
+```
 
 ## Variants
 
 Supports same `variant`s as `Picker` component.
 
-<Playground>
-  {() => {
-    const [value, setValue] = React.useState('12');
-    return (
-      <Box css={{ p: '$8', bc: '$surface' }}>
-        <Flex gap="md" css={{ width: '$40' }} cross="stretch">
-          <Picker
-            label="Item index"
-            variant="underlined"
-            placeholder="1 number"
-            value={value}
-            onChange={setValue}
-            validity={Number(value) > 10 ? 'valid' : 'invalid'}
-            hint={Number(value) > 10 ? '' : 'Oh no what did you do'}
-          >
-            {Array(20)
-              .fill(null)
-              .map((el, i) => (
-                <Picker.Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
-              ))}
-          </Picker>
-        </Flex>
-      </Box>
-    );
-  }}
-</Playground>
+```tsx preview
+() => {
+  const [variant, setVariant] = React.useState('flat');
+  return (
+    <Box width={200}>
+      <Picker label="Variant" variant={variant} value={variant} onChange={setVariant}>
+        <Picker.Item label="Boxed" value="boxed" />
+        <Picker.Item label="Underlined" value="underlined" />
+        <Picker.Item label="Transparent" value="transparent" />
+        <Picker.Item label="Flat" value="flat" />
+      </Picker>
+    </Box>
+  );
+};
+```
 
 ## Size
 
-<Playground>
-  <Flex gap="lg" css={{ p: '$6', bc: '$surface' }}>
-    <Flex flow="column" gap="md">
-      <Picker size="sm" label="Boxed" hint="Default variant" placeholder="Small size">
-        <Picker.Item label="Only option" />
-      </Picker>
-      <Picker size="sm" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Small size">
-        <Picker.Item label="Only option" />
-      </Picker>
-      <Picker size="sm" variant="transparent" hint="Not using labels" placeholder="Small size">
-        <Picker.Item label="Only option" />
-      </Picker>
-    </Flex>
-    <Flex flow="column" gap="md">
-      <Picker size="md" label="Boxed" hint="Default variant" placeholder="Default size">
-        <Picker.Item label="Only option" />
-      </Picker>
-      <Picker size="md" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Default size">
-        <Picker.Item label="Only option" />
-      </Picker>
-      <Picker size="md" variant="transparent" hint="Not using labels" placeholder="Default size">
-        <Picker.Item label="Only option" />
-      </Picker>
-    </Flex>
-    <Flex flow="column" gap="md">
-      <Picker size="lg" label="Boxed" hint="Default variant" placeholder="Large size">
-        <Picker.Item label="Only option" />
-      </Picker>
-      <Picker size="lg" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Large size">
-        <Picker.Item label="Only option" />
-      </Picker>
-      <Picker size="lg" variant="transparent" hint="Not using labels" placeholder="Large size">
-        <Picker.Item label="Only option" />
-      </Picker>
-    </Flex>
-    <Flex flow="column" gap="md">
-      <Picker size="xl" label="Boxed" hint="Default variant" placeholder="Editable heading size">
-        <Picker.Item label="Only option" />
-      </Picker>
-      <Picker
-        size="xl"
-        variant="underlined"
-        hint="Pretty variant"
-        label="Underlined"
-        placeholder="Editable heading size"
-      >
-        <Picker.Item label="Only option" />
-      </Picker>
-      <Picker size="xl" variant="transparent" hint="Not using labels" placeholder="Editable heading size">
-        <Picker.Item label="Only option" />
-      </Picker>
-    </Flex>
-  </Flex>
-</Playground>
+```tsx preview
+<Row gap="lg">
+  <Column gap="md">
+    <Picker size="sm" label="Boxed" hint="Default variant" placeholder="Small size">
+      <Picker.Item label="Only option" />
+    </Picker>
+    <Picker size="sm" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Small size">
+      <Picker.Item label="Only option" />
+    </Picker>
+    <Picker size="sm" variant="transparent" hint="Not using labels" placeholder="Small size">
+      <Picker.Item label="Only option" />
+    </Picker>
+  </Column>
+  <Column gap="md">
+    <Picker size="md" label="Boxed" hint="Default variant" placeholder="Default size">
+      <Picker.Item label="Only option" />
+    </Picker>
+    <Picker size="md" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Default size">
+      <Picker.Item label="Only option" />
+    </Picker>
+    <Picker size="md" variant="transparent" hint="Not using labels" placeholder="Default size">
+      <Picker.Item label="Only option" />
+    </Picker>
+  </Column>
+  <Column gap="md">
+    <Picker size="lg" label="Boxed" hint="Default variant" placeholder="Large size">
+      <Picker.Item label="Only option" />
+    </Picker>
+    <Picker size="lg" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Large size">
+      <Picker.Item label="Only option" />
+    </Picker>
+    <Picker size="lg" variant="transparent" hint="Not using labels" placeholder="Large size">
+      <Picker.Item label="Only option" />
+    </Picker>
+  </Column>
+  <Column gap="md">
+    <Picker size="xl" label="Boxed" hint="Default variant" placeholder="Extra large">
+      <Picker.Item label="Only option" />
+    </Picker>
+    <Picker size="xl" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Extra large">
+      <Picker.Item label="Only option" />
+    </Picker>
+    <Picker size="xl" variant="transparent" hint="Not using labels" placeholder="Extra large">
+      <Picker.Item label="Only option" />
+    </Picker>
+  </Column>
+</Row>
+```

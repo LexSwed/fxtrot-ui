@@ -2,36 +2,34 @@
 title: TextLink
 ---
 
-import { Column, TextLink } from '@fxtrot/ui';
-
 ## TextLink
 
 `Text` component as `anchor`. Enables additional props, such as `external` to ease the use and security of `target="_blank"`
 
-<Playground>
-  <Column gap="8">
-    <TextLink size="sm" href="https://random.dog/">
-      Small size
-    </TextLink>
-  </Column>
-</Playground>
+```tsx preview
+<Column gap="8">
+  <TextLink size="sm" href="https://random.dog/">
+    Small size
+  </TextLink>
+</Column>
+```
 
 ### External
 
-<Playground>
-  <Column gap="8">
-    <TextLink href="https://random.dog/" external>
-      Just external
+```tsx preview
+<Column gap="8">
+  <TextLink href="https://random.dog/" external>
+    Just external
+  </TextLink>
+  <p>
+    The quick brown fox jumps over the lazy{' '}
+    <TextLink href="https://random.dog/" external="icon">
+      dog
     </TextLink>
-    <p>
-      The quick brown fox jumps over the lazy{' '}
-      <TextLink href="https://random.dog/" external="icon">
-        dog
-      </TextLink>
-      , but can't make it, or maybe can but we just don't know. And this will be a very looong link.
-      <TextLink href="https://random.dog/" external>
-        How? This is how? How how? This is how.
-      </TextLink>
-    </p>
-  </Column>
-</Playground>
+    , but can't make it, or maybe can but we just don't know. And this will be a very looong link.
+    <TextLink href="https://random.dog/" external>
+      How? This is how? How how? This is how.
+    </TextLink>
+  </p>
+</Column>
+```

@@ -2,87 +2,81 @@
 title: ComboBox
 ---
 
-import { Box, Flex, ComboBox, Item, Text } from '@fxtrot/ui';
-
 # ComboBox
 
-<Playground>
-  {() => {
-    const [value, setValue] = React.useState('3');
-    return (
-      <Box css={{ p: '$8', bc: '$surface' }}>
-        <Flex flow="column" gap="md" css={{ width: '$56' }}>
-          <ComboBox placeholder="Hufflepuff" label="The House you were sorted to" value={value} onChange={setValue}>
-            {['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'].map((house, index) => (
-              <ComboBox.Item value={`${index + 1}`} label={house} key={house} />
-            ))}
-          </ComboBox>
-          <Text>{`Selected item index: ${value}`}</Text>
-        </Flex>
-      </Box>
-    );
-  }}
-</Playground>
+```tsx preview
+() => {
+  const [value, setValue] = React.useState('3');
+  return (
+    <Column gap="md" css={{ width: 200 }}>
+      <ComboBox placeholder="Hufflepuff" label="The House you were sorted to" value={value} onChange={setValue}>
+        {['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'].map((house, index) => (
+          <ComboBox.Item value={`${index + 1}`} label={house} key={house} />
+        ))}
+      </ComboBox>
+      <Text>{`Selected item index: ${value}`}</Text>
+    </Column>
+  );
+};
+```
 
 ## Allowing creation of new elements
 
 You can allow the selection of elements that do not exist - creating them from the input value. For this, subscribe to the input text changes and store them locally.
 
-<Playground>
-  {() => {
-    const [value, setValue] = React.useState('');
-    const [newItemValue, setNewItemValue] = React.useState('');
-    return (
-      <Box css={{ p: '$8', bc: '$surface' }}>
-        <Flex flow="column" gap="md">
-          <Box width="240px">
-            <ComboBox
-              placeholder="Hufflepuff"
-              label="The House you were sorted to"
-              value={value}
-              onChange={setValue}
-              onInputChange={setNewItemValue}
-              hint={value || value === '' || !newItemValue ? '' : 'New item will be created'}
-            >
-              {['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'].map((house, index) => (
-                <ComboBox.Item value={`${index + 1}`} label={house} key={house} />
-              ))}
-            </ComboBox>
-          </Box>
-          <Flex flow="column">
-            <div>{`Selected item index: ${value}`}</div>
-            <div>{`Current input text: ${newItemValue}`}</div>
-          </Flex>
-        </Flex>
+```tsx preview
+() => {
+  const [value, setValue] = React.useState('');
+  const [newItemValue, setNewItemValue] = React.useState('');
+  return (
+    <Column gap="md">
+      <Box width={200}>
+        <ComboBox
+          placeholder="Hufflepuff"
+          label="The House you were sorted to"
+          value={value}
+          onChange={setValue}
+          onInputChange={setNewItemValue}
+          hint={value || value === '' || !newItemValue ? '' : 'New item will be created'}
+        >
+          {['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'].map((house, index) => (
+            <ComboBox.Item value={`${index + 1}`} label={house} key={house} />
+          ))}
+        </ComboBox>
       </Box>
-    );
-  }}
-</Playground>
+      <Column>
+        <div>{`Selected item index: ${value}`}</div>
+        <div>{`Current input text: ${newItemValue}`}</div>
+      </Column>
+    </Column>
+  );
+};
+```
 
 ## Variants
 
 Supports same `variant`s as `TextField` component.
 
-<Playground>
-  {() => {
-    const [value, setValue] = React.useState('12');
-    return (
-      <Box css={{ p: '$8', bc: '$surface' }}>
-        <ComboBox
-          label="Item index"
-          variant="underlined"
-          placeholder="1 number"
-          value={value}
-          onChange={setValue}
-          validity={Number(value) > 10 ? 'valid' : 'invalid'}
-        >
-          {Array(400)
-            .fill(null)
-            .map((el, i) => (
-              <ComboBox.Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
-            ))}
-        </ComboBox>
-      </Box>
-    );
-  }}
-</Playground>
+```tsx preview
+() => {
+  const [value, setValue] = React.useState('12');
+  return (
+    <Box width={200}>
+      <ComboBox
+        label="Item index"
+        variant="underlined"
+        placeholder="1 number"
+        value={value}
+        onChange={setValue}
+        validity={Number(value) > 10 ? 'valid' : 'invalid'}
+      >
+        {Array(400)
+          .fill(null)
+          .map((el, i) => (
+            <ComboBox.Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
+          ))}
+      </ComboBox>
+    </Box>
+  );
+};
+```

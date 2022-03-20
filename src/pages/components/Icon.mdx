@@ -14,57 +14,67 @@ import { DotsHorizontalIcon } from '@heroicons/react/solid';
 
 export const DotsHorizontalIcon = solidIcons.DotsHorizontalIcon;
 
-<Playground>
-  <Icon as={DotsHorizontalIcon} size="xl" />
-</Playground>
+```tsx preview
+<Icon as={DotsHorizontalIcon} size="xl" />
+```
 
-export const IconBox = styled('div', {
+export const IconBox = styled('button', {
   'display': 'flex',
+  'justifyContent': 'center',
   'alignItems': 'center',
+  'position': 'relative',
+  'size': 80,
   'gap': '$4',
   'boxShadow': '$sm',
-  'p': '$6',
   'transition': '0.2s ease-in-out',
   'cursor': 'pointer',
   'minWidth': 0,
   'overflow': 'hidden',
   'bc': '#fff',
+  'focusRing': '$focusRing',
   '&:hover': {
     boxShadow: '$md',
   },
 });
+
+export const IconCopy = ({ name, icon }) => {
+  const [copied, copy] = useCopyToClipboard();
+  return (
+    <IconBox key={name} title={name} onClick={() => copy(name)}>
+      <Icon as={icon} color={copied ? '$text-accent' : '$text--light'} size="xl" />
+      {copied ? (
+        <Text size="xs" css={{ position: 'absolute', bottom: '$2' }} as="div">
+          Copied!
+        </Text>
+      ) : null}
+    </IconBox>
+  );
+};
 
 export const IconsWithFilter = () => {
   const [filterText, setText] = React.useState('');
   const [isOutline, setOutline] = React.useState(false);
   const [copied, copy] = useCopyToClipboard();
   function handleClick(e) {
-    copy(`import { ${e.target.dataset.name} } from '@heroicons/react/${isOutline ? 'outline' : 'solid'}'`);
+    copy(`import { ${e.currentTarget.dataset.name} } from '@heroicons/react/${isOutline ? 'outline' : 'solid'}'`);
   }
   return (
-    <Box bc="$surface--elevated" p="$6">
-      <Column cross="stretch" gap="md">
-        <Row gap="md" main="spread" cross="center">
-          <TextField
-            css={{ flexBasis: '50%' }}
-            value={filterText}
-            onChange={setText}
-            placeholder="Search for an icon"
-          />
-          <Switch checked={isOutline} onChange={setOutline} label="Show outline icons" />
-        </Row>
-        <Row wrap="wrap" gap="4">
-          {Object.entries(isOutline ? outlineIcons : solidIcons)
-            .filter(([name]) => name.toLowerCase().includes(filterText.toLowerCase()))
-            .map(([name, icon]) => (
-              <IconBox key={name} data-name={name} title={name} onClick={handleClick}>
-                <Icon as={icon} color="$text--light" size="xl" />
-              </IconBox>
-            ))}
-        </Row>
-      </Column>
-    </Box>
+    <Column cross="stretch" gap="md">
+      <Row gap="md" main="spread" cross="center">
+        <TextField css={{ flexBasis: '50%' }} value={filterText} onChange={setText} placeholder="Search for an icon" />
+        <Switch checked={isOutline} onChange={setOutline} label="Show outline icons" />
+      </Row>
+      <Row wrap="wrap" gap="4">
+        {Object.entries(isOutline ? outlineIcons : solidIcons)
+          .filter(([name]) => name.toLowerCase().includes(filterText.toLowerCase()))
+          .map(([name, icon]) => (
+            <IconCopy name={name} icon={icon} key={name} />
+          ))}
+      </Row>
+    </Column>
   );
 };
 
-<IconsWithFilter />
+<Box mt={100}>
+  <IconsWithFilter />
+</Box>

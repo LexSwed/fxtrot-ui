@@ -2,34 +2,32 @@
 title: Popover
 ---
 
-import { Box, Flex, Text, TextField, Button, Popover, usePopoverRef } from '@fxtrot/ui';
-
 # Popover
 
-<Playground>
-  {() => {
-    const ref = usePopoverRef();
-    return (
-      <Popover ref={ref}>
-        <Button variant="primary">Create</Button>
-        <Popover.Content css={{ width: 300 }} side="right" align="end" sideOffset={12}>
-          <Flex gap="4" flow="column">
-            <TextField label="Full name" placeholder="Ahsoka Tano" />
-            <Flex gap="2" main="end">
-              <Button
-                onClick={() => {
-                  ref.current.close();
-                }}
-              >
-                Cancel
-              </Button>
-              <Button variant="primary" css={{ alignSelf: 'flex-end' }}>
-                Submit
-              </Button>
-            </Flex>
+```tsx preview
+() => {
+  const ref = usePopoverRef();
+  return (
+    <Popover ref={ref}>
+      <Button variant="primary">Create</Button>
+      <Popover.Content css={{ width: 300 }} side="right" align="end" sideOffset={12}>
+        <Flex gap="4" flow="column">
+          <TextField label="Full name" placeholder="Ahsoka Tano" />
+          <Flex gap="2" main="end">
+            <Button
+              onClick={() => {
+                ref.current.close();
+              }}
+            >
+              Cancel
+            </Button>
+            <Button variant="primary" css={{ alignSelf: 'flex-end' }}>
+              Submit
+            </Button>
           </Flex>
-        </Popover.Content>
-      </Popover>
-    );
-  }}
-</Playground>
+        </Flex>
+      </Popover.Content>
+    </Popover>
+  );
+};
+```

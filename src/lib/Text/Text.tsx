@@ -131,7 +131,6 @@ export const Text = styled('span', {
   },
   defaultVariants: {
     font: 'default',
-    size: 'base',
     tone: 'default',
   },
 });

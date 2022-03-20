@@ -2,161 +2,158 @@
 title: Button
 ---
 
-import { DotsVerticalIcon } from '@heroicons/react/solid';
-import { Box, Flex, Grid, Button, ThemeProvider, Icon } from '@fxtrot/ui';
-
 ## Variant
 
 Do not use `variant="link"` with actual links, use [`LinkButton`](/components/LinkButton) component instead.
 
-<Playground>
-  <Grid gap="lg" cross="center" main="center" columns="repeat(2, auto)" css={{ p: '$4' }}>
-    <Button variant="primary">Primary</Button>
-    <Button disabled variant="primary">
-      Primary (disabled)
-    </Button>
-    <Button variant="outline">Outline</Button>
-    <Button variant="outline" disabled>
-      Outline (disabled)
-    </Button>
-    <Button variant="secondary">Secondary (default)</Button>
-    <Button variant="secondary" disabled>
-      Secondary (disabled)
-    </Button>
-    <Button variant="flat">Flat</Button>
-    <Button variant="flat" disabled>
-      Flat (disabled)
-    </Button>
-    <Button variant="link">Link</Button>
-    <Button variant="link" disabled>
-      Link (disabled)
-    </Button>
-  </Grid>
-</Playground>
+```tsx preview
+<Grid gap="lg" cross="center" main="center" columns="repeat(2, auto)" css={{ p: '$4' }}>
+  <Button variant="primary">Primary</Button>
+  <Button disabled variant="primary">
+    Primary (disabled)
+  </Button>
+  <Button variant="outline">Outline</Button>
+  <Button variant="outline" disabled>
+    Outline (disabled)
+  </Button>
+  <Button variant="secondary">Secondary (default)</Button>
+  <Button variant="secondary" disabled>
+    Secondary (disabled)
+  </Button>
+  <Button variant="flat">Flat</Button>
+  <Button variant="flat" disabled>
+    Flat (disabled)
+  </Button>
+  <Button variant="link">Link</Button>
+  <Button variant="link" disabled>
+    Link (disabled)
+  </Button>
+</Grid>
+```
 
 ## Size
 
-<Playground>
-  <Flex flow="column" gap="xl" css={{ py: '$8' }}>
-    <Flex gap="sm" css={{ px: '$10' }}>
-      <Button size="xs" variant="primary">
-        Primary
-      </Button>
-      <Button size="xs" variant="outline" gap="1">
-        Outline
-        <Icon as={DotsVerticalIcon} size="sm" />
-      </Button>
-      <Button size="xs" variant="secondary">
-        Secondary
-      </Button>
-      <Button size="xs" variant="flat">
-        Flat
-      </Button>
-      <Button size="xs" variant="link">
-        Link
-      </Button>
-    </Flex>
-    <Flex gap="sm" css={{ px: '$10' }}>
-      <Button size="sm" variant="primary">
-        Primary
-      </Button>
-      <Button size="sm" variant="outline">
-        Outline
-        <Icon as={DotsVerticalIcon} size="sm" />
-      </Button>
-      <Button size="sm" variant="secondary">
-        Secondary
-      </Button>
-      <Button size="sm" variant="flat">
-        Flat
-      </Button>
-      <Button size="sm" variant="link">
-        Link
-      </Button>
-    </Flex>
-    <Flex gap="sm" css={{ px: '$10' }}>
-      <Button size="md" variant="primary">
-        Primary
-      </Button>
-      <Button size="md" variant="outline">
-        Outline
-        <Icon as={DotsVerticalIcon} size="md" />
-      </Button>
-      <Button size="md" variant="secondary">
-        Secondary
-      </Button>
-      <Button size="md" variant="flat">
-        Flat
-      </Button>
-      <Button size="md" variant="link">
-        Link
-      </Button>
-    </Flex>
-    <Flex gap="sm" css={{ px: '$10' }}>
-      <Button size="lg" variant="primary">
-        Primary
-      </Button>
-      <Button size="lg" variant="outline">
-        Outline
-        <Icon as={DotsVerticalIcon} size="lg" />
-      </Button>
-      <Button size="lg" variant="secondary">
-        Secondary
-      </Button>
-      <Button size="lg" variant="flat">
-        Flat
-      </Button>
-      <Button size="lg" variant="link">
-        Link
-      </Button>
-    </Flex>
-  </Flex>
-</Playground>
+```tsx preview
+<Column gap="xl">
+  <Row gap="sm" css={{ px: '$10' }}>
+    <Button size="xs" variant="primary">
+      Primary
+    </Button>
+    <Button size="xs" variant="outline" gap="1">
+      Outline
+      <Icon as={DotsVerticalIcon} size="sm" />
+    </Button>
+    <Button size="xs" variant="secondary">
+      Secondary
+    </Button>
+    <Button size="xs" variant="flat">
+      Flat
+    </Button>
+    <Button size="xs" variant="link">
+      Link
+    </Button>
+  </Row>
+  <Row gap="sm" css={{ px: '$10' }}>
+    <Button size="sm" variant="primary">
+      Primary
+    </Button>
+    <Button size="sm" variant="outline">
+      Outline
+      <Icon as={DotsVerticalIcon} size="sm" />
+    </Button>
+    <Button size="sm" variant="secondary">
+      Secondary
+    </Button>
+    <Button size="sm" variant="flat">
+      Flat
+    </Button>
+    <Button size="sm" variant="link">
+      Link
+    </Button>
+  </Row>
+  <Row gap="sm" css={{ px: '$10' }}>
+    <Button size="md" variant="primary">
+      Primary
+    </Button>
+    <Button size="md" variant="outline">
+      Outline
+      <Icon as={DotsVerticalIcon} size="md" />
+    </Button>
+    <Button size="md" variant="secondary">
+      Secondary
+    </Button>
+    <Button size="md" variant="flat">
+      Flat
+    </Button>
+    <Button size="md" variant="link">
+      Link
+    </Button>
+  </Row>
+  <Row gap="sm" css={{ px: '$10' }}>
+    <Button size="lg" variant="primary">
+      Primary
+    </Button>
+    <Button size="lg" variant="outline">
+      Outline
+      <Icon as={DotsVerticalIcon} size="lg" />
+    </Button>
+    <Button size="lg" variant="secondary">
+      Secondary
+    </Button>
+    <Button size="lg" variant="flat">
+      Flat
+    </Button>
+    <Button size="lg" variant="link">
+      Link
+    </Button>
+  </Row>
+</Column>
+```
 
 ## Theming
 
 Use `ThemeProvider` component to change the primary color of the button.
 
-<Playground>
-  <ThemeProvider theme="purple">
-    <Flex flow="column" gap="xl" css={{ py: '$8' }}>
-      <Flex gap="sm" css={{ px: '$10' }}>
-        <Button variant="primary">Primary</Button>
-        <Button disabled variant="primary">
-          Primary (disabled)
-        </Button>
-      </Flex>
-      <Flex gap="sm" css={{ px: '$10' }}>
-        <Button variant="secondary">Secondary</Button>
-        <Button variant="secondary" disabled>
-          Secondary (disabled)
-        </Button>
-      </Flex>
-      <Flex gap="sm" css={{ px: '$10' }}>
-        <Button variant="flat">Flat</Button>
-        <Button variant="flat" disabled>
-          Flat (disabled)
-        </Button>
-      </Flex>
-      <Flex gap="sm" css={{ px: '$10' }}>
-        <Button variant="link">Link</Button>
-        <Button variant="link" disabled>
-          Link (disabled)
-        </Button>
-      </Flex>
-    </Flex>
-  </ThemeProvider>
-</Playground>
+```tsx preview
+<ThemeProvider theme="purple">
+  <Column gap="xl">
+    <Row gap="sm" css={{ px: '$10' }}>
+      <Button variant="primary">Primary</Button>
+      <Button disabled variant="primary">
+        Primary (disabled)
+      </Button>
+    </Row>
+    <Row gap="sm" css={{ px: '$10' }}>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="secondary" disabled>
+        Secondary (disabled)
+      </Button>
+    </Row>
+    <Row gap="sm" css={{ px: '$10' }}>
+      <Button variant="flat">Flat</Button>
+      <Button variant="flat" disabled>
+        Flat (disabled)
+      </Button>
+    </Row>
+    <Row gap="sm" css={{ px: '$10' }}>
+      <Button variant="link">Link</Button>
+      <Button variant="link" disabled>
+        Link (disabled)
+      </Button>
+    </Row>
+  </Column>
+</ThemeProvider>
+```
 
 ## With elements
 
 If you only want to put [`Icon`](/components/Icon) inside the `Button`, use [`IconButton`](/components/IconButton) component instead.
 
-<Playground>
-  <Flex flow="column" cross="start" gap="xl" css={{ p: '$8' }}>
-    <Button variant="primary" gap="2">
-      <Icon as={DotsVerticalIcon} />
-      More
-    </Button>
-  </Flex>
-</Playground>
+```tsx preview
+<Column cross="start" gap="xl" css={{ p: '$8' }}>
+  <Button variant="primary" gap="2">
+    <Icon as={DotsVerticalIcon} />
+    More
+  </Button>
+</Column>
+```

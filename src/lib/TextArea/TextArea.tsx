@@ -82,6 +82,7 @@ export const TextArea = React.forwardRef<HTMLDivElement, Props>(
             variant={variant}
             ref={refs}
             fieldSize={size}
+            size={size}
           />
           {hint && (
             <Hint id={ariaProps['aria-describedby']} validity={validity}>
@@ -108,9 +109,36 @@ interface Props extends FlexVariants, FieldBoxVariants, Omit<React.ComponentProp
 
 const TextAreaField = styled('textarea', fieldBox, {
   resize: 'none',
-  py: '$2',
   height: 'auto',
   maxHeight: '10em',
+
+  variants: {
+    size: {
+      sm: {
+        minHeight: '$6',
+        p: '$1',
+        lineHeight: '1.2em',
+      },
+      md: {
+        minHeight: '$base',
+        py: '$2',
+        lineHeight: '1.5em',
+      },
+      lg: {
+        minHeight: '$12',
+        py: '$2',
+        lineHeight: '1.5em',
+      },
+      xl: {
+        minHeight: 'auto',
+        py: '$2',
+        lineHeight: '1.5em',
+      },
+    },
+  },
+  defaultVariants: {
+    size: 'md',
+  },
 });
 
 function autosize(el: HTMLTextAreaElement) {

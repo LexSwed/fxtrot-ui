@@ -25,7 +25,9 @@ export const Picker = ({ children, name, onChange, value, defaultValue = '', ...
           <Icon as={ChevronUpIcon} size="sm" />
         </SelectArrow>
         <Viewport>
-          {defaultValue === '' ? <EmptyItem value="" size="sm" label="" /> : null}
+          {triggerProps.placeholder ? (
+            <EmptyItem value="" size={triggerProps.size as any} label={triggerProps.placeholder} />
+          ) : null}
           {children}
         </Viewport>
         <SelectArrow as={RdxSelect.SelectScrollDownButton}>
@@ -39,7 +41,7 @@ export const Picker = ({ children, name, onChange, value, defaultValue = '', ...
 Picker.Item = Item;
 
 const EmptyItem = styled(Item, {
-  height: '$4 !important',
+  color: '$text--light',
 });
 
 const Content = styled(RdxSelect.Content, {

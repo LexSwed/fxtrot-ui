@@ -2,159 +2,160 @@
 title: Text
 ---
 
-import { Box, Flex, Text } from '@fxtrot/ui';
-
 ## Text
 
-<Playground>
-  <Text as="p">This is a normal text rendered as paragraph</Text>
-</Playground>
+```tsx preview
+<Text as="p">This is a normal text rendered as paragraph</Text>
+```
 
 ## Text variants
 
-<Playground>
-  <Flex gap="sm">
-    <Text size="xs">Default text</Text>
-    <Text tone="light" size="xs">
-      Light text
-    </Text>
-    <Text tone="subtle" size="xs">
-      Subtle text
-    </Text>
-    <Text tone="success" size="xs">
-      Success text
-    </Text>
-    <Text tone="danger" size="xs">
-      Error text
-    </Text>
-  </Flex>
-</Playground>
+```tsx preview
+<Column gap="sm">
+  <Text size="xs">Default text</Text>
+  <Text tone="light" size="xs">
+    Light text
+  </Text>
+  <Text tone="subtle" size="xs">
+    Subtle text
+  </Text>
+  <Text tone="success" size="xs">
+    Success text
+  </Text>
+  <Text tone="danger" size="xs">
+    Error text
+  </Text>
+</Column>
+```
 
 ## Alignments
 
-<Playground>
-  <Flex flow="column" gap="sm" cross="stretch" css={{ p: '$4' }}>
-    <Text>Default align</Text>
-    <Text align="start">Start align</Text>
-    <Text align="center">Center align</Text>
-    <Text align="end">End align</Text>
-  </Flex>
-</Playground>
+```tsx preview
+<Column gap="sm" cross="stretch">
+  <Text>Default align</Text>
+  <Text align="start">Start align</Text>
+  <Text align="center">Center align</Text>
+  <Text align="end">End align</Text>
+</Column>
+```
 
 ## Size
 
-<Playground>
-  <Flex flow="column" gap="sm" cross="stretch" css={{ p: '$4' }}>
-    <Text size="xs">
-      Size{' '}
-      <Text as="code" font="mono">
-        xs
-      </Text>
+```tsx preview
+<Column gap="sm" cross="stretch">
+  <Text size="xs">
+    Size{' '}
+    <Text as="code" font="mono">
+      xs
     </Text>
-    <Text size="sm">
-      Size{' '}
-      <Text as="code" font="mono">
-        sm
-      </Text>
+  </Text>
+  <Text size="sm">
+    Size{' '}
+    <Text as="code" font="mono">
+      sm
     </Text>
-    <Text size="md">
-      Size{' '}
-      <Text as="code" font="mono">
-        md
-      </Text>
+  </Text>
+  <Text size="md">
+    Size{' '}
+    <Text as="code" font="mono">
+      md
     </Text>
-    <Text size="lg">
-      Size{' '}
-      <Text as="code" font="mono">
-        lg
-      </Text>
+  </Text>
+  <Text size="lg">
+    Size{' '}
+    <Text as="code" font="mono">
+      lg
     </Text>
-    <Text size="xl">
-      Size{' '}
-      <Text as="code" font="mono">
-        xl
-      </Text>
+  </Text>
+  <Text size="xl">
+    Size{' '}
+    <Text as="code" font="mono">
+      xl
     </Text>
-    <Text size="2xl">
-      Size{' '}
-      <Text as="code" font="mono">
-        2xl
-      </Text>
+  </Text>
+  <Text size="2xl">
+    Size{' '}
+    <Text as="code" font="mono">
+      2xl
     </Text>
-    <Text size="3xl">
-      Size{' '}
-      <Text as="code" font="mono">
-        3xl
-      </Text>
+  </Text>
+  <Text size="3xl">
+    Size{' '}
+    <Text as="code" font="mono">
+      3xl
     </Text>
-    <Text size="4xl">
-      Size{' '}
-      <Text as="code" font="mono">
-        4xl
-      </Text>
+  </Text>
+  <Text size="4xl">
+    Size{' '}
+    <Text as="code" font="mono">
+      4xl
     </Text>
-    <Text size="5xl">
-      Size{' '}
-      <Text as="code" font="mono">
-        5xl
-      </Text>
+  </Text>
+  <Text size="5xl">
+    Size{' '}
+    <Text as="code" font="mono">
+      5xl
     </Text>
-    <Text size="6xl">
-      Size{' '}
-      <Text as="code" font="mono">
-        6xl
-      </Text>
+  </Text>
+  <Text size="6xl">
+    Size{' '}
+    <Text as="code" font="mono">
+      6xl
     </Text>
-    <Text size="7xl">
-      Size{' '}
-      <Text as="code" font="mono">
-        7xl
-      </Text>
+  </Text>
+  <Text size="7xl">
+    Size{' '}
+    <Text as="code" font="mono">
+      7xl
     </Text>
-    <Text size="8xl">
-      Size{' '}
-      <Text as="code" font="mono">
-        8xl
-      </Text>
+  </Text>
+  <Text size="8xl">
+    Size{' '}
+    <Text as="code" font="mono">
+      8xl
     </Text>
-    <Text size="9xl">
-      Size{' '}
-      <Text as="code" font="mono">
-        9xl
-      </Text>
+  </Text>
+  <Text size="9xl">
+    Size{' '}
+    <Text as="code" font="mono">
+      9xl
     </Text>
-  </Flex>
-</Playground>
+  </Text>
+</Column>
+```
 
 ## Clamping
 
 You can specify whether to truncate the text on one line or multiple:
 
-export const loremIpsum = `
+```tsx preview
+() => {
+  const loremIpsum = `
 row scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm. Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard grog black jack gangway rutters.
 Deadlights jack lad schooner scallywag dance the hempen jig carouser broadside cable strike colors. Bring a spring upon her cable holystone blow the man down spanker Shiver me timbers to go on account lookout wherry doubloon chase. Belay yo-ho-ho keelhaul squiffy black spot yardarm spyglass sheet transom heave to.
 Trysail Sail ho Corsair red ensign hulk smartly boom jib rum gangway. Case shot Shiver me timbers gangplank crack Jennys tea cup ballast Blimey lee snow crow's nest rutters. Fluke jib scourge of the seven seas boatswain schooner gaff booty Jack Tar transom spirits.
 `;
-
-<Playground>
-  <Flex flow="column" gap="md" cross="stretch" css={{ p: '$4' }}>
-    <Box bc="$surface--elevated" p="$2" br="$md" height={160} width={300} overflow="hidden">
-      <Text lineClamp={1}>{loremIpsum}</Text>
-    </Box>
-    <Box bc="$surface--elevated" p="$2" br="$md" height={160} width={300} overflow="hidden">
-      <Text lineClamp={2}>{loremIpsum}</Text>
-    </Box>
-    <Box bc="$surface--elevated" p="$2" br="$md" height={160} width={300} overflow="hidden">
-      <Text lineClamp={3}>{loremIpsum}</Text>
-    </Box>
-    <Box bc="$surface--elevated" p="$2" br="$md" height={160} width={300} overflow="hidden">
-      <Text lineClamp={4}>{loremIpsum}</Text>
-    </Box>
-    <Box bc="$surface--elevated" p="$2" br="$md" height={160} width={300} overflow="hidden">
-      <Text lineClamp={5}>{loremIpsum}</Text>
-    </Box>
-    <Box bc="$surface--elevated" p="$2" br="$md" height={160} width={300} overflow="hidden">
-      <Text lineClamp={6}>{loremIpsum}</Text>
-    </Box>
-  </Flex>
-</Playground>
+  return (
+    <Column gap="md" cross="stretch">
+      <Box bc="$surface--elevated" p="$2" br="$md" height={160} width={300} overflow="hidden">
+        <Text lineClamp={1}>{loremIpsum}</Text>
+      </Box>
+      <Box bc="$surface--elevated" p="$2" br="$md" height={160} width={300} overflow="hidden">
+        <Text lineClamp={2}>{loremIpsum}</Text>
+      </Box>
+      <Box bc="$surface--elevated" p="$2" br="$md" height={160} width={300} overflow="hidden">
+        <Text lineClamp={3}>{loremIpsum}</Text>
+      </Box>
+      <Box bc="$surface--elevated" p="$2" br="$md" height={160} width={300} overflow="hidden">
+        <Text lineClamp={4}>{loremIpsum}</Text>
+      </Box>
+      <Box bc="$surface--elevated" p="$2" br="$md" height={160} width={300} overflow="hidden">
+        <Text lineClamp={5}>{loremIpsum}</Text>
+      </Box>
+      <Box bc="$surface--elevated" p="$2" br="$md" height={160} width={300} overflow="hidden">
+        <Text lineClamp={6}>{loremIpsum}</Text>
+      </Box>
+    </Column>
+  );
+};
+```
