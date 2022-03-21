@@ -45,7 +45,6 @@ export const PickerTrigger = ({
   ...props
 }: PickerTriggerProps) => {
   const ariaProps = useFormField({ id, hint, label });
-
   return (
     <FormField
       main={main}
@@ -81,21 +80,18 @@ export const PickerTrigger = ({
 };
 
 const TriggerButton = styled('button', fieldBox, {
-  position: 'relative',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  fontSize: '$sm',
+  'position': 'relative',
+  'display': 'flex',
+  'alignItems': 'center',
+  'justifyContent': 'space-between',
+  'fontSize': '$sm',
 
-  // '& > span:first-of-type': {
-  //   'minWidth': 0,
-  //   'overflow': 'hidden',
-  //   'whiteSpace': 'nowrap',
-  //   'textOverflow': 'ellipsis',
-  //   '&[placeholder]': {
-  //     color: '$text--light',
-  //   },
-  // },
+  '& > span:first-of-type': {
+    minWidth: 0,
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+  },
 
   [`& > ${Icon}`]: {
     pl: '$1',
