@@ -34,9 +34,16 @@ const toggleButtonCss = css({
   variants: {
     variant: {
       flat: {
+        // increase specificity
         '&[data-state="on"]': {
-          bc: '$shape--active',
-          color: '$text-accent',
+          'bc': '$shape-accent-light--active',
+          'color': '$text-accent',
+          '&:focus, &:active': {
+            bc: '$shape-accent-light--active',
+          },
+          '&:hover': {
+            bc: '$shape-accent-light--hover',
+          },
         },
       },
     },

@@ -2,13 +2,10 @@ import React from 'react';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
 import flattenChildren from 'react-keyed-flatten-children';
 
-import { Flex } from '../Flex';
-import type { FlexVariants } from '../Flex/Flex';
+import { flexCss, FlexVariants } from '../Flex/Flex';
 import { ToggleButton } from '../ToggleButton';
 import { styled, CssStyles } from '../stitches.config';
-import { gaps } from '../utils/variants';
 import { ButtonRoot } from '../Button/Button';
-import { IconButtonRoot } from '../IconButton/IconButton';
 
 type Props = FlexVariants &
   Omit<
@@ -20,7 +17,7 @@ type Props = FlexVariants &
 
 export const ActionGroup: React.FC<Props> = ({ children, type = 'single', gap = 'none', value = null, ...props }) => {
   return (
-    <ToggleGroup.Root as={ActionGroupFlex} type={type} gap={gap} _gap={gap} value={value} {...(props as any)}>
+    <ActionGroupRoot type={type} gap={gap} value={value} {...(props as any)}>
       {flattenChildren(children).map((child, i) => {
         if (React.isValidElement(child) && child.type === ToggleButton) {
           return (
@@ -31,23 +28,21 @@ export const ActionGroup: React.FC<Props> = ({ children, type = 'single', gap = 
         }
         return child;
       })}
-    </ToggleGroup.Root>
+    </ActionGroupRoot>
   );
 };
-
-const ActionGroupFlex = styled(Flex, {
-  variants: {
-    _gap: gaps,
-  },
+const ActionGroupRoot = styled(ToggleGroup.Root, flexCss, {
   compoundVariants: [
     {
-      _gap: 'none',
+      gap: 'none',
       css: {
         [`& > ${ButtonRoot}`]: {
-          'mx': 'calc(-1*1px/2)',
-          '&:hover,&:focus': {
-            zIndex: 2,
+          '&[data-state], &[data-state]:focus': {
+            borderColor: 'transparent',
           },
+        },
+        [`& > ${ButtonRoot}[data-state="on"]`]: {
+          focusRing: '$border-accent--light',
         },
         [`& > ${ButtonRoot}:not(:first-of-type)`]: {
           borderTopLeftRadius: 0,

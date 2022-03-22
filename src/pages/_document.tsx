@@ -13,7 +13,6 @@ export default class MyDocument extends Document {
             key="google-font-Fira"
           />
           <style id="fxtrot-ui" dangerouslySetInnerHTML={{ __html: stitchesConfig.getCssText() }} />
-          <style dangerouslySetInnerHTML={{ __html: `body:not(:empty) { overflow: initial; }` }} />
         </Head>
         <body>
           <Main />

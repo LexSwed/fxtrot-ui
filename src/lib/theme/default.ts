@@ -24,7 +24,7 @@ export const defaultColors: ThemeColors = {
   'shape-accent--disabled': '$shape--disabled',
 
   'shape-accent-light': colors.indigo.indigo1,
-  'shape-accent-light--hover': colors.indigo.indigo2,
+  'shape-accent-light--hover': colors.indigo.indigo3,
   'shape-accent-light--active': colors.indigo.indigo4,
 
   'shape-success': colors.green.green9,
@@ -64,7 +64,7 @@ export const defaultColors: ThemeColors = {
   'text-danger': colors.red.red11,
 
   'focusRing': colors.slateA.slateA11,
-};
+} as const;
 
 // use dashed syntax to align with CSS vars syntax, stitches doesn't do any sanitization
 export interface ThemeColors {

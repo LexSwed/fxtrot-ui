@@ -30,13 +30,13 @@ title: ActionGroup
   const [fontStyle, setFontStyle] = React.useState([]);
   return (
     <ActionGroup value={fontStyle} onValueChange={setFontStyle} type="multiple">
-      <ToggleButton value="bold">
+      <ToggleButton value="bold" size="sm">
         <Icon as={BsTypeBold} />
       </ToggleButton>
-      <ToggleButton value="italic">
+      <ToggleButton value="italic" size="sm">
         <Icon as={BsTypeItalic} />
       </ToggleButton>
-      <ToggleButton value="underline">
+      <ToggleButton value="underline" size="sm">
         <Icon as={BsTypeUnderline} />
       </ToggleButton>
     </ActionGroup>
