@@ -21,7 +21,7 @@ export const defaultColors: ThemeColors = {
   'shape-accent': colors.indigo.indigo9,
   'shape-accent--hover': colors.indigo.indigo10,
   'shape-accent--active': colors.indigo.indigo11,
-  'shape-accent--disabled': '$shape--disabled',
+  'shape-accent--disabled': colors.indigoA.indigoA8,
 
   'shape-accent-light': colors.indigo.indigo1,
   'shape-accent-light--hover': colors.indigo.indigo3,
@@ -58,7 +58,7 @@ export const defaultColors: ThemeColors = {
   'text-accent--disabled': '$text--disabled',
 
   'text-onAccent': 'hsl(0deg 0% 100%)',
-  'text-onAccent--disabled': '$text--disabled',
+  'text-onAccent--disabled': 'hsl(0deg 0% 100%)',
 
   'text-success': colors.green.green11,
   'text-danger': colors.red.red11,

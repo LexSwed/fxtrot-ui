@@ -60,7 +60,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
           <Icon as={CheckIcon} />
         </CheckMark>
       </CheckboxWrapper>
-      {label !== undefined && <Label label={label} secondary={secondaryLabel} disabled={disabled} />}
+      {label !== undefined && <Label label={label} secondary={secondaryLabel} disabled={disabled} as="span" />}
     </CheckboxFormField>
   );
 };
@@ -77,10 +77,12 @@ export const CheckMark = styled('div', {
   border: '1px solid $border',
   size: '$5',
   position: 'relative',
-  transition: '0.14s ease-in-out',
+  transition: '0.24s cubic-bezier(0,1,.9,1)',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  background: 'radial-gradient(circle at center, $colors$shape-accent 50%, transparent 50.2%) center no-repeat',
+  backgroundSize: '0 0',
 
   [`& > ${IconBox}`]: {
     transition: 'opacity 0.14s ease-in-out',
@@ -121,7 +123,7 @@ const Input = styled('input', {
 
   [`&:checked + ${CheckMark}`]: {
     borderColor: '$shape-accent',
-    borderWidth: 10,
+    backgroundSize: '200% 200%',
     color: '#fff',
     [`& ${IconBox}`]: {
       opacity: 1,
@@ -143,16 +145,20 @@ const Input = styled('input', {
 
   [`&:disabled + ${CheckMark}, &:disabled:checked + ${CheckMark}`]: {
     borderColor: '$border--disabled',
-    bc: '$shape--disabled',
     [`& > ${IconBox}`]: {
       opacity: 0,
     },
   },
 
+  [`&:disabled:not(:checked) + ${CheckMark}`]: {
+    background: '$shape--disabled',
+  },
+
   [`&:disabled:checked + ${CheckMark}`]: {
-    color: '$text--disabled',
+    background:
+      'radial-gradient(circle at center, $colors$shape-accent--disabled 50%, transparent 50.2%) center/200% 500% no-repeat',
     [`& > ${IconBox}`]: {
-      opacity: 0.7,
+      opacity: 0.8,
     },
   },
 });
