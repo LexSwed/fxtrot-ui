@@ -43,7 +43,7 @@ export const IconCopy = ({ name, icon }) => {
     <IconBox key={name} title={name} onClick={() => copy(name)}>
       <Icon as={icon} color={copied ? '$text-accent' : '$text--light'} size="xl" />
       {copied ? (
-        <Text size="xs" css={{ position: 'absolute', bottom: '$2' }} as="div">
+        <Text textStyle="caption" css={{ position: 'absolute', bottom: '$2' }} as="div">
           Copied!
         </Text>
       ) : null}

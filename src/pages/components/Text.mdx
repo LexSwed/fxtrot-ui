@@ -12,19 +12,11 @@ title: Text
 
 ```tsx preview
 <Column gap="sm">
-  <Text size="xs">Default text</Text>
-  <Text tone="light" size="xs">
-    Light text
-  </Text>
-  <Text tone="subtle" size="xs">
-    Subtle text
-  </Text>
-  <Text tone="success" size="xs">
-    Success text
-  </Text>
-  <Text tone="danger" size="xs">
-    Error text
-  </Text>
+  <Text>Default text</Text>
+  <Text tone="light">Light text</Text>
+  <Text tone="subtle">Subtle text</Text>
+  <Text tone="success">Success text</Text>
+  <Text tone="danger">Error text</Text>
 </Column>
 ```
 
@@ -39,89 +31,53 @@ title: Text
 </Column>
 ```
 
-## Size
+## Text styled
+
+`Text` component doesn't allow to change the size diectly, and instead offers to use `textStyle` prop for consistent styling.
 
 ```tsx preview
-<Column gap="sm" cross="stretch">
-  <Text size="xs">
-    Size{' '}
-    <Text as="code" font="mono">
-      xs
-    </Text>
-  </Text>
-  <Text size="sm">
-    Size{' '}
-    <Text as="code" font="mono">
-      sm
-    </Text>
-  </Text>
-  <Text size="md">
-    Size{' '}
-    <Text as="code" font="mono">
-      md
-    </Text>
-  </Text>
-  <Text size="lg">
-    Size{' '}
-    <Text as="code" font="mono">
-      lg
-    </Text>
-  </Text>
-  <Text size="xl">
-    Size{' '}
-    <Text as="code" font="mono">
-      xl
-    </Text>
-  </Text>
-  <Text size="2xl">
-    Size{' '}
-    <Text as="code" font="mono">
-      2xl
-    </Text>
-  </Text>
-  <Text size="3xl">
-    Size{' '}
-    <Text as="code" font="mono">
-      3xl
-    </Text>
-  </Text>
-  <Text size="4xl">
-    Size{' '}
-    <Text as="code" font="mono">
-      4xl
-    </Text>
-  </Text>
-  <Text size="5xl">
-    Size{' '}
-    <Text as="code" font="mono">
-      5xl
-    </Text>
-  </Text>
-  <Text size="6xl">
-    Size{' '}
-    <Text as="code" font="mono">
-      6xl
-    </Text>
-  </Text>
-  <Text size="7xl">
-    Size{' '}
-    <Text as="code" font="mono">
-      7xl
-    </Text>
-  </Text>
-  <Text size="8xl">
-    Size{' '}
-    <Text as="code" font="mono">
-      8xl
-    </Text>
-  </Text>
-  <Text size="9xl">
-    Size{' '}
-    <Text as="code" font="mono">
-      9xl
-    </Text>
-  </Text>
-</Column>
+() => {
+  const TextWithComputedStyle = ({ textStyle }) => {
+    const ref = React.useRef(null);
+    const [style, setStyle] = React.useState({});
+    useIsomorphicLayoutEffect(() => {
+      if (!ref.current) return;
+      const computedStyle = window.getComputedStyle(ref.current);
+      setStyle({
+        fontSize: computedStyle.getPropertyValue('font-size'),
+        fontWeight: computedStyle.getPropertyValue('font-weight'),
+        fontFamily: computedStyle.getPropertyValue('font-family').split(',')[0],
+      });
+    }, []);
+    return (
+      <Column gap="2">
+        <Text textStyle={textStyle} ref={ref}>
+          {textStyle}
+        </Text>
+        <Text textStyle="mono" tone="light">{`${style.fontFamily}/${style.fontSize}/${style.fontWeight}`}</Text>
+      </Column>
+    );
+  };
+  return (
+    <Column gap="4" cross="stretch">
+      <TextWithComputedStyle textStyle="body1" />
+      <TextWithComputedStyle textStyle="body2" />
+      <TextWithComputedStyle textStyle="subtitle1" />
+      <TextWithComputedStyle textStyle="subtitle2" />
+      <TextWithComputedStyle textStyle="overline" />
+      <TextWithComputedStyle textStyle="caption" />
+      <TextWithComputedStyle textStyle="mono" />
+    </Column>
+  );
+};
+```
+
+You can still change the size through `css` prop, but this is discouraged:
+
+```tsx preview
+<Text textStyle="body1" css={{ textSize: '$xs' }}>
+  body1 but smaller
+</Text>
 ```
 
 ## Clamping
@@ -137,22 +93,22 @@ Trysail Sail ho Corsair red ensign hulk smartly boom jib rum gangway. Case shot 
 `;
   return (
     <Column gap="md" cross="stretch">
-      <Box bc="$surface--elevated" p="$2" br="$md" height={160} width={300} overflow="hidden">
+      <Box bc="$surface--elevated" p="$2" br="$base" height={160} width={300} overflow="hidden">
         <Text lineClamp={1}>{loremIpsum}</Text>
       </Box>
-      <Box bc="$surface--elevated" p="$2" br="$md" height={160} width={300} overflow="hidden">
+      <Box bc="$surface--elevated" p="$2" br="$base" height={160} width={300} overflow="hidden">
         <Text lineClamp={2}>{loremIpsum}</Text>
       </Box>
-      <Box bc="$surface--elevated" p="$2" br="$md" height={160} width={300} overflow="hidden">
+      <Box bc="$surface--elevated" p="$2" br="$base" height={160} width={300} overflow="hidden">
         <Text lineClamp={3}>{loremIpsum}</Text>
       </Box>
-      <Box bc="$surface--elevated" p="$2" br="$md" height={160} width={300} overflow="hidden">
+      <Box bc="$surface--elevated" p="$2" br="$base" height={160} width={300} overflow="hidden">
         <Text lineClamp={4}>{loremIpsum}</Text>
       </Box>
-      <Box bc="$surface--elevated" p="$2" br="$md" height={160} width={300} overflow="hidden">
+      <Box bc="$surface--elevated" p="$2" br="$base" height={160} width={300} overflow="hidden">
         <Text lineClamp={5}>{loremIpsum}</Text>
       </Box>
-      <Box bc="$surface--elevated" p="$2" br="$md" height={160} width={300} overflow="hidden">
+      <Box bc="$surface--elevated" p="$2" br="$base" height={160} width={300} overflow="hidden">
         <Text lineClamp={6}>{loremIpsum}</Text>
       </Box>
     </Column>

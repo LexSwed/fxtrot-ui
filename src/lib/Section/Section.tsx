@@ -20,7 +20,7 @@ export const Section: React.FC<Props> = ({
   const id = useId();
   return (
     <Flex cross={cross} flow={flow} gap={gap} {...props}>
-      <Heading id={id} size="xs" tone="light">
+      <Heading id={id} textStyle="overline" tone="light">
         {title}
       </Heading>
       <div role="group" aria-labelledby={id}>
@@ -32,5 +32,4 @@ export const Section: React.FC<Props> = ({
 
 const Heading = styled(Text, {
   pr: '$2',
-  textTransform: 'uppercase',
 });

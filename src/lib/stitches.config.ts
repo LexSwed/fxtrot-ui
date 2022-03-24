@@ -153,39 +153,93 @@ export const stitchesConfig = createStitches({
         height: value,
       };
     },
+    textStyle: (
+      value: 'body1' | 'body2' | 'subtitle1' | 'subtitle2' | 'label' | 'hint' | 'overline' | 'caption' | 'mono'
+    ) => {
+      switch (value) {
+        case 'body1':
+          return {
+            fontFamily: '$default',
+            textSize: '$base',
+          };
+        case 'body2':
+          return {
+            fontFamily: '$default',
+            textSize: '$sm',
+          };
+        case 'subtitle1':
+          return {
+            fontFamily: '$heading',
+            textSize: '$lg',
+          };
+        case 'subtitle2':
+          return {
+            fontFamily: '$heading',
+            textSize: '$md',
+            fontWeight: 500,
+          };
+        case 'overline':
+          return {
+            fontFamily: '$default',
+            textSize: '$xs',
+            textTransform: 'uppercase',
+          };
+        case 'label':
+          return {
+            fontFamily: '$default',
+            textSize: '$sm',
+            fontWeight: 500,
+          };
+        case 'hint':
+          return {
+            fontFamily: '$default',
+            textSize: '$xs',
+          };
+        case 'caption':
+          return {
+            fontFamily: '$default',
+            textSize: '$sm',
+          };
+        case 'mono':
+          return {
+            fontFamily: '$mono',
+            textSize: '$sm',
+            fontWeight: 300,
+          };
+      }
+    },
 
-    focusRing: (color: PropertyValue<'backgroundColor'> | string = '$focusRing') =>
-      ({
-        // [`&:not(:disabled)[${attribute}]`]: {
-        // [`&:not(:disabled)]`]: {
-        //   'outline': 'none',
-        //   'position': 'relative',
-        //   '$$offset': `${offset}px`,
+    focusRing: (color: PropertyValue<'backgroundColor'> | string = '$focusRing') => ({
+      // [`&:not(:disabled)[${attribute}]`]: {
+      // [`&:not(:disabled)]`]: {
+      //   'outline': 'none',
+      //   'position': 'relative',
+      //   '$$offset': `${offset}px`,
 
-        //   '&::before': {
-        //     content: `''`,
-        //     display: 'block',
-        //     position: 'absolute',
-        //     top: `calc(-1 * $$offset)`,
-        //     right: `calc(-1 * $$offset)`,
-        //     bottom: `calc(-1 * $$offset)`,
-        //     left: `calc(-1 * $$offset)`,
-        //     transitionProperty: 'box-shadow, border-color',
-        //     transitionDuration: '0.2s',
-        //     transitionTimingFunction: 'ease-in-out',
-        //     pointerEvents: 'none',
-        //     border: '1px solid transparent',
-        //     br: 'inherit',
-        //   },
-        // },
-        '$$focusRingColor': `$colors${color}`,
-        '&:focus': {
-          outline: 'none',
-        },
-        [`&:focus[${attribute}]`]: {
-          boxShadow: `0 0 0 2px $$focusRingColor`,
-        },
-      } as any),
+      //   '&::before': {
+      //     content: `''`,
+      //     display: 'block',
+      //     position: 'absolute',
+      //     top: `calc(-1 * $$offset)`,
+      //     right: `calc(-1 * $$offset)`,
+      //     bottom: `calc(-1 * $$offset)`,
+      //     left: `calc(-1 * $$offset)`,
+      //     transitionProperty: 'box-shadow, border-color',
+      //     transitionDuration: '0.2s',
+      //     transitionTimingFunction: 'ease-in-out',
+      //     pointerEvents: 'none',
+      //     border: '1px solid transparent',
+      //     br: 'inherit',
+      //   },
+      // },
+      '$$focusRingColor': `$colors${color}`,
+      '&:focus': {
+        outline: 'none',
+      },
+      [`&:focus[${attribute}]`]: {
+        boxShadow: `0 0 0 2px $$focusRingColor`,
+      },
+    }),
   },
   prefix: 'fxtrot',
 });

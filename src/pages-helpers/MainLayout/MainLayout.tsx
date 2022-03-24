@@ -20,7 +20,7 @@ export const MainLayout: React.FC<Props> = ({ children, meta, docs }) => {
           <Header>
             <Row main="space-between">
               <Link href="/" passHref>
-                <TextLink size="lg">Fxtrot UI</TextLink>
+                <TextLink textStyle="subtitle1">Fxtrot UI</TextLink>
               </Link>
               <Row>
                 <TextLink

@@ -50,8 +50,8 @@ export const defaultColors: ThemeColors = {
 
   // text
   'text': colors.slate.slate12,
-  'text--light': colors.slate.slate10,
-  'text--disabled': colors.slate.slate9,
+  'text--light': colors.slate.slate11,
+  'text--disabled': colors.slate.slate10,
 
   'text-accent': colors.indigo.indigo11,
   'text-accent--light': colors.indigo.indigo8,

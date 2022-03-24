@@ -39,7 +39,6 @@ export const HintBox = styled('div', {
 
 const HintText = styled(Text, {
   position: 'absolute',
-  lineHeight: '1.1',
   minWidth: 0,
   bottom: '0',
   transform: 'translateY(calc(100% + 4px))',
@@ -65,7 +64,7 @@ export const Hint: React.FC<HintProps> = ({ validity, children, ...props }) => {
   return (
     <HintText
       lineClamp={1}
-      size="xs"
+      textStyle="hint"
       title={typeof children === 'string' ? children : undefined}
       tone={validity ? tonesMap[validity] : 'light'}
       {...props}

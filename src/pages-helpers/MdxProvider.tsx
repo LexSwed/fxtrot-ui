@@ -58,7 +58,7 @@ export const components = {
   aside: (props: any) => <Text {...props} tone="light" css={{ my: '$4' }} />,
   code: Code,
   pre: Pre,
-  strong: (props: any) => <Text {...props} as="b" />,
+  strong: (props: any) => <Text {...props} as="strong" />,
   wrapper: (props: any) => {
     return <MainLayout {...props} />;
   },

@@ -39,12 +39,12 @@ const ColorBlock = ({ name, color }: ColorBlockProps) => {
       <ColorBox title={name} css={{ $$boxColor: `$colors${token}` }} />
       <Column gap="1">
         <RowTextWrapper cross="center" gap="4">
-          <Text size="sm" lineClamp="1" title={name}>
+          <Text textStyle="body1" lineClamp="1" title={name}>
             {token}
           </Text>
           <StyledCopyButton text={token} color="$text" />
         </RowTextWrapper>
-        <Text size="xs" font="mono" tone="light" lineClamp="1" title={color}>
+        <Text textStyle="mono" tone="light" lineClamp="1" title={color}>
           {color}
         </Text>
       </Column>
