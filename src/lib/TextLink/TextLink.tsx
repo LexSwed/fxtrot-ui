@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLinkIcon } from '@heroicons/react/outline';
+import { ExternalLinkIcon } from '@heroicons/react/solid';
 
 import { styled } from '../stitches.config';
 import { Icon, IconBox } from '../Icon/Icon';
@@ -22,16 +22,11 @@ const Link = styled('a', Text, {
     external: {
       true: {},
       icon: {
-        position: 'relative',
         [`& ${IconBox}`]: {
-          'position': 'absolute',
-          'top': '50%',
-          'transform': 'translateY(-50%)',
           '& path': {
             stroke: 'currentColor',
           },
         },
-        pr: '$5',
       },
     },
   },
@@ -42,12 +37,12 @@ interface Props extends React.ComponentProps<typeof Link> {
 }
 
 export const TextLink = React.forwardRef<HTMLAnchorElement, Props>(({ external, children, ...props }, ref) => {
-  const additionalProps = external ? { target: '_blank', rel: 'noopener' } : null;
+  const additionalProps = external ? { target: '_blank', rel: 'noreferrer' } : null;
 
   return (
     <Link {...additionalProps} external={external} {...props} ref={ref}>
       <span>{children}</span>
-      {external === 'icon' ? <Icon size="md" as={ExternalLinkIcon} /> : null}
+      {external === 'icon' ? <Icon size="sm" as={ExternalLinkIcon} /> : null}
     </Link>
   );
 });

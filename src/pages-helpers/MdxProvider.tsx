@@ -49,7 +49,7 @@ export const components = {
         </Link>
       );
     }
-    return <TextLink href={href} {...props} />;
+    return <TextLink href={href} external="icon" {...props} />;
   },
   img: (props: any) => <Image alt={props.alt} layout="responsive" {...props} />,
   h1: (props: any) => <Heading {...props} level="1" />,

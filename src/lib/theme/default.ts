@@ -5,9 +5,8 @@ export const defaultColors: ThemeColors = {
   'surface--hover': colors.slate.slate1,
   'surface--elevated': colors.slate.slate2,
 
-  'surface-accent': colors.indigoA.indigoA1,
-  'surface-accent--hover': colors.indigoA.indigoA2,
-  'surface-accent--elevated': colors.indigoA.indigoA1,
+  'surface-accent': colors.indigo.indigo7,
+  'surface-accent--elevated': colors.indigo.indigo8,
 
   'surface-success': colors.green.green1,
   'surface-danger': colors.red.red1,
@@ -74,7 +73,6 @@ export interface ThemeColors {
   'surface--elevated': string;
 
   'surface-accent': string;
-  'surface-accent--hover': string;
   'surface-accent--elevated': string;
 
   'surface-success': string;

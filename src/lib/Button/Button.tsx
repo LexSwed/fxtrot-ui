@@ -53,7 +53,7 @@ export const buttonCss = css(flexCss, {
   '&:disabled': {
     color: '$text--disabled',
     borderColor: '$border-accent--disabled',
-    bc: '$shape-accent--disabled',
+    bc: '$shape--disabled',
     cursor: 'default',
   },
 
@@ -101,17 +101,17 @@ export const buttonCss = css(flexCss, {
       primary: {
         'bc': '$shape-accent',
         'color': '$text-onAccent',
-        'borderColor': '$border-accent',
+        'borderColor': '$shape-accent',
         '&:hover': {
-          borderColor: '$border-accent--hover',
+          borderColor: '$shape-accent--hover',
           bc: '$shape-accent--hover',
         },
         '&:active': {
-          borderColor: '$border-accent--active',
+          borderColor: '$shape-accent--active',
           bc: '$shape-accent--active',
         },
         '&:focus': {
-          borderColor: '$border-accent--active',
+          borderColor: '$shape-accent--active',
         },
       },
       secondary: {
