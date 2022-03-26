@@ -1373,7 +1373,7 @@
   dependencies:
     glob "7.1.7"
 
-"@next/mdx@^12.1.1":
+"@next/mdx@12.1.1":
   version "12.1.1"
   resolved "https://registry.yarnpkg.com/@next/mdx/-/mdx-12.1.1.tgz#ec4da7d41a54bdf5017bfa74490caa5aa44a5723"
   integrity sha512-Jco/0qYWovt6UkQiWRp481f4+PrqLw+Vkv9w+3SHvr8VZizJC/aUYsajCqKnHp7C8qNGn2YAmEAzXioAcYu14Q==
@@ -5756,7 +5756,7 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
 
-next@^12.1.1:
+next@12.1.1:
   version "12.1.1"
   resolved "https://registry.yarnpkg.com/next/-/next-12.1.1.tgz#f5e73d3a204da0632484a56040c23a4796958bc6"
   integrity sha512-IOfEIAgroMtsoYz6HXpDS+b5WB9WZ+MH266COXGlcpIiYSgUyJf9xV6vF+zY2RPvBJFT4fUW0EVdVnoOmTloDw==
@@ -6206,13 +6206,13 @@ queue-microtask@^1.2.2:
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
-react-dom@^18.0.0-rc.2:
-  version "18.0.0-rc.3-next-de516ca5a-20220321"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.0.0-rc.3-next-de516ca5a-20220321.tgz#62fbdabcbb86bde102e7a381c348c01557ca645e"
-  integrity sha512-U1g0XE9dgI1b9moPQhvPtIeNnnVaDyyJ2nyr2sgoQM1tWw23hgCU9UUpZ2kNPcyLQZGMQsBCtd/Xs+XNd1RNjQ==
+react-dom@^18.0.0-rc.3:
+  version "18.0.0-rc.3"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.0.0-rc.3.tgz#e26884e58dea59c6887e6b1f6a53851314253c94"
+  integrity sha512-WPlWXyzZp22+uGUNNNoZnAPWAcr5sSeaEj0S1lLqKc2DkovKugJl1VgnBfk6gQX9llTb5/qkRNVtW31WdhG8iA==
   dependencies:
     loose-envify "^1.1.0"
-    scheduler "0.21.0-rc.3-next-de516ca5a-20220321"
+    scheduler "^0.21.0-rc.3"
 
 react-icons@^4.3.1:
   version "4.3.1"
@@ -6290,10 +6290,10 @@ react-uid@^2.3.1:
   dependencies:
     tslib "^1.10.0"
 
-react@^18.0.0-rc.2:
-  version "18.0.0-rc.3-next-de516ca5a-20220321"
-  resolved "https://registry.yarnpkg.com/react/-/react-18.0.0-rc.3-next-de516ca5a-20220321.tgz#d70087705399967d62a8b8611a494a944b5250c0"
-  integrity sha512-yPIz7BWOWO3HEgm+XBEavKkI/byVDPnODJXpYo3yIat+XRV7irbHpb+l1IxrEZpbWxM3N5S4tCz315cIYGTyLQ==
+react@^18.0.0-rc.3:
+  version "18.0.0-rc.3"
+  resolved "https://registry.yarnpkg.com/react/-/react-18.0.0-rc.3.tgz#bb7c7fe1fb8f2909bf2bcd9834642fabddbb90ed"
+  integrity sha512-2NzSty8Dtq+5lnOdnP5MNA2iSn51PmvAuqgHLmUoXU3ohEtL+r0a1Az1iWvurMBIqW9cz49fJ42AM/+ziPmlWg==
   dependencies:
     loose-envify "^1.1.0"
 
@@ -6604,7 +6604,7 @@ saxes@^5.0.1:
   dependencies:
     xmlchars "^2.2.0"
 
-scheduler@0.21.0-rc.3-next-de516ca5a-20220321:
+scheduler@^0.21.0-rc.3:
   version "0.21.0-rc.3-next-de516ca5a-20220321"
   resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.21.0-rc.3-next-de516ca5a-20220321.tgz#121bdefae4df37f1acefd1bfc136727db0537dfd"
   integrity sha512-g/Zjh5Nz9nxRP3xQQJuegLJWzJQuO03XF1WkWRS37PNczvw1jOV30utrrCxx819JNsA4A3JXAhdBjyZj81LMfw==

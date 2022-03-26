@@ -38,7 +38,6 @@ export const MainLayout: React.FC<Props> = ({ children, meta, docs }) => {
             <SideNav docs={docs} />
           </NavPanel>
           <Content>{children}</Content>
-          <TableOfContents />
         </Main>
       </ContentWrapper>
     </>
@@ -48,6 +47,7 @@ export const MainLayout: React.FC<Props> = ({ children, meta, docs }) => {
 const ContentWrapper = styled('div', {
   maxWidth: '1280px',
   position: 'relative',
+  overflowX: 'hidden',
   mx: 'auto',
   pb: '$8',
 });
@@ -62,21 +62,26 @@ const NavPanel = styled('aside', {
   gridArea: 'sidepanel',
 });
 
-const TableOfContents = styled('div', {
-  gridArea: 'toc',
-});
-
 const Main = styled('main', {
-  display: 'grid',
-  gridTemplateAreas: `"header header header"
-  "sidepanel content toc"`,
-  alignItems: 'flex-start',
-  gridTemplateColumns: '220px 1fr 220px',
-  columnGap: '$16',
+  'display': 'grid',
+  'gridTemplateAreas': `"header header"
+  "sidepanel content"`,
+  'alignItems': 'flex-start',
+  'gridTemplateColumns': '220px 1fr',
+  'columnGap': '$16',
+  'px': '$8',
+  '@untilDesktop': {
+    gridTemplateColumns: '0 1fr',
+    [`& ${NavPanel}`]: {
+      display: 'none',
+    },
+  },
 });
 
 const Content = styled('section', {
   gridArea: 'content',
+  gridColumn: '2 / 2',
+  overflow: 'hidden',
 });
 
 const GitHubIcon = () => (
