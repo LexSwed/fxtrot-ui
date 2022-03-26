@@ -1,0 +1,47 @@
+---
+title: Installation and setup
+---
+
+# Installation
+
+Install component library in your React project
+
+```bash
+npm install @fxtrot/ui @stitches/react framer-motion
+```
+
+- `@stitches/react` is a CSS-in-JS library with best of class Developer Experience. The consumer of the `@fxtrot/ui` is expected to use the same library.
+- `framer-motion` is used only in a few places within the `@fxtrot/ui` library for mount/unmount animations. However, it is expected to use `frmaer-motion` heavily to bring more joyful experience to the users.
+
+# Setup
+
+Wrap your application in `ThemeProvider`:
+
+```jsx
+import { ThemeProvider } from '@fxtrot/ui';
+
+const App = () => <ThemeProvider>{/* Your application here */}</ThemeProvider>;
+```
+
+`ThemeProvider` makes sure all portals are rendered in correct place and themed appropriately.
+
+For Server Side Rendering use [`@stitches/react` recommendations](https://stitches.dev/docs/server-side-rendering).
+
+`@fxtrot/ui` does not ship fonts, so you should install them yourself, for example including `link` into `<head>`:
+
+```html
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+  rel="stylesheet"
+/>
+```
+
+# Usage
+
+Use components in your app.
+
+```jsx
+import { Box } from '@fxtrot/ui';
+
+<Box p={2}>Content</Box>;
+```
