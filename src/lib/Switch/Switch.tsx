@@ -64,7 +64,7 @@ const SwitchFormField = styled('label', Flex, FormField, {});
 const Toggle = styled('div', {
   'br': '$pill',
   'bc': '$shape--active',
-  'border': '1px solid $shape--active',
+  'border': '1px solid $border--light',
   'height': '$5',
   'width': '30px',
   'position': 'relative',
@@ -76,7 +76,7 @@ const Toggle = styled('div', {
     display: 'block',
     position: 'absolute',
     size: '14px',
-    bc: '$surface',
+    bc: '$text-onAccent',
     br: '$round',
     transition: '0.24s ease-in-out',
     top: '2px',
@@ -103,9 +103,8 @@ const Input = styled('input', {
 
   [`&:hover + ${Toggle}`]: {
     'bc': '$shape-accent-light--active',
-    'borderColor': '$border--hover',
     '&::before': {
-      boxShadow: '$sm, $sm',
+      boxShadow: '$xs, $sm',
     },
   },
 
@@ -138,8 +137,8 @@ const Input = styled('input', {
     'bc': '$shape--disabled',
     'borderColor': '$border--disabled',
     '&::before': {
-      bc: '$text--disabled',
-      opacity: 0.5,
+      boxShadow: '$xs, $sm',
+      opacity: 0.8,
     },
   },
 
@@ -148,8 +147,7 @@ const Input = styled('input', {
     'borderColor': '$border--disabled',
 
     '&::before': {
-      bc: '$text--disabled',
-      opacity: 0.5,
+      opacity: 0.8,
     },
   },
 });

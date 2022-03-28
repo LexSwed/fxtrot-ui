@@ -5,7 +5,7 @@ title: Switch
 ## Switch
 
 ```tsx preview
-<Row gap="xl">
+<Row gap="8">
   <Switch label="Default" />
   <Switch label="Disabled" disabled />
   <Switch label="Checked disabled" disabled defaultChecked />
@@ -20,7 +20,7 @@ title: Switch
 
 ## Theming
 
-Use `ThemeProvider` component to change the primary color of the button.
+`ThemeProvider` component with theme tokens will change the appearance of the component.
 
 ```tsx preview
 () => {
@@ -75,9 +75,10 @@ Use `ThemeProvider` component to change the primary color of the button.
   };
   return (
     <ThemeProvider theme={theme}>
-      <Row gap="md" css={{ bc: '$surface', p: '$4' }}>
-        <Switch label="Format on save" gap="md" />
-        <Switch label="Format on save (disabled)" disabled gap="md" />
+      <Row gap="8" css={{ bc: '$surface', p: '$4' }}>
+        <Switch label="Default" />
+        <Switch label="Disabled" disabled />
+        <Switch label="Checked disabled" disabled defaultChecked />
       </Row>
     </ThemeProvider>
   );
