@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Column, Section, MenuList, Text } from '@fxtrot/ui';
+import { Column, Section, MenuList } from '@fxtrot/ui';
 
 type DocEntry = { section: string; title?: string; href: string };
 
@@ -23,16 +23,18 @@ export const SideNav = ({ docs }: Props) => {
   );
   return (
     <Column gap="12">
-      {Object.entries(groupped).map(([section, links]) => {
-        if (!section) {
-          return <LinksList links={links} key="index routes" />;
-        }
-        return (
-          <Section title={section} gap="4" key={section}>
-            <LinksList links={links} />
-          </Section>
-        );
-      })}
+      <MenuList>
+        {Object.entries(groupped).map(([section, links]) => {
+          if (!section) {
+            return <LinksList links={links} key="index routes" />;
+          }
+          return (
+            <Section title={section} gap="3" key={section}>
+              <LinksList links={links} />
+            </Section>
+          );
+        })}
+      </MenuList>
     </Column>
   );
 };
@@ -40,7 +42,7 @@ export const SideNav = ({ docs }: Props) => {
 const LinksList = ({ links }: { links: DocEntry[] }) => {
   const router = useRouter();
   return (
-    <MenuList>
+    <>
       {links.map((item) => {
         return (
           <Link href={item.href} passHref key={item.title}>
@@ -50,6 +52,6 @@ const LinksList = ({ links }: { links: DocEntry[] }) => {
           </Link>
         );
       })}
-    </MenuList>
+    </>
   );
 };

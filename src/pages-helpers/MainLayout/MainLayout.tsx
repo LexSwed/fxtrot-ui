@@ -27,9 +27,10 @@ export const MainLayout: React.FC<Props> = ({ children, meta, docs }) => {
                   </IconButton>
                   {() => (
                     <Dialog.Modal
+                      overlay="side"
                       css={{
                         width: '100vw',
-                        maxWidth: 480,
+                        maxWidth: 380,
                       }}
                     >
                       <Heading level="3">Menu</Heading>
@@ -74,9 +75,23 @@ const ContentWrapper = styled('div', {
   pb: '$8',
 });
 
+const Main = styled('main', {
+  'display': 'grid',
+  'gridTemplateAreas': `"header header"
+  "sidepanel content"`,
+  'alignItems': 'flex-start',
+  'gridTemplateColumns': '220px 1fr',
+  'columnGap': '$16',
+  'px': '$8',
+  '@untilDesktop': {
+    gap: 0,
+    gridTemplateColumns: '0 1fr',
+  },
+});
+
 const Header = styled('header', {
   gridArea: 'header',
-  gridColumn: '2 / 2',
+  gridColumn: '2',
   backdropFilter: 'blur(10px)',
   background: 'hsla(0, 0%, 100%, 0.8)',
   position: 'sticky',
@@ -91,26 +106,10 @@ const NavPanel = styled('aside', {
   gridArea: 'sidepanel',
 });
 
-const Main = styled('main', {
-  'display': 'grid',
-  'gridTemplateAreas': `"header header"
-  "sidepanel content"`,
-  'alignItems': 'flex-start',
-  'gridTemplateColumns': '220px 1fr',
-  'columnGap': '$16',
-  'px': '$8',
-  '@untilDesktop': {
-    gridTemplateAreas: `"header"
-    "content"`,
-    gridTemplateColumns: '1fr',
-    gap: 0,
-  },
-});
-
 const Content = styled('section', {
+  gridColumn: '2',
   gridArea: 'content',
-  gridColumn: '2 / 2',
-  overflow: 'hidden',
+  minWidth: 0,
 });
 
 const GitHubIcon = () => (
