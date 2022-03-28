@@ -1,14 +1,15 @@
 import React from 'react';
-import { Icon, Row, TextLink, stitchesConfig, styled } from '@fxtrot/ui';
+import { Icon, Row, TextLink, stitchesConfig, styled, useMediaQuery, Dialog, IconButton, Heading } from '@fxtrot/ui';
 import Link from 'next/link';
 import Head from 'next/head';
 import { SideNav } from './SideNav';
+import { MenuAlt1Icon } from '@heroicons/react/outline';
 
 type Props = { meta: { title: string }; docs: React.ComponentProps<typeof SideNav>['docs'] };
 
 export const MainLayout: React.FC<Props> = ({ children, meta, docs }) => {
   globalStyles();
-
+  const isDesktop = useMediaQuery('desktop');
   return (
     <>
       <Head>
@@ -18,25 +19,47 @@ export const MainLayout: React.FC<Props> = ({ children, meta, docs }) => {
       <ContentWrapper>
         <Main>
           <Header>
-            <Row main="space-between">
-              <Link href="/" passHref>
-                <TextLink textStyle="subtitle1">Fxtrot UI</TextLink>
-              </Link>
-              <Row>
-                <TextLink
-                  href="https://github.com/LexSwed/fxtrot-ui"
-                  external
-                  tone="default"
-                  title="Open the source on GitHub"
-                >
-                  <Icon as={GitHubIcon} size="sm" />
-                </TextLink>
+            <Row gap="4" cross="center">
+              {!isDesktop ? (
+                <Dialog>
+                  <IconButton label="Menu" variant="flat">
+                    <Icon as={MenuAlt1Icon} size="lg" />
+                  </IconButton>
+                  {() => (
+                    <Dialog.Modal
+                      css={{
+                        width: '100vw',
+                        maxWidth: 480,
+                      }}
+                    >
+                      <Heading level="3">Menu</Heading>
+                      <SideNav docs={docs} />
+                    </Dialog.Modal>
+                  )}
+                </Dialog>
+              ) : null}
+              <Row main="space-between" css={{ flex: 2 }}>
+                <Link href="/" passHref>
+                  <TextLink textStyle="subtitle1">Fxtrot UI</TextLink>
+                </Link>
+                <Row>
+                  <TextLink
+                    href="https://github.com/LexSwed/fxtrot-ui"
+                    external
+                    tone="default"
+                    title="Open the source on GitHub"
+                  >
+                    <Icon as={GitHubIcon} size="sm" />
+                  </TextLink>
+                </Row>
               </Row>
             </Row>
           </Header>
-          <NavPanel>
-            <SideNav docs={docs} />
-          </NavPanel>
+          {isDesktop ? (
+            <NavPanel>
+              <SideNav docs={docs} />
+            </NavPanel>
+          ) : null}
           <Content>{children}</Content>
         </Main>
       </ContentWrapper>
@@ -45,17 +68,23 @@ export const MainLayout: React.FC<Props> = ({ children, meta, docs }) => {
 };
 
 const ContentWrapper = styled('div', {
-  maxWidth: '1280px',
+  maxWidth: '1080px',
   position: 'relative',
-  overflowX: 'hidden',
   mx: 'auto',
   pb: '$8',
 });
 
 const Header = styled('header', {
-  py: '$4',
   gridArea: 'header',
   gridColumn: '2 / 2',
+  backdropFilter: 'blur(10px)',
+  background: 'hsla(0, 0%, 100%, 0.8)',
+  position: 'sticky',
+  top: 0,
+  mx: '-$4',
+  px: '$4',
+  py: '$4',
+  zIndex: 10,
 });
 
 const NavPanel = styled('aside', {
@@ -71,10 +100,10 @@ const Main = styled('main', {
   'columnGap': '$16',
   'px': '$8',
   '@untilDesktop': {
-    gridTemplateColumns: '0 1fr',
-    [`& ${NavPanel}`]: {
-      display: 'none',
-    },
+    gridTemplateAreas: `"header"
+    "content"`,
+    gridTemplateColumns: '1fr',
+    gap: 0,
   },
 });
 

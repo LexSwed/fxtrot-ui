@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Column, Heading, Icon, IconButton, keyframes, LinkButton, Row } from '@fxtrot/ui';
+import { Box, Column, Heading, Icon, IconButton, LinkButton, Row } from '@fxtrot/ui';
 import Link from 'next/link';
 import { BsGithub } from 'react-icons/bs';
 
