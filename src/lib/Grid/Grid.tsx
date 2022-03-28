@@ -17,32 +17,18 @@ interface Props extends React.ComponentProps<typeof GridStyled> {
 }
 
 export const Grid = React.forwardRef<HTMLDivElement, Props>(
-  (
-    {
-      columns: gridTemplateColumns,
-      rows: gridTemplateRows,
-      template: gridTemplate,
-      areas: gridTemplateAreas,
-      autoColumns: gridAutoColumns,
-      autoRows: gridAutoRows,
-      autoFlow: gridAutoFlow,
-      placeItems,
-      css,
-      ...props
-    },
-    ref
-  ) => {
-    const styles = {
-      columns: gridTemplateColumns,
-      rows: gridTemplateRows,
-      template: gridTemplate,
-      areas: gridTemplateAreas,
-      autoColumns: gridAutoColumns,
-      autoRows: gridAutoRows,
-      autoFlow: gridAutoFlow,
+  ({ columns, rows, template, areas, autoColumns, autoRows, autoFlow, placeItems, css, ...props }, ref) => {
+    const styles: CssStyles = {
+      gridTemplateColumns: columns,
+      gridTemplateRows: rows,
+      gridTemplate: template,
+      gridTemplateAreas: areas,
+      gridAutoColumns: autoColumns,
+      gridAutoRows: autoRows,
+      gridAutoFlow: autoFlow,
       placeItems,
       ...css,
-    } as const;
+    };
     Object.keys(styles).forEach((key) => {
       if (!styles[key as keyof typeof styles]) {
         delete styles[key as keyof typeof styles];
