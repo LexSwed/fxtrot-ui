@@ -3,6 +3,7 @@ import { createStitches, PropertyValue, ScaleValue, CSS } from '@stitches/react'
 import { attribute } from './utils/focus-visible';
 import { scales } from './theme/scales';
 import { defaultColors } from './theme/default';
+import { mediaQueries } from './theme/media';
 
 export const stitchesConfig = createStitches({
   theme: {
@@ -79,15 +80,7 @@ export const stitchesConfig = createStitches({
       'none': 'none',
     },
   },
-  media: {
-    mobile: `(max-width: 320px)`,
-    tablet: `(max-width: 768px)`,
-    untilDesktop: `(max-width: 1024px)`,
-    desktop: `(min-width: 1024px)`,
-    fullscreen: `(min-width: 1280px)`,
-    dark: '(prefers-color-scheme: dark)',
-    light: '(prefers-color-scheme: light)',
-  },
+  media: mediaQueries,
   utils: {
     p: (value: ScaleValue<'space'> | number | string) => ({
       paddingTop: value,

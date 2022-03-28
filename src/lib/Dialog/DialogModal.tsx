@@ -73,16 +73,17 @@ const CloseButtonContainer = styled('div', {
 });
 
 const DialogWindow = styled(motion.div, {
-  bc: '$surface',
-  p: '$8',
-  pt: '$10',
-  outline: 'none',
-  maxWidth: '80vw',
-  br: '$md',
-  pointerEvents: 'auto',
-  minWidth: 320,
-  boxShadow: '$lg',
-  position: 'relative',
+  'bc': '$surface',
+  'p': '$8',
+  'outline': 'none',
+  'br': '$md',
+  'pointerEvents': 'auto',
+  'minWidth': 320,
+  'boxShadow': '$lg',
+  'position': 'relative',
+  '@desktop': {
+    maxWidth: '80vw',
+  },
 });
 
 const OverlayStyled = styled(motion.div, {
@@ -95,6 +96,7 @@ const OverlayStyled = styled(motion.div, {
   display: 'grid',
   placeItems: 'center',
   overflowY: 'auto',
+  zIndex: 100,
 });
 
 const variants: Variants = {
