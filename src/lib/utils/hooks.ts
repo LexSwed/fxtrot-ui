@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useLayoutEffect, useState, useRef } from 'react';
-import { mediaQueries } from '../theme/media';
+import { stitchesConfig } from '../stitches.config';
 
 type PossibleRef<T> = React.Ref<T> | ((instance: T | null) => void) | null | undefined;
 
@@ -186,11 +186,11 @@ export function useCopyToClipboard() {
   return [isCopied, copy] as const;
 }
 
-export function useMediaQuery(query: keyof typeof mediaQueries): boolean {
+type MediaQueries = keyof typeof stitchesConfig['config']['media'];
+export function useMediaQuery(query: MediaQueries): boolean {
   const [matches, setMatches] = useState<boolean>(getMatches(query));
-
   useEffect(() => {
-    const mediaQuery = mediaQueries[query];
+    const mediaQuery = stitchesConfig.config.media[query];
     const mediaQueryList = window.matchMedia(mediaQuery);
     const documentChangeHandler = () => setMatches(!!mediaQueryList.matches);
 
@@ -215,7 +215,7 @@ export function useMediaQuery(query: keyof typeof mediaQueries): boolean {
   return matches;
 }
 
-const getMatches = (query: keyof typeof mediaQueries): boolean => {
+const getMatches = (query: MediaQueries): boolean => {
   if (!isServer) {
     return window.matchMedia(query).matches;
   }

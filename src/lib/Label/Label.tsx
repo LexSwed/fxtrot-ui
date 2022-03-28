@@ -54,6 +54,6 @@ export const Label = React.forwardRef(({ label, secondary, disabled, ...props },
   );
 }) as LabelComponent;
 
-type LabelComponent = Polymorphic.ForwardRefComponent<'div', Props>;
+type LabelComponent = Polymorphic.ForwardRefComponent<'label', Props>;
 
 Label.displayName = 'Label';

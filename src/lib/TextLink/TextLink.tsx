@@ -6,16 +6,13 @@ import { Icon, IconBox } from '../Icon/Icon';
 import { Text } from '../Text';
 
 const Link = styled('a', Text, {
-  'textDecoration': 'none',
   'boxSizing': 'border-box',
   'cursor': 'pointer',
   'fontWeight': 600,
-  '& > span:first-child': {
-    'textDecoration': 'underline solid transparent 1px',
-    'transition': 'text-decoration 0.1s ease-in',
-    '&:hover, &:hover': {
-      textDecorationColor: 'currentColor',
-    },
+  'textDecoration': 'underline solid transparent 1px',
+  'transition': 'text-decoration 0.1s ease-in',
+  '&:hover, &:hover': {
+    textDecorationColor: 'currentColor',
   },
 
   'variants': {
@@ -25,6 +22,7 @@ const Link = styled('a', Text, {
         [`& ${IconBox}`]: {
           '& path': {
             stroke: 'currentColor',
+            strokeWidth: '0.01em',
           },
         },
       },
@@ -42,7 +40,7 @@ export const TextLink = React.forwardRef<HTMLAnchorElement, Props>(({ external, 
   return (
     <Link {...additionalProps} external={external} {...props} ref={ref}>
       <span>{children}</span>
-      {external === 'icon' ? <Icon size="sm" as={ExternalLinkIcon} /> : null}
+      {external === 'icon' ? <Icon size="md" as={ExternalLinkIcon} /> : null}
     </Link>
   );
 });

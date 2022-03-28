@@ -1,25 +1,31 @@
 import React, { createContext, useContext, useMemo, useRef } from 'react';
 
-import { stitchesConfig, styled } from '../stitches.config';
+import { createTheme, styled } from '../stitches.config';
 import { Reset } from './Reset';
 
 type Props = {
-  theme?: Parameters<typeof stitchesConfig.createTheme>[0];
+  theme?: Parameters<typeof createTheme>[0];
 };
 
 export const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
-  const { themeClassName: contextTheme } = useContext(themeContext);
+  const contextTheme = useContext(themeContext);
   const rootRef = useFxtrotRootRef();
   const ref = useRef<HTMLDivElement>(null);
-  const themeClass = useMemo(() => (theme ? stitchesConfig.createTheme(theme) : undefined), [theme]);
-  const className = themeClass || contextTheme;
-
-  const value = useMemo(() => ({ themeClassName: className }), [className]);
+  const stitchesTheme = useMemo(() => {
+    if (typeof theme === 'string') {
+      return theme;
+    }
+    if (typeof theme === 'object') {
+      return createTheme(theme);
+    }
+    return undefined;
+  }, [theme]);
+  const themeValue = stitchesTheme || contextTheme;
 
   return (
     <rootRefContext.Provider value={rootRef.current ? rootRef : ref}>
-      <themeContext.Provider value={value}>
-        <ThemeWrapper className={className} ref={ref}>
+      <themeContext.Provider value={themeValue}>
+        <ThemeWrapper className={themeValue} ref={ref}>
           {children}
         </ThemeWrapper>
       </themeContext.Provider>
@@ -28,11 +34,11 @@ export const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
   );
 };
 
-interface ThemeContext {
-  themeClassName?: string;
-}
-
-const themeContext = createContext<ThemeContext>({});
+/**
+ * Allows to rertrieve closest theme from context for portalled items,
+ * rendered outside of inititial themed DOM element
+ */
+const themeContext = createContext<ReturnType<typeof createTheme> | string | undefined>(undefined);
 export const useTheme = () => useContext(themeContext);
 
 const rootRefContext = createContext<React.RefObject<HTMLElement>>({ current: null });
