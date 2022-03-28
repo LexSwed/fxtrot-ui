@@ -9,12 +9,12 @@ interface Props extends FlexVariants {
   title: string;
 }
 
-export const Section: React.FC<Props> = ({
+const SectionInner: React.FC<Props> = ({
   title,
   children,
   cross = 'stretch',
   flow = 'column',
-  gap = 'xs',
+  gap = '4',
   ...props
 }) => {
   const id = useId();
@@ -29,6 +29,8 @@ export const Section: React.FC<Props> = ({
     </Flex>
   );
 };
+
+export const Section = styled(SectionInner, {});
 
 const Heading = styled(Text, {
   pr: '$2',

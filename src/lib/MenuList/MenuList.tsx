@@ -3,6 +3,7 @@ import * as RovingFocusGroup from '@radix-ui/react-roving-focus';
 
 import { styled } from '../stitches.config';
 import { Item, StyledItem } from './Item';
+import { Section } from '../Section';
 
 interface Props extends React.ComponentProps<typeof ListStyled> {}
 
@@ -23,6 +24,10 @@ const ListStyled = styled('ul', {
   m: 0,
   p: 0,
   focusRing: '$focusRing',
+
+  [`& > ${Section}:not(:first-child)`]: {
+    mt: '$6',
+  },
 
   [`& ${StyledItem} + ${StyledItem}:not(:first-child):not(:last-child)`]: {
     br: 0,

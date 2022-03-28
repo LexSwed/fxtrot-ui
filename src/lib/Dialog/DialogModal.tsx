@@ -8,6 +8,7 @@ import { DialogClose } from './DialogClose';
 
 export interface ModalProps extends React.ComponentProps<'div'> {
   hasCloseButton?: boolean;
+  overlay?: 'dialog' | 'side';
   onOpenAutoFocus?: DialogContentProps['onOpenAutoFocus'];
   onCloseAutoFocus?: DialogContentProps['onCloseAutoFocus'];
   onEscapeKeyDown?: DialogContentProps['onEscapeKeyDown'];
@@ -23,6 +24,7 @@ export const DialogModal = React.forwardRef<HTMLDivElement, ModalProps>(
     {
       children,
       hasCloseButton = true,
+      overlay = 'dialog',
       css,
       onOpenAutoFocus,
       onCloseAutoFocus,
@@ -34,7 +36,14 @@ export const DialogModal = React.forwardRef<HTMLDivElement, ModalProps>(
   ) => {
     return (
       <Overlay asChild forceMount>
-        <OverlayStyled variants={overlayVariants} initial="initial" animate="animate" exit="exit" css={css?.overlay}>
+        <OverlayStyled
+          variants={overlayVariants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          overlay={overlay}
+          css={css?.overlay}
+        >
           <Content
             asChild
             forceMount
@@ -44,10 +53,11 @@ export const DialogModal = React.forwardRef<HTMLDivElement, ModalProps>(
             onPointerDownOutside={onPointerDownOutside}
           >
             <DialogWindow
-              variants={variants}
+              variants={variants[overlay]}
               initial="initial"
               animate="animate"
               exit="exit"
+              overlay={overlay}
               {...(props as any)}
               css={css}
               ref={ref}
@@ -73,16 +83,26 @@ const CloseButtonContainer = styled('div', {
 });
 
 const DialogWindow = styled(motion.div, {
-  'bc': '$surface',
-  'p': '$8',
-  'outline': 'none',
-  'br': '$md',
-  'pointerEvents': 'auto',
-  'minWidth': 320,
-  'boxShadow': '$lg',
-  'position': 'relative',
-  '@desktop': {
-    maxWidth: '80vw',
+  bc: '$surface',
+  p: '$8',
+  outline: 'none',
+  pointerEvents: 'auto',
+  minWidth: 320,
+  boxShadow: '$lg',
+  position: 'relative',
+  variants: {
+    overlay: {
+      side: {
+        borderTopLeftRadius: 0,
+        borderBottomLeftRadius: 0,
+      },
+      dialog: {
+        'br': '$md',
+        '@desktop': {
+          maxWidth: '80vw',
+        },
+      },
+    },
   },
 });
 
@@ -93,26 +113,52 @@ const OverlayStyled = styled(motion.div, {
   left: 0,
   right: 0,
   bottom: 0,
-  display: 'grid',
-  placeItems: 'center',
   overflowY: 'auto',
   zIndex: 100,
-});
-
-const variants: Variants = {
-  initial: { opacity: 0, y: 10 },
-  animate: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.3,
+  variants: {
+    overlay: {
+      side: {},
+      dialog: {
+        display: 'grid',
+        placeItems: 'center',
+      },
     },
   },
-  exit: {
-    opacity: 0,
-    y: 20,
-    transition: {
-      duration: 0.2,
+});
+
+const variants: Record<NonNullable<ModalProps['overlay']>, Variants> = {
+  side: {
+    initial: { opacity: 0, x: '-100%' },
+    animate: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.3,
+      },
+    },
+    exit: {
+      opacity: 0,
+      x: '-100%',
+      transition: {
+        duration: 0.2,
+      },
+    },
+  },
+  dialog: {
+    initial: { opacity: 0, y: 10 },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.3,
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: 20,
+      transition: {
+        duration: 0.2,
+      },
     },
   },
 };
