@@ -3,7 +3,7 @@ import * as colors from './colors';
 export const defaultColors: ThemeColors = {
   'surface': 'hsl(0deg 0% 100%)',
   'surface--hover': colors.slate.slate1,
-  'surface--elevated': colors.slate.slate2,
+  'surface--elevated': 'hsl(0deg 0% 100%)',
 
   'surface-accent': colors.indigo.indigo7,
   'surface-accent--elevated': colors.indigo.indigo8,

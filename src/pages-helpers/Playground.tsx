@@ -15,7 +15,7 @@ type Props = {
 export const Playground = ({ code, language }: Props) => {
   return (
     <LiveProvider theme={vsLight} scope={components} code={`${code}`} language={language as Language}>
-      <Box boxShadow="$popper" br="$base">
+      <Box boxShadow="$popper" br="$base" mt="$4" mb="$6">
         <Root>
           <LivePreview
             // @ts-expect-error
@@ -51,7 +51,9 @@ export const Playground = ({ code, language }: Props) => {
 const Preview: React.FC = ({ children }) => {
   return (
     <Box position="relative" p="$4" pb="$12" bc="$surface" br="$base">
-      {children}
+      <Box overflow="auto" pb="$2">
+        {children}
+      </Box>
       <Box position="absolute" bottom="$2" right="$2">
         <Trigger asChild>
           <ToggleButton size="xs" gap="0" css={{ borderColor: '$border--light' }}>

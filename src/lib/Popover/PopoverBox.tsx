@@ -43,7 +43,7 @@ function useTriggerWidth(triggerElementId?: string) {
 
 const StyledBox = styled(motion.div, listStyles, {
   br: '$base',
-  bc: '$surface',
+  bc: '$surface--elevated',
   boxShadow: '$popper',
 });
 

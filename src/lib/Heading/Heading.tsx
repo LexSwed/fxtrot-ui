@@ -10,28 +10,28 @@ export const Heading = styled('h1', {
     level: {
       1: {
         fontSize: '$5xl',
-        mt: '$3',
-        mb: '$5',
+        mt: '$6',
+        mb: '$4',
       },
       2: {
         fontSize: '$4xl',
-        mt: '$2',
-        mb: '$4',
+        mt: '$5',
+        mb: '$3',
       },
       3: {
         fontSize: '$3xl',
-        mt: '$2',
-        mb: '$4',
+        mt: '$4',
+        mb: '$3',
       },
       4: {
         fontSize: '$2xl',
-        mt: '$1',
-        mb: '$3',
+        mt: '$3',
+        mb: '$2',
       },
       5: {
         fontSize: '$xl',
-        mt: '$1',
-        mb: '$2',
+        mt: '$2',
+        mb: '$1',
       },
       6: {
         fontSize: '$xl',
