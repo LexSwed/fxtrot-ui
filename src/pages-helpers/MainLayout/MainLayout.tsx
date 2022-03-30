@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, Row, TextLink, stitchesConfig, styled, useMediaQuery, Dialog, IconButton, Heading } from '@fxtrot/ui';
+import { Icon, Row, TextLink, stitchesConfig, styled, Dialog, IconButton } from '@fxtrot/ui';
 import Link from 'next/link';
 import Head from 'next/head';
 import { SideNav } from './SideNav';
@@ -9,7 +9,6 @@ type Props = { meta: { title: string }; docs: React.ComponentProps<typeof SideNa
 
 export const MainLayout: React.FC<Props> = ({ children, meta, docs }) => {
   globalStyles();
-  const isDesktop = useMediaQuery('desktop');
   return (
     <>
       <Head>
@@ -20,7 +19,7 @@ export const MainLayout: React.FC<Props> = ({ children, meta, docs }) => {
         <Main>
           <Header>
             <Row gap="4" cross="center">
-              {!isDesktop ? (
+              <MobileMenuButtonWrapper>
                 <Dialog>
                   <IconButton label="Menu" variant="flat">
                     <Icon as={MenuAlt1Icon} size="lg" />
@@ -33,12 +32,12 @@ export const MainLayout: React.FC<Props> = ({ children, meta, docs }) => {
                         maxWidth: 380,
                       }}
                     >
-                      <Heading level="3">Menu</Heading>
+                      <Dialog.Title level="3">Menu</Dialog.Title>
                       <SideNav docs={docs} />
                     </Dialog.Modal>
                   )}
                 </Dialog>
-              ) : null}
+              </MobileMenuButtonWrapper>
               <Row main="space-between" css={{ flex: 2 }}>
                 <Link href="/" passHref>
                   <TextLink textStyle="subtitle1">Fxtrot UI</TextLink>
@@ -56,11 +55,9 @@ export const MainLayout: React.FC<Props> = ({ children, meta, docs }) => {
               </Row>
             </Row>
           </Header>
-          {isDesktop ? (
-            <NavPanel>
-              <SideNav docs={docs} />
-            </NavPanel>
-          ) : null}
+          <NavPanel>
+            <SideNav docs={docs} />
+          </NavPanel>
           <Content>{children}</Content>
         </Main>
       </ContentWrapper>
@@ -102,8 +99,18 @@ const Header = styled('header', {
   zIndex: 10,
 });
 
+const MobileMenuButtonWrapper = styled('div', {
+  'display': 'none',
+  '@untilDesktop': {
+    display: 'contents',
+  },
+});
+
 const NavPanel = styled('aside', {
-  gridArea: 'sidepanel',
+  'gridArea': 'sidepanel',
+  '@untilDesktop': {
+    display: 'none',
+  },
 });
 
 const Content = styled('section', {

@@ -22,24 +22,24 @@ title: Dialog
           window.alert(e.currentTarget['workspace-name'].value);
         }}
       >
-        <Flex flow="column" gap="2">
+        <Column gap="2">
           <TextField placeholder="Carefive" name="workspace-name" label="Workspace name" autoFocus />
-          <Picker>
+          <Picker defaultValue="2">
             <Picker.Item label="Item 1" value="1" />
             <Picker.Item label="Item 2" value="2" />
             <Picker.Item label="Item 3" value="3" />
             <Picker.Item label="Item 4" value="4" />
           </Picker>
-        </Flex>
+        </Column>
         <Box pb="$10" />
-        <Flex flow="row-reverse" gap="sm">
+        <Row flow="reverse" gap="sm">
           <Button type="submit" variant="primary">
             Create
           </Button>
           <Button onClick={close} variant="flat">
             Cancel
           </Button>
-        </Flex>
+        </Row>
       </Box>
     </Dialog.Modal>
   )}

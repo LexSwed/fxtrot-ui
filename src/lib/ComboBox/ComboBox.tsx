@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
-import { useUIDSeed } from 'react-uid';
 import flattenChildren from 'react-keyed-flatten-children';
+import { useId } from '@radix-ui/react-id';
 
 import { OpenStateProvider, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 
@@ -40,7 +40,8 @@ const ComboBoxInner: React.FC<Props> = ({
 }) => {
   const triggerRef = useRef<HTMLInputElement>(null);
   const inputRefs = useForkRef(triggerRef, inputRef);
-  const idSeed = useUIDSeed();
+  // https://reactjs.org/docs/hooks-reference.html#useid
+  const id = useId();
   const isOpen = useOpenState();
   const [value, setValue] = useSyncValue(propValue, propOnChange);
   const [filterText, setFilterText] = useState('');
@@ -48,7 +49,8 @@ const ComboBoxInner: React.FC<Props> = ({
   const { close } = useOpenStateControls();
 
   const allowNewElement = !!onInputChange;
-  const listboxId = idSeed('listbox');
+  const listboxId = `${id}-listbox`;
+  const inputId = `${id}-input`;
 
   const filteredItems = useFilteredItems(children, filterText);
   const itemMatchingFilterText = filteredItems.find((item) => item.props.label === filterText);
@@ -57,7 +59,7 @@ const ComboBoxInner: React.FC<Props> = ({
   useUpdateTextWithLabel(value, children, setFilterText, allowNewElement);
   useOnInputChangeSync(onInputChange, filterText);
 
-  const createOptionId = (value: string) => idSeed('option' + value);
+  const createOptionId = (value: string) => `${id}-option-${value}`;
   const handleSelect = () => {
     if (focusedItemId) {
       const selected = filteredItems.find((item) => createOptionId(item.props.value as string) === focusedItemId);
@@ -143,7 +145,7 @@ const ComboBoxInner: React.FC<Props> = ({
         onFocusPrev={handleFocusPrev}
       />
       <PopoverLayerDeprecated triggerRef={triggerRef}>
-        <FloatingList id={listboxId} role="listbox" aria-labelledby={idSeed('input')}>
+        <FloatingList id={listboxId} role="listbox" aria-labelledby={inputId}>
           {filteredItems.map((child, index) => {
             return React.cloneElement(child, {
               id: createOptionId(child.props.value as string),

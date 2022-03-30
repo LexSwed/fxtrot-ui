@@ -186,11 +186,20 @@ export function useCopyToClipboard() {
   return [isCopied, copy] as const;
 }
 
+// https://reactjs.org/docs/hooks-reference.html#useid
+export const useId = (React as any).useId;
+
+/* eslint-disable react-hooks/rules-of-hooks */
 type MediaQueries = keyof typeof stitchesConfig['config']['media'];
 export function useMediaQuery(query: MediaQueries): boolean {
-  const [matches, setMatches] = useState<boolean>(getMatches(query));
+  if (isServer) {
+    console.warn('useMediaQuery hooks was used on the server, it will likelly cause hydration to fail');
+    return false;
+  }
+  const mediaQuery = stitchesConfig.config.media[query];
+  const [matches, setMatches] = useState<boolean>(isServer ? false : window.matchMedia(mediaQuery).matches);
+
   useEffect(() => {
-    const mediaQuery = stitchesConfig.config.media[query];
     const mediaQueryList = window.matchMedia(mediaQuery);
     const documentChangeHandler = () => setMatches(!!mediaQueryList.matches);
 
@@ -210,14 +219,8 @@ export function useMediaQuery(query: MediaQueries): boolean {
         mediaQueryList.removeListener(documentChangeHandler);
       }
     };
-  }, [query]);
+  }, [mediaQuery]);
 
   return matches;
 }
-
-const getMatches = (query: MediaQueries): boolean => {
-  if (!isServer) {
-    return window.matchMedia(query).matches;
-  }
-  return false;
-};
+/* eslint-enable react-hooks/rules-of-hooks */
