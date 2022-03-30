@@ -193,6 +193,7 @@ export const useId = (React as any).useId;
 type MediaQueries = keyof typeof stitchesConfig['config']['media'];
 export function useMediaQuery(query: MediaQueries): boolean {
   if (isServer) {
+    // eslint-disable-next-line no-console
     console.warn('useMediaQuery hooks was used on the server, it will likelly cause hydration to fail');
     return false;
   }

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import dynamic from 'next/dynamic';
 import { MDXProvider } from '@mdx-js/react';
 import Image from 'next/image';
 import * as FxtrotUI from '@fxtrot/ui';
@@ -13,14 +12,8 @@ import { MainLayout } from './MainLayout';
 import { Code } from './Code';
 import { Playground } from './Playground';
 import Link from 'next/link';
-import type { MultilineCode as MultilineCodeComponent } from '../pages-helpers/MultilineCode';
+import { MultilineCode } from '../pages-helpers/MultilineCode';
 
-const MultilineCode = dynamic<React.ComponentProps<typeof MultilineCodeComponent>>(
-  () => import('../pages-helpers/MultilineCode').then(({ MultilineCode }) => MultilineCode),
-  {
-    ssr: false,
-  }
-);
 const Pre: React.FC<{ preview: boolean }> = ({ children, preview = false }) => {
   if (!(React.Children.only(children) && React.isValidElement<{ children: string; className?: string }>(children))) {
     return null;
