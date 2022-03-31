@@ -102,6 +102,7 @@ const Header = styled('header', {
 const MobileMenuButtonWrapper = styled('div', {
   'display': 'none',
   '@untilDesktop': {
+    ml: '-$2',
     display: 'contents',
   },
 });
