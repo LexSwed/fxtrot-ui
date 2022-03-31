@@ -10,5 +10,6 @@
     "emitDeclarationOnly": true,
     "types": ["node"]
   },
-  "include": ["src/lib"]
+  "include": ["src/lib"],
+  "exclude": ["node_modules"]
 }
