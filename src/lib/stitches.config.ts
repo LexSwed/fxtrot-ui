@@ -49,8 +49,8 @@ export const stitchesConfig = createStitches({
     radii: {
       '0': '0',
       'xs': '2px',
-      'sm': '4px',
-      'md': '6px',
+      'sm': '3px',
+      'md': '5px',
       'lg': '12px',
       'xl': '16px',
       'round': '50%',

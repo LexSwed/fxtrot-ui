@@ -1,6 +1,8 @@
 import React from 'react';
+import { NextSeo } from 'next-seo';
 import { Box, Column, Heading, Icon, IconButton, LinkButton, Row } from '@fxtrot/ui';
 import Link from 'next/link';
+
 import { BsGithub } from 'react-icons/bs';
 
 const App = () => {
@@ -11,6 +13,7 @@ const App = () => {
   }, []);
   return (
     <>
+      <NextSeo title="Fxtrot UI" description="A component library for React projects." />
       <Box p="$16" height="100vh" display="flex" flexFlow="column nowrap">
         <Box pb="$16">
           <Row as="header" main="space-between" cross="center">
