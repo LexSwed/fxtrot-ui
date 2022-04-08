@@ -116,7 +116,10 @@ export const stitchesConfig = createStitches({
       paddingBottom: value,
     }),
     m: (value: ScaleValue<'space'> | number | string) => ({
-      margin: value,
+      marginTop: value,
+      marginRight: value,
+      marginBottom: value,
+      marginLeft: value,
     }),
     mt: (value: ScaleValue<'space'> | number | string) => ({
       marginTop: value,

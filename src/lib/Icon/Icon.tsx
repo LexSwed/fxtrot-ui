@@ -2,7 +2,7 @@ import React from 'react';
 
 import { styled } from '../stitches.config';
 
-interface Props extends Omit<React.ComponentProps<typeof IconBox>, 'as'> {
+interface Props extends Omit<React.ComponentProps<typeof IconBox>, 'as' | 'children'> {
   as: React.ElementType;
 }
 

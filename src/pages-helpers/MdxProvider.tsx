@@ -14,7 +14,7 @@ import { Playground } from './Playground';
 import Link from 'next/link';
 import { MultilineCode } from '../pages-helpers/MultilineCode';
 
-const Pre: React.FC<{ preview: boolean }> = ({ children, preview = false }) => {
+const Pre: React.FC<{ preview: boolean; children?: React.ReactNode }> = ({ children, preview = false }) => {
   if (!(React.Children.only(children) && React.isValidElement<{ children: string; className?: string }>(children))) {
     return null;
   }
@@ -93,6 +93,6 @@ export const components = {
   },
 };
 
-export const MdxProvider: React.FC = ({ children }) => {
+export const MdxProvider: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
   return <MDXProvider components={components as any}>{children}</MDXProvider>;
 };

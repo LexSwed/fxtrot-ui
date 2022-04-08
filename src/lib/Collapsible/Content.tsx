@@ -21,6 +21,7 @@ const StyledContent = styled(motion.div, {});
 const ContentInner = React.forwardRef<HTMLDivElement, ContentProps>((props, ref) => {
   const open = useOpenState();
   return (
+    // @ts-expect-error
     <AnimatePresence>
       {open ? (
         <StyledContent

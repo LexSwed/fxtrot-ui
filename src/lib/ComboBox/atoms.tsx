@@ -35,6 +35,6 @@ export const useItemSelected = (value: string) => value === useAtomValue(innerVa
 export const useItemFocused = (id: string) => id === useAtomValue(focusedItemId, fxtrotScope);
 export const useFocusItem = () => useUpdateAtom(focusedItemId, fxtrotScope);
 
-export const StateProvider: React.FC = ({ children }) => {
+export const StateProvider: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
   return <Provider scope={fxtrotScope}>{children}</Provider>;
 };

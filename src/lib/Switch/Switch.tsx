@@ -110,13 +110,13 @@ const Input = styled('input', {
 
   [`&:focus:not(:checked) + ${Toggle}`]: {
     '&::before': {
-      boxShadow: '0 0 0 1px $colors$border, 0 0 0 3px $colors$border--active',
+      boxShadow: '0 0 0 1px $colors$text, 0 0 0 4px $colors$border--active',
     },
   },
 
   [`&:focus:checked + ${Toggle}`]: {
     '&::before': {
-      boxShadow: '0 0 0 1px $colors$surface, 0 0 0 3px $colors$border--active',
+      boxShadow: '0 0 0 1px $colors$surface, 0 0 0 4px $colors$border--active',
     },
   },
 

@@ -13,6 +13,7 @@ interface Props extends React.ComponentProps<'div'>, VariantProps<typeof Collaps
   css?: CssStyles;
   defaultOpen?: boolean;
   disabled?: boolean;
+  children?: React.ReactNode;
 }
 
 const CollapsibleInner: React.FC<Props> = ({ children, ...props }) => {

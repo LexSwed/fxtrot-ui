@@ -5,6 +5,7 @@ import { Reset } from './Reset';
 
 type Props = {
   theme?: Parameters<typeof createTheme>[0];
+  children?: React.ReactNode;
 };
 
 export const ThemeProvider: React.FC<Props> = ({ theme, children }) => {

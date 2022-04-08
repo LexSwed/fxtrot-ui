@@ -7,6 +7,7 @@ import { Text } from '../Text';
 
 interface Props extends FlexVariants {
   title: string;
+  children?: React.ReactNode;
 }
 
 const SectionInner: React.FC<Props> = ({

@@ -13,6 +13,7 @@ type Props = FlexVariants &
     'direction' | 'rovingFocus' | 'as'
   > & {
     css?: CssStyles;
+    children?: React.ReactNode;
   };
 
 export const ActionGroup: React.FC<Props> = ({ children, type = 'single', gap = 'none', value = null, ...props }) => {

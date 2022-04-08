@@ -41,8 +41,8 @@ export const defaultColors: ThemeColors = {
   'border--light': colors.slateA.slateA5,
   'border--disabled': '$shape--disabled',
 
-  'border-accent': colors.indigo.indigo7,
-  'border-accent--hover': colors.indigo.indigo8,
+  'border-accent': colors.indigo.indigo9,
+  'border-accent--hover': colors.indigo.indigo9,
   'border-accent--active': colors.indigo.indigo9,
   'border-accent--light': colors.indigo.indigo5,
   'border-accent--disabled': '$shape--disabled',

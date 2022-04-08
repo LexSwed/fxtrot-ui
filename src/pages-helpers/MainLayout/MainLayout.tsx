@@ -5,7 +5,11 @@ import Head from 'next/head';
 import { SideNav } from './SideNav';
 import { MenuAlt1Icon } from '@heroicons/react/outline';
 
-type Props = { meta: { title: string }; docs: React.ComponentProps<typeof SideNav>['docs'] };
+type Props = {
+  meta: { title: string };
+  docs: React.ComponentProps<typeof SideNav>['docs'];
+  children?: React.ReactNode;
+};
 
 export const MainLayout: React.FC<Props> = ({ children, meta, docs }) => {
   globalStyles();

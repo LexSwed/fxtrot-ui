@@ -186,11 +186,10 @@ export function useCopyToClipboard() {
   return [isCopied, copy] as const;
 }
 
-// https://reactjs.org/docs/hooks-reference.html#useid
-export const useId = (React as any).useId;
+export const useId = React.useId;
 
-/* eslint-disable react-hooks/rules-of-hooks */
 type MediaQueries = keyof typeof stitchesConfig['config']['media'];
+/* eslint-disable react-hooks/rules-of-hooks */
 export function useMediaQuery(query: MediaQueries): boolean {
   if (isServer) {
     // eslint-disable-next-line no-console
