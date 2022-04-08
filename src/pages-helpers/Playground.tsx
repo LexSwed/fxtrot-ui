@@ -1,4 +1,5 @@
-import { Box, Icon, ToggleButton } from '@fxtrot/ui';
+import type React from 'react';
+import { Box, Column, Icon, ToggleButton } from '@fxtrot/ui';
 import { SelectorIcon } from '@heroicons/react/outline';
 import { Root, Content, Trigger } from '@radix-ui/react-collapsible';
 import type { Language } from 'prism-react-renderer';
@@ -48,20 +49,20 @@ export const Playground = ({ code, language }: Props) => {
   );
 };
 
-const Preview: React.FC = ({ children }) => {
+const Preview: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <Box position="relative" p="$4" pb="$12" bc="$surface" br="$base">
-      <Box overflow="auto" pb="$2">
-        {children}
-      </Box>
-      <Box position="absolute" bottom="$2" right="$2">
+    <Box bc="$surface" br="$base">
+      <Column>
+        <Box overflow="auto" p="$4">
+          {children}
+        </Box>
         <Trigger asChild>
-          <ToggleButton size="xs" gap="0" css={{ borderColor: '$border--light' }}>
+          <ToggleButton size="sm" gap="0" css={{ m: '$2' }}>
             <Icon as={SelectorIcon} />
             Show code
           </ToggleButton>
         </Trigger>
-      </Box>
+      </Column>
     </Box>
   );
 };
