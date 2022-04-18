@@ -25,7 +25,6 @@ const DialogInner = ({ children, modal, ...props }: Props) => {
   return (
     <Root open={open} onOpenChange={controls.switch} defaultOpen={props.defaultOpen} modal={modal}>
       <Trigger asChild>{trigger}</Trigger>
-      {/* @ts-expect-error */}
       <AnimatePresence>{open && content && <Portal>{content(controls.close)}</Portal>}</AnimatePresence>
     </Root>
   );

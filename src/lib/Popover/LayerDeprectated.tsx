@@ -66,7 +66,6 @@ export const PopoverLayerDeprecated: React.FC<Props> = ({
   });
 
   return (
-    // @ts-expect-error
     <AnimatePresence>
       {isOpen && (
         <Popper

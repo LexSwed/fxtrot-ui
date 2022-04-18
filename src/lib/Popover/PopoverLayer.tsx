@@ -30,7 +30,6 @@ export const PopoverLayer: React.FC<Props> = ({
 }) => {
   const open = useOpenState();
   return (
-    // @ts-expect-error
     <AnimatePresence>
       {open && (
         <RadixElement align={align} side={side} sideOffset={sideOffset} asChild {...props}>
