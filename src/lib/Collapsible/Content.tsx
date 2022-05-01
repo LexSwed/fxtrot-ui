@@ -1,9 +1,7 @@
 import React from 'react';
 import * as Rdx from '@radix-ui/react-collapsible';
-import { AnimatePresence, motion, Variants } from 'framer-motion';
 
-import { styled } from '../stitches.config';
-import { useOpenState } from '../utils/OpenStateProvider';
+import { keyframes, styled } from '../stitches.config';
 import type { CssStyles } from '../stitches.config';
 
 interface ContentProps extends React.ComponentProps<'div'> {
@@ -11,39 +9,30 @@ interface ContentProps extends React.ComponentProps<'div'> {
 }
 export const Content = React.forwardRef<HTMLDivElement, ContentProps>((props, ref) => {
   return (
-    <Rdx.Content asChild forceMount>
-      <ContentInner {...props} ref={ref} />
+    <Rdx.Content asChild>
+      <StyledContent {...props} ref={ref} />
     </Rdx.Content>
   );
 });
 
-const StyledContent = styled(motion.div, {});
-const ContentInner = React.forwardRef<HTMLDivElement, ContentProps>((props, ref) => {
-  const open = useOpenState();
-  return (
-    <AnimatePresence>
-      {open ? (
-        <StyledContent
-          {...(props as any)}
-          variants={contentVariants}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-          ref={ref}
-        />
-      ) : null}
-    </AnimatePresence>
-  );
+const open = keyframes({
+  from: { opacity: 0, transform: 'translateY(-10px)', height: 0 },
+  to: { opacity: 1, transform: 'none', height: 'var(--radix-collapsible-content-height)' },
 });
-const contentVariants: Variants = {
-  initial: { opacity: 0, y: -10, height: 0 },
-  animate: { opacity: 1, y: 0, height: 'auto', transition: { duration: 0.3 } },
-  exit: {
-    opacity: 0,
-    height: 0,
-    y: -10,
-    transition: {
-      duration: 0.2,
-    },
+
+const close = keyframes({
+  from: { opacity: 1, transform: 'none', height: 'var(--radix-collapsible-content-height)' },
+  to: { opacity: 0, transform: 'translateY(-10px)', height: 0 },
+});
+
+const StyledContent = styled('div', {
+  'overflow': 'hidden',
+  '@media (prefers-reduced-motion: no-preference)': {
+    'animationDuration': '400ms',
+    'animationTimingFunction': 'cubic-bezier(0.16, 1, 0.3, 1)',
+    'animationFillMode': 'forwards',
+    'willChange': 'transform, opacity',
+    '&[data-state="open"]': { animation: `${open} 300ms ease-out forwards` },
+    '&[data-state="closed"]': { animation: `${close} 200ms ease-out forwards` },
   },
-};
+});
