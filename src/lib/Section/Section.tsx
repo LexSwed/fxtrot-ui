@@ -10,14 +10,7 @@ interface Props extends FlexVariants {
   children?: React.ReactNode;
 }
 
-const SectionInner: React.FC<Props> = ({
-  title,
-  children,
-  cross = 'stretch',
-  flow = 'column',
-  gap = '4',
-  ...props
-}) => {
+const SectionInner = ({ title, children, cross = 'stretch', flow = 'column', gap = '4', ...props }: Props) => {
   const id = useId();
   return (
     <Flex cross={cross} flow={flow} gap={gap} {...props}>
@@ -31,7 +24,10 @@ const SectionInner: React.FC<Props> = ({
   );
 };
 
-export const Section = styled(SectionInner, {});
+export const Section = styled(SectionInner, {
+  // create new stitches CSS selector
+  '&:empty': {},
+});
 
 const Heading = styled(Text, {
   pr: '$2',

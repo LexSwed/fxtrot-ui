@@ -4,23 +4,22 @@ import * as RovingFocusGroup from '@radix-ui/react-roving-focus';
 import { styled } from '../stitches.config';
 import { Item, StyledItem } from './Item';
 import { Section } from '../Section';
+import { flexCss } from '../Flex/Flex';
 
 interface Props extends React.ComponentProps<typeof ListStyled> {}
 
-export const MenuList = React.forwardRef((props: Props, ref) => {
+export const MenuList = ({ flow = 'column', ...props }: Props) => {
   return (
     <RovingFocusGroup.Root asChild>
-      <ListStyled {...props} ref={ref} />
+      <ListStyled flow={flow} {...props} />
     </RovingFocusGroup.Root>
   );
-}) as React.ForwardRefExoticComponent<React.PropsWithoutRef<Props> & React.RefAttributes<HTMLUListElement>> & {
-  Item: typeof Item;
 };
 
 MenuList.displayName = 'MenuList';
 MenuList.Item = Item;
 
-const ListStyled = styled('ul', {
+const ListStyled = styled('div', flexCss, {
   m: 0,
   p: 0,
   focusRing: '$focusRing',

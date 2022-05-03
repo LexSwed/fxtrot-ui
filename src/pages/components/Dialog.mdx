@@ -46,6 +46,26 @@ title: Dialog
 </Dialog>
 ```
 
+## Side panel
+
+```tsx preview
+<Dialog>
+  <Button>
+    Open menu <Icon as={MenuAlt4Icon} />
+  </Button>
+  {(close) => (
+    <Dialog.Modal overlay="side">
+      <Dialog.Title level={3}>Menu</Dialog.Title>
+      <MenuList>
+        <MenuList.Item>Main</MenuList.Item>
+        <MenuList.Item>Workspaces</MenuList.Item>
+        <MenuList.Item>Profile</MenuList.Item>
+      </MenuList>
+    </Dialog.Modal>
+  )}
+</Dialog>
+```
+
 ## Default Open
 
 This Example demonstrates the usage of `defaultOpen`, e.g. when you need to open a dialog on a new page when certain conditions are met.

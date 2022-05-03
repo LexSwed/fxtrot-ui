@@ -95,6 +95,8 @@ const DialogWindow = styled(motion.div, {
       side: {
         borderTopLeftRadius: 0,
         borderBottomLeftRadius: 0,
+        height: 'calc(100vh)',
+        maxWidth: '420px',
       },
       dialog: {
         'br': '$md',
@@ -170,7 +172,7 @@ const overlayVariants = {
   animate: {
     opacity: 1,
     transition: {
-      duration: 0.3,
+      duration: 0.2,
     },
   },
   exit: {

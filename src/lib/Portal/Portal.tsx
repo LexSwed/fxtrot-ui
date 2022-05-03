@@ -6,11 +6,13 @@ import { ThemeProvider, useFxtrotRootRef } from '../ThemeProvider/ThemeProvider'
  * Allows to have one root div all portals are attached to
  * while preserving the theme of the closest theme provider
  */
-export const Portal: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
-  const appRootRef = useFxtrotRootRef();
-  return (
-    <Root containerRef={appRootRef}>
-      <ThemeProvider>{children}</ThemeProvider>
-    </Root>
-  );
-};
+export const Portal = React.forwardRef(
+  (props: React.ComponentProps<typeof ThemeProvider>, propRef: React.Ref<HTMLDivElement>) => {
+    const appRootRef = useFxtrotRootRef();
+    return (
+      <Root containerRef={appRootRef} ref={propRef}>
+        <ThemeProvider {...props} />
+      </Root>
+    );
+  }
+);
