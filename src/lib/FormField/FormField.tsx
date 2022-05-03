@@ -60,13 +60,14 @@ interface HintProps extends React.ComponentProps<typeof Text> {
   validity?: FormFieldProps['validity'];
 }
 
-export const Hint: React.FC<HintProps> = ({ validity, children, ...props }) => {
+export const Hint = ({ validity, children, ...props }: HintProps) => {
   return (
     <HintText
       lineClamp={1}
       textStyle="hint"
       title={typeof children === 'string' ? children : undefined}
       tone={validity ? tonesMap[validity] : 'light'}
+      aria-live="polite"
       {...props}
     >
       {children}
