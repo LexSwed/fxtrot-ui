@@ -27,12 +27,10 @@ const close = keyframes({
 
 const StyledContent = styled('div', {
   'overflow': 'hidden',
-  '@media (prefers-reduced-motion: no-preference)': {
-    'animationDuration': '400ms',
-    'animationTimingFunction': 'cubic-bezier(0.16, 1, 0.3, 1)',
-    'animationFillMode': 'forwards',
-    'willChange': 'transform, opacity',
-    '&[data-state="open"]': { animation: `${open} 300ms ease-out forwards` },
-    '&[data-state="closed"]': { animation: `${close} 200ms ease-out forwards` },
+  'willChange': 'transform, opacity',
+  '&[data-state="open"]': { animation: `${open} 300ms ease-out forwards` },
+  '&[data-state="closed"]': { animation: `${close} 200ms ease-out forwards` },
+  '@no-motion': {
+    animationDuration: '0s',
   },
 });

@@ -10,8 +10,8 @@ export const Portal = React.forwardRef(
   (props: React.ComponentProps<typeof ThemeProvider>, propRef: React.Ref<HTMLDivElement>) => {
     const appRootRef = useFxtrotRootRef();
     return (
-      <Root containerRef={appRootRef} ref={propRef}>
-        <ThemeProvider {...props} />
+      <Root containerRef={appRootRef} asChild>
+        <ThemeProvider {...props} ref={propRef} />
       </Root>
     );
   }

@@ -25,6 +25,14 @@ const withMDX = createWithMdx({
 
 export default withMDX({
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+  webpack(config) {
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      fs: false,
+    };
+
+    return config;
+  },
   experimental: {
     plugins: true,
     concurrentFeatures: false,
