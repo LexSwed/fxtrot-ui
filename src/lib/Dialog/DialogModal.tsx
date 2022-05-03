@@ -1,77 +1,49 @@
 import React from 'react';
-import { Content, DialogContentProps, Overlay } from '@radix-ui/react-dialog';
-import { motion, Variants } from 'framer-motion';
+import * as RdxDialog from '@radix-ui/react-dialog';
 
-import { styled } from '../stitches.config';
+import { keyframes, styled } from '../stitches.config';
 import type { CssStyles } from '..';
 import { DialogClose } from './DialogClose';
+import { useOpenState } from '../utils/OpenStateProvider';
+import { Portal } from '../Portal';
+import { Presence } from '../shared/Presence';
 
 export interface ModalProps extends React.ComponentProps<'div'> {
   hasCloseButton?: boolean;
   overlay?: 'dialog' | 'side';
-  onOpenAutoFocus?: DialogContentProps['onOpenAutoFocus'];
-  onCloseAutoFocus?: DialogContentProps['onCloseAutoFocus'];
-  onEscapeKeyDown?: DialogContentProps['onEscapeKeyDown'];
-  onPointerDownOutside?: DialogContentProps['onPointerDownOutside'];
-  onInteractOutside?: DialogContentProps['onInteractOutside'];
+  onOpenAutoFocus?: RdxDialog.DialogContentProps['onOpenAutoFocus'];
+  onCloseAutoFocus?: RdxDialog.DialogContentProps['onCloseAutoFocus'];
+  onEscapeKeyDown?: RdxDialog.DialogContentProps['onEscapeKeyDown'];
+  onPointerDownOutside?: RdxDialog.DialogContentProps['onPointerDownOutside'];
+  onInteractOutside?: RdxDialog.DialogContentProps['onInteractOutside'];
   css?: CssStyles & {
     overlay?: CssStyles;
   };
 }
 
 export const DialogModal = React.forwardRef<HTMLDivElement, ModalProps>(
-  (
-    {
-      children,
-      hasCloseButton = true,
-      overlay = 'dialog',
-      css,
-      onOpenAutoFocus,
-      onCloseAutoFocus,
-      onEscapeKeyDown,
-      onPointerDownOutside,
-      ...props
-    },
-    ref
-  ) => {
+  ({ children, hasCloseButton = true, overlay = 'dialog', css, ...props }, ref) => {
+    const open = useOpenState();
     return (
-      <Overlay asChild forceMount>
-        <OverlayStyled
-          variants={overlayVariants}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-          overlay={overlay}
-          css={css?.overlay}
-        >
-          <Content
-            asChild
-            forceMount
-            onOpenAutoFocus={onOpenAutoFocus}
-            onCloseAutoFocus={onCloseAutoFocus}
-            onEscapeKeyDown={onEscapeKeyDown}
-            onPointerDownOutside={onPointerDownOutside}
-          >
-            <DialogWindow
-              variants={variants[overlay]}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              overlay={overlay}
-              {...(props as any)}
-              css={css}
-              ref={ref}
-            >
-              {children}
-              {hasCloseButton && (
-                <CloseButtonContainer>
-                  <DialogClose />
-                </CloseButtonContainer>
-              )}
-            </DialogWindow>
-          </Content>
-        </OverlayStyled>
-      </Overlay>
+      <Presence present={open}>
+        {({ ref: presenceRef }) => {
+          return (
+            <Portal>
+              <DialogModalContainer overlay={overlay}>
+                <OverlayStyled css={css?.overlay} ref={presenceRef} forceMount />
+                <DialogWindow overlay={overlay} {...props} css={css} ref={ref} forceMount>
+                  {children}
+                  {hasCloseButton && (
+                    <CloseButtonContainer>
+                      <DialogClose />
+                    </CloseButtonContainer>
+                  )}
+                </DialogWindow>
+              </DialogModalContainer>
+            </Portal>
+          );
+        }}
+      </Presence>
     );
   }
 );
@@ -82,39 +54,9 @@ const CloseButtonContainer = styled('div', {
   right: '$2',
 });
 
-const DialogWindow = styled(motion.div, {
-  bc: '$surface',
-  p: '$8',
-  outline: 'none',
-  pointerEvents: 'auto',
-  minWidth: 320,
-  boxShadow: '$lg',
-  position: 'relative',
-  variants: {
-    overlay: {
-      side: {
-        borderTopLeftRadius: 0,
-        borderBottomLeftRadius: 0,
-        height: 'calc(100vh)',
-        maxWidth: '420px',
-      },
-      dialog: {
-        'br': '$md',
-        '@desktop': {
-          maxWidth: '80vw',
-        },
-      },
-    },
-  },
-});
-
-const OverlayStyled = styled(motion.div, {
-  backgroundColor: 'rgba(0,0,0,0.6)',
+const DialogModalContainer = styled('div', {
   position: 'fixed',
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
+  inset: 0,
   overflowY: 'auto',
   zIndex: 100,
   variants: {
@@ -128,58 +70,116 @@ const OverlayStyled = styled(motion.div, {
   },
 });
 
-const variants: Record<NonNullable<ModalProps['overlay']>, Variants> = {
-  side: {
-    initial: { opacity: 0, x: '-100%' },
-    animate: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.3,
+const DialogWindow = styled(RdxDialog.Content, {
+  'bc': '$surface',
+  'p': '$8',
+  'outline': 'none',
+  'pointerEvents': 'auto',
+  'minWidth': 320,
+  'boxShadow': '$lg',
+  'position': 'relative',
+  'animationTimingFunction': 'ease-in-out',
+  'animationFillMode': 'forwards',
+  '@no-motion': {
+    animationDuration: '0s',
+  },
+  'variants': {
+    overlay: {
+      side: {
+        'borderTopLeftRadius': 0,
+        'borderBottomLeftRadius': 0,
+        'height': 'calc(100vh)',
+        'maxWidth': '420px',
+        '&[data-state="open"]': {
+          animationDuration: '0.3s',
+          animationName: `${keyframes({
+            '0%': {
+              opacity: 0,
+              transform: 'translateX(-100%)',
+            },
+            '60%': {
+              opacity: 1,
+            },
+            '100%': {
+              opacity: 1,
+              transform: 'none',
+            },
+          })}`,
+        },
+        '&[data-state="closed"]': {
+          animationDuration: '0.2s',
+          animationName: `${keyframes({
+            from: {
+              opacity: 1,
+              transform: 'none',
+            },
+            to: {
+              opacity: 0,
+              transform: 'translateX(-100%)',
+            },
+          })}`,
+        },
       },
-    },
-    exit: {
-      opacity: 0,
-      x: '-100%',
-      transition: {
-        duration: 0.2,
+      dialog: {
+        'br': '$md',
+        '@desktop': {
+          maxWidth: '80vw',
+        },
+        '&[data-state="open"]': {
+          animationDuration: '0.3s',
+          animationName: `${keyframes({
+            '0%': {
+              opacity: 0,
+              transform: 'translateY(10px)',
+            },
+            '60%': {
+              opacity: 1,
+            },
+            '100%': {
+              opacity: 1,
+              transform: 'none',
+            },
+          })}`,
+        },
+        '&[data-state="closed"]': {
+          animationDuration: '0.2s',
+          animationName: `${keyframes({
+            '0%': {
+              opacity: 1,
+              transform: 'none',
+            },
+            '100%': {
+              opacity: 0,
+              transform: 'translateY(10px)',
+            },
+          })}`,
+        },
       },
     },
   },
-  dialog: {
-    initial: { opacity: 0, y: 10 },
-    animate: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.3,
-      },
-    },
-    exit: {
-      opacity: 0,
-      y: 20,
-      transition: {
-        duration: 0.2,
-      },
-    },
-  },
-};
+});
 
-const overlayVariants = {
-  initial: {
-    opacity: 0,
+const OverlayStyled = styled(RdxDialog.Overlay, {
+  'backgroundColor': 'rgba(0,0,0,0.6)',
+  'position': 'fixed',
+  'inset': 0,
+  'animationTimingFunction': 'ease-in-out',
+  'animationFillMode': 'forwards',
+  'animationDuration': '0.2s',
+  '&[data-state="open"]': {
+    animationName: `${keyframes({
+      from: { opacity: 0 },
+      to: { opacity: 1 },
+    })}`,
   },
-  animate: {
-    opacity: 1,
-    transition: {
-      duration: 0.2,
-    },
+  '&[data-state="closed"]': {
+    animationDelay: '0.1s',
+    animationName: `${keyframes({
+      from: { opacity: 1 },
+      to: { opacity: 0 },
+    })}`,
   },
-  exit: {
-    opacity: 0,
-    transition: {
-      duration: 0.2,
-      delay: 0.1,
-    },
+  '@no-motion': {
+    animationDuration: '0s',
   },
-};
+});

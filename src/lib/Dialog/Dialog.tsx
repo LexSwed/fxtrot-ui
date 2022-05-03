@@ -1,9 +1,7 @@
 import React, { useRef } from 'react';
 import { Root, Trigger } from '@radix-ui/react-dialog';
-import { AnimatePresence } from 'framer-motion';
 
 import { DialogModal } from './DialogModal';
-import { Portal } from '../Portal';
 import { OpenStateProvider, OpenStateRef, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { DialogClose } from './DialogClose';
 import { DialogTitle } from './DialogTitle';
@@ -25,7 +23,7 @@ const DialogInner = ({ children, modal, ...props }: Props) => {
   return (
     <Root open={open} onOpenChange={controls.switch} defaultOpen={props.defaultOpen} modal={modal}>
       <Trigger asChild>{trigger}</Trigger>
-      <AnimatePresence>{open && content && <Portal>{content(controls.close)}</Portal>}</AnimatePresence>
+      {content(controls.close)}
     </Root>
   );
 };
