@@ -7,7 +7,7 @@ import { styled } from '../stitches.config';
 import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
 import { ListItem } from '../shared/ListItem';
 
-interface Props extends React.ComponentProps<typeof StyledItem> {}
+export interface Props extends React.ComponentProps<typeof StyledItem> {}
 
 export const Item = React.forwardRef<HTMLButtonElement, Props>((props, ref) => {
   const onKeyDown = useKeyboardHandles({
