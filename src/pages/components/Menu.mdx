@@ -110,7 +110,7 @@ You can modify `offset` from the `side` and along the `align`ment.
 ```tsx preview
 () => {
   const modalOpenRef = React.useRef();
-  const [selection, setSelection] = React.useState();
+  const [selection, setSelection] = React.useState('2');
   return (
     <Menu>
       <Button variant="outline">
@@ -144,7 +144,7 @@ You can modify `offset` from the `side` and along the `align`ment.
                   setTimeout(() => {
                     modalOpenRef.current = false;
                     close();
-                  }, 300);
+                  }, 250);
                 }}
               >
                 <Picker.Item label="Item 1" value="1" />

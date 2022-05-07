@@ -13,7 +13,7 @@ const InnerPresence = (React as any).forwardRef(function InnerPresence<T>(
   return children({ ref });
 });
 
-export function Presence<T>({ present, children }: Props<T>) {
+export function Presence<T extends HTMLElement>({ present, children }: Props<T>) {
   return (
     <RdxPresence.Presence present={present}>
       <InnerPresence>{children}</InnerPresence>

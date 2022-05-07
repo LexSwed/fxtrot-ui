@@ -1,91 +1,132 @@
-import type { PopoverContentProps } from '@radix-ui/react-popover';
-import { motion, Variants } from 'framer-motion';
-import React, { useLayoutEffect, useState } from 'react';
+import { keyframes, styled } from '../stitches.config';
 import { listStyles } from '../shared/FloatingList';
-import { CssStyles, styled } from '../stitches.config';
 
-interface InnerBoxProps extends React.ComponentProps<'div'> {
-  'data-side'?: PopoverContentProps['side'];
-  'side'?: PopoverContentProps['side'];
-  'css'?: CssStyles;
-  'id'?: string;
-}
-
-export const PopoverBox = React.forwardRef<HTMLDivElement, InnerBoxProps>(({ side, style = {}, ...props }, ref) => {
-  const minWidth = useTriggerWidth(props.id);
-  const transitionSide = props['data-side'] || side;
-  return (
-    <StyledBox
-      style={{ ...style, minWidth }}
-      variants={transitionSide ? animations[transitionSide] : undefined}
-      initial="initial"
-      animate="animate"
-      exit="initial"
-      transition={{ duration: 0.15, type: 'tween' }}
-      {...(props as any)}
-      ref={ref}
-    />
-  );
+export const PopoverBox = styled('div', listStyles, {
+  'br': '$base',
+  'bc': '$surface--elevated',
+  'boxShadow': '$popper',
+  'animationTimingFunction': 'ease-in',
+  'animationFillMode': 'forwards',
+  '&[data-state="open"]': {
+    animationDuration: '0.15s',
+  },
+  '&[data-state="closed"]': {
+    animationDuration: '0.1s',
+  },
+  '&[data-side="top"]': {
+    '&[data-state="open"]': {
+      animationName: keyframes({
+        '0%': {
+          opacity: 0,
+          transform: 'translateY(5px)',
+        },
+        '60%': {
+          opacity: 1,
+        },
+        'to': {
+          opacity: 1,
+          transform: 'none',
+        },
+      }),
+    },
+    '&[data-state="closed"]': {
+      animationName: keyframes({
+        from: {
+          opacity: 1,
+          transform: 'none',
+        },
+        to: {
+          opacity: 0,
+          transform: 'translateY(5px)',
+        },
+      }),
+    },
+  },
+  '&[data-side="bottom"]': {
+    '&[data-state="open"]': {
+      animationName: keyframes({
+        '0%': {
+          opacity: 0,
+          transform: 'translateY(-5px)',
+        },
+        '60%': {
+          opacity: 1,
+        },
+        'to': {
+          opacity: 1,
+          transform: 'none',
+        },
+      }),
+    },
+    '&[data-state="closed"]': {
+      animationName: keyframes({
+        from: {
+          opacity: 1,
+          transform: 'none',
+        },
+        to: {
+          opacity: 0,
+          transform: 'translateY(-5px)',
+        },
+      }),
+    },
+  },
+  '&[data-side="right"]': {
+    '&[data-state="open"]': {
+      animationName: keyframes({
+        '0%': {
+          opacity: 0,
+          transform: 'translateX(-5px)',
+        },
+        '60%': {
+          opacity: 1,
+        },
+        'to': {
+          opacity: 1,
+          transform: 'none',
+        },
+      }),
+    },
+    '&[data-state="closed"]': {
+      animationName: keyframes({
+        '0%': {
+          opacity: 0,
+          transform: 'translateY(-5px)',
+        },
+        '60%': {
+          opacity: 1,
+        },
+        'to': {
+          opacity: 1,
+          transform: 'none',
+        },
+      }),
+    },
+  },
+  '&[data-side="left"]': {
+    '&[data-state="open"]': {
+      animationName: keyframes({
+        from: {
+          opacity: 0,
+          transform: 'translateX(5px)',
+        },
+        to: {
+          opacity: 1,
+          transform: 'none',
+        },
+      }),
+    },
+    '&[data-state="closed"]': {
+      animationName: keyframes({
+        from: {
+          opacity: 1,
+          transform: 'none',
+        },
+        to: {
+          opacity: 0,
+          transform: 'translateX(5px)',
+        },
+      }),
+    },
+  },
 });
-
-function useTriggerWidth(triggerElementId?: string) {
-  const [width, setWidth] = useState<number>();
-
-  useLayoutEffect(() => {
-    const triggerEl = document.querySelector(`[aria-controls="${triggerElementId}"]`);
-    if (triggerEl) {
-      setWidth((triggerEl as HTMLElement).getBoundingClientRect().width);
-    }
-  }, [triggerElementId]);
-
-  return width;
-}
-
-const StyledBox = styled(motion.div, listStyles, {
-  br: '$base',
-  bc: '$surface--elevated',
-  boxShadow: '$popper',
-});
-
-const animations: Record<string, Variants> = {
-  top: {
-    initial: {
-      opacity: 0,
-      y: 5,
-    },
-    animate: {
-      opacity: 1,
-      y: 0,
-    },
-  },
-  bottom: {
-    initial: {
-      opacity: 0,
-      y: -5,
-    },
-    animate: {
-      opacity: 1,
-      y: 0,
-    },
-  },
-  right: {
-    initial: {
-      opacity: 0,
-      x: -5,
-    },
-    animate: {
-      opacity: 1,
-      x: 0,
-    },
-  },
-  left: {
-    initial: {
-      opacity: 0,
-      x: 5,
-    },
-    animate: {
-      opacity: 1,
-      x: 0,
-    },
-  },
-};
