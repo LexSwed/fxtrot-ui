@@ -7,13 +7,14 @@ import {
   AlignedPlacement,
   flip,
 } from '@floating-ui/react-dom';
-import { AnimatePresence, motion, Variants } from 'framer-motion';
 
 import { styled } from '../stitches.config';
 import { useKeyboardHandles, useOnClickOutside } from '../utils/hooks';
 import { useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
+import { Presence } from '../shared/Presence';
+import { PopoverBox } from './PopoverBox';
 
-interface Props extends React.ComponentProps<typeof PopperBox> {
+interface Props extends React.ComponentProps<typeof PopoverBox> {
   triggerRef: React.RefObject<HTMLElement>;
   offset?: number;
   placement?: AlignedPlacement;
@@ -26,7 +27,7 @@ export const PopoverLayerDeprecated: React.FC<Props> = ({
   placement = 'bottom-start',
   ...props
 }) => {
-  const isOpen = useOpenState();
+  const open = useOpenState();
   const { close } = useOpenStateControls();
   const {
     x,
@@ -55,7 +56,7 @@ export const PopoverLayerDeprecated: React.FC<Props> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refs.reference.current, refs.floating.current, update]);
 
-  useOnClickOutside(close, isOpen, refs.floating, triggerRef);
+  useOnClickOutside(close, open, refs.floating, triggerRef);
 
   const handleKeyDown = useKeyboardHandles({
     Escape: (e) => {
@@ -64,10 +65,11 @@ export const PopoverLayerDeprecated: React.FC<Props> = ({
       }
     },
   });
+  const [side, align] = resultingPlacement.split('-');
 
   return (
-    <AnimatePresence>
-      {isOpen && (
+    <Presence present={open}>
+      {({ ref }) => (
         <Popper
           ref={floating}
           style={{
@@ -77,19 +79,12 @@ export const PopoverLayerDeprecated: React.FC<Props> = ({
           }}
           onKeyDown={handleKeyDown}
         >
-          <PopperBox
-            {...props}
-            variants={resultingPlacement ? animations[resultingPlacement.split('-')[0]] : animations.bottom}
-            initial="initial"
-            animate="animate"
-            exit="initial"
-            transition={{ duration: 0.15, type: 'tween' }}
-          >
+          <PopoverBox {...props} data-state={open ? 'open' : 'closed'} data-side={side} data-align={align} ref={ref}>
             {children}
-          </PopperBox>
+          </PopoverBox>
         </Popper>
       )}
-    </AnimatePresence>
+    </Presence>
   );
 };
 
@@ -97,53 +92,3 @@ const Popper = styled('div', {
   position: 'absolute',
   zIndex: 2147483647,
 });
-
-const PopperBox = styled(motion.div, {
-  bc: '$surface',
-  br: '$md',
-  outline: 'none',
-  boxShadow: '$popper',
-});
-
-const animations: Record<string, Variants> = {
-  top: {
-    initial: {
-      opacity: 0,
-      y: 5,
-    },
-    animate: {
-      opacity: 1,
-      y: 0,
-    },
-  },
-  bottom: {
-    initial: {
-      opacity: 0,
-      y: -5,
-    },
-    animate: {
-      opacity: 1,
-      y: 0,
-    },
-  },
-  right: {
-    initial: {
-      opacity: 0,
-      x: -5,
-    },
-    animate: {
-      opacity: 1,
-      x: 0,
-    },
-  },
-  left: {
-    initial: {
-      opacity: 0,
-      x: 5,
-    },
-    animate: {
-      opacity: 1,
-      x: 0,
-    },
-  },
-};

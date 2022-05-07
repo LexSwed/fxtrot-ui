@@ -61,7 +61,7 @@ const MenuListContent = React.forwardRef<HTMLDivElement, MenuListProps>(({ style
 const MenuListBox = styled(PopoverBox, listStyles);
 
 function useTriggerWidth(triggerElementId?: string) {
-  const [width, setWidth] = React.useState<string>('');
+  const [width, setWidth] = React.useState<number>();
 
   useIsomorphicLayoutEffect(() => {
     if (!triggerElementId) return;

@@ -81,7 +81,6 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.5.0",
-    "framer-motion": "^6.3.3",
     "glob": "^8.0.1",
     "gray-matter": "^4.0.3",
     "husky": "^7.0.4",
@@ -108,7 +107,6 @@
   },
   "peerDependencies": {
     "@stitches/react": "^1.2.0",
-    "framer-motion": "^6.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
