@@ -90,6 +90,7 @@ const DialogWindow = styled(RdxDialog.Content, {
         'borderBottomLeftRadius': 0,
         'height': 'calc(100vh)',
         'maxWidth': '420px',
+        'overflowY': 'overlay',
         '&[data-state="open"]': {
           animationDuration: '0.3s',
           animationName: `${keyframes({

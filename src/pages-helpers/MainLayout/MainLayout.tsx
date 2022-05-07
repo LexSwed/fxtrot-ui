@@ -29,13 +29,7 @@ export const MainLayout: React.FC<Props> = ({ children, meta, docs }) => {
                     <Icon as={MenuAlt1Icon} size="lg" />
                   </IconButton>
                   {() => (
-                    <Dialog.Modal
-                      overlay="side"
-                      css={{
-                        width: '100vw',
-                        maxWidth: 380,
-                      }}
-                    >
+                    <Dialog.Modal overlay="side">
                       <Dialog.Title level="3">Menu</Dialog.Title>
                       <SideNav docs={docs} />
                     </Dialog.Modal>

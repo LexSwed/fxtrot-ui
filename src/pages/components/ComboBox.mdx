@@ -1,19 +1,19 @@
 ---
-title: ComboBox
+title: Combobox
 ---
 
-# ComboBox
+# Combobox
 
 ```tsx preview
 () => {
   const [value, setValue] = React.useState('3');
   return (
     <Column gap="md" css={{ width: 200 }}>
-      <ComboBox placeholder="Hufflepuff" label="The House you were sorted to" value={value} onChange={setValue}>
+      <Combobox placeholder="Hufflepuff" label="The House you were sorted to" value={value} onChange={setValue}>
         {['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'].map((house, index) => (
-          <ComboBox.Item value={`${index + 1}`} label={house} key={house} />
+          <Combobox.Item value={`${index + 1}`} label={house} key={house} />
         ))}
-      </ComboBox>
+      </Combobox>
       <Text>{`Selected item index: ${value}`}</Text>
     </Column>
   );
@@ -31,7 +31,7 @@ You can allow the selection of elements that do not exist - creating them from t
   return (
     <Column gap="md">
       <Box width={200}>
-        <ComboBox
+        <Combobox
           placeholder="Hufflepuff"
           label="The House you were sorted to"
           value={value}
@@ -40,9 +40,9 @@ You can allow the selection of elements that do not exist - creating them from t
           hint={value || value === '' || !newItemValue ? '' : 'New item will be created'}
         >
           {['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'].map((house, index) => (
-            <ComboBox.Item value={`${index + 1}`} label={house} key={house} />
+            <Combobox.Item value={`${index + 1}`} label={house} key={house} />
           ))}
-        </ComboBox>
+        </Combobox>
       </Box>
       <Column>
         <div>{`Selected item index: ${value}`}</div>
@@ -62,7 +62,7 @@ Supports same `variant`s as `TextField` component.
   const [value, setValue] = React.useState('12');
   return (
     <Box width={200}>
-      <ComboBox
+      <Combobox
         label="Item index"
         variant="underlined"
         placeholder="1 number"
@@ -73,9 +73,9 @@ Supports same `variant`s as `TextField` component.
         {Array(400)
           .fill(null)
           .map((el, i) => (
-            <ComboBox.Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
+            <Combobox.Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
           ))}
-      </ComboBox>
+      </Combobox>
     </Box>
   );
 };

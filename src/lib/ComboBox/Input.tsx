@@ -35,7 +35,7 @@ export interface Props
   'onChange': (newValue: string) => void;
 }
 
-export const ComboBoxInput: React.FC<Props> = ({
+export const ComboboxInput: React.FC<Props> = ({
   label,
   secondaryLabel,
   hint,
@@ -52,7 +52,7 @@ export const ComboBoxInput: React.FC<Props> = ({
   variant = 'boxed',
   id,
   inputRef,
-  /** custom props, should be filtered from ComboBox parent */
+  /** custom props, should be filtered from Combobox parent */
   hasNewBadge,
   value,
   onChange,
@@ -119,7 +119,7 @@ export const ComboBoxInput: React.FC<Props> = ({
           validity={validity}
           inputRef={refs}
         >
-          <ComboBoxButton hasNewBadge={hasNewBadge} inputRef={innerRef} />
+          <ComboboxButton hasNewBadge={hasNewBadge} inputRef={innerRef} />
         </InputFieldWrapper>
         {hint && (
           <Hint id={ariaProps['aria-describedby']} validity={validity}>
@@ -149,7 +149,7 @@ const ButtonContainer = styled(Flex, {
   px: '$1',
 });
 
-const ComboBoxButton = React.memo(
+const ComboboxButton = React.memo(
   ({ hasNewBadge, inputRef }: { hasNewBadge: boolean; inputRef: React.RefObject<HTMLInputElement> }) => {
     const isOpen = useOpenState();
     const { toggle } = useOpenStateControls();
@@ -179,4 +179,4 @@ const ComboBoxButton = React.memo(
   }
 );
 
-ComboBoxButton.displayName = 'ComboBoxButton';
+ComboboxButton.displayName = 'ComboboxButton';

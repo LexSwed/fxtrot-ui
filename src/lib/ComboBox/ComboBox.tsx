@@ -4,7 +4,7 @@ import { useId } from '@radix-ui/react-id';
 
 import { OpenStateProvider, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 
-import { ComboBoxInput, Props as InputProps } from './Input';
+import { ComboboxInput, Props as InputProps } from './Input';
 import { Item, OptionType } from './Item';
 import { useAllHandlers, useForkRef, useLatest } from '../utils/hooks';
 import { PopoverLayerDeprecated } from '../Popover/LayerDeprectated';
@@ -30,7 +30,7 @@ interface Props
   children: OptionType[] | OptionType;
 }
 
-const ComboBoxInner: React.FC<Props> = ({
+const ComboboxInner: React.FC<Props> = ({
   value: propValue,
   onChange: propOnChange,
   children,
@@ -131,7 +131,7 @@ const ComboBoxInner: React.FC<Props> = ({
 
   return (
     <>
-      <ComboBoxInput
+      <ComboboxInput
         {...textFieldProps}
         aria-controls={isOpen ? listboxId : ''}
         aria-activedescendant={focusedItemId as string}
@@ -164,17 +164,17 @@ const ComboBoxInner: React.FC<Props> = ({
   );
 };
 
-export const ComboBox = (props: Props) => {
+export const Combobox = (props: Props) => {
   return (
     <OpenStateProvider>
       <StateProvider>
-        <ComboBoxInner {...props} />
+        <ComboboxInner {...props} />
       </StateProvider>
     </OpenStateProvider>
   );
 };
 
-ComboBox.Item = Item;
+Combobox.Item = Item;
 
 function useFilteredItems(children: Props['children'], filterText: string) {
   const items = flattenChildren(children) as OptionType[];

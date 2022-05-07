@@ -4,7 +4,7 @@ export * from './Button';
 export * from './Checkbox';
 export * from './CheckboxGroup';
 export * from './Collapsible';
-export * from './ComboBox';
+export * from './Combobox';
 export * from './Dialog';
 export * from './Flex';
 export * from './Grid';

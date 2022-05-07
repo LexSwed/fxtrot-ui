@@ -57,7 +57,7 @@ const LineNo = styled('span', {
 
 const LineContent = styled('span', {
   display: 'table-cell',
-  fontSize: '$sm',
+  textSize: '$sm',
 });
 
 const ButtonWrapper = styled('div', {
