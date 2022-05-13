@@ -53,6 +53,8 @@ export const stitchesConfig = createStitches({
       'md': '5px',
       'lg': '12px',
       'xl': '16px',
+      '2xl': '32px',
+      '3xl': '64px',
       'round': '50%',
       'pill': '9999px',
       'base': '$md',
