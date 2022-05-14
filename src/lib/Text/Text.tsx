@@ -35,7 +35,7 @@ export const Text = styled('span', {
     },
     tone: {
       default: {
-        color: '$text',
+        color: 'inherit',
       },
       accent: {
         color: '$text-accent',
