@@ -1,133 +1,75 @@
 import * as colors from './colors';
 
 export const defaultColors: ThemeColors = {
-  'surface': 'hsl(0deg 0% 100%)',
-  'surface--hover': colors.slate.slate1,
-  'surface--elevated': 'hsl(0deg 0% 100%)',
-
-  'surface-accent': colors.indigo.indigo7,
-  'surface-accent--elevated': colors.indigo.indigo8,
-
-  'surface-success': colors.green.green1,
-  'surface-danger': colors.red.red1,
-
-  // elements
-  'shape': 'transparent',
-  'shape--hover': colors.slateA.slateA3,
-  'shape--active': colors.slateA.slateA5,
-  'shape--disabled': colors.slateA.slateA2,
-
-  'shape-accent': colors.indigo.indigo9,
-  'shape-accent--hover': colors.indigo.indigo10,
-  'shape-accent--active': colors.indigo.indigo11,
-  'shape-accent--disabled': colors.indigoA.indigoA8,
-
-  'shape-accent-light': colors.indigo.indigo1,
-  'shape-accent-light--hover': colors.indigo.indigo3,
-  'shape-accent-light--active': colors.indigo.indigo4,
-
-  'shape-success': colors.green.green9,
-  'shape-success--hover': colors.green.green10,
-  'shape-success--active': colors.green.green11,
-
-  'shape-danger': colors.red.red9,
-  'shape-danger--hover': colors.red.red10,
-  'shape-danger--active': colors.red.red11,
-
-  // borders
-  'border': colors.slateA.slateA9,
-  'border--hover': colors.slateA.slateA10,
-  'border--active': colors.slateA.slateA11,
-  'border--light': colors.slateA.slateA5,
-  'border--disabled': '$shape--disabled',
-
-  'border-accent': colors.indigo.indigo9,
-  'border-accent--hover': colors.indigo.indigo9,
-  'border-accent--active': colors.indigo.indigo9,
-  'border-accent--light': colors.indigo.indigo5,
-  'border-accent--disabled': '$shape--disabled',
-
-  // text
-  'text': colors.slate.slate12,
-  'text--light': colors.slate.slate11,
-  'text--disabled': colors.slate.slate10,
-
-  'text-accent': colors.indigo.indigo11,
-  'text-accent--light': colors.indigo.indigo8,
-  'text-accent--disabled': '$text--disabled',
-
-  'text-onAccent': 'hsl(0deg 0% 100%)',
-  'text-onAccent--disabled': 'hsl(0deg 0% 100%)',
-
-  'text-success': colors.green.green11,
-  'text-danger': colors.red.red11,
+  primary: '',
+  onPrimary '',
+  primaryContainer: '',
+  onPrimaryContainer: ''
 
   'focusRing': colors.slateA.slateA11,
 } as const;
 
 // use dashed syntax to align with CSS vars syntax, stitches doesn't do any sanitization
 export interface ThemeColors {
-  // non-interactive
-  'surface': string;
-  'surface--hover': string;
-  'surface--elevated': string;
+  // Primary color
+  primary: string;
+  // On-primary is applied to content (icons, text, etc.) that sits on top of primary
+  onPrimary: string;
+  // Primary container is applied to elements needing less emphasis than primary
+  primaryContainer: string;
+  // On-primary container is applied to content (icons, text, etc.) that sits on top of primary container
+  onPrimaryContainer: string;
+  
+  // Less prominent active elements
+  secondary: string;
+  // For content (icons, text, etc.) that sits on top of secondary container
+  onSecondary: string;
+  // Secondary container is applied to elements needing less emphasis than secondary
+  secondaryContainer: string;
+  // For content (icons, text, etc.) that sits on top of secondary container
+  onSecondaryContiner: string;
 
-  'surface-accent': string;
-  'surface-accent--elevated': string;
+  // Tertiary roles are used for contrasting accents that can be used to balance primary and secondary colors or bring heightened attention to an element, such as an input field. 
+  tertiary: string;
+  // For content (icons, text, etc.) that sits on top of tertiary container
+  onTertiary: string;
+  // Secondary container is applied to elements needing less emphasis than tertiary
+  tertiaryContainer: string;
+  // For content (icons, text, etc.) that sits on top of tertiary container
+  onTertiaryContiner: string;
 
-  'surface-success': string;
-  'surface-danger': string;
+  error: string;
+  onError: string;
+  errorContainer: string;
+  onErrorContainer: string;
 
-  // elements
-  'shape': string;
-  'shape--hover': string;
-  'shape--active': string;
-  'shape--disabled': string;
+  success: string;
+  onSuccess: string;
+  successContainer: string;
+  onSuccessContainer: string;
 
-  'shape-accent': string;
-  'shape-accent--hover': string;
-  'shape-accent--active': string;
-  'shape-accent--disabled': string;
+  background: string;
+  onBackground: string;
+  surface: string;
+  surface1: string;
+  surface2: string;
+  surface3: string;
+  surface4: string;
+  surface5: string;
+  onSurface: string;
 
-  'shape-accent-light': string;
-  'shape-accent-light--hover': string;
-  'shape-accent-light--active': string;
+  inverseSurface: string;
+  inverseOnSurface: string;
+  inversePrimary: string;
 
-  'shape-success': string;
-  'shape-success--hover': string;
-  'shape-success--active': string;
+  // Surface variant and on-surface variant can be used for differentiation against a surface
+  surfaceVariant: string;
+  onSurfaceVariant: string;
+  // Outline is a utility color that creates boundaries and emphasis to improve usability. It's distinct from the divider component, which uses the surface variant role for low-emphasis content separation that is more decorative than essential.
+  outline: string;
 
-  'shape-danger': string;
-  'shape-danger--hover': string;
-  'shape-danger--active': string;
-
-  // borders
-  'border': string;
-  'border--hover': string;
-  'border--active': string;
-  'border--light': string;
-  'border--disabled': string;
-
-  'border-accent': string;
-  'border-accent--hover': string;
-  'border-accent--active': string;
-  'border-accent--light': string;
-  'border-accent--disabled': string;
-
-  // text
-  'text': string;
-  'text--light': string;
-  'text--disabled': string;
-
-  'text-accent': string;
-  'text-accent--light': string;
-  'text-accent--disabled': string;
-
-  'text-onAccent': string;
-  'text-onAccent--disabled': string;
-
-  'text-success': string;
-  'text-danger': string;
+  disabled: string;
+  onDisabled: string;
 
   'focusRing': string;
 }
