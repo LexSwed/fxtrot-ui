@@ -41,7 +41,6 @@ export const buttonCss = css(flexCss, {
   'transition': '0.2s ease-in-out',
   'fontFamily': '$default',
   'lineHeight': 1,
-  'border': '1px solid transparent',
   'cursor': 'default',
   'whiteSpace': 'nowrap',
   'flexShrink': 0,
@@ -99,25 +98,22 @@ export const buttonCss = css(flexCss, {
     },
     variant: {
       primary: {
-        'bc': '$shape-accent',
-        'color': '$text-onAccent',
-        'borderColor': '$shape-accent',
-        '&:hover': {
-          borderColor: '$shape-accent--hover',
-          bc: '$shape-accent--hover',
+        'background': '$primary',
+        'color': '$onPrimary',
+        '&:is(:hover)': {
+          background: '$primary, linear-gradient(to right, $primary 100%, $surface2 0%, $surface2 100%)',
         },
-        '&:active': {
-          borderColor: '$shape-accent--active',
-          bc: '$shape-accent--active',
+        '&:is(:active)': {
+          background: '$primary, $surface-2',
         },
-        '&:focus': {
-          borderColor: '$shape-accent--active',
+        '&is:(:focus)': {
+          background: '$primary, $surface-4',
         },
       },
       secondary: {
         'bc': '$shape',
         'color': '$text',
-        'borderColor': '$border',
+        'border': '1px solid $border',
         '&:hover': {
           bc: '$shape--hover',
           borderColor: '$border--hover',
@@ -133,6 +129,7 @@ export const buttonCss = css(flexCss, {
       outline: {
         'color': '$text-accent',
         'bc': '$shape-accent-light',
+        'border': '1px solid $border-accent',
         'borderColor': '$border-accent',
         '&:hover': {
           bc: '$shape-accent-light--hover',
@@ -151,6 +148,7 @@ export const buttonCss = css(flexCss, {
       flat: {
         'bc': '$shape',
         'color': '$text',
+        'border': '1px solid transparent',
         '&:hover': {
           bc: '$shape--hover',
         },

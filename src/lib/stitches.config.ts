@@ -2,11 +2,11 @@ import { createStitches, PropertyValue, ScaleValue, CSS } from '@stitches/react'
 
 import { attribute } from './utils/focus-visible';
 import { scales } from './theme/scales';
-import { defaultColors } from './theme/default';
+import { lightColors } from './theme/default';
 
 export const stitchesConfig = createStitches({
   theme: {
-    colors: { ...defaultColors },
+    colors: { ...lightColors },
     fonts: {
       default: '"Noto Sans", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif',
       heading: '"Source Sans Pro", apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif',
@@ -93,56 +93,50 @@ export const stitchesConfig = createStitches({
   },
   utils: {
     p: (value: ScaleValue<'space'> | number | string) => ({
-      paddingTop: value,
-      paddingRight: value,
-      paddingBottom: value,
-      paddingLeft: value,
+      padding: value,
     }),
     pt: (value: ScaleValue<'space'> | number | string) => ({
-      paddingTop: value,
+      paddingBlockStart: value,
     }),
     pr: (value: ScaleValue<'space'> | number | string) => ({
-      paddingRight: value,
+      paddingInlineEnd: value,
     }),
     pb: (value: ScaleValue<'space'> | number | string) => ({
-      paddingBottom: value,
+      paddingBlockEnd: value,
     }),
     pl: (value: ScaleValue<'space'> | number | string) => ({
-      paddingLeft: value,
+      paddingInlineStart: value,
     }),
     px: (value: ScaleValue<'space'> | number | string) => ({
-      paddingLeft: value,
-      paddingRight: value,
+      paddingInlineStart: value,
+      paddingInlineEnd: value,
     }),
     py: (value: ScaleValue<'space'> | number | string) => ({
-      paddingTop: value,
-      paddingBottom: value,
+      paddingBlockStart: value,
+      paddingBlockEnd: value,
     }),
     m: (value: ScaleValue<'space'> | number | string) => ({
-      marginTop: value,
-      marginRight: value,
-      marginBottom: value,
-      marginLeft: value,
+      margin: value,
     }),
     mt: (value: ScaleValue<'space'> | number | string) => ({
-      marginTop: value,
+      marginBlockStart: value,
     }),
     mr: (value: ScaleValue<'space'> | number | string) => ({
-      marginRight: value,
+      marginInlineEnd: value,
     }),
     mb: (value: ScaleValue<'space'> | number | string) => ({
-      marginBottom: value,
+      marginBlockEnd: value,
     }),
     ml: (value: ScaleValue<'space'> | number | string) => ({
-      marginLeft: value,
+      marginInlineStart: value,
     }),
     mx: (value: ScaleValue<'space'> | number | string) => ({
-      marginLeft: value,
-      marginRight: value,
+      marginInlineStart: value,
+      marginInlineEnd: value,
     }),
     my: (value: ScaleValue<'space'> | number | string) => ({
-      marginTop: value,
-      marginBottom: value,
+      marginBlockStart: value,
+      marginBlockEnd: value,
     }),
     bc: (value: PropertyValue<'backgroundColor'>) => ({
       backgroundColor: value,
@@ -256,3 +250,5 @@ export type CssStyles = CSS<typeof stitchesConfig['config']>;
 export type StyleSheet = Record<string, CssStyles>;
 
 export const { css, styled, keyframes, createTheme } = stitchesConfig;
+export { lightColors, darkColors } from './theme/default';
+export type { ThemeColors } from './theme/default';
