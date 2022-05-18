@@ -1,12 +1,12 @@
 import { createStitches, PropertyValue, ScaleValue, CSS } from '@stitches/react';
 
-import { attribute } from './utils/focus-visible';
 import { scales } from './theme/scales';
 import { lightColors } from './theme/default';
+import { createColorVariations } from './theme/createColorVariations';
 
 export const stitchesConfig = createStitches({
   theme: {
-    colors: { ...lightColors },
+    colors: { ...createColorVariations(lightColors) },
     fonts: {
       default: '"Noto Sans", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif',
       heading: '"Source Sans Pro", apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif',
@@ -75,7 +75,7 @@ export const stitchesConfig = createStitches({
       '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
       '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
       'inner': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
-      'popper': `0 0 1px $colors$border, $shadows$lg`,
+      'popper': `0 0 1px $colors$outline, $shadows$lg`,
       'base': '$xs',
       'base--hover': '$sm, $sm',
       'none': 'none',
@@ -91,6 +91,10 @@ export const stitchesConfig = createStitches({
     'light': '(prefers-color-scheme: light)',
     'no-motion': '(prefers-reduced-motion: reduce)',
   },
+  /**
+   * 1. colors layering: ...colors -> compose into one
+   * 2. surface colors
+   */
   utils: {
     p: (value: ScaleValue<'space'> | number | string) => ({
       padding: value,
@@ -150,8 +154,8 @@ export const stitchesConfig = createStitches({
     }),
     size: (value: ScaleValue<'space'> | number | string) => {
       return {
-        width: value,
-        height: value,
+        blockSize: value,
+        inlineSize: value,
       };
     },
     textStyle: (
@@ -210,35 +214,12 @@ export const stitchesConfig = createStitches({
       }
     },
 
-    focusRing: (color: PropertyValue<'backgroundColor'> | string = '$focusRing') => ({
-      // [`&:not(:disabled)[${attribute}]`]: {
-      // [`&:not(:disabled)]`]: {
-      //   'outline': 'none',
-      //   'position': 'relative',
-      //   '$$offset': `${offset}px`,
-
-      //   '&::before': {
-      //     content: `''`,
-      //     display: 'block',
-      //     position: 'absolute',
-      //     top: `calc(-1 * $$offset)`,
-      //     right: `calc(-1 * $$offset)`,
-      //     bottom: `calc(-1 * $$offset)`,
-      //     left: `calc(-1 * $$offset)`,
-      //     transitionProperty: 'box-shadow, border-color',
-      //     transitionDuration: '0.2s',
-      //     transitionTimingFunction: 'ease-in-out',
-      //     pointerEvents: 'none',
-      //     border: '1px solid transparent',
-      //     br: 'inherit',
-      //   },
-      // },
-      '$$focusRingColor': `$colors${color}`,
-      '&:focus': {
-        outline: 'none',
-      },
-      [`&:focus[${attribute}]`]: {
-        boxShadow: `0 0 0 2px $$focusRingColor`,
+    focusRing: (color: PropertyValue<'backgroundColor'> | string = '$outline') => ({
+      '&:focus-visible': {
+        outlineStyle: 'outset',
+        outlineColor: `$colors${color}`,
+        outlineWidth: '4px',
+        outlineOffset: '-2px',
       },
     }),
   },

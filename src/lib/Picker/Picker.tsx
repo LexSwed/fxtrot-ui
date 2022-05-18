@@ -53,7 +53,7 @@ const Content = styled(RdxSelect.Content, {
 
 const Viewport = styled(RdxSelect.Viewport, {
   p: '$1',
-  focusRing: '$focusRing',
+  focusRing: '$outline',
 });
 
 const SelectArrow = styled('div', {

@@ -22,7 +22,7 @@ MenuList.Item = Item;
 const ListStyled = styled('div', flexCss, {
   m: 0,
   p: 0,
-  focusRing: '$focusRing',
+  focusRing: '$outline',
 
   [`& > ${Section}:not(:first-child)`]: {
     mt: '$6',

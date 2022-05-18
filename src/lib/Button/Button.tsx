@@ -1,29 +1,12 @@
 import React from 'react';
 
 import { flexCss, FlexVariants } from '../Flex/Flex';
-import { Icon, IconBox } from '../Icon/Icon';
 import { css, styled } from '../stitches.config';
 
 interface Props extends React.ComponentProps<typeof ButtonRoot> {}
 
-export const Button = React.forwardRef<HTMLButtonElement, Props>(({ type = 'button', children, ...props }, ref) => {
-  let childCount = React.Children.count(children);
-  return (
-    <ButtonRoot {...props} aria-disabled={props.disabled} type={type} ref={ref}>
-      {childCount < 2
-        ? children
-        : // align icons with text to button paddings
-          React.Children.map(children, (child, i) => {
-            if (React.isValidElement(child) && child.type === Icon) {
-              const alignment: 'left' | 'right' | null = i === 0 ? 'left' : i === childCount - 1 ? 'right' : null;
-              if (alignment) {
-                return React.cloneElement(child, { 'data-fxtrot-icon-button-align': alignment });
-              }
-            }
-            return child;
-          })}
-    </ButtonRoot>
-  );
+export const Button = React.forwardRef<HTMLButtonElement, Props>(({ type = 'button', ...props }, ref) => {
+  return <ButtonRoot {...props} aria-disabled={props.disabled} type={type} ref={ref} />;
 });
 
 Button.displayName = 'Button';
@@ -39,30 +22,25 @@ const flexDefaults: FlexVariants = {
 
 export const buttonCss = css(flexCss, {
   'transition': '0.2s ease-in-out',
+  'transitionProperty': 'background-color, color, border-color',
   'fontFamily': '$default',
+  'fontWeight': 600,
   'lineHeight': 1,
-  'cursor': 'default',
   'whiteSpace': 'nowrap',
+  'cursor': 'pointer',
   'flexShrink': 0,
+  'bc': 'transparent',
+  'color': '$onSurface',
   '&[disabled],[aria-disabled="true"]': {
     pointerEvents: 'none',
   },
-  'focusRing': '$focusRing',
+  'focusRing': '$outline',
 
   '&:disabled': {
     color: '$text--disabled',
     borderColor: '$border-accent--disabled',
     bc: '$shape--disabled',
     cursor: 'default',
-  },
-
-  [`& > ${IconBox}[data-fxtrot-icon-button-align="left"]`]: {
-    ml: '-4%',
-    mr: '4%',
-  },
-  [`& > ${IconBox}[data-fxtrot-icon-button-align="right"]`]: {
-    ml: '4%',
-    mr: '-4%',
   },
 
   'variants': {
@@ -98,90 +76,66 @@ export const buttonCss = css(flexCss, {
     },
     variant: {
       primary: {
-        'background': '$primary',
+        'bc': '$primary',
         'color': '$onPrimary',
-        '&:is(:hover)': {
-          background: '$primary, linear-gradient(to right, $primary 100%, $surface2 0%, $surface2 100%)',
-        },
-        '&:is(:active)': {
-          background: '$primary, $surface-2',
-        },
-        '&is:(:focus)': {
-          background: '$primary, $surface-4',
-        },
-      },
-      secondary: {
-        'bc': '$shape',
-        'color': '$text',
-        'border': '1px solid $border',
         '&:hover': {
-          bc: '$shape--hover',
-          borderColor: '$border--hover',
+          bc: '$primarySurface1',
         },
         '&:active, &[data-state="open"]': {
-          bc: '$shape--active',
-          borderColor: '$border--active',
+          bc: '$primarySurface2',
         },
-        '&:focus': {
-          borderColor: '$border--active',
+      },
+      neutral: {
+        'bc': '$surface',
+        'color': '$onSurface',
+        'border': '1px solid $outline',
+        '&:hover, &:focus': {
+          bc: '$surface1',
+        },
+        '&:active, &[data-state="open"]': {
+          bc: '$surface2',
         },
       },
       outline: {
-        'color': '$text-accent',
-        'bc': '$shape-accent-light',
-        'border': '1px solid $border-accent',
-        'borderColor': '$border-accent',
-        '&:hover': {
-          bc: '$shape-accent-light--hover',
-          color: '$text-accent',
-          borderColor: '$border-accent--hover',
+        'bc': '$surface',
+        'color': '$primary',
+        'border': '1px solid $primary',
+        '&:hover, &:focus': {
+          bc: '$surface2',
         },
         '&:active, &[data-state="open"]': {
-          bc: '$shape-accent-light--active',
-          color: '$text-accent',
-          borderColor: '$border-accent--active',
-        },
-        '&:focus': {
-          borderColor: '$border-accent--active',
+          bc: '$surface3',
+          borderColor: '$primarySurface1',
         },
       },
       flat: {
-        'bc': '$shape',
-        'color': '$text',
-        'border': '1px solid transparent',
-        '&:hover': {
-          bc: '$shape--hover',
-        },
-        '&:focus': {
-          bc: '$shape--hover',
-          borderColor: '$border--light',
+        'bc': '$surface',
+        'color': '$onSurface',
+        '&:hover, &:focus': {
+          bc: '$surface1',
+          color: '$primary',
         },
         '&:active, &[data-state="open"]': {
-          bc: '$shape--active',
+          bc: '$surface2',
+          color: '$primary',
         },
       },
       link: {
         'bc': 'transparent',
-        'color': '$text-accent',
-        'cursor': 'pointer',
+        'color': '$primary',
         '&:not([aria-disabled="true"]):hover': {
           textDecoration: 'underline',
         },
         '&[disabled],&[aria-disabled="true"]': {
           bc: 'transparent',
-          borderColor: 'transparent',
         },
       },
-      transparent: {
-        bc: 'transparent',
-        borderColor: 'transparent',
-        color: '$text',
-      },
+      transparent: {},
     },
   },
   'defaultVariants': {
     ...flexDefaults,
-    variant: 'secondary',
+    variant: 'neutral',
     size: 'md',
   },
 });

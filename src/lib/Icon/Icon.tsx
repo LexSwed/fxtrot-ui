@@ -1,9 +1,10 @@
 import React from 'react';
 
-import { styled } from '../stitches.config';
+import { CssStyles, styled } from '../stitches.config';
 
-interface Props extends Omit<React.ComponentProps<typeof IconBox>, 'as' | 'children'> {
+interface Props extends Omit<React.ComponentProps<typeof IconBox>, 'as' | 'color' | 'children'> {
   as: React.ElementType;
+  color: CssStyles['color'];
 }
 
 export const Icon: React.FC<Props> = React.forwardRef<SVGSVGElement, Props>(
@@ -19,37 +20,37 @@ export const IconBox = styled('svg', {
   variants: {
     size: {
       'xs': {
-        size: '$2',
+        blockSize: '$2',
       },
       'sm': {
-        size: '$3',
+        blockSize: '$3',
       },
       'md': {
-        size: '$4',
+        blockSize: '$4',
       },
       'base': {
-        size: '$4',
+        blockSize: '$4',
       },
       'lg': {
-        size: '$5',
+        blockSize: '$5',
       },
       'xl': {
-        size: '$6',
+        blockSize: '$6',
       },
       '2xl': {
-        size: '$8',
+        blockSize: '$8',
       },
       '3xl': {
-        size: '$12',
+        blockSize: '$12',
       },
       '4xl': {
-        size: '$16',
+        blockSize: '$16',
       },
       '5xl': {
-        size: '$20',
+        blockSize: '$20',
       },
       '6xl': {
-        size: '$24',
+        blockSize: '$24',
       },
     },
   },

@@ -20,10 +20,10 @@ Link element that looks like a button.
   <LinkButton href="#" variant="outline" disabled>
     Outline (disabled)
   </LinkButton>
-  <LinkButton href="#" variant="secondary">
+  <LinkButton href="#" variant="neutral">
     Secondary (default)
   </LinkButton>
-  <LinkButton href="#" variant="secondary" disabled>
+  <LinkButton href="#" variant="neutral" disabled>
     Secondary (disabled)
   </LinkButton>
   <LinkButton href="#" variant="flat">
@@ -52,7 +52,7 @@ Link element that looks like a button.
     <LinkButton href="#" size="xs" variant="outline">
       Outline
     </LinkButton>
-    <LinkButton href="#" size="xs" variant="secondary">
+    <LinkButton href="#" size="xs" variant="neutral">
       Secondary
     </LinkButton>
     <LinkButton href="#" size="xs" variant="flat">
@@ -69,7 +69,7 @@ Link element that looks like a button.
     <LinkButton href="#" size="sm" variant="outline">
       Outline
     </LinkButton>
-    <LinkButton href="#" size="sm" variant="secondary">
+    <LinkButton href="#" size="sm" variant="neutral">
       Secondary
     </LinkButton>
     <LinkButton href="#" size="sm" variant="flat">
@@ -86,7 +86,7 @@ Link element that looks like a button.
     <LinkButton href="#" size="md" variant="outline">
       Outline
     </LinkButton>
-    <LinkButton href="#" size="md" variant="secondary">
+    <LinkButton href="#" size="md" variant="neutral">
       Secondary
     </LinkButton>
     <LinkButton href="#" size="md" variant="flat">
@@ -103,7 +103,7 @@ Link element that looks like a button.
     <LinkButton href="#" size="lg" variant="outline">
       Outline
     </LinkButton>
-    <LinkButton href="#" size="lg" variant="secondary">
+    <LinkButton href="#" size="lg" variant="neutral">
       Secondary
     </LinkButton>
     <LinkButton href="#" size="lg" variant="flat">
@@ -168,7 +168,6 @@ Use `ThemeProvider` component to change the primary color of the LinkButton.
       'text-onAccent--disabled': 'hsl(0deg 0% 0%)',
       'text-success': 'hsl(151, 50.0%, 53.2%)',
       'text-danger': 'hsl(358, 100%, 69.5%)',
-      'focusRing': 'hsla(208, 98.7%, 96.8%, 0.615)',
     },
   };
   return (
@@ -183,10 +182,10 @@ Use `ThemeProvider` component to change the primary color of the LinkButton.
           </LinkButton>
         </Row>
         <Row gap="sm" css={{ px: '$10' }}>
-          <LinkButton href="#" variant="secondary">
+          <LinkButton href="#" variant="neutral">
             Secondary
           </LinkButton>
-          <LinkButton href="#" variant="secondary" disabled>
+          <LinkButton href="#" variant="neutral" disabled>
             Secondary (disabled)
           </LinkButton>
         </Row>

@@ -51,7 +51,7 @@ const StyledTrigger = styled('button', flexCss, {
       flat: {
         'bc': '$shape',
         'color': '$text',
-        'focusRing': '$focusRing',
+        'focusRing': '$outline',
         '&:hover': {
           bc: '$shape--hover',
         },

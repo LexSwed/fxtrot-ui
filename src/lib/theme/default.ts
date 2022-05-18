@@ -1,160 +1,130 @@
 export const lightColors: ThemeColors = {
-  primary: '#2d54ce',
-  onPrimary: '#ffffff',
-  primaryContainer: '#dbe1ff',
-  onPrimaryContainer: '#001454',
+  primary: 'hsl(225 64% 49%)',
+  onPrimary: 'hsl(0 0% 100%)',
+  primaryContainer: 'hsl(230 100% 93%)',
+  onPrimaryContainer: 'hsl(226 100% 16%)',
 
-  secondary: '#00658e',
-  onSecondary: '#ffffff',
-  secondaryContainer: '#c3e7ff',
-  onSecondaryContainer: '#001e2e',
+  secondary: 'hsl(197 100% 28%)',
+  onSecondary: 'hsl(0 0% 100%)',
+  secondaryContainer: 'hsl(204 100% 88%)',
+  onSecondaryContainer: 'hsl(201 100% 9%)',
 
-  tertiary: '#00677e',
-  onTertiary: '#ffffff',
-  tertiaryContainer: '#b1ebff',
-  onTertiaryContainer: '#001f28',
+  tertiary: 'hsl(191 100% 25%)',
+  onTertiary: 'hsl(0 0% 100%)',
+  tertiaryContainer: 'hsl(195 100% 85%)',
+  onTertiaryContainer: 'hsl(194 100% 8%)',
 
-  success: '#006b54',
-  onSuccess: '#ffffff',
-  successContainer: '#7cf8d3',
-  onSuccessContainer: '#012018',
+  success: 'hsl(167 100% 21%)',
+  onSuccess: 'hsl(0 0% 100%)',
+  successContainer: 'hsl(162 90% 73%)',
+  onSuccessContainer: 'hsl(165 94% 6%)',
 
-  error: '#b41f50',
-  onError: '#ffffff',
-  errorContainer: '#ffd9df',
-  onErrorContainer: '#400014',
-
-  outline: '#79747e',
-  background: '#fbfcfe',
-  onBackground: '#191c1e',
-  surface: '#fbfcfe',
-  onSurface: '#191c1e',
-
-  surface1: '#2d54ce0d',
-  surface2: '#2d54ce14',
-  surface3: '#2d54ce1c',
-  surface4: '#2d54ce1f',
-  surface5: '#2d54ce24',
-
-  surfaceVariant: '#e7e0ec',
-  onSurfaceVariant: '#49454f',
-
-  inverseSurface: '#2e3133',
-  inverseOnSurface: '#f0f1f3',
-
-  disabled: '#05294d07',
-  onDisabled: '#191c1e',
-
-  focusRing: '#79747e',
+  error: 'hsl(340 71% 41%)',
+  onError: 'hsl(0 0% 100%)',
+  errorContainer: 'hsl(351 100% 93%)',
+  onErrorContainer: 'hsl(341 100% 13%)',
+  outline: 'hsl(270 4.1% 47.5%)',
+  background: 'hsl(220 60% 99%)',
+  onBackground: 'hsl(204 9.1% 10.8%)',
+  surface: 'hsl(220 60% 99%)',
+  onSurface: 'hsl(204 9.1% 10.8%)',
+  surfaceVariant: 'hsl(275 24% 90.2%)',
+  onSurfaceVariant: 'hsl(264 6.8% 29%)',
+  inverseSurface: 'hsl(204 5.2% 19%)',
+  inverseOnSurface: 'hsl(220 11.1% 94.7%)',
+  disabled: 'hsla(0 0% 12% / 0.12)',
+  onDisabled: 'hsl(204 9.1% 10.8%)',
 };
 export const darkColors: ThemeColors = {
-  primary: '#b5c4ff',
-  onPrimary: '#002585',
-  primaryContainer: '#0039b5',
-  onPrimaryContainer: '#dbe1ff',
-
-  secondary: '#7fcfff',
-  onSecondary: '#00382a',
-  secondaryContainer: '#00513f',
-  onSecondaryContainer: '#7cf8d3',
-
-  tertiary: '#2cd7ff',
-  onTertiary: '#003542',
-  tertiaryContainer: '#004e60',
-  onTertiaryContainer: '#b1ebff',
-
-  success: '#5edbb8',
-  onSuccess: '#00382a',
-  successContainer: '#00513f',
-  onSuccessContainer: '#7cf8d3',
-
-  error: '#ffb2c1',
-  onError: '#660025',
-  errorContainer: '#900038',
-  onErrorContainer: '#ffd9df',
-
-  outline: '#938F99',
-  background: '#191c1e',
-  onBackground: '#e1e3e5',
-  surface: '#191c1e',
-  onSurface: '#e1e3e5',
-  surface1: '#b5c4ff0d',
-  surface2: '#b5c4ff14',
-  surface3: '#b5c4ff1c',
-  surface4: '#b5c4ff1f',
-  surface5: '#b5c4ff24',
-  surfaceVariant: '#49454F',
-  onSurfaceVariant: '#CAC4D0',
-
-  inverseSurface: '#e1e3e5',
-  inverseOnSurface: '#191c1e',
-
-  disabled: '#e3e3e31f',
-  onDisabled: '#e1e3e5',
-
-  focusRing: '#938F99',
+  primary: 'hsl(228 100% 85.5%)',
+  onPrimary: 'hsl(223 100% 26.1%)',
+  primaryContainer: 'hsl(221 100% 35.5%)',
+  onPrimaryContainer: 'hsl(0 0% 0%)',
+  secondary: 'hsl(203 100% 74.9%)',
+  onSecondary: 'hsl(165 100% 11%)',
+  secondaryContainer: 'hsl(167 100% 15.9%)',
+  onSecondaryContainer: 'hsl(162 89.9% 72.9%)',
+  tertiary: 'hsl(191 100% 58.6%)',
+  onTertiary: 'hsl(192 100% 12.9%)',
+  tertiaryContainer: 'hsl(191 100% 18.8%)',
+  onTertiaryContainer: 'hsl(195 100% 84.7%)',
+  success: 'hsl(163 63.5% 61.4%)',
+  onSuccess: 'hsl(165 100% 11%)',
+  successContainer: 'hsl(167 100% 15.9%)',
+  onSuccessContainer: 'hsl(162 89.9% 72.9%)',
+  error: 'hsl(348 100% 84.9%)',
+  onError: 'hsl(338 100% 20%)',
+  errorContainer: 'hsl(337 100% 28.2%)',
+  onErrorContainer: 'hsl(351 100% 92.5%)',
+  outline: 'hsl(264 4.7% 58%)',
+  background: 'hsl(204 9.1% 10.8%)',
+  onBackground: 'hsl(210 7.1% 89%)',
+  surface: 'hsl(204 9.1% 10.8%)',
+  onSurface: 'hsl(210 7.1% 89%)',
+  surfaceVariant: 'hsl(264 6.8% 29%)',
+  onSurfaceVariant: 'hsl(270 11.3% 79.2%)',
+  inverseSurface: 'hsl(210 7.1% 89%)',
+  inverseOnSurface: 'hsl(204 9.1% 10.8%)',
+  disabled: 'hsl(0 0% 0%)',
+  onDisabled: 'hsl(210 7.1% 89%)',
 };
 
+export type HSLThemeColor = `hsl(${number} ${number}% ${number}%)`;
+export type HSLAThemeColor = `hsla(${number} ${number}% ${number}% / ${number})`;
+type ThemeColor = HSLThemeColor | HSLAThemeColor;
 // use dashed syntax to align with CSS vars syntax, stitches doesn't do any sanitization
 export interface ThemeColors {
   // Primary color
-  primary: string;
+  primary: ThemeColor;
   // Onprimary is applied to content (icons, text, etc.) that sits on top of primary
-  onPrimary: string;
+  onPrimary: ThemeColor;
   // Primary container is applied to elements needing less emphasis than primary
-  primaryContainer: string;
+  primaryContainer: ThemeColor;
   // Onprimary container is applied to content (icons, text, etc.) that sits on top of primary container
-  onPrimaryContainer: string;
+  onPrimaryContainer: ThemeColor;
 
   // Less prominent active elements
-  secondary: string;
+  secondary: ThemeColor;
   // For content (icons, text, etc.) that sits on top of secondary container
-  onSecondary: string;
+  onSecondary: ThemeColor;
   // Secondary container is applied to elements needing less emphasis than secondary
-  secondaryContainer: string;
+  secondaryContainer: ThemeColor;
   // For content (icons, text, etc.) that sits on top of secondary container
-  onSecondaryContainer: string;
+  onSecondaryContainer: ThemeColor;
 
   // Tertiary roles are used for contrasting accents that can be used to balance primary and secondary colors or bring heightened attention to an element, such as an input field.
-  tertiary: string;
+  tertiary: ThemeColor;
   // For content (icons, text, etc.) that sits on top of tertiary container
-  onTertiary: string;
+  onTertiary: ThemeColor;
   // Secondary container is applied to elements needing less emphasis than tertiary
-  tertiaryContainer: string;
+  tertiaryContainer: ThemeColor;
   // For content (icons, text, etc.) that sits on top of tertiary container
-  onTertiaryContainer: string;
+  onTertiaryContainer: ThemeColor;
 
-  error: string;
-  onError: string;
-  errorContainer: string;
-  onErrorContainer: string;
+  error: ThemeColor;
+  onError: ThemeColor;
+  errorContainer: ThemeColor;
+  onErrorContainer: ThemeColor;
 
-  success: string;
-  onSuccess: string;
-  successContainer: string;
-  onSuccessContainer: string;
+  success: ThemeColor;
+  onSuccess: ThemeColor;
+  successContainer: ThemeColor;
+  onSuccessContainer: ThemeColor;
 
-  background: string;
-  onBackground: string;
-  surface: string;
-  surface1: string;
-  surface2: string;
-  surface3: string;
-  surface4: string;
-  surface5: string;
-  onSurface: string;
+  background: ThemeColor;
+  onBackground: ThemeColor;
+  surface: ThemeColor;
+  onSurface: ThemeColor;
 
-  inverseSurface: string;
-  inverseOnSurface: string;
+  inverseSurface: ThemeColor;
+  inverseOnSurface: ThemeColor;
 
   // Surface variant and onsurface variant can be used for differentiation against a surface
-  surfaceVariant: string;
-  onSurfaceVariant: string;
+  surfaceVariant: ThemeColor;
+  onSurfaceVariant: ThemeColor;
   // Outline is a utility color that creates boundaries and emphasis to improve usability. It's distinct from the divider component, which uses the surface variant role for lowemphasis content separation that is more decorative than essential.
-  outline: string;
+  outline: ThemeColor;
 
-  disabled: string;
-  onDisabled: string;
-
-  focusRing: string;
+  disabled: ThemeColor;
+  onDisabled: ThemeColor;
 }
