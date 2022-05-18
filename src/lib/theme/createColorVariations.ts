@@ -10,6 +10,7 @@ export type ExtendedTheme = ThemeColors & {
   surface3: HSLAThemeColor;
   surface4: HSLAThemeColor;
   surface5: HSLAThemeColor;
+  surface6: HSLAThemeColor;
 };
 
 export const createColorVariations = (theme: ThemeColors): ExtendedTheme => {
@@ -28,5 +29,6 @@ export const createColorVariations = (theme: ThemeColors): ExtendedTheme => {
     surface3: colorPrimary.alpha(0.11).hsl().string() as HSLAThemeColor,
     surface4: colorPrimary.alpha(0.12).hsl().string() as HSLAThemeColor,
     surface5: colorPrimary.alpha(0.14).hsl().string() as HSLAThemeColor,
+    surface6: colorPrimary.alpha(0.2).hsl().string() as HSLAThemeColor,
   };
 };

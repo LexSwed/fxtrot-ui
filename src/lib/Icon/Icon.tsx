@@ -4,7 +4,7 @@ import { CssStyles, styled } from '../stitches.config';
 
 interface Props extends Omit<React.ComponentProps<typeof IconBox>, 'as' | 'color' | 'children'> {
   as: React.ElementType;
-  color: CssStyles['color'];
+  color?: CssStyles['color'];
 }
 
 export const Icon: React.FC<Props> = React.forwardRef<SVGSVGElement, Props>(

@@ -74,15 +74,16 @@ const CheckboxWrapper = styled('div', {
 export const CheckMark = styled('div', {
   br: '$md',
   bc: 'transparent',
-  border: '1px solid $border',
+  border: '1px solid $outline',
   size: '$5',
   position: 'relative',
   transition: '0.24s cubic-bezier(0,1,.9,1)',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  background: 'radial-gradient(circle at center, $colors$shape-accent 50%, transparent 50.2%) center no-repeat',
+  backgroundImage: 'radial-gradient(circle at center, $colors$primary 50%, transparent 50.2%)',
   backgroundSize: '0 0',
+  backgroundPosition: 'center',
 
   [`& > ${IconBox}`]: {
     transition: 'opacity 0.14s ease-in-out',
@@ -110,55 +111,54 @@ const Input = styled('input', {
   transitionTimingFunction: 'ease-in-out',
 
   [`&:hover + ${CheckMark}`]: {
-    borderColor: '$border--hover',
-    color: '$colors$text--light',
+    borderColor: '$outline',
     [`& ${IconBox}`]: {
-      opacity: 1,
+      opacity: 0.6,
     },
   },
 
   [`&:focus + ${CheckMark}`]: {
-    borderColor: '$border-accent--active',
-    boxShadow: '0 0 0 3px $colors$border-accent--light',
+    borderColor: '$primary',
+    boxShadow: '0 0 0 3px $colors$surface6',
   },
 
   [`&:checked + ${CheckMark}`]: {
-    borderColor: '$shape-accent',
+    borderColor: '$primary',
     backgroundSize: '200% 200%',
-    color: '#fff',
     [`& ${IconBox}`]: {
+      color: '$onPrimary',
       opacity: 1,
     },
   },
   [`&:checked:hover + ${CheckMark}`]: {
-    borderColor: '$shape-accent--hover',
+    borderColor: '$primarySurface1',
     [`& ${IconBox}`]: {
       opacity: 1,
     },
   },
 
   [`&:checked:focus + ${CheckMark}`]: {
-    borderColor: '$border-accent--active',
+    borderColor: '$primarySurface2',
     [`& > ${IconBox}`]: {
       opacity: 1,
     },
   },
 
   [`&:disabled + ${CheckMark}, &:disabled:checked + ${CheckMark}`]: {
-    borderColor: '$border--disabled',
+    borderColor: '$disabled',
     [`& > ${IconBox}`]: {
       opacity: 0,
     },
   },
 
   [`&:disabled:not(:checked) + ${CheckMark}`]: {
-    background: '$shape--disabled',
+    background: '$disabled',
   },
 
   [`&:disabled:checked + ${CheckMark}`]: {
-    background:
-      'radial-gradient(circle at center, $colors$shape-accent--disabled 50%, transparent 50.2%) center/200% 500% no-repeat',
+    background: '$disabled',
     [`& > ${IconBox}`]: {
+      color: '$onDisabled',
       opacity: 0.8,
     },
   },
