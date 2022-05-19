@@ -88,10 +88,10 @@ export const buttonCss = css(flexCss, {
         'color': '$onSurface',
         'border': '1px solid $outline',
         '&:where(:hover, :focus)': {
-          bc: '$neutral',
+          bc: '$surface1',
         },
         '&:where(:active, [data-state="open"])': {
-          bc: '$surface1',
+          bc: '$surface2',
         },
       },
       outline: {
@@ -99,16 +99,16 @@ export const buttonCss = css(flexCss, {
         'color': '$primary',
         'border': '1px solid $primary',
         '&:where(:hover, :focus)': {
-          bc: '$surface2',
+          bc: '$primary2',
         },
         '&:where(:active, [data-state="open"])': {
-          bc: '$surface3',
+          bc: '$primary3',
           borderColor: '$primary',
         },
       },
       flat: {
         'bc': '$surface',
-        'color': '$primary',
+        'color': '$onSurface',
         'border': '1px solid transparent',
         '&:where(:hover, :focus)': {
           bc: '$surface1',

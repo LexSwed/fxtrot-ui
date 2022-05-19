@@ -71,7 +71,7 @@ export const darkColors: ThemeColors = {
 
 export type HSLThemeColor = `hsl(${number} ${number}% ${number}%)`;
 export type HSLAThemeColor = `hsla(${number} ${number}% ${number}% / ${number})`;
-type ThemeColor = HSLThemeColor | HSLAThemeColor;
+export type ThemeColor = HSLThemeColor | HSLAThemeColor;
 // use dashed syntax to align with CSS vars syntax, stitches doesn't do any sanitization
 export interface ThemeColors {
   // Primary color
