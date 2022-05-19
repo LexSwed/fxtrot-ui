@@ -32,8 +32,8 @@ export const lightColors: ThemeColors = {
   onSurfaceVariant: 'hsl(264 6.8% 29%)',
   inverseSurface: 'hsl(204 5.2% 19%)',
   inverseOnSurface: 'hsl(220 11.1% 94.7%)',
-  disabled: 'hsla(0 0% 12% / 0.12)',
-  onDisabled: 'hsl(204 9.1% 10.8%)',
+  disabled: 'hsla(0 0% 12% / 0.08)',
+  onDisabled: 'hsl(204 9.1% 30%)',
 };
 export const darkColors: ThemeColors = {
   primary: 'hsl(228 100% 85.5%)',

@@ -31,16 +31,13 @@ export const buttonCss = css(flexCss, {
   'flexShrink': 0,
   'bc': 'transparent',
   'color': '$onSurface',
-  '&[disabled],[aria-disabled="true"]': {
-    pointerEvents: 'none',
-  },
   'focusRing': '$outline',
 
-  '&:disabled': {
-    color: '$text--disabled',
-    borderColor: '$border-accent--disabled',
-    bc: '$shape--disabled',
-    cursor: 'default',
+  '&:is(:disabled,[aria-disabled=true]), &:where(:disabled,[aria-disabled=true]):is(:hover,:focus)': {
+    color: '$onDisabled',
+    border: '1px solid $disabled',
+    bc: '$disabled',
+    cursor: 'not-allowed',
   },
 
   'variants': {
@@ -78,56 +75,59 @@ export const buttonCss = css(flexCss, {
       primary: {
         'bc': '$primary',
         'color': '$onPrimary',
-        '&:hover': {
-          bc: '$primarySurface1',
-        },
-        '&:active, &[data-state="open"]': {
+        '&:where(:hover, :focus)': {
           bc: '$primarySurface2',
+        },
+        '&:where(:active, [data-state="open"])': {
+          bc: '$primary',
         },
       },
       neutral: {
         'bc': '$surface',
         'color': '$onSurface',
         'border': '1px solid $outline',
-        '&:hover, &:focus': {
-          bc: '$surface1',
+        '&:where(:hover, :focus)': {
+          bc: '$neutral',
         },
-        '&:active, &[data-state="open"]': {
-          bc: '$surface2',
+        '&:where(:active, [data-state="open"])': {
+          bc: '$surface1',
         },
       },
       outline: {
         'bc': '$surface',
         'color': '$primary',
         'border': '1px solid $primary',
-        '&:hover, &:focus': {
+        '&:where(:hover, :focus)': {
           bc: '$surface2',
         },
-        '&:active, &[data-state="open"]': {
+        '&:where(:active, [data-state="open"])': {
           bc: '$surface3',
           borderColor: '$primarySurface1',
         },
       },
       flat: {
         'bc': '$surface',
-        'color': '$onSurface',
-        '&:hover, &:focus': {
+        'color': '$primary',
+        'border': '1px solid transparent',
+        '&:where(:hover, :focus)': {
           bc: '$surface1',
-          color: '$primary',
+          borderColor: '$surface2',
         },
-        '&:active, &[data-state="open"]': {
+        '&:where(:active, [data-state="open"])': {
           bc: '$surface2',
-          color: '$primary',
+          borderColor: '$surface3',
         },
       },
       link: {
         'bc': 'transparent',
         'color': '$primary',
-        '&:not([aria-disabled="true"]):hover': {
+        '&:where(:hover)': {
           textDecoration: 'underline',
         },
-        '&[disabled],&[aria-disabled="true"]': {
+        '&:is(:disabled,[aria-disabled=true])': {
           bc: 'transparent',
+          border: 'none',
+          textDecoration: 'none',
         },
       },
       transparent: {},
