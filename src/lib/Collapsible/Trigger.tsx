@@ -48,19 +48,17 @@ const StyledTrigger = styled(Rdx.Trigger, flexCss, {
   'variants': {
     variant: {
       flat: {
-        'bc': 'transparent',
-        'color': '$onBackground',
         'focusRing': '$outline',
-        '&:hover': {
+        'bc': '$surface',
+        'color': '$onBackground',
+        'border': '1px solid transparent',
+        '&:where(:hover, :focus)': {
           bc: '$surface1',
-          borderColor: '$surface3',
+          borderColor: '$surface2',
         },
-        '&:focus': {
+        '&:where(:active,[data-state="open"])': {
           bc: '$surface2',
           borderColor: '$surface3',
-        },
-        '&:active, &[data-state="open"]': {
-          bc: '$surface2',
         },
         '&:disabled': {
           color: '$onDisabled',

@@ -22,7 +22,7 @@ const flexDefaults: FlexVariants = {
 
 export const buttonCss = css(flexCss, {
   'transition': '0.2s ease-in-out',
-  'transitionProperty': 'background-color, color, border-color',
+  'transitionProperty': 'background-color, color, filter, border-color',
   'fontFamily': '$default',
   'fontWeight': 600,
   'lineHeight': 1,
@@ -75,11 +75,12 @@ export const buttonCss = css(flexCss, {
       primary: {
         'bc': '$primary',
         'color': '$onPrimary',
+        'position': 'relative',
         '&:where(:hover, :focus)': {
-          bc: '$primarySurface2',
+          filter: 'saturate(1.1)',
         },
         '&:where(:active, [data-state="open"])': {
-          bc: '$primary',
+          filter: 'saturate(1.2)',
         },
       },
       neutral: {
@@ -102,7 +103,7 @@ export const buttonCss = css(flexCss, {
         },
         '&:where(:active, [data-state="open"])': {
           bc: '$surface3',
-          borderColor: '$primarySurface1',
+          borderColor: '$primary',
         },
       },
       flat: {
