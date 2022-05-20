@@ -44,8 +44,8 @@ export const fieldBox = css({
     variant: {
       boxed: {
         'br': '$base',
-        'borderColor': '$border',
-        'focusRing': '$border',
+        'borderColor': '$outline',
+        'focusRing': '$surface5',
         '&:hover': {
           borderColor: '$border--hover',
         },
@@ -55,8 +55,8 @@ export const fieldBox = css({
         },
       },
       underlined: {
-        '$$borderColor': '$colors$border',
-        'bc': '$shape',
+        '$$borderColor': '$colors$outline',
+        'bc': '$surface',
         'borderTopLeftRadius': '$base',
         'borderTopRightRadius': '$base',
         'backgroundImage': 'linear-gradient(to top, $$borderColor 2px, $colors$surface 2px)',
@@ -64,15 +64,15 @@ export const fieldBox = css({
         'backgroundPosition': '0 calc(100% + 2px)',
         '&:hover': {
           backgroundPosition: '0 calc(100% + 2px)',
-          $$borderColor: '$colors$shape-accent--hover',
+          $$borderColor: '$colors$surfacePrimary6',
         },
         '&:focus, &[aria-expanded="true"]': {
           backgroundPosition: '0 calc(100% + 1px)',
-          $$borderColor: '$colors$shape-accent--active',
+          $$borderColor: '$colors$primary',
         },
         '&:disabled': {
           backgroundImage: 'none',
-          bc: '$shape--disabled',
+          bc: '$disabled',
         },
       },
       transparent: {
@@ -91,17 +91,17 @@ export const fieldBox = css({
         },
       },
       flat: {
-        'bc': '$shape',
+        'bc': '$surface',
         'px': '$3',
         'br': '$base',
-        'focusRing': '$border',
+        'focusRing': '$surface5',
         '&:hover:not(:focus)': {
-          bc: '$shape--hover',
+          bc: '$surface1',
         },
         '&:focus': {
           bc: '$surface',
-          borderColor: '$border--active',
-          boxShadow: '0 0 0 1px $border--active inset',
+          borderColor: '$surface5',
+          boxShadow: '0 0 0 1px $outline inset',
         },
       },
     },

@@ -3,10 +3,12 @@ import { listStyles } from '../shared/FloatingList';
 
 export const PopoverBox = styled('div', listStyles, {
   'br': '$base',
-  'bc': '$surface--elevated',
+  'bc': '$surface',
+  'backgroundImage': 'linear-gradient($colors$surface1, $colors$surface1)',
   'boxShadow': '$popper',
   'animationTimingFunction': 'ease-in',
   'animationFillMode': 'forwards',
+  'outline': 'none',
   '&[data-state="open"]': {
     animationDuration: '0.15s',
   },

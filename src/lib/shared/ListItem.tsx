@@ -19,8 +19,8 @@ export const ListItem = styled('div', flexCss, {
   'userSelect': 'none',
   'flexShrink': 0,
   'transition': '0.1s ease-in-out',
-  'bc': '$surface',
-  'color': '$text',
+  'bc': 'transparent',
+  'color': '$onBackground',
   '&:focus:not(:active), &:hover': {
     bc: '$surfacePrimary1',
   },

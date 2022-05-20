@@ -33,6 +33,7 @@ export const StyledItem = styled('button', ListItem, {
   'textDecoration': 'none',
   'cursor': 'default',
   'bc': 'transparent',
+  'focusRing': '$surfacePrimary5',
   '&[aria-selected="true"]': {
     'bc': '$surfacePrimary2',
     'color': '$primary',
