@@ -31,7 +31,7 @@ export const buttonCss = css(flexCss, {
   'flexShrink': 0,
   'bc': 'transparent',
   'color': '$onSurface',
-  'focusRing': '$outline',
+  'focusRing': '$surface6',
 
   '&:is(:disabled,[aria-disabled=true]), &:where(:disabled,[aria-disabled=true]):is(:hover,:focus)': {
     color: '$onDisabled',
@@ -76,11 +76,12 @@ export const buttonCss = css(flexCss, {
         'bc': '$primary',
         'color': '$onPrimary',
         'position': 'relative',
+        'focusRing': '$surfacePrimary6',
         '&:where(:hover, :focus)': {
-          filter: 'saturate(1.1)',
+          filter: 'brightness(1.05)',
         },
         '&:where(:active, [data-state="open"])': {
-          filter: 'saturate(1.2)',
+          filter: 'brightness(1.08)',
         },
       },
       neutral: {
@@ -98,11 +99,12 @@ export const buttonCss = css(flexCss, {
         'bc': '$surface',
         'color': '$primary',
         'border': '1px solid $primary',
+        'focusRing': '$surfacePrimary6',
         '&:where(:hover, :focus)': {
-          bc: '$primary2',
+          bc: '$surfacePrimary1',
         },
         '&:where(:active, [data-state="open"])': {
-          bc: '$primary3',
+          bc: '$surfacePrimary2',
           borderColor: '$primary',
         },
       },
@@ -122,6 +124,7 @@ export const buttonCss = css(flexCss, {
       link: {
         'bc': 'transparent',
         'color': '$primary',
+        'focusRing': '$surfacePrimary6',
         '&:where(:hover)': {
           textDecoration: 'underline',
         },

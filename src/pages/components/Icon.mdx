@@ -41,7 +41,7 @@ export const IconCopy = ({ name, icon }) => {
   const [copied, copy] = useCopyToClipboard();
   return (
     <IconBox key={name} title={name} onClick={() => copy(name)}>
-      <Icon as={icon} color={copied ? '$text-accent' : '$text--light'} size="xl" />
+      <Icon as={icon} color={copied ? '$text-accent' : '$onSurfaceVariant'} size="xl" />
       {copied ? (
         <Text textStyle="caption" css={{ position: 'absolute', bottom: '$2' }} as="div">
           Copied!

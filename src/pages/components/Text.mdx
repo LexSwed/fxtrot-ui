@@ -13,8 +13,8 @@ title: Text
 ```tsx preview
 <Column gap="sm">
   <Text>Default text</Text>
+  <Text tone="accent">Default text</Text>
   <Text tone="light">Light text</Text>
-  <Text tone="subtle">Subtle text</Text>
   <Text tone="success">Success text</Text>
   <Text tone="danger">Error text</Text>
 </Column>
@@ -35,7 +35,7 @@ title: Text
 
 `Text` component doesn't allow to change the size diectly, and instead offers to use `textStyle` prop for consistent styling.
 
-```tsx preview
+```tsx
 () => {
   const TextWithComputedStyle = ({ textStyle }) => {
     const ref = React.useRef(null);
@@ -70,6 +70,12 @@ title: Text
     </Column>
   );
 };
+```
+
+Example:
+
+```tsx preview
+<Text textStyle="body2">This is a normal text rendered as paragraph</Text>
 ```
 
 You can still change the size through `css` prop, but this is discouraged:

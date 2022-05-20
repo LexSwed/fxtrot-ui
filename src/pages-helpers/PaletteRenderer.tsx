@@ -1,7 +1,7 @@
 import { Column, Text, Grid, styled, Row } from '@fxtrot/ui';
 import React from 'react';
+import { lightColors } from 'src/lib/theme/default';
 import { CopyButton } from './CopyButton';
-import { defaultColors } from 'src/lib/theme/default';
 
 type Props = {
   color: string;
@@ -19,7 +19,7 @@ export const PaletteRenderer = ({ color }: Props) => {
 
 function extractPallete(suffix: string) {
   const colors: Record<string, string> = {};
-  Object.entries(defaultColors).forEach(([name, color]) => {
+  Object.entries(lightColors).forEach(([name, color]) => {
     if (name.startsWith(suffix)) {
       colors[name] = color;
     }
@@ -70,7 +70,7 @@ const RowTextWrapper = styled(Row, {
 });
 
 const ColorBox = styled('div', {
-  '$$boxColor': '$surface',
+  '$$boxColor': '$background',
   'bc': '$$boxColor',
   'flexShrink': 0,
   'width': '50px',

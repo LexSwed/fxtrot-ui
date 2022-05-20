@@ -48,7 +48,7 @@ const StyledTrigger = styled(Rdx.Trigger, flexCss, {
   'variants': {
     variant: {
       flat: {
-        'focusRing': '$outline',
+        'focusRing': '$surface5',
         'bc': '$surface',
         'color': '$onBackground',
         'border': '1px solid transparent',

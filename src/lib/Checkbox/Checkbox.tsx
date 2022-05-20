@@ -77,7 +77,7 @@ export const CheckMark = styled('div', {
   border: '1px solid $outline',
   size: '$5',
   position: 'relative',
-  transition: '0.24s cubic-bezier(0,1,.9,1)',
+  transition: '0.24s ease-in-out',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -86,7 +86,7 @@ export const CheckMark = styled('div', {
   backgroundPosition: 'center',
 
   [`& > ${IconBox}`]: {
-    transition: 'opacity 0.14s ease-in-out',
+    transition: '0.14s ease-in-out',
     opacity: 0,
   },
 });
@@ -110,19 +110,18 @@ const Input = styled('input', {
   transitionDuration: '0.24s',
   transitionTimingFunction: 'ease-in-out',
 
-  [`&:hover + ${CheckMark}`]: {
-    borderColor: '$outline',
+  [`&:where(:hover,:focus) + ${CheckMark}`]: {
     [`& ${IconBox}`]: {
-      opacity: 0.6,
+      opacity: 0.5,
     },
   },
 
-  [`&:focus + ${CheckMark}`]: {
+  [`&:where(:focus):not(:disabled) + ${CheckMark}`]: {
     borderColor: '$primary',
-    boxShadow: '0 0 0 3px $colors$surface6',
+    boxShadow: `0 0 0 4px $colors$surfacePrimary6`,
   },
 
-  [`&:checked + ${CheckMark}`]: {
+  [`&:where(:checked) + ${CheckMark}`]: {
     borderColor: '$primary',
     backgroundSize: '200% 200%',
     [`& ${IconBox}`]: {
@@ -130,36 +129,36 @@ const Input = styled('input', {
       opacity: 1,
     },
   },
-  [`&:checked:hover + ${CheckMark}`]: {
+  [`&:where(:checked:hover) + ${CheckMark}`]: {
     borderColor: '$primary',
     [`& ${IconBox}`]: {
       opacity: 1,
     },
   },
 
-  [`&:checked:focus + ${CheckMark}`]: {
-    borderColor: '$primarySurface2',
+  [`&:where(:checked:focus) + ${CheckMark}`]: {
+    borderColor: '$surfacePrimary2',
     [`& > ${IconBox}`]: {
       opacity: 1,
     },
   },
 
-  [`&:disabled + ${CheckMark}, &:disabled:checked + ${CheckMark}`]: {
+  [`&:where(:disabled,:disabled:checked) + ${CheckMark}`]: {
     borderColor: '$disabled',
     [`& > ${IconBox}`]: {
       opacity: 0,
     },
   },
 
-  [`&:disabled:not(:checked) + ${CheckMark}`]: {
+  [`&:where(:disabled:not(:checked)) + ${CheckMark}`]: {
     background: '$disabled',
   },
 
-  [`&:disabled:checked + ${CheckMark}`]: {
+  [`&:where(:disabled:checked) + ${CheckMark}`]: {
     background: '$disabled',
     [`& > ${IconBox}`]: {
       color: '$onDisabled',
-      opacity: 0.8,
+      opacity: 0.9,
     },
   },
 });

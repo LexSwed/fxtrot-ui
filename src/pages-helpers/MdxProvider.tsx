@@ -31,7 +31,7 @@ const HeadingWithAnchor = styled(Heading, {
   '& > a': {
     'opacity': 0,
     'transition': '0.3s ease-in-out',
-    'color': '$text--light',
+    'color': '$onSurfaceVariant',
     'textDecoration': 'none',
     'fontSize': '0.8em',
     '@untilDesktop': {

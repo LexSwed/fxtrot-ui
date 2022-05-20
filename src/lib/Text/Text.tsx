@@ -38,16 +38,16 @@ export const Text = styled('span', {
         color: 'inherit',
       },
       accent: {
-        color: '$text-accent',
+        color: '$primary',
       },
       light: {
-        color: '$text--light',
+        color: '$onSurfaceVariant',
       },
       success: {
-        color: '$text-success',
+        color: '$success',
       },
       danger: {
-        color: '$text-danger',
+        color: '$error',
       },
     },
     align: {

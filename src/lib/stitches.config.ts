@@ -214,12 +214,10 @@ export const stitchesConfig = createStitches({
       }
     },
 
-    focusRing: (color: PropertyValue<'backgroundColor'> | string = '$outline') => ({
+    focusRing: (color: PropertyValue<'backgroundColor'> | string = '$surface6') => ({
+      'outline': 'none',
       '&:focus-visible': {
-        outlineStyle: 'outset',
-        outlineColor: `$colors${color}`,
-        outlineWidth: '4px',
-        outlineOffset: '-2px',
+        boxShadow: `0 0 0 4px $colors${color}`,
       },
     }),
   },
@@ -231,5 +229,4 @@ export type CssStyles = CSS<typeof stitchesConfig['config']>;
 export type StyleSheet = Record<string, CssStyles>;
 
 export const { css, styled, keyframes, createTheme } = stitchesConfig;
-export { lightColors, darkColors } from './theme/default';
 export type { ThemeColors } from './theme/default';

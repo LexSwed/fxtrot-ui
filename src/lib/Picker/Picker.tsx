@@ -41,7 +41,7 @@ export const Picker = ({ children, name, onChange, value, defaultValue = '', ...
 Picker.Item = Item;
 
 const EmptyItem = styled(Item, {
-  color: '$text--light',
+  color: '$onSurfaceVariant',
 });
 
 const Content = styled(RdxSelect.Content, {

@@ -2,36 +2,28 @@ import { styled } from '../stitches.config';
 
 export const Heading = styled('h1', {
   fontFamily: '$heading',
-  margin: 0,
   lineHeight: 1,
   color: '$text',
+  my: '1.2em',
 
   variants: {
     level: {
       1: {
         fontSize: '$5xl',
-        mt: '$6',
-        mb: '$4',
+        my: '1.1em',
       },
       2: {
         fontSize: '$4xl',
-        mt: '$5',
-        mb: '$3',
       },
       3: {
         fontSize: '$3xl',
-        mt: '$4',
-        mb: '$3',
+        textTransform: 'uppercase',
       },
       4: {
         fontSize: '$2xl',
-        mt: '$3',
-        mb: '$2',
       },
       5: {
         fontSize: '$xl',
-        mt: '$2',
-        mb: '$1',
       },
       6: {
         fontSize: '$xl',
@@ -42,7 +34,7 @@ export const Heading = styled('h1', {
         fontWeight: 600,
       },
       light: {
-        fontWeight: 400,
+        fontWeight: 300,
       },
     },
   },

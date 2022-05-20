@@ -16,27 +16,26 @@ export const ListItem = styled('div', flexCss, {
   'br': '$sm',
   'outline': 'none',
   'cursor': 'default',
-  'border': '1px solid transparent',
   'userSelect': 'none',
   'flexShrink': 0,
   'transition': '0.1s ease-in-out',
-  'bc': '$shape',
+  'bc': '$surface',
   'color': '$text',
   '&:focus:not(:active), &:hover': {
-    bc: '$shape--hover',
+    bc: '$surfacePrimary1',
   },
   '&:active': {
-    bc: '$shape--active',
+    bc: '$surfacePrimary2',
   },
   [`& ${Text}`]: {
     fontSize: 'inherit',
     lineHeight: 'inherit',
   },
   '&[data-focused="true"]': {
-    bc: '$shape--hover',
+    bc: '$surfacePrimary2',
   },
-  '&[data-disabled="true"]': {
-    color: '$text--disabled',
+  '&:where(:disabled,[data-disabled="true"])': {
+    color: '$onDisabled',
   },
 
   'variants': {

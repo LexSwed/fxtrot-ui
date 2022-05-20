@@ -34,7 +34,7 @@ export const fieldBox = css({
   'border': '1px solid transparent',
 
   '&::placeholder': {
-    color: '$text--light',
+    color: '$onSurfaceVariant',
   },
   '&:focus': {
     outline: 'none',
@@ -152,7 +152,7 @@ export const fieldBox = css({
   '&[readonly]': {
     cursor: 'default',
     bc: '$surface--hover',
-    color: '$text--light',
+    color: '$onSurfaceVariant',
   },
 
   'compoundVariants': [

@@ -9,8 +9,8 @@ export const Code = ({ children }: Props) => {
 
 const InlineCodeBlock = styled('code', {
   whiteSpace: 'break-spaces',
-  bc: '$shape-accent-light--active',
-  color: '$text-accent',
+  bc: '$surfacePrimary5',
+  color: '$primary',
   fontSize: '0.9em',
   lineHeight: 1,
   padding: '1px 3px 2px',

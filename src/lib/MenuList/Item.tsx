@@ -32,18 +32,18 @@ export const StyledItem = styled('button', ListItem, {
   'position': 'relative',
   'textDecoration': 'none',
   'cursor': 'default',
+  'bc': 'transparent',
   '&[aria-selected="true"]': {
-    'bc': '$shape--hover',
-    'color': '$text-accent',
+    'bc': '$surfacePrimary2',
+    'color': '$primary',
     '&::after': {
-      bc: '$shape-accent',
+      bc: '$primary',
     },
     '&:focus': {
-      'color': '$text-accent',
-      'bc': '$shape--active',
+      'color': '$primary',
+      'bc': '$surfacePrimary2',
       '&:after': {
         transform: 'none',
-        bc: '$shape-accent--active',
       },
     },
   },
