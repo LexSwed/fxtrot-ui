@@ -5,17 +5,34 @@ title: Collapsible
 # Collapsible
 
 ```tsx preview
-<Box width={240}>
-  <Collapsible>
-    <Collapsible.Trigger variant="flat">Section</Collapsible.Trigger>
-    <Collapsible.Content>
-      <Box p="$3">
-        <Flex gap="4" flow="row">
-          <ExampleBox />
-          <ExampleBox width="80%" />
-        </Flex>
-      </Box>
-    </Collapsible.Content>
-  </Collapsible>
-</Box>
+<Row gap="8">
+  <Box width={200}>
+    <Collapsible>
+      <Collapsible.Trigger variant="flat">Section</Collapsible.Trigger>
+      <Collapsible.Content>
+        <Box p="$3">
+          <Flex gap="4" flow="row">
+            <ExampleBox />
+            <ExampleBox width="80%" />
+          </Flex>
+        </Box>
+      </Collapsible.Content>
+    </Collapsible>
+  </Box>
+  <Box width={200}>
+    <Collapsible>
+      <Collapsible.Trigger disabled variant="flat">
+        Section
+      </Collapsible.Trigger>
+      <Collapsible.Content>
+        <Box p="$3">
+          <Flex gap="4" flow="row">
+            <ExampleBox />
+            <ExampleBox width="80%" />
+          </Flex>
+        </Box>
+      </Collapsible.Content>
+    </Collapsible>
+  </Box>
+</Row>
 ```

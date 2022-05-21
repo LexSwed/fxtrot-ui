@@ -1,7 +1,7 @@
 // import {} from '@stitches/core'
 import { scales } from '../theme/scales';
 
-import type { Theme } from '../stitches.config';
+import type { Theme, CssStyles } from '../stitches.config';
 
 export const gaps = createScale('gap');
 
@@ -42,3 +42,15 @@ export function createScale<T extends 'gap' | 'rowGap' | 'columnGap'>(property: 
 }
 
 export type Scale = 'xs' | 'sm' | 'base' | 'md' | 'lg' | 'xl' | '2xl' | 'none';
+
+export type TextStyle =
+  | 'body-sm'
+  | 'body-md'
+  | 'body-lg'
+  | 'label'
+  | 'title-sm'
+  | 'title-md'
+  | 'title-lg'
+  | 'headline'
+  | 'overline'
+  | 'mono';

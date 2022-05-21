@@ -35,42 +35,15 @@ title: Text
 
 `Text` component doesn't allow to change the size diectly, and instead offers to use `textStyle` prop for consistent styling.
 
-```tsx
-() => {
-  const TextWithComputedStyle = ({ textStyle }) => {
-    const ref = React.useRef(null);
-    const [style, setStyle] = React.useState({});
-    useIsomorphicLayoutEffect(() => {
-      if (!ref.current) return;
-      const computedStyle = window.getComputedStyle(ref.current);
-      setStyle({
-        fontSize: computedStyle.getPropertyValue('font-size'),
-        fontWeight: computedStyle.getPropertyValue('font-weight'),
-        fontFamily: computedStyle.getPropertyValue('font-family').split(',')[0],
-      });
-    }, []);
-    return (
-      <Column gap="2">
-        <Text textStyle={textStyle} ref={ref}>
-          {textStyle}
-        </Text>
-        <Text textStyle="mono" tone="light">{`${style.fontFamily}/${style.fontSize}/${style.fontWeight}`}</Text>
-      </Column>
-    );
-  };
-  return (
-    <Column gap="4" cross="stretch">
-      <TextWithComputedStyle textStyle="body1" />
-      <TextWithComputedStyle textStyle="body2" />
-      <TextWithComputedStyle textStyle="subtitle1" />
-      <TextWithComputedStyle textStyle="subtitle2" />
-      <TextWithComputedStyle textStyle="overline" />
-      <TextWithComputedStyle textStyle="caption" />
-      <TextWithComputedStyle textStyle="mono" />
-    </Column>
-  );
-};
-```
+import { textStyle } from '@fxtrot/ui/utils/variants';
+
+<Column gap="4" cross="stretch">
+  {Object.keys(textStyle).map((key) => (
+    <TextWithComputedStyle key={key} textStyle={key}>
+      {key}
+    </TextWithComputedStyle>
+  ))}
+</Column>
 
 Example:
 

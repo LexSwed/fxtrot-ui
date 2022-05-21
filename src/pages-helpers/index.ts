@@ -12,5 +12,7 @@ export const ExampleBox = styled(Box, {
   fontSize: '$sm',
 });
 
+export { TextWithComputedStyle } from './TextWithComputedStyle';
+
 export { CopyButton } from './CopyButton';
 export { MainLayout } from './MainLayout/MainLayout';

@@ -11,7 +11,7 @@ const Link = styled('a', Text, {
   'fontWeight': 600,
   'textDecoration': 'underline solid transparent 1px',
   'transition': 'text-decoration 0.1s ease-in',
-  '&:hover, &:hover': {
+  '&:where(:hover, :focus)': {
     textDecorationColor: 'currentColor',
   },
 
@@ -19,7 +19,7 @@ const Link = styled('a', Text, {
     external: {
       true: {},
       icon: {
-        [`& ${IconBox}`]: {
+        [`& > ${IconBox}`]: {
           '& path': {
             stroke: 'currentColor',
             strokeWidth: '0.01em',
@@ -39,7 +39,7 @@ export const TextLink = React.forwardRef<HTMLAnchorElement, Props>(({ external, 
 
   return (
     <Link {...additionalProps} external={external} {...props} ref={ref}>
-      <span>{children}</span>
+      {children}
       {external === 'icon' ? <Icon size="md" as={ExternalLinkIcon} /> : null}
     </Link>
   );

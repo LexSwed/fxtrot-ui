@@ -7,6 +7,7 @@ import Item from './Item';
 import { styled } from '../stitches.config';
 import { ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/outline';
 import { Icon } from '../Icon';
+import { PopoverBox } from '../Popover/PopoverBox';
 
 interface Props extends Omit<PickerTriggerProps, 'value' | 'onChange' | 'defaultValue' | 'children' | 'size'> {
   value?: string;
@@ -44,16 +45,10 @@ const EmptyItem = styled(Item, {
   color: '$onSurfaceVariant',
 });
 
-const Content = styled(RdxSelect.Content, {
-  bc: '$surface',
-  br: '$md',
-  outline: 'none',
-  boxShadow: '$popper',
-});
+const Content = styled(RdxSelect.Content, PopoverBox);
 
 const Viewport = styled(RdxSelect.Viewport, {
-  p: '$1',
-  focusRing: '$outline',
+  focusRingInset: '$surface5',
 });
 
 const SelectArrow = styled('div', {

@@ -25,12 +25,13 @@ export const IconWrapper = styled('div', iconStyles, {
 
 export const fieldBox = css({
   'width': '100%',
-  'color': '$text',
+  'color': '$onBackground',
   'px': '$2',
   'display': 'inline-flex',
-  'transition': '0.2s ease-in-out',
-  'transitionProperty': 'background, border-color, box-shadow',
-  'bc': '$surface',
+  'transition': '0.24s ease-in-out',
+  'transitionProperty': 'background-color, background-size, border-color, box-shadow',
+  'bc': '$background',
+  // for all inputs to have same inner padding
   'border': '1px solid transparent',
 
   '&::placeholder': {
@@ -45,70 +46,60 @@ export const fieldBox = css({
       boxed: {
         'br': '$base',
         'borderColor': '$outline',
-        'focusRing': '$surface5',
-        '&:hover': {
-          borderColor: '$border--hover',
+        'borderWidth': 1,
+        '&:where(:hover)': {
+          borderColor: '$onBackground',
         },
-        '&:focus': {
-          borderColor: '$border--active',
-          boxShadow: '0 0 0 1px $border--active inset',
+        '&:where(:focus)': {
+          borderColor: '$onBackground',
+          boxShadow: '0 0 0 1px $colors$outline inset',
         },
       },
       underlined: {
         '$$borderColor': '$colors$outline',
         'bc': '$surface',
+        'backgroundImage': 'linear-gradient(to top, $$borderColor 2px, transparent 2px)',
+        'backgroundSize': '100% calc(100% + 2px)',
         'borderTopLeftRadius': '$base',
         'borderTopRightRadius': '$base',
-        'backgroundImage': 'linear-gradient(to top, $$borderColor 2px, $colors$surface 2px)',
-        'backgroundSize': '100% calc(100% + 4px)',
-        'backgroundPosition': '0 calc(100% + 2px)',
-        '&:hover': {
-          backgroundPosition: '0 calc(100% + 2px)',
-          $$borderColor: '$colors$surfacePrimary6',
-        },
-        '&:focus, &[aria-expanded="true"]': {
-          backgroundPosition: '0 calc(100% + 1px)',
+        '&:where(:hover)': {
           $$borderColor: '$colors$primary',
+          bc: '$surface1',
+        },
+        '&:where(:focus, [aria-expanded="true"])': {
+          backgroundSize: '100% calc(100% + 1px)',
+          $$borderColor: '$colors$primary',
+          bc: '$surface2',
         },
         '&:disabled': {
           backgroundImage: 'none',
           bc: '$disabled',
         },
       },
-      transparent: {
-        'background': 'transparent',
-        '&:disabled': {
-          br: '$base',
-        },
-        '&:not(:disabled)': {
-          px: 0,
-        },
-        '&:hover': {
-          borderBottomColor: '$border--light',
-        },
-        '&:focus': {
-          borderBottomColor: '$border--active',
-        },
-      },
       flat: {
-        'bc': '$surface',
-        'px': '$3',
-        'br': '$base',
-        'focusRing': '$surface5',
-        '&:hover:not(:focus)': {
-          bc: '$surface1',
-        },
-        '&:focus': {
+        'bc': 'transparent',
+        'borderColor': 'surface',
+        '&:where(:hover)': {
           bc: '$surface',
           borderColor: '$surface5',
-          boxShadow: '0 0 0 1px $outline inset',
+        },
+        '&:where(:active, [data-state="open"])': {
+          bc: '$surface1',
+          borderColor: '$surface3',
+        },
+        'px': '$3',
+        'br': '$base',
+        '&:where(:focus)': {
+          bc: '$surface1',
+          borderColor: '$surface6',
         },
       },
     },
     fieldSize: {
       sm: {
+        px: '$1',
         height: '$6',
-        textSize: '$sm',
+        textSize: '$xs',
       },
       md: {
         height: '$base',
@@ -133,7 +124,7 @@ export const fieldBox = css({
       },
       invalid: {
         [`& ~ ${IconWrapper}`]: {
-          color: '$text-danger',
+          color: '$error',
         },
       },
     },
@@ -144,14 +135,16 @@ export const fieldBox = css({
   },
 
   '&:disabled': {
-    color: '$text--disabled',
-    borderColor: '$shape--disabled',
-    bc: '$shape--disabled',
+    color: '$onDisabled',
+    borderColor: '$disabled',
+    background: 'none',
+    br: '$base',
+    bc: '$disabled',
   },
 
   '&[readonly]': {
     cursor: 'default',
-    bc: '$surface--hover',
+    bc: '$surface',
     color: '$onSurfaceVariant',
   },
 
@@ -160,39 +153,21 @@ export const fieldBox = css({
       variant: 'boxed',
       validity: 'invalid',
       css: {
-        'borderColor': '$shape-danger',
-        '&:hover': {
-          borderColor: '$shape-danger--hover',
-        },
-        '&:focus': {
-          borderColor: '$shape-danger--active',
-        },
+        borderColor: '$danger',
       },
     },
     {
       variant: 'underlined',
       validity: 'invalid',
       css: {
-        'backgroundImage': 'linear-gradient(to top, $colors$shape-danger 2px, $colors$surface 2px)',
-        '&:hover': {
-          backgroundImage: 'linear-gradient(to top, $colors$shape-danger--hover 2px, $colors$surface 2px)',
-        },
-        '&:focus': {
-          backgroundImage: 'linear-gradient(to top, $colors$shape-danger--active 2px, $colors$surface 2px)',
-        },
+        $$borderColor: '$colors$danger',
       },
     },
     {
-      variant: 'transparent',
+      variant: 'flat',
       validity: 'invalid',
       css: {
-        'borderBottomColor': '$shape-danger',
-        '&:hover': {
-          borderBottomColor: '$shape-danger--hover',
-        },
-        '&:focus': {
-          borderBottomColor: '$shape-danger--active',
-        },
+        borderColor: '$danger',
       },
     },
   ],
@@ -214,7 +189,6 @@ const Input = styled('input', fieldBox, {
   // },
 
   '&[type="date"]': {
-    'backgroundImage': 'none',
     '&::-webkit-calendar-picker-indicator': {
       backgroundImage: 'none',
       m: 0,

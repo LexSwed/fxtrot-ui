@@ -19,7 +19,7 @@ const Block = styled('div', {
   transition: '0.2s ease-in-out',
   fontFamily: '$default',
   border: '1px solid transparent',
-  br: '$sm',
+  br: '$base',
   cursor: 'default',
   whiteSpace: 'nowrap',
   display: 'flex',
@@ -33,19 +33,19 @@ const Block = styled('div', {
   variants: {
     size: {
       sm: {
-        height: '$4',
-        fontSize: '9px',
+        height: '$6',
+        fontSize: '$xs',
         fontWeight: 400,
         px: '$1',
       },
       md: {
-        height: '$6',
+        height: '$8',
         lineHeight: '$6',
         textSize: '$xs',
         px: '$2',
       },
       lg: {
-        height: '$8',
+        height: '$12',
         lineHeight: '$8',
         textSize: '$base',
         fontWeight: 500,
@@ -54,19 +54,19 @@ const Block = styled('div', {
     },
     variant: {
       primary: {
-        bc: '$shape-accent',
-        color: '$text-onAccent',
-        borderColor: '$border-accent',
+        bc: '$secondaryContainer',
+        color: '$onSecondaryContainer',
+        borderColor: '$secondaryContainer',
       },
-      secondary: {
+      neutral: {
         bc: '$surface',
-        color: '$text',
-        borderColor: '$border',
+        color: '$onSurface',
+        borderColor: '$outline',
       },
       outline: {
-        color: '$text-accent',
-        bc: '$shape-accent-light',
-        borderColor: '$border-accent',
+        color: '$primary',
+        bc: '$surfacePrimary3',
+        borderColor: '$primary',
       },
     },
   },

@@ -15,15 +15,56 @@ title: TextField
 ## Types
 
 ```tsx preview
-<Box width={300}>
-  <Column gap="md">
-    <TextField label="Email address" secondaryLabel="(required)" type="email" />
-    <TextField label="Password" secondaryLabel="(required)" type="password" />
-    <TextField label="Your birth day" type="date" />
-    <TextField label="Your age" type="number" min="18" />
-    <TextField label="City" type="search" placeholder="Tartu" />
-  </Column>
-</Box>
+() => {
+  const theme = {
+    colors: {
+      primary: 'hsl(228 100% 85.5%)',
+      onPrimary: 'hsl(223 100% 26.1%)',
+      primaryContainer: 'hsl(221 100% 35.5%)',
+      onPrimaryContainer: 'hsl(0 0% 0%)',
+      secondary: 'hsl(203 100% 74.9%)',
+      onSecondary: 'hsl(165 100% 11%)',
+      secondaryContainer: 'hsl(167 100% 15.9%)',
+      onSecondaryContainer: 'hsl(162 89.9% 72.9%)',
+      tertiary: 'hsl(191 100% 58.6%)',
+      onTertiary: 'hsl(192 100% 12.9%)',
+      tertiaryContainer: 'hsl(191 100% 18.8%)',
+      onTertiaryContainer: 'hsl(195 100% 84.7%)',
+      success: 'hsl(163 63.5% 61.4%)',
+      onSuccess: 'hsl(165 100% 11%)',
+      successContainer: 'hsl(167 100% 15.9%)',
+      onSuccessContainer: 'hsl(162 89.9% 72.9%)',
+      error: 'hsl(348 100% 84.9%)',
+      onError: 'hsl(338 100% 20%)',
+      errorContainer: 'hsl(337 100% 28.2%)',
+      onErrorContainer: 'hsl(351 100% 92.5%)',
+      outline: 'hsl(264deg 5% 58%)',
+      background: 'hsl(204 9.1% 10.8%)',
+      onBackground: 'hsl(210 7.1% 89%)',
+      surface: 'hsl(204 10% 25%)',
+      onSurface: 'hsl(210 7.1% 89%)',
+      surfaceVariant: 'hsl(264 7% 56%)',
+      onSurfaceVariant: 'hsl(270 11.3% 79.2%)',
+      inverseSurface: 'hsl(210 7.1% 89%)',
+      inverseOnSurface: 'hsl(204 9.1% 10.8%)',
+      disabled: 'hsl(0 0% 89% / 8%)',
+      onDisabled: 'hsl(210 5% 75%)',
+    },
+  };
+  return (
+    <ThemeProvider theme={theme} css={{ colorScheme: 'dark' }}>
+      <Box width={300} bc="$background" p="$8">
+        <Column gap="md">
+          <TextField label="Email address" secondaryLabel="(required)" type="email" />
+          <TextField label="Password" secondaryLabel="(required)" type="password" />
+          <TextField label="Your birth day" type="date" variant="underlined" />
+          <TextField label="Your age" type="number" min="18" variant="flat" />
+          <TextField label="City" type="search" placeholder="Tartu" />
+        </Column>
+      </Box>
+    </ThemeProvider>
+  );
+};
 ```
 
 ## Variants
@@ -33,7 +74,6 @@ title: TextField
   <Column gap="md">
     <TextField label="Boxed" hint="Default variant" placeholder="Default boxed variant" />
     <TextField variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Pretty underlined" />
-    <TextField variant="transparent" hint="Not using labels" placeholder="Transparent variant" />
     <TextField variant="flat" label="Flat variant" hint="Press Esc to cancel" placeholder="Flat variant" />
   </Column>
   <Column gap="md">
@@ -52,7 +92,6 @@ title: TextField
       placeholder="Pretty underlined"
       disabled
     />
-    <TextField variant="transparent" hint="Not using labels" placeholder="Transparent variant" disabled />
     <TextField disabled variant="flat" label="Flat variant" hint="Press Esc to cancel" placeholder="Flat variant" />
   </Column>
 </Row>
@@ -65,17 +104,17 @@ title: TextField
   <Column gap="md">
     <TextField size="sm" label="Boxed" hint="Default variant" placeholder="Small size" />
     <TextField size="sm" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Small size" />
-    <TextField size="sm" variant="transparent" hint="Not using labels" placeholder="Small size" />
+    <TextField size="sm" variant="flat" placeholder="Small size" />
   </Column>
   <Column gap="md">
     <TextField size="md" label="Boxed" hint="Default variant" placeholder="Default size" />
     <TextField size="md" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Default size" />
-    <TextField size="md" variant="transparent" hint="Not using labels" placeholder="Default size" />
+    <TextField size="md" variant="flat" placeholder="Default size" />
   </Column>
   <Column gap="md">
     <TextField size="lg" label="Boxed" hint="Default variant" placeholder="Large size" />
     <TextField size="lg" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Large size" />
-    <TextField size="lg" variant="transparent" hint="Not using labels" placeholder="Large size" />
+    <TextField size="lg" variant="flat" placeholder="Large size" />
   </Column>
   <Column gap="md">
     <TextField size="xl" label="Boxed" hint="Default variant" placeholder="Editable heading size" />
@@ -86,7 +125,7 @@ title: TextField
       label="Underlined"
       placeholder="Editable heading size"
     />
-    <TextField size="xl" variant="transparent" hint="Not using labels" placeholder="Editable heading size" />
+    <TextField size="xl" variant="flat" placeholder="Editable heading size" />
   </Column>
 </Row>
 ```
@@ -125,7 +164,7 @@ title: TextField
         placeholder="john.doe@mail.com"
         value={value}
         onChange={setValue}
-        variant="transparent"
+        variant="flat"
       />
     </Row>
   );

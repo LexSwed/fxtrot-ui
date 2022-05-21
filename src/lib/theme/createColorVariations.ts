@@ -16,10 +16,10 @@ export type ExtendedTheme = ThemeColors & {
 };
 
 export const createColorVariations = (theme: ThemeColors): ExtendedTheme => {
-  const { primary, inverseSurface } = theme;
+  const { primary, onSurfaceVariant } = theme;
 
   const primaryHsl = extractHsl(primary);
-  const surfaceHsl = extractHsl(inverseSurface);
+  const surfaceHsl = extractHsl(onSurfaceVariant);
 
   return {
     ...theme,
@@ -38,7 +38,7 @@ export const createColorVariations = (theme: ThemeColors): ExtendedTheme => {
   };
 };
 
-const hslExtractRegex = /hsla?\(([\d.]+ [\d.]+% [\d.]+%( \/? [\d.]+)?)\)/;
+const hslExtractRegex = /hsla?\(([\d.]+(deg)? [\d.]+% [\d.]+%( \/? [\d.]+)?)\)/;
 function extractHsl(color: ThemeColor): `${number} ${number}% ${number}%` {
   const match = hslExtractRegex.exec(color);
   return match ? (match[1] as `${number} ${number}% ${number}%`) : ('0 0% 0%' as `${number} ${number}% ${number}%`);

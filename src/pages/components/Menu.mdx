@@ -20,8 +20,8 @@ title: Menu
       Cut
     </Menu.Item>
     <Menu.Separator />
-    <Menu.Item onSelect={() => window.alert('delete')} css={{ color: '$text-danger' }}>
-      <Icon as={TrashIcon} color="$text-danger" />
+    <Menu.Item onSelect={() => window.alert('delete')} css={{ color: '$error' }}>
+      <Icon as={TrashIcon} color="$error" />
       Delete
     </Menu.Item>
   </Menu.List>
@@ -54,12 +54,12 @@ You can modify `offset` from the `side` and along the `align`ment.
       onError: 'hsl(338 100% 20%)',
       errorContainer: 'hsl(337 100% 28.2%)',
       onErrorContainer: 'hsl(351 100% 92.5%)',
-      outline: 'hsl(264 4.7% 58%)',
+      outline: 'hsl(264deg 5% 58%)',
       background: 'hsl(204 9.1% 10.8%)',
       onBackground: 'hsl(210 7.1% 89%)',
-      surface: 'hsl(204 9.1% 10.8%)',
+      surface: 'hsl(204 10% 25%)',
       onSurface: 'hsl(210 7.1% 89%)',
-      surfaceVariant: 'hsl(264 6.8% 29%)',
+      surfaceVariant: 'hsl(264 7% 56%)',
       onSurfaceVariant: 'hsl(270 11.3% 79.2%)',
       inverseSurface: 'hsl(210 7.1% 89%)',
       inverseOnSurface: 'hsl(204 9.1% 10.8%)',
@@ -69,7 +69,7 @@ You can modify `offset` from the `side` and along the `align`ment.
   };
   return (
     <ThemeProvider theme={theme}>
-      <Box p="$4" bc="$surface">
+      <Box p="$4" bc="$background">
         <Menu>
           <Button variant="outline">
             Open menu
@@ -111,7 +111,7 @@ You can modify `offset` from the `side` and along the `align`ment.
       >
         <Dialog>
           <Menu.Item
-            css={{ color: '$text-danger' }}
+            css={{ color: '$error' }}
             onSelect={(event) => {
               event.preventDefault();
               modalOpenRef.current = true;

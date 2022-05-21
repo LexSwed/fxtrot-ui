@@ -15,10 +15,10 @@ const Main = styled(Text, {
   variants: {
     disabled: {
       true: {
-        color: '$text--disabled',
+        color: '$onDisabled',
       },
       false: {
-        color: '$text',
+        color: '$onBackground',
       },
     },
   },
@@ -46,7 +46,7 @@ export const Label = React.forwardRef(({ label, secondary, disabled, ...props },
         {label}
       </Main>
       {secondary && (
-        <Secondary textStyle="caption" tone="light">
+        <Secondary textStyle="label" tone="light">
           {secondary}
         </Secondary>
       )}

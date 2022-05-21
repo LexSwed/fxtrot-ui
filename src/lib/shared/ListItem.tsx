@@ -14,27 +14,27 @@ export const ListItem = styled('div', flexCss, {
   'fontSize': '$sm',
   'lineHeight': 1,
   'br': '$sm',
-  'outline': 'none',
   'cursor': 'default',
   'userSelect': 'none',
   'flexShrink': 0,
   'transition': '0.1s ease-in-out',
   'bc': 'transparent',
   'color': '$onBackground',
-  '&:focus:not(:active), &:hover': {
-    bc: '$surfacePrimary1',
+  'focusRingInset': '$surface2',
+  '&:hover': {
+    bc: '$surface1',
   },
-  '&:active': {
-    bc: '$surfacePrimary2',
+  '&:focus': {
+    bc: '$surface2',
+  },
+  '&:active, [data-focused="true"]': {
+    bc: '$surface2',
   },
   [`& ${Text}`]: {
     fontSize: 'inherit',
     lineHeight: 'inherit',
   },
-  '&[data-focused="true"]': {
-    bc: '$surfacePrimary2',
-  },
-  '&:where(:disabled,[data-disabled="true"])': {
+  '&:disabled,[data-disabled="true"]': {
     color: '$onDisabled',
   },
 

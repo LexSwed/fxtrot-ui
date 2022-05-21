@@ -5,32 +5,39 @@ export const Text = styled('span', {
   m: 0,
   variants: {
     textStyle: {
-      body1: {
-        textStyle: 'body1',
+      'body-sm': {
+        textSize: '$xs',
       },
-      body2: {
-        textStyle: 'body2',
+      'body-md': {
+        textSize: '$sm',
       },
-      subtitle1: {
-        textStyle: 'subtitle1',
+      'body-lg': {
+        textSize: '$md',
       },
-      subtitle2: {
-        textStyle: 'subtitle2',
+      'label': {
+        textSize: '$sm',
       },
-      overline: {
-        textStyle: 'overline',
+      'title-sm': {
+        textSize: '$xl',
       },
-      caption: {
-        textStyle: 'caption',
+      'title-md': {
+        textSize: '$2xl',
       },
-      label: {
-        textStyle: 'label',
+      'title-lg': {
+        textSize: '$3xl',
       },
-      hint: {
-        textStyle: 'hint',
+      'headline': {
+        fontFamily: '$heading',
+        textSize: '$5xl',
       },
-      mono: {
-        textStyle: 'mono',
+      'overline': {
+        fontFamily: '$default',
+        textSize: '$xs',
+        textTransform: 'uppercase',
+      },
+      'mono': {
+        fontFamily: '$mono',
+        textSize: '$sm',
       },
     },
     tone: {

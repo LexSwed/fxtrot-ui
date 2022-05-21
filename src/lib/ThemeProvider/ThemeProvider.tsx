@@ -54,7 +54,7 @@ export const useFxtrotRootRef = () => useContext(rootRefContext);
 
 const ThemeWrapper = styled('span', {
   display: 'contents',
-  color: '$text',
+  color: '$onBackground',
   fontFamily: '$default',
   fontSize: '$md',
   boxSizing: 'border-box',

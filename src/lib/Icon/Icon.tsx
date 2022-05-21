@@ -17,40 +17,41 @@ export const Icon: React.FC<Props> = React.forwardRef<SVGSVGElement, Props>(
 export const IconBox = styled('svg', {
   display: 'inline-block',
   flexShrink: 0,
+  flexGrow: 0,
   variants: {
     size: {
       'xs': {
-        blockSize: '$2',
+        size: '$2',
       },
       'sm': {
-        blockSize: '$3',
+        size: '$3',
       },
       'md': {
-        blockSize: '$4',
+        size: '$4',
       },
       'base': {
-        blockSize: '$4',
+        size: '$4',
       },
       'lg': {
-        blockSize: '$5',
+        size: '$5',
       },
       'xl': {
-        blockSize: '$6',
+        size: '$6',
       },
       '2xl': {
-        blockSize: '$8',
+        size: '$8',
       },
       '3xl': {
-        blockSize: '$12',
+        size: '$12',
       },
       '4xl': {
-        blockSize: '$16',
+        size: '$16',
       },
       '5xl': {
-        blockSize: '$20',
+        size: '$20',
       },
       '6xl': {
-        blockSize: '$24',
+        size: '$24',
       },
     },
   },

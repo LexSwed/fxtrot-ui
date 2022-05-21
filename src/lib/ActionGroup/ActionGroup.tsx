@@ -32,39 +32,29 @@ export const ActionGroup: React.FC<Props> = ({ children, type = 'single', gap = 
     </ActionGroupRoot>
   );
 };
-const ActionGroupRoot = styled(
-  ToggleGroup.Root,
-  flexCss,
-  {
-    [`& > ${ButtonRoot}`]: {
-      focusRing: '$outline',
-      outlineOffset: '-3px',
-    },
-  },
-  {
-    compoundVariants: [
-      {
-        gap: 'none',
-        css: {
-          [`& > ${ButtonRoot}`]: {
-            '&[data-state]:focus': {
-              borderColor: 'transparent',
-              zIndex: 1,
-            },
+const ActionGroupRoot = styled(ToggleGroup.Root, flexCss, {
+  compoundVariants: [
+    {
+      gap: 'none',
+      css: {
+        [`& > ${ButtonRoot}`]: {
+          'focusRingInset': '$surface5',
+          '&[data-state]:focus': {
+            zIndex: 1,
           },
-          [`& > ${ButtonRoot}[data-state="on"]`]: {
-            outlineColor: '$surface5',
-          },
-          [`& > ${ButtonRoot}:not(:first-of-type)`]: {
-            borderTopLeftRadius: 0,
-            borderBottomLeftRadius: 0,
-          },
-          [`& > ${ButtonRoot}:not(:last-of-type)`]: {
-            borderTopRightRadius: 0,
-            borderBottomRightRadius: 0,
+          '&[data-state=on]': {
+            focusRingInset: '$surfacePrimary6',
           },
         },
+        [`& > ${ButtonRoot}:not(:first-of-type)`]: {
+          borderTopLeftRadius: 0,
+          borderBottomLeftRadius: 0,
+        },
+        [`& > ${ButtonRoot}:not(:last-of-type)`]: {
+          borderTopRightRadius: 0,
+          borderBottomRightRadius: 0,
+        },
       },
-    ],
-  }
-);
+    },
+  ],
+});

@@ -75,7 +75,7 @@ export const stitchesConfig = createStitches({
       '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
       '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
       'inner': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
-      'popper': `0 0 1px $colors$outline, $shadows$lg`,
+      'popper': `0 0 2px $colors$outline, $xs, $shadows$xl`,
       'base': '$xs',
       'base--hover': '$sm, $sm',
       'none': 'none',
@@ -158,66 +158,17 @@ export const stitchesConfig = createStitches({
         inlineSize: value,
       };
     },
-    textStyle: (
-      value: 'body1' | 'body2' | 'subtitle1' | 'subtitle2' | 'label' | 'hint' | 'overline' | 'caption' | 'mono'
-    ) => {
-      switch (value) {
-        case 'body1':
-          return {
-            fontFamily: '$default',
-            textSize: '$base',
-          };
-        case 'body2':
-          return {
-            fontFamily: '$default',
-            textSize: '$sm',
-          };
-        case 'subtitle1':
-          return {
-            fontFamily: '$heading',
-            textSize: '$lg',
-          };
-        case 'subtitle2':
-          return {
-            fontFamily: '$heading',
-            textSize: '$md',
-            fontWeight: 500,
-          };
-        case 'overline':
-          return {
-            fontFamily: '$default',
-            textSize: '$xs',
-            textTransform: 'uppercase',
-          };
-        case 'label':
-          return {
-            fontFamily: '$default',
-            textSize: '$sm',
-            fontWeight: 500,
-          };
-        case 'hint':
-          return {
-            fontFamily: '$default',
-            textSize: '$xs',
-          };
-        case 'caption':
-          return {
-            fontFamily: '$default',
-            textSize: '$sm',
-          };
-        case 'mono':
-          return {
-            fontFamily: '$mono',
-            textSize: '$sm',
-            fontWeight: 300,
-          };
-      }
-    },
 
     focusRing: (color: PropertyValue<'backgroundColor'> | string = '$surface6') => ({
       'outline': 'none',
       '&:focus-visible': {
-        boxShadow: `0 0 0 4px $colors${color}`,
+        boxShadow: `0 0 0 3px $colors${color}`,
+      },
+    }),
+    focusRingInset: (color: PropertyValue<'backgroundColor'> | string = '$surface6') => ({
+      'outline': 'none',
+      '&:focus-visible': {
+        boxShadow: `0 0 0 2px $colors${color} inset`,
       },
     }),
   },
