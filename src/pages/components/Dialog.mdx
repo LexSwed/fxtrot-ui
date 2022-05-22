@@ -20,6 +20,7 @@ title: Dialog
         onSubmit={(e) => {
           e.preventDefault();
           window.alert(e.currentTarget['workspace-name'].value);
+          close();
         }}
       >
         <Column gap="2">
@@ -76,17 +77,6 @@ It also shows how you can manipulate the dialog open state outside its modal, vi
 () => {
   const [defaultOpen, setDefaultOpen] = React.useState(false);
   const ref = useDialogRef();
-  React.useEffect(() => {
-    if (defaultOpen) {
-      const id = setTimeout(() => {
-        ref.current.close();
-      }, 1000);
-      return () => {
-        setDefaultOpen(false);
-        clearTimeout(id);
-      };
-    }
-  }, [defaultOpen]);
   return (
     <Row cross="center" main="start" gap="sm">
       <Switch label="Default open" value={defaultOpen} onChange={setDefaultOpen} />
@@ -102,6 +92,7 @@ It also shows how you can manipulate the dialog open state outside its modal, vi
                 onSubmit={(e) => {
                   e.preventDefault();
                   window.alert(e.currentTarget['workspace-name'].value);
+                  ref.current.close();
                 }}
               >
                 <TextField placeholder="Carefive" name="workspace-name" label="Workspace name" />

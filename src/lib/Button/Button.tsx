@@ -85,7 +85,7 @@ export const buttonCss = css(flexCss, {
         },
       },
       neutral: {
-        'bc': '$background',
+        'bc': 'transparent',
         'color': '$onBackground',
         'border': '1px solid $outline',
         '&:where(:hover, :focus)': {

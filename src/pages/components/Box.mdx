@@ -11,10 +11,18 @@ so all the same rules as for `css` prop apply.
 
 ```tsx preview
 <Box display="grid" gridTemplate="100px / 100px 100px" gap="$4">
-  <Box bc="$shape--active" textAlign="center">
+  <Box bc="$primaryContainer" color="$onPrimaryContainer" textAlign="center">
     Styled
   </Box>
-  <Box bc="$shape-accent" br="$pill" textAlign="center" color="$text-onAccent" as={Flex} main="center" cross="center">
+  <Box
+    bc="$tertiaryContainer"
+    color="onTertiaryContainer"
+    br="$pill"
+    textAlign="center"
+    as={Flex}
+    main="center"
+    cross="center"
+  >
     boxes
   </Box>
 </Box>

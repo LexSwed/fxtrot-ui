@@ -8,7 +8,7 @@ title: MenuList
 () => {
   const [selected, setSelected] = React.useState('Appearance');
   return (
-    <Box width="$56">
+    <Box width={240}>
       <MenuList role="navigation">
         <Section title="Settings">
           {[
@@ -76,7 +76,7 @@ title: MenuList
   };
   return (
     <ThemeProvider theme={theme}>
-      <Box width="$56" p="$4" bc="$background">
+      <Box width={240} p="$4" bc="$background">
         <MenuList role="navigation">
           <Section title="Settings">
             {[
