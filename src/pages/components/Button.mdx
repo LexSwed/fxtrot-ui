@@ -2,6 +2,22 @@
 title: Button
 ---
 
+import { DocumentAddIcon } from '@heroicons/react/outline';
+
+```tsx preview
+<Button flow="column" cross="start" gap="0">
+  <Row cross="center" gap="1">
+    <Icon as={DocumentAddIcon} size="lg" />
+    <Text textStyle="label-lg" weight={500}>
+      Create
+    </Text>
+  </Row>
+  <Row>
+    <Text textStyle="label-sm">Create a new document with the default template</Text>
+  </Row>
+</Button>
+```
+
 ## Variant
 
 Do not use `variant="link"` with actual links, use [`LinkButton`](/components/LinkButton) component instead.
@@ -16,9 +32,9 @@ Do not use `variant="link"` with actual links, use [`LinkButton`](/components/Li
   <Button variant="outline" disabled>
     Outline (disabled)
   </Button>
-  <Button variant="neutral">Secondary (default)</Button>
-  <Button variant="neutral" disabled>
-    Secondary (disabled)
+  <Button variant="tonal">Tonal</Button>
+  <Button variant="tonal" disabled>
+    Tonal (disabled)
   </Button>
   <Button variant="flat">Flat</Button>
   <Button variant="flat" disabled>
@@ -43,8 +59,8 @@ Do not use `variant="link"` with actual links, use [`LinkButton`](/components/Li
     <Button size="xs" variant="primary">
       Primary
     </Button>
-    <Button size="xs" variant="neutral">
-      Secondary
+    <Button size="xs" variant="tonal">
+      Tonal
     </Button>
     <Button size="xs" variant="flat">
       Flat
@@ -61,8 +77,8 @@ Do not use `variant="link"` with actual links, use [`LinkButton`](/components/Li
     <Button size="sm" variant="primary">
       Primary
     </Button>
-    <Button size="sm" variant="neutral">
-      Secondary
+    <Button size="sm" variant="tonal">
+      Tonal
     </Button>
     <Button size="sm" variant="flat">
       Flat
@@ -79,8 +95,8 @@ Do not use `variant="link"` with actual links, use [`LinkButton`](/components/Li
     <Button size="md" variant="primary">
       Primary
     </Button>
-    <Button size="md" variant="neutral">
-      Secondary
+    <Button size="md" variant="tonal">
+      Tonal
     </Button>
     <Button size="md" variant="flat">
       Flat
@@ -97,8 +113,8 @@ Do not use `variant="link"` with actual links, use [`LinkButton`](/components/Li
     <Button size="lg" variant="primary">
       Primary
     </Button>
-    <Button size="lg" variant="neutral">
-      Secondary
+    <Button size="lg" variant="tonal">
+      Tonal
     </Button>
     <Button size="lg" variant="flat">
       Flat
@@ -152,7 +168,7 @@ Use `ThemeProvider` component to change the primary color of the button.
     },
   };
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme} css={{ colorScheme: 'dark' }}>
       <Grid gap="lg" cross="center" main="center" columns="repeat(2, auto)" css={{ p: '$4', bc: '$background' }}>
         <Button variant="primary">Primary</Button>
         <Button disabled variant="primary">
@@ -162,9 +178,9 @@ Use `ThemeProvider` component to change the primary color of the button.
         <Button variant="outline" disabled>
           Outline (disabled)
         </Button>
-        <Button variant="neutral">Secondary (default)</Button>
-        <Button variant="neutral" disabled>
-          Secondary (disabled)
+        <Button variant="tonal">Tonal</Button>
+        <Button variant="tonal" disabled>
+          Tonal (disabled)
         </Button>
         <Button variant="flat">Flat</Button>
         <Button variant="flat" disabled>

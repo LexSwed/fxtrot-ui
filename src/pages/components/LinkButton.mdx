@@ -20,10 +20,10 @@ Link element that looks like a button.
   <LinkButton href="#" variant="outline" disabled>
     Outline (disabled)
   </LinkButton>
-  <LinkButton href="#" variant="neutral">
+  <LinkButton href="#" variant="tonal">
     Secondary (default)
   </LinkButton>
-  <LinkButton href="#" variant="neutral" disabled>
+  <LinkButton href="#" variant="tonal" disabled>
     Secondary (disabled)
   </LinkButton>
   <LinkButton href="#" variant="flat">
@@ -52,7 +52,7 @@ Link element that looks like a button.
     <LinkButton href="#" size="xs" variant="outline">
       Outline
     </LinkButton>
-    <LinkButton href="#" size="xs" variant="neutral">
+    <LinkButton href="#" size="xs" variant="tonal">
       Secondary
     </LinkButton>
     <LinkButton href="#" size="xs" variant="flat">
@@ -69,7 +69,7 @@ Link element that looks like a button.
     <LinkButton href="#" size="sm" variant="outline">
       Outline
     </LinkButton>
-    <LinkButton href="#" size="sm" variant="neutral">
+    <LinkButton href="#" size="sm" variant="tonal">
       Secondary
     </LinkButton>
     <LinkButton href="#" size="sm" variant="flat">
@@ -86,7 +86,7 @@ Link element that looks like a button.
     <LinkButton href="#" size="md" variant="outline">
       Outline
     </LinkButton>
-    <LinkButton href="#" size="md" variant="neutral">
+    <LinkButton href="#" size="md" variant="tonal">
       Secondary
     </LinkButton>
     <LinkButton href="#" size="md" variant="flat">
@@ -103,7 +103,7 @@ Link element that looks like a button.
     <LinkButton href="#" size="lg" variant="outline">
       Outline
     </LinkButton>
-    <LinkButton href="#" size="lg" variant="neutral">
+    <LinkButton href="#" size="lg" variant="tonal">
       Secondary
     </LinkButton>
     <LinkButton href="#" size="lg" variant="flat">
@@ -158,7 +158,7 @@ Use `ThemeProvider` component to change the primary color of the LinkButton.
     },
   };
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme} css={{ colorScheme: 'dark' }}>
       <Column gap="xl" css={{ bc: '$surface', p: '$4' }}>
         <Row gap="sm" css={{ px: '$10' }}>
           <LinkButton href="#" variant="primary">
@@ -169,10 +169,10 @@ Use `ThemeProvider` component to change the primary color of the LinkButton.
           </LinkButton>
         </Row>
         <Row gap="sm" css={{ px: '$10' }}>
-          <LinkButton href="#" variant="neutral">
+          <LinkButton href="#" variant="tonal">
             Secondary
           </LinkButton>
-          <LinkButton href="#" variant="neutral" disabled>
+          <LinkButton href="#" variant="tonal" disabled>
             Secondary (disabled)
           </LinkButton>
         </Row>

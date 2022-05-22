@@ -43,28 +43,30 @@ export const buttonCss = css(flexCss, {
   'variants': {
     size: {
       xs: {
-        height: '$6',
+        minHeight: '$6',
         fontSize: '$xs',
         fontWeight: 400,
         px: '$2',
         br: '$sm',
       },
       sm: {
-        height: '$8',
+        minHeight: '$8',
         fontSize: '$sm',
         fontWeight: 400,
+        py: '$1',
         px: '$4',
         br: '$sm',
       },
       md: {
-        height: '$base',
+        minHeight: '$base',
         fontSize: '$sm',
         fontWeight: 500,
+        py: '$2',
         px: '$4',
         br: '$base',
       },
       lg: {
-        height: '$12',
+        minHeight: '$12',
         fontSize: '$md',
         fontWeight: 500,
         px: '$6',
@@ -77,22 +79,28 @@ export const buttonCss = css(flexCss, {
         'color': '$onPrimary',
         'position': 'relative',
         'focusRing': '$surfacePrimary6',
+        // '&:where(:hover, :focus)': {
+        //   filter: 'brightness(1.05)',
+        // },
+        // '&:where(:active, [data-state="open"])': {
+        //   filter: 'brightness(1.08)',
+        // },
         '&:where(:hover, :focus)': {
-          filter: 'brightness(1.05)',
+          backgroundImage: 'linear-gradient(to top, $colors$surface5, $colors$surface5)',
         },
         '&:where(:active, [data-state="open"])': {
-          filter: 'brightness(1.08)',
+          backgroundImage: 'linear-gradient(to top, $colors$surface6, $colors$surface6)',
         },
       },
-      neutral: {
-        'bc': 'transparent',
-        'color': '$onBackground',
-        'border': '1px solid $outline',
+      tonal: {
+        'bc': '$secondaryContainer',
+        'color': '$onSecondaryContainer',
+        'focusRing': '$surfacePrimary6',
         '&:where(:hover, :focus)': {
-          bc: '$surface1',
+          backgroundImage: 'linear-gradient(to top, $colors$surfacePrimary1, $colors$surfacePrimary1)',
         },
         '&:where(:active, [data-state="open"])': {
-          bc: '$surface2',
+          backgroundImage: 'linear-gradient(to top, $colors$surfacePrimary2, $colors$surfacePrimary2)',
         },
       },
       outline: {
@@ -141,7 +149,7 @@ export const buttonCss = css(flexCss, {
   },
   'defaultVariants': {
     ...flexDefaults,
-    variant: 'neutral',
+    variant: 'tonal',
     size: 'md',
   },
 });

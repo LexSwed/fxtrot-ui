@@ -58,15 +58,15 @@ const Block = styled('div', {
         color: '$onSecondaryContainer',
         borderColor: '$secondaryContainer',
       },
-      neutral: {
-        bc: '$surface',
-        color: '$onSurface',
-        borderColor: '$outline',
-      },
       outline: {
         color: '$primary',
-        bc: '$surfacePrimary3',
+        bc: '$surfacePrimary1',
         borderColor: '$primary',
+      },
+      neutral: {
+        bc: '$surface1',
+        color: '$onSurfaceVariant',
+        borderColor: '$surfaceVariant',
       },
     },
   },

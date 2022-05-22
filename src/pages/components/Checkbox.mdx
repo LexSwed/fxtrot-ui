@@ -72,7 +72,7 @@ title: Checkbox
     },
   };
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme} css={{ colorScheme: 'dark' }}>
       <Box bc="$background" p="$4">
         <Checkbox label="Accept conditions" secondaryLabel="(required)" required />
       </Box>

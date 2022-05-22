@@ -61,7 +61,7 @@ title: Switch
     },
   };
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme} css={{ colorScheme: 'dark' }}>
       <Row gap="8" css={{ bc: '$background', p: '$4' }}>
         <Switch label="Default" />
         <Switch label="Default" defaultChecked />

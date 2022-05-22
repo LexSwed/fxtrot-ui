@@ -64,7 +64,7 @@ Use `ThemeProvider` component to change the primary color of the Tag.
     },
   };
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme} css={{ colorScheme: 'dark' }}>
       <Row gap="xl" css={{ bc: '$surface', p: '$4' }}>
         <Tag label="Primary" />
         <Tag variant="outline" label="Outline" />
