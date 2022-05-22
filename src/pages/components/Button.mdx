@@ -52,7 +52,7 @@ Do not use `variant="link"` with actual links, use [`LinkButton`](/components/Li
 ```tsx preview
 <Column gap="xl">
   <Row gap="sm" css={{ px: '$10' }}>
-    <Button size="xs" variant="outline" gap="1">
+    <Button size="xs" variant="outline">
       Outline
       <Icon as={DotsVerticalIcon} size="sm" />
     </Button>
@@ -106,7 +106,7 @@ Do not use `variant="link"` with actual links, use [`LinkButton`](/components/Li
     </Button>
   </Row>
   <Row gap="sm" css={{ px: '$10' }}>
-    <Button size="lg" variant="outline">
+    <Button size="lg" gap="2" variant="outline">
       Outline
       <Icon as={DotsVerticalIcon} size="lg" />
     </Button>
@@ -170,7 +170,10 @@ Use `ThemeProvider` component to change the primary color of the button.
   return (
     <ThemeProvider theme={theme} css={{ colorScheme: 'dark' }}>
       <Grid gap="lg" cross="center" main="center" columns="repeat(2, auto)" css={{ p: '$4', bc: '$background' }}>
-        <Button variant="primary">Primary</Button>
+        <Button variant="primary" gap="2">
+          Outline
+          <Icon as={DotsVerticalIcon} />
+        </Button>
         <Button disabled variant="primary">
           Primary (disabled)
         </Button>
@@ -202,7 +205,7 @@ If you only want to put [`Icon`](/components/Icon) inside the `Button`, use [`Ic
 
 ```tsx preview
 <Column cross="start" gap="xl" css={{ p: '$8' }}>
-  <Button variant="primary" gap="2">
+  <Button variant="primary">
     <Icon as={DotsVerticalIcon} />
     More
   </Button>

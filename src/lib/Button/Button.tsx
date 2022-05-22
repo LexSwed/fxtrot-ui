@@ -17,7 +17,7 @@ const flexDefaults: FlexVariants = {
   cross: 'center',
   main: 'center',
   flow: 'row',
-  gap: 'sm',
+  gap: '1',
 };
 
 export const buttonCss = css(flexCss, {
