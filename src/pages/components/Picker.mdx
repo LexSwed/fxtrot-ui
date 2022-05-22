@@ -49,13 +49,12 @@ Supports same `variant`s as `Picker` component.
 
 ```tsx preview
 () => {
-  const [variant, setVariant] = React.useState('flat');
+  const [variant, setVariant] = React.useState('boxed');
   return (
     <Box width={200}>
       <Picker label="Variant" variant={variant} value={variant} onChange={setVariant}>
         <Picker.Item label="Boxed" value="boxed" />
         <Picker.Item label="Underlined" value="underlined" />
-        <Picker.Item label="Transparent" value="transparent" />
         <Picker.Item label="Flat" value="flat" />
       </Picker>
     </Box>

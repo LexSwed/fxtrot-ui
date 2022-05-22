@@ -1,14 +1,14 @@
 import { createStitches, PropertyValue, ScaleValue, CSS } from '@stitches/react';
 
-import { attribute } from './utils/focus-visible';
 import { scales } from './theme/scales';
-import { defaultColors } from './theme/default';
+import { lightColors } from './theme/default';
+import { createColorVariations } from './theme/createColorVariations';
 
 export const stitchesConfig = createStitches({
   theme: {
-    colors: { ...defaultColors },
+    colors: { ...createColorVariations(lightColors) },
     fonts: {
-      default: '"Noto Sans", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif',
+      default: '"Noto Sans Display", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif',
       heading: '"Source Sans Pro", apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif',
       mono: 'Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;',
     },
@@ -75,7 +75,7 @@ export const stitchesConfig = createStitches({
       '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
       '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
       'inner': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
-      'popper': `0 0 1px $colors$border, $shadows$lg`,
+      'popper': `0 0 2px $colors$outline, $xs, $shadows$xl`,
       'base': '$xs',
       'base--hover': '$sm, $sm',
       'none': 'none',
@@ -91,58 +91,56 @@ export const stitchesConfig = createStitches({
     'light': '(prefers-color-scheme: light)',
     'no-motion': '(prefers-reduced-motion: reduce)',
   },
+  /**
+   * 1. colors layering: ...colors -> compose into one
+   * 2. surface colors
+   */
   utils: {
     p: (value: ScaleValue<'space'> | number | string) => ({
-      paddingTop: value,
-      paddingRight: value,
-      paddingBottom: value,
-      paddingLeft: value,
+      padding: value,
     }),
     pt: (value: ScaleValue<'space'> | number | string) => ({
-      paddingTop: value,
+      paddingBlockStart: value,
     }),
     pr: (value: ScaleValue<'space'> | number | string) => ({
-      paddingRight: value,
+      paddingInlineEnd: value,
     }),
     pb: (value: ScaleValue<'space'> | number | string) => ({
-      paddingBottom: value,
+      paddingBlockEnd: value,
     }),
     pl: (value: ScaleValue<'space'> | number | string) => ({
-      paddingLeft: value,
+      paddingInlineStart: value,
     }),
     px: (value: ScaleValue<'space'> | number | string) => ({
-      paddingLeft: value,
-      paddingRight: value,
+      paddingInlineStart: value,
+      paddingInlineEnd: value,
     }),
     py: (value: ScaleValue<'space'> | number | string) => ({
-      paddingTop: value,
-      paddingBottom: value,
+      paddingBlockStart: value,
+      paddingBlockEnd: value,
     }),
     m: (value: ScaleValue<'space'> | number | string) => ({
-      marginTop: value,
-      marginRight: value,
-      marginBottom: value,
-      marginLeft: value,
+      margin: value,
     }),
     mt: (value: ScaleValue<'space'> | number | string) => ({
-      marginTop: value,
+      marginBlockStart: value,
     }),
     mr: (value: ScaleValue<'space'> | number | string) => ({
-      marginRight: value,
+      marginInlineEnd: value,
     }),
     mb: (value: ScaleValue<'space'> | number | string) => ({
-      marginBottom: value,
+      marginBlockEnd: value,
     }),
     ml: (value: ScaleValue<'space'> | number | string) => ({
-      marginLeft: value,
+      marginInlineStart: value,
     }),
     mx: (value: ScaleValue<'space'> | number | string) => ({
-      marginLeft: value,
-      marginRight: value,
+      marginInlineStart: value,
+      marginInlineEnd: value,
     }),
     my: (value: ScaleValue<'space'> | number | string) => ({
-      marginTop: value,
-      marginBottom: value,
+      marginBlockStart: value,
+      marginBlockEnd: value,
     }),
     bc: (value: PropertyValue<'backgroundColor'>) => ({
       backgroundColor: value,
@@ -156,95 +154,21 @@ export const stitchesConfig = createStitches({
     }),
     size: (value: ScaleValue<'space'> | number | string) => {
       return {
-        width: value,
-        height: value,
+        blockSize: value,
+        inlineSize: value,
       };
     },
-    textStyle: (
-      value: 'body1' | 'body2' | 'subtitle1' | 'subtitle2' | 'label' | 'hint' | 'overline' | 'caption' | 'mono'
-    ) => {
-      switch (value) {
-        case 'body1':
-          return {
-            fontFamily: '$default',
-            textSize: '$base',
-          };
-        case 'body2':
-          return {
-            fontFamily: '$default',
-            textSize: '$sm',
-          };
-        case 'subtitle1':
-          return {
-            fontFamily: '$heading',
-            textSize: '$lg',
-          };
-        case 'subtitle2':
-          return {
-            fontFamily: '$heading',
-            textSize: '$md',
-            fontWeight: 500,
-          };
-        case 'overline':
-          return {
-            fontFamily: '$default',
-            textSize: '$xs',
-            textTransform: 'uppercase',
-          };
-        case 'label':
-          return {
-            fontFamily: '$default',
-            textSize: '$sm',
-            fontWeight: 500,
-          };
-        case 'hint':
-          return {
-            fontFamily: '$default',
-            textSize: '$xs',
-          };
-        case 'caption':
-          return {
-            fontFamily: '$default',
-            textSize: '$sm',
-          };
-        case 'mono':
-          return {
-            fontFamily: '$mono',
-            textSize: '$sm',
-            fontWeight: 300,
-          };
-      }
-    },
 
-    focusRing: (color: PropertyValue<'backgroundColor'> | string = '$focusRing') => ({
-      // [`&:not(:disabled)[${attribute}]`]: {
-      // [`&:not(:disabled)]`]: {
-      //   'outline': 'none',
-      //   'position': 'relative',
-      //   '$$offset': `${offset}px`,
-
-      //   '&::before': {
-      //     content: `''`,
-      //     display: 'block',
-      //     position: 'absolute',
-      //     top: `calc(-1 * $$offset)`,
-      //     right: `calc(-1 * $$offset)`,
-      //     bottom: `calc(-1 * $$offset)`,
-      //     left: `calc(-1 * $$offset)`,
-      //     transitionProperty: 'box-shadow, border-color',
-      //     transitionDuration: '0.2s',
-      //     transitionTimingFunction: 'ease-in-out',
-      //     pointerEvents: 'none',
-      //     border: '1px solid transparent',
-      //     br: 'inherit',
-      //   },
-      // },
-      '$$focusRingColor': `$colors${color}`,
-      '&:focus': {
-        outline: 'none',
+    focusRing: (color: PropertyValue<'backgroundColor'> | string = '$surface6') => ({
+      'outline': 'none',
+      '&:focus-visible': {
+        boxShadow: `0 0 0 3px $colors${color}`,
       },
-      [`&:focus[${attribute}]`]: {
-        boxShadow: `0 0 0 2px $$focusRingColor`,
+    }),
+    focusRingInset: (color: PropertyValue<'backgroundColor'> | string = '$surface6') => ({
+      'outline': 'none',
+      '&:focus-visible': {
+        boxShadow: `0 0 0 2px $colors${color} inset`,
       },
     }),
   },
@@ -256,3 +180,4 @@ export type CssStyles = CSS<typeof stitchesConfig['config']>;
 export type StyleSheet = Record<string, CssStyles>;
 
 export const { css, styled, keyframes, createTheme } = stitchesConfig;
+export type { ThemeColors } from './theme/default';

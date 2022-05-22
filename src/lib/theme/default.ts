@@ -1,133 +1,99 @@
-import * as colors from './colors';
+export const lightColors: ThemeColors = {
+  primary: 'hsl(232 53% 55%)',
+  onPrimary: 'hsl(0 0% 100%)',
+  primaryContainer: 'hsl(235 100% 93.3%)',
+  onPrimaryContainer: 'hsl(232 100% 19%)',
 
-export const defaultColors: ThemeColors = {
-  'surface': 'hsl(0deg 0% 100%)',
-  'surface--hover': colors.slate.slate1,
-  'surface--elevated': 'hsl(0deg 0% 100%)',
+  secondary: 'hsl(231 39.1% 47.6%)',
+  onSecondary: 'hsl(0 0% 100%)',
+  secondaryContainer: 'hsl(235 100% 93.3%)',
+  onSecondaryContainer: 'hsl(232 100% 19%)',
 
-  'surface-accent': colors.indigo.indigo7,
-  'surface-accent--elevated': colors.indigo.indigo8,
+  tertiary: 'hsl(328 95.8% 37.1%)',
+  onTertiary: 'hsl(0 0% 100%)',
+  tertiaryContainer: 'hsl(343 100% 92.5%)',
+  onTertiaryContainer: 'hsl(333 100% 12.2%)',
 
-  'surface-success': colors.green.green1,
-  'surface-danger': colors.red.red1,
+  success: 'hsl(167 100% 21%)',
+  onSuccess: 'hsl(0 0% 100%)',
+  successContainer: 'hsl(162 90% 73%)',
+  onSuccessContainer: 'hsl(165 94% 6%)',
 
-  // elements
-  'shape': 'transparent',
-  'shape--hover': colors.slateA.slateA3,
-  'shape--active': colors.slateA.slateA5,
-  'shape--disabled': colors.slateA.slateA2,
+  error: 'hsl(340 71% 41%)',
+  onError: 'hsl(0 0% 100%)',
+  errorContainer: 'hsl(351 100% 93%)',
+  onErrorContainer: 'hsl(341 100% 13%)',
 
-  'shape-accent': colors.indigo.indigo9,
-  'shape-accent--hover': colors.indigo.indigo10,
-  'shape-accent--active': colors.indigo.indigo11,
-  'shape-accent--disabled': colors.indigoA.indigoA8,
+  outline: 'hsl(270 4.1% 47.5%)',
+  background: 'hsl(260 100% 99.4%)',
+  onBackground: 'hsl(0 0% 10.6%)',
 
-  'shape-accent-light': colors.indigo.indigo1,
-  'shape-accent-light--hover': colors.indigo.indigo3,
-  'shape-accent-light--active': colors.indigo.indigo4,
+  surface: 'hsl(260 100% 99.4%)',
+  onSurface: 'hsl(0 0% 10.6%)',
+  surfaceVariant: 'hsl(275 24% 90.2%)',
+  onSurfaceVariant: 'hsl(264 6.8% 29%)',
+  inverseSurface: 'hsl(225 4.1% 19.2%)',
+  inverseOnSurface: 'hsl(255 15.4% 94.9%)',
+  disabled: 'hsla(0 0% 12% / 0.08)',
+  onDisabled: 'hsl(204 9.1% 30%)',
+};
 
-  'shape-success': colors.green.green9,
-  'shape-success--hover': colors.green.green10,
-  'shape-success--active': colors.green.green11,
-
-  'shape-danger': colors.red.red9,
-  'shape-danger--hover': colors.red.red10,
-  'shape-danger--active': colors.red.red11,
-
-  // borders
-  'border': colors.slateA.slateA9,
-  'border--hover': colors.slateA.slateA10,
-  'border--active': colors.slateA.slateA11,
-  'border--light': colors.slateA.slateA5,
-  'border--disabled': '$shape--disabled',
-
-  'border-accent': colors.indigo.indigo9,
-  'border-accent--hover': colors.indigo.indigo9,
-  'border-accent--active': colors.indigo.indigo9,
-  'border-accent--light': colors.indigo.indigo5,
-  'border-accent--disabled': '$shape--disabled',
-
-  // text
-  'text': colors.slate.slate12,
-  'text--light': colors.slate.slate11,
-  'text--disabled': colors.slate.slate10,
-
-  'text-accent': colors.indigo.indigo11,
-  'text-accent--light': colors.indigo.indigo8,
-  'text-accent--disabled': '$text--disabled',
-
-  'text-onAccent': 'hsl(0deg 0% 100%)',
-  'text-onAccent--disabled': 'hsl(0deg 0% 100%)',
-
-  'text-success': colors.green.green11,
-  'text-danger': colors.red.red11,
-
-  'focusRing': colors.slateA.slateA11,
-} as const;
-
+export type HSLThemeColor = `hsl(${number} ${number}% ${number}%)`;
+export type HSLAThemeColor = `hsla(${number} ${number}% ${number}% / ${number})`;
+export type ThemeColor = HSLThemeColor | HSLAThemeColor;
 // use dashed syntax to align with CSS vars syntax, stitches doesn't do any sanitization
 export interface ThemeColors {
-  // non-interactive
-  'surface': string;
-  'surface--hover': string;
-  'surface--elevated': string;
+  // Primary color
+  primary: ThemeColor;
+  // Onprimary is applied to content (icons, text, etc.) that sits on top of primary
+  onPrimary: ThemeColor;
+  // Primary container is applied to elements needing less emphasis than primary
+  primaryContainer: ThemeColor;
+  // Onprimary container is applied to content (icons, text, etc.) that sits on top of primary container
+  onPrimaryContainer: ThemeColor;
 
-  'surface-accent': string;
-  'surface-accent--elevated': string;
+  // Less prominent active elements
+  secondary: ThemeColor;
+  // For content (icons, text, etc.) that sits on top of secondary container
+  onSecondary: ThemeColor;
+  // Secondary container is applied to elements needing less emphasis than secondary
+  secondaryContainer: ThemeColor;
+  // For content (icons, text, etc.) that sits on top of secondary container
+  onSecondaryContainer: ThemeColor;
 
-  'surface-success': string;
-  'surface-danger': string;
+  // Tertiary roles are used for contrasting accents that can be used to balance primary and secondary colors or bring heightened attention to an element, such as an input field.
+  tertiary: ThemeColor;
+  // For content (icons, text, etc.) that sits on top of tertiary container
+  onTertiary: ThemeColor;
+  // Secondary container is applied to elements needing less emphasis than tertiary
+  tertiaryContainer: ThemeColor;
+  // For content (icons, text, etc.) that sits on top of tertiary container
+  onTertiaryContainer: ThemeColor;
 
-  // elements
-  'shape': string;
-  'shape--hover': string;
-  'shape--active': string;
-  'shape--disabled': string;
+  error: ThemeColor;
+  onError: ThemeColor;
+  errorContainer: ThemeColor;
+  onErrorContainer: ThemeColor;
 
-  'shape-accent': string;
-  'shape-accent--hover': string;
-  'shape-accent--active': string;
-  'shape-accent--disabled': string;
+  success: ThemeColor;
+  onSuccess: ThemeColor;
+  successContainer: ThemeColor;
+  onSuccessContainer: ThemeColor;
 
-  'shape-accent-light': string;
-  'shape-accent-light--hover': string;
-  'shape-accent-light--active': string;
+  background: ThemeColor;
+  onBackground: ThemeColor;
+  surface: ThemeColor;
+  onSurface: ThemeColor;
 
-  'shape-success': string;
-  'shape-success--hover': string;
-  'shape-success--active': string;
+  inverseSurface: ThemeColor;
+  inverseOnSurface: ThemeColor;
 
-  'shape-danger': string;
-  'shape-danger--hover': string;
-  'shape-danger--active': string;
+  // Surface variant and onsurface variant can be used for differentiation against a surface
+  surfaceVariant: ThemeColor;
+  onSurfaceVariant: ThemeColor;
+  // Outline is a utility color that creates boundaries and emphasis to improve usability. It's distinct from the divider component, which uses the surface variant role for lowemphasis content separation that is more decorative than essential.
+  outline: ThemeColor;
 
-  // borders
-  'border': string;
-  'border--hover': string;
-  'border--active': string;
-  'border--light': string;
-  'border--disabled': string;
-
-  'border-accent': string;
-  'border-accent--hover': string;
-  'border-accent--active': string;
-  'border-accent--light': string;
-  'border-accent--disabled': string;
-
-  // text
-  'text': string;
-  'text--light': string;
-  'text--disabled': string;
-
-  'text-accent': string;
-  'text-accent--light': string;
-  'text-accent--disabled': string;
-
-  'text-onAccent': string;
-  'text-onAccent--disabled': string;
-
-  'text-success': string;
-  'text-danger': string;
-
-  'focusRing': string;
+  disabled: ThemeColor;
+  onDisabled: ThemeColor;
 }

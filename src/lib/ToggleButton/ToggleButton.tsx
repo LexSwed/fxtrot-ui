@@ -34,15 +34,18 @@ const toggleButtonCss = css({
   variants: {
     variant: {
       flat: {
-        // increase specificity
         '&[data-state="on"]': {
-          'bc': '$shape-accent-light--active',
-          'color': '$text-accent',
-          '&:focus, &:active': {
-            bc: '$shape-accent-light--active',
+          'bc': '$surfacePrimary2',
+          'color': '$primary',
+          'borderColor': '$surfacePrimary6',
+          'focusRing': '$surfacePrimary6',
+          '&:where(:hover)': {
+            bc: '$surfacePrimary3',
+            borderColor: '$surfacePrimary4',
           },
-          '&:hover': {
-            bc: '$shape-accent-light--hover',
+          '&:where(:focus, :active)': {
+            bc: '$surfacePrimary4',
+            borderColor: '$surfacePrimary5',
           },
         },
       },

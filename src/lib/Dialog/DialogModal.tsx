@@ -161,7 +161,7 @@ const DialogWindow = styled(RdxDialog.Content, {
 });
 
 const OverlayStyled = styled(RdxDialog.Overlay, {
-  'backgroundColor': 'rgba(0,0,0,0.6)',
+  'backgroundColor': '$surface6',
   'position': 'fixed',
   'inset': 0,
   'animationTimingFunction': 'ease-in-out',

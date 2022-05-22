@@ -5,32 +5,61 @@ export const Text = styled('span', {
   m: 0,
   variants: {
     textStyle: {
-      body1: {
-        textStyle: 'body1',
+      'body-sm': {
+        textSize: '$xs',
       },
-      body2: {
-        textStyle: 'body2',
+      'body-md': {
+        textSize: '$sm',
       },
-      subtitle1: {
-        textStyle: 'subtitle1',
+      'body-lg': {
+        textSize: '$md',
       },
-      subtitle2: {
-        textStyle: 'subtitle2',
+      'label-sm': {
+        textSize: '$xs',
       },
-      overline: {
-        textStyle: 'overline',
+      'label-md': {
+        textSize: '$sm',
       },
-      caption: {
-        textStyle: 'caption',
+      'label-lg': {
+        textSize: '$lg',
       },
-      label: {
-        textStyle: 'label',
+      'title-sm': {
+        textSize: '$xl',
       },
-      hint: {
-        textStyle: 'hint',
+      'title-md': {
+        textSize: '$2xl',
       },
-      mono: {
-        textStyle: 'mono',
+      'title-lg': {
+        textSize: '$3xl',
+      },
+      'headline-sm': {
+        fontFamily: '$heading',
+        textSize: '$4xl',
+      },
+      'headline-md': {
+        fontFamily: '$heading',
+        textSize: '$5xl',
+      },
+      'headline-lg': {
+        fontFamily: '$heading',
+        textSize: '$6xl',
+      },
+      'overline': {
+        fontFamily: '$default',
+        textSize: '$xs',
+        textTransform: 'uppercase',
+      },
+      'mono-sm': {
+        fontFamily: '$mono',
+        textSize: '$xs',
+      },
+      'mono-md': {
+        fontFamily: '$mono',
+        textSize: '$sm',
+      },
+      'mono-lg': {
+        fontFamily: '$mono',
+        textSize: '$md',
       },
     },
     tone: {
@@ -38,16 +67,16 @@ export const Text = styled('span', {
         color: 'inherit',
       },
       accent: {
-        color: '$text-accent',
+        color: '$primary',
       },
       light: {
-        color: '$text--light',
+        color: '$onSurfaceVariant',
       },
       success: {
-        color: '$text-success',
+        color: '$success',
       },
       danger: {
-        color: '$text-danger',
+        color: '$error',
       },
     },
     align: {
@@ -103,6 +132,35 @@ export const Text = styled('span', {
         WebkitBoxOrient: 'vertical',
         WebkitLineClamp: 6,
         overflow: 'hidden',
+      },
+    },
+    weight: {
+      100: {
+        fontWeight: 100,
+      },
+      200: {
+        fontWeight: 200,
+      },
+      300: {
+        fontWeight: 300,
+      },
+      400: {
+        fontWeight: 400,
+      },
+      500: {
+        fontWeight: 500,
+      },
+      600: {
+        fontWeight: 600,
+      },
+      700: {
+        fontWeight: 700,
+      },
+      800: {
+        fontWeight: 800,
+      },
+      900: {
+        fontWeight: 900,
       },
     },
   },

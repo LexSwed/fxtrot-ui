@@ -15,10 +15,10 @@ const Main = styled(Text, {
   variants: {
     disabled: {
       true: {
-        color: '$text--disabled',
+        color: '$onDisabled',
       },
       false: {
-        color: '$text',
+        color: '$onBackground',
       },
     },
   },
@@ -42,11 +42,11 @@ export interface Props extends VariantProps<typeof LabelWrapper> {
 export const Label = React.forwardRef(({ label, secondary, disabled, ...props }, ref) => {
   return (
     <LabelWrapper {...props} cross="center" gap="xs" display="inline" ref={ref as any}>
-      <Main textStyle="label" disabled={disabled}>
+      <Main textStyle="label-sm" weight={500} disabled={disabled}>
         {label}
       </Main>
       {secondary && (
-        <Secondary textStyle="caption" tone="light">
+        <Secondary textStyle="label-sm" tone="light">
           {secondary}
         </Secondary>
       )}

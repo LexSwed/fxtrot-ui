@@ -51,7 +51,7 @@ export const Playground = ({ code, language }: Props) => {
 
 const Preview: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <Box bc="$surface" br="$base">
+    <Box bc="$background" br="$base">
       <Column>
         <Box overflow="auto" p="$4">
           {children}

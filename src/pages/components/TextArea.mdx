@@ -21,7 +21,6 @@ title: TextArea
   <Column gap="md">
     <TextArea label="Boxed" hint="Default variant" placeholder="Default boxed variant" />
     <TextArea variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Pretty underlined" />
-    <TextArea variant="transparent" hint="Not using labels" placeholder="Transparent variant" />
     <TextArea variant="flat" label="Flat variant" hint="Press Esc to cancel" placeholder="Flat variant" />
   </Column>
   <Column gap="md">
@@ -40,7 +39,6 @@ title: TextArea
       placeholder="Pretty underlined"
       disabled
     />
-    <TextArea variant="transparent" hint="Not using labels" placeholder="Transparent variant" disabled />
     <TextArea disabled variant="flat" label="Flat variant" hint="Press Esc to cancel" placeholder="Flat variant" />
   </Column>
 </Row>
@@ -53,17 +51,14 @@ title: TextArea
   <Column gap="md">
     <TextArea size="sm" label="Boxed" hint="Default variant" placeholder="Small size" />
     <TextArea size="sm" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Small size" />
-    <TextArea size="sm" variant="transparent" hint="Not using labels" placeholder="Small size" />
   </Column>
   <Column gap="md">
     <TextArea size="md" label="Boxed" hint="Default variant" placeholder="Default size" />
     <TextArea size="md" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Default size" />
-    <TextArea size="md" variant="transparent" hint="Not using labels" placeholder="Default size" />
   </Column>
   <Column gap="md">
     <TextArea size="lg" label="Boxed" hint="Default variant" placeholder="Large size" />
     <TextArea size="lg" variant="underlined" hint="Pretty variant" label="Underlined" placeholder="Large size" />
-    <TextArea size="lg" variant="transparent" hint="Not using labels" placeholder="Large size" />
   </Column>
   <Column gap="md">
     <TextArea size="xl" label="Boxed" hint="Default variant" placeholder="Editable heading size" />
@@ -75,7 +70,6 @@ title: TextArea
       placeholder="Editable heading size"
       as="textarea"
     />
-    <TextArea size="xl" variant="transparent" hint="Not using labels" placeholder="Editable heading size" />
   </Column>
 </Row>
 ```
@@ -114,7 +108,7 @@ title: TextArea
         placeholder="john.doe@mail.com"
         value={value}
         onChange={setValue}
-        variant="transparent"
+        variant="flat"
       />
     </Row>
   );

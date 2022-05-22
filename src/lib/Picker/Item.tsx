@@ -19,7 +19,7 @@ const Item = React.forwardRef<HTMLDivElement, Props>(({ value, label, disabled, 
         <RdxSelect.ItemText>{label}</RdxSelect.ItemText>
         {value && (
           <RdxSelect.ItemIndicator asChild>
-            <Icon as={CheckIcon} color="$shape-accent" size="md" />
+            <Icon as={CheckIcon} color="$primary" size="md" />
           </RdxSelect.ItemIndicator>
         )}
       </ListItem>

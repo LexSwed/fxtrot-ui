@@ -6,7 +6,6 @@ export const listStyles = css({
   'p': '$1',
   'overflowY': 'auto',
   'maxHeight': '240px',
-  'focusRing': '$focusRing',
   '&:empty': {
     display: 'none',
   },

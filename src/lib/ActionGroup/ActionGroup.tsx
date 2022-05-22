@@ -38,12 +38,13 @@ const ActionGroupRoot = styled(ToggleGroup.Root, flexCss, {
       gap: 'none',
       css: {
         [`& > ${ButtonRoot}`]: {
-          '&[data-state], &[data-state]:focus': {
-            borderColor: 'transparent',
+          'focusRingInset': '$surface5',
+          '&[data-state]:focus': {
+            zIndex: 1,
           },
-        },
-        [`& > ${ButtonRoot}[data-state="on"]`]: {
-          focusRing: '$border-accent--light',
+          '&[data-state=on]': {
+            focusRingInset: '$surfacePrimary6',
+          },
         },
         [`& > ${ButtonRoot}:not(:first-of-type)`]: {
           borderTopLeftRadius: 0,

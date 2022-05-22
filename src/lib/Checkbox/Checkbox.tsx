@@ -74,18 +74,19 @@ const CheckboxWrapper = styled('div', {
 export const CheckMark = styled('div', {
   br: '$md',
   bc: 'transparent',
-  border: '1px solid $border',
+  border: '1px solid $outline',
   size: '$5',
   position: 'relative',
-  transition: '0.24s cubic-bezier(0,1,.9,1)',
+  transition: '0.24s ease-in-out',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  background: 'radial-gradient(circle at center, $colors$shape-accent 50%, transparent 50.2%) center no-repeat',
+  backgroundImage: 'radial-gradient(circle at center, $colors$primary 50%, transparent 50.2%)',
   backgroundSize: '0 0',
+  backgroundPosition: 'center',
 
   [`& > ${IconBox}`]: {
-    transition: 'opacity 0.14s ease-in-out',
+    transition: '0.14s ease-in-out',
     opacity: 0,
   },
 });
@@ -109,57 +110,55 @@ const Input = styled('input', {
   transitionDuration: '0.24s',
   transitionTimingFunction: 'ease-in-out',
 
-  [`&:hover + ${CheckMark}`]: {
-    borderColor: '$border--hover',
-    color: '$colors$text--light',
+  [`&:where(:hover,:focus) + ${CheckMark}`]: {
     [`& ${IconBox}`]: {
-      opacity: 1,
+      opacity: 0.5,
     },
   },
 
-  [`&:focus + ${CheckMark}`]: {
-    borderColor: '$border-accent--active',
-    boxShadow: '0 0 0 3px $colors$border-accent--light',
+  [`&:where(:focus):not(:disabled) + ${CheckMark}`]: {
+    borderColor: '$primary',
+    boxShadow: `0 0 0 4px $colors$surfacePrimary6`,
   },
 
-  [`&:checked + ${CheckMark}`]: {
-    borderColor: '$shape-accent',
+  [`&:where(:checked) + ${CheckMark}`]: {
+    borderColor: '$primary',
     backgroundSize: '200% 200%',
-    color: '#fff',
     [`& ${IconBox}`]: {
+      color: '$onPrimary',
       opacity: 1,
     },
   },
-  [`&:checked:hover + ${CheckMark}`]: {
-    borderColor: '$shape-accent--hover',
+  [`&:where(:checked:hover) + ${CheckMark}`]: {
+    borderColor: '$primary',
     [`& ${IconBox}`]: {
       opacity: 1,
     },
   },
 
-  [`&:checked:focus + ${CheckMark}`]: {
-    borderColor: '$border-accent--active',
+  [`&:where(:checked:focus) + ${CheckMark}`]: {
+    borderColor: '$surfacePrimary2',
     [`& > ${IconBox}`]: {
       opacity: 1,
     },
   },
 
-  [`&:disabled + ${CheckMark}, &:disabled:checked + ${CheckMark}`]: {
-    borderColor: '$border--disabled',
+  [`&:where(:disabled,:disabled:checked) + ${CheckMark}`]: {
+    borderColor: '$disabled',
     [`& > ${IconBox}`]: {
       opacity: 0,
     },
   },
 
-  [`&:disabled:not(:checked) + ${CheckMark}`]: {
-    background: '$shape--disabled',
+  [`&:where(:disabled:not(:checked)) + ${CheckMark}`]: {
+    background: '$disabled',
   },
 
-  [`&:disabled:checked + ${CheckMark}`]: {
-    background:
-      'radial-gradient(circle at center, $colors$shape-accent--disabled 50%, transparent 50.2%) center/200% 500% no-repeat',
+  [`&:where(:disabled:checked) + ${CheckMark}`]: {
+    background: '$disabled',
     [`& > ${IconBox}`]: {
-      opacity: 0.8,
+      color: '$onDisabled',
+      opacity: 0.9,
     },
   },
 });

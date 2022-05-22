@@ -13,8 +13,8 @@ title: Text
 ```tsx preview
 <Column gap="sm">
   <Text>Default text</Text>
+  <Text tone="accent">Default text</Text>
   <Text tone="light">Light text</Text>
-  <Text tone="subtle">Subtle text</Text>
   <Text tone="success">Success text</Text>
   <Text tone="danger">Error text</Text>
 </Column>
@@ -31,45 +31,39 @@ title: Text
 </Column>
 ```
 
-## Text styled
+## Text style
 
 `Text` component doesn't allow to change the size diectly, and instead offers to use `textStyle` prop for consistent styling.
 
+<Column gap="4" cross="stretch">
+  {[
+    'body-sm',
+    'body-md',
+    'body-lg',
+    'label-sm',
+    'label-md',
+    'label-lg',
+    'title-sm',
+    'title-md',
+    'title-lg',
+    'headline-sm',
+    'headline-md',
+    'headline-lg',
+    'mono-sm',
+    'mono-md',
+    'mono-lg',
+    'overline',
+  ].map((key) => (
+    <TextWithComputedStyle key={key} textStyle={key}>
+      {key}
+    </TextWithComputedStyle>
+  ))}
+</Column>
+
+Example:
+
 ```tsx preview
-() => {
-  const TextWithComputedStyle = ({ textStyle }) => {
-    const ref = React.useRef(null);
-    const [style, setStyle] = React.useState({});
-    useIsomorphicLayoutEffect(() => {
-      if (!ref.current) return;
-      const computedStyle = window.getComputedStyle(ref.current);
-      setStyle({
-        fontSize: computedStyle.getPropertyValue('font-size'),
-        fontWeight: computedStyle.getPropertyValue('font-weight'),
-        fontFamily: computedStyle.getPropertyValue('font-family').split(',')[0],
-      });
-    }, []);
-    return (
-      <Column gap="2">
-        <Text textStyle={textStyle} ref={ref}>
-          {textStyle}
-        </Text>
-        <Text textStyle="mono" tone="light">{`${style.fontFamily}/${style.fontSize}/${style.fontWeight}`}</Text>
-      </Column>
-    );
-  };
-  return (
-    <Column gap="4" cross="stretch">
-      <TextWithComputedStyle textStyle="body1" />
-      <TextWithComputedStyle textStyle="body2" />
-      <TextWithComputedStyle textStyle="subtitle1" />
-      <TextWithComputedStyle textStyle="subtitle2" />
-      <TextWithComputedStyle textStyle="overline" />
-      <TextWithComputedStyle textStyle="caption" />
-      <TextWithComputedStyle textStyle="mono" />
-    </Column>
-  );
-};
+<Text textStyle="body2">This is a normal text rendered as paragraph</Text>
 ```
 
 You can still change the size through `css` prop, but this is discouraged:

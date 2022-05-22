@@ -3,7 +3,7 @@ import { listStyles } from '../shared/FloatingList';
 
 export const PopoverBox = styled('div', listStyles, {
   'br': '$base',
-  'bc': '$surface--elevated',
+  'bc': '$surface',
   'boxShadow': '$popper',
   'animationTimingFunction': 'ease-in',
   'animationFillMode': 'forwards',

@@ -25,25 +25,25 @@ export const Item = React.forwardRef<HTMLButtonElement, Props>((props, ref) => {
 
 Item.displayName = 'MenuListItem';
 
-type ItemComponent = Polymorphic.ForwardRefComponent<'div', Props>;
+type ItemComponent = Polymorphic.ForwardRefComponent<'button', Props>;
 
 export const StyledItem = styled('button', ListItem, {
   'display': 'block',
   'position': 'relative',
   'textDecoration': 'none',
   'cursor': 'default',
+  'bc': 'transparent',
+  'focusRingInset': '$surface5',
   '&[aria-selected="true"]': {
-    'bc': '$shape--hover',
-    'color': '$text-accent',
+    'focusRingInset': '$surfacePrimary5',
+    'bc': '$surfacePrimary3',
+    'color': '$primary',
     '&::after': {
-      bc: '$shape-accent',
+      bc: '$primary',
     },
     '&:focus': {
-      'color': '$text-accent',
-      'bc': '$shape--active',
       '&:after': {
         transform: 'none',
-        bc: '$shape-accent--active',
       },
     },
   },

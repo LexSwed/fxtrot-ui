@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useMemo, useRef } from 'react';
 
 import { createTheme, styled } from '../stitches.config';
+import { createColorVariations } from '../theme/createColorVariations';
+import type { ThemeColors } from '../theme/default';
 import { useForkRef } from '../utils/hooks';
 import { Reset } from './Reset';
 
@@ -19,7 +21,12 @@ export const ThemeProvider = React.forwardRef<HTMLDivElement, Props>(({ theme, .
       return theme;
     }
     if (typeof theme === 'object') {
-      return createTheme(theme);
+      return createTheme({
+        ...(theme as any),
+        colors: {
+          ...createColorVariations(theme.colors as ThemeColors),
+        },
+      });
     }
     return undefined;
   }, [theme]);
@@ -47,7 +54,7 @@ export const useFxtrotRootRef = () => useContext(rootRefContext);
 
 const ThemeWrapper = styled('span', {
   display: 'contents',
-  color: '$text',
+  color: '$onBackground',
   fontFamily: '$default',
   fontSize: '$md',
   boxSizing: 'border-box',

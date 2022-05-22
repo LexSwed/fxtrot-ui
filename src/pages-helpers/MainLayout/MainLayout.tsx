@@ -38,7 +38,7 @@ export const MainLayout: React.FC<Props> = ({ children, meta, docs }) => {
               </MobileMenuButtonWrapper>
               <Row main="space-between" css={{ flex: 2 }}>
                 <Link href="/" passHref>
-                  <TextLink textStyle="subtitle1">Fxtrot UI</TextLink>
+                  <TextLink textStyle="title-sm">Fxtrot UI</TextLink>
                 </Link>
                 <Row>
                   <TextLink

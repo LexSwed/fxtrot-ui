@@ -42,17 +42,17 @@ export const IconButtonRoot = styled(ButtonRoot, {
     _size: {
       xs: {
         px: 0,
-        width: '$6',
+        inlineSize: '$6',
       },
       sm: {
         px: 0,
-        width: '$8',
+        inlineSize: '$8',
       },
       md: {
-        width: '$base',
+        inlineSize: '$base',
       },
       lg: {
-        width: '$12',
+        inlineSize: '$12',
       },
     },
   },

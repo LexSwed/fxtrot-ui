@@ -2,39 +2,103 @@
 title: Pallete
 ---
 
-import { PaletteRenderer } from '../../pages-helpers/PaletteRenderer';
+import { Palette, ColorBox } from '../../pages-helpers/PaletteRenderer';
 
 # Palette
 
-The colours and system is taken from [Radix Colors](https://www.radix-ui.com/docs/colors).
-It uses next naming system:
+The system for color naming is taken from [Material Design 3 Color System](https://m3.material.io/styles/color/the-color-system/key-colors-tones).
 
-```
-{{ type of UI element }}-{{ category }}--{{ state }}
-```
+The default theme palette is generated using [Material Theme Builder](https://material-foundation.github.io/material-theme-builder/#/custom).
 
-For example: `shape-accent--hover` will be used for `:hover` effect of an interactive element.
+## Primary
 
-## Surface
+The primary key color is used to derive roles for key components across the UI, such as the FAB, prominent buttons, active states, as well as the tint of elevated surfaces.
 
-Used for non-interactive backgrounds.
+<Palette>
+  <ColorBox color="primary" textColor="onPrimary" />
+  <ColorBox color="onPrimary" textColor="primary" />
+  <ColorBox color="primaryContainer" textColor="onPrimaryContainer" />
+  <ColorBox color="onPrimaryContainer" textColor="primaryContainer" />
+</Palette>
 
-<PaletteRenderer color="surface" />
+## Secondary
 
-## Shape
+The secondary key color is used for less prominent components in the UI such as filter chips, while expanding the opportunity for color expression.
 
-Used for backgrounds of interactive elements.
+<Palette>
+  <ColorBox color="secondary" textColor="onSecondary" />
+  <ColorBox color="onSecondary" textColor="secondary" />
+  <ColorBox color="secondaryContainer" textColor="onSecondaryContainer" />
+  <ColorBox color="onSecondaryContainer" textColor="secondaryContainer" />
+</Palette>
 
-<PaletteRenderer color="shape" />
+## Tertiary
 
-## Text
+The tertiary key color is used to derive the roles of contrasting accents that can be used to balance primary and secondary colors or bring heightened attention to an element.
 
-Used for different texts.
+<Palette>
+  <ColorBox color="tertiary" textColor="onTertiary" />
+  <ColorBox color="onTertiary" textColor="tertiary" />
+  <ColorBox color="tertiaryContainer" textColor="onTertiaryContainer" />
+  <ColorBox color="onTertiaryContainer" textColor="tertiaryContainer" />
+</Palette>
 
-<PaletteRenderer color="text" />
+## Neutral
 
-## Border
+The neutral key color is used to derive the roles of surface and background, as well as high emphasis text and icons.
 
-Used for borders of interactive and non-interactive elements, for example content separators would use `$border--light`.
+The neutral variant key color is used to derive medium emphasis text and icons, surface variants, and component outlines.
 
-<PaletteRenderer color="border" />
+<Palette>
+  <ColorBox color="background" textColor="onBackground" />
+  <ColorBox color="onBackground" textColor="background" />
+  <ColorBox color="surface" textColor="onSurface" />
+  <ColorBox color="onSurface" textColor="surface" />
+</Palette>
+
+<Palette>
+  <ColorBox color="surfaceVariant" textColor="onSurfaceVariant" />
+  <ColorBox color="onSurfaceVariant" textColor="surfaceVariant" />
+  <ColorBox color="outline" textColor="surfaceVariant" />
+</Palette>
+
+<Palette>
+  {['surface1', 'surface2', 'surface3', 'surface4', 'surface5', 'surface6'].map((color) => {
+    return <ColorBox color={color} textColor="onSurface" key={color} />;
+  })}
+</Palette>
+
+<Palette>
+  {[
+    'surfacePrimary1',
+    'surfacePrimary2',
+    'surfacePrimary3',
+    'surfacePrimary4',
+    'surfacePrimary5',
+    'surfacePrimary6',
+  ].map((color) => {
+    return <ColorBox color={color} textColor="primary" key={color} />;
+  })}
+</Palette>
+
+## Error
+
+A semantic color role for error.
+
+<Palette>
+  <ColorBox color="error" textColor="onError" />
+  <ColorBox color="onError" textColor="error" />
+  <ColorBox color="errorContainer" textColor="onErrorContainer" />
+  <ColorBox color="onErrorContainer" textColor="errorContainer" />
+</Palette>
+
+## Success
+
+A semantic color role for success.
+
+<Palette>
+  <ColorBox color="success" textColor="onSuccess" />
+  <ColorBox color="onSuccess" textColor="success" />
+  <ColorBox color="successContainer" textColor="onSuccessContainer" />
+  <ColorBox color="onSuccessContainer" textColor="successContainer" />
+</Palette>

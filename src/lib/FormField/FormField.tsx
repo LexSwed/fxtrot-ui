@@ -64,7 +64,7 @@ export const Hint = ({ validity, children, ...props }: HintProps) => {
   return (
     <HintText
       lineClamp={1}
-      textStyle="hint"
+      textStyle="body-sm"
       title={typeof children === 'string' ? children : undefined}
       tone={validity ? tonesMap[validity] : 'light'}
       aria-live="polite"

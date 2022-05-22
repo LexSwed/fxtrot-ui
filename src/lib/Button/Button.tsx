@@ -1,29 +1,12 @@
 import React from 'react';
 
 import { flexCss, FlexVariants } from '../Flex/Flex';
-import { Icon, IconBox } from '../Icon/Icon';
 import { css, styled } from '../stitches.config';
 
 interface Props extends React.ComponentProps<typeof ButtonRoot> {}
 
-export const Button = React.forwardRef<HTMLButtonElement, Props>(({ type = 'button', children, ...props }, ref) => {
-  let childCount = React.Children.count(children);
-  return (
-    <ButtonRoot {...props} aria-disabled={props.disabled} type={type} ref={ref}>
-      {childCount < 2
-        ? children
-        : // align icons with text to button paddings
-          React.Children.map(children, (child, i) => {
-            if (React.isValidElement(child) && child.type === Icon) {
-              const alignment: 'left' | 'right' | null = i === 0 ? 'left' : i === childCount - 1 ? 'right' : null;
-              if (alignment) {
-                return React.cloneElement(child, { 'data-fxtrot-icon-button-align': alignment });
-              }
-            }
-            return child;
-          })}
-    </ButtonRoot>
-  );
+export const Button = React.forwardRef<HTMLButtonElement, Props>(({ type = 'button', ...props }, ref) => {
+  return <ButtonRoot {...props} aria-disabled={props.disabled} type={type} ref={ref} />;
 });
 
 Button.displayName = 'Button';
@@ -34,63 +17,56 @@ const flexDefaults: FlexVariants = {
   cross: 'center',
   main: 'center',
   flow: 'row',
-  gap: 'sm',
+  gap: '1',
 };
 
 export const buttonCss = css(flexCss, {
   'transition': '0.2s ease-in-out',
+  'transitionProperty': 'background-color, box-shadow, color, filter, border-color',
   'fontFamily': '$default',
+  'fontWeight': 600,
   'lineHeight': 1,
-  'border': '1px solid transparent',
-  'cursor': 'default',
   'whiteSpace': 'nowrap',
+  'cursor': 'pointer',
   'flexShrink': 0,
-  '&[disabled],[aria-disabled="true"]': {
-    pointerEvents: 'none',
-  },
-  'focusRing': '$focusRing',
+  'bc': 'transparent',
+  'color': '$onSurface',
+  'focusRing': '$surface5',
 
-  '&:disabled': {
-    color: '$text--disabled',
-    borderColor: '$border-accent--disabled',
-    bc: '$shape--disabled',
-    cursor: 'default',
-  },
-
-  [`& > ${IconBox}[data-fxtrot-icon-button-align="left"]`]: {
-    ml: '-4%',
-    mr: '4%',
-  },
-  [`& > ${IconBox}[data-fxtrot-icon-button-align="right"]`]: {
-    ml: '4%',
-    mr: '-4%',
+  '&:is(:disabled,[aria-disabled=true]), &:where(:disabled,[aria-disabled=true]):is(:hover,:focus)': {
+    color: '$onDisabled',
+    border: '1px solid $disabled',
+    bc: '$disabled',
+    cursor: 'not-allowed',
   },
 
   'variants': {
     size: {
       xs: {
-        height: '$6',
+        minHeight: '$6',
         fontSize: '$xs',
         fontWeight: 400,
         px: '$2',
         br: '$sm',
       },
       sm: {
-        height: '$8',
+        minHeight: '$8',
         fontSize: '$sm',
         fontWeight: 400,
+        py: '$1',
         px: '$4',
         br: '$sm',
       },
       md: {
-        height: '$base',
+        minHeight: '$base',
         fontSize: '$sm',
         fontWeight: 500,
+        py: '$2',
         px: '$4',
         br: '$base',
       },
       lg: {
-        height: '$12',
+        minHeight: '$12',
         fontSize: '$md',
         fontWeight: 500,
         px: '$6',
@@ -99,91 +75,81 @@ export const buttonCss = css(flexCss, {
     },
     variant: {
       primary: {
-        'bc': '$shape-accent',
-        'color': '$text-onAccent',
-        'borderColor': '$shape-accent',
-        '&:hover': {
-          borderColor: '$shape-accent--hover',
-          bc: '$shape-accent--hover',
+        'bc': '$primary',
+        'color': '$onPrimary',
+        'position': 'relative',
+        'focusRing': '$surfacePrimary6',
+        // '&:where(:hover, :focus)': {
+        //   filter: 'brightness(1.05)',
+        // },
+        // '&:where(:active, [data-state="open"])': {
+        //   filter: 'brightness(1.08)',
+        // },
+        '&:where(:hover, :focus)': {
+          backgroundImage: 'linear-gradient(to top, $colors$surface5, $colors$surface5)',
         },
-        '&:active': {
-          borderColor: '$shape-accent--active',
-          bc: '$shape-accent--active',
-        },
-        '&:focus': {
-          borderColor: '$shape-accent--active',
+        '&:where(:active, [data-state="open"])': {
+          backgroundImage: 'linear-gradient(to top, $colors$surface6, $colors$surface6)',
         },
       },
-      secondary: {
-        'bc': '$shape',
-        'color': '$text',
-        'borderColor': '$border',
-        '&:hover': {
-          bc: '$shape--hover',
-          borderColor: '$border--hover',
+      tonal: {
+        'bc': '$secondaryContainer',
+        'color': '$onSecondaryContainer',
+        'focusRing': '$surfacePrimary6',
+        '&:where(:hover, :focus)': {
+          backgroundImage: 'linear-gradient(to top, $colors$surfacePrimary1, $colors$surfacePrimary1)',
         },
-        '&:active, &[data-state="open"]': {
-          bc: '$shape--active',
-          borderColor: '$border--active',
-        },
-        '&:focus': {
-          borderColor: '$border--active',
+        '&:where(:active, [data-state="open"])': {
+          backgroundImage: 'linear-gradient(to top, $colors$surfacePrimary2, $colors$surfacePrimary2)',
         },
       },
       outline: {
-        'color': '$text-accent',
-        'bc': '$shape-accent-light',
-        'borderColor': '$border-accent',
-        '&:hover': {
-          bc: '$shape-accent-light--hover',
-          color: '$text-accent',
-          borderColor: '$border-accent--hover',
+        'bc': 'transparent',
+        'color': '$primary',
+        'border': '1px solid $primary',
+        'focusRing': '$surfacePrimary6',
+        '&:where(:hover, :focus)': {
+          bc: '$surfacePrimary2',
         },
-        '&:active, &[data-state="open"]': {
-          bc: '$shape-accent-light--active',
-          color: '$text-accent',
-          borderColor: '$border-accent--active',
-        },
-        '&:focus': {
-          borderColor: '$border-accent--active',
+        '&:where(:active, [data-state="open"])': {
+          bc: '$surfacePrimary3',
+          borderColor: '$primary',
         },
       },
       flat: {
-        'bc': '$shape',
-        'color': '$text',
-        '&:hover': {
-          bc: '$shape--hover',
+        'bc': 'transparent',
+        'color': '$onSurface',
+        'border': '1px solid transparent',
+        '&:where(:hover, :focus)': {
+          bc: '$surface1',
         },
-        '&:focus': {
-          bc: '$shape--hover',
-          borderColor: '$border--light',
+        '&:where(:focus)': {
+          borderColor: '$surface2',
         },
-        '&:active, &[data-state="open"]': {
-          bc: '$shape--active',
+        '&:where(:active, [data-state="open"])': {
+          bc: '$surface2',
+          borderColor: '$surface4',
         },
       },
       link: {
         'bc': 'transparent',
-        'color': '$text-accent',
-        'cursor': 'pointer',
-        '&:not([aria-disabled="true"]):hover': {
+        'color': '$primary',
+        'focusRing': '$surfacePrimary6',
+        '&:where(:hover)': {
           textDecoration: 'underline',
         },
-        '&[disabled],&[aria-disabled="true"]': {
+        '&:is(:disabled,[aria-disabled=true])': {
           bc: 'transparent',
-          borderColor: 'transparent',
+          border: 'none',
+          textDecoration: 'none',
         },
       },
-      transparent: {
-        bc: 'transparent',
-        borderColor: 'transparent',
-        color: '$text',
-      },
+      transparent: {},
     },
   },
   'defaultVariants': {
     ...flexDefaults,
-    variant: 'secondary',
+    variant: 'tonal',
     size: 'md',
   },
 });

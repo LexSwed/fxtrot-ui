@@ -14,12 +14,10 @@ interface TriggerProps extends React.ComponentProps<typeof StyledTrigger> {
 export const Trigger = React.forwardRef<HTMLButtonElement, TriggerProps>(
   ({ children, flow = 'row', cross = 'center', main = 'space-between', ...props }, ref) => {
     return (
-      <Rdx.Trigger asChild>
-        <StyledTrigger flow={flow} cross={cross} main={main} {...props} ref={ref}>
-          {children}
-          <Icon css={chevronIconStyle} as={ChevronDownIcon} />
-        </StyledTrigger>
-      </Rdx.Trigger>
+      <StyledTrigger flow={flow} cross={cross} main={main} {...props} ref={ref}>
+        {children}
+        <Icon css={chevronIconStyle} as={ChevronDownIcon} />
+      </StyledTrigger>
     );
   }
 );
@@ -28,13 +26,14 @@ const chevronIconStyle: CssStyles = {
   transition: 'transform 0.14s ease-in-out',
 };
 
-const StyledTrigger = styled('button', flexCss, {
+const StyledTrigger = styled(Rdx.Trigger, flexCss, {
   'width': '100%',
   'cursor': 'default',
   'br': '$md',
   'transition': '0.2s ease-in-out',
-  'fontFamily': '$default',
+  'transitionProperty': 'border-color, background-color',
   'border': '1px solid transparent',
+  'fontFamily': '$default',
   'whiteSpace': 'nowrap',
   'flexShrink': 0,
   '&[disabled],[aria-disabled="true"]': {
@@ -49,23 +48,22 @@ const StyledTrigger = styled('button', flexCss, {
   'variants': {
     variant: {
       flat: {
-        'bc': '$shape',
-        'color': '$text',
-        'focusRing': '$focusRing',
-        '&:hover': {
-          bc: '$shape--hover',
+        'focusRing': '$surface5',
+        'bc': 'transparent',
+        'color': '$onSurface',
+        'border': '1px solid transparent',
+        '&:where(:hover, :focus)': {
+          bc: '$surface1',
+          borderColor: '$surface2',
         },
-        '&:focus': {
-          bc: '$shape--hover',
-          borderColor: '$border--light',
-        },
-        '&:active, &[data-state="open"]': {
-          bc: '$shape--active',
+        '&:where(:active, [data-state="open"])': {
+          bc: '$surface2',
+          borderColor: '$surface3',
         },
         '&:disabled': {
-          color: '$text--disabled',
-          borderColor: 'transparent',
-          bc: 'transparent',
+          color: '$onDisabled',
+          borderColor: '$disabled',
+          bc: '$disabled',
         },
       },
     },
