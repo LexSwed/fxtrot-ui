@@ -36,13 +36,28 @@ title: Text
 `Text` component doesn't allow to change the size diectly, and instead offers to use `textStyle` prop for consistent styling.
 
 <Column gap="4" cross="stretch">
-  {['body-sm', 'body-md', 'body-lg', 'label', 'title-sm', 'title-md', 'title-lg', 'headline', 'overline', 'mono'].map(
-    (key) => (
-      <TextWithComputedStyle key={key} textStyle={key}>
-        {key}
-      </TextWithComputedStyle>
-    )
-  )}
+  {[
+    'body-sm',
+    'body-md',
+    'body-lg',
+    'label-sm',
+    'label-md',
+    'label-lg',
+    'title-sm',
+    'title-md',
+    'title-lg',
+    'headline-sm',
+    'headline-md',
+    'headline-lg',
+    'mono-sm',
+    'mono-md',
+    'mono-lg',
+    'overline',
+  ].map((key) => (
+    <TextWithComputedStyle key={key} textStyle={key}>
+      {key}
+    </TextWithComputedStyle>
+  ))}
 </Column>
 
 Example:

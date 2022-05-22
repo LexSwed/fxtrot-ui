@@ -8,7 +8,7 @@ export const stitchesConfig = createStitches({
   theme: {
     colors: { ...createColorVariations(lightColors) },
     fonts: {
-      default: '"Noto Sans", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif',
+      default: '"Noto Sans Display", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif',
       heading: '"Source Sans Pro", apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif',
       mono: 'Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;',
     },

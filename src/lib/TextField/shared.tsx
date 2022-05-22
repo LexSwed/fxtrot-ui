@@ -69,7 +69,7 @@ export const fieldBox = css({
         '&:where(:focus, [aria-expanded="true"])': {
           backgroundSize: '100% calc(100% + 1px)',
           $$borderColor: '$colors$primary',
-          bc: '$surface2',
+          bc: '$surface1',
         },
         '&:disabled': {
           backgroundImage: 'none',
@@ -79,19 +79,16 @@ export const fieldBox = css({
       flat: {
         'bc': 'transparent',
         'borderColor': 'surface',
-        '&:where(:hover)': {
-          bc: '$surface',
-          borderColor: '$surface5',
+        '&:where(:hover, :focus, :active, [data-state="open"])': {
+          bc: '$surface1',
         },
         '&:where(:active, [data-state="open"])': {
-          bc: '$surface1',
           borderColor: '$surface3',
         },
         'px': '$3',
         'br': '$base',
         '&:where(:focus)': {
-          bc: '$surface1',
-          borderColor: '$surface6',
+          borderColor: '$surface5',
         },
       },
     },
@@ -161,6 +158,15 @@ export const fieldBox = css({
       validity: 'invalid',
       css: {
         $$borderColor: '$colors$danger',
+      },
+    },
+    {
+      variant: 'underlined',
+      validity: 'valid',
+      css: {
+        '&:not(:focus)': {
+          $$borderColor: '$colors$success',
+        },
       },
     },
     {

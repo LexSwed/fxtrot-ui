@@ -33,7 +33,7 @@ export const TextWithComputedStyle = ({ textStyle = 'body-md' }: React.Component
         {textStyle as string}
       </Text>
       <Text
-        textStyle="mono"
+        textStyle="mono-md"
         tone="light"
       >{`${style.fontFamily} ${style.fontSize}/${style.lineHeight} ${style.fontWeight}`}</Text>
     </Column>

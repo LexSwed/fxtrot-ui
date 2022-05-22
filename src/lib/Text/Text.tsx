@@ -14,8 +14,14 @@ export const Text = styled('span', {
       'body-lg': {
         textSize: '$md',
       },
-      'label': {
+      'label-sm': {
+        textSize: '$xs',
+      },
+      'label-md': {
         textSize: '$sm',
+      },
+      'label-lg': {
+        textSize: '$lg',
       },
       'title-sm': {
         textSize: '$xl',
@@ -26,18 +32,34 @@ export const Text = styled('span', {
       'title-lg': {
         textSize: '$3xl',
       },
-      'headline': {
+      'headline-sm': {
+        fontFamily: '$heading',
+        textSize: '$4xl',
+      },
+      'headline-md': {
         fontFamily: '$heading',
         textSize: '$5xl',
+      },
+      'headline-lg': {
+        fontFamily: '$heading',
+        textSize: '$6xl',
       },
       'overline': {
         fontFamily: '$default',
         textSize: '$xs',
         textTransform: 'uppercase',
       },
-      'mono': {
+      'mono-sm': {
+        fontFamily: '$mono',
+        textSize: '$xs',
+      },
+      'mono-md': {
         fontFamily: '$mono',
         textSize: '$sm',
+      },
+      'mono-lg': {
+        fontFamily: '$mono',
+        textSize: '$md',
       },
     },
     tone: {
@@ -110,6 +132,35 @@ export const Text = styled('span', {
         WebkitBoxOrient: 'vertical',
         WebkitLineClamp: 6,
         overflow: 'hidden',
+      },
+    },
+    weight: {
+      100: {
+        fontWeight: 100,
+      },
+      200: {
+        fontWeight: 200,
+      },
+      300: {
+        fontWeight: 300,
+      },
+      400: {
+        fontWeight: 400,
+      },
+      500: {
+        fontWeight: 500,
+      },
+      600: {
+        fontWeight: 600,
+      },
+      700: {
+        fontWeight: 700,
+      },
+      800: {
+        fontWeight: 800,
+      },
+      900: {
+        fontWeight: 900,
       },
     },
   },

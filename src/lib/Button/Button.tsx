@@ -114,11 +114,13 @@ export const buttonCss = css(flexCss, {
         'border': '1px solid transparent',
         '&:where(:hover, :focus)': {
           bc: '$surface1',
+        },
+        '&:where(:focus)': {
           borderColor: '$surface2',
         },
         '&:where(:active, [data-state="open"])': {
           bc: '$surface2',
-          borderColor: '$surface3',
+          borderColor: '$surface4',
         },
       },
       link: {

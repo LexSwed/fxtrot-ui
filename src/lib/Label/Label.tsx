@@ -42,11 +42,11 @@ export interface Props extends VariantProps<typeof LabelWrapper> {
 export const Label = React.forwardRef(({ label, secondary, disabled, ...props }, ref) => {
   return (
     <LabelWrapper {...props} cross="center" gap="xs" display="inline" ref={ref as any}>
-      <Main textStyle="label" disabled={disabled}>
+      <Main textStyle="label-sm" weight={500} disabled={disabled}>
         {label}
       </Main>
       {secondary && (
-        <Secondary textStyle="label" tone="light">
+        <Secondary textStyle="label-sm" tone="light">
           {secondary}
         </Secondary>
       )}
