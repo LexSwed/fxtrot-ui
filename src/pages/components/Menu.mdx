@@ -95,26 +95,19 @@ You can modify `offset` from the `side` and along the `align`ment.
 
 ```tsx preview
 () => {
-  const modalOpenRef = React.useRef();
-  const [selection, setSelection] = React.useState('2');
+  const menuRef = useMenuRef();
   return (
-    <Menu>
+    <Menu ref={menuRef}>
       <Button variant="outline">
         <Icon as={ChevronDownIcon} size="lg" />
         More
       </Button>
-      <Menu.List
-        onCloseAutoFocus={(event) => {
-          // prevent focusing dropdown trigger when it closes from a dialog trigger
-          if (modalOpenRef.current) event.preventDefault();
-        }}
-      >
+      <Menu.List>
         <Dialog>
           <Menu.Item
             css={{ color: '$error' }}
             onSelect={(event) => {
               event.preventDefault();
-              modalOpenRef.current = true;
             }}
           >
             <Icon size="md" as={TrashIcon} />
@@ -123,19 +116,19 @@ You can modify `offset` from the `side` and along the `align`ment.
           {(close) => (
             <Dialog.Modal>
               <Dialog.Title level={3}>Delete topic?</Dialog.Title>
-              <Picker
-                value={selection}
-                onChange={(value) => {
-                  setSelection(value);
+              <form
+                onChange={(e) => {
                   setTimeout(() => {
-                    modalOpenRef.current = false;
                     close();
+                    menuRef.current.close();
                   }, 250);
                 }}
               >
-                <Picker.Item label="Item 1" value="1" />
-                <Picker.Item label="Item 2" value="2" />
-              </Picker>
+                <Picker defaultValue="2">
+                  <Picker.Item label="Item 1" value="1" />
+                  <Picker.Item label="Item 2" value="2" />
+                </Picker>
+              </form>
             </Dialog.Modal>
           )}
         </Dialog>

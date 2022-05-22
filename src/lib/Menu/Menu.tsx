@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import * as RdxMenu from '@radix-ui/react-dropdown-menu';
 
 import { PopoverBox } from '../Popover/PopoverBox';
 import { styled, CssStyles } from '../stitches.config';
-import { OpenStateProvider, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
+import { OpenStateProvider, OpenStateRef, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { Label } from '../Label';
 import { Portal } from '../Portal';
 import type { VariantProps } from '@stitches/react';
@@ -32,13 +32,22 @@ const MenuInner = ({ children, modal }: MenuListProps) => {
   );
 };
 
-const MenuRoot = (props: MenuListProps) => {
+const MenuRoot = React.forwardRef<OpenStateRef, MenuListProps>((props, ref) => {
   return (
-    <OpenStateProvider>
+    <OpenStateProvider ref={ref}>
       <MenuInner {...props} />
     </OpenStateProvider>
   );
+}) as React.ForwardRefExoticComponent<MenuListProps & React.RefAttributes<OpenStateRef>> & {
+  List: typeof List;
+  Item: typeof MenuItem;
+  Separator: typeof Separator;
+  Label: typeof MenuLabel;
 };
+
+export function useMenuRef() {
+  return useRef<OpenStateRef>(null);
+}
 
 interface MenuListProps
   extends Pick<RdxMenu.MenuContentProps, 'side' | 'sideOffset' | 'align'>,

@@ -1,1 +1,1 @@
-export { Menu } from './Menu';
+export { Menu, useMenuRef } from './Menu';
