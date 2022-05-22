@@ -139,7 +139,7 @@ const Input = styled('input', {
       'bc': '$disabled',
       'borderColor': '$disabled',
       '&::before': {
-        bc: '$onDisabled',
+        opacity: 0.6,
       },
     },
 
