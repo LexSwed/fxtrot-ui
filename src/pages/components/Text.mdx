@@ -31,18 +31,18 @@ title: Text
 </Column>
 ```
 
-## Text styled
+## Text style
 
 `Text` component doesn't allow to change the size diectly, and instead offers to use `textStyle` prop for consistent styling.
 
-import { textStyle } from '@fxtrot/ui/utils/variants';
-
 <Column gap="4" cross="stretch">
-  {Object.keys(textStyle).map((key) => (
-    <TextWithComputedStyle key={key} textStyle={key}>
-      {key}
-    </TextWithComputedStyle>
-  ))}
+  {['body-sm', 'body-md', 'body-lg', 'label', 'title-sm', 'title-md', 'title-lg', 'headline', 'overline', 'mono'].map(
+    (key) => (
+      <TextWithComputedStyle key={key} textStyle={key}>
+        {key}
+      </TextWithComputedStyle>
+    )
+  )}
 </Column>
 
 Example:
