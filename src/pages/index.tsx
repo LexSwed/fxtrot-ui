@@ -1,6 +1,6 @@
 import React from 'react';
 import { NextSeo } from 'next-seo';
-import { Box, Column, Heading, Icon, IconButton, LinkButton, Row } from '@fxtrot/ui';
+import { Box, Column, Heading, Icon, IconButton, LinkButton, Row, styled } from '@fxtrot/ui';
 import Link from 'next/link';
 
 import { BsGithub } from 'react-icons/bs';
@@ -14,8 +14,8 @@ const App = () => {
   return (
     <>
       <NextSeo title="Fxtrot UI" description="A component library for React projects." />
-      <Box p="$16" height="100vh" display="flex" flexFlow="column nowrap">
-        <Box pb="$16">
+      <Wrapper>
+        <Box pb="$8">
           <Row as="header" main="space-between" cross="center">
             <Heading as="h1" level="2">
               Fxtrot
@@ -50,9 +50,22 @@ const App = () => {
             </Link>
           </Column>
         </Box>
-      </Box>
+      </Wrapper>
     </>
   );
 };
 
 export default App;
+
+const Wrapper = styled('div', {
+  'px': '$4',
+  'pb': '$16',
+  'height': '100vh',
+  'display': 'flex',
+  'flexFlow': 'column nowrap',
+  'maxWidth': '1280px',
+  'm': '0 auto',
+  '@desktop': {
+    px: '$16',
+  },
+});
