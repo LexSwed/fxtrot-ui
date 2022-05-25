@@ -1,13 +1,13 @@
 export const lightColors: ThemeColors = {
-  primary: 'hsl(232 53% 55%)',
+  primary: 'hsl(202 100% 30.6%)',
   onPrimary: 'hsl(0 0% 100%)',
-  primaryContainer: 'hsl(235 100% 93.3%)',
-  onPrimaryContainer: 'hsl(232 100% 19%)',
+  primaryContainer: 'hsl(211 100% 90%)',
+  onPrimaryContainer: 'hsl(206 100% 10%)',
 
-  secondary: 'hsl(231 39.1% 47.6%)',
+  secondary: 'hsl(202 100% 30.4%)',
   onSecondary: 'hsl(0 0% 100%)',
-  secondaryContainer: 'hsl(235 100% 93.3%)',
-  onSecondaryContainer: 'hsl(232 100% 19%)',
+  secondaryContainer: 'hsl(211 100% 90%)',
+  onSecondaryContainer: 'hsl(206 100% 10%)',
 
   tertiary: 'hsl(328 95.8% 37.1%)',
   onTertiary: 'hsl(0 0% 100%)',
