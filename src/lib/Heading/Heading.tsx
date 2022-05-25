@@ -37,6 +37,11 @@ export const Heading = styled('h1', {
         fontWeight: 300,
       },
     },
+    dense: {
+      true: {
+        margin: 0,
+      },
+    },
   },
   compoundVariants: [
     {
