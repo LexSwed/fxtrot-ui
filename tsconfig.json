@@ -5,7 +5,7 @@
     "sourceMap": true,
     "strict": true,
     "esModuleInterop": true,
-    "types": ["react", "jest"],
+    "types": ["react"],
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "strictFunctionTypes": true,
@@ -13,11 +13,11 @@
     "useDefineForClassFields": true,
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
+    "jsx": "preserve",
     "noEmit": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "importHelpers": true,
-    "jsx": "preserve",
     "baseUrl": ".",
     "isolatedModules": true,
     "paths": {
@@ -25,6 +25,6 @@
     },
     "incremental": true
   },
-  "include": ["next-env.d.ts", "src"],
+  "include": ["docs", "src", "public"],
   "exclude": ["node_modules"]
 }

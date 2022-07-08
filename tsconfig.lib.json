@@ -5,10 +5,8 @@
     "module": "esnext",
     "target": "esnext",
     "declaration": true,
-    "strictFunctionTypes": true,
     "outDir": "dist/types",
-    "emitDeclarationOnly": true,
-    "types": ["node"]
+    "emitDeclarationOnly": true
   },
   "include": ["src/lib"],
   "exclude": ["node_modules"]

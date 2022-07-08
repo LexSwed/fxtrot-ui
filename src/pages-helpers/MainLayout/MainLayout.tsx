@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { Icon, Row, TextLink, stitchesConfig, styled, Dialog, IconButton } from '@fxtrot/ui';
 import Link from 'next/link';
 import Head from 'next/head';
