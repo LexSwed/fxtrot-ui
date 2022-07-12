@@ -20,14 +20,14 @@ export const ListItem = styled('div', flexCss, {
   'transition': '0.1s ease-in-out',
   'bc': 'transparent',
   'color': '$onBackground',
-  'focusRingInset': '$surface2',
+  'focusRingInset': '$surface1',
   '&:hover': {
     bc: '$surface1',
   },
   '&:focus': {
     bc: '$surface2',
   },
-  '&:active, [data-focused="true"]': {
+  '&:active, [data-focused="true"], [data-highlighted]': {
     bc: '$surface2',
   },
   [`& ${Text}`]: {

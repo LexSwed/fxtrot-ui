@@ -52,8 +52,8 @@ const Content: React.FC<ContentProps> = ({
   ...props
 }) => {
   return (
-    <Portal>
-      <RdxPopover.Content portalled={false} asChild>
+    <Portal radixPortal={RdxPopover.Portal}>
+      <RdxPopover.Content asChild>
         <PopoverBox {...props}>
           <Box p="$4" css={css}>
             {children}

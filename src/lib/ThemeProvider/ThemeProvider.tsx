@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useMemo, useRef } from 'react';
+import React, { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { Direction, DirectionProvider } from '@radix-ui/react-direction';
 
 import { createTheme, styled } from '../stitches.config';
 import { createColorVariations } from '../theme/createColorVariations';
@@ -15,7 +16,8 @@ export const ThemeProvider = React.forwardRef<HTMLDivElement, Props>(({ theme, .
   const contextTheme = useContext(themeContext);
   const rootRef = useFxtrotRootRef();
   const ref = useRef<HTMLDivElement>(null);
-  const refs = useForkRef(ref, propRef);
+  const [direction, directionRef] = useDirection();
+  const refs = useForkRef<HTMLElement>(ref, directionRef, propRef);
   const stitchesTheme = useMemo(() => {
     if (typeof theme === 'string') {
       return theme;
@@ -35,7 +37,9 @@ export const ThemeProvider = React.forwardRef<HTMLDivElement, Props>(({ theme, .
   return (
     <rootRefContext.Provider value={rootRef.current ? rootRef : ref}>
       <themeContext.Provider value={themeValue}>
-        <ThemeWrapper className={themeValue} ref={refs} {...props} />
+        <DirectionProvider dir={direction}>
+          <ThemeWrapper className={themeValue} ref={refs} {...props} />
+        </DirectionProvider>
       </themeContext.Provider>
       <Reset />
     </rootRefContext.Provider>
@@ -59,3 +63,16 @@ const ThemeWrapper = styled('span', {
   fontSize: '$md',
   boxSizing: 'border-box',
 });
+
+function useDirection() {
+  const [element, ref] = useState<HTMLElement | null>(null);
+  const [direction, setDirection] = useState<Direction>('ltr');
+  useEffect(() => {
+    if (!element) {
+      return;
+    }
+    const el = window.getComputedStyle(element);
+    setDirection(el.direction as Direction);
+  }, [element]);
+  return [direction, ref] as const;
+}

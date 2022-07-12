@@ -54,8 +54,8 @@ interface MenuListProps
     React.ComponentProps<typeof PopoverBox> {}
 const List = ({ align = 'start', side = 'bottom', sideOffset = 8, ...props }: MenuListProps) => {
   return (
-    <Portal>
-      <RdxMenu.Content align={align} side={side} sideOffset={sideOffset} portalled={false} asChild>
+    <Portal radixPortal={RdxMenu.Portal}>
+      <RdxMenu.Content align={align} side={side} sideOffset={sideOffset} asChild>
         <MenuListContent {...props} />
       </RdxMenu.Content>
     </Portal>

@@ -8,6 +8,7 @@ import { styled } from '../stitches.config';
 import { ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/outline';
 import { Icon } from '../Icon';
 import { PopoverBox } from '../Popover/PopoverBox';
+import { Portal } from '../Portal';
 
 interface Props extends Omit<PickerTriggerProps, 'value' | 'onChange' | 'defaultValue' | 'children' | 'size'> {
   value?: string;
@@ -17,33 +18,26 @@ interface Props extends Omit<PickerTriggerProps, 'value' | 'onChange' | 'default
   children: OptionType[] | OptionType;
 }
 
-export const Picker = ({ children, name, onChange, value, defaultValue = '', ...triggerProps }: Props) => {
+export const Picker = ({ children, name, onChange, value, defaultValue, ...triggerProps }: Props) => {
   return (
     <RdxSelect.Root value={value} defaultValue={defaultValue} onValueChange={onChange} name={name}>
       <PickerTrigger {...triggerProps} />
-      <Content>
-        <SelectArrow as={RdxSelect.SelectScrollUpButton}>
-          <Icon as={ChevronUpIcon} size="sm" />
-        </SelectArrow>
-        <Viewport>
-          {triggerProps.placeholder ? (
-            <EmptyItem value="" size={triggerProps.size as any} label={triggerProps.placeholder} />
-          ) : null}
-          {children}
-        </Viewport>
-        <SelectArrow as={RdxSelect.SelectScrollDownButton}>
-          <Icon as={ChevronDownIcon} size="sm" />
-        </SelectArrow>
-      </Content>
+      <Portal radixPortal={RdxSelect.Portal}>
+        <Content>
+          <SelectArrow as={RdxSelect.SelectScrollUpButton}>
+            <Icon as={ChevronUpIcon} size="sm" />
+          </SelectArrow>
+          <Viewport css={{ $$itemSize: triggerProps.size }}>{children}</Viewport>
+          <SelectArrow as={RdxSelect.SelectScrollDownButton}>
+            <Icon as={ChevronDownIcon} size="sm" />
+          </SelectArrow>
+        </Content>
+      </Portal>
     </RdxSelect.Root>
   );
 };
 
 Picker.Item = Item;
-
-const EmptyItem = styled(Item, {
-  color: '$onSurfaceVariant',
-});
 
 const Content = styled(RdxSelect.Content, PopoverBox);
 

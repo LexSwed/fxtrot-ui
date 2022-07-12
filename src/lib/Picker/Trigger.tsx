@@ -1,4 +1,3 @@
-import React from 'react';
 import { SelectorIcon } from '@heroicons/react/solid';
 import * as RdxSelect from '@radix-ui/react-select';
 
@@ -85,6 +84,10 @@ const TriggerButton = styled('button', fieldBox, {
   'alignItems': 'center',
   'justifyContent': 'space-between',
   'fontSize': '$sm',
+
+  '&[data-placeholder]': {
+    color: '$onSurfaceVariant',
+  },
 
   '& > span:first-of-type': {
     minWidth: 0,
