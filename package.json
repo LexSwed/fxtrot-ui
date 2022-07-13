@@ -46,7 +46,7 @@
     "@radix-ui/react-direction": "^0.1.0-rc.46",
     "@radix-ui/react-dropdown-menu": "next",
     "@radix-ui/react-id": "next",
-    "@radix-ui/react-polymorphic": "^next",
+    "@radix-ui/react-polymorphic": "^0.0.14",
     "@radix-ui/react-popover": "next",
     "@radix-ui/react-portal": "next",
     "@radix-ui/react-roving-focus": "next",
