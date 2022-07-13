@@ -11,8 +11,11 @@ const Link = styled('a', Text, {
   'fontWeight': 600,
   'textDecoration': 'underline solid transparent 1px',
   'transition': 'text-decoration 0.1s ease-in',
-  '&:where(:hover, :focus)': {
-    textDecorationColor: 'currentColor',
+
+  '@hover': {
+    '&:where(:hover, :focus)': {
+      textDecorationColor: 'currentColor',
+    },
   },
 
   'variants': {

@@ -90,6 +90,7 @@ export const stitchesConfig = createStitches({
     'dark': '(prefers-color-scheme: dark)',
     'light': '(prefers-color-scheme: light)',
     'no-motion': '(prefers-reduced-motion: reduce)',
+    'hover': '(any-hover: hover)',
   },
   /**
    * 1. colors layering: ...colors -> compose into one

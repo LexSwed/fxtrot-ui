@@ -52,9 +52,11 @@ const StyledTrigger = styled(Rdx.Trigger, flexCss, {
         'bc': 'transparent',
         'color': '$onSurface',
         'border': '1px solid transparent',
-        '&:where(:hover, :focus)': {
-          bc: '$surface1',
-          borderColor: '$surface2',
+        '@hover': {
+          '&:where(:hover, :focus)': {
+            bc: '$surface1',
+            borderColor: '$surface2',
+          },
         },
         '&:where(:active, [data-state="open"])': {
           bc: '$surface2',

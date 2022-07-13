@@ -79,14 +79,10 @@ export const buttonCss = css(flexCss, {
         'color': '$onPrimary',
         'position': 'relative',
         'focusRing': '$surfacePrimary6',
-        // '&:where(:hover, :focus)': {
-        //   filter: 'brightness(1.05)',
-        // },
-        // '&:where(:active, [data-state="open"])': {
-        //   filter: 'brightness(1.08)',
-        // },
-        '&:where(:hover, :focus)': {
-          backgroundImage: 'linear-gradient(to top, $colors$surface5, $colors$surface5)',
+        '@hover': {
+          '&:where(:hover, :focus)': {
+            backgroundImage: 'linear-gradient(to top, $colors$surface5, $colors$surface5)',
+          },
         },
         '&:where(:active, [data-state="open"])': {
           backgroundImage: 'linear-gradient(to top, $colors$surface6, $colors$surface6)',
@@ -96,8 +92,10 @@ export const buttonCss = css(flexCss, {
         'bc': '$secondaryContainer',
         'color': '$onSecondaryContainer',
         'focusRing': '$surfacePrimary6',
-        '&:where(:hover, :focus)': {
-          backgroundImage: 'linear-gradient(to top, $colors$surfacePrimary1, $colors$surfacePrimary1)',
+        '@hover': {
+          '&:where(:hover, :focus)': {
+            backgroundImage: 'linear-gradient(to top, $colors$surfacePrimary1, $colors$surfacePrimary1)',
+          },
         },
         '&:where(:active, [data-state="open"])': {
           backgroundImage: 'linear-gradient(to top, $colors$surfacePrimary2, $colors$surfacePrimary2)',
@@ -108,8 +106,10 @@ export const buttonCss = css(flexCss, {
         'color': '$primary',
         'border': '1px solid $primary',
         'focusRing': '$surfacePrimary6',
-        '&:where(:hover, :focus)': {
-          bc: '$surfacePrimary2',
+        '@hover': {
+          '&:where(:hover, :focus)': {
+            bc: '$surfacePrimary2',
+          },
         },
         '&:where(:active, [data-state="open"])': {
           bc: '$surfacePrimary3',
@@ -120,11 +120,13 @@ export const buttonCss = css(flexCss, {
         'bc': 'transparent',
         'color': '$onSurface',
         'border': '1px solid transparent',
-        '&:where(:hover, :focus)': {
-          bc: '$surface1',
-        },
-        '&:where(:focus)': {
-          borderColor: '$surface2',
+        '@hover': {
+          '&:where(:hover, :focus)': {
+            bc: '$surface1',
+          },
+          '&:where(:focus)': {
+            borderColor: '$surface2',
+          },
         },
         '&:where(:active, [data-state="open"])': {
           bc: '$surface2',
@@ -135,8 +137,10 @@ export const buttonCss = css(flexCss, {
         'bc': 'transparent',
         'color': '$primary',
         'focusRing': '$surfacePrimary6',
-        '&:where(:hover)': {
-          textDecoration: 'underline',
+        '@hover': {
+          '&:where(:hover)': {
+            textDecoration: 'underline',
+          },
         },
         '&:is(:disabled,[aria-disabled=true])': {
           bc: 'transparent',

@@ -101,21 +101,6 @@ const Input = styled('input', {
   'cursor': 'default',
   'transition': '0.24s ease-in-out',
 
-  [`&:focus + ${Toggle}`]: {
-    '&::before': {
-      boxShadow: '0 0 0 6px $colors$surfacePrimary6',
-    },
-  },
-
-  '&:where(:hover)': {
-    [`& + ${Toggle}`]: {
-      'bc': '$surfacePrimary1',
-      '&::before': {
-        boxShadow: '$xs, $sm',
-      },
-    },
-  },
-
   '&:where(:checked)': {
     [`& + ${Toggle}`]: {
       'bc': '$primary',
@@ -125,10 +110,19 @@ const Input = styled('input', {
         bc: '$onPrimary',
       },
     },
-    '&:hover': {
+  },
+
+  '@hover': {
+    [`&:focus + ${Toggle}`]: {
+      '&::before': {
+        boxShadow: '0 0 0 6px $colors$surfacePrimary6',
+      },
+    },
+    '&:where(:hover):not(:checked)': {
       [`& + ${Toggle}`]: {
+        'bc': '$surfacePrimary1',
         '&::before': {
-          backgroundImage: 'linear-gradient(to top, $surfacePrimary3, $surfacePrimary3)',
+          boxShadow: '$xs, $sm',
         },
       },
     },

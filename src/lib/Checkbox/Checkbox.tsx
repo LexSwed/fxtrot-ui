@@ -92,27 +92,42 @@ export const CheckMark = styled('div', {
 });
 
 const Input = styled('input', {
-  position: 'absolute',
-  display: 'block',
-  top: 0,
-  right: 0,
-  bottom: 0,
-  left: 0,
-  width: '100%',
-  height: '100%',
-  bc: 'transparent',
-  p: 0,
-  m: 0,
-  opacity: 0,
-  zIndex: 1,
-  cursor: 'default',
-  transitionProperty: 'background-color, borderColor, color',
-  transitionDuration: '0.24s',
-  transitionTimingFunction: 'ease-in-out',
+  'position': 'absolute',
+  'display': 'block',
+  'top': 0,
+  'right': 0,
+  'bottom': 0,
+  'left': 0,
+  'width': '100%',
+  'height': '100%',
+  'bc': 'transparent',
+  'p': 0,
+  'm': 0,
+  'opacity': 0,
+  'zIndex': 1,
+  'cursor': 'default',
+  'transitionProperty': 'background-color, borderColor, color',
+  'transitionDuration': '0.24s',
+  'transitionTimingFunction': 'ease-in-out',
 
-  [`&:where(:hover,:focus) + ${CheckMark}`]: {
-    [`& ${IconBox}`]: {
-      opacity: 0.5,
+  '@hover': {
+    [`&:where(:hover,:focus) + ${CheckMark}`]: {
+      [`& ${IconBox}`]: {
+        opacity: 0.5,
+      },
+    },
+    [`&:where(:checked:hover) + ${CheckMark}`]: {
+      borderColor: '$primary',
+      [`& ${IconBox}`]: {
+        opacity: 1,
+      },
+    },
+
+    [`&:where(:checked:focus) + ${CheckMark}`]: {
+      borderColor: '$surfacePrimary2',
+      [`& > ${IconBox}`]: {
+        opacity: 1,
+      },
     },
   },
 
@@ -126,19 +141,6 @@ const Input = styled('input', {
     backgroundSize: '200% 200%',
     [`& ${IconBox}`]: {
       color: '$onPrimary',
-      opacity: 1,
-    },
-  },
-  [`&:where(:checked:hover) + ${CheckMark}`]: {
-    borderColor: '$primary',
-    [`& ${IconBox}`]: {
-      opacity: 1,
-    },
-  },
-
-  [`&:where(:checked:focus) + ${CheckMark}`]: {
-    borderColor: '$surfacePrimary2',
-    [`& > ${IconBox}`]: {
       opacity: 1,
     },
   },
