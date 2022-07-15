@@ -1,5 +1,5 @@
 import remarkFrontmatter from 'remark-frontmatter';
-import { remarkMdxFrontmatter } from 'remark-mdx-frontmatter';
+import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import rehypeSlug from 'rehype-slug';
 import createWithMdx from '@next/mdx';
 import remarkGfm from 'remark-gfm';
