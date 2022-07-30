@@ -3,7 +3,7 @@ import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import rehypeSlug from 'rehype-slug';
 import createWithMdx from '@next/mdx';
 import remarkGfm from 'remark-gfm';
-import { remarkMdxCodeMeta } from 'remark-mdx-code-meta';
+import remarkMdxCodeMeta from 'remark-mdx-code-meta';
 import { remarkNextStaticProps } from './plugins/remark-next-static-props.mjs';
 import path from 'path';
 import { cwd } from 'process';
@@ -40,8 +40,6 @@ export default withMDX({
     return config;
   },
   experimental: {
-    plugins: true,
-    concurrentFeatures: false,
     scrollRestoration: true,
     esmExternals: true,
   },

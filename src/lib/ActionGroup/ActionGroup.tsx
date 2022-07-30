@@ -33,6 +33,7 @@ export const ActionGroup: React.FC<Props> = ({ children, type = 'single', gap = 
   );
 };
 const ActionGroupRoot = styled(ToggleGroup.Root, flexCss, {
+  gap: '-1px',
   compoundVariants: [
     {
       gap: 'none',
@@ -53,6 +54,14 @@ const ActionGroupRoot = styled(ToggleGroup.Root, flexCss, {
         [`& > ${ButtonRoot}:not(:last-of-type)`]: {
           borderTopRightRadius: 0,
           borderBottomRightRadius: 0,
+        },
+      },
+    },
+    {
+      gap: 'none',
+      css: {
+        [`& > ${ButtonRoot} + ${ButtonRoot}`]: {
+          ml: '-1px',
         },
       },
     },

@@ -78,6 +78,7 @@ const DialogWindow = styled(RdxDialog.Content, {
   'minWidth': 320,
   'boxShadow': '$lg',
   'position': 'relative',
+  'mx': '$2',
   'animationTimingFunction': 'ease-in-out',
   'animationFillMode': 'forwards',
   '@no-motion': {

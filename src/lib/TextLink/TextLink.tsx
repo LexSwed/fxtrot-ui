@@ -9,12 +9,16 @@ const Link = styled('a', Text, {
   'boxSizing': 'border-box',
   'cursor': 'pointer',
   'fontWeight': 600,
-  'textDecoration': 'underline solid transparent 1px',
-  'transition': 'text-decoration 0.1s ease-in',
+  'textDecoration': 'underline solid transparent 2px',
+  'transition': '0.1s ease-in',
+  'outline': 'inset 0 transparent',
 
   '@hover': {
     '&:where(:hover, :focus)': {
-      textDecorationColor: 'currentColor',
+      bc: '$surfacePrimary2',
+      outline: 'inset $sizes$1 $colors$surfacePrimary2',
+      $$outlineColor: '$colors$surfacePrimary2',
+      textDecorationColor: '$colors$primary',
     },
   },
 
