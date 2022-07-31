@@ -6,7 +6,7 @@ import { styled } from '../stitches.config';
 import { Flex, FlexVariants } from '../Flex/Flex';
 
 interface Props extends Omit<React.ComponentProps<typeof Input>, 'onChange'>, FlexVariants {
-  label?: string;
+  label: string;
   secondaryLabel?: string;
   onChange: (checked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -54,12 +54,14 @@ export const Switch: React.FC<Props> = ({
         />
         <Toggle />
       </div>
-      {label && <Label label={label} secondary={secondaryLabel} disabled={disabled} />}
+      {label && <Label label={label} secondary={secondaryLabel} disabled={disabled} as="span" />}
     </SwitchFormField>
   );
 };
 
-const SwitchFormField = styled('label', Flex, FormField, {});
+const SwitchFormField = styled('label', Flex, FormField, {
+  minHeight: '$base',
+});
 
 const Toggle = styled('div', {
   'br': '$pill',

@@ -5,6 +5,8 @@ import { Box } from '../Box';
 import { OpenStateProvider, OpenStateRef, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { PopoverBox } from './PopoverBox';
 import { Portal } from '../Portal';
+import { styled } from '../stitches.config';
+import { Presence } from '../shared/Presence';
 interface Props {
   children: [React.ReactElement, React.ReactElement<ContentProps>];
   defaultOpen?: boolean;
@@ -51,18 +53,32 @@ const Content: React.FC<ContentProps> = ({
   sideOffset = 8,
   ...props
 }) => {
+  const open = useOpenState();
   return (
-    <Portal radixPortal={RdxPopover.Portal}>
-      <RdxPopover.Content asChild>
-        <PopoverBox {...props}>
-          <Box p="$4" css={css}>
-            {children}
-          </Box>
-        </PopoverBox>
-      </RdxPopover.Content>
-    </Portal>
+    <Presence present={open}>
+      {({ ref: presenceRef }) => (
+        <PopoverPortal radixPortal={RdxPopover.Portal} forceMount>
+          <RdxPopover.Content collisionPadding={8} align={align} side={side} sideOffset={sideOffset} asChild>
+            <PopoverBox {...props} ref={presenceRef}>
+              <Box p="$4" css={css}>
+                {children}
+              </Box>
+            </PopoverBox>
+          </RdxPopover.Content>
+        </PopoverPortal>
+      )}
+    </Presence>
   );
 };
+
+const PopoverPortal = styled(Portal, {
+  '& > [data-radix-popper-content-wrapper]': {
+    '@mobile': {
+      position: 'initial !important',
+      transform: 'none !important',
+    },
+  },
+});
 
 export const Popover = PopoverRoot;
 PopoverRoot.displayName = 'Popover';

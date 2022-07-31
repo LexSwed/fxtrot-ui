@@ -10,7 +10,7 @@ import { Presence } from '../shared/Presence';
 
 export interface ModalProps extends React.ComponentProps<'div'> {
   hasCloseButton?: boolean;
-  overlay?: 'dialog' | 'side';
+  placement?: React.ComponentProps<typeof DialogWindow>['placement'];
   onOpenAutoFocus?: RdxDialog.DialogContentProps['onOpenAutoFocus'];
   onCloseAutoFocus?: RdxDialog.DialogContentProps['onCloseAutoFocus'];
   onEscapeKeyDown?: RdxDialog.DialogContentProps['onEscapeKeyDown'];
@@ -22,16 +22,16 @@ export interface ModalProps extends React.ComponentProps<'div'> {
 }
 
 export const DialogModal = React.forwardRef<HTMLDivElement, ModalProps>(
-  ({ children, hasCloseButton = true, overlay = 'dialog', css, ...props }, ref) => {
+  ({ children, hasCloseButton = true, placement = 'dialog', css, ...props }, ref) => {
     const open = useOpenState();
     return (
       <Presence present={open}>
         {({ ref: presenceRef }) => {
           return (
-            <Portal>
-              <DialogModalContainer overlay={overlay}>
-                <OverlayStyled css={css?.overlay} ref={presenceRef} forceMount />
-                <DialogWindow overlay={overlay} {...props} css={css} ref={ref} forceMount>
+            <Portal radixPortal={RdxDialog.Portal} forceMount>
+              <DialogModalContainer placement={placement}>
+                <OverlayStyled css={css?.overlay} ref={presenceRef} />
+                <DialogWindow placement={placement} {...props} css={css} ref={ref}>
                   {children}
                   {hasCloseButton && (
                     <CloseButtonContainer>
@@ -60,7 +60,7 @@ const DialogModalContainer = styled('div', {
   overflowY: 'auto',
   zIndex: 100,
   variants: {
-    overlay: {
+    placement: {
       side: {},
       dialog: {
         display: 'grid',
@@ -78,14 +78,13 @@ const DialogWindow = styled(RdxDialog.Content, {
   'minWidth': 320,
   'boxShadow': '$lg',
   'position': 'relative',
-  'mx': '$2',
   'animationTimingFunction': 'ease-in-out',
   'animationFillMode': 'forwards',
   '@no-motion': {
     animationDuration: '0s',
   },
   'variants': {
-    overlay: {
+    placement: {
       side: {
         'borderTopLeftRadius': 0,
         'borderBottomLeftRadius': 0,
@@ -124,6 +123,7 @@ const DialogWindow = styled(RdxDialog.Content, {
       },
       dialog: {
         'br': '$md',
+        'mx': '$2',
         '@desktop': {
           maxWidth: '80vw',
         },

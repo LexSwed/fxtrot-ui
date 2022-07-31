@@ -15,8 +15,12 @@ title: Switch
 
 ## Secondary text
 
+The wrapper around the label and the switch is a [Flex](/components/Flex) component, making it easy to change the flow of the elements.
+
 ```tsx preview
-<Switch label="Format on save" secondaryLabel="(required)" required />
+<Row display="inline">
+  <Switch label="Format on save" secondaryLabel="(required)" required flow="row-reverse" />
+</Row>
 ```
 
 ## Theming

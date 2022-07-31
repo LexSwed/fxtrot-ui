@@ -10,6 +10,7 @@ import type { VariantProps } from '@stitches/react';
 import { listStyles } from '../shared/FloatingList';
 import { ListItem } from '../shared/ListItem';
 import { useIsomorphicLayoutEffect } from '../utils/hooks';
+import { Presence } from '../shared/Presence';
 
 interface MenuListProps {
   children: [trigger: React.ReactElement, menuList: React.ReactElement];
@@ -53,12 +54,17 @@ interface MenuListProps
   extends Pick<RdxMenu.MenuContentProps, 'side' | 'sideOffset' | 'align'>,
     React.ComponentProps<typeof PopoverBox> {}
 const List = ({ align = 'start', side = 'bottom', sideOffset = 8, ...props }: MenuListProps) => {
+  const open = useOpenState();
   return (
-    <Portal radixPortal={RdxMenu.Portal}>
-      <RdxMenu.Content align={align} side={side} sideOffset={sideOffset} asChild>
-        <MenuListContent {...props} />
-      </RdxMenu.Content>
-    </Portal>
+    <Presence present={open}>
+      {({ ref: presenceRef }) => (
+        <Portal radixPortal={RdxMenu.Portal} forceMount>
+          <RdxMenu.Content align={align} side={side} sideOffset={sideOffset} asChild>
+            <MenuListContent {...props} ref={presenceRef} />
+          </RdxMenu.Content>
+        </Portal>
+      )}
+    </Presence>
   );
 };
 

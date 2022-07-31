@@ -13,12 +13,13 @@ export const PopoverBox = styled('div', listStyles, {
   '&[data-state="closed"]': {
     animationDuration: '0.1s',
   },
-  '&[data-side="top"]': {
+  '&[data-side="top"], &[data-side="bottom"]': {
+    '$$direction': 'var($$direction, 1)',
     '&[data-state="open"]': {
       animationName: keyframes({
         '0%': {
           opacity: 0,
-          transform: 'translateY(5px)',
+          transform: 'translateY(calc($$direction * 5px))',
         },
         '60%': {
           opacity: 1,
@@ -37,17 +38,24 @@ export const PopoverBox = styled('div', listStyles, {
         },
         to: {
           opacity: 0,
-          transform: 'translateY(5px)',
+          transform: 'translateY(calc($$direction * 5px))',
         },
       }),
     },
   },
+  '&[data-side="top"]': {
+    $$direction: '1',
+  },
   '&[data-side="bottom"]': {
+    $$direction: '-1',
+  },
+  '&[data-side="right"], &[data-side="left"]': {
+    '$$direction': 'var($$direction, 1)',
     '&[data-state="open"]': {
       animationName: keyframes({
         '0%': {
           opacity: 0,
-          transform: 'translateY(-5px)',
+          transform: 'translateX(calc($$direction * 5px))',
         },
         '60%': {
           opacity: 1,
@@ -60,73 +68,61 @@ export const PopoverBox = styled('div', listStyles, {
     },
     '&[data-state="closed"]': {
       animationName: keyframes({
-        from: {
+        '0%': {
+          opacity: 0,
+          transform: 'translateX(calc($$direction * 5px))',
+        },
+        '60%': {
+          opacity: 1,
+        },
+        'to': {
           opacity: 1,
           transform: 'none',
-        },
-        to: {
-          opacity: 0,
-          transform: 'translateY(-5px)',
         },
       }),
     },
   },
   '&[data-side="right"]': {
-    '&[data-state="open"]': {
-      animationName: keyframes({
-        '0%': {
-          opacity: 0,
-          transform: 'translateX(-5px)',
-        },
-        '60%': {
-          opacity: 1,
-        },
-        'to': {
-          opacity: 1,
-          transform: 'none',
-        },
-      }),
-    },
-    '&[data-state="closed"]': {
-      animationName: keyframes({
-        '0%': {
-          opacity: 0,
-          transform: 'translateY(-5px)',
-        },
-        '60%': {
-          opacity: 1,
-        },
-        'to': {
-          opacity: 1,
-          transform: 'none',
-        },
-      }),
-    },
+    $$direction: '-1',
   },
   '&[data-side="left"]': {
-    '&[data-state="open"]': {
-      animationName: keyframes({
-        from: {
-          opacity: 0,
-          transform: 'translateX(5px)',
-        },
-        to: {
-          opacity: 1,
-          transform: 'none',
-        },
-      }),
-    },
-    '&[data-state="closed"]': {
-      animationName: keyframes({
-        from: {
-          opacity: 1,
-          transform: 'none',
-        },
-        to: {
-          opacity: 0,
-          transform: 'translateX(5px)',
-        },
-      }),
+    $$direction: '1',
+  },
+  '@mobile': {
+    'position': 'fixed',
+    'insetBlockEnd': '0',
+    'insetInlineStart': '0',
+    'width': '-webkit-fill-available',
+    'margin': '$2',
+    '&[data-side="top"], &[data-side="bottom"], &[data-side="right"], &[data-side="left"]': {
+      '$$direction': '1',
+      '&[data-state="open"]': {
+        animationName: `${keyframes({
+          '0%': {
+            opacity: 0,
+            transform: 'translateY(calc($$direction * 5px))',
+          },
+          '60%': {
+            opacity: 1,
+          },
+          'to': {
+            opacity: 1,
+            transform: 'none',
+          },
+        })} !important`,
+      },
+      '&[data-state="closed"]': {
+        animationName: `${keyframes({
+          from: {
+            opacity: 1,
+            transform: 'none',
+          },
+          to: {
+            opacity: 0,
+            transform: 'translateY(calc($$direction * 5px))',
+          },
+        })} !important`,
+      },
     },
   },
 });

@@ -82,7 +82,7 @@ export const stitchesConfig = createStitches({
     },
   },
   media: {
-    'mobile': `(max-width: 320px)`,
+    'mobile': `(max-width: 425px)`,
     'tablet': `(max-width: 768px)`,
     'untilDesktop': `(max-width: 1024px)`,
     'desktop': `(min-width: 1024px)`,
