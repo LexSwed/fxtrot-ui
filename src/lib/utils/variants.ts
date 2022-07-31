@@ -1,7 +1,6 @@
-// import {} from '@stitches/core'
 import { scales } from '../theme/scales';
 
-import type { Theme, CssStyles } from '../stitches.config';
+import type { Theme } from '../stitches.config';
 
 export const gaps = createScale('gap');
 

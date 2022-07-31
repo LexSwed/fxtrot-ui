@@ -57,6 +57,7 @@ export function useAllHandlers<E = React.SyntheticEvent<any, Event>>(
 
 export type KeyboardHandler = ((event: React.KeyboardEvent<any>) => void) | undefined;
 export type KeyboardHandlers = {
+  // eslint-disable-next-line no-unused-vars
   [Key in React.KeyboardEvent<any>['key'] | `${React.KeyboardEvent<any>['key']}.propagate`]: KeyboardHandler;
 };
 
