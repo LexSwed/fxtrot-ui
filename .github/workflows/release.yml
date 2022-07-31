@@ -29,9 +29,6 @@ jobs:
         env:
           CI: true
 
-      - name: Verify package signatures
-        run: npm audit signatures
-
       - name: Lint
         run: yarn lint
         env:
