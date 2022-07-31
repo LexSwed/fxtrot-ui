@@ -75,7 +75,7 @@ export const stitchesConfig = createStitches({
       '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
       '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
       'inner': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
-      'popper': `0 0 2px $colors$outline, $xs, $shadows$xl`,
+      'popper': `0 0 2px $colors$surface5, $shadows$xl`,
       'base': '$xs',
       'base--hover': '$sm, $sm',
       'none': 'none',

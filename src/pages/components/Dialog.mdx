@@ -9,7 +9,7 @@ title: Dialog
   <Button>New workspace</Button>
   {(close) => (
     <Dialog.Modal>
-      <Dialog.Title level={3}>Create new workspace</Dialog.Title>
+      <Dialog.Title dense>Create new workspace</Dialog.Title>
       <Box
         css={{
           'pt': '$4',
@@ -56,12 +56,14 @@ title: Dialog
   </Button>
   {(close) => (
     <Dialog.Modal placement="side">
-      <Dialog.Title level={3}>Menu</Dialog.Title>
-      <MenuList>
-        <MenuList.Item>Main</MenuList.Item>
-        <MenuList.Item>Workspaces</MenuList.Item>
-        <MenuList.Item>Profile</MenuList.Item>
-      </MenuList>
+      <Column gap={4}>
+        <Dialog.Title>Menu</Dialog.Title>
+        <MenuList>
+          <MenuList.Item>Main</MenuList.Item>
+          <MenuList.Item>Workspaces</MenuList.Item>
+          <MenuList.Item>Profile</MenuList.Item>
+        </MenuList>
+      </Column>
     </Dialog.Modal>
   )}
 </Dialog>
@@ -85,7 +87,7 @@ It also shows how you can manipulate the dialog open state outside its modal, vi
           <Button>New workspace</Button>
           {(close) => (
             <Dialog.Modal>
-              <Dialog.Title level={3}>Create new workspace</Dialog.Title>
+              <Dialog.Title>Create new workspace</Dialog.Title>
               <Box
                 pt="$4"
                 as="form"

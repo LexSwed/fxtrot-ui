@@ -5,27 +5,38 @@ title: Heading
 ## Heading
 
 ```tsx preview
-<React.Fragment>
-  <Heading>Heading 1</Heading>
-  <Heading level={2}>Heading 2</Heading>
-  <Heading level={3}>Heading 3</Heading>
-  <Heading level={4}>Heading 4</Heading>
-  <Heading level={5}>Heading 5</Heading>
-  <Heading level={6}>Heading 6</Heading>
-</React.Fragment>
+<Column gap="6">
+  <Heading>Fxtrot UI</Heading>
+  <Heading level="2" as="h2">
+    React component library for Fxtrot initiatives.
+  </Heading>
+</Column>
 ```
 
 ## Dense
 
-`dense` prop resets `Heading`'s `margin`. This is useful when rendered within `Column`, where the spacing between elements has to be determined by the `gap` property of the container.
+`dense` prop resets `Heading`'s `margin` (default: `true`). This is useful when rendered within `Column`, where the spacing between elements has to be determined by the `gap` property of the container.
+Since in most use cases the layout is expected to be set by the container, the `dense` prop is `true` by default.
 
 ```tsx preview
-<Column gap="6">
-  <Heading dense>Fxtrot UI</Heading>
-  <Heading level="2" as="h2" dense>
-    React component library for Fxtrot initiatives.
+<React.Fragment>
+  <Heading dense={false}>Heading 1</Heading>
+  <Heading dense={false} level={2}>
+    Heading 2
   </Heading>
-</Column>
+  <Heading dense={false} level={3}>
+    Heading 3
+  </Heading>
+  <Heading dense={false} level={4}>
+    Heading 4
+  </Heading>
+  <Heading dense={false} level={5}>
+    Heading 5
+  </Heading>
+  <Heading dense={false} level={6}>
+    Heading 6
+  </Heading>
+</React.Fragment>
 ```
 
 ## Light

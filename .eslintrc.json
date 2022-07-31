@@ -1,7 +1,8 @@
 {
   "extends": ["react-app", "plugin:@next/next/recommended"],
   "rules": {
-    "no-console": ["warn"]
+    "no-console": ["warn"],
+    "no-unused-vars": ["error"]
   },
   "overrides": [
     {

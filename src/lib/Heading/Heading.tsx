@@ -55,5 +55,6 @@ export const Heading = styled('h1', {
   defaultVariants: {
     variant: 'default',
     level: '1',
+    dense: true,
   },
 });

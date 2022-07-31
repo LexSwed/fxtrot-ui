@@ -1,5 +1,5 @@
 import type React from 'react';
-import { Icon, Row, TextLink, stitchesConfig, styled, Dialog, IconButton } from '@fxtrot/ui';
+import { Icon, Row, TextLink, stitchesConfig, styled, Dialog, IconButton, Column } from '@fxtrot/ui';
 import Link from 'next/link';
 import Head from 'next/head';
 import { SideNav } from './SideNav';
@@ -30,8 +30,10 @@ export const MainLayout: React.FC<Props> = ({ children, meta, docs }) => {
                   </IconButton>
                   {() => (
                     <Dialog.Modal placement="side">
-                      <Dialog.Title level="3">Menu</Dialog.Title>
-                      <SideNav docs={docs} />
+                      <Column gap={6}>
+                        <Dialog.Title>Menu</Dialog.Title>
+                        <SideNav docs={docs} />
+                      </Column>
                     </Dialog.Modal>
                   )}
                 </Dialog>
@@ -94,7 +96,7 @@ const Header = styled('header', {
   mx: '-$4',
   px: '$4',
   py: '$4',
-  zIndex: 10,
+  zIndex: 'auto',
 });
 
 const MobileMenuButtonWrapper = styled('div', {

@@ -32,12 +32,12 @@ export const DialogModal = React.forwardRef<HTMLDivElement, ModalProps>(
               <DialogModalContainer placement={placement}>
                 <OverlayStyled css={css?.overlay} ref={presenceRef} />
                 <DialogWindow placement={placement} {...props} css={css} ref={ref}>
-                  {children}
                   {hasCloseButton && (
                     <CloseButtonContainer>
                       <DialogClose />
                     </CloseButtonContainer>
                   )}
+                  {children}
                 </DialogWindow>
               </DialogModalContainer>
             </Portal>
@@ -49,16 +49,24 @@ export const DialogModal = React.forwardRef<HTMLDivElement, ModalProps>(
 );
 
 const CloseButtonContainer = styled('div', {
-  position: 'absolute',
-  top: '$2',
-  right: '$2',
+  'position': 'relative',
+  'float': 'right',
+  'mt': '-$8',
+  'ml': '-$12',
+  'insetInlineEnd': '-$6',
+  '&:after': {
+    content: '""',
+    clear: 'both',
+    display: 'block',
+    visibility: 'hidden',
+  },
 });
 
 const DialogModalContainer = styled('div', {
   position: 'fixed',
   inset: 0,
   overflowY: 'auto',
-  zIndex: 100,
+  zIndex: 'auto',
   variants: {
     placement: {
       side: {},
@@ -72,11 +80,13 @@ const DialogModalContainer = styled('div', {
 
 const DialogWindow = styled(RdxDialog.Content, {
   'bc': '$surface',
-  'p': '$8',
+  'px': '$8',
+  'pt': '$10',
+  'pb': '$6',
   'outline': 'none',
   'pointerEvents': 'auto',
   'minWidth': 320,
-  'boxShadow': '$lg',
+  'boxShadow': '$popper',
   'position': 'relative',
   'animationTimingFunction': 'ease-in-out',
   'animationFillMode': 'forwards',

@@ -39,7 +39,6 @@ export const PickerTrigger = ({
   disabled,
   placeholder,
   variant = 'boxed',
-  children,
   size,
   ...props
 }: PickerTriggerProps) => {
