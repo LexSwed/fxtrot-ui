@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import * as RdxPopover from '@radix-ui/react-popover';
 
-import { Box } from '../Box';
 import { OpenStateProvider, OpenStateRef, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { PopoverBox } from './PopoverBox';
 import { Portal } from '../Portal';
@@ -45,39 +44,25 @@ interface ContentProps
   extends Pick<RdxPopover.PopoverContentProps, 'side' | 'sideOffset' | 'align'>,
     React.ComponentProps<typeof PopoverBox> {}
 
-const Content: React.FC<ContentProps> = ({
-  children,
-  css,
-  align = 'start',
-  side = 'bottom',
-  sideOffset = 8,
-  ...props
-}) => {
+const Content: React.FC<ContentProps> = ({ children, align = 'start', side = 'bottom', sideOffset = 8, ...props }) => {
   const open = useOpenState();
   return (
     <Presence present={open}>
       {({ ref: presenceRef }) => (
-        <PopoverPortal radixPortal={RdxPopover.Portal} forceMount>
+        <Portal radixPortal={RdxPopover.Portal} forceMount>
           <RdxPopover.Content collisionPadding={8} align={align} side={side} sideOffset={sideOffset} asChild>
-            <PopoverBox {...props} ref={presenceRef}>
-              <Box p="$4" css={css}>
-                {children}
-              </Box>
-            </PopoverBox>
+            <PopoverPopoverBox {...props} ref={presenceRef}>
+              {children}
+            </PopoverPopoverBox>
           </RdxPopover.Content>
-        </PopoverPortal>
+        </Portal>
       )}
     </Presence>
   );
 };
 
-const PopoverPortal = styled(Portal, {
-  '& > [data-radix-popper-content-wrapper]': {
-    '@mobile': {
-      position: 'initial !important',
-      transform: 'none !important',
-    },
-  },
+const PopoverPopoverBox = styled(PopoverBox, {
+  p: '$4',
 });
 
 export const Popover = PopoverRoot;

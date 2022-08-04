@@ -38,7 +38,7 @@ export const ThemeProvider = React.forwardRef<HTMLDivElement, Props>(({ theme, .
     <rootRefContext.Provider value={rootRef.current ? rootRef : ref}>
       <themeContext.Provider value={themeValue}>
         <DirectionProvider dir={direction}>
-          <ThemeWrapper className={themeValue} ref={refs} {...props} />
+          <ThemeWrapper {...props} className={themeValue} ref={refs} />
         </DirectionProvider>
       </themeContext.Provider>
       <Reset />
@@ -47,8 +47,8 @@ export const ThemeProvider = React.forwardRef<HTMLDivElement, Props>(({ theme, .
 });
 
 /**
- * Allows to rertrieve closest theme from context for portalled items,
- * rendered outside of inititial themed DOM element
+ * Allows to retrieve closest theme from context for portalled items,
+ * rendered outside of initial themed DOM element
  */
 const themeContext = createContext<ReturnType<typeof createTheme> | string | undefined>(undefined);
 export const useTheme = () => useContext(themeContext);
@@ -62,6 +62,11 @@ const ThemeWrapper = styled('span', {
   fontFamily: '$default',
   fontSize: '$md',
   boxSizing: 'border-box',
+});
+
+export const ContextThemeProvider = React.forwardRef<HTMLDivElement, Omit<Props, 'theme'>>((props, ref) => {
+  const contextTheme = useContext(themeContext);
+  return <ThemeWrapper {...props} className={contextTheme} ref={ref} />;
 });
 
 function useDirection() {

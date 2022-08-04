@@ -88,41 +88,4 @@ export const PopoverBox = styled('div', listStyles, {
   '&[data-side="left"]': {
     $$direction: '1',
   },
-  '@mobile': {
-    'position': 'fixed',
-    'insetBlockEnd': '0',
-    'insetInlineStart': '0',
-    'width': '-webkit-fill-available',
-    'margin': '$2',
-    '&[data-side="top"], &[data-side="bottom"], &[data-side="right"], &[data-side="left"]': {
-      '$$direction': '1',
-      '&[data-state="open"]': {
-        animationName: `${keyframes({
-          '0%': {
-            opacity: 0,
-            transform: 'translateY(calc($$direction * 5px))',
-          },
-          '60%': {
-            opacity: 1,
-          },
-          'to': {
-            opacity: 1,
-            transform: 'none',
-          },
-        })} !important`,
-      },
-      '&[data-state="closed"]': {
-        animationName: `${keyframes({
-          from: {
-            opacity: 1,
-            transform: 'none',
-          },
-          to: {
-            opacity: 0,
-            transform: 'translateY(calc($$direction * 5px))',
-          },
-        })} !important`,
-      },
-    },
-  },
 });

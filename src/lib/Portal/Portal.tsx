@@ -1,9 +1,10 @@
 import React from 'react';
 import * as RdxPortal from '@radix-ui/react-portal';
-import { ThemeProvider, useFxtrotRootRef } from '../ThemeProvider/ThemeProvider';
+import { ContextThemeProvider, useFxtrotRootRef } from '../ThemeProvider/ThemeProvider';
 
 type PortalProps = RdxPortal.PortalProps & { forceMount?: true };
-interface Props extends React.ComponentProps<typeof ThemeProvider> {
+interface Props {
+  children: React.ReactNode;
   radixPortal?: React.ComponentType<PortalProps>;
   forceMount?: true;
 }
@@ -15,6 +16,7 @@ interface Props extends React.ComponentProps<typeof ThemeProvider> {
 export const Portal = React.forwardRef<HTMLDivElement, Props>(
   ({ radixPortal: Root = RdxPortal.Root, forceMount, ...props }, ref) => {
     const appRootRef = useFxtrotRootRef();
+    const counter = React.useContext(zIndexCounterContext);
     // otherwise forceMount: undefined is still cloned as prop and React complains on unknown DOM attribute
     const portalProps: PortalProps = {
       container: appRootRef.current,
@@ -25,22 +27,15 @@ export const Portal = React.forwardRef<HTMLDivElement, Props>(
     }
 
     return (
-      <Root {...portalProps}>
-        <FixForNestedPortals {...props} ref={ref} />
-      </Root>
+      <zIndexCounterContext.Provider value={counter + 1}>
+        <ContextThemeProvider>
+          <Root {...portalProps}>
+            <ContextThemeProvider {...props} style={{ zIndex: counter || 'auto' }} ref={ref} />
+          </Root>
+        </ContextThemeProvider>
+      </zIndexCounterContext.Provider>
     );
   }
 );
 
 const zIndexCounterContext = React.createContext(1);
-
-const FixForNestedPortals = React.forwardRef<HTMLDivElement, React.ComponentProps<typeof ThemeProvider>>(
-  (props, ref) => {
-    const counter = React.useContext(zIndexCounterContext);
-    return (
-      <zIndexCounterContext.Provider value={counter + 1}>
-        <ThemeProvider {...props} ref={ref} style={{ zIndex: counter, position: 'relative', display: 'block' }} />
-      </zIndexCounterContext.Provider>
-    );
-  }
-);
