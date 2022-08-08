@@ -30,7 +30,11 @@ export const Portal = React.forwardRef<HTMLDivElement, Props>(
       <zIndexCounterContext.Provider value={counter + 1}>
         <ContextThemeProvider>
           <Root {...portalProps}>
-            <ContextThemeProvider {...props} style={{ zIndex: counter || 'auto' }} ref={ref} />
+            <ContextThemeProvider
+              {...props}
+              style={{ zIndex: counter || 'auto', position: 'relative', display: 'block' }}
+              ref={ref}
+            />
           </Root>
         </ContextThemeProvider>
       </zIndexCounterContext.Provider>

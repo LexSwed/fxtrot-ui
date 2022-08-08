@@ -27,7 +27,7 @@ export const buttonCss = css(flexCss, {
   'fontWeight': 600,
   'lineHeight': 1,
   'whiteSpace': 'nowrap',
-  'cursor': 'pointer',
+  'cursor': 'default',
   'flexShrink': 0,
   'bc': 'transparent',
   'color': '$onSurface',

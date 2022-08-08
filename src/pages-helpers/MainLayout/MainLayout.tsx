@@ -40,7 +40,9 @@ export const MainLayout: React.FC<Props> = ({ children, meta, docs }) => {
               </MobileMenuButtonWrapper>
               <Row main="space-between" css={{ flex: 2 }}>
                 <Link href="/" passHref>
-                  <TextLink textStyle="title-sm">Fxtrot UI</TextLink>
+                  <TextLink inline={false} textStyle="title-sm">
+                    Fxtrot UI
+                  </TextLink>
                 </Link>
                 <Row>
                   <TextLink
@@ -48,6 +50,7 @@ export const MainLayout: React.FC<Props> = ({ children, meta, docs }) => {
                     external
                     tone="default"
                     title="Open the source on GitHub"
+                    inline={false}
                   >
                     <Icon as={GitHubIcon} size="sm" />
                   </TextLink>
