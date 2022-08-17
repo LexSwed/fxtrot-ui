@@ -11,6 +11,9 @@ interface InputProps extends Omit<React.ComponentProps<typeof Input>, 'onChange'
   label?: string;
   secondaryLabel?: string;
   onChange?: (checked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
+  checked?: boolean;
+  defaultChecked?: boolean;
 }
 
 export interface CheckboxProps extends InputProps, FlexVariants {}
