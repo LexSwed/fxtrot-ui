@@ -1,15 +1,16 @@
+import type { VariantProps } from '@stitches/react';
 import React from 'react';
 
 import { flexCss, FlexVariants } from '../Flex/Flex';
 import { css, styled } from '../stitches.config';
 
-interface Props extends React.ComponentProps<typeof ButtonRoot> {}
+interface Props extends VariantProps<typeof buttonCss>, React.ComponentProps<'button'> {}
 
-export const Button = React.forwardRef<HTMLButtonElement, Props>(({ type = 'button', ...props }, ref) => {
-  return <ButtonRoot {...props} aria-disabled={props.disabled} type={type} ref={ref} />;
+const ButtonRoot = React.forwardRef<HTMLButtonElement, Props>(({ type = 'button', ...props }, ref) => {
+  return <button {...props} aria-disabled={props.disabled} type={type} ref={ref} />;
 });
 
-Button.displayName = 'Button';
+ButtonRoot.displayName = 'Button';
 
 const flexDefaults: FlexVariants = {
   display: 'inline',
@@ -158,4 +159,4 @@ export const buttonCss = css(flexCss, {
   },
 });
 
-export const ButtonRoot = styled('button', buttonCss);
+export const Button = styled(ButtonRoot, buttonCss);

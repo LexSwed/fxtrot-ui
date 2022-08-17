@@ -5,7 +5,7 @@ import flattenChildren from 'react-keyed-flatten-children';
 import { flexCss, FlexVariants } from '../Flex/Flex';
 import { ToggleButton } from '../ToggleButton';
 import { styled, CssStyles } from '../stitches.config';
-import { ButtonRoot } from '../Button/Button';
+import { Button } from '../Button';
 
 type Props = FlexVariants &
   Omit<
@@ -38,7 +38,7 @@ const ActionGroupRoot = styled(ToggleGroup.Root, flexCss, {
     {
       gap: 'none',
       css: {
-        [`& > ${ButtonRoot}`]: {
+        [`& > ${Button}`]: {
           'focusRingInset': '$surface5',
           '&[data-state]:focus': {
             zIndex: 1,
@@ -47,11 +47,11 @@ const ActionGroupRoot = styled(ToggleGroup.Root, flexCss, {
             focusRingInset: '$surfacePrimary6',
           },
         },
-        [`& > ${ButtonRoot}:not(:first-of-type)`]: {
+        [`& > ${Button}:not(:first-of-type)`]: {
           borderTopLeftRadius: 0,
           borderBottomLeftRadius: 0,
         },
-        [`& > ${ButtonRoot}:not(:last-of-type)`]: {
+        [`& > ${Button}:not(:last-of-type)`]: {
           borderTopRightRadius: 0,
           borderBottomRightRadius: 0,
         },
@@ -60,7 +60,7 @@ const ActionGroupRoot = styled(ToggleGroup.Root, flexCss, {
     {
       gap: 'none',
       css: {
-        [`& > ${ButtonRoot} + ${ButtonRoot}`]: {
+        [`& > ${Button} + ${Button}`]: {
           ml: '-1px',
         },
       },

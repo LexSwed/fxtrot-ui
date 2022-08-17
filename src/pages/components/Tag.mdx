@@ -6,9 +6,9 @@ title: Tag
 
 ```tsx preview
 <Row gap="xl">
-  <Tag label="Primary" />
-  <Tag variant="outline" label="Outline" />
-  <Tag variant="neutral" label="Neutral" />
+  <Tag>Primary</Tag>
+  <Tag variant="outline">Outline</Tag>
+  <Tag variant="neutral">Neutral</Tag>
 </Row>
 ```
 
@@ -16,9 +16,9 @@ title: Tag
 
 ```tsx preview
 <Row gap="xl">
-  <Tag label="Small (sm)" size="sm" />
-  <Tag label="Medium (md)" size="md" />
-  <Tag label="Large (lg)" size="lg" />
+  <Tag size="sm">Small (sm)</Tag>
+  <Tag size="md">Medium (md)</Tag>
+  <Tag size="lg">Large (lg) </Tag>
 </Row>
 ```
 
@@ -66,9 +66,9 @@ Use `ThemeProvider` component to change the primary color of the Tag.
   return (
     <ThemeProvider theme={theme} css={{ colorScheme: 'dark' }}>
       <Row gap="xl" css={{ bc: '$surface', p: '$4' }}>
-        <Tag label="Primary" />
-        <Tag variant="outline" label="Outline" />
-        <Tag variant="neutral" label="Neutral" />
+        <Tag>Primary</Tag>
+        <Tag variant="outline">Outline</Tag>
+        <Tag variant="neutral">Neutral</Tag>
       </Row>
     </ThemeProvider>
   );

@@ -1,20 +1,21 @@
 import React from 'react';
+import { css, CssStyles, styled } from '../stitches.config';
 
-import { CssStyles, styled } from '../stitches.config';
-
-interface Props extends Omit<React.ComponentProps<typeof IconBox>, 'as' | 'color' | 'children'> {
+interface Props extends Omit<React.ComponentProps<typeof IconSvg>, 'as' | 'color' | 'children'> {
   as: React.ElementType;
   color?: CssStyles['color'];
 }
 
-export const Icon: React.FC<Props> = React.forwardRef<SVGSVGElement, Props>(
-  ({ size = 'md', color, css, ...props }, ref) => {
-    const style = color ? ({ ...css, color } as any) : css;
-    return <IconBox size={size} {...props} css={style} ref={ref} />;
-  }
-);
+const IconComponent = React.forwardRef<SVGSVGElement, Props>(({ color, css, ...props }, ref) => {
+  return <IconSvg {...props} css={{ color, ...css }} ref={ref} />;
+});
 
-export const IconBox = styled('svg', {
+const IconSvg = styled('svg', {
+  // create new stitches CSS selector
+  '&:empty': {},
+});
+
+const iconCss = css({
   display: 'inline-block',
   flexShrink: 0,
   flexGrow: 0,
@@ -55,4 +56,9 @@ export const IconBox = styled('svg', {
       },
     },
   },
+  defaultVariants: {
+    size: 'md',
+  },
 });
+
+export const Icon = styled(IconComponent, iconCss);

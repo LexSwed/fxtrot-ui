@@ -18,7 +18,7 @@ const Item = React.forwardRef<HTMLDivElement, Props>(({ value, label, disabled, 
       <ListItem {...props} main="space-between" ref={ref}>
         <RdxSelect.ItemText>{label}</RdxSelect.ItemText>
         <RdxSelect.ItemIndicator asChild>
-          <Icon as={CheckIcon} color="$primary" size="md" />
+          <Icon as={CheckIcon} color="primary" size="md" />
         </RdxSelect.ItemIndicator>
       </ListItem>
     </RdxSelect.Item>

@@ -2,8 +2,32 @@ import React from 'react';
 import { ExternalLinkIcon } from '@heroicons/react/solid';
 
 import { styled } from '../stitches.config';
-import { Icon, IconBox } from '../Icon/Icon';
+import { Icon } from '../Icon';
 import { Text } from '../Text';
+
+interface Props extends React.ComponentProps<typeof Link> {
+  external?: 'icon' | true;
+}
+
+const TextLinkRoot = React.forwardRef<HTMLAnchorElement, Props>(
+  ({ external, inline = true, children, ...props }, ref) => {
+    const additionalProps = external ? { target: '_blank', rel: 'noreferrer' } : null;
+
+    return (
+      <Link {...additionalProps} external={external} inline={inline} {...props} ref={ref}>
+        {children}
+        {external === 'icon' ? <Icon size="md" as={ExternalLinkIcon} /> : null}
+      </Link>
+    );
+  }
+);
+
+TextLinkRoot.displayName = 'TextLink';
+
+export const TextLink = styled(TextLinkRoot, {
+  // create new stitches CSS selector
+  '&:empty': {},
+});
 
 const Link = styled('a', Text, {
   boxSizing: 'border-box',
@@ -38,7 +62,7 @@ const Link = styled('a', Text, {
     external: {
       true: {},
       icon: {
-        [`& > ${IconBox}`]: {
+        [`& > ${Icon}`]: {
           '& path': {
             stroke: 'currentColor',
             strokeWidth: '0.01em',
@@ -48,22 +72,3 @@ const Link = styled('a', Text, {
     },
   },
 });
-
-interface Props extends React.ComponentProps<typeof Link> {
-  external?: 'icon' | true;
-}
-
-export const TextLink = React.forwardRef<HTMLAnchorElement, Props>(
-  ({ external, inline = true, children, ...props }, ref) => {
-    const additionalProps = external ? { target: '_blank', rel: 'noreferrer' } : null;
-
-    return (
-      <Link {...additionalProps} external={external} inline={inline} {...props} ref={ref}>
-        {children}
-        {external === 'icon' ? <Icon size="md" as={ExternalLinkIcon} /> : null}
-      </Link>
-    );
-  }
-);
-
-TextLink.displayName = 'TextLink';

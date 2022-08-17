@@ -4,7 +4,6 @@ import { ChevronDownIcon } from '@heroicons/react/outline';
 
 import { styled } from '../stitches.config';
 import { Icon } from '../Icon';
-import { IconBox } from '../Icon/Icon';
 import { flexCss } from '../Flex/Flex';
 import type { CssStyles } from '../stitches.config';
 
@@ -41,7 +40,7 @@ const StyledTrigger = styled(Rdx.Trigger, flexCss, {
   },
 
   '&[data-state="open"]': {
-    [`& > ${IconBox}`]: {
+    [`& > ${Icon}`]: {
       transform: 'rotate(180deg)',
     },
   },

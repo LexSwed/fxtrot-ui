@@ -3,7 +3,7 @@ import { CheckIcon } from '@heroicons/react/outline';
 
 import { Flex, FlexVariants } from '../Flex/Flex';
 import { FormField } from '../FormField/FormField';
-import { Icon, IconBox } from '../Icon/Icon';
+import { Icon } from '../Icon';
 import { Label } from '../Label';
 import { styled } from '../stitches.config';
 
@@ -85,7 +85,7 @@ export const CheckMark = styled('div', {
   backgroundSize: '0 0',
   backgroundPosition: 'center',
 
-  [`& > ${IconBox}`]: {
+  [`& > ${Icon}`]: {
     transition: '0.14s ease-in-out',
     opacity: 0,
   },
@@ -112,20 +112,20 @@ const Input = styled('input', {
 
   '@hover': {
     [`&:where(:hover,:focus) + ${CheckMark}`]: {
-      [`& ${IconBox}`]: {
+      [`& ${Icon}`]: {
         opacity: 0.5,
       },
     },
     [`&:where(:checked:hover) + ${CheckMark}`]: {
       borderColor: '$primary',
-      [`& ${IconBox}`]: {
+      [`& ${Icon}`]: {
         opacity: 1,
       },
     },
 
     [`&:where(:checked:focus) + ${CheckMark}`]: {
       borderColor: '$surfacePrimary2',
-      [`& > ${IconBox}`]: {
+      [`& > ${Icon}`]: {
         opacity: 1,
       },
     },
@@ -139,7 +139,7 @@ const Input = styled('input', {
   [`&:where(:checked) + ${CheckMark}`]: {
     borderColor: '$primary',
     backgroundSize: '200% 200%',
-    [`& ${IconBox}`]: {
+    [`& ${Icon}`]: {
       color: '$onPrimary',
       opacity: 1,
     },
@@ -147,7 +147,7 @@ const Input = styled('input', {
 
   [`&:where(:disabled,:disabled:checked) + ${CheckMark}`]: {
     borderColor: '$disabled',
-    [`& > ${IconBox}`]: {
+    [`& > ${Icon}`]: {
       opacity: 0,
     },
   },
@@ -158,7 +158,7 @@ const Input = styled('input', {
 
   [`&:where(:disabled:checked) + ${CheckMark}`]: {
     background: '$disabled',
-    [`& > ${IconBox}`]: {
+    [`& > ${Icon}`]: {
       color: '$onDisabled',
       opacity: 0.9,
     },

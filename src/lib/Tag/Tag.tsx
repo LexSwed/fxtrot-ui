@@ -1,21 +1,7 @@
-import React from 'react';
-
-import { IconBox } from '../Icon/Icon';
+import { Icon } from '../Icon';
 import { styled } from '../stitches.config';
 
-interface Props extends Omit<React.ComponentProps<typeof Block>, 'children'> {
-  label: string;
-}
-
-export const Tag = ({ size = 'md', variant = 'primary', label, ...props }: Props) => {
-  return (
-    <Block size={size} variant={variant} {...props}>
-      {label}
-    </Block>
-  );
-};
-
-const Block = styled('div', {
+export const Tag = styled('div', {
   transition: '0.2s ease-in-out',
   fontFamily: '$default',
   border: '1px solid transparent',
@@ -25,7 +11,7 @@ const Block = styled('div', {
   display: 'flex',
   alignItems: 'center',
 
-  [`& > ${IconBox}:first-child:last-child`]: {
+  [`& > ${Icon}:first-child:last-child`]: {
     ml: '-$1',
     mr: '-$1',
   },
@@ -64,10 +50,14 @@ const Block = styled('div', {
         borderColor: '$primary',
       },
       neutral: {
-        bc: '$surface1',
-        color: '$onSurfaceVariant',
-        borderColor: '$surfaceVariant',
+        bc: '$surface3',
+        color: '$onSurface',
+        borderColor: '$surface5',
       },
     },
+  },
+  defaultVariants: {
+    size: 'md',
+    variant: 'primary',
   },
 });

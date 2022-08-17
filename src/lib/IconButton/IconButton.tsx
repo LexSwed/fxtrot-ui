@@ -1,6 +1,7 @@
+import type { VariantProps } from '@stitches/react';
 import React from 'react';
 
-import { ButtonRoot } from '../Button/Button';
+import { buttonCss } from '../Button/Button';
 import { styled } from '../stitches.config';
 
 type LabelProps =
@@ -16,30 +17,20 @@ type LabelProps =
       'aria-label': string;
     };
 
-type Props = React.ComponentProps<typeof ButtonRoot> & LabelProps;
+type Props = VariantProps<typeof buttonCss> & React.ComponentProps<'button'> & LabelProps;
 
-export const IconButton = React.forwardRef<HTMLButtonElement, Props>(({ type = 'button', label, ...props }, ref) => {
-  return (
-    <IconButtonRoot
-      aria-label={label}
-      title={label}
-      {...props}
-      aria-disabled={props.disabled}
-      _size={props.size}
-      type={type}
-      ref={ref}
-    />
-  );
+const IconButtonRoot = React.forwardRef<HTMLButtonElement, Props>(({ type = 'button', label, size, ...props }, ref) => {
+  return <button aria-label={label} title={label} {...props} aria-disabled={props.disabled} type={type} ref={ref} />;
 });
 
-export const IconButtonRoot = styled(ButtonRoot, {
+export const IconButton = styled(IconButtonRoot, buttonCss, {
   position: 'relative',
   padding: 0,
   justifyContent: 'center',
   alignItems: 'center',
 
   variants: {
-    _size: {
+    size: {
       xs: {
         px: 0,
         inlineSize: '$6',
@@ -57,6 +48,6 @@ export const IconButtonRoot = styled(ButtonRoot, {
     },
   },
   defaultVariants: {
-    _size: 'md',
+    size: 'md',
   },
 });
