@@ -1,13 +1,13 @@
 import React, { useMemo } from 'react';
 import { CheckIcon } from '@heroicons/react/outline';
 
-import { Flex, FlexVariants } from '../Flex/Flex';
-import { FormField } from '../FormField/FormField';
+import type { FlexVariants } from '../Flex/Flex';
+import { FormField, useFormField } from '../FormField/FormField';
 import { Icon } from '../Icon';
 import { Label } from '../Label';
 import { styled } from '../stitches.config';
 
-interface InputProps extends Omit<React.ComponentProps<typeof Input>, 'onChange' | 'value'>, FlexVariants {
+interface InputProps extends Omit<React.ComponentProps<typeof Input>, 'onChange' | 'value' | 'size'>, FlexVariants {
   label?: string;
   secondaryLabel?: string;
   onChange?: (checked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -16,7 +16,9 @@ interface InputProps extends Omit<React.ComponentProps<typeof Input>, 'onChange'
   defaultChecked?: boolean;
 }
 
-export interface CheckboxProps extends InputProps, FlexVariants {}
+export interface CheckboxProps extends InputProps, FlexVariants {
+  size?: React.ComponentProps<typeof CheckboxWrapper>['size'];
+}
 
 export const Checkbox: React.FC<CheckboxProps> = ({
   checked,
@@ -32,8 +34,11 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   cross,
   disabled,
   id,
+  size,
   ...props
 }) => {
+  const ariaProps = useFormField({ id });
+
   const handleChange = useMemo(() => {
     if (typeof onChange !== 'function') return;
 
@@ -41,20 +46,13 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   }, [onChange]);
 
   return (
-    <CheckboxFormField
-      className={className}
-      style={style}
-      css={css}
-      display={display}
-      gap={gap}
-      flow={flow}
-      cross={cross}
-    >
-      <CheckboxWrapper>
+    <FormField className={className} style={style} css={css} display={display} gap={gap} flow={flow} cross={cross}>
+      <CheckboxWrapper size={size}>
         <Input
           aria-checked={checked}
           checked={checked}
           {...props}
+          {...ariaProps}
           type="checkbox"
           disabled={disabled}
           onChange={handleChange}
@@ -63,19 +61,14 @@ export const Checkbox: React.FC<CheckboxProps> = ({
           <Icon as={CheckIcon} />
         </CheckMark>
       </CheckboxWrapper>
-      {label !== undefined && <Label label={label} secondary={secondaryLabel} disabled={disabled} as="span" />}
-    </CheckboxFormField>
+      {label !== undefined && (
+        <Label label={label} secondary={secondaryLabel} disabled={disabled} htmlFor={ariaProps.id} />
+      )}
+    </FormField>
   );
 };
 
-export const CheckboxFormField = styled('label', FormField, Flex, {});
-
-const CheckboxWrapper = styled('div', {
-  size: '$5',
-});
-
-export const CheckMark = styled('div', {
-  br: '$md',
+const CheckMark = styled('div', {
   bc: 'transparent',
   border: '1px solid $outline',
   size: '$5',
@@ -91,6 +84,39 @@ export const CheckMark = styled('div', {
   [`& > ${Icon}`]: {
     transition: '0.14s ease-in-out',
     opacity: 0,
+  },
+});
+
+const CheckboxWrapper = styled('div', {
+  variants: {
+    size: {
+      sm: {
+        [`& ${CheckMark}`]: {
+          size: '$5',
+        },
+      },
+      md: {
+        py: '$1',
+
+        [`& ${CheckMark}`]: {
+          size: '$6',
+        },
+      },
+      lg: {
+        py: '$2',
+
+        [`& ${CheckMark}`]: {
+          size: '$8',
+
+          [`& > ${Icon}`]: {
+            size: '$5',
+          },
+        },
+      },
+    },
+  },
+  defaultVariants: {
+    size: 'md',
   },
 });
 
@@ -165,5 +191,24 @@ const Input = styled('input', {
       color: '$onDisabled',
       opacity: 0.9,
     },
+  },
+
+  'variants': {
+    variant: {
+      single: {
+        [`&  + ${CheckMark}`]: {
+          br: '$md',
+        },
+      },
+      group: {
+        [`&  + ${CheckMark}`]: {
+          br: '$round',
+        },
+      },
+    },
+  },
+
+  'defaultVariants': {
+    variant: 'single',
   },
 });

@@ -2,7 +2,6 @@ export { ActionGroup } from './ActionGroup';
 export { Box } from './Box';
 export { Button } from './Button';
 export { Checkbox } from './Checkbox';
-export { CheckboxGroup } from './CheckboxGroup';
 export { Collapsible } from './Collapsible';
 export { Dialog, useDialogRef } from './Dialog';
 export { Flex, Column, Row } from './Flex';

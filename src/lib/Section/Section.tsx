@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { useId } from '@radix-ui/react-id';
 
 import { Flex, FlexVariants } from '../Flex/Flex';
