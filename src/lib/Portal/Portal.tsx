@@ -42,4 +42,4 @@ export const Portal = React.forwardRef<HTMLDivElement, Props>(
   }
 );
 
-const zIndexCounterContext = React.createContext(1);
+const zIndexCounterContext = React.createContext(500);

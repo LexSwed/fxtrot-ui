@@ -99,7 +99,7 @@ const Header = styled('header', {
   mx: '-$4',
   px: '$4',
   py: '$4',
-  zIndex: 'auto',
+  zIndex: '10',
 });
 
 const MobileMenuButtonWrapper = styled('div', {

@@ -15,7 +15,7 @@ const App = () => {
     <>
       <NextSeo title="Fxtrot UI" description="A component library for React projects." />
       <Wrapper>
-        <Box pb="$8">
+        <Box py="$8">
           <Row as="header" main="space-between" cross="center">
             <Heading as="h1" level="2">
               Fxtrot
