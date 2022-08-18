@@ -116,7 +116,7 @@ const CheckboxWrapper = styled('div', {
     },
   },
   defaultVariants: {
-    size: 'md',
+    size: 'sm',
   },
 });
 
