@@ -1,5 +1,5 @@
 import React from 'react';
-import { XIcon } from '@heroicons/react/outline';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 import { Close as RdxClose } from '@radix-ui/react-dialog';
 
 import { IconButton } from '../IconButton';
@@ -12,7 +12,7 @@ export const DialogClose = React.forwardRef<HTMLButtonElement, CloseButtonProps>
   return (
     <RdxClose asChild>
       <IconButton label="Close the dialog" variant="flat" {...props} ref={ref}>
-        <Icon as={XIcon} />
+        <Icon as={XMarkIcon} />
       </IconButton>
     </RdxClose>
   );

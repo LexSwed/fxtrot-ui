@@ -1,6 +1,6 @@
 import type React from 'react';
 import { Box, Column, Icon, ToggleButton } from '@fxtrot/ui';
-import { SelectorIcon } from '@heroicons/react/outline';
+import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import { Root, Content, Trigger } from '@radix-ui/react-collapsible';
 import type { Language } from 'prism-react-renderer';
 import vsLight from 'prism-react-renderer/themes/vsLight';
@@ -58,7 +58,7 @@ const Preview: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         </Box>
         <Trigger asChild>
           <ToggleButton size="sm" gap="0" css={{ m: '$2' }}>
-            <Icon as={SelectorIcon} />
+            <Icon as={ChevronUpDownIcon} size="lg" />
             Show code
           </ToggleButton>
         </Trigger>

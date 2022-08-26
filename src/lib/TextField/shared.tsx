@@ -1,4 +1,3 @@
-import React from 'react';
 import type { VariantProps } from '@stitches/react';
 
 import { styled, css } from '../stitches.config';

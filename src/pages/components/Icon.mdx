@@ -2,18 +2,15 @@
 title: Icon
 ---
 
-import { IconsPreview } from '../../pages-helpers/IconsPreview';
-import { DotsHorizontalIcon } from '@heroicons/react/outline';
+import { EllipsisVerticalIcon } from '@heroicons/react/24/outline';
 
 ```tsx
 import { Icon } from '@fxtrot/ui';
-import { DotsHorizontalIcon } from '@heroicons/react/solid';
+import { EllipsisVerticalIcon } from '@heroicons/react/24/outline';
 ```
 
 ```tsx preview
-<Icon as={DotsHorizontalIcon} size="xl" />
+<Icon as={EllipsisVerticalIcon} size="xl" aria-label="See more" />
 ```
 
-<Box mt={100}>
-  <IconsPreview />
-</Box>
+Icons used in this project are <TextLink external="icon" href="https://heroicons.com/">Heroicons</TextLink> where you can find more, including their usage.

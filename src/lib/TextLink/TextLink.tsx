@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLinkIcon } from '@heroicons/react/solid';
+import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 
 import { styled } from '../stitches.config';
 import { Icon } from '../Icon';
@@ -16,7 +16,7 @@ const TextLinkRoot = React.forwardRef<HTMLAnchorElement, Props>(
     return (
       <Link {...additionalProps} external={external} inline={inline} {...props} ref={ref}>
         {children}
-        {external === 'icon' ? <Icon size="md" as={ExternalLinkIcon} /> : null}
+        {external === 'icon' ? <Icon size="sm" as={ArrowTopRightOnSquareIcon} /> : null}
       </Link>
     );
   }
@@ -61,14 +61,7 @@ const Link = styled('a', Text, {
     },
     external: {
       true: {},
-      icon: {
-        [`& > ${Icon}`]: {
-          '& path': {
-            stroke: 'currentColor',
-            strokeWidth: '0.01em',
-          },
-        },
-      },
+      icon: {},
     },
   },
 });

@@ -22,15 +22,12 @@ export const ListItem = styled('div', flexCss, {
   'color': '$onBackground',
   'focusRingInset': '$surface1',
   '@hover': {
-    '&:hover': {
-      bc: '$surface1',
-    },
-    '&:focus': {
+    '&:hover,&:focus': {
       bc: '$surface2',
     },
   },
   '&:active, [data-focused="true"], [data-highlighted]': {
-    bc: '$surface2',
+    bc: '$surface3',
   },
   [`& ${Text}`]: {
     fontSize: 'inherit',

@@ -1,21 +1,18 @@
 import React from 'react';
-import { css, CssStyles, styled } from '../stitches.config';
+import { CssStyles, styled } from '../stitches.config';
 
 interface Props extends Omit<React.ComponentProps<typeof IconSvg>, 'as' | 'color' | 'children'> {
   as: React.ElementType;
   color?: CssStyles['color'];
 }
 
-const IconComponent = React.forwardRef<SVGSVGElement, Props>(({ color, css, ...props }, ref) => {
-  return <IconSvg {...props} css={{ color, ...css }} ref={ref} />;
+const Icon = React.forwardRef<SVGSVGElement, Props>(({ color, css, ...props }, ref) => {
+  return (
+    <IconSvg {...props} css={color ? { color, ...css } : css} aria-hidden={props['aria-hidden'] || false} ref={ref} />
+  );
 });
 
 const IconSvg = styled('svg', {
-  // create new stitches CSS selector
-  '&:empty': {},
-});
-
-const iconCss = css({
   display: 'inline-block',
   flexShrink: 0,
   flexGrow: 0,
@@ -61,4 +58,9 @@ const iconCss = css({
   },
 });
 
-export const Icon = styled(IconComponent, iconCss);
+const { selector, className, toString } = IconSvg;
+
+// copy stitches-specific properties
+Object.assign(Icon, { selector, className, toString });
+
+export { Icon };

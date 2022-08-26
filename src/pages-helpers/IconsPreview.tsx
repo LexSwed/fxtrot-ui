@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Column, Icon, Row, styled, Switch, Text, TextField, useCopyToClipboard } from '@fxtrot/ui';
-import * as solidIcons from '@heroicons/react/solid';
-import * as outlineIcons from '@heroicons/react/outline';
+import * as solidIcons from '@heroicons/react/24/outline';
+import * as outlineIcons from '@heroicons/react/24/outline';
 
 export const IconsPreview = () => {
   const [filterText, setText] = useState('');

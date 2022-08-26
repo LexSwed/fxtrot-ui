@@ -2,12 +2,10 @@
 title: Button
 ---
 
-import { DocumentAddIcon } from '@heroicons/react/outline';
-
 ```tsx preview
 <Button flow="column" cross="start" gap="0">
-  <Row cross="center" gap="1">
-    <Icon as={DocumentAddIcon} size="lg" />
+  <Row cross="center" gap="2">
+    <Icon as={DocumentPlusIcon} size="lg" />
     <Text textStyle="label-lg" weight={500}>
       Create
     </Text>
@@ -54,7 +52,7 @@ Do not use `variant="link"` with actual links, use [`LinkButton`](/components/Li
   <Row gap="sm" css={{ px: '$10' }}>
     <Button size="xs" variant="outline">
       Outline
-      <Icon as={DotsVerticalIcon} size="sm" />
+      <Icon as={EllipsisVerticalIcon} size="sm" />
     </Button>
     <Button size="xs" variant="primary">
       Primary
@@ -72,7 +70,7 @@ Do not use `variant="link"` with actual links, use [`LinkButton`](/components/Li
   <Row gap="sm" css={{ px: '$10' }}>
     <Button size="sm" variant="outline">
       Outline
-      <Icon as={DotsVerticalIcon} size="sm" />
+      <Icon as={EllipsisVerticalIcon} size="sm" />
     </Button>
     <Button size="sm" variant="primary">
       Primary
@@ -90,7 +88,7 @@ Do not use `variant="link"` with actual links, use [`LinkButton`](/components/Li
   <Row gap="sm" css={{ px: '$10' }}>
     <Button size="md" variant="outline">
       Outline
-      <Icon as={DotsVerticalIcon} size="md" />
+      <Icon as={EllipsisVerticalIcon} size="md" />
     </Button>
     <Button size="md" variant="primary">
       Primary
@@ -108,7 +106,7 @@ Do not use `variant="link"` with actual links, use [`LinkButton`](/components/Li
   <Row gap="sm" css={{ px: '$10' }}>
     <Button size="lg" gap="2" variant="outline">
       Outline
-      <Icon as={DotsVerticalIcon} size="lg" />
+      <Icon as={EllipsisVerticalIcon} size="lg" />
     </Button>
     <Button size="lg" variant="primary">
       Primary
@@ -172,7 +170,7 @@ Use `ThemeProvider` component to change the primary color of the button.
       <Grid gap="lg" cross="center" main="center" columns="repeat(2, auto)" css={{ p: '$4', bc: '$background' }}>
         <Button variant="primary" gap="2">
           Outline
-          <Icon as={DotsVerticalIcon} />
+          <Icon as={EllipsisVerticalIcon} />
         </Button>
         <Button disabled variant="primary">
           Primary (disabled)

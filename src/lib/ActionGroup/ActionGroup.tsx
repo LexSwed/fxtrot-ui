@@ -22,7 +22,14 @@ export const ActionGroup: React.FC<Props> = ({ children, type = 'single', gap = 
       {flattenChildren(children).map((child, i) => {
         if (React.isValidElement(child) && child.type === ToggleButton) {
           return (
-            <ToggleGroup.Item asChild value={child.props.value} key={child.key}>
+            <ToggleGroup.Item
+              asChild
+              value={
+                (child as React.ReactElement<React.ComponentProps<typeof ToggleButton>, typeof ToggleButton>).props
+                  .value as string
+              }
+              key={child.key}
+            >
               {child}
             </ToggleGroup.Item>
           );

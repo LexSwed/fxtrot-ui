@@ -1,13 +1,13 @@
 export const lightColors: ThemeColors = {
   primary: 'hsl(202 100% 30.6%)',
   onPrimary: 'hsl(0 0% 100%)',
-  primaryContainer: 'hsl(211 100% 90%)',
+  primaryContainer: 'hsl(212 100% 90%)',
   onPrimaryContainer: 'hsl(206 100% 10%)',
 
-  secondary: 'hsl(202 100% 30.4%)',
+  secondary: 'hsl(227 43% 46%)',
   onSecondary: 'hsl(0 0% 100%)',
-  secondaryContainer: 'hsl(211 100% 90%)',
-  onSecondaryContainer: 'hsl(206 100% 10%)',
+  secondaryContainer: 'hsl(231 100% 93%)',
+  onSecondaryContainer: 'hsl(224 100% 16%)',
 
   tertiary: 'hsl(328 95.8% 37.1%)',
   onTertiary: 'hsl(0 0% 100%)',
@@ -24,14 +24,14 @@ export const lightColors: ThemeColors = {
   errorContainer: 'hsl(351 100% 93%)',
   onErrorContainer: 'hsl(341 100% 13%)',
 
-  outline: 'hsl(270 4.1% 47.5%)',
+  outline: 'hsl(217 5% 47%)',
   background: 'hsl(260 100% 99.4%)',
   onBackground: 'hsl(0 0% 10.6%)',
 
   surface: 'hsl(260 100% 99.4%)',
   onSurface: 'hsl(0 0% 10.6%)',
-  surfaceVariant: 'hsl(275 24% 90.2%)',
-  onSurfaceVariant: 'hsl(264 6.8% 29%)',
+  surfaceVariant: 'hsl(217 5% 90%)',
+  onSurfaceVariant: 'hsl(215 8% 28%)',
   inverseSurface: 'hsl(225 4.1% 19.2%)',
   inverseOnSurface: 'hsl(255 15.4% 94.9%)',
   disabled: 'hsla(0 0% 12% / 0.08)',

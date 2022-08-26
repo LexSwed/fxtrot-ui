@@ -63,9 +63,11 @@ The neutral variant key color is used to derive medium emphasis text and icons, 
 </Palette>
 
 <Palette>
-  {['surface1', 'surface2', 'surface3', 'surface4', 'surface5', 'surface6'].map((color) => {
-    return <ColorBox color={color} textColor="onSurface" key={color} />;
-  })}
+  {['surface1', 'surface2', 'surface3', 'surface4', 'surface5', 'surface6', 'surface7', 'surface8', 'surface9'].map(
+    (color) => {
+      return <ColorBox color={color} textColor="onSurface" key={color} />;
+    }
+  )}
 </Palette>
 
 <Palette>
@@ -76,8 +78,11 @@ The neutral variant key color is used to derive medium emphasis text and icons, 
     'surfacePrimary4',
     'surfacePrimary5',
     'surfacePrimary6',
+    'surfacePrimary7',
+    'surfacePrimary8',
+    'surfacePrimary9',
   ].map((color) => {
-    return <ColorBox color={color} textColor="primary" key={color} />;
+    return <ColorBox color={color} textColor="onSurface" key={color} />;
   })}
 </Palette>
 

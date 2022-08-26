@@ -3,7 +3,7 @@ import { Icon, Row, TextLink, stitchesConfig, styled, Dialog, IconButton, Column
 import Link from 'next/link';
 import Head from 'next/head';
 import { SideNav } from './SideNav';
-import { MenuAlt1Icon } from '@heroicons/react/outline';
+import { Bars3Icon } from '@heroicons/react/24/outline';
 
 type Props = {
   meta: { title: string };
@@ -26,7 +26,7 @@ export const MainLayout: React.FC<Props> = ({ children, meta, docs }) => {
               <MobileMenuButtonWrapper>
                 <Dialog>
                   <IconButton label="Menu" variant="flat">
-                    <Icon as={MenuAlt1Icon} size="lg" />
+                    <Icon as={Bars3Icon} size="lg" />
                   </IconButton>
                   {() => (
                     <Dialog.Modal placement="side">

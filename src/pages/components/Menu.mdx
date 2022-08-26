@@ -8,7 +8,7 @@ title: Menu
 <Menu>
   <Button>
     Open menu
-    <Icon as={ChevronDownIcon} size="lg" />
+    <Icon as={ChevronDownIcon} />
   </Button>
   <Menu.List>
     <Menu.Item onSelect={() => window.alert('copy')}>
@@ -73,7 +73,7 @@ You can modify `offset` from the `side` and along the `align`ment.
         <Menu>
           <Button variant="outline">
             Open menu
-            <Icon as={ChevronDownIcon} size="lg" />
+            <Icon as={ChevronRightIcon} />
           </Button>
           <Menu.List sideOffset={12} side="right" align="start">
             {Array(20)
@@ -99,7 +99,7 @@ You can modify `offset` from the `side` and along the `align`ment.
   return (
     <Menu ref={menuRef}>
       <Button variant="outline">
-        <Icon as={ChevronDownIcon} size="lg" />
+        <Icon as={ChevronDownIcon} />
         More
       </Button>
       <Menu.List>

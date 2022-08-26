@@ -6,11 +6,6 @@ import Link from 'next/link';
 import { BsGithub } from 'react-icons/bs';
 
 const App = () => {
-  React.useEffect(() => {
-    if ('paintWorklet' in CSS) {
-      (CSS as any).paintWorklet.addModule('/worklets/noise.js');
-    }
-  }, []);
   return (
     <>
       <NextSeo title="Fxtrot UI" description="A component library for React projects." />
@@ -31,14 +26,8 @@ const App = () => {
           height="100%"
           p="$8"
           css={{
-            '--noise-cell-size': 20,
-            '--noise-hue': 0,
-            '--noise-saturation': 0,
-            '--noise-lightness': '99.9 100',
-            'background': 'paint(noise)',
-            'boxShadow': '$base',
-            'display': 'grid',
-            'placeItems': 'center',
+            display: 'grid',
+            placeItems: 'center',
           }}
         >
           <Column gap="4" cross="center">

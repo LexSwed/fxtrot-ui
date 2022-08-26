@@ -15,18 +15,20 @@ title: TextLink
 ### External
 
 ```tsx preview
-<Column gap="8">
+<Column gap="8" cross="start" css={{ width: '50%' }}>
   <TextLink href="https://random.dog/" external>
     Just external
   </TextLink>
+  <TextLink href="https://random.dog/" external="icon">
+    External with icon
+  </TextLink>
   <p>
-    The quick brown fox jumps over the lazy{' '}
-    <TextLink href="https://random.dog/" external="icon">
+    Within text:
+    <br /> The quick brown fox jumps over the lazy <TextLink href="https://random.dog/" external="icon">
       dog
-    </TextLink>
-    , but can't make it, or maybe can but we just don't know. And this will be a very looong link.
+    </TextLink>, but can't make it, or maybe can but we just don't know. And here's a wrapped link:
     <TextLink href="https://random.dog/" external>
-      How? This is how? How how? This is how.
+      Is it really a long link?
     </TextLink>
   </p>
 </Column>

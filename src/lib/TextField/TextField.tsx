@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
-import { CheckIcon, XIcon } from '@heroicons/react/solid';
-import { CalendarIcon, ExclamationCircleIcon } from '@heroicons/react/outline';
+import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { CalendarIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline';
 
 import type { FlexVariants } from '../Flex/Flex';
 import { FormField, Hint, HintBox, useFormField } from '../FormField/FormField';
@@ -158,7 +158,7 @@ const icons: Record<string, React.ElementType> = {
   date: CalendarIcon,
   valid: CheckIcon,
   invalid: ExclamationCircleIcon,
-  search: XIcon,
+  search: XMarkIcon,
 };
 
 const inputMode: Record<NonNullable<Props['type']>, InputProps['inputMode']> = {

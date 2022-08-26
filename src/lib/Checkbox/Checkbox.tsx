@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { CheckIcon } from '@heroicons/react/outline';
+import { CheckIcon } from '@heroicons/react/24/outline';
 
 import type { FlexVariants } from '../Flex/Flex';
 import { FormField, useFormField } from '../FormField/FormField';
@@ -58,7 +58,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
           onChange={handleChange}
         />
         <CheckMark>
-          <Icon as={CheckIcon} />
+          <Icon as={CheckIcon} size="sm" />
         </CheckMark>
       </CheckboxWrapper>
       {label !== undefined && (

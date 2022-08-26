@@ -1,4 +1,4 @@
-import { SelectorIcon } from '@heroicons/react/solid';
+import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import * as RdxSelect from '@radix-ui/react-select';
 
 import { styled, CssStyles } from '../stitches.config';
@@ -63,7 +63,7 @@ export const PickerTrigger = ({
           <TriggerButton validity={validity} variant={variant} {...ariaProps} {...props} fieldSize={size}>
             <RdxSelect.Value placeholder={placeholder} />
             <RdxSelect.Icon asChild>
-              <Icon as={SelectorIcon} />
+              <Icon as={ChevronUpDownIcon} />
             </RdxSelect.Icon>
           </TriggerButton>
         </RdxSelect.Trigger>
@@ -97,6 +97,34 @@ const TriggerButton = styled('button', fieldBox, {
 
   [`& > ${Icon}`]: {
     pl: '$1',
-    size: '$5',
+  },
+
+  'variants': {
+    fieldSize: {
+      sm: {
+        [`& > ${Icon}`]: {
+          size: '$4',
+          strokeWidth: 1.5,
+        },
+      },
+      md: {
+        [`& > ${Icon}`]: {
+          size: '$6',
+          strokeWidth: 1.5,
+        },
+      },
+      lg: {
+        [`& > ${Icon}`]: {
+          size: '$6',
+          strokeWidth: 1.8,
+        },
+      },
+      xl: {
+        [`& > ${Icon}`]: {
+          size: '$8',
+          strokeWidth: 1.8,
+        },
+      },
+    },
   },
 });

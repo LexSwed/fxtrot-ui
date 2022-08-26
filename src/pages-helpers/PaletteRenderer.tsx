@@ -7,7 +7,11 @@ type Props = {
   children: React.ReactNode;
 };
 export const Palette = ({ children }: Props) => {
-  return <Row css={{ overflowX: 'auto' }}>{children}</Row>;
+  return (
+    <Row gap="1" css={{ overflowX: 'auto' }}>
+      {children}
+    </Row>
+  );
 };
 
 type ColorBoxProps = {
@@ -25,7 +29,6 @@ export const ColorBox = ({ color, textColor }: ColorBoxProps) => {
         'height': '100px',
         'width': '25%',
         'flex': '0 1 25%',
-        'boxShadow': '0 0 0 1px $colors$surface5 inset',
         '&:last-of-type': {
           flexGrow: 1,
         },

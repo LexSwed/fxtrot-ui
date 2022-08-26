@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Rdx from '@radix-ui/react-collapsible';
-import { ChevronDownIcon } from '@heroicons/react/outline';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
 import { styled } from '../stitches.config';
 import { Icon } from '../Icon';

@@ -7,19 +7,25 @@ export type ExtendedTheme = ThemeColors & {
   surface4: HSLAThemeColor;
   surface5: HSLAThemeColor;
   surface6: HSLAThemeColor;
+  surface7: HSLAThemeColor;
+  surface8: HSLAThemeColor;
+  surface9: HSLAThemeColor;
   surfacePrimary1: HSLAThemeColor;
   surfacePrimary2: HSLAThemeColor;
   surfacePrimary3: HSLAThemeColor;
   surfacePrimary4: HSLAThemeColor;
   surfacePrimary5: HSLAThemeColor;
   surfacePrimary6: HSLAThemeColor;
+  surfacePrimary7: HSLAThemeColor;
+  surfacePrimary8: HSLAThemeColor;
+  surfacePrimary9: HSLAThemeColor;
 };
 
 export const createColorVariations = (theme: ThemeColors): ExtendedTheme => {
-  const { primary, onSurfaceVariant } = theme;
+  const { primary, onSurface } = theme;
 
   const primaryHsl = extractHsl(primary);
-  const surfaceHsl = extractHsl(onSurfaceVariant);
+  const surfaceHsl = extractHsl(onSurface);
 
   return {
     ...theme,
@@ -29,12 +35,18 @@ export const createColorVariations = (theme: ThemeColors): ExtendedTheme => {
     surface4: `hsla(${surfaceHsl} / 0.12)`,
     surface5: `hsla(${surfaceHsl} / 0.14)`,
     surface6: `hsla(${surfaceHsl} / 0.25)`,
+    surface7: `hsla(${surfaceHsl} / 0.32)`,
+    surface8: `hsla(${surfaceHsl} / 0.4)`,
+    surface9: `hsla(${surfaceHsl} / 0.6)`,
     surfacePrimary1: `hsla(${primaryHsl} / 0.05)`,
     surfacePrimary2: `hsla(${primaryHsl} / 0.08)`,
     surfacePrimary3: `hsla(${primaryHsl} / 0.11)`,
     surfacePrimary4: `hsla(${primaryHsl} / 0.12)`,
     surfacePrimary5: `hsla(${primaryHsl} / 0.14)`,
     surfacePrimary6: `hsla(${primaryHsl} / 0.25)`,
+    surfacePrimary7: `hsla(${primaryHsl} / 0.32)`,
+    surfacePrimary8: `hsla(${primaryHsl} / 0.4)`,
+    surfacePrimary9: `hsla(${primaryHsl} / 0.6)`,
   };
 };
 

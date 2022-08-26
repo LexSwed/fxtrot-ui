@@ -3,7 +3,7 @@ import { MDXProvider } from '@mdx-js/react';
 import Image from 'next/image';
 import * as FxtrotUI from '@fxtrot/ui';
 import { BsTypeBold, BsTypeItalic, BsTypeUnderline } from 'react-icons/bs';
-import * as Icons from '@heroicons/react/outline';
+import * as Icons from '@heroicons/react/24/outline';
 
 import { Heading, styled, Text, TextLink } from '@fxtrot/ui';
 

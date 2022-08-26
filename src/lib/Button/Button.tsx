@@ -123,7 +123,7 @@ export const buttonCss = css(flexCss, {
         'border': '1px solid transparent',
         '@hover': {
           '&:where(:hover, :focus)': {
-            bc: '$surface1',
+            bc: '$surface2',
           },
           '&:where(:focus)': {
             borderColor: '$surface2',
