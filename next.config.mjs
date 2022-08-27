@@ -5,8 +5,6 @@ import createWithMdx from '@next/mdx';
 import remarkGfm from 'remark-gfm';
 import remarkMdxCodeMeta from 'remark-mdx-code-meta';
 import { remarkNextStaticProps } from './plugins/remark-next-static-props.mjs';
-import path from 'path';
-import { cwd } from 'process';
 
 const metaPropName = 'meta';
 
@@ -31,10 +29,6 @@ export default withMDX({
     config.resolve.fallback = {
       ...config.resolve.fallback,
       fs: false,
-    };
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      '@fxtrot/ui': path.resolve(cwd(), 'src/lib'),
     };
 
     return config;
