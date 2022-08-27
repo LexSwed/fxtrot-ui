@@ -1,4 +1,4 @@
-import type React from 'react';
+import React from 'react';
 import { Title } from '@radix-ui/react-dialog';
 import { Heading } from '../Heading';
 

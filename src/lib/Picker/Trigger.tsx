@@ -1,3 +1,4 @@
+import React from 'react';
 import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import * as RdxSelect from '@radix-ui/react-select';
 

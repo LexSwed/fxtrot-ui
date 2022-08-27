@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { Direction, DirectionProvider } from '@radix-ui/react-direction';
+import { TooltipProvider } from '@radix-ui/react-tooltip';
 
 import { createTheme, styled } from '../stitches.config';
 import { createColorVariations } from '../theme/createColorVariations';
@@ -38,7 +39,9 @@ export const ThemeProvider = React.forwardRef<HTMLDivElement, Props>(({ theme, .
     <rootRefContext.Provider value={rootRef.current ? rootRef : ref}>
       <themeContext.Provider value={themeValue}>
         <DirectionProvider dir={direction}>
-          <ThemeWrapper {...props} className={themeValue} ref={refs} />
+          <TooltipProvider delayDuration={400}>
+            <ThemeWrapper {...props} className={themeValue} ref={refs} />
+          </TooltipProvider>
         </DirectionProvider>
       </themeContext.Provider>
       <Reset />

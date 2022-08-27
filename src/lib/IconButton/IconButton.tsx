@@ -1,5 +1,5 @@
-import type { VariantProps } from '@stitches/react';
 import React from 'react';
+import type { VariantProps } from '@stitches/react';
 
 import { buttonCss } from '../Button/Button';
 import { styled } from '../stitches.config';

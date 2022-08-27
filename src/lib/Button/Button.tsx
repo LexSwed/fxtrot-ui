@@ -1,5 +1,5 @@
-import type { VariantProps } from '@stitches/react';
 import React from 'react';
+import type { VariantProps } from '@stitches/react';
 
 import { flexCss, FlexVariants } from '../Flex/Flex';
 import { css, styled } from '../stitches.config';

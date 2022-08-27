@@ -26,6 +26,7 @@ export { TextField } from './TextField';
 export { TextLink } from './TextLink';
 export { ThemeProvider, Reset } from './ThemeProvider';
 export { ToggleButton } from './ToggleButton';
+export { Tooltip } from './Tooltip';
 export { VisuallyHidden } from './VisuallyHidden';
 
 export type { OpenStateRef } from './utils/OpenStateProvider';

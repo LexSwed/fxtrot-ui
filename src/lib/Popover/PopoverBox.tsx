@@ -7,15 +7,15 @@ export const PopoverBox = styled('div', listStyles, {
   'boxShadow': '$popper',
   'animationTimingFunction': 'ease-in',
   'animationFillMode': 'forwards',
-  '&[data-state="open"]': {
+  '&:where([data-state="open"], [data-state="delayed-open"], [data-state="instant-open"])': {
     animationDuration: '0.15s',
   },
-  '&[data-state="closed"]': {
+  '&:where([data-state="closed"])': {
     animationDuration: '0.1s',
   },
-  '&[data-side="top"], &[data-side="bottom"]': {
+  '&:where([data-side="top"], [data-side="bottom"])': {
     '$$direction': 'var($$direction, 1)',
-    '&[data-state="open"]': {
+    '&:where([data-state="open"], [data-state="delayed-open"], [data-state="instant-open"])': {
       animationName: keyframes({
         '0%': {
           opacity: 0,
@@ -30,7 +30,7 @@ export const PopoverBox = styled('div', listStyles, {
         },
       }),
     },
-    '&[data-state="closed"]': {
+    '&:where([data-state="closed"])': {
       animationName: keyframes({
         from: {
           opacity: 1,
@@ -43,15 +43,15 @@ export const PopoverBox = styled('div', listStyles, {
       }),
     },
   },
-  '&[data-side="top"]': {
+  '&:where([data-side="top"])': {
     $$direction: '1',
   },
-  '&[data-side="bottom"]': {
+  '&:where([data-side="bottom"])': {
     $$direction: '-1',
   },
-  '&[data-side="right"], &[data-side="left"]': {
+  '&:where([data-side="right"], [data-side="left"])': {
     '$$direction': 'var($$direction, 1)',
-    '&[data-state="open"]': {
+    '&:where([data-state="open"], [data-state="delayed-open"], [data-state="instant-open"])': {
       animationName: keyframes({
         '0%': {
           opacity: 0,
@@ -66,7 +66,7 @@ export const PopoverBox = styled('div', listStyles, {
         },
       }),
     },
-    '&[data-state="closed"]': {
+    '&:where([data-state="closed"])': {
       animationName: keyframes({
         '0%': {
           opacity: 0,
@@ -82,10 +82,13 @@ export const PopoverBox = styled('div', listStyles, {
       }),
     },
   },
-  '&[data-side="right"]': {
+  '&:where([data-side="right"])': {
     $$direction: '-1',
   },
-  '&[data-side="left"]': {
+  '&:where([data-side="left"])': {
     $$direction: '1',
+  },
+  '@no-motion': {
+    animationDuration: '0s',
   },
 });
