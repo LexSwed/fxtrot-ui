@@ -19,9 +19,11 @@ export const Text = styled('span', {
       },
       'label-md': {
         textSize: '$sm',
+        fontWeight: 600,
       },
       'label-lg': {
         textSize: '$lg',
+        fontWeight: 600,
       },
       'title-sm': {
         textSize: '$xl',

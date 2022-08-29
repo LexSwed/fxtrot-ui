@@ -1,6 +1,5 @@
 import { flexCss, FlexVariants } from '../Flex/Flex';
 import { styled } from '../stitches.config';
-import { Text } from '../Text';
 
 const flexDefaultProps: FlexVariants = {
   gap: 'sm',
@@ -29,10 +28,6 @@ export const ListItem = styled('div', flexCss, {
   '&:active, [data-focused="true"], [data-highlighted]': {
     bc: '$surface3',
   },
-  [`& ${Text}`]: {
-    fontSize: 'inherit',
-    lineHeight: 'inherit',
-  },
   '&:disabled,[data-disabled="true"]': {
     color: '$onDisabled',
   },
@@ -41,12 +36,15 @@ export const ListItem = styled('div', flexCss, {
     size: {
       sm: {
         minHeight: '$8',
+        py: '$1',
       },
       md: {
         minHeight: '$base',
+        py: '$2',
       },
       lg: {
         minHeight: '$base',
+        py: '$2',
       },
     },
   },
