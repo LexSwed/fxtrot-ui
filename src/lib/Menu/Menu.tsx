@@ -12,7 +12,7 @@ import { ListItem } from '../shared/ListItem';
 import { useIsomorphicLayoutEffect } from '../utils/hooks';
 import { Presence } from '../shared/Presence';
 
-interface MenuListProps {
+interface MenuProps {
   children: [trigger: React.ReactElement, menuList: React.ReactElement];
   /**
    * The modality of the dropdown menu. When set to true, interaction with outside elements will be disabled and only menu content will be visible to screen readers.
@@ -20,7 +20,7 @@ interface MenuListProps {
   modal?: boolean;
 }
 
-const MenuInner = ({ children, modal }: MenuListProps) => {
+const MenuInner = ({ children, modal }: MenuProps) => {
   const open = useOpenState();
   const controls = useOpenStateControls();
   const [trigger, menuList] = children;
@@ -33,7 +33,7 @@ const MenuInner = ({ children, modal }: MenuListProps) => {
   );
 };
 
-const MenuRoot = React.forwardRef<OpenStateRef, MenuListProps>((props, ref) => {
+const MenuRoot = React.forwardRef<OpenStateRef, MenuProps>((props, ref) => {
   return (
     <OpenStateProvider ref={ref}>
       <MenuInner {...props} />

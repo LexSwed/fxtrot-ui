@@ -20,7 +20,7 @@ export const ListItem = styled('div', flexCss, {
   'transition': '0.1s ease-in-out',
   'bc': 'transparent',
   'color': '$onBackground',
-  'focusRingInset': '$surface1',
+  'focusRingInset': '$surface4',
   '@hover': {
     '&:hover,&:focus': {
       bc: '$surface2',
@@ -40,13 +40,13 @@ export const ListItem = styled('div', flexCss, {
   'variants': {
     size: {
       sm: {
-        height: '$8',
+        minHeight: '$8',
       },
       md: {
-        height: '$base',
+        minHeight: '$base',
       },
       lg: {
-        height: '$base',
+        minHeight: '$base',
       },
     },
   },
