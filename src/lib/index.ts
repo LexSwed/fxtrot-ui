@@ -24,14 +24,14 @@ export { Text } from './Text';
 export { TextArea } from './TextArea';
 export { TextField } from './TextField';
 export { TextLink } from './TextLink';
-export { ThemeProvider, Reset } from './ThemeProvider';
+export { ThemeProvider, Reset, type Theme } from './ThemeProvider';
 export { ToggleButton } from './ToggleButton';
 export { Tooltip } from './Tooltip';
 export { VisuallyHidden } from './VisuallyHidden';
 
 export type { OpenStateRef } from './utils/OpenStateProvider';
 export { stitchesConfig, styled, css, keyframes, createTheme } from './stitches.config';
-export type { Theme, CssStyles, StyleSheet, ThemeColors } from './stitches.config';
+export type { CssStyles } from './stitches.config';
 export {
   useAllHandlers,
   useCopyToClipboard,

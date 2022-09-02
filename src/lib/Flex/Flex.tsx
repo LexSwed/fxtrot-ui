@@ -1,7 +1,7 @@
 import type { VariantProps } from '@stitches/react';
 
 import { styled, css } from '../stitches.config';
-import { createScale } from '../utils/variants';
+import { gaps } from '../utils/variants';
 
 export const mainAxisAlignment = css({
   variants: {
@@ -57,7 +57,7 @@ export const flexCss = css(mainAxisAlignment, crossAxisAlignment, {
         display: 'inline-flex',
       },
     },
-    gap: createScale('gap'),
+    gap: gaps,
     wrap: {
       'wrap': {
         flexWrap: 'wrap',

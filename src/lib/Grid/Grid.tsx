@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { createScale } from '../utils/variants';
+import { rowGaps, columnGaps, gaps } from '../utils/variants';
 import { styled } from '../stitches.config';
 import { mainAxisAlignment, crossAxisAlignment } from '../Flex/Flex';
 import type { CssStyles } from '..';
@@ -50,9 +50,9 @@ const GridStyled = styled('div', mainAxisAlignment, crossAxisAlignment, {
         display: 'inline-grid',
       },
     },
-    gap: createScale('gap'),
-    rowGap: createScale('rowGap'),
-    columnGap: createScale('columnGap'),
+    gap: gaps,
+    rowGap: rowGaps,
+    columnGap: columnGaps,
   },
   defaultVariants: {
     display: 'grid',

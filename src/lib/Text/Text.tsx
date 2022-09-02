@@ -14,6 +14,9 @@ export const Text = styled('span', {
       'body-lg': {
         textSize: '$md',
       },
+      'body-xl': {
+        textSize: '$lg',
+      },
       'label-sm': {
         textSize: '$xs',
       },

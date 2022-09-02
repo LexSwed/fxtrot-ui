@@ -1,6 +1,6 @@
 import React from 'react';
 import { NextSeo } from 'next-seo';
-import { Box, Column, Heading, Icon, IconButton, LinkButton, Row, styled } from '@fxtrot/ui';
+import { Box, Column, Heading, Icon, IconButton, LinkButton, Row, styled, Text, TextLink } from '@fxtrot/ui';
 import Link from 'next/link';
 
 import { BsGithub } from 'react-icons/bs';
@@ -30,13 +30,29 @@ const App = () => {
             placeItems: 'center',
           }}
         >
-          <Column gap="4" cross="center">
-            <Heading as="h2" level="5">
-              React component library for Fxtrot projects
-            </Heading>
-            <Link href="/installation" passHref>
-              <LinkButton variant="primary">Documentation</LinkButton>
-            </Link>
+          <Column gap="12" cross="center">
+            <Column gap="4" cross="center">
+              <Heading as="h1" level="5">
+                React component library for Fxtrot projects
+              </Heading>
+              <Link href="/installation" passHref>
+                <LinkButton variant="primary">Documentation</LinkButton>
+              </Link>
+            </Column>
+            <Text>
+              Built with{' '}
+              <TextLink href="https://stitches.dev/" external="icon">
+                Stitches
+              </TextLink>
+              ,{' '}
+              <TextLink href="https://www.radix-ui.com/" external="icon">
+                Radix
+              </TextLink>{' '}
+              and{' '}
+              <TextLink href="https://heroicons.com/" external="icon">
+                Heroicons
+              </TextLink>
+            </Text>
           </Column>
         </Box>
       </Wrapper>

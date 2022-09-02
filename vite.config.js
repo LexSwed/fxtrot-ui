@@ -5,10 +5,10 @@ const pkg = require('./package.json');
 module.exports = defineConfig({
   publicDir: false,
   esbuild: {
-    minify: true,
-    target: ['chrome100', 'safari16'],
+    target: ['chrome105', 'safari16'],
   },
   build: {
+    minify: false,
     lib: {
       entry: path.resolve(__dirname, 'src/lib/index.ts'),
       name: pkg.name,

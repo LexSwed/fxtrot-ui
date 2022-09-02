@@ -9,29 +9,26 @@ import { useForkRef } from '../utils/hooks';
 import { Reset } from './Reset';
 
 type Props = {
-  theme?: Parameters<typeof createTheme>[0];
+  theme?: Theme | string | { className: string; selector: string };
   children?: React.ReactNode;
 } & Omit<React.ComponentPropsWithoutRef<'div'>, 'className'>;
 
-export const ThemeProvider = React.forwardRef<HTMLDivElement, Props>(({ theme, ...props }, propRef) => {
+const ThemeProvider = React.forwardRef<HTMLDivElement, Props>(({ theme, ...props }, propRef) => {
   const contextTheme = useContext(themeContext);
   const rootRef = useFxtrotRootRef();
   const ref = useRef<HTMLDivElement>(null);
   const [direction, directionRef] = useDirection();
   const refs = useForkRef<HTMLElement>(ref, directionRef, propRef);
   const stitchesTheme = useMemo(() => {
-    if (typeof theme === 'string') {
-      return theme;
-    }
-    if (typeof theme === 'object') {
-      return createTheme({
-        ...(theme as any),
-        colors: {
-          ...createColorVariations(theme.colors as ThemeColors),
-        },
-      });
-    }
-    return undefined;
+    if (!theme) return undefined;
+    if (typeof theme === 'string' || 'selector' in theme) return `${theme}`;
+
+    return createTheme({
+      ...(theme as any),
+      colors: {
+        ...createColorVariations(theme.colors as ThemeColors),
+      },
+    });
   }, [theme]);
   const themeValue = stitchesTheme || contextTheme;
 
@@ -40,7 +37,7 @@ export const ThemeProvider = React.forwardRef<HTMLDivElement, Props>(({ theme, .
       <themeContext.Provider value={themeValue}>
         <DirectionProvider dir={direction}>
           <TooltipProvider delayDuration={400}>
-            <ThemeWrapper {...props} className={themeValue} ref={refs} />
+            <ThemeWrapper {...props} className={themeValue ? `${themeValue}` : undefined} ref={refs} />
           </TooltipProvider>
         </DirectionProvider>
       </themeContext.Provider>
@@ -53,7 +50,7 @@ export const ThemeProvider = React.forwardRef<HTMLDivElement, Props>(({ theme, .
  * Allows to retrieve closest theme from context for portalled items,
  * rendered outside of initial themed DOM element
  */
-const themeContext = createContext<ReturnType<typeof createTheme> | string | undefined>(undefined);
+const themeContext = createContext<string | { selector: string; className: string } | undefined>(undefined);
 export const useTheme = () => useContext(themeContext);
 
 const rootRefContext = createContext<React.RefObject<HTMLElement>>({ current: null });
@@ -69,7 +66,7 @@ const ThemeWrapper = styled('span', {
 
 export const ContextThemeProvider = React.forwardRef<HTMLDivElement, Omit<Props, 'theme'>>((props, ref) => {
   const contextTheme = useContext(themeContext);
-  return <ThemeWrapper {...props} className={contextTheme} ref={ref} />;
+  return <ThemeWrapper {...props} className={contextTheme ? `${contextTheme}` : undefined} ref={ref} />;
 });
 
 function useDirection() {
@@ -84,3 +81,8 @@ function useDirection() {
   }, [element]);
   return [direction, ref] as const;
 }
+
+type ThemeCreate = Parameters<typeof createTheme>[0];
+type Theme = Exclude<ThemeCreate, string | { className: string; selector: string }> & { colors?: Partial<ThemeColors> };
+
+export { type Theme, ThemeProvider };

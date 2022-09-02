@@ -5,10 +5,11 @@ import { Label } from '../Label';
 import { styled } from '../stitches.config';
 import { Flex, FlexVariants } from '../Flex/Flex';
 
-interface Props extends Omit<React.ComponentProps<typeof Input>, 'onChange'>, FlexVariants {
+interface Props extends Omit<React.ComponentProps<typeof Input>, 'onChange' | 'value'>, FlexVariants {
   label: string;
   secondaryLabel?: string;
-  onChange: (checked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
+  onChange?: (checked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const Switch: React.FC<Props> = ({

@@ -61,7 +61,11 @@ const Link = styled('a', Text, {
     },
     external: {
       true: {},
-      icon: {},
+      icon: {
+        [`& > ${Icon}`]: {
+          ml: '$1',
+        },
+      },
     },
   },
 });

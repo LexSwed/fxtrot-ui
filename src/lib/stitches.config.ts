@@ -6,7 +6,7 @@ import { createColorVariations } from './theme/createColorVariations';
 
 export const stitchesConfig = createStitches({
   theme: {
-    colors: { ...createColorVariations(lightColors) },
+    colors: { ...createColorVariations(lightColors), },
     fonts: {
       default: '"Noto Sans Display", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif',
       heading: '"Source Sans Pro", apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif',
@@ -176,9 +176,6 @@ export const stitchesConfig = createStitches({
   prefix: 'fxtrot',
 });
 
-export type Theme = typeof stitchesConfig['theme'];
 export type CssStyles = CSS<typeof stitchesConfig['config']>;
-export type StyleSheet = Record<string, CssStyles>;
 
 export const { css, styled, keyframes, createTheme } = stitchesConfig;
-export type { ThemeColors } from './theme/default';

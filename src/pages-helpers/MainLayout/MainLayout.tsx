@@ -91,7 +91,6 @@ const Main = styled('main', {
 
 const Header = styled('header', {
   gridArea: 'header',
-  gridColumn: '2',
   backdropFilter: 'blur(10px)',
   background: 'hsla(0, 0%, 100%, 0.8)',
   position: 'sticky',
