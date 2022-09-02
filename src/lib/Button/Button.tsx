@@ -32,7 +32,7 @@ export const buttonCss = css(flexCss, {
   'flexShrink': 0,
   'bc': 'transparent',
   'color': '$onSurface',
-  'focusRing': '$surface5',
+  'focusRing': ['$outline', '2px'],
 
   '&:is(:disabled,[aria-disabled=true]), &:where(:disabled,[aria-disabled=true]):is(:hover,:focus)': {
     color: '$onDisabled',
@@ -81,7 +81,7 @@ export const buttonCss = css(flexCss, {
         'bc': '$primary',
         'color': '$onPrimary',
         'position': 'relative',
-        'focusRing': '$surfacePrimary6',
+        'focusRing': '$surfacePrimary8',
         '@hover': {
           '&:where(:hover, :focus)': {
             backgroundImage: 'linear-gradient(to top, $colors$surface5, $colors$surface5)',
@@ -94,7 +94,7 @@ export const buttonCss = css(flexCss, {
       tonal: {
         'bc': '$secondaryContainer',
         'color': '$onSecondaryContainer',
-        'focusRing': '$surfacePrimary6',
+        'focusRing': '$surfacePrimary8',
         '@hover': {
           '&:where(:hover, :focus)': {
             backgroundImage: 'linear-gradient(to top, $colors$surfacePrimary1, $colors$surfacePrimary1)',
@@ -108,7 +108,7 @@ export const buttonCss = css(flexCss, {
         'bc': 'transparent',
         'color': '$primary',
         'border': '1px solid $primary',
-        'focusRing': '$surfacePrimary6',
+        'focusRing': '$surfacePrimary8',
         '@hover': {
           '&:where(:hover, :focus)': {
             bc: '$surfacePrimary2',
@@ -139,7 +139,7 @@ export const buttonCss = css(flexCss, {
       link: {
         'bc': 'transparent',
         'color': '$primary',
-        'focusRing': '$surfacePrimary6',
+        'focusRing': '$surfacePrimary8',
         '@hover': {
           '&:where(:hover)': {
             textDecoration: 'underline',

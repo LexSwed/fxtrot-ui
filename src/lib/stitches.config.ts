@@ -6,7 +6,7 @@ import { createColorVariations } from './theme/createColorVariations';
 
 export const stitchesConfig = createStitches({
   theme: {
-    colors: { ...createColorVariations(lightColors), },
+    colors: { ...createColorVariations(lightColors) },
     fonts: {
       default: '"Noto Sans Display", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif',
       heading: '"Source Sans Pro", apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif',
@@ -160,12 +160,28 @@ export const stitchesConfig = createStitches({
       };
     },
 
-    focusRing: (color: PropertyValue<'backgroundColor'> | string = '$surface6') => ({
-      'outline': 'none',
-      '&:focus-visible': {
-        boxShadow: `0 0 0 3px $colors${color}`,
-      },
-    }),
+    focusRing: (
+      params:
+        | [color: PropertyValue<'backgroundColor'> | string, spread: string]
+        | PropertyValue<'backgroundColor'>
+        | string
+    ) => {
+      if (Array.isArray(params)) {
+        const [color, spread] = params;
+        return {
+          'outline': 'none',
+          '&:focus-visible': {
+            boxShadow: `0 0 0 ${spread} $colors${color}`,
+          },
+        };
+      }
+      return {
+        'outline': 'none',
+        '&:focus-visible': {
+          boxShadow: `0 0 0 4px $colors${params}`,
+        },
+      };
+    },
     focusRingInset: (color: PropertyValue<'backgroundColor'> | string = '$surface6') => ({
       'outline': 'none',
       '&:focus-visible': {

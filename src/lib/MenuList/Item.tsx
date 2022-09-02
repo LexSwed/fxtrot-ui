@@ -33,9 +33,9 @@ export const StyledItem = styled('button', ListItem, {
   'textDecoration': 'none',
   'cursor': 'default',
   'bc': 'transparent',
-  'focusRingInset': '$surface5',
+  'focusRingInset': '$outline',
   '&[aria-selected="true"]': {
-    'focusRingInset': '$surfacePrimary5',
+    'focusRingInset': '$surfacePrimary8',
     'bc': '$surfacePrimary3',
     'color': '$primary',
     '&::after': {

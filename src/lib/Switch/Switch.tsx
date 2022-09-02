@@ -62,13 +62,15 @@ export const Switch: React.FC<Props> = ({
 
 const SwitchFormField = styled('label', Flex, FormField, {
   minHeight: '$base',
+  my: '-$2',
 });
 
 const Toggle = styled('div', {
+  '$$size': '$sizes$5',
   'br': '$pill',
   'bc': 'transparent',
   'border': '1px solid $outline',
-  'height': '$5',
+  'height': '$$size',
   'width': '30px',
   'position': 'relative',
   'transition': '0.24s ease-in-out',
@@ -78,12 +80,13 @@ const Toggle = styled('div', {
     content: `''`,
     display: 'block',
     position: 'absolute',
-    size: '14px',
+    height: '100%',
+    aspectRatio: '1 / 1',
     bc: '$outline',
     br: '$round',
+    transformOrigin: 'center',
     transition: '0.24s ease-in-out',
-    top: '2px',
-    transform: 'translateX(2px) scale(0.9)',
+    transform: 'scale(0.7)',
   },
 });
 
@@ -104,29 +107,42 @@ const Input = styled('input', {
   'cursor': 'default',
   'transition': '0.24s ease-in-out',
 
+  '&:where(:focus)': {
+    [`& + ${Toggle}`]: {
+      '&::before': {
+        bc: '$onSurface',
+      },
+    },
+  },
+
   '&:where(:checked)': {
     [`& + ${Toggle}`]: {
       'bc': '$primary',
       'borderColor': '$surfacePrimary6',
       '&::before': {
-        transform: 'translateX(12px) scale(1.05)',
+        transform: 'translateX(10px) scale(0.85)',
         bc: '$onPrimary',
       },
     },
   },
 
   '@hover': {
-    [`&:focus + ${Toggle}`]: {
-      '&::before': {
-        boxShadow: '0 0 0 6px $colors$surfacePrimary6',
-      },
-    },
-    '&:where(:hover):not(:checked)': {
+    '&:where(:hover:not(:checked))': {
       [`& + ${Toggle}`]: {
         'bc': '$surfacePrimary1',
         '&::before': {
           boxShadow: '$xs, $sm',
         },
+      },
+    },
+    [`&:where(:focus) + ${Toggle}`]: {
+      '&::before': {
+        boxShadow: '0 0 0 4px $colors$surface9',
+      },
+    },
+    [`&:where(:focus:checked) + ${Toggle}`]: {
+      '&::before': {
+        boxShadow: '0 0 0 6px $colors$surfacePrimary9',
       },
     },
   },
