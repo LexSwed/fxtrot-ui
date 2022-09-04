@@ -39,15 +39,18 @@ export const Text = styled('span', {
       },
       'headline-sm': {
         fontFamily: '$heading',
-        textSize: '$4xl',
+        textSize: '$3xl',
+        fontWeight: 700,
       },
       'headline-md': {
         fontFamily: '$heading',
-        textSize: '$5xl',
+        textSize: '$4xl',
+        fontWeight: 700,
       },
       'headline-lg': {
         fontFamily: '$heading',
-        textSize: '$6xl',
+        textSize: '$5xl',
+        fontWeight: 700,
       },
       'overline': {
         fontFamily: '$default',

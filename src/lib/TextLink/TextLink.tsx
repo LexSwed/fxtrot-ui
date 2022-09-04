@@ -16,7 +16,7 @@ const TextLinkRoot = React.forwardRef<HTMLAnchorElement, Props>(
     return (
       <Link {...additionalProps} external={external} inline={inline} {...props} ref={ref}>
         {children}
-        {external === 'icon' ? <Icon size="sm" as={ArrowTopRightOnSquareIcon} /> : null}
+        {external === 'icon' ? <Icon size="inherit" as={ArrowTopRightOnSquareIcon} /> : null}
       </Link>
     );
   }
