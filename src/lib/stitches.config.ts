@@ -160,29 +160,24 @@ export const stitchesConfig = createStitches({
       };
     },
 
-    focusRing: (
-      params:
-        | [color: PropertyValue<'backgroundColor'> | string, spread: string]
-        | PropertyValue<'backgroundColor'>
-        | string
-    ) => {
-      if (Array.isArray(params)) {
-        const [color, spread] = params;
-        return {
-          'outline': 'none',
-          '&:focus-visible': {
-            boxShadow: `0 0 0 ${spread} $colors${color}`,
-          },
-        };
-      }
+    $outline: (offset: number = 0) => {
       return {
-        'outline': 'none',
+        'outline': '0px inset $colors$inverseSurface',
+        'outlineOffset': offset,
         '&:focus-visible': {
-          boxShadow: `0 0 0 4px $colors${params}`,
+          outlineWidth: '2px',
         },
       };
     },
-    focusRingInset: (color: PropertyValue<'backgroundColor'> | string = '$surface6') => ({
+    $focusRing: (color: PropertyValue<'backgroundColor'>) => {
+      return {
+        'outline': 'none',
+        '&:focus-visible': {
+          boxShadow: `0 0 0 4px $colors${color}`,
+        },
+      };
+    },
+    $focusRingInset: (color: PropertyValue<'backgroundColor'> | string = '$surface6') => ({
       'outline': 'none',
       '&:focus-visible': {
         boxShadow: `0 0 0 2px $colors${color} inset`,

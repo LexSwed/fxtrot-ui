@@ -38,7 +38,6 @@ const StyledTrigger = styled(Rdx.Trigger, flexCss, {
   '&[disabled],[aria-disabled="true"]': {
     pointerEvents: 'none',
   },
-  'focusRing': ['$outline', '2px'],
 
   '&[data-state="open"]': {
     [`& > ${Icon}`]: {
@@ -51,6 +50,8 @@ const StyledTrigger = styled(Rdx.Trigger, flexCss, {
         'bc': 'transparent',
         'color': '$onSurface',
         'border': '1px solid transparent',
+        '$focusRing': 'surface8',
+
         '@hover': {
           '&:where(:hover, :focus)': {
             bc: '$surface1',

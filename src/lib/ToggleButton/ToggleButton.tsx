@@ -38,7 +38,7 @@ const toggleButtonCss = css({
           'bc': '$surfacePrimary2',
           'color': '$primary',
           'borderColor': '$surfacePrimary6',
-          'focusRing': '$surfacePrimary6',
+          '$focusRing': '$surfacePrimary6',
           '@hover': {
             '&:where(:hover)': {
               bc: '$surfacePrimary3',

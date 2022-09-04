@@ -42,7 +42,7 @@ Picker.Item = Item;
 const Content = styled(RdxSelect.Content, PopoverBox);
 
 const Viewport = styled(RdxSelect.Viewport, {
-  focusRingInset: '$surface5',
+  $focusRingInset: '$surface5',
 });
 
 const SelectArrow = styled('div', {

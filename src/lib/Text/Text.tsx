@@ -170,7 +170,7 @@ export const Text = styled('span', {
     },
   },
   defaultVariants: {
-    textStyle: 'body1',
+    textStyle: 'body-md',
     tone: 'default',
   },
 });

@@ -53,7 +53,7 @@ const IconBox = styled('button', {
   'minWidth': 0,
   'overflow': 'hidden',
   'bc': '#fff',
-  'focusRing': '$outline',
+  '$focusRing': '$outline',
   '&:hover': {
     boxShadow: '$md',
   },

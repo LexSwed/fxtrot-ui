@@ -19,7 +19,7 @@ export const ListItem = styled('div', flexCss, {
   'transition': '0.1s ease-in-out',
   'bc': 'transparent',
   'color': '$onBackground',
-  'focusRingInset': '$surface4',
+  '$focusRingInset': '$surface4',
   '@hover': {
     '&:hover,&:focus': {
       bc: '$surface2',

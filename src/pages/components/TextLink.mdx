@@ -7,9 +7,12 @@ title: TextLink
 `Text` component as `anchor`. Enables additional props, such as `external` to ease the use and security of `target="_blank"`
 
 ```tsx preview
-<TextLink textStyle="body-sm" href="https://random.dog/">
-  Body style
-</TextLink>
+<Column gap="2" cross="start">
+  <TextLink href="https://random.dog/">Inline, within text</TextLink>
+  <TextLink href="https://random.dog/" inline={false}>
+    Just a link, as a text block or a wrapper around other elements
+  </TextLink>
+</Column>
 ```
 
 ### External

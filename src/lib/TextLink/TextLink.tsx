@@ -39,20 +39,22 @@ const Link = styled('a', Text, {
     inline: {
       true: {
         'textDecoration': 'underline solid transparent 2px',
-        'outline': 'inset 0 transparent',
+        'outline': 'inset 0px $colors$surfacePrimary2',
+        'outlineOffset': 0,
 
         '@hover': {
           '&:where(:hover, :focus)': {
             bc: '$surfacePrimary2',
-            outline: 'inset $sizes$1 $colors$surfacePrimary2',
-            $$outlineColor: '$colors$surfacePrimary2',
+            outlineWidth: '$sizes$1',
             textDecorationColor: '$colors$primary',
           },
         },
       },
       false: {
+        'transition': 'text-decoration 0.1s ease-in',
         'textDecoration': 'underline solid transparent 2px',
         '@hover': {
+          '$outline': 2,
           '&:where(:hover, :focus)': {
             textDecorationColor: '$colors$primary',
           },
