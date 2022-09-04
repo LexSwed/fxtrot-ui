@@ -32,6 +32,7 @@ export const buttonCss = css(flexCss, {
   'flexShrink': 0,
   'bc': 'transparent',
   'color': '$onSurface',
+  'br': '$base',
 
   '&:is(:disabled,[aria-disabled=true]), &:where(:disabled,[aria-disabled=true]):is(:hover,:focus)': {
     color: '$onDisabled',
@@ -48,15 +49,13 @@ export const buttonCss = css(flexCss, {
         fontWeight: 400,
         py: '$1',
         px: '$2',
-        br: '$sm',
       },
       sm: {
         minHeight: '$8',
         fontSize: '$sm',
         fontWeight: 400,
         py: '$1',
-        px: '$4',
-        br: '$sm',
+        px: '$3',
       },
       md: {
         minHeight: '$base',
@@ -64,7 +63,6 @@ export const buttonCss = css(flexCss, {
         fontWeight: 500,
         py: '$2',
         px: '$4',
-        br: '$base',
       },
       lg: {
         minHeight: '$12',
@@ -72,7 +70,6 @@ export const buttonCss = css(flexCss, {
         fontWeight: 500,
         py: '$2',
         px: '$6',
-        br: '$base',
       },
     },
     variant: {
