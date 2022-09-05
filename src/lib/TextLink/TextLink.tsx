@@ -30,12 +30,16 @@ export const TextLink = styled(TextLinkRoot, {
 });
 
 const Link = styled('a', Text, {
-  boxSizing: 'border-box',
-  cursor: 'pointer',
-  fontWeight: 600,
-  transition: '0.1s ease-in',
+  'boxSizing': 'border-box',
+  'cursor': 'pointer',
+  'fontWeight': 600,
+  'transition': '0.1s ease-in',
 
-  variants: {
+  '&:where(:visited)': {
+    color: '$secondary',
+  },
+
+  'variants': {
     inline: {
       true: {
         'textDecoration': 'underline solid transparent 2px',

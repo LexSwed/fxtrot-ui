@@ -1,8 +1,6 @@
 import { styled } from '../stitches.config';
 
 export const Text = styled('span', {
-  p: 0,
-  m: 0,
   variants: {
     textStyle: {
       'body-sm': {
@@ -71,8 +69,8 @@ export const Text = styled('span', {
       },
     },
     tone: {
-      default: {
-        color: 'inherit',
+      neutral: {
+        color: '$onBackground',
       },
       accent: {
         color: '$primary',
@@ -174,6 +172,5 @@ export const Text = styled('span', {
   },
   defaultVariants: {
     textStyle: 'body-md',
-    tone: 'default',
   },
 });

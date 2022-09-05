@@ -13,6 +13,7 @@ import { Code } from './Code';
 import { Playground } from './Playground';
 import Link from 'next/link';
 import { MultilineCode } from '../pages-helpers/MultilineCode';
+import { Li, Ul } from './List';
 
 const Pre: React.FC<{ preview: boolean; children?: React.ReactNode }> = ({ children, preview = false }) => {
   if (!(React.Children.only(children) && React.isValidElement<{ children: string; className?: string }>(children))) {
@@ -92,6 +93,8 @@ export const components = {
   wrapper: (props: any) => {
     return <MainLayout {...props} />;
   },
+  li: (props: any) => <Li {...props} />,
+  ul: (props: any) => <Ul {...props} />,
 };
 
 export const MdxProvider: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
