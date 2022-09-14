@@ -17,7 +17,7 @@ const App = () => {
             </Heading>
             <a href="https://github.com/LexSwed/fxtrot-ui" target="_blank" rel="noreferrer">
               <IconButton label="Source code" variant="flat">
-                <Icon as={BsGithub} size="lg" />
+                <Icon as={BsGithub} size="2xl" />
               </IconButton>
             </a>
           </Row>

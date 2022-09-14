@@ -20,39 +20,51 @@ const IconSvg = styled('svg', {
     size: {
       'xs': {
         blockSize: '$2',
+        minInlineSize: '$2',
       },
       'sm': {
         blockSize: '$3',
+        minInlineSize: '$3',
       },
       'md': {
         blockSize: '$4',
+        minInlineSize: '$4',
       },
       'base': {
         blockSize: '$4',
+        minInlineSize: '$4',
       },
       'lg': {
         blockSize: '$5',
+        minInlineSize: '$5',
       },
       'xl': {
         blockSize: '$6',
+        minInlineSize: '$6',
       },
       '2xl': {
         blockSize: '$8',
+        minInlineSize: '$8',
       },
       '3xl': {
         blockSize: '$12',
+        minInlineSize: '$12',
       },
       '4xl': {
         blockSize: '$16',
+        minInlineSize: '$16',
       },
       '5xl': {
         blockSize: '$20',
+        minInlineSize: '$20',
       },
       '6xl': {
         blockSize: '$24',
+        minInlineSize: '$24',
       },
       'inherit': {
         blockSize: '1em',
+        minInlineSize: '1em',
       },
     },
   },
