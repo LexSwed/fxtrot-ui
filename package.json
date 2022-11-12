@@ -19,10 +19,10 @@
     "url": "https://github.com/LexSwed/fxtrot-ui"
   },
   "scripts": {
-    "build": "rm -rf ./dist && yarn build:lib && yarn build:types",
+    "build": "rm -rf ./dist && npm run build:lib && npm run build:types",
     "build:lib": "vite build",
     "build:types": "tsc --project tsconfig.lib.json",
-    "dev": "yarn run docs:dev",
+    "dev": "npm run docs:dev",
     "lint": "next lint --dir pages --dir src",
     "typecheck": "tsc --noEmit",
     "docs:dev": "next dev -p 3001",
