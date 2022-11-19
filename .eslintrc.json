@@ -8,7 +8,8 @@
     {
       "files": ["src/lib/**/*.(t|j)sx?"],
       "rules": {
-        "no-console": ["error"]
+        "no-console": ["error"],
+        "react/jsx-pascal-case": ["off"]
       }
     }
   ]

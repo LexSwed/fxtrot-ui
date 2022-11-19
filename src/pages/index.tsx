@@ -35,7 +35,7 @@ const App = () => {
               <Heading as="h1" level="5">
                 React component library for Fxtrot projects
               </Heading>
-              <Link href="/installation" passHref>
+              <Link href="/installation" passHref legacyBehavior>
                 <LinkButton variant="primary">Documentation</LinkButton>
               </Link>
             </Column>

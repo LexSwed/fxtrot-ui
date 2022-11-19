@@ -1,7 +1,5 @@
 import { recipe, RecipeVariants } from '@vanilla-extract/recipes';
 
-import { gaps } from '../utils/variants';
-
 export const mainAxisAlignment = {
   'start': {
     justifyContent: 'flex-start',
@@ -48,7 +46,6 @@ export const flex = recipe({
         display: 'inline-flex',
       },
     },
-    gap: gaps,
     main: mainAxisAlignment,
     cross: crossAxisAlignment,
     wrap: {
@@ -81,7 +78,6 @@ export const flex = recipe({
     },
   },
   defaultVariants: {
-    gap: 'none',
     display: 'flex',
   },
 });

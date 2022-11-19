@@ -23,7 +23,7 @@ const withMDX = createWithMdx({
     providerImportSource: '@mdx-js/react',
   },
 });
-const withVanillaExtract = createVanillaExtractPlugin();
+const withVanillaExtract = createVanillaExtractPlugin({ identifiers: 'debug' });
 
 export default withVanillaExtract(
   withMDX({

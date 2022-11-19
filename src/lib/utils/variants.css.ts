@@ -1,3 +1,4 @@
+import { sprinkles } from '../style.css';
 import { scales } from '../theme';
 
 export const gaps = createScale('gap');
@@ -11,10 +12,11 @@ function createScale<T extends 'gap' | 'rowGap' | 'columnGap'>(property: T) {
   return Object.keys(scales).reduce((res, key) => {
     // @ts-expect-error
     res[key] = {
-      [property]: `$${key}`,
+      [property]: sprinkles({ [property]: key }),
     };
     return res;
-  }, {} as { [scale in Scales]: Record<T, `$${scale}`> });
+    // eslint-disable-next-line no-unused-vars
+  }, {} as { [scale in Scales]: string }); // Exclude<Sprinkles[T], undefined>[scale]
 }
 
 export type TextStyle =

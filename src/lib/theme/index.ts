@@ -29,14 +29,30 @@ export const scales = {
   '18': '10rem',
   '19': '12rem',
   '20': '14rem',
-  'none': '$0',
-  'xs': '$1',
-  'sm': '$2',
-  'md': '$6',
-  'lg': '$8',
-  'xl': '$10',
-  '2xl': '$16',
-  'base': '$10',
+  get 'none'() {
+    return scales['0'];
+  },
+  get 'xs'() {
+    return scales['1'];
+  },
+  get 'sm'() {
+    return scales['2'];
+  },
+  get 'md'() {
+    return scales['6'];
+  },
+  get 'lg'() {
+    return scales['8'];
+  },
+  get 'xl'() {
+    return scales['10'];
+  },
+  get '2xl'() {
+    return scales['16'];
+  },
+  get 'base'() {
+    return scales['10'];
+  },
 } as const;
 export const fontSizes = {
   'xs': '0.75rem',
@@ -68,7 +84,9 @@ export const lineHeights = {
   '7xl': '1',
   '8xl': '1',
   '9xl': '1',
-  'base': '$md',
+  get 'base'() {
+    return lineHeights['md'];
+  },
 } as const;
 export const radii = {
   '0': '0',
@@ -81,7 +99,9 @@ export const radii = {
   '3xl': '64px',
   'round': '50%',
   'pill': '9999px',
-  'base': '$md',
+  get 'base'() {
+    return radii['md'];
+  },
 } as const;
 export const zIndices = {
   '1': '100',
@@ -99,8 +119,14 @@ export const shadows = {
   '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
   '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
   'inner': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
-  'popper': `0 0 2px $colors$surface5, $shadows$xl`,
-  'base': '$xs',
-  'base--hover': '$sm, $sm',
+  get 'popper'() {
+    return `0 0 2px ${colors.surface5}, ${shadows.xl}`;
+  },
+  get 'base'() {
+    return shadows.xs;
+  },
+  get 'base--hover'() {
+    return `${shadows.sm}, ${shadows.sm}`;
+  },
   'none': 'none',
 } as const;

@@ -2,7 +2,7 @@ import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles';
 import { colors, fonts, fontSizes, lineHeights, radii, scales, shadows, zIndices } from './theme';
 import type { ExtendedTheme } from './theme/createColorVariations';
 
-import { createGlobalThemeContract } from '@vanilla-extract/css';
+import { createGlobalTheme } from '@vanilla-extract/css';
 
 export const media = {
   'mobile': `(max-width: 425px)`,
@@ -16,25 +16,25 @@ export const media = {
   'hover': '(any-hover: hover)',
 } as const;
 
-export const vars = createGlobalThemeContract(
-  {
-    color: colors as Record<keyof ExtendedTheme, string>,
-    font: fonts,
-    fonts,
-    fontSizes,
-    lineHeights,
-    radii,
-    scales,
-    shadows,
-    zIndices,
-  },
-  (value) => `fxtrot-${value}`
-);
+export const vars = createGlobalTheme(':root', {
+  color: colors as Record<keyof ExtendedTheme, string>,
+  font: fonts,
+  fonts,
+  fontSizes,
+  lineHeights,
+  radii,
+  scales,
+  shadows,
+  zIndices,
+});
 
 const config = defineProperties({
   properties: {
     color: vars.color,
     background: vars.color,
+    gap: vars.scales,
+    rowGap: vars.scales,
+    columnGap: vars.scales,
     padding: vars.scales,
     paddingInline: vars.scales,
     paddingInlineStart: vars.scales,

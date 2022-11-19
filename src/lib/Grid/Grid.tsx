@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { rowGaps, columnGaps, gaps } from '../utils/variants';
+import { rowGaps, columnGaps, gaps } from '../utils/variants.css';
 import { styled } from '../stitches.config';
-import { mainAxisAlignment, crossAxisAlignment } from '../Flex/Flex';
+import { mainAxisAlignment, crossAxisAlignment } from '../Flex/flex.css';
 import type { CssStyles } from '..';
 
 interface Props extends React.ComponentProps<typeof GridStyled> {
