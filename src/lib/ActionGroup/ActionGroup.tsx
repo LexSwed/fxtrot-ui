@@ -2,10 +2,10 @@ import React from 'react';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
 import flattenChildren from 'react-keyed-flatten-children';
 
-import { flexCss, FlexVariants } from '../Flex/Flex';
 import { ToggleButton } from '../ToggleButton';
 import { styled, CssStyles } from '../stitches.config';
 import { buttonCss } from '../Button/Button';
+import type { FlexVariants } from '../Flex/flex.css';
 
 type Props = FlexVariants &
   Omit<

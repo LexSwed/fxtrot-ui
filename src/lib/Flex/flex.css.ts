@@ -1,4 +1,6 @@
+import type { CSSProperties } from '@vanilla-extract/css';
 import { recipe, RecipeVariants } from '@vanilla-extract/recipes';
+import { gaps } from '../utils/variants.css';
 
 export const mainAxisAlignment = {
   'start': {
@@ -16,7 +18,7 @@ export const mainAxisAlignment = {
   'space-between': {
     justifyContent: 'space-between',
   },
-};
+} satisfies Record<string, CSSProperties>;
 
 export const crossAxisAlignment = {
   start: {
@@ -34,7 +36,8 @@ export const crossAxisAlignment = {
   baseline: {
     alignItems: 'baseline',
   },
-};
+} satisfies Record<string, CSSProperties>;
+
 
 export const flex = recipe({
   variants: {
@@ -48,6 +51,7 @@ export const flex = recipe({
     },
     main: mainAxisAlignment,
     cross: crossAxisAlignment,
+    gap: gaps,
     wrap: {
       'wrap': {
         flexWrap: 'wrap',

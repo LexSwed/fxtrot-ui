@@ -1,4 +1,4 @@
-import { sprinkles } from '../style.css';
+import { vars } from '../style.css';
 import { scales } from '../theme';
 
 export const gaps = createScale('gap');
@@ -12,7 +12,8 @@ function createScale<T extends 'gap' | 'rowGap' | 'columnGap'>(property: T) {
   return Object.keys(scales).reduce((res, key) => {
     // @ts-expect-error
     res[key] = {
-      [property]: sprinkles({ [property]: key }),
+      // @ts-expect-error
+      [property]: vars['scales'][key],
     };
     return res;
     // eslint-disable-next-line no-unused-vars

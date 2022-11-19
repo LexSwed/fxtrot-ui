@@ -1,61 +1,25 @@
+/* eslint-disable react/jsx-pascal-case */
 import React from 'react';
 
-import { rowGaps, columnGaps, gaps } from '../utils/variants.css';
-import { styled } from '../stitches.config';
-import { mainAxisAlignment, crossAxisAlignment } from '../Flex/flex.css';
-import type { CssStyles } from '..';
+import { Primitive } from '@radix-ui/react-primitive';
+import type * as Radix from '@radix-ui/react-primitive';
+import { grid, GridVariants } from './grid.css';
 
-interface Props extends React.ComponentProps<typeof GridStyled> {
-  columns?: CssStyles['gridTemplateColumns'];
-  rows?: CssStyles['gridTemplateRows'];
-  template?: CssStyles['gridTemplate'];
-  areas?: CssStyles['gridTemplateAreas'];
-  autoColumns?: CssStyles['gridAutoColumns'];
-  autoRows?: CssStyles['gridAutoRows'];
-  autoFlow?: CssStyles['gridAutoFlow'];
-  placeItems?: CssStyles['placeItems'];
-}
+type GridElement = React.ElementRef<typeof Primitive.div>;
+type PrimitiveDivProps = Radix.ComponentPropsWithoutRef<typeof Primitive.div>;
 
-export const Grid = React.forwardRef<HTMLDivElement, Props>(
-  ({ columns, rows, template, areas, autoColumns, autoRows, autoFlow, placeItems, css, ...props }, ref) => {
-    const styles: CssStyles = {
-      gridTemplateColumns: columns,
-      gridTemplateRows: rows,
-      gridTemplate: template,
-      gridTemplateAreas: areas,
-      gridAutoColumns: autoColumns,
-      gridAutoRows: autoRows,
-      gridAutoFlow: autoFlow,
-      placeItems,
-      ...css,
-    };
-    Object.keys(styles).forEach((key) => {
-      if (!styles[key as keyof typeof styles]) {
-        delete styles[key as keyof typeof styles];
-      }
-    });
-    return <GridStyled css={styles} {...props} ref={ref} />;
+type GridProps = PrimitiveDivProps & GridVariants;
+
+export const Grid = React.forwardRef<GridElement, GridProps>(
+  ({ main, cross, gap, rowGap, columnGap, display, ...props }, ref) => {
+    return (
+      <Primitive.div
+        {...props}
+        className={[props.className, grid({ main, cross, gap, rowGap, columnGap, display })].join(' ')}
+        ref={ref}
+      />
+    );
   }
 );
 
 Grid.displayName = 'Grid';
-
-const GridStyled = styled('div', mainAxisAlignment, crossAxisAlignment, {
-  variants: {
-    display: {
-      grid: {
-        display: 'grid',
-      },
-      inline: {
-        display: 'inline-grid',
-      },
-    },
-    gap: gaps,
-    rowGap: rowGaps,
-    columnGap: columnGaps,
-  },
-  defaultVariants: {
-    display: 'grid',
-    gap: '0',
-  },
-});
