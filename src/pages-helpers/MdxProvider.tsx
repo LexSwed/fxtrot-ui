@@ -49,7 +49,7 @@ const AnchoredHeading = ({ id, children, ...props }: any) => {
     <HeadingWithAnchor {...props} id={id}>
       {children}{' '}
       {id && (
-        <Link href={`#${id}`} replace scroll={false} passHref>
+        <Link href={`#${id}`} replace scroll={false} passHref legacyBehavior>
           <Heading as="a" level={props.level}>
             #
           </Heading>
@@ -71,7 +71,7 @@ export const components = {
   a: ({ href, ...props }: any) => {
     if (href.startsWith('/')) {
       return (
-        <Link href={href} passHref>
+        <Link href={href} passHref legacyBehavior>
           <TextLink {...props} />
         </Link>
       );

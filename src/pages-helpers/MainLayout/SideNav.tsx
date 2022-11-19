@@ -45,7 +45,7 @@ const LinksList = ({ links }: { links: DocEntry[] }) => {
     <>
       {links.map((item) => {
         return (
-          <Link href={item.href} passHref key={item.title}>
+          <Link href={item.href} passHref legacyBehavior key={item.title}>
             <MenuList.Item as="a" aria-selected={item.href === router.pathname}>
               {item.title}
             </MenuList.Item>
