@@ -1,99 +1,17 @@
-import type { VariantProps } from '@stitches/react';
+import React from 'react';
+import { Primitive } from '@radix-ui/react-primitive';
+import type * as Radix from '@radix-ui/react-primitive';
+import { flex, FlexVariants } from './flex.css';
+import { style } from '@vanilla-extract/css';
 
-import { styled, css } from '../stitches.config';
-import { gaps } from '../utils/variants';
+type FlexElement = React.ElementRef<typeof Primitive.div>;
+type PrimitiveDivProps = Radix.ComponentPropsWithoutRef<typeof Primitive.div>;
 
-export const mainAxisAlignment = css({
-  variants: {
-    main: {
-      'start': {
-        justifyContent: 'flex-start',
-      },
-      'center': {
-        justifyContent: 'center',
-      },
-      'end': {
-        justifyContent: 'flex-end',
-      },
-      'stretch': {
-        justifyContent: 'stretch',
-      },
-      'space-between': {
-        justifyContent: 'space-between',
-      },
-    },
-  },
+type FlexProps = PrimitiveDivProps & FlexVariants;
+
+export const Flex = React.forwardRef<FlexElement, FlexProps>((props, ref) => {
+  return <Primitive.div {...props} className={style([props.className, flex(props)])} ref={ref} />;
 });
-
-export const crossAxisAlignment = css({
-  variants: {
-    cross: {
-      start: {
-        alignItems: 'flex-start',
-      },
-      center: {
-        alignItems: 'center',
-      },
-      end: {
-        alignItems: 'flex-end',
-      },
-      stretch: {
-        alignItems: 'stretch',
-      },
-      baseline: {
-        alignItems: 'baseline',
-      },
-    },
-  },
-});
-
-export const flexCss = css(mainAxisAlignment, crossAxisAlignment, {
-  variants: {
-    display: {
-      flex: {
-        display: 'flex',
-      },
-      inline: {
-        display: 'inline-flex',
-      },
-    },
-    gap: gaps,
-    wrap: {
-      'wrap': {
-        flexWrap: 'wrap',
-      },
-      'nowrap': {
-        flexWrap: 'nowrap',
-      },
-      'revert': {
-        flexWrap: 'revert',
-      },
-      'wrap-reverse': {
-        flexWrap: 'wrap-reverse',
-      },
-    },
-    flow: {
-      'row': {
-        flexDirection: 'row',
-      },
-      'row-reverse': {
-        flexDirection: 'row-reverse',
-      },
-      'column': {
-        flexDirection: 'column',
-      },
-      'column-reverse': {
-        flexDirection: 'column-reverse',
-      },
-    },
-  },
-  defaultVariants: {
-    gap: 'none',
-    display: 'flex',
-  },
-});
-
-export const Flex = styled('div', flexCss);
 
 export const Row = styled('div', flexCss, {
   variants: {
@@ -126,5 +44,3 @@ export const Column = styled('div', flexCss, {
     flow: 'column',
   },
 });
-
-export type FlexVariants = VariantProps<typeof Flex>;
