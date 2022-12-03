@@ -1,4 +1,3 @@
-import React from 'react';
 import { stitchesConfig } from '@fxtrot/ui';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 

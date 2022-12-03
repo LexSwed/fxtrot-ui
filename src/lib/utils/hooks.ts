@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useLayoutEffect, useState, useRef } from 'react';
+import * as React from 'react';
+import { useCallback, useEffect, useLayoutEffect, useState, useRef } from 'react';
 import { stitchesConfig } from '../stitches.config';
 
 type PossibleRef<T> = React.Ref<T> | ((instance: T | null) => void) | null | undefined;

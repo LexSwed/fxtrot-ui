@@ -1,4 +1,3 @@
-import React from 'react';
 import * as RdxSelect from '@radix-ui/react-select';
 
 import type { OptionType } from './Item';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import * as RdxSelect from '@radix-ui/react-select';
 
@@ -8,11 +7,12 @@ import { FormField, FormFieldProps, Hint, HintBox, useFormField } from '../FormF
 import { Icon } from '../Icon';
 import { Label } from '../Label';
 import { fieldBox, FieldBoxVariants } from '../TextField/shared';
+import type { ComponentProps } from 'react';
 
 export interface PickerTriggerProps
   extends FlexVariants,
     FieldBoxVariants,
-    Omit<React.ComponentProps<'button'>, 'validity' | 'type' | 'value' | 'size' | 'ref'> {
+    Omit<ComponentProps<'button'>, 'validity' | 'type' | 'value' | 'size' | 'ref'> {
   id?: string;
   placeholder?: string;
   label?: string;

@@ -1,4 +1,3 @@
-import React from 'react';
 import * as RdxDialog from '@radix-ui/react-dialog';
 
 import { keyframes, styled } from '../stitches.config';
@@ -7,10 +6,11 @@ import { DialogClose } from './DialogClose';
 import { useOpenState } from '../utils/OpenStateProvider';
 import { Portal } from '../Portal';
 import { Presence } from '../shared/Presence';
+import { ComponentProps, forwardRef } from 'react';
 
-export interface ModalProps extends React.ComponentProps<'div'> {
+export interface ModalProps extends ComponentProps<'div'> {
   hasCloseButton?: boolean;
-  placement?: React.ComponentProps<typeof DialogWindow>['placement'];
+  placement?: ComponentProps<typeof DialogWindow>['placement'];
   onOpenAutoFocus?: RdxDialog.DialogContentProps['onOpenAutoFocus'];
   onCloseAutoFocus?: RdxDialog.DialogContentProps['onCloseAutoFocus'];
   onEscapeKeyDown?: RdxDialog.DialogContentProps['onEscapeKeyDown'];
@@ -21,7 +21,7 @@ export interface ModalProps extends React.ComponentProps<'div'> {
   };
 }
 
-export const DialogModal = React.forwardRef<HTMLDivElement, ModalProps>(
+export const DialogModal = forwardRef<HTMLDivElement, ModalProps>(
   ({ children, hasCloseButton = true, placement = 'dialog', css, ...props }, ref) => {
     const open = useOpenState();
     return (

@@ -1,11 +1,10 @@
-import React from 'react';
-
+import { type ComponentProps, forwardRef } from 'react';
 import { rowGaps, columnGaps, gaps } from '../utils/variants';
 import { styled } from '../stitches.config';
 import { mainAxisAlignment, crossAxisAlignment } from '../Flex/Flex';
 import type { CssStyles } from '..';
 
-interface Props extends React.ComponentProps<typeof GridStyled> {
+interface Props extends ComponentProps<typeof GridStyled> {
   columns?: CssStyles['gridTemplateColumns'];
   rows?: CssStyles['gridTemplateRows'];
   template?: CssStyles['gridTemplate'];
@@ -16,7 +15,7 @@ interface Props extends React.ComponentProps<typeof GridStyled> {
   placeItems?: CssStyles['placeItems'];
 }
 
-export const Grid = React.forwardRef<HTMLDivElement, Props>(
+export const Grid = forwardRef<HTMLDivElement, Props>(
   ({ columns, rows, template, areas, autoColumns, autoRows, autoFlow, placeItems, css, ...props }, ref) => {
     const styles: CssStyles = {
       gridTemplateColumns: columns,

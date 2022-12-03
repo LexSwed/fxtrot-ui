@@ -1,4 +1,3 @@
-import React from 'react';
 import type { AppProps } from 'next/dist/shared/lib/router/router';
 import { ThemeProvider } from '@fxtrot/ui';
 import { NextSeo } from 'next-seo';

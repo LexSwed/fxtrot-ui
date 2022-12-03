@@ -1,11 +1,11 @@
-import React, { createContext, useContext, useMemo, useState, useImperativeHandle } from 'react';
+import { createContext, useContext, useMemo, useState, useImperativeHandle, forwardRef, ReactNode } from 'react';
 
 const menuStateContext = createContext(false);
 const menuStateControlsContext = createContext<MenuControlFunctions>({} as MenuControlFunctions);
 
 export interface OpenStateRef extends MenuControlFunctions {}
 
-export const OpenStateProvider = React.forwardRef<OpenStateRef, { defaultOpen?: boolean; children?: React.ReactNode }>(
+export const OpenStateProvider = forwardRef<OpenStateRef, { defaultOpen?: boolean; children?: ReactNode }>(
   ({ children, defaultOpen = false }, ref) => {
     const [isOpen, setOpen] = useState<boolean>(defaultOpen);
     const controls = useMemo<MenuControlFunctions>(

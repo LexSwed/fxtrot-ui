@@ -1,4 +1,3 @@
-import React from 'react';
 import { styled } from '@fxtrot/ui';
 
 type Props = { children: string };

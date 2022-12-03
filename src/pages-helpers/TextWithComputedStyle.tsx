@@ -1,5 +1,5 @@
-import React from 'react';
 import { Column, Text, useIsomorphicLayoutEffect } from '@fxtrot/ui';
+import { type ComponentProps, useRef, useState } from 'react';
 
 type Styles = {
   fontSize: string;
@@ -8,9 +8,9 @@ type Styles = {
   fontFamily: string;
 };
 
-export const TextWithComputedStyle = ({ textStyle = 'body-md' }: React.ComponentProps<typeof Text>) => {
-  const ref = React.useRef<HTMLSpanElement>(null);
-  const [style, setStyle] = React.useState<Styles>({
+export const TextWithComputedStyle = ({ textStyle = 'body-md' }: ComponentProps<typeof Text>) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const [style, setStyle] = useState<Styles>({
     fontSize: '',
     lineHeight: '',
     fontWeight: '',

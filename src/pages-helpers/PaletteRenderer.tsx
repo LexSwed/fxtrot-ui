@@ -1,4 +1,3 @@
-import React from 'react';
 import { Column, Text, Row, Box } from '@fxtrot/ui';
 import { CopyButton } from './CopyButton';
 import { lightColors } from '../lib/theme/default';

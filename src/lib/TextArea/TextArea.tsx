@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { ChangeEvent, ChangeEventHandler, ComponentProps, forwardRef, Ref, useEffect, useRef } from 'react';
 
 import type { FlexVariants } from '../Flex/Flex';
 import { FormField, Hint, HintBox, useFormField } from '../FormField/FormField';
@@ -7,7 +7,7 @@ import { styled, CssStyles } from '../stitches.config';
 import { fieldBox, FieldBoxVariants } from '../TextField/shared';
 import { useForkRef } from '../utils/hooks';
 
-export const TextArea = React.forwardRef<HTMLDivElement, Props>(
+export const TextArea = forwardRef<HTMLDivElement, Props>(
   (
     {
       label,
@@ -44,7 +44,7 @@ export const TextArea = React.forwardRef<HTMLDivElement, Props>(
       }
     }, []);
 
-    const handleChange: React.ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+    const handleChange: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
       const el = e.currentTarget;
       onChange?.(el.value, e);
       autosize(el);
@@ -97,13 +97,13 @@ export const TextArea = React.forwardRef<HTMLDivElement, Props>(
 
 TextArea.displayName = 'TextArea';
 
-interface Props extends FlexVariants, FieldBoxVariants, Omit<React.ComponentProps<'textarea'>, 'wrap' | 'onChange'> {
+interface Props extends FlexVariants, FieldBoxVariants, Omit<ComponentProps<'textarea'>, 'wrap' | 'onChange'> {
   label?: string;
   secondaryLabel?: string;
   hint?: string;
   validity?: 'valid' | 'invalid';
-  inputRef?: React.Ref<HTMLTextAreaElement>;
-  onChange?: (value: string, event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  inputRef?: Ref<HTMLTextAreaElement>;
+  onChange?: (value: string, event: ChangeEvent<HTMLTextAreaElement>) => void;
   css?: CssStyles;
 }
 

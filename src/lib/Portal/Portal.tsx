@@ -1,11 +1,11 @@
-import React from 'react';
 import * as RdxPortal from '@radix-ui/react-portal';
+import { type ReactNode, type ComponentType, forwardRef, useContext, createContext } from 'react';
 import { ContextThemeProvider, useFxtrotRootRef } from '../ThemeProvider/ThemeProvider';
 
 type PortalProps = RdxPortal.PortalProps & { forceMount?: true };
 interface Props {
-  children: React.ReactNode;
-  radixPortal?: React.ComponentType<PortalProps>;
+  children: ReactNode;
+  radixPortal?: ComponentType<PortalProps>;
   forceMount?: true;
 }
 
@@ -13,10 +13,10 @@ interface Props {
  * Allows to have one root div all portals are attached to
  * while preserving the theme of the closest theme provider
  */
-export const Portal = React.forwardRef<HTMLDivElement, Props>(
+export const Portal = forwardRef<HTMLDivElement, Props>(
   ({ radixPortal: Root = RdxPortal.Root, forceMount, ...props }, ref) => {
     const appRootRef = useFxtrotRootRef();
-    const counter = React.useContext(zIndexCounterContext);
+    const counter = useContext(zIndexCounterContext);
     // otherwise forceMount: undefined is still cloned as prop and React complains on unknown DOM attribute
     const portalProps: PortalProps = {
       container: appRootRef.current,
@@ -42,4 +42,4 @@ export const Portal = React.forwardRef<HTMLDivElement, Props>(
   }
 );
 
-const zIndexCounterContext = React.createContext(500);
+const zIndexCounterContext = createContext(500);

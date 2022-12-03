@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { forwardRef, ChangeEvent, Ref, ElementType, useMemo } from 'react';
 import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { CalendarIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline';
 
@@ -8,7 +8,7 @@ import { Icon } from '../Icon';
 import { Label } from '../Label';
 import { InputField, IconWrapper, InputProps } from './shared';
 
-export const TextField = React.forwardRef<HTMLDivElement, Props>(
+export const TextField = forwardRef<HTMLDivElement, Props>(
   (
     {
       label,
@@ -44,7 +44,7 @@ export const TextField = React.forwardRef<HTMLDivElement, Props>(
         return undefined;
       }
 
-      return (e: React.ChangeEvent<HTMLInputElement>) => {
+      return (e: ChangeEvent<HTMLInputElement>) => {
         switch (type) {
           case 'number':
             return (onChange as NumberChange)(e.target.valueAsNumber, e);
@@ -115,7 +115,7 @@ type Props = Omit<InputProps, 'onChange' | 'type' | 'value' | 'defaultValue' | '
     secondaryLabel?: string;
     hint?: string;
     validity?: 'valid' | 'invalid';
-    inputRef?: React.Ref<HTMLInputElement>;
+    inputRef?: Ref<HTMLInputElement>;
   } & OnChange;
 
 type OnChange =
@@ -145,16 +145,16 @@ type OnChange =
     };
 
 interface NumberChange {
-  (value: number, event: React.ChangeEvent<HTMLInputElement>): void;
+  (value: number, event: ChangeEvent<HTMLInputElement>): void;
 }
 interface DateChange {
-  (value: Date | null, event: React.ChangeEvent<HTMLInputElement>): void;
+  (value: Date | null, event: ChangeEvent<HTMLInputElement>): void;
 }
 interface StringChange {
-  (value: string, event: React.ChangeEvent<HTMLInputElement>): void;
+  (value: string, event: ChangeEvent<HTMLInputElement>): void;
 }
 
-const icons: Record<string, React.ElementType> = {
+const icons: Record<string, ElementType> = {
   date: CalendarIcon,
   valid: CheckIcon,
   invalid: ExclamationCircleIcon,

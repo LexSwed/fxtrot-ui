@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ComponentProps, ReactNode } from 'react';
 import * as RdxTooltip from '@radix-ui/react-tooltip';
 import { Portal } from '../Portal';
 import { styled } from '../stitches.config';
@@ -9,8 +9,8 @@ type Props = Pick<RdxTooltip.TooltipProps, 'children' | 'defaultOpen' | 'delayDu
     RdxTooltip.TooltipContentProps,
     'side' | 'sideOffset' | 'align' | 'alignOffset' | 'sticky' | 'hideWhenDetached'
   > &
-  React.ComponentProps<typeof Content> & {
-    content?: React.ReactNode;
+  ComponentProps<typeof Content> & {
+    content?: ReactNode;
   };
 
 export const Tooltip = ({

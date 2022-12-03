@@ -1,8 +1,7 @@
-import React from 'react';
-
+import type { ComponentProps } from 'react';
 import { styled, keyframes } from '../stitches.config';
 
-interface Props extends React.ComponentProps<typeof Main> {}
+interface Props extends ComponentProps<typeof Main> {}
 
 export const Spinner = ({ size = 'md', ...props }: Props) => {
   return (

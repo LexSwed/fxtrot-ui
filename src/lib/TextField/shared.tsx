@@ -1,5 +1,5 @@
-import React from 'react';
 import type { VariantProps } from '@stitches/react';
+import type { ComponentProps, Ref } from 'react';
 
 import { styled, css } from '../stitches.config';
 
@@ -221,13 +221,13 @@ const InputWrapper = styled('div', {
   width: '100%',
 });
 
-export interface InputProps extends Omit<React.ComponentProps<typeof Input>, 'size' | 'fieldSize'> {
-  inputRef?: React.Ref<HTMLInputElement>;
-  size?: React.ComponentProps<typeof Input>['fieldSize'];
+export interface InputProps extends Omit<ComponentProps<typeof Input>, 'size' | 'fieldSize'> {
+  inputRef?: Ref<HTMLInputElement>;
+  size?: ComponentProps<typeof Input>['fieldSize'];
   width?: HTMLInputElement['size'];
 }
 
-export const InputField: React.FC<InputProps> = ({ validity, inputRef, children, size, width, ...props }) => {
+export const InputField = ({ validity, inputRef, children, size, width, ...props }: InputProps) => {
   return (
     <InputWrapper>
       <Input {...props} ref={inputRef} validity={validity} fieldSize={size} size={width} />

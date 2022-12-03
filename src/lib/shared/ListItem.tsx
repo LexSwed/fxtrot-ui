@@ -1,3 +1,4 @@
+import type { MouseEvent } from 'react';
 import { flexCss, FlexVariants } from '../Flex/Flex';
 import { styled } from '../stitches.config';
 
@@ -54,7 +55,7 @@ export const ListItem = styled('div', flexCss, {
   },
 });
 
-export function focusOnMouseOver(e: React.MouseEvent<HTMLElement, MouseEvent>) {
+export function focusOnMouseOver(e: MouseEvent<HTMLElement, MouseEvent>) {
   e.currentTarget.focus({
     preventScroll: true,
   });

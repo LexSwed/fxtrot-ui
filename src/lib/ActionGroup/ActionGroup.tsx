@@ -1,4 +1,3 @@
-import React from 'react';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
 import flattenChildren from 'react-keyed-flatten-children';
 
@@ -6,6 +5,7 @@ import { flexCss, FlexVariants } from '../Flex/Flex';
 import { ToggleButton } from '../ToggleButton';
 import { styled, CssStyles } from '../stitches.config';
 import { buttonCss } from '../Button/Button';
+import { ComponentProps, isValidElement, ReactElement, ReactNode } from 'react';
 
 type Props = FlexVariants &
   Omit<
@@ -13,20 +13,19 @@ type Props = FlexVariants &
     'direction' | 'rovingFocus' | 'as'
   > & {
     css?: CssStyles;
-    children?: React.ReactNode;
+    children?: ReactNode;
   };
 
-export const ActionGroup: React.FC<Props> = ({ children, type = 'single', gap = 'none', value = null, ...props }) => {
+export const ActionGroup = ({ children, type = 'single', gap = 'none', value, ...props }: Props) => {
   return (
     <ActionGroupRoot type={type} gap={gap} value={value} {...(props as any)}>
       {flattenChildren(children).map((child, i) => {
-        if (React.isValidElement(child) && child.type === ToggleButton) {
+        if (isValidElement(child) && child.type === ToggleButton) {
           return (
             <ToggleGroup.Item
               asChild
               value={
-                (child as React.ReactElement<React.ComponentProps<typeof ToggleButton>, typeof ToggleButton>).props
-                  .value as string
+                (child as ReactElement<ComponentProps<typeof ToggleButton>, typeof ToggleButton>).props.value as string
               }
               key={child.key}
             >

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { ComponentProps, FC, forwardRef, ForwardRefExoticComponent, ReactNode, RefAttributes, useRef } from 'react';
 import * as Rdx from '@radix-ui/react-collapsible';
 
 import { OpenStateProvider, useOpenState, OpenStateRef, useOpenStateControls } from '../utils/OpenStateProvider';
@@ -9,14 +9,14 @@ import type { CssStyles } from '../stitches.config';
 import type { VariantProps } from '@stitches/react';
 import { styled } from '../stitches.config';
 
-interface Props extends React.ComponentProps<'div'>, VariantProps<typeof CollapsibleRootStyled> {
+interface Props extends ComponentProps<'div'>, VariantProps<typeof CollapsibleRootStyled> {
   css?: CssStyles;
   defaultOpen?: boolean;
   disabled?: boolean;
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
-const CollapsibleInner: React.FC<Props> = ({ children, ...props }) => {
+const CollapsibleInner: FC<Props> = ({ children, ...props }) => {
   const open = useOpenState();
   const controls = useOpenStateControls();
   return (
@@ -26,13 +26,13 @@ const CollapsibleInner: React.FC<Props> = ({ children, ...props }) => {
   );
 };
 
-export const Collapsible = React.forwardRef<OpenStateRef, Props>(({ defaultOpen, ...props }, ref) => {
+export const Collapsible = forwardRef<OpenStateRef, Props>(({ defaultOpen, ...props }, ref) => {
   return (
     <OpenStateProvider defaultOpen={defaultOpen} ref={ref}>
       <CollapsibleInner {...props} />
     </OpenStateProvider>
   );
-}) as React.ForwardRefExoticComponent<Props & React.RefAttributes<OpenStateRef>> & {
+}) as ForwardRefExoticComponent<Props & RefAttributes<OpenStateRef>> & {
   Trigger: typeof Trigger;
   Content: typeof Content;
 };

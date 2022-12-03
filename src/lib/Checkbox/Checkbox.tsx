@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { ChangeEvent, ComponentProps, FC, useMemo } from 'react';
 import { CheckIcon } from '@heroicons/react/24/outline';
 
 import type { FlexVariants } from '../Flex/Flex';
@@ -7,20 +7,20 @@ import { Icon } from '../Icon';
 import { Label } from '../Label';
 import { styled } from '../stitches.config';
 
-interface InputProps extends Omit<React.ComponentProps<typeof Input>, 'onChange' | 'value' | 'size'>, FlexVariants {
+interface InputProps extends Omit<ComponentProps<typeof Input>, 'onChange' | 'value' | 'size'>, FlexVariants {
   label?: string;
   secondaryLabel?: string;
-  onChange?: (checked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (checked: boolean, event: ChangeEvent<HTMLInputElement>) => void;
   value?: string;
   checked?: boolean;
   defaultChecked?: boolean;
 }
 
 export interface CheckboxProps extends InputProps, FlexVariants {
-  size?: React.ComponentProps<typeof CheckboxWrapper>['size'];
+  size?: ComponentProps<typeof CheckboxWrapper>['size'];
 }
 
-export const Checkbox: React.FC<CheckboxProps> = ({
+export const Checkbox: FC<CheckboxProps> = ({
   checked,
   onChange,
   css,
@@ -42,7 +42,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   const handleChange = useMemo(() => {
     if (typeof onChange !== 'function') return;
 
-    return (ev: React.ChangeEvent<HTMLInputElement>) => onChange(ev.target.checked, ev);
+    return (ev: ChangeEvent<HTMLInputElement>) => onChange(ev.target.checked, ev);
   }, [onChange]);
 
   return (

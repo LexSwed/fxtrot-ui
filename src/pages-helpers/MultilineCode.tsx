@@ -1,4 +1,3 @@
-import React from 'react';
 import { styled } from '@fxtrot/ui';
 import Highlight, { defaultProps, Language } from 'prism-react-renderer';
 import theme from 'prism-react-renderer/themes/nightOwl';

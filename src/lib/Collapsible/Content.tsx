@@ -1,13 +1,13 @@
-import React from 'react';
 import * as Rdx from '@radix-ui/react-collapsible';
 
 import { keyframes, styled } from '../stitches.config';
 import type { CssStyles } from '../stitches.config';
+import { ComponentProps, forwardRef } from 'react';
 
-interface ContentProps extends React.ComponentProps<'div'> {
+interface ContentProps extends ComponentProps<'div'> {
   css?: CssStyles;
 }
-export const Content = React.forwardRef<HTMLDivElement, ContentProps>((props, ref) => {
+export const Content = forwardRef<HTMLDivElement, ContentProps>((props, ref) => {
   return (
     <Rdx.Content asChild>
       <StyledContent {...props} ref={ref} />

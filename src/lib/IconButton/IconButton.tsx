@@ -1,5 +1,5 @@
-import React from 'react';
 import type { VariantProps } from '@stitches/react';
+import { forwardRef, ComponentProps } from 'react';
 
 import { buttonCss } from '../Button/Button';
 import { styled } from '../stitches.config';
@@ -17,9 +17,9 @@ type LabelProps =
       'aria-label': string;
     };
 
-type Props = VariantProps<typeof buttonCss> & React.ComponentProps<'button'> & LabelProps;
+type Props = VariantProps<typeof buttonCss> & ComponentProps<'button'> & LabelProps;
 
-const IconButtonRoot = React.forwardRef<HTMLButtonElement, Props>(({ type = 'button', label, size, ...props }, ref) => {
+const IconButtonRoot = forwardRef<HTMLButtonElement, Props>(({ type = 'button', label, size, ...props }, ref) => {
   return <button aria-label={label} title={label} {...props} aria-disabled={props.disabled} type={type} ref={ref} />;
 });
 

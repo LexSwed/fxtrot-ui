@@ -1,11 +1,11 @@
-import React from 'react';
-import type * as Polymorphic from '@radix-ui/react-polymorphic';
+import { ElementType, forwardRef } from 'react';
 
 import { styled, CssStyles } from '../stitches.config';
+import type { ForwardRefComponent } from '../utils/polymorphic';
 
 const Div = styled('div', {});
 
-export const Box = React.forwardRef(({ children, css = {}, ...props }, ref) => {
+export const Box = forwardRef(({ children, css = {}, ...props }, ref) => {
   const { styles, attrs } = Object.entries(props).reduce(
     (res, [key, value]: [any, any]) => {
       if (VALID_ITEMS.has(key)) {
@@ -30,7 +30,7 @@ export const Box = React.forwardRef(({ children, css = {}, ...props }, ref) => {
 
 Box.displayName = 'Box';
 
-type BoxComponent = Polymorphic.ForwardRefComponent<'div', Props>;
+type BoxComponent = ForwardRefComponent<'div', Props>;
 
 const acceptedProperties = [
   'tablet',
@@ -118,7 +118,7 @@ type CustomField = {
   [prop in typeof acceptedProperties[number]]?: CssStyles[prop];
 } & {
   css?: CssStyles;
-  as?: React.ElementType;
+  as?: ElementType;
 };
 
 const VALID_ITEMS = new Set<keyof CssStyles>(acceptedProperties);

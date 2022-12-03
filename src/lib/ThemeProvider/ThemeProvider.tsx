@@ -1,4 +1,15 @@
-import React, { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import {
+  ComponentPropsWithoutRef,
+  createContext,
+  forwardRef,
+  ReactNode,
+  RefObject,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { Direction, DirectionProvider } from '@radix-ui/react-direction';
 import { TooltipProvider } from '@radix-ui/react-tooltip';
 
@@ -10,10 +21,10 @@ import { Reset } from './Reset';
 
 type Props = {
   theme?: Theme | string | { className: string; selector: string };
-  children?: React.ReactNode;
-} & Omit<React.ComponentPropsWithoutRef<'div'>, 'className'>;
+  children?: ReactNode;
+} & Omit<ComponentPropsWithoutRef<'div'>, 'className'>;
 
-const ThemeProvider = React.forwardRef<HTMLDivElement, Props>(({ theme, ...props }, propRef) => {
+const ThemeProvider = forwardRef<HTMLDivElement, Props>(({ theme, ...props }, propRef) => {
   const contextTheme = useContext(themeContext);
   const rootRef = useFxtrotRootRef();
   const ref = useRef<HTMLDivElement>(null);
@@ -53,7 +64,7 @@ const ThemeProvider = React.forwardRef<HTMLDivElement, Props>(({ theme, ...props
 const themeContext = createContext<string | { selector: string; className: string } | undefined>(undefined);
 export const useTheme = () => useContext(themeContext);
 
-const rootRefContext = createContext<React.RefObject<HTMLElement>>({ current: null });
+const rootRefContext = createContext<RefObject<HTMLElement>>({ current: null });
 export const useFxtrotRootRef = () => useContext(rootRefContext);
 
 const ThemeWrapper = styled('span', {
@@ -64,7 +75,7 @@ const ThemeWrapper = styled('span', {
   boxSizing: 'border-box',
 });
 
-export const ContextThemeProvider = React.forwardRef<HTMLDivElement, Omit<Props, 'theme'>>((props, ref) => {
+export const ContextThemeProvider = forwardRef<HTMLDivElement, Omit<Props, 'theme'>>((props, ref) => {
   const contextTheme = useContext(themeContext);
   return <ThemeWrapper {...props} className={contextTheme ? `${contextTheme}` : undefined} ref={ref} />;
 });

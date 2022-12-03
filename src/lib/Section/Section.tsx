@@ -1,5 +1,5 @@
-import React from 'react';
 import { useId } from '@radix-ui/react-id';
+import type { ReactNode } from 'react';
 
 import { Flex, FlexVariants } from '../Flex/Flex';
 import { styled } from '../stitches.config';
@@ -7,7 +7,7 @@ import { Text } from '../Text';
 
 interface Props extends FlexVariants {
   title: string;
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
 const SectionInner = ({ title, children, cross = 'stretch', flow = 'column', gap = '4', ...props }: Props) => {

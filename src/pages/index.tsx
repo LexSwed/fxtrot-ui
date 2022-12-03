@@ -1,4 +1,3 @@
-import React from 'react';
 import { NextSeo } from 'next-seo';
 import { Box, Column, Heading, Icon, IconButton, LinkButton, Row, styled, Text, TextLink } from '@fxtrot/ui';
 import Link from 'next/link';
@@ -35,7 +34,7 @@ const App = () => {
               <Heading as="h1" level="5">
                 React component library for Fxtrot projects
               </Heading>
-              <Link href="/installation" passHref>
+              <Link href="/installation" passHref legacyBehavior>
                 <LinkButton variant="primary">Documentation</LinkButton>
               </Link>
             </Column>

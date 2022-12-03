@@ -1,14 +1,14 @@
-import React from 'react';
 import * as RdxPresence from '@radix-ui/react-presence';
+import { forwardRef, RefCallback, ReactElement } from 'react';
 
 interface Props<T> {
   present: boolean;
-  children: ({ ref }: { ref: React.RefCallback<T> }) => React.ReactElement;
+  children: ({ ref }: { ref: RefCallback<T> }) => ReactElement;
 }
 
-const InnerPresence = (React as any).forwardRef(function InnerPresence<T>(
+const InnerPresence = (forwardRef as any)(function InnerPresence<T>(
   { children }: Omit<Props<T>, 'present'>,
-  ref: React.RefCallback<T>
+  ref: RefCallback<T>
 ) {
   return children({ ref });
 });

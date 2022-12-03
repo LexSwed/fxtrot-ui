@@ -1,4 +1,3 @@
-import React from 'react';
 import * as Rdx from '@radix-ui/react-collapsible';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
@@ -6,11 +5,12 @@ import { styled } from '../stitches.config';
 import { Icon } from '../Icon';
 import { flexCss } from '../Flex/Flex';
 import type { CssStyles } from '../stitches.config';
+import { type ComponentProps, forwardRef } from 'react';
 
-interface TriggerProps extends React.ComponentProps<typeof StyledTrigger> {
+interface TriggerProps extends ComponentProps<typeof StyledTrigger> {
   css?: CssStyles;
 }
-export const Trigger = React.forwardRef<HTMLButtonElement, TriggerProps>(
+export const Trigger = forwardRef<HTMLButtonElement, TriggerProps>(
   ({ children, flow = 'row', cross = 'center', main = 'space-between', ...props }, ref) => {
     return (
       <StyledTrigger flow={flow} cross={cross} main={main} {...props} ref={ref}>

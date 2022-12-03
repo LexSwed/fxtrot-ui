@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { forwardRef, ForwardRefExoticComponent, ReactElement, ReactNode, RefAttributes, useRef } from 'react';
 import { Root, Trigger } from '@radix-ui/react-dialog';
 
 import { DialogModal } from './DialogModal';
@@ -7,7 +7,7 @@ import { DialogClose } from './DialogClose';
 import { DialogTitle } from './DialogTitle';
 
 interface Props {
-  children: [React.ReactElement, (close: () => void) => React.ReactNode];
+  children: [ReactElement, (close: () => void) => ReactNode];
   defaultOpen?: boolean;
   /**
    * The modality of the dialog. When set to true, interaction with outside elements will be disabled and only dialog content will be visible to screen readers.
@@ -28,13 +28,13 @@ const DialogInner = ({ children, modal, ...props }: Props) => {
   );
 };
 
-export const Dialog = React.forwardRef<OpenStateRef, Props>((props, ref) => {
+export const Dialog = forwardRef<OpenStateRef, Props>((props, ref) => {
   return (
     <OpenStateProvider defaultOpen={props.defaultOpen} ref={ref}>
       <DialogInner {...props} />
     </OpenStateProvider>
   );
-}) as React.ForwardRefExoticComponent<Props & React.RefAttributes<OpenStateRef>> & {
+}) as ForwardRefExoticComponent<Props & RefAttributes<OpenStateRef>> & {
   Modal: typeof DialogModal;
   Close: typeof DialogClose;
   Title: typeof DialogTitle;

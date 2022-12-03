@@ -1,4 +1,4 @@
-import React from 'react';
+import { type ComponentProps, memo, forwardRef, Children, isValidElement } from 'react';
 import * as Toggle from '@radix-ui/react-toggle';
 
 import { Button } from '../Button/Button';
@@ -6,16 +6,16 @@ import { css } from '../stitches.config';
 import { IconButton } from '../IconButton';
 import { Icon } from '../Icon';
 
-interface Props extends Toggle.ToggleProps, Omit<React.ComponentProps<typeof Button>, 'variant'> {
+interface Props extends Toggle.ToggleProps, Omit<ComponentProps<typeof Button>, 'variant'> {
   variant?: 'flat';
 }
 
-export const ToggleButton = React.memo(
-  React.forwardRef<HTMLButtonElement, Props>(
+export const ToggleButton = memo(
+  forwardRef<HTMLButtonElement, Props>(
     ({ pressed, onPressedChange, defaultPressed, variant = 'flat', ...props }, ref) => {
       const isIconButton =
-        React.Children.count(props.children) === 1 &&
-        React.Children.toArray(props.children).every((child) => React.isValidElement(child) && child.type === Icon);
+        Children.count(props.children) === 1 &&
+        Children.toArray(props.children).every((child) => isValidElement(child) && child.type === Icon);
 
       const ButtonComponent = isIconButton ? IconButton : Button;
 

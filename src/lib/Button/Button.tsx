@@ -1,12 +1,12 @@
-import React from 'react';
 import type { VariantProps } from '@stitches/react';
+import { ComponentProps, forwardRef } from 'react';
 
 import { flexCss, FlexVariants } from '../Flex/Flex';
 import { css, styled } from '../stitches.config';
 
-interface Props extends VariantProps<typeof buttonCss>, React.ComponentProps<'button'> {}
+interface Props extends VariantProps<typeof buttonCss>, ComponentProps<'button'> {}
 
-const ButtonRoot = React.forwardRef<HTMLButtonElement, Props>(({ type = 'button', ...props }, ref) => {
+const ButtonRoot = forwardRef<HTMLButtonElement, Props>(({ type = 'button', ...props }, ref) => {
   return <button {...props} aria-disabled={props.disabled} type={type} ref={ref} />;
 });
 

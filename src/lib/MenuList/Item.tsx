@@ -1,15 +1,13 @@
-import React from 'react';
 import * as RovingFocusGroup from '@radix-ui/react-roving-focus';
-
-import type * as Polymorphic from '@radix-ui/react-polymorphic';
 
 import { styled } from '../stitches.config';
 import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
 import { ListItem } from '../shared/ListItem';
+import { ComponentProps, forwardRef } from 'react';
 
-export interface Props extends React.ComponentProps<typeof StyledItem> {}
+export interface Props extends ComponentProps<typeof StyledItem> {}
 
-export const Item = React.forwardRef<HTMLButtonElement, Props>((props, ref) => {
+export const Item = forwardRef<HTMLButtonElement, Props>((props, ref) => {
   const onKeyDown = useKeyboardHandles({
     'Enter': (e) => e.currentTarget.click?.(),
     ' ': (e) => e.currentTarget.click?.(),
@@ -21,11 +19,9 @@ export const Item = React.forwardRef<HTMLButtonElement, Props>((props, ref) => {
       <StyledItem {...props} aria-disabled={props.disabled} role="treeitem" onKeyDown={handleKeyDown} ref={ref} />
     </RovingFocusGroup.Item>
   );
-}) as ItemComponent;
+});
 
 Item.displayName = 'MenuListItem';
-
-type ItemComponent = Polymorphic.ForwardRefComponent<'button', Props>;
 
 export const StyledItem = styled('button', ListItem, {
   'display': 'block',

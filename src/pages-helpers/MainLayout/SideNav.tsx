@@ -1,4 +1,3 @@
-import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Column, Section, MenuList } from '@fxtrot/ui';
@@ -45,10 +44,8 @@ const LinksList = ({ links }: { links: DocEntry[] }) => {
     <>
       {links.map((item) => {
         return (
-          <Link href={item.href} passHref key={item.title}>
-            <MenuList.Item as="a" aria-selected={item.href === router.pathname}>
-              {item.title}
-            </MenuList.Item>
+          <Link href={item.href} passHref legacyBehavior key={item.title}>
+            <MenuList.Item aria-selected={item.href === router.pathname}>{item.title}</MenuList.Item>
           </Link>
         );
       })}

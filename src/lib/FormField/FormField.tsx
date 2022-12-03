@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { ComponentProps, useMemo } from 'react';
 import { useId } from '@radix-ui/react-id';
 
 import { Flex } from '../Flex/Flex';
@@ -47,16 +47,16 @@ const HintText = styled(Text, {
   cursor: 'default',
 });
 
-export interface FormFieldProps extends React.ComponentProps<typeof FormField> {
+export interface FormFieldProps extends ComponentProps<typeof FormField> {
   validity?: keyof typeof tonesMap;
 }
 
-const tonesMap: Record<'valid' | 'invalid', React.ComponentProps<typeof Text>['tone']> = {
+const tonesMap: Record<'valid' | 'invalid', ComponentProps<typeof Text>['tone']> = {
   valid: 'success',
   invalid: 'danger',
 };
 
-interface HintProps extends React.ComponentProps<typeof Text> {
+interface HintProps extends ComponentProps<typeof Text> {
   validity?: FormFieldProps['validity'];
 }
 

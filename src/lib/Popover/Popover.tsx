@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { ComponentProps, FC, forwardRef, ForwardRefExoticComponent, ReactElement, RefAttributes, useRef } from 'react';
 import * as RdxPopover from '@radix-ui/react-popover';
 
 import { OpenStateProvider, OpenStateRef, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
@@ -7,7 +7,7 @@ import { Portal } from '../Portal';
 import { styled } from '../stitches.config';
 import { Presence } from '../shared/Presence';
 interface Props {
-  children: [React.ReactElement, React.ReactElement<ContentProps>];
+  children: [ReactElement, ReactElement<ContentProps>];
   defaultOpen?: boolean;
   /**
    * The modality of the popover. When set to true, interaction with outside elements will be disabled and only popover content will be visible to screen readers.
@@ -28,13 +28,13 @@ const PopoverInner = ({ defaultOpen, modal, children }: Props) => {
   );
 };
 
-const PopoverRoot = React.forwardRef<OpenStateRef, Props>((props, ref) => {
+const PopoverRoot = forwardRef<OpenStateRef, Props>((props, ref) => {
   return (
     <OpenStateProvider defaultOpen={props.defaultOpen} ref={ref}>
       <PopoverInner {...props} />
     </OpenStateProvider>
   );
-}) as React.ForwardRefExoticComponent<Props & React.RefAttributes<OpenStateRef>> & {
+}) as ForwardRefExoticComponent<Props & RefAttributes<OpenStateRef>> & {
   Content: typeof Content;
 };
 
@@ -42,9 +42,9 @@ PopoverRoot.displayName = 'Popover';
 
 interface ContentProps
   extends Pick<RdxPopover.PopoverContentProps, 'side' | 'sideOffset' | 'align'>,
-    React.ComponentProps<typeof PopoverBox> {}
+    ComponentProps<typeof PopoverBox> {}
 
-const Content: React.FC<ContentProps> = ({ children, align = 'start', side = 'bottom', sideOffset = 8, ...props }) => {
+const Content: FC<ContentProps> = ({ children, align = 'start', side = 'bottom', sideOffset = 8, ...props }) => {
   const open = useOpenState();
   return (
     <Presence present={open}>

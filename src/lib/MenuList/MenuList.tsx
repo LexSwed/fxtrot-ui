@@ -1,12 +1,12 @@
-import React from 'react';
 import * as RovingFocusGroup from '@radix-ui/react-roving-focus';
 
 import { styled } from '../stitches.config';
 import { Item, StyledItem } from './Item';
 import { Section } from '../Section';
 import { flexCss } from '../Flex/Flex';
+import type { ComponentProps } from 'react';
 
-interface Props extends React.ComponentProps<typeof ListStyled> {}
+interface Props extends ComponentProps<typeof ListStyled> {}
 
 export const MenuList = ({ flow = 'column', ...props }: Props) => {
   return (

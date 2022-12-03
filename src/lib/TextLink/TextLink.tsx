@@ -1,26 +1,24 @@
-import React from 'react';
+import { type ComponentProps, forwardRef } from 'react';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 
 import { styled } from '../stitches.config';
 import { Icon } from '../Icon';
 import { Text } from '../Text';
 
-interface Props extends React.ComponentProps<typeof Link> {
+interface Props extends ComponentProps<typeof Link> {
   external?: 'icon' | true;
 }
 
-const TextLinkRoot = React.forwardRef<HTMLAnchorElement, Props>(
-  ({ external, inline = true, children, ...props }, ref) => {
-    const additionalProps = external ? { target: '_blank', rel: 'noreferrer' } : null;
+const TextLinkRoot = forwardRef<HTMLAnchorElement, Props>(({ external, inline = true, children, ...props }, ref) => {
+  const additionalProps = external ? { target: '_blank', rel: 'noreferrer' } : null;
 
-    return (
-      <Link {...additionalProps} external={external} inline={inline} {...props} ref={ref}>
-        {children}
-        {external === 'icon' ? <Icon size="inherit" as={ArrowTopRightOnSquareIcon} /> : null}
-      </Link>
-    );
-  }
-);
+  return (
+    <Link {...additionalProps} external={external} inline={inline} {...props} ref={ref}>
+      {children}
+      {external === 'icon' ? <Icon size="inherit" as={ArrowTopRightOnSquareIcon} /> : null}
+    </Link>
+  );
+});
 
 TextLinkRoot.displayName = 'TextLink';
 

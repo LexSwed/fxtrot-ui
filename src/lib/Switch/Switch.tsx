@@ -1,18 +1,18 @@
-import React, { useMemo } from 'react';
+import { ChangeEvent, ComponentProps, useMemo } from 'react';
 
 import { FormField } from '../FormField/FormField';
 import { Label } from '../Label';
 import { styled } from '../stitches.config';
 import { Flex, FlexVariants } from '../Flex/Flex';
 
-interface Props extends Omit<React.ComponentProps<typeof Input>, 'onChange' | 'value'>, FlexVariants {
+interface Props extends Omit<ComponentProps<typeof Input>, 'onChange' | 'value'>, FlexVariants {
   label: string;
   secondaryLabel?: string;
   value?: string;
-  onChange?: (checked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (checked: boolean, event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const Switch: React.FC<Props> = ({
+export const Switch = ({
   checked,
   onChange,
   css,
@@ -26,11 +26,11 @@ export const Switch: React.FC<Props> = ({
   cross = 'center',
   disabled,
   ...props
-}) => {
+}: Props) => {
   const handleChange = useMemo(() => {
     if (typeof onChange !== 'function') return;
 
-    return (ev: React.ChangeEvent<HTMLInputElement>) => onChange(ev.target.checked, ev);
+    return (ev: ChangeEvent<HTMLInputElement>) => onChange(ev.target.checked, ev);
   }, [onChange]);
 
   return (

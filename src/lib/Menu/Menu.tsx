@@ -1,4 +1,12 @@
-import React, { useRef } from 'react';
+import {
+  ComponentProps,
+  forwardRef,
+  ForwardRefExoticComponent,
+  ReactElement,
+  RefAttributes,
+  useRef,
+  useState,
+} from 'react';
 import * as RdxMenu from '@radix-ui/react-dropdown-menu';
 
 import { PopoverBox } from '../Popover/PopoverBox';
@@ -13,7 +21,7 @@ import { useIsomorphicLayoutEffect } from '../utils/hooks';
 import { Presence } from '../shared/Presence';
 
 interface MenuProps {
-  children: [trigger: React.ReactElement, menuList: React.ReactElement];
+  children: [trigger: ReactElement, menuList: ReactElement];
   /**
    * The modality of the dropdown menu. When set to true, interaction with outside elements will be disabled and only menu content will be visible to screen readers.
    */
@@ -33,13 +41,13 @@ const MenuInner = ({ children, modal }: MenuProps) => {
   );
 };
 
-const MenuRoot = React.forwardRef<OpenStateRef, MenuProps>((props, ref) => {
+const MenuRoot = forwardRef<OpenStateRef, MenuProps>((props, ref) => {
   return (
     <OpenStateProvider ref={ref}>
       <MenuInner {...props} />
     </OpenStateProvider>
   );
-}) as React.ForwardRefExoticComponent<MenuListProps & React.RefAttributes<OpenStateRef>> & {
+}) as ForwardRefExoticComponent<MenuListProps & RefAttributes<OpenStateRef>> & {
   List: typeof List;
   Item: typeof MenuItem;
   Separator: typeof Separator;
@@ -52,7 +60,7 @@ export function useMenuRef() {
 
 interface MenuListProps
   extends Pick<RdxMenu.MenuContentProps, 'side' | 'sideOffset' | 'align'>,
-    React.ComponentProps<typeof PopoverBox> {}
+    ComponentProps<typeof PopoverBox> {}
 const List = ({ align = 'start', side = 'bottom', sideOffset = 8, ...props }: MenuListProps) => {
   const open = useOpenState();
   return (
@@ -68,7 +76,7 @@ const List = ({ align = 'start', side = 'bottom', sideOffset = 8, ...props }: Me
   );
 };
 
-const MenuListContent = React.forwardRef<HTMLDivElement, MenuListProps>(({ style = {}, ...props }, ref) => {
+const MenuListContent = forwardRef<HTMLDivElement, MenuListProps>(({ style = {}, ...props }, ref) => {
   const minWidth = useTriggerWidth(props['aria-labelledby']);
   return <MenuListBox {...props} style={{ ...style, minWidth }} ref={ref} />;
 });
@@ -76,7 +84,7 @@ const MenuListContent = React.forwardRef<HTMLDivElement, MenuListProps>(({ style
 const MenuListBox = styled(PopoverBox, listStyles);
 
 function useTriggerWidth(triggerElementId?: string) {
-  const [width, setWidth] = React.useState<number>();
+  const [width, setWidth] = useState<number>();
 
   useIsomorphicLayoutEffect(() => {
     if (!triggerElementId) return;
@@ -89,11 +97,11 @@ function useTriggerWidth(triggerElementId?: string) {
   return width;
 }
 
-interface MenuItemProps extends Omit<React.ComponentProps<typeof RdxMenu.Item>, 'as'>, VariantProps<typeof ListItem> {
+interface MenuItemProps extends Omit<ComponentProps<typeof RdxMenu.Item>, 'as'>, VariantProps<typeof ListItem> {
   css?: CssStyles;
 }
 
-const MenuItem = React.forwardRef<HTMLDivElement, MenuItemProps>(({ onSelect, disabled, textValue, ...props }, ref) => {
+const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(({ onSelect, disabled, textValue, ...props }, ref) => {
   return (
     <RdxMenu.Item onSelect={onSelect} disabled={disabled} textValue={textValue} asChild>
       <ListItem {...props} ref={ref} />
@@ -108,7 +116,7 @@ const Separator = styled(RdxMenu.Separator, {
   mx: '-$1',
 });
 
-const MenuLabel = React.forwardRef((props, ref) => {
+const MenuLabel = forwardRef((props, ref) => {
   return (
     <RdxMenu.Label asChild>
       <Label {...props} ref={ref} />
