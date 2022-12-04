@@ -21,7 +21,12 @@ export const ToggleButton = memo(
 
       return (
         <Toggle.Root asChild pressed={pressed} defaultPressed={defaultPressed} onPressedChange={onPressedChange}>
-          <ButtonComponent {...(props as any)} className={toggleButtonCss({ variant })} variant={variant} ref={ref} />
+          <ButtonComponent
+            {...(props as any)}
+            className={[toggleButtonCss({ variant }), props.className].join(' ')}
+            variant={variant}
+            ref={ref}
+          />
         </Toggle.Root>
       );
     }

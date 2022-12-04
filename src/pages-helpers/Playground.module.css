@@ -1,0 +1,15 @@
+@tailwind utilities;
+
+@layer utilities {
+  .editor {
+    @apply border-t border-solid border-outline/15;
+
+    & textarea {
+      @apply duration-240 outline-none transition-shadow;
+
+      &:focus {
+        box-shadow: 0 0 0 2px inset theme('colors.primary');
+      }
+    }
+  }
+}

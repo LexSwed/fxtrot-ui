@@ -5,7 +5,7 @@ import * as FxtrotUI from '@fxtrot/ui';
 import { BsTypeBold, BsTypeItalic, BsTypeUnderline } from 'react-icons/bs';
 import * as Icons from '@heroicons/react/24/outline';
 
-import { Heading, styled, Text, TextLink } from '@fxtrot/ui';
+import { Heading, Text, TextLink } from '@fxtrot/ui';
 
 import * as helpers from '../pages-helpers';
 import { MainLayout } from './MainLayout';
@@ -27,33 +27,20 @@ const Pre: React.FC<{ preview: boolean; children?: React.ReactNode }> = ({ child
   return <MultilineCode code={code} language={language} />;
 };
 
-const HeadingWithAnchor = styled(Heading, {
-  'scrollMarginBlockStart': 100,
-  '& > a': {
-    'opacity': 0,
-    'transition': '0.3s ease-in-out',
-    'color': '$onSurfaceVariant',
-    'textDecoration': 'none',
-    'fontSize': '0.8em',
-    '@untilDesktop': {
-      opacity: 1,
-      fontSize: '0.8em',
-    },
-  },
-  '&:hover > a': {
-    opacity: 1,
-  },
-});
 const AnchoredHeading = ({ id, children, ...props }: any) => {
   return (
-    <HeadingWithAnchor {...props} id={id}>
+    <Heading className="group [scroll-margin-block-start:100px]" dense={false} {...props} id={id}>
       {children}{' '}
       {id && (
-        <Link href={`#${id}`} replace scroll={false}>
-          <Heading level={props.level}>#</Heading>
+        <Link
+          href={`#${id}`}
+          replace
+          className="text-[0.8em] no-underline transition-opacity duration-300 group-hover:opacity-100 md:opacity-0"
+        >
+          #
         </Link>
       )}
-    </HeadingWithAnchor>
+    </Heading>
   );
 };
 

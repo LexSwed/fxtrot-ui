@@ -207,13 +207,11 @@ And `row-reverse`
 Control content wrapping via `wrap` property:
 
 ```tsx preview
-<Box css={{ width: 50 * 4 + (4 - 1) * 8 }}>
-  <Flex flow="row-reverse" wrap="wrap-reverse" gap="sm">
-    {Array(16)
-      .fill(0)
-      .map((el, i) => (
-        <ExampleBox key={i}>{i + 1}</ExampleBox>
-      ))}
-  </Flex>
-</Box>
+<Flex flow="row-reverse" wrap="wrap-reverse" gap="sm" className="w-[224px]">
+  {Array.from({ length: 14 }).map((el, i) => (
+    <ExampleBox className="basis-[50px]" key={i}>
+      {i + 1}
+    </ExampleBox>
+  ))}
+</Flex>
 ```

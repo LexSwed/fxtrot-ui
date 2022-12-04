@@ -1,16 +1,9 @@
-import { Box, styled } from '@fxtrot/ui';
+import { classed } from '@tw-classed/react';
 
-export const ExampleBox = styled(Box, {
-  bc: '$surfacePrimary3',
-  border: '2px dashed $surfacePrimary6',
-  height: '50px',
-  minWidth: '50px',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  color: '$onSurfaceVariant',
-  fontSize: '$sm',
-});
+export const ExampleBox = classed(
+  'div',
+  'bg-primary/10 border-2 border-dashed border-primary/60 h-[50px] min-w-[50px] grid place-items-center text-on-surface-variant text-sm'
+);
 
 export { TextWithComputedStyle } from './TextWithComputedStyle';
 

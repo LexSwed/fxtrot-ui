@@ -6,33 +6,33 @@ title: Collapsible
 
 ```tsx preview
 <Row gap="8">
-  <Box width={200}>
+  <div className="w-[200px]">
     <Collapsible>
       <Collapsible.Trigger variant="flat">Section</Collapsible.Trigger>
       <Collapsible.Content>
-        <Box p="$3">
+        <div className="p-3">
           <Flex gap="4" flow="row">
             <ExampleBox />
             <ExampleBox width="80%" />
           </Flex>
-        </Box>
+        </div>
       </Collapsible.Content>
     </Collapsible>
-  </Box>
-  <Box width={200}>
+  </div>
+  <div className="w-[200px]">
     <Collapsible>
       <Collapsible.Trigger disabled variant="flat">
         Section (disabled)
       </Collapsible.Trigger>
       <Collapsible.Content>
-        <Box p="$3">
+        <div className="p-3">
           <Flex gap="4" flow="row">
             <ExampleBox />
             <ExampleBox width="80%" />
           </Flex>
-        </Box>
+        </div>
       </Collapsible.Content>
     </Collapsible>
-  </Box>
+  </div>
 </Row>
 ```

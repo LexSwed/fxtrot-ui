@@ -4,13 +4,13 @@ export const Heading = styled('h1', {
   fontFamily: '$heading',
   lineHeight: 1,
   color: '$text',
-  my: '1.2em',
+  mt: '1.2em',
+  mb: '0.6em',
 
   variants: {
     level: {
       1: {
         fontSize: '$5xl',
-        my: '1.1em',
       },
       2: {
         fontSize: '$4xl',

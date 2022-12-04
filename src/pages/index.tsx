@@ -1,7 +1,6 @@
 import { NextSeo } from 'next-seo';
-import { Box, Column, Heading, Icon, IconButton, LinkButton, Row, styled, Text, TextLink } from '@fxtrot/ui';
+import { Column, Heading, Icon, IconButton, LinkButton, Row, styled, Text, TextLink } from '@fxtrot/ui';
 import Link from 'next/link';
-
 import { BsGithub } from 'react-icons/bs';
 
 const App = () => {
@@ -9,7 +8,7 @@ const App = () => {
     <>
       <NextSeo title="Fxtrot UI" description="A component library for React projects." />
       <Wrapper>
-        <Box py="$8">
+        <div className="py-8">
           <Row as="header" main="space-between" cross="center">
             <Heading as="h1" level="2">
               Fxtrot
@@ -20,22 +19,17 @@ const App = () => {
               </IconButton>
             </a>
           </Row>
-        </Box>
-        <Box
-          height="100%"
-          p="$8"
-          css={{
-            display: 'grid',
-            placeItems: 'center',
-          }}
-        >
-          <Column gap="12" cross="center">
-            <Column gap="4" cross="center">
-              <Heading as="h1" level="5">
-                React component library for Fxtrot projects
+        </div>
+        <div className="grid h-full place-items-center p-8">
+          <Column gap="16" cross="center">
+            <Column gap="14" cross="center">
+              <Heading as="h1" level="4">
+                React component library for Fxtrot project
               </Heading>
               <Link href="/installation" passHref legacyBehavior>
-                <LinkButton variant="primary">Documentation</LinkButton>
+                <LinkButton variant="primary" size="lg">
+                  Documentation
+                </LinkButton>
               </Link>
             </Column>
             <Text>
@@ -53,7 +47,7 @@ const App = () => {
               </TextLink>
             </Text>
           </Column>
-        </Box>
+        </div>
       </Wrapper>
     </>
   );

@@ -4,6 +4,8 @@ import { NextSeo } from 'next-seo';
 
 import { MdxProvider } from 'src/pages-helpers/MdxProvider';
 
+import './index.css';
+
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
   return (

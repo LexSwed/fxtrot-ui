@@ -1,47 +1,35 @@
-import { Column, Text, Row, Box } from '@fxtrot/ui';
+import { Column, Text, Row } from '@fxtrot/ui';
 import { CopyButton } from './CopyButton';
-import { lightColors } from '../lib/theme/default';
+import colors from '../lib/colors.cjs';
 
 type Props = {
   children: React.ReactNode;
 };
 export const Palette = ({ children }: Props) => {
   return (
-    <Row gap="1" css={{ overflowX: 'auto' }}>
+    <Row gap="1" cross="stretch" className="overflow-x-auto">
       {children}
     </Row>
   );
 };
 
 type ColorBoxProps = {
-  color: keyof typeof lightColors;
-  textColor: keyof typeof lightColors;
+  color: keyof typeof colors;
+  textColor: keyof typeof colors;
+  className?: string;
 };
-export const ColorBox = ({ color, textColor }: ColorBoxProps) => {
-  const token = `$${color}`;
+export const ColorBox = ({ color, textColor, className }: ColorBoxProps) => {
   return (
-    <Box
-      css={{
-        'bc': token,
-        'color': `$${textColor}`,
-        'p': '$2',
-        'height': '100px',
-        'width': '25%',
-        'flex': '0 1 25%',
-        '&:last-of-type': {
-          flexGrow: 1,
-        },
-      }}
-    >
-      <Column css={{ height: '100%' }}>
+    <div className={`w-1/4 flex-1 grow-0 basis-1/4 p-2 last-of-type:grow ${className}`}>
+      <Column className="h-full">
         <Text textStyle="label-sm" weight={600}>
           {color}
         </Text>
-        <Text textStyle="mono-sm">{lightColors[color]}</Text>
-        <Box alignSelf="flex-end" mt="auto">
-          <CopyButton label="Copy color token" text={token} color={`$${textColor}`} />
-        </Box>
+        <Text textStyle="mono-sm">{colors[color]}</Text>
+        <div className="self-end mt-auto">
+          <CopyButton label="Copy color token" text={color} color={`$${textColor}`} />
+        </div>
       </Column>
-    </Box>
+    </div>
   );
 };

@@ -114,20 +114,3 @@ title: TextArea
   );
 };
 ```
-
-## Label alignment
-
-Since input is wrapped in `Flex` component, you can easily pass any props `Flex` supports,
-for example to specify flow direction:
-
-```tsx preview
-<Box css={{ 'width': '420px', '@tablet': { width: '300px' } }}>
-  <TextArea
-    label="Enter your name"
-    flow={{ '@desktop': 'row', '@tablet': 'column' }}
-    gap={{ '@desktop': '6', '@initial': '2' }}
-    placeholder="John Doe"
-    hint="Real name will help your friends to find you!"
-  />
-</Box>
-```

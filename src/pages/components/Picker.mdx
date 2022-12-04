@@ -7,7 +7,7 @@ title: Picker
 Picker is a component that mimics default `<select>` element.
 
 ```tsx preview
-<Box width={200}>
+<div className="w-[200px]">
   <Picker label="Item index" placeholder="Pick a number">
     {Array(100)
       .fill(null)
@@ -15,7 +15,7 @@ Picker is a component that mimics default `<select>` element.
         <Picker.Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
       ))}
   </Picker>
-</Box>
+</div>
 ```
 
 ## Controlled with validation
@@ -24,7 +24,7 @@ Picker is a component that mimics default `<select>` element.
 () => {
   const [value, setValue] = React.useState('12');
   return (
-    <Box width={200}>
+    <div className="w-[200px]">
       <Picker
         label="Pick item > 10"
         value={value}
@@ -38,7 +38,7 @@ Picker is a component that mimics default `<select>` element.
             <Picker.Item key={i} value={`${i + 1}`} label={`Item ${i + 1}`} />
           ))}
       </Picker>
-    </Box>
+    </div>
   );
 };
 ```
@@ -51,13 +51,13 @@ Supports same `variant`s as `Picker` component.
 () => {
   const [variant, setVariant] = React.useState('boxed');
   return (
-    <Box width={200}>
+    <div className="w-[200px]">
       <Picker label="Variant" variant={variant} value={variant} onChange={setVariant}>
         <Picker.Item label="Boxed" value="boxed" />
         <Picker.Item label="Underlined" value="underlined" />
         <Picker.Item label="Flat" value="flat" />
       </Picker>
-    </Box>
+    </div>
   );
 };
 ```
