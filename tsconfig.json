@@ -23,7 +23,8 @@
     "paths": {
       "@fxtrot/ui": ["src/lib"]
     },
-    "incremental": true
+    "incremental": true,
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
   "include": ["docs", "src", "public"],
   "exclude": ["node_modules"]
