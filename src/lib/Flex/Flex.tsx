@@ -1,5 +1,7 @@
 import { classed as css, VariantProps } from '@tw-classed/core';
-import { classed } from '@tw-classed/react';
+import clsx from 'clsx';
+import { ComponentProps, forwardRef } from 'react';
+import type { ForwardRefComponent } from '../utils/polymorphic';
 
 export const flex = css('flex', {
   variants: {
@@ -17,12 +19,12 @@ export const flex = css('flex', {
       '2xl': 'gap-2xl',
     },
     main: {
-      start: 'justify-start',
-      center: 'justify-center',
-      end: 'justify-end',
-      between: 'justify-between',
-      around: 'justify-around',
-      evenly: 'justify-evenly',
+      'start': 'justify-start',
+      'center': 'justify-center',
+      'end': 'justify-end',
+      'space-between': 'justify-between',
+      'around': 'justify-around',
+      'evenly': 'justify-evenly',
     },
     cross: {
       start: 'items-start',
@@ -55,28 +57,23 @@ export const flex = css('flex', {
 
 export type FlexVariants = VariantProps<typeof flex>;
 
-export const Flex = classed('div', flex);
+interface FlexProps extends FlexVariants, ComponentProps<'div'> {}
 
-export const Row = classed(Flex, {
-  variants: {
-    flow: {
-      row: 'flex-row',
-      reverse: 'flex-row-reverse',
-    },
-  },
-  defaultVariants: {
-    flow: 'row',
-  },
-});
+export const Flex = forwardRef((props, ref) => {
+  const { as: As = 'div' } = props;
+  return <As className={clsx(flex(props), props.className)} {...props} ref={ref} />;
+}) as ForwardRefComponent<'div', FlexProps>;
 
-export const Column = classed(Flex, {
-  variants: {
-    flow: {
-      column: 'flex-col',
-      reverse: 'flex-col-reverse',
-    },
-  },
-  defaultVariants: {
-    flow: 'column',
-  },
-});
+interface RowProps extends FlexProps {
+  flow?: Extract<FlexVariants['flow'], 'row' | 'row-reverse'>;
+}
+export const Row = forwardRef(({ as: As = 'div', flow = 'row', className, ...props }, ref) => {
+  return <As className={clsx(flex({ ...props, flow }), className)} {...props} ref={ref} />;
+}) as ForwardRefComponent<'div', RowProps>;
+
+interface ColumnProps extends FlexProps {
+  flow?: Extract<FlexVariants['flow'], 'column' | 'column-reverse'>;
+}
+export const Column = forwardRef(({ as: As = 'div', flow = 'column', className, ...props }, ref) => {
+  return <As className={clsx(flex({ ...props, flow }), className)} {...props} ref={ref} />;
+}) as ForwardRefComponent<'div', ColumnProps>;

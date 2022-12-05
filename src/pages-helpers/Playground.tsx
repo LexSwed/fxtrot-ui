@@ -42,7 +42,7 @@ const Preview: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <Column>
         <div className="overflow-auto p-4">{children}</div>
         <Trigger asChild>
-          <ToggleButton size="sm" gap="0" className="m-2">
+          <ToggleButton size="sm" className="m-2">
             <Icon as={ChevronUpDownIcon} size="lg" />
             Show code
           </ToggleButton>

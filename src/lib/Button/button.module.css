@@ -2,7 +2,7 @@
 
 @layer components {
   .button {
-    @apply shrink-0 cursor-default select-none whitespace-nowrap border-[1px] border-solid bg-transparent font-medium text-on-surface transition-[color,box-shadow,filter,border-color,background-color,background-image] duration-200 focus:outline-none focus:ring-4 focus:ring-opacity-80;
+    @apply inline-flex shrink-0 cursor-default select-none whitespace-nowrap border-[1px] border-solid bg-transparent font-medium text-on-surface transition-[color,box-shadow,filter,border-color,background-color,background-image] duration-200 focus:outline-none focus:ring-4 focus:ring-opacity-80;
 
     &:is(:disabled, [aria-disabled='true']) {
       @apply cursor-not-allowed border-transparent bg-disabled bg-none text-on-disabled;
@@ -119,7 +119,7 @@
     }
 
     &:where(:active, [data-state='open']) {
-      @apply bg-on-surface/15;
+      @apply border-outline/15 bg-on-surface/15;
     }
 
     &:where(.button--danger) {

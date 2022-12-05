@@ -1,0 +1,38 @@
+@tailwind components;
+
+.content {
+  overflow: hidden;
+  will-change: transform, height, opacity;
+  &:where([data-state='open']) {
+    animation: 300ms open ease-in forwards;
+  }
+  &:where([data-state='closed']) {
+    animation: 240ms close ease-out forwards;
+  }
+}
+
+@keyframes open {
+  0% {
+    opacity: 0;
+    transform: translateY(-5px);
+    height: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    height: var(--radix-collapsible-content-height);
+  }
+}
+
+@keyframes close {
+  0% {
+    opacity: 1;
+    transform: none;
+    height: var(--radix-collapsible-content-height);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-5px);
+    height: 0;
+  }
+}

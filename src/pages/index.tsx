@@ -14,15 +14,15 @@ const App = () => {
               Fxtrot
             </Heading>
             <a href="https://github.com/LexSwed/fxtrot-ui" target="_blank" rel="noreferrer">
-              <IconButton label="Source code" variant="flat">
+              <IconButton aria-label="Source code" variant="flat">
                 <Icon as={BsGithub} size="2xl" />
               </IconButton>
             </a>
           </Row>
         </div>
         <div className="grid h-full place-items-center p-8">
-          <Column gap="16" cross="center">
-            <Column gap="14" cross="center">
+          <Column className="gap-16" cross="center">
+            <Column className="gap-14" cross="center">
               <Heading as="h1" level="4">
                 React component library for Fxtrot project
               </Heading>
