@@ -1,18 +1,16 @@
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
 import flattenChildren from 'react-keyed-flatten-children';
 
-import { flexCss, FlexVariants } from '../Flex/Flex';
 import { ToggleButton } from '../ToggleButton';
-import { styled, CssStyles } from '../stitches.config';
-import { buttonCss } from '../Button/Button';
 import { ComponentProps, isValidElement, ReactElement, ReactNode } from 'react';
+import { classed } from '@tw-classed/react';
+import { flex, FlexVariants } from '../flex/flex';
 
 type Props = FlexVariants &
   Omit<
     ToggleGroup.ToggleGroupMultipleProps | ToggleGroup.ToggleGroupSingleProps,
     'direction' | 'rovingFocus' | 'as'
   > & {
-    css?: CssStyles;
     children?: ReactNode;
   };
 
@@ -38,38 +36,4 @@ export const ActionGroup = ({ children, type = 'single', gap = 'none', value, ..
     </ActionGroupRoot>
   );
 };
-const ActionGroupRoot = styled(ToggleGroup.Root, flexCss, {
-  gap: '-1px',
-  compoundVariants: [
-    {
-      gap: 'none',
-      css: {
-        [`& > ${buttonCss}`]: {
-          '$focusRingInset': '$surface5',
-          '&[data-state]:focus': {
-            zIndex: 1,
-          },
-          '&[data-state=on]': {
-            $focusRingInset: '$surfacePrimary6',
-          },
-        },
-        [`& > ${buttonCss}:not(:first-of-type)`]: {
-          borderTopLeftRadius: 0,
-          borderBottomLeftRadius: 0,
-        },
-        [`& > ${buttonCss}:not(:last-of-type)`]: {
-          borderTopRightRadius: 0,
-          borderBottomRightRadius: 0,
-        },
-      },
-    },
-    {
-      gap: 'none',
-      css: {
-        [`& > ${buttonCss} + ${buttonCss}`]: {
-          ml: '-1px',
-        },
-      },
-    },
-  ],
-});
+const ActionGroupRoot = classed(ToggleGroup.Root, flex);

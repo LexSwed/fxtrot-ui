@@ -1,6 +1,6 @@
 import { styled } from '../stitches.config';
 import { Text } from '../Text';
-import { Flex } from '../Flex';
+import { Flex } from '../Flex-copy';
 import type { VariantProps } from '@stitches/react';
 import { forwardRef, ReactNode } from 'react';
 import type { ForwardRefComponent } from '../utils/polymorphic';

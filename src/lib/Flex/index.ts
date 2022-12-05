@@ -1,1 +1,1 @@
-export { Flex, Column, Row } from './Flex';
+export { Flex, Row, Column } from './flex';

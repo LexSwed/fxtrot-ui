@@ -1,7 +1,7 @@
 import { ComponentProps, useMemo } from 'react';
 import { useId } from '@radix-ui/react-id';
 
-import { Flex } from '../Flex/Flex';
+import { Flex } from '../Flex-copy/Flex';
 import { LabelWrapper } from '../Label/Label';
 import { styled } from '../stitches.config';
 import { Text } from '../Text';

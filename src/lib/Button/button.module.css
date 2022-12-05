@@ -1,0 +1,164 @@
+@tailwind components;
+
+@layer components {
+  .button {
+    @apply shrink-0 cursor-default select-none whitespace-nowrap border-[1px] border-solid bg-transparent font-medium text-on-surface transition-[color,box-shadow,filter,border-color,background-color,background-image] duration-200 focus:outline-none focus:ring-4 focus:ring-opacity-80;
+
+    &:is(:disabled, [aria-disabled='true']) {
+      @apply cursor-not-allowed border-transparent bg-disabled bg-none text-on-disabled;
+
+      &:where(.button--danger) {
+        @apply text-error/80;
+      }
+    }
+  }
+
+  /*
+   Variant
+  */
+
+  .button--primary {
+    @apply border-transparent bg-primary bg-gradient-to-t text-on-primary focus:ring-primary/40;
+
+    &:where(:hover, :focus, :active) {
+      @apply from-on-surface/20 to-on-surface/20;
+    }
+
+    &:where(:active, [data-state='open']) {
+      @apply from-on-surface/25 to-on-surface/25;
+    }
+
+    &:where(.button--danger) {
+      @apply bg-error text-on-error;
+    }
+  }
+
+  .button--outline {
+    @apply border-primary bg-transparent text-primary focus:ring-primary/40;
+
+    &:where(:hover, :focus, :active) {
+      @apply bg-primary/10;
+    }
+
+    &:where(:active, [data-state='open']) {
+      @apply bg-primary/15;
+    }
+
+    &:where(.button--danger) {
+      @apply border-error text-error;
+
+      &:where(:hover, :focus, :active) {
+        @apply bg-error/10;
+      }
+
+      &:where(:active, [data-state='open']) {
+        @apply bg-error/15;
+      }
+    }
+  }
+
+  .button--tonal {
+    @apply border-transparent bg-primary/15 text-primary focus:ring-primary/40 focus:ring-opacity-60;
+
+    &:where(:hover, :focus, :active) {
+      @apply bg-primary/20;
+    }
+
+    &:where(:active, [data-state='open']) {
+      @apply bg-primary/25;
+    }
+
+    &:where(.button--danger) {
+      @apply bg-error/15 text-error;
+
+      &:where(:hover, :focus, :active) {
+        @apply bg-error/20;
+      }
+
+      &:where(:active, [data-state='open']) {
+        @apply bg-error/25;
+      }
+    }
+  }
+
+  /* 
+   Using secondary colors
+  .button--tonal {
+    @apply border-transparent bg-secondary-container bg-gradient-to-t text-on-secondary-container focus:ring-secondary/30;
+
+    &:where(:hover, :focus, :active) {
+      @apply from-secondary/10 to-secondary/10;
+    }
+
+    &:where(:active, [data-state='open']) {
+      @apply from-secondary/15 to-secondary/15;
+    }
+
+    &:where(.button--danger) {
+      @apply bg-error/15 bg-none text-error;
+
+      &:where(:hover, :focus, :active) {
+        @apply bg-error/20;
+      }
+
+      &:where(:active, [data-state='open']) {
+        @apply bg-error/25;
+      }
+    }
+  } */
+
+  .button--flat {
+    @apply border-transparent bg-transparent text-on-surface focus:ring-on-surface/40;
+
+    &:where(:hover, :focus, :active) {
+      @apply bg-on-surface/10;
+
+      &:where(.button--danger) {
+        @apply bg-error/10;
+      }
+    }
+
+    &:where(:active, [data-state='open']) {
+      @apply bg-on-surface/15;
+    }
+
+    &:where(.button--danger) {
+      @apply text-error;
+    }
+  }
+
+  .button--link {
+    @apply border-transparent bg-transparent text-primary focus:ring-primary/20;
+
+    &:where(:hover) {
+      @apply underline;
+    }
+
+    &:is(:disabled, [aria-disabled='true']) {
+      @apply bg-transparent no-underline;
+    }
+  }
+
+  /*
+   Intent
+  */
+  .button--danger {
+    @apply focus:ring-error/50;
+  }
+
+  /*
+    Size
+  */
+  .button--xs {
+    @apply rounded-md text-xs py-1 px-2;
+  }
+  .button--sm {
+    @apply rounded-md text-sm py-1 px-3;
+  }
+  .button--md {
+    @apply rounded-lg text-sm py-2 px-4;
+  }
+  .button--lg {
+    @apply rounded-lg text-base py-2 px-6;
+  }
+}

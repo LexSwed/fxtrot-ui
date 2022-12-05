@@ -16,15 +16,3 @@ function createScale<T extends 'gap' | 'rowGap' | 'columnGap'>(property: T) {
     return res;
   }, {} as { [scale in Scales]: Record<T, `$${scale}`> });
 }
-
-export type TextStyle =
-  | 'body-sm'
-  | 'body-md'
-  | 'body-lg'
-  | 'label'
-  | 'title-sm'
-  | 'title-md'
-  | 'title-lg'
-  | 'headline'
-  | 'overline'
-  | 'mono';

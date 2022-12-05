@@ -1,161 +1,63 @@
-import type { VariantProps } from '@stitches/react';
+import { classed as css, VariantProps } from '@tw-classed/core';
 import { ComponentProps, forwardRef } from 'react';
+import { clsx } from 'clsx';
 
-import { flexCss, FlexVariants } from '../Flex/Flex';
-import { css, styled } from '../stitches.config';
+import { flex } from '../flex/flex';
 
-interface Props extends VariantProps<typeof buttonCss>, ComponentProps<'button'> {}
+import styles from './button.module.css';
 
-const ButtonRoot = forwardRef<HTMLButtonElement, Props>(({ type = 'button', ...props }, ref) => {
-  return <button {...props} aria-disabled={props.disabled} type={type} ref={ref} />;
-});
-
-ButtonRoot.displayName = 'Button';
-
-const flexDefaults: FlexVariants = {
-  display: 'inline',
-  wrap: 'nowrap',
-  cross: 'center',
-  main: 'center',
-  flow: 'row',
-  gap: '1',
-};
-
-export const buttonCss = css(flexCss, {
-  'transition': '0.2s ease-in-out',
-  'transitionProperty': 'background-color, box-shadow, color, filter, border-color, outline-color, outline-width',
-  'fontFamily': '$default',
-  'fontWeight': 600,
-  'lineHeight': 1,
-  'whiteSpace': 'nowrap',
-  'cursor': 'default',
-  'flexShrink': 0,
-  'bc': 'transparent',
-  'color': '$onSurface',
-  'br': '$base',
-
-  '&:is(:disabled,[aria-disabled=true]), &:where(:disabled,[aria-disabled=true]):is(:hover,:focus)': {
-    color: '$onDisabled',
-    border: '1px solid $disabled',
-    bc: '$disabled',
-    cursor: 'not-allowed',
-  },
-
-  'variants': {
-    size: {
-      xs: {
-        minHeight: '$6',
-        fontSize: '$xs',
-        fontWeight: 400,
-        py: '$1',
-        px: '$2',
-      },
-      sm: {
-        minHeight: '$8',
-        fontSize: '$sm',
-        fontWeight: 400,
-        py: '$1',
-        px: '$3',
-      },
-      md: {
-        minHeight: '$base',
-        fontSize: '$sm',
-        fontWeight: 500,
-        py: '$2',
-        px: '$4',
-      },
-      lg: {
-        minHeight: '$12',
-        fontSize: '$md',
-        fontWeight: 500,
-        py: '$2',
-        px: '$6',
-      },
-    },
+export const buttonCss = css(styles.button, flex, {
+  variants: {
     variant: {
-      primary: {
-        'bc': '$primary',
-        'color': '$onPrimary',
-        'position': 'relative',
-        '$focusRing': '$surfacePrimary8',
-        '@hover': {
-          '&:where(:hover, :focus)': {
-            backgroundImage: 'linear-gradient(to top, $colors$surface5, $colors$surface5)',
-          },
-        },
-        '&:where(:active, [data-state="open"])': {
-          backgroundImage: 'linear-gradient(to top, $colors$surface6, $colors$surface6)',
-        },
-      },
-      tonal: {
-        'bc': '$secondaryContainer',
-        'color': '$onSecondaryContainer',
-        '$focusRing': '$surfacePrimary8',
-        '@hover': {
-          '&:where(:hover, :focus)': {
-            backgroundImage: 'linear-gradient(to top, $colors$surfacePrimary1, $colors$surfacePrimary1)',
-          },
-        },
-        '&:where(:active, [data-state="open"])': {
-          backgroundImage: 'linear-gradient(to top, $colors$surfacePrimary2, $colors$surfacePrimary2)',
-        },
-      },
-      outline: {
-        'bc': 'transparent',
-        'color': '$primary',
-        'border': '1px solid $primary',
-        '$focusRing': '$surfacePrimary8',
-        '@hover': {
-          '&:where(:hover, :focus)': {
-            bc: '$surfacePrimary2',
-          },
-        },
-        '&:where(:active, [data-state="open"])': {
-          bc: '$surfacePrimary3',
-          borderColor: '$primary',
-        },
-      },
-      flat: {
-        'bc': 'transparent',
-        'color': '$onSurface',
-        'border': '1px solid transparent',
-        '$focusRing': '$surface8',
-        '@hover': {
-          '&:where(:hover, :focus)': {
-            bc: '$surface2',
-          },
-          '&:where(:focus)': {
-            borderColor: '$surface2',
-          },
-        },
-        '&:where(:active, [data-state="open"])': {
-          bc: '$surface2',
-          borderColor: '$surface4',
-        },
-      },
-      link: {
-        'bc': 'transparent',
-        'color': '$primary',
-        '$focusRing': '$surfacePrimary8',
-        '@hover': {
-          '&:where(:hover)': {
-            textDecoration: 'underline',
-          },
-        },
-        '&:is(:disabled,[aria-disabled=true])': {
-          bc: 'transparent',
-          border: 'none',
-          textDecoration: 'none',
-        },
-      },
-      transparent: {},
+      flat: styles['button--flat'],
+      primary: styles['button--primary'],
+      tonal: styles['button--tonal'],
+      outline: styles['button--outline'],
+      link: styles['button--link'],
     },
-  },
-  'defaultVariants': {
-    ...flexDefaults,
-    variant: 'tonal',
-    size: 'md',
+    size: {
+      xs: styles['button--xs'],
+      sm: styles['button--sm'],
+      md: styles['button--md'],
+      lg: styles['button--lg'],
+    },
+    intent: {
+      danger: styles['button--danger'],
+    },
   },
 });
 
-export const Button = styled(ButtonRoot, buttonCss);
+export type ButtonVariants = VariantProps<typeof buttonCss>;
+
+interface Props extends ButtonVariants, ComponentProps<'button'> {}
+
+const Button = forwardRef<HTMLButtonElement, Props>(
+  // we can't put defaultVariants for inherited flex styles
+  (
+    {
+      type = 'button',
+      variant = 'flat',
+      size = 'md',
+      main = 'center',
+      cross = 'center',
+      flow = 'row',
+      gap = 'xs',
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <button
+        {...props}
+        className={clsx(buttonCss({ variant, size, main, flow, gap, cross, ...props }), props.className)}
+        aria-disabled={props.disabled}
+        type={type}
+        ref={ref}
+      />
+    );
+  }
+);
+
+Button.displayName = 'Button';
+
+export { Button };

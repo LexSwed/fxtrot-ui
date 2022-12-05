@@ -1,7 +1,7 @@
 import { useId } from '@radix-ui/react-id';
 import type { ReactNode } from 'react';
 
-import { Flex, FlexVariants } from '../Flex/Flex';
+import { Flex, FlexVariants } from '../Flex-copy/Flex';
 import { styled } from '../stitches.config';
 import { Text } from '../Text';
 

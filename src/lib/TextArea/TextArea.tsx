@@ -1,6 +1,6 @@
 import { ChangeEvent, ChangeEventHandler, ComponentProps, forwardRef, Ref, useEffect, useRef } from 'react';
 
-import type { FlexVariants } from '../Flex/Flex';
+import type { FlexVariants } from '../Flex-copy/Flex';
 import { FormField, Hint, HintBox, useFormField } from '../FormField/FormField';
 import { Label } from '../Label';
 import { styled, CssStyles } from '../stitches.config';

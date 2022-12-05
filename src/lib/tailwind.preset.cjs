@@ -32,6 +32,10 @@ module.exports = {
       mono: ['Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
     },
     colors,
+    data: {
+      'state-open': 'state~="open"',
+      'state-closed': 'state~="closed"',
+    },
   },
   plugins: [plugin(logicalPropertiesPlugin)],
 };

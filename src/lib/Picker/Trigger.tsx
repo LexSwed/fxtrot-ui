@@ -2,7 +2,7 @@ import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import * as RdxSelect from '@radix-ui/react-select';
 
 import { styled, CssStyles } from '../stitches.config';
-import type { FlexVariants } from '../Flex/Flex';
+import type { FlexVariants } from '../Flex-copy/Flex';
 import { FormField, FormFieldProps, Hint, HintBox, useFormField } from '../FormField/FormField';
 import { Icon } from '../Icon';
 import { Label } from '../Label';

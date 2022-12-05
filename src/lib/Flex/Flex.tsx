@@ -1,109 +1,67 @@
-import type { VariantProps } from '@stitches/react';
+import { classed as css, VariantProps } from '@tw-classed/core';
+import { classed } from '@tw-classed/react';
 
-import { styled, css } from '../stitches.config';
-import { gaps } from '../utils/variants';
-
-export const mainAxisAlignment = css({
-  variants: {
-    main: {
-      'start': {
-        justifyContent: 'flex-start',
-      },
-      'center': {
-        justifyContent: 'center',
-      },
-      'end': {
-        justifyContent: 'flex-end',
-      },
-      'stretch': {
-        justifyContent: 'stretch',
-      },
-      'space-between': {
-        justifyContent: 'space-between',
-      },
-    },
-  },
-});
-
-export const crossAxisAlignment = css({
-  variants: {
-    cross: {
-      start: {
-        alignItems: 'flex-start',
-      },
-      center: {
-        alignItems: 'center',
-      },
-      end: {
-        alignItems: 'flex-end',
-      },
-      stretch: {
-        alignItems: 'stretch',
-      },
-      baseline: {
-        alignItems: 'baseline',
-      },
-    },
-  },
-});
-
-export const flexCss = css(mainAxisAlignment, crossAxisAlignment, {
+export const flex = css('flex', {
   variants: {
     display: {
-      flex: {
-        display: 'flex',
-      },
-      inline: {
-        display: 'inline-flex',
-      },
+      inline: 'inline-flex',
+      flex: 'flex',
     },
-    gap: gaps,
-    wrap: {
-      'wrap': {
-        flexWrap: 'wrap',
-      },
-      'nowrap': {
-        flexWrap: 'nowrap',
-      },
-      'revert': {
-        flexWrap: 'revert',
-      },
-      'wrap-reverse': {
-        flexWrap: 'wrap-reverse',
-      },
+    gap: {
+      'none': 'gap-none',
+      'xs': 'gap-xs',
+      'sm': 'gap-sm',
+      'md': 'gap-md',
+      'lg': 'gap-lg',
+      'xl': 'gap-xl',
+      '2xl': 'gap-2xl',
+    },
+    main: {
+      start: 'justify-start',
+      center: 'justify-center',
+      end: 'justify-end',
+      between: 'justify-between',
+      around: 'justify-around',
+      evenly: 'justify-evenly',
+    },
+    cross: {
+      start: 'items-start',
+      center: 'items-center',
+      end: 'items-end',
+      baseline: 'items-baseline',
+      stretch: 'items-stretch',
     },
     flow: {
-      'row': {
-        flexDirection: 'row',
-      },
-      'row-reverse': {
-        flexDirection: 'row-reverse',
-      },
-      'column': {
-        flexDirection: 'column',
-      },
-      'column-reverse': {
-        flexDirection: 'column-reverse',
-      },
+      'row': 'flex-row',
+      'column': 'flex-col',
+      'row-reverse': 'flex-row-reverse',
+      'column-reverse': 'flex-col-reverse',
+    },
+    wrap: {
+      wrap: 'flex-wrap',
+      nowrap: 'flex-nowrap',
+      reverse: 'flex-wrap-reverse',
+    },
+    flex: {
+      auto: 'flex-auto',
+      initial: 'flex-initial',
+      none: 'flex-none',
     },
   },
   defaultVariants: {
-    gap: 'none',
     display: 'flex',
   },
 });
 
-export const Flex = styled('div', flexCss);
+export type FlexVariants = VariantProps<typeof flex>;
 
-export const Row = styled('div', flexCss, {
+export const Flex = classed('div', flex);
+
+export const Row = classed(Flex, {
   variants: {
     flow: {
-      row: {
-        flexDirection: 'row',
-      },
-      reverse: {
-        flexDirection: 'row-reverse',
-      },
+      row: 'flex-row',
+      reverse: 'flex-row-reverse',
     },
   },
   defaultVariants: {
@@ -111,20 +69,14 @@ export const Row = styled('div', flexCss, {
   },
 });
 
-export const Column = styled('div', flexCss, {
+export const Column = classed(Flex, {
   variants: {
     flow: {
-      column: {
-        flexDirection: 'column',
-      },
-      reverse: {
-        flexDirection: 'column-reverse',
-      },
+      column: 'flex-col',
+      reverse: 'flex-col-reverse',
     },
   },
   defaultVariants: {
     flow: 'column',
   },
 });
-
-export type FlexVariants = VariantProps<typeof Flex>;

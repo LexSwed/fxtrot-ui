@@ -1,9 +1,9 @@
 export { ActionGroup } from './ActionGroup';
-export { Button } from './Button';
+export { Button } from './button';
 export { Checkbox } from './Checkbox';
 export { Collapsible } from './Collapsible';
 export { Dialog, useDialogRef } from './Dialog';
-export { Flex, Column, Row } from './Flex';
+export { Flex, Column, Row } from './flex';
 export { Grid } from './Grid';
 export { Heading } from './Heading';
 export { Icon } from './Icon';

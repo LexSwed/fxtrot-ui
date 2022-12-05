@@ -1,27 +1,28 @@
 import { ComponentProps, FC, forwardRef, ForwardRefExoticComponent, ReactNode, RefAttributes, useRef } from 'react';
 import * as Rdx from '@radix-ui/react-collapsible';
+import clsx from 'clsx';
 
 import { OpenStateProvider, useOpenState, OpenStateRef, useOpenStateControls } from '../utils/OpenStateProvider';
 
 import { Trigger } from './Trigger';
 import { Content } from './Content';
 import type { CssStyles } from '../stitches.config';
-import type { VariantProps } from '@stitches/react';
-import { styled } from '../stitches.config';
 
-interface Props extends ComponentProps<'div'>, VariantProps<typeof CollapsibleRootStyled> {
+interface Props extends ComponentProps<'div'> {
   css?: CssStyles;
   defaultOpen?: boolean;
   disabled?: boolean;
   children?: ReactNode;
 }
 
-const CollapsibleInner: FC<Props> = ({ children, ...props }) => {
+const CollapsibleInner: FC<Props> = ({ children, className, ...props }) => {
   const open = useOpenState();
   const controls = useOpenStateControls();
   return (
     <Rdx.Root open={open} onOpenChange={controls.switch} asChild>
-      <CollapsibleRootStyled {...(props as any)}>{children}</CollapsibleRootStyled>
+      <div {...props} className={clsx('contents rounded-sm', className)}>
+        {children}
+      </div>
     </Rdx.Root>
   );
 };
@@ -43,7 +44,3 @@ export function useCollapsibleRef() {
 
 Collapsible.Trigger = Trigger;
 Collapsible.Content = Content;
-
-const CollapsibleRootStyled = styled('div', {
-  br: '$md',
-});

@@ -3,7 +3,7 @@ import { ChangeEvent, ComponentProps, useMemo } from 'react';
 import { FormField } from '../FormField/FormField';
 import { Label } from '../Label';
 import { styled } from '../stitches.config';
-import { Flex, FlexVariants } from '../Flex/Flex';
+import { Flex, FlexVariants } from '../Flex-copy/Flex';
 
 interface Props extends Omit<ComponentProps<typeof Input>, 'onChange' | 'value'>, FlexVariants {
   label: string;

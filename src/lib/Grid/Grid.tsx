@@ -1,7 +1,7 @@
 import { type ComponentProps, forwardRef } from 'react';
 import { rowGaps, columnGaps, gaps } from '../utils/variants';
 import { styled } from '../stitches.config';
-import { mainAxisAlignment, crossAxisAlignment } from '../Flex/Flex';
+import { mainAxisAlignment, crossAxisAlignment } from '../Flex-copy/Flex';
 import type { CssStyles } from '..';
 
 interface Props extends ComponentProps<typeof GridStyled> {

@@ -1,5 +1,5 @@
 import type { MouseEvent } from 'react';
-import { flexCss, FlexVariants } from '../Flex/Flex';
+import { flexCss, FlexVariants } from '../Flex-copy/Flex';
 import { styled } from '../stitches.config';
 
 const flexDefaultProps: FlexVariants = {

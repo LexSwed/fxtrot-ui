@@ -1,6 +1,4 @@
-import { buttonCss } from '../Button/Button';
-import { styled } from '../stitches.config';
+import { classed } from '@tw-classed/react';
+import { Button } from '../button';
 
-export const LinkButton = styled('a', buttonCss, {
-  textDecoration: 'none',
-});
+export const LinkButton = classed('a', Button, 'no-underline');

@@ -2,7 +2,7 @@ import { forwardRef, ChangeEvent, Ref, ElementType, useMemo } from 'react';
 import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { CalendarIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline';
 
-import type { FlexVariants } from '../Flex/Flex';
+import type { FlexVariants } from '../Flex-copy/Flex';
 import { FormField, Hint, HintBox, useFormField } from '../FormField/FormField';
 import { Icon } from '../Icon';
 import { Label } from '../Label';

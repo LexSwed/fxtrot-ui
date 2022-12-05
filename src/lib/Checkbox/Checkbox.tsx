@@ -1,7 +1,7 @@
 import { ChangeEvent, ComponentProps, FC, useMemo } from 'react';
 import { CheckIcon } from '@heroicons/react/24/outline';
 
-import type { FlexVariants } from '../Flex/Flex';
+import type { FlexVariants } from '../Flex-copy/Flex';
 import { FormField, useFormField } from '../FormField/FormField';
 import { Icon } from '../Icon';
 import { Label } from '../Label';

@@ -1,10 +1,13 @@
 import { type ComponentProps, memo, forwardRef, Children, isValidElement } from 'react';
+import { classed as css } from '@tw-classed/core';
 import * as Toggle from '@radix-ui/react-toggle';
+import clsx from 'clsx';
 
-import { Button } from '../Button/Button';
-import { css } from '../stitches.config';
 import { IconButton } from '../IconButton';
 import { Icon } from '../Icon';
+import { Button } from '../button';
+
+import styles from './ToggleButton.module.css';
 
 interface Props extends Toggle.ToggleProps, Omit<ComponentProps<typeof Button>, 'variant'> {
   variant?: 'flat';
@@ -23,7 +26,7 @@ export const ToggleButton = memo(
         <Toggle.Root asChild pressed={pressed} defaultPressed={defaultPressed} onPressedChange={onPressedChange}>
           <ButtonComponent
             {...(props as any)}
-            className={[toggleButtonCss({ variant }), props.className].join(' ')}
+            className={clsx(toggleButtonCss({ variant }), props.className)}
             variant={variant}
             ref={ref}
           />
@@ -38,24 +41,7 @@ ToggleButton.displayName = 'ToggleButton';
 const toggleButtonCss = css({
   variants: {
     variant: {
-      flat: {
-        '&[data-state="on"]': {
-          'bc': '$surfacePrimary2',
-          'color': '$primary',
-          'borderColor': '$surfacePrimary6',
-          '$focusRing': '$surfacePrimary6',
-          '@hover': {
-            '&:where(:hover)': {
-              bc: '$surfacePrimary3',
-              borderColor: '$surfacePrimary4',
-            },
-          },
-          '&:where(:focus, :active)': {
-            bc: '$surfacePrimary4',
-            borderColor: '$surfacePrimary5',
-          },
-        },
-      },
+      flat: styles['button--flat'],
     },
   },
 });
