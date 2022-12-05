@@ -17,7 +17,7 @@ export const ToggleButton = memo(
       return (
         <Toggle.Root asChild pressed={pressed} defaultPressed={defaultPressed} onPressedChange={onPressedChange}>
           <Button
-            {...(props as any)}
+            {...props}
             className={clsx(toggleButtonCss({ variant }), props.className)}
             variant={variant}
             ref={ref}
