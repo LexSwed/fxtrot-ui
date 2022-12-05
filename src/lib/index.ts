@@ -1,4 +1,4 @@
-export { ActionGroup } from './ActionGroup';
+export { ActionGroup } from './action-group';
 export { Button } from './button';
 export { Checkbox } from './Checkbox';
 export { Collapsible } from './Collapsible';

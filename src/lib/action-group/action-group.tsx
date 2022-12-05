@@ -6,7 +6,7 @@ import { ToggleButton } from '../ToggleButton';
 import { ComponentProps, ForwardedRef, forwardRef, isValidElement, ReactElement, ReactNode } from 'react';
 import { flex, FlexVariants } from '../flex/flex';
 
-import styles from './ActionGroup.module.css';
+import styles from './action-group.module.css';
 
 type Props<T> = FlexVariants &
   Omit<
