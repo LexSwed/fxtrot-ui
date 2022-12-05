@@ -45,7 +45,7 @@ Link element that looks like a button.
 
 ```tsx preview
 <Column gap="xl">
-  <Row gap="sm" css={{ px: '$10' }}>
+  <Row gap="sm" className="px-10">
     <LinkButton href="#" size="xs" variant="primary">
       Primary
     </LinkButton>
@@ -62,7 +62,7 @@ Link element that looks like a button.
       Link
     </LinkButton>
   </Row>
-  <Row gap="sm" css={{ px: '$10' }}>
+  <Row gap="sm" className="px-10">
     <LinkButton href="#" size="sm" variant="primary">
       Primary
     </LinkButton>
@@ -79,7 +79,7 @@ Link element that looks like a button.
       Link
     </LinkButton>
   </Row>
-  <Row gap="sm" css={{ px: '$10' }}>
+  <Row gap="sm" className="px-10">
     <LinkButton href="#" size="md" variant="primary">
       Primary
     </LinkButton>
@@ -96,7 +96,7 @@ Link element that looks like a button.
       Link
     </LinkButton>
   </Row>
-  <Row gap="sm" css={{ px: '$10' }}>
+  <Row gap="sm" className="px-10">
     <LinkButton href="#" size="lg" variant="primary">
       Primary
     </LinkButton>
@@ -160,7 +160,7 @@ Use `ThemeProvider` component to change the primary color of the LinkButton.
   return (
     <ThemeProvider theme={theme} css={{ colorScheme: 'dark' }}>
       <Column gap="xl" css={{ bc: '$surface', p: '$4' }}>
-        <Row gap="sm" css={{ px: '$10' }}>
+        <Row gap="sm" className="px-10">
           <LinkButton href="#" variant="primary">
             Primary
           </LinkButton>
@@ -168,7 +168,7 @@ Use `ThemeProvider` component to change the primary color of the LinkButton.
             Primary (disabled)
           </LinkButton>
         </Row>
-        <Row gap="sm" css={{ px: '$10' }}>
+        <Row gap="sm" className="px-10">
           <LinkButton href="#" variant="tonal">
             Secondary
           </LinkButton>
@@ -176,7 +176,7 @@ Use `ThemeProvider` component to change the primary color of the LinkButton.
             Secondary (disabled)
           </LinkButton>
         </Row>
-        <Row gap="sm" css={{ px: '$10' }}>
+        <Row gap="sm" className="px-10">
           <LinkButton href="#" variant="flat">
             Flat
           </LinkButton>
@@ -184,7 +184,7 @@ Use `ThemeProvider` component to change the primary color of the LinkButton.
             Flat (disabled)
           </LinkButton>
         </Row>
-        <Row gap="sm" css={{ px: '$10' }}>
+        <Row gap="sm" className="px-10">
           <LinkButton href="#" variant="link">
             Link
           </LinkButton>
@@ -202,7 +202,7 @@ Use `ThemeProvider` component to change the primary color of the LinkButton.
 
 ```tsx preview
 <Column cross="start" gap="xl">
-  <LinkButton href="#" variant="primary" gap="2">
+  <LinkButton href="#" variant="primary" gap="sm">
     <Icon as={EllipsisVerticalIcon} />
     More
   </LinkButton>

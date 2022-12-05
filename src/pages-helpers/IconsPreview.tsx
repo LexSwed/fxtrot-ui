@@ -12,7 +12,7 @@ export const IconsPreview = () => {
         <TextField css={{ flexBasis: '50%' }} value={filterText} onChange={setText} placeholder="Search for an icon" />
         <Switch defaultChecked onChange={setOutline} label="Show outline icons" />
       </Row>
-      <Row wrap="wrap" gap="4">
+      <Row wrap="wrap" gap="md">
         {Object.entries(isOutline ? outlineIcons : solidIcons)
           .filter(([name]) => name.toLowerCase().includes(filterText.toLowerCase()))
           .map(([name, icon]) => (

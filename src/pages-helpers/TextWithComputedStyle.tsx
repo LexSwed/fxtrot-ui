@@ -28,7 +28,7 @@ export const TextWithComputedStyle = ({ textStyle = 'body-md' }: ComponentProps<
   }, []);
 
   return (
-    <Column gap="2">
+    <Column gap="sm">
       <Text textStyle={textStyle} ref={ref}>
         {textStyle as string}
       </Text>

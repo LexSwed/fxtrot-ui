@@ -150,15 +150,41 @@
     Size
   */
   .button--xs {
+    min-block-size: theme(spacing.6);
     @apply rounded-md text-xs py-1 px-2;
+    &:where(.button--icon) {
+      @apply px-1;
+      min-inline-size: theme(spacing.6);
+    }
   }
   .button--sm {
+    min-block-size: theme(spacing.8);
     @apply rounded-md text-sm py-1 px-3;
+    &:where(.button--icon) {
+      @apply px-1;
+      min-inline-size: theme(spacing.8);
+    }
   }
   .button--md {
+    min-block-size: theme(spacing.10);
     @apply rounded-lg text-sm py-2 px-4;
+    &:where(.button--icon) {
+      @apply px-2;
+      min-inline-size: theme(spacing.10);
+    }
   }
   .button--lg {
+    min-block-size: theme(spacing.10);
     @apply rounded-lg text-base py-2 px-6;
+    &:where(.button--icon) {
+      @apply px-2;
+      min-inline-size: theme(spacing.12);
+    }
+  }
+
+  /*
+    Utils
+  */
+  .button--icon {
   }
 }

@@ -1,6 +1,6 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
-const plugin = require('tailwindcss/plugin')
-const colors = require('./colors.cjs')
+const plugin = require('tailwindcss/plugin');
+const colors = require('./colors.cjs');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -14,8 +14,8 @@ module.exports = {
         popper: `0 0 2px rgb(0 0 0 / 0.3), ${defaultTheme.boxShadow.xl}`,
       },
       transitionDuration: {
-        240: '240ms'
-      }
+        240: '240ms',
+      },
     },
     spacing: {
       ...defaultTheme.spacing,
@@ -40,65 +40,63 @@ module.exports = {
   plugins: [plugin(logicalPropertiesPlugin)],
 };
 
-
-/** 
+/**
  * Overrides default -top, -bottom, etc with CSS Logical Properties
  * @type {import('tailwindcss/plugin')} */
 function logicalPropertiesPlugin({ matchUtilities, theme }) {
   matchUtilities(
     {
-      'py': (value) => ({
-        paddingBlock: value
+      pt: (value) => ({
+        paddingBlockStart: value,
       }),
-      'px': (value) => ({
-        paddingInline: value
-      })
+      pb: (value) => ({
+        paddingBlockEnd: value,
+      }),
+      pl: (value) => ({
+        paddingInlineStart: value,
+      }),
+      pr: (value) => ({
+        paddingInlineEnd: value,
+      }),
+      py: (value) => ({
+        paddingBlock: value,
+      }),
+      px: (value) => ({
+        paddingInline: value,
+      }),
     },
     { values: theme('padding') }
   );
   matchUtilities(
     {
-      'my': (value) => ({
-        marginBlock: value
+      mt: (value) => ({
+        marginBlockStart: value,
       }),
-      'mx': (value) => ({
-        marginInline: value
-      })
+      mb: (value) => ({
+        marginBlockEnd: value,
+      }),
+      ml: (value) => ({
+        marginInlineStart: value,
+      }),
+      mr: (value) => ({
+        marginInlineEnd: value,
+      }),
+      my: (value) => ({
+        marginBlock: value,
+      }),
+      mx: (value) => ({
+        marginInline: value,
+      }),
     },
     { values: theme('margin') }
   );
   matchUtilities(
     {
-      'pt': (value) => ({
-        paddingBlockStart: value
+      size: (value) => ({
+        blockSize: value,
+        inlineSize: value
       }),
-      'pb': (value) => ({
-        paddingBlockEnd: value
-      }),
-      'pl': (value) => ({
-        paddingInlineStart: value
-      }),
-      'pr': (value) => ({
-        paddingInlineEnd: value
-      })
     },
-    { values: theme('padding') }
+    { values: theme('height') }
   );
-  matchUtilities(
-    {
-      'mt': (value) => ({
-        marginBlockStart: value
-      }),
-      'mb': (value) => ({
-        marginBlockEnd: value
-      }),
-      'ml': (value) => ({
-        marginInlineStart: value
-      }),
-      'mr': (value) => ({
-        marginInlineEnd: value
-      })
-    },
-    { values: theme('margin') }
-  );
-} 
+}

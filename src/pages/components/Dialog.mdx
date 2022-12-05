@@ -18,7 +18,7 @@ title: Dialog
           close();
         }}
       >
-        <Column gap="2">
+        <Column gap="sm">
           <TextField placeholder="Carefive" name="workspace-name" label="Workspace name" autoFocus />
           <Picker defaultValue="2">
             <Picker.Item label="Item 1" value="1" />
@@ -46,7 +46,7 @@ title: Dialog
 
 ```tsx preview
 <Dialog>
-  <Button gap="2">
+  <Button>
     Open menu <Icon as={Bars3Icon} size="md" />
   </Button>
   {(close) => (

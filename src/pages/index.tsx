@@ -1,5 +1,5 @@
 import { NextSeo } from 'next-seo';
-import { Column, Heading, Icon, IconButton, LinkButton, Row, styled, Text, TextLink } from '@fxtrot/ui';
+import { Column, Heading, Icon, LinkButton, Row, styled, Text, TextLink } from '@fxtrot/ui';
 import Link from 'next/link';
 import { BsGithub } from 'react-icons/bs';
 
@@ -13,11 +13,15 @@ const App = () => {
             <Heading as="h1" level="2">
               Fxtrot
             </Heading>
-            <a href="https://github.com/LexSwed/fxtrot-ui" target="_blank" rel="noreferrer">
-              <IconButton aria-label="Source code" variant="flat">
-                <Icon as={BsGithub} size="2xl" />
-              </IconButton>
-            </a>
+            <LinkButton
+              href="https://github.com/LexSwed/fxtrot-ui"
+              target="_blank"
+              rel="noreferrer"
+              label="Source code"
+              variant="flat"
+            >
+              <Icon as={BsGithub} size="2xl" />
+            </LinkButton>
           </Row>
         </div>
         <div className="grid h-full place-items-center p-8">

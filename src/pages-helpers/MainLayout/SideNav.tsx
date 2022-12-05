@@ -21,14 +21,14 @@ export const SideNav = ({ docs }: Props) => {
     }
   );
   return (
-    <Column gap="12" as="nav">
+    <Column className="gap-12" as="nav">
       <MenuList>
         {Object.entries(groupped).map(([section, links]) => {
           if (!section) {
             return <LinksList links={links} key="index routes" />;
           }
           return (
-            <Section title={section} gap="3" key={section}>
+            <Section title={section} gap="sm" key={section}>
               <LinksList links={links} />
             </Section>
           );

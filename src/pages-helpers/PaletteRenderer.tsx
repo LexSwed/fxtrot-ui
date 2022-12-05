@@ -7,7 +7,7 @@ type Props = {
 };
 export const Palette = ({ children }: Props) => {
   return (
-    <Row gap="1" cross="stretch" className="overflow-x-auto">
+    <Row gap="xs" cross="stretch" className="overflow-x-auto">
       {children}
     </Row>
   );

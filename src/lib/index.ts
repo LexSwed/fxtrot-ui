@@ -7,7 +7,6 @@ export { Flex, Column, Row } from './flex';
 export { Grid } from './Grid';
 export { Heading } from './Heading';
 export { Icon } from './Icon';
-export { IconButton } from './IconButton';
 export { Label } from './Label';
 export { LinkButton } from './LinkButton';
 export { Menu, useMenuRef } from './Menu';

@@ -1,5 +1,5 @@
 import type React from 'react';
-import { Icon, Row, TextLink, stitchesConfig, styled, Dialog, IconButton, Column } from '@fxtrot/ui';
+import { Icon, Row, TextLink, stitchesConfig, styled, Dialog, Column, Button } from '@fxtrot/ui';
 import Link from 'next/link';
 import Head from 'next/head';
 import { SideNav } from './SideNav';
@@ -22,15 +22,15 @@ export const MainLayout: React.FC<Props> = ({ children, meta, docs }) => {
       <ContentWrapper>
         <Main>
           <Header>
-            <Row gap="4" cross="center">
+            <Row gap="md" cross="center">
               <MobileMenuButtonWrapper>
                 <Dialog>
-                  <IconButton label="Menu" variant="flat">
+                  <Button label="Menu" variant="flat">
                     <Icon as={Bars3Icon} size="lg" />
-                  </IconButton>
+                  </Button>
                   {() => (
                     <Dialog.Modal placement="side">
-                      <Column gap={6}>
+                      <Column gap="md">
                         <Dialog.Title>Menu</Dialog.Title>
                         <SideNav docs={docs} />
                       </Column>
@@ -38,7 +38,7 @@ export const MainLayout: React.FC<Props> = ({ children, meta, docs }) => {
                   )}
                 </Dialog>
               </MobileMenuButtonWrapper>
-              <Row main="space-between" css={{ flex: 2 }}>
+              <Row main="space-between" className="flex-1">
                 <Link href="/" passHref legacyBehavior>
                   <TextLink inline={false} textStyle="title-sm" tone="neutral">
                     Fxtrot UI

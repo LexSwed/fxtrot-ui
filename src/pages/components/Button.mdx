@@ -3,15 +3,13 @@ title: Button
 ---
 
 ```tsx preview
-<Button flow="column" cross="start" gap="none">
+<Button variant="primary" flow="column" cross="start" gap="sm">
   <Row cross="center" gap="sm">
-    <Icon as={DocumentPlusIcon} size="lg" />
-    <Text textStyle="label-lg" weight={500}>
-      Create
-    </Text>
+    <Icon as={DocumentPlusIcon} size="md" />
+    <Text textStyle="label-md">Create new document</Text>
   </Row>
   <Row>
-    <Text textStyle="label-sm">Create a new document with the default template</Text>
+    <Text textStyle="label-sm">Create a document with default template</Text>
   </Row>
 </Button>
 ```
@@ -120,6 +118,39 @@ Do not use `variant="link"` with actual links, use [`LinkButton`](/components/Li
     <Button size="lg" variant="link">
       Link
     </Button>
+  </Row>
+</Column>
+```
+
+## Icon Button
+
+Icon Button allows to easily set up a Button with [Icon](/components/Icon) only as a child.
+
+```tsx preview
+<Column gap="lg">
+  <Row gap="md" className="px-10">
+    <Button icon={ChevronRightIcon} aria-label="Move right" size="xs" variant="primary"></Button>
+    <Button icon={ChevronRightIcon} aria-label="Move right" size="xs" variant="outline"></Button>
+    <Button icon={ChevronRightIcon} aria-label="Move right" size="xs" variant="tonal"></Button>
+    <Button icon={ChevronRightIcon} aria-label="Move right" size="xs" variant="flat"></Button>
+  </Row>
+  <Row gap="md" className="px-10">
+    <Button icon={ChevronRightIcon} aria-label="Move right" size="sm" variant="primary"></Button>
+    <Button icon={ChevronRightIcon} aria-label="Move right" size="sm" variant="outline"></Button>
+    <Button icon={ChevronRightIcon} aria-label="Move right" size="sm" variant="tonal"></Button>
+    <Button icon={ChevronRightIcon} aria-label="Move right" size="sm" variant="flat"></Button>
+  </Row>
+  <Row gap="md" className="px-10">
+    <Button icon={ChevronRightIcon} aria-label="Move right" size="md" variant="primary"></Button>
+    <Button icon={ChevronRightIcon} aria-label="Move right" size="md" variant="outline"></Button>
+    <Button icon={ChevronRightIcon} aria-label="Move right" size="md" variant="tonal"></Button>
+    <Button icon={ChevronRightIcon} aria-label="Move right" size="md" variant="flat"></Button>
+  </Row>
+  <Row gap="md" className="px-10">
+    <Button icon={ChevronRightIcon} aria-label="Move right" size="lg" variant="primary"></Button>
+    <Button icon={ChevronRightIcon} aria-label="Move right" size="lg" variant="outline"></Button>
+    <Button icon={ChevronRightIcon} aria-label="Move right" size="lg" variant="tonal"></Button>
+    <Button icon={ChevronRightIcon} aria-label="Move right" size="lg" variant="flat"></Button>
   </Row>
 </Column>
 ```

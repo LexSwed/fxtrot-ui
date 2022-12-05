@@ -11,9 +11,9 @@ title: Popover
     <Popover ref={ref}>
       <Button variant="primary">Create</Button>
       <Popover.Content css={{ minWidth: 300 }} side="left" sideOffset={12}>
-        <Flex gap="4" flow="column">
+        <Flex gap="md" flow="column">
           <TextField label="Full name" placeholder="Ahsoka Tano" />
-          <Flex gap="2" main="end">
+          <Flex gap="sm" main="end">
             <Button
               onClick={() => {
                 ref.current.close();
