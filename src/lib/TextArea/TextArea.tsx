@@ -2,7 +2,7 @@ import { ChangeEvent, ChangeEventHandler, ComponentProps, forwardRef, Ref, useEf
 
 import type { FlexVariants } from '../Flex-copy/Flex';
 import { FormField, Hint, HintBox, useFormField } from '../FormField/FormField';
-import { Label } from '../Label';
+import { Label } from '../label';
 import { styled, CssStyles } from '../stitches.config';
 import { fieldBox, FieldBoxVariants } from '../TextField/shared';
 import { useForkRef } from '../utils/hooks';

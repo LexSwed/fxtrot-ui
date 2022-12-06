@@ -2,7 +2,7 @@ import { type ComponentProps, forwardRef } from 'react';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 
 import { styled } from '../stitches.config';
-import { Icon } from '../Icon';
+import { Icon } from '../icon';
 import { Text } from '../Text';
 
 interface Props extends ComponentProps<typeof Link> {

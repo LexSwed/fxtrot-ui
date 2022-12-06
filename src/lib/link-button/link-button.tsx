@@ -3,7 +3,7 @@ import { ComponentProps, ElementType, forwardRef } from 'react';
 import { ButtonVariants, buttonCss } from '../button/button';
 
 import styles from '../button/button.module.css';
-import { Icon } from '../Icon';
+import { Icon } from '../icon';
 
 interface Props extends ComponentProps<'a'>, ButtonVariants {
   label?: string;

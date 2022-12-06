@@ -3,7 +3,7 @@ import { Children, ComponentProps, ElementType, forwardRef, isValidElement } fro
 import { clsx } from 'clsx';
 
 import { flex } from '../flex/flex';
-import { Icon } from '../Icon';
+import { Icon } from '../icon';
 
 import styles from './button.module.css';
 

@@ -12,7 +12,7 @@ import * as RdxMenu from '@radix-ui/react-dropdown-menu';
 import { PopoverBox } from '../Popover/PopoverBox';
 import { styled, CssStyles } from '../stitches.config';
 import { OpenStateProvider, OpenStateRef, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
-import { Label } from '../Label';
+import { Label } from '../label';
 import { Portal } from '../Portal';
 import type { VariantProps } from '@stitches/react';
 import { listStyles } from '../shared/FloatingList';

@@ -1,14 +1,14 @@
 export { ActionGroup } from './action-group';
 export { Button } from './button';
-export { Checkbox } from './Checkbox';
+export { Checkbox } from './checkbox';
 export { Collapsible } from './collapsible';
 export { Dialog, useDialogRef } from './Dialog';
 export { Flex, Column, Row } from './flex';
 export { Grid } from './Grid';
 export { Heading } from './Heading';
-export { Icon } from './Icon';
-export { Label } from './Label';
-export { LinkButton } from './LinkButton';
+export { Icon } from './icon';
+export { Label } from './label';
+export { LinkButton } from './link-button';
 export { Menu, useMenuRef } from './Menu';
 export { MenuList } from './MenuList';
 export { Picker } from './Picker';

@@ -2,7 +2,7 @@ import { CheckIcon } from '@heroicons/react/24/outline';
 import * as RdxSelect from '@radix-ui/react-select';
 import { type ComponentProps, type ReactElement, forwardRef } from 'react';
 
-import { Icon } from '../Icon/Icon';
+import { Icon } from '../icon/icon';
 import { ListItem } from '../shared/ListItem';
 
 export interface Props extends ComponentProps<typeof ListItem> {

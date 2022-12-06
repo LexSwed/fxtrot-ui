@@ -4,8 +4,8 @@ import * as RdxSelect from '@radix-ui/react-select';
 import { styled, CssStyles } from '../stitches.config';
 import type { FlexVariants } from '../Flex-copy/Flex';
 import { FormField, FormFieldProps, Hint, HintBox, useFormField } from '../FormField/FormField';
-import { Icon } from '../Icon';
-import { Label } from '../Label';
+import { Icon } from '../icon';
+import { Label } from '../label';
 import { fieldBox, FieldBoxVariants } from '../TextField/shared';
 import type { ComponentProps } from 'react';
 
