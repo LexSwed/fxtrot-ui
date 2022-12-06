@@ -1,0 +1,17 @@
+@tailwind components;
+
+@layer components {
+  .form-field {
+    @apply w-full;
+
+    & > .label {
+      @apply pl-1;
+    }
+  }
+  .hint {
+    @apply pl-1;
+  }
+
+  .label {
+  }
+}

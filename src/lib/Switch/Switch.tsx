@@ -1,7 +1,7 @@
 import { ChangeEvent, ComponentProps, useMemo } from 'react';
 
-import { FormField } from '../FormField/FormField';
-import { Label } from '../label';
+import { FormField } from '../form-field/form-field';
+import { Label } from '../form-field';
 import { styled } from '../stitches.config';
 import { Flex, FlexVariants } from '../Flex-copy/Flex';
 

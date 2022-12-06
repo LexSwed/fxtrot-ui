@@ -5,6 +5,8 @@ import clsx from 'clsx';
 import type { ForwardRefComponent } from '../utils/polymorphic';
 import { flex, FlexVariants } from '../flex/flex';
 
+import styles from './form-field.module.css';
+
 export const labelCss = css(flex, 'text-ellipsis', 'whitespace-nowrap');
 
 export interface Props extends FlexVariants {
@@ -16,7 +18,7 @@ export interface Props extends FlexVariants {
 export const Label = forwardRef(({ label, secondary, disabled, ...props }, ref) => {
   const { as: As = 'label' } = props;
   return (
-    <As className={clsx(labelCss(props), props.className)} {...props} ref={ref}>
+    <As className={clsx(labelCss(props), styles.label, props.className)} {...props} ref={ref}>
       <Text
         textStyle="label-sm"
         weight={500}

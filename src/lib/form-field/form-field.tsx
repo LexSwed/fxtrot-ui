@@ -1,50 +1,25 @@
-import { ComponentProps, useMemo } from 'react';
+import { ComponentProps, forwardRef, useMemo } from 'react';
 import { useId } from '@radix-ui/react-id';
+import { clsx } from 'clsx';
 
-import { Flex } from '../Flex-copy/Flex';
-import { styled } from '../stitches.config';
 import { Text } from '../Text';
+import type { ForwardRefComponent } from '../utils/polymorphic';
+import { flex, FlexVariants } from '../flex/flex';
 
-export const FormField = styled(Flex, {
-  position: 'relative',
-  width: '100%',
+import styles from './form-field.module.css';
 
-  // [`& > ${LabelWrapper}`]: {
-  //   pl: '1px',
-  // },
-
-  variants: {
-    hasHint: {
-      true: {
-        pb: '$5',
-      },
-    },
-  },
-  defaultVariants: {
-    main: 'stretch',
-    cross: 'stretch',
-    flow: 'column',
-    display: 'inline',
-    gap: 'xs',
-  } as any,
-});
-
-export const HintBox = styled('div', {
-  display: 'flex',
-  position: 'relative',
-  minWidth: 0,
-  flex: 2,
-});
-
-const HintText = styled(Text, {
-  position: 'absolute',
-  minWidth: 0,
-  bottom: '0',
-  transform: 'translateY(calc(100% + 4px))',
-  maxWidth: '-webkit-fill-available',
-  pl: '1px',
-  cursor: 'default',
-});
+export const FormField = forwardRef(
+  ({ cross = 'stretch', flow = 'column', display = 'inline', gap = 'xs', className, ...props }, ref) => {
+    const { as: As = 'div' } = props;
+    return (
+      <As
+        className={clsx(flex({ cross, flow, display, gap, ...props }), styles['form-field'], className)}
+        {...props}
+        ref={ref}
+      />
+    );
+  }
+) as ForwardRefComponent<'div', FlexVariants>;
 
 export interface FormFieldProps extends ComponentProps<typeof FormField> {
   validity?: keyof typeof tonesMap;
@@ -59,18 +34,18 @@ interface HintProps extends ComponentProps<typeof Text> {
   validity?: FormFieldProps['validity'];
 }
 
-export const Hint = ({ validity, children, ...props }: HintProps) => {
+export const Hint = ({ validity, className, children, ...props }: HintProps) => {
   return (
-    <HintText
-      lineClamp={1}
+    <Text
       textStyle="body-sm"
       title={typeof children === 'string' ? children : undefined}
       tone={validity ? tonesMap[validity] : 'light'}
       aria-live="polite"
+      className={clsx(styles.hint, className)}
       {...props}
     >
       {children}
-    </HintText>
+    </Text>
   );
 };
 

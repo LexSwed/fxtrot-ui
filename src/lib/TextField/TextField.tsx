@@ -2,10 +2,9 @@ import { forwardRef, ChangeEvent, Ref, ElementType, useMemo } from 'react';
 import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { CalendarIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline';
 
-import type { FlexVariants } from '../Flex-copy/Flex';
-import { FormField, Hint, HintBox, useFormField } from '../FormField/FormField';
+import { Column, FlexVariants } from '../flex/flex';
+import { FormField, Hint, Label, useFormField } from '../form-field';
 import { Icon } from '../icon';
-import { Label } from '../label';
 import { InputField, IconWrapper, InputProps } from './shared';
 
 export const TextField = forwardRef<HTMLDivElement, Props>(
@@ -66,16 +65,14 @@ export const TextField = forwardRef<HTMLDivElement, Props>(
         display={display}
         gap={gap}
         wrap={wrap}
-        css={css}
         style={style}
         className={className}
-        hasHint={!!hint}
         ref={ref}
       >
         {label !== undefined && (
           <Label label={label} secondary={secondaryLabel} htmlFor={ariaProps.id} disabled={disabled} />
         )}
-        <HintBox>
+        <Column gap="xs">
           <InputField
             validity={validity}
             {...props}
@@ -101,7 +98,7 @@ export const TextField = forwardRef<HTMLDivElement, Props>(
               {hint}
             </Hint>
           )}
-        </HintBox>
+        </Column>
       </FormField>
     );
   }

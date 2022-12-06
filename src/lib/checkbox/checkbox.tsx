@@ -1,10 +1,9 @@
 import { ChangeEvent, ComponentProps, FC, useMemo } from 'react';
 import { CheckIcon } from '@heroicons/react/24/outline';
 
-import type { FlexVariants } from '../Flex-copy/Flex';
-import { FormField, useFormField } from '../FormField/FormField';
+import type { FlexVariants } from '../flex/flex';
+import { FormField, useFormField, Label } from '../form-field';
 import { Icon } from '../icon';
-import { Label } from '../label';
 import { styled } from '../stitches.config';
 
 interface InputProps extends Omit<ComponentProps<typeof Input>, 'onChange' | 'value' | 'size'>, FlexVariants {
@@ -46,7 +45,7 @@ export const Checkbox: FC<CheckboxProps> = ({
   }, [onChange]);
 
   return (
-    <FormField className={className} style={style} css={css} display={display} gap={gap} flow={flow} cross={cross}>
+    <FormField className={className} style={style} display={display} gap={gap} flow={flow} cross={cross}>
       <CheckboxWrapper size={size}>
         <Input
           aria-checked={checked}

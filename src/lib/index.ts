@@ -6,7 +6,7 @@ export { Dialog, useDialogRef } from './Dialog';
 export { Flex, Column, Row, Grid } from './flex';
 export { Heading } from './Heading';
 export { Icon } from './icon';
-export { Label } from './label';
+export { Label } from './form-field';
 export { LinkButton } from './link-button';
 export { Menu, useMenuRef } from './Menu';
 export { MenuList } from './MenuList';

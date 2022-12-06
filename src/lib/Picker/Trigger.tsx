@@ -1,11 +1,11 @@
 import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import * as RdxSelect from '@radix-ui/react-select';
 
-import { styled, CssStyles } from '../stitches.config';
-import type { FlexVariants } from '../Flex-copy/Flex';
-import { FormField, FormFieldProps, Hint, HintBox, useFormField } from '../FormField/FormField';
+import { styled } from '../stitches.config';
+import { Column, FlexVariants } from '../flex/flex';
+import { FormField, FormFieldProps, Hint, useFormField } from '../form-field/form-field';
 import { Icon } from '../icon';
-import { Label } from '../label';
+import { Label } from '../form-field';
 import { fieldBox, FieldBoxVariants } from '../TextField/shared';
 import type { ComponentProps } from 'react';
 
@@ -20,7 +20,6 @@ export interface PickerTriggerProps
   hint?: string;
   disabled?: boolean;
   validity?: FormFieldProps['validity'];
-  css?: CssStyles;
 }
 
 export const PickerTrigger = ({
@@ -32,7 +31,6 @@ export const PickerTrigger = ({
   flow,
   display,
   gap,
-  css,
   style,
   className,
   id,
@@ -45,21 +43,11 @@ export const PickerTrigger = ({
 }: PickerTriggerProps) => {
   const ariaProps = useFormField({ id, hint, label });
   return (
-    <FormField
-      main={main}
-      cross={cross}
-      flow={flow}
-      display={display}
-      gap={gap}
-      css={css}
-      style={style}
-      className={className}
-      hasHint={!!hint}
-    >
+    <FormField main={main} cross={cross} flow={flow} display={display} gap={gap} style={style} className={className}>
       {label !== undefined && (
         <Label label={label} secondary={secondaryLabel} id={ariaProps['aria-labelledby']} disabled={disabled} />
       )}
-      <HintBox>
+      <Column gap="xs">
         <RdxSelect.Trigger asChild>
           <TriggerButton validity={validity} variant={variant} {...ariaProps} {...props} fieldSize={size}>
             <RdxSelect.Value placeholder={placeholder} />
@@ -73,7 +61,7 @@ export const PickerTrigger = ({
             {hint}
           </Hint>
         )}
-      </HintBox>
+      </Column>
     </FormField>
   );
 };
