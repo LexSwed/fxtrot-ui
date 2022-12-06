@@ -1,7 +1,7 @@
 export { ActionGroup } from './action-group';
 export { Button } from './button';
 export { Checkbox } from './Checkbox';
-export { Collapsible } from './Collapsible';
+export { Collapsible } from './collapsible';
 export { Dialog, useDialogRef } from './Dialog';
 export { Flex, Column, Row } from './flex';
 export { Grid } from './Grid';
@@ -23,7 +23,7 @@ export { TextArea } from './TextArea';
 export { TextField } from './TextField';
 export { TextLink } from './TextLink';
 export { ThemeProvider, Reset, type Theme } from './ThemeProvider';
-export { ToggleButton } from './ToggleButton';
+export { ToggleButton } from './toggle-button';
 export { Tooltip } from './Tooltip';
 export { VisuallyHidden } from './VisuallyHidden';
 

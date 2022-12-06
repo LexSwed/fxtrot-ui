@@ -2,7 +2,7 @@ import * as ToggleGroup from '@radix-ui/react-toggle-group';
 import flattenChildren from 'react-keyed-flatten-children';
 import clsx from 'clsx';
 
-import { ToggleButton } from '../ToggleButton';
+import { ToggleButton } from '../toggle-button';
 import { ComponentProps, ForwardedRef, forwardRef, isValidElement, ReactElement, ReactNode } from 'react';
 import { flex, FlexVariants } from '../flex/flex';
 
