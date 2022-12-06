@@ -3,8 +3,8 @@ import { CheckIcon } from '@heroicons/react/24/outline';
 
 import type { FlexVariants } from '../Flex-copy/Flex';
 import { FormField, useFormField } from '../FormField/FormField';
-import { Icon } from '../icon-1';
-import { Label } from '../label-1';
+import { Icon } from '../icon';
+import { Label } from '../label';
 import { styled } from '../stitches.config';
 
 interface InputProps extends Omit<ComponentProps<typeof Input>, 'onChange' | 'value' | 'size'>, FlexVariants {

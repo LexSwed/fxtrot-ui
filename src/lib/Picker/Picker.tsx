@@ -5,7 +5,7 @@ import { PickerTrigger, PickerTriggerProps } from './Trigger';
 import Item from './Item';
 import { styled } from '../stitches.config';
 import { ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
-import { Icon } from '../icon-1';
+import { Icon } from '../icon';
 import { PopoverBox } from '../Popover/PopoverBox';
 import { Portal } from '../Portal';
 

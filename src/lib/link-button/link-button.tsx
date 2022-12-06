@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 import { ComponentProps, ElementType, forwardRef } from 'react';
-import { ButtonVariants, buttonCss } from '../button-1/button';
+import { ButtonVariants, buttonCss } from '../button/button';
 
-import styles from '../button-1/button.module.css';
-import { Icon } from '../icon-1';
+import styles from '../button/button.module.css';
+import { Icon } from '../icon';
 
 interface Props extends ComponentProps<'a'>, ButtonVariants {
   label?: string;

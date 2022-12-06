@@ -3,7 +3,7 @@ import { Text } from '../Text';
 import { classed as css } from '@tw-classed/core';
 import clsx from 'clsx';
 import type { ForwardRefComponent } from '../utils/polymorphic';
-import { flex, FlexVariants } from '../flex-1/flex';
+import { flex, FlexVariants } from '../flex/flex';
 
 export const labelCss = css(flex, 'text-ellipsis', 'whitespace-nowrap');
 

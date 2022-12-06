@@ -5,8 +5,8 @@ import clsx from 'clsx';
 
 import { OpenStateProvider, useOpenState, OpenStateRef, useOpenStateControls } from '../utils/OpenStateProvider';
 
-import { Icon } from '../icon-1';
-import { Button } from '../button-1';
+import { Icon } from '../icon';
+import { Button } from '../button';
 import type { CssStyles } from '../stitches.config';
 import styles from './Collapsible.module.css';
 

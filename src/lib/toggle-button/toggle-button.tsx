@@ -1,7 +1,7 @@
 import { type ComponentProps, memo, forwardRef } from 'react';
 import * as Toggle from '@radix-ui/react-toggle';
 
-import { Button } from '../button-1';
+import { Button } from '../button';
 
 interface Props extends Toggle.ToggleProps, Omit<ComponentProps<typeof Button>, 'variant'> {
   variant?: 'flat';
