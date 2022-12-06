@@ -4,8 +4,8 @@ import { CalendarIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline
 
 import type { FlexVariants } from '../Flex-copy/Flex';
 import { FormField, Hint, HintBox, useFormField } from '../FormField/FormField';
-import { Icon } from '../icon';
-import { Label } from '../label';
+import { Icon } from '../icon-1';
+import { Label } from '../label-1';
 import { InputField, IconWrapper, InputProps } from './shared';
 
 export const TextField = forwardRef<HTMLDivElement, Props>(

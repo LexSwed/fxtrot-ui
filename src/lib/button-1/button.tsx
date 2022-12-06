@@ -2,8 +2,8 @@ import { classed as css, VariantProps } from '@tw-classed/core';
 import { Children, ComponentProps, ElementType, forwardRef, isValidElement } from 'react';
 import { clsx } from 'clsx';
 
-import { flex } from '../flex/flex';
-import { Icon } from '../icon';
+import { flex } from '../flex-1/flex';
+import { Icon } from '../icon-1';
 
 import styles from './button.module.css';
 

@@ -2,7 +2,6 @@ import { ComponentProps, useMemo } from 'react';
 import { useId } from '@radix-ui/react-id';
 
 import { Flex } from '../Flex-copy/Flex';
-import { LabelWrapper } from '../label/label';
 import { styled } from '../stitches.config';
 import { Text } from '../Text';
 
@@ -10,9 +9,9 @@ export const FormField = styled(Flex, {
   position: 'relative',
   width: '100%',
 
-  [`& > ${LabelWrapper}`]: {
-    pl: '1px',
-  },
+  // [`& > ${LabelWrapper}`]: {
+  //   pl: '1px',
+  // },
 
   variants: {
     hasHint: {

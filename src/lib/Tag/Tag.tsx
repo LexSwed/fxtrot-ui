@@ -1,4 +1,4 @@
-import { Icon } from '../icon';
+import { Icon } from '../icon-1';
 import { styled } from '../stitches.config';
 
 export const Tag = styled('div', {
