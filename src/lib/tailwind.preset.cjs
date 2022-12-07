@@ -11,6 +11,7 @@ module.exports = {
         15: '0.15',
       },
       boxShadow: {
+        xs: '0 0 0 1px rgba(0, 0, 0, 0.05)',
         popper: `0 0 2px rgb(0 0 0 / 0.3), ${defaultTheme.boxShadow.xl}`,
       },
       transitionDuration: {
@@ -94,7 +95,7 @@ function logicalPropertiesPlugin({ matchUtilities, theme }) {
     {
       size: (value) => ({
         blockSize: value,
-        inlineSize: value
+        inlineSize: value,
       }),
     },
     { values: theme('height') }

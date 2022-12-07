@@ -1,8 +1,30 @@
 {
-  "extends": ["react-app", "plugin:@next/next/recommended"],
+  "extends": [
+    "react-app",
+    "prettier",
+    "plugin:prettier/recommended",
+    "plugin:@next/next/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript"
+  ],
   "rules": {
     "no-console": ["warn"],
-    "no-unused-vars": ["error"]
+    "no-unused-vars": ["error"],
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal", ["type", "parent"], ["index", "sibling"], "object"]
+      }
+    ]
+  },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": true,
+      "node": true
+    }
   },
   "overrides": [
     {
