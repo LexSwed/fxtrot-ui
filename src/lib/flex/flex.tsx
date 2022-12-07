@@ -1,5 +1,5 @@
 import { classed as css, VariantProps } from '@tw-classed/core';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import { ComponentProps, forwardRef } from 'react';
 import type { ForwardRefComponent } from '../utils/polymorphic';
 

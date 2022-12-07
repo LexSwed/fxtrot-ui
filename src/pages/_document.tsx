@@ -1,5 +1,5 @@
-import { stitchesConfig } from '@fxtrot/ui';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
+import { stitchesConfig } from '@fxtrot/ui';
 
 const getCssAndReset = () => {
   const css = stitchesConfig.getCssText();

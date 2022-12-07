@@ -1,6 +1,5 @@
 import { forwardRef, ChangeEvent, Ref, ElementType, useMemo } from 'react';
-import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { CalendarIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline';
+import { CheckIcon, XMarkIcon, CalendarIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline';
 
 import { Column, FlexVariants } from '../flex/flex';
 import { FormField, Hint, Label, useFormField } from '../form-field';

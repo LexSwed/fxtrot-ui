@@ -1,6 +1,6 @@
 import { ChangeEvent, ComponentProps, useMemo } from 'react';
 import { CheckIcon } from '@heroicons/react/24/outline';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import { classed as css, VariantProps } from '@tw-classed/core';
 
 import type { FlexVariants } from '../flex/flex';

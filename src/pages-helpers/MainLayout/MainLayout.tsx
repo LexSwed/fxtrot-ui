@@ -1,9 +1,9 @@
-import type React from 'react';
-import { Icon, Row, TextLink, stitchesConfig, styled, Dialog, Column, Button } from '@fxtrot/ui';
 import Link from 'next/link';
 import Head from 'next/head';
-import { SideNav } from './SideNav';
 import { Bars3Icon } from '@heroicons/react/24/outline';
+import { Icon, Row, TextLink, stitchesConfig, styled, Dialog, Column, Button } from '@fxtrot/ui';
+import type React from 'react';
+import { SideNav } from './SideNav';
 
 type Props = {
   meta: { title: string };

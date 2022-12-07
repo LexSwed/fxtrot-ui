@@ -1,5 +1,5 @@
-import { Column, Text, useIsomorphicLayoutEffect } from '@fxtrot/ui';
 import { type ComponentProps, useRef, useState } from 'react';
+import { Column, Text, useIsomorphicLayoutEffect } from '@fxtrot/ui';
 
 type Styles = {
   fontSize: string;

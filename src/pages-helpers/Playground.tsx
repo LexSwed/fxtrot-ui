@@ -1,11 +1,11 @@
-import type React from 'react';
-import { Column, Icon, ToggleButton } from '@fxtrot/ui';
 import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import { Root, Content, Trigger } from '@radix-ui/react-collapsible';
-import type { Language } from 'prism-react-renderer';
 import prismTheme from 'prism-react-renderer/themes/github';
 
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
+import { Column, Icon, ToggleButton } from '@fxtrot/ui';
+import type { Language } from 'prism-react-renderer';
+import type React from 'react';
 import { components } from './MdxProvider';
 
 import styles from './Playground.module.css';

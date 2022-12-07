@@ -1,12 +1,12 @@
 import * as RdxDialog from '@radix-ui/react-dialog';
 
+import { ComponentProps, forwardRef } from 'react';
 import { keyframes, styled } from '../stitches.config';
 import type { CssStyles } from '..';
-import { DialogClose } from './DialogClose';
 import { useOpenState } from '../utils/OpenStateProvider';
 import { Portal } from '../Portal';
 import { Presence } from '../shared/Presence';
-import { ComponentProps, forwardRef } from 'react';
+import { DialogClose } from './DialogClose';
 
 export interface ModalProps extends ComponentProps<'div'> {
   hasCloseButton?: boolean;

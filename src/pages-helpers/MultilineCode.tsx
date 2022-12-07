@@ -1,6 +1,6 @@
-import { styled } from '@fxtrot/ui';
 import Highlight, { defaultProps, Language } from 'prism-react-renderer';
 import theme from 'prism-react-renderer/themes/nightOwl';
+import { styled } from '@fxtrot/ui';
 import { CopyButton } from './CopyButton';
 
 type Props = {

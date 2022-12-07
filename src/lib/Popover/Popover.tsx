@@ -2,10 +2,10 @@ import { ComponentProps, FC, forwardRef, ForwardRefExoticComponent, ReactElement
 import * as RdxPopover from '@radix-ui/react-popover';
 
 import { OpenStateProvider, OpenStateRef, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
-import { PopoverBox } from './PopoverBox';
 import { Portal } from '../Portal';
 import { styled } from '../stitches.config';
 import { Presence } from '../shared/Presence';
+import { PopoverBox } from './PopoverBox';
 interface Props {
   children: [ReactElement, ReactElement<ContentProps>];
   defaultOpen?: boolean;

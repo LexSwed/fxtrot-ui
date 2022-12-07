@@ -1,9 +1,9 @@
 import * as RovingFocusGroup from '@radix-ui/react-roving-focus';
 
+import { ComponentProps, forwardRef } from 'react';
 import { styled } from '../stitches.config';
 import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
 import { ListItem } from '../shared/ListItem';
-import { ComponentProps, forwardRef } from 'react';
 
 export interface Props extends ComponentProps<typeof StyledItem> {}
 

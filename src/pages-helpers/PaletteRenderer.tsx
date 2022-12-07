@@ -1,6 +1,6 @@
 import { Column, Text, Row } from '@fxtrot/ui';
-import { CopyButton } from './CopyButton';
 import colors from '../lib/colors.cjs';
+import { CopyButton } from './CopyButton';
 
 type Props = {
   children: React.ReactNode;

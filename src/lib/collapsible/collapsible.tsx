@@ -1,14 +1,15 @@
 import { ComponentProps, FC, forwardRef, ForwardRefExoticComponent, ReactNode, RefAttributes, useRef } from 'react';
 import * as Rdx from '@radix-ui/react-collapsible';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { OpenStateProvider, useOpenState, OpenStateRef, useOpenStateControls } from '../utils/OpenStateProvider';
 
 import { Icon } from '../icon';
 import { Button } from '../button';
 import type { CssStyles } from '../stitches.config';
-import styles from './Collapsible.module.css';
+
+import styles from './collapsible.module.css';
 
 interface TriggerProps extends ComponentProps<typeof Button> {}
 
@@ -20,6 +21,7 @@ const Trigger = forwardRef<HTMLButtonElement, TriggerProps>(
           {children}
           <Icon
             className="transition-transform duration-150 group-data-state-open/trigger:rotate-180"
+            size={props.size}
             as={ChevronDownIcon}
           />
         </Button>

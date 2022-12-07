@@ -1,13 +1,13 @@
 import * as RdxSelect from '@radix-ui/react-select';
 
-import type { OptionType } from './Item';
-import { PickerTrigger, PickerTriggerProps } from './Trigger';
-import Item from './Item';
-import { styled } from '../stitches.config';
 import { ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
+import { styled } from '../stitches.config';
+import type { OptionType } from './Item';
 import { Icon } from '../icon';
 import { PopoverBox } from '../Popover/PopoverBox';
 import { Portal } from '../Portal';
+import Item from './Item';
+import { PickerTrigger, PickerTriggerProps } from './Trigger';
 
 interface Props extends Omit<PickerTriggerProps, 'value' | 'onChange' | 'defaultValue' | 'children' | 'size'> {
   value?: string;

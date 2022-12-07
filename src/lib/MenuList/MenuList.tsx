@@ -1,10 +1,10 @@
 import * as RovingFocusGroup from '@radix-ui/react-roving-focus';
 
 import { styled } from '../stitches.config';
-import { Item, StyledItem } from './Item';
 import { Section } from '../Section';
 import { flexCss } from '../Flex-copy/Flex';
 import type { ComponentProps } from 'react';
+import { Item, StyledItem } from './Item';
 
 interface Props extends ComponentProps<typeof ListStyled> {}
 

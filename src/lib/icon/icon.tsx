@@ -1,5 +1,5 @@
 import { classed as css, VariantProps } from '@tw-classed/core';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import { type ComponentProps, type ElementType, forwardRef } from 'react';
 
 interface Props extends ComponentProps<'svg'>, VariantProps<typeof iconCss> {

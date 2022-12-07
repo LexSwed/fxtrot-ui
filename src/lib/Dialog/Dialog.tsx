@@ -1,8 +1,8 @@
 import { forwardRef, ForwardRefExoticComponent, ReactElement, ReactNode, RefAttributes, useRef } from 'react';
 import { Root, Trigger } from '@radix-ui/react-dialog';
 
-import { DialogModal } from './DialogModal';
 import { OpenStateProvider, OpenStateRef, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
+import { DialogModal } from './DialogModal';
 import { DialogClose } from './DialogClose';
 import { DialogTitle } from './DialogTitle';
 

@@ -1,18 +1,18 @@
 import * as React from 'react';
 import { MDXProvider } from '@mdx-js/react';
 import Image from 'next/image';
-import * as FxtrotUI from '@fxtrot/ui';
 import { BsTypeBold, BsTypeItalic, BsTypeUnderline } from 'react-icons/bs';
 import * as Icons from '@heroicons/react/24/outline';
+import Link from 'next/link';
+import * as FxtrotUI from '@fxtrot/ui';
 
 import { Heading, Text, TextLink } from '@fxtrot/ui';
 
 import * as helpers from '../pages-helpers';
+import { MultilineCode } from '../pages-helpers/MultilineCode';
 import { MainLayout } from './MainLayout';
 import { Code } from './Code';
 import { Playground } from './Playground';
-import Link from 'next/link';
-import { MultilineCode } from '../pages-helpers/MultilineCode';
 import { Li, Ul } from './List';
 
 const Pre: React.FC<{ preview: boolean; children?: React.ReactNode }> = ({ children, preview = false }) => {

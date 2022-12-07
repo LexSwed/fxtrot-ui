@@ -1,7 +1,7 @@
 import { forwardRef, ReactNode } from 'react';
-import { Text } from '../Text';
 import { classed as css } from '@tw-classed/core';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
+import { Text } from '../Text';
 import type { ForwardRefComponent } from '../utils/polymorphic';
 import { flex, FlexVariants } from '../flex/flex';
 

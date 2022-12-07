@@ -1,7 +1,7 @@
 import { NextSeo } from 'next-seo';
-import { Column, Heading, Icon, LinkButton, Row, styled, Text, TextLink } from '@fxtrot/ui';
 import Link from 'next/link';
 import { BsGithub } from 'react-icons/bs';
+import { Column, Heading, Icon, LinkButton, Row, styled, Text, TextLink } from '@fxtrot/ui';
 
 const App = () => {
   return (

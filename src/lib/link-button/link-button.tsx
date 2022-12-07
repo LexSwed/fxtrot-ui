@@ -1,5 +1,5 @@
-import clsx from 'clsx';
 import { ComponentProps, ElementType, forwardRef } from 'react';
+import { clsx } from 'clsx';
 import { ButtonVariants, buttonCss } from '../button/button';
 
 import styles from '../button/button.module.css';
