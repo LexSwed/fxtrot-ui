@@ -38,7 +38,7 @@ const LinkButton = forwardRef<HTMLAnchorElement, Props>(
         title={label}
         ref={ref}
       >
-        {icon ? <Icon as={icon} size={size} /> : children}
+        {icon ? <Icon as={icon} size={size} /> : null}
         {children}
       </a>
     );

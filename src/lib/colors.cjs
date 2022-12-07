@@ -30,6 +30,6 @@ module.exports = {
   'on-surface-variant': 'hsl(215 8% 28%)',
   'inverse-surface': 'hsl(225 4.1% 19.2%)',
   'inverse-on-surface': 'hsl(255 15.4% 94.9%)',
-  'disabled': 'hsla(0 0% 12% / 0.08)',
+  'disabled': 'hsla(0 0% 12% / 0.15)',
   'on-disabled': 'hsl(204 9.1% 30%)',
 };

@@ -1,0 +1,63 @@
+@tailwind components;
+
+@layer components {
+  .toggle {
+    @apply relative h-6 w-9 rounded-xl border-2 border-solid border-outline bg-transparent shadow-inner duration-240 ease-in-out;
+
+    &:before {
+      @apply block aspect-square h-full origin-center scale-75 rounded-full bg-outline text-center text-xs font-black leading-5 text-transparent duration-240 content-['✓'];
+    }
+  }
+
+  .input {
+    @apply absolute inset-0 z-[1] m-0 h-full w-full cursor-default bg-transparent p-0 opacity-0 duration-240 ease-in-out;
+
+    &:where(:not(:checked)) {
+      &:hover + .toggle {
+        @apply bg-primary/10;
+        &:before {
+          box-shadow: theme('boxShadow.xs'), theme('boxShadow.sm');
+        }
+      }
+
+      &:focus + .toggle:before {
+        @apply bg-on-surface ring-4 ring-outline ring-opacity-40;
+      }
+    }
+
+    &:where(:checked) {
+      & + .toggle {
+        @apply border-primary/60 bg-primary;
+
+        &:before {
+          @apply translate-x-3 scale-[0.85] bg-on-primary text-primary;
+        }
+      }
+      &:hover + .toggle {
+        &:before {
+          @apply scale-[0.87];
+        }
+      }
+      &:focus + .toggle:before {
+        @apply ring-[0.5rem] ring-primary ring-opacity-50;
+      }
+    }
+
+    &:disabled {
+      @apply cursor-not-allowed;
+
+      & + .toggle {
+        @apply border-transparent bg-disabled shadow-xs;
+        &:before {
+          @apply bg-on-surface/40;
+        }
+      }
+
+      &:checked + .toggle {
+        &:before {
+          @apply bg-surface text-on-surface/60 shadow-xs;
+        }
+      }
+    }
+  }
+}
