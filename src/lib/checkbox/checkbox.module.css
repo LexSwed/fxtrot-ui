@@ -1,0 +1,108 @@
+@tailwind components;
+
+@layer components {
+  .field {
+    @apply relative;
+  }
+
+  .checkmark {
+  }
+
+  .checkmark--single {
+    & .checkmark-icon {
+      @apply rounded-md;
+    }
+  }
+
+  .checkmark--group {
+    & .checkmark-icon {
+      @apply rounded-full;
+    }
+  }
+
+  .checkmark--sm {
+    & .checkmark-icon {
+      @apply size-5;
+
+      & .icon {
+        @apply size-3.5 stroke-[3px];
+      }
+    }
+  }
+  .checkmark--md {
+    @apply py-1;
+
+    & .checkmark-icon {
+      @apply size-6;
+      & .icon {
+        @apply size-4 stroke-2;
+      }
+    }
+  }
+  .checkmark--lg {
+    @apply py-2;
+
+    & .checkmark-icon {
+      @apply size-8;
+
+      & .icon {
+        @apply size-5 stroke-2;
+      }
+    }
+  }
+
+  .checkmark-icon {
+    @apply size-5 relative flex items-center justify-center border-2 border-solid border-outline bg-transparent duration-240 ease-in;
+
+    background-image: radial-gradient(circle at center, theme('colors.primary') 50%, transparent 50.2%);
+    background-size: 0 0;
+    background-position: center;
+
+    & > .icon {
+      @apply opacity-0 duration-240 ease-in-out;
+    }
+  }
+
+  .input {
+    @apply absolute inset-0 z-[1] m-0 block h-full w-full cursor-default bg-transparent p-0 opacity-0 outline-none transition-colors duration-240 ease-in-out;
+
+    &:where(:hover, :focus) + .checkmark-icon {
+      & > .icon {
+        @apply opacity-50;
+      }
+    }
+
+    &:where(:checked:hover, :checked:focus) + .checkmark-icon {
+      @apply border-primary/60;
+      & > .icon {
+        @apply opacity-100;
+      }
+    }
+
+    &:where(:focus):not(:disabled) + .checkmark-icon {
+      @apply border-primary ring-4 ring-primary ring-opacity-40;
+    }
+
+    &:where(:checked) + .checkmark-icon {
+      @apply border-primary;
+      background-size: 200% 200%;
+      & > .icon {
+        @apply text-on-primary opacity-100;
+      }
+    }
+
+    &:where(:disabled) + .checkmark-icon {
+      @apply border-disabled bg-disabled bg-none;
+
+      & > .icon {
+        @apply opacity-0;
+      }
+    }
+
+    &:where(:disabled:checked) + .checkmark-icon {
+      & > .icon {
+        @apply text-on-disabled opacity-50;
+      }
+    }
+  }
+}

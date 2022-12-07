@@ -1,12 +1,18 @@
-import { ChangeEvent, ComponentProps, FC, useMemo } from 'react';
+import { ChangeEvent, ComponentProps, useMemo } from 'react';
 import { CheckIcon } from '@heroicons/react/24/outline';
+import clsx from 'clsx';
+import { classed as css, VariantProps } from '@tw-classed/core';
 
 import type { FlexVariants } from '../flex/flex';
 import { FormField, useFormField, Label } from '../form-field';
 import { Icon } from '../icon';
-import { styled } from '../stitches.config';
 
-interface InputProps extends Omit<ComponentProps<typeof Input>, 'onChange' | 'value' | 'size'>, FlexVariants {
+import styles from './checkbox.module.css';
+
+interface CheckboxProps
+  extends Omit<ComponentProps<'input'>, 'onChange' | 'value' | 'size'>,
+    FlexVariants,
+    VariantProps<typeof checkboxCss> {
   label?: string;
   secondaryLabel?: string;
   onChange?: (checked: boolean, event: ChangeEvent<HTMLInputElement>) => void;
@@ -15,27 +21,24 @@ interface InputProps extends Omit<ComponentProps<typeof Input>, 'onChange' | 'va
   defaultChecked?: boolean;
 }
 
-export interface CheckboxProps extends InputProps, FlexVariants {
-  size?: ComponentProps<typeof CheckboxWrapper>['size'];
-}
-
-export const Checkbox: FC<CheckboxProps> = ({
+export const Checkbox = ({
   checked,
   onChange,
-  css,
   style,
   className,
   flow = 'row',
   label,
   secondaryLabel,
-  gap = 'sm',
+  gap = 'xs',
   display,
-  cross,
+  main,
+  cross = 'center',
   disabled,
   id,
-  size,
+  size = 'sm',
+  variant = 'single',
   ...props
-}) => {
+}: CheckboxProps) => {
   const ariaProps = useFormField({ id });
 
   const handleChange = useMemo(() => {
@@ -45,169 +48,55 @@ export const Checkbox: FC<CheckboxProps> = ({
   }, [onChange]);
 
   return (
-    <FormField className={className} style={style} display={display} gap={gap} flow={flow} cross={cross}>
-      <CheckboxWrapper size={size}>
-        <Input
+    <FormField
+      className={clsx(styles['field'], className)}
+      style={style}
+      display={display}
+      gap={gap}
+      flow={flow}
+      main={main}
+      cross={cross}
+    >
+      <div className={clsx(styles['checkmark'], checkboxCss({ size, variant }))}>
+        <input
           aria-checked={checked}
           checked={checked}
           {...props}
           {...ariaProps}
+          className={clsx(styles.input)}
           type="checkbox"
           disabled={disabled}
           onChange={handleChange}
         />
-        <CheckMark>
-          <Icon as={CheckIcon} size="sm" />
-        </CheckMark>
-      </CheckboxWrapper>
+        <div className={styles['checkmark-icon']}>
+          <Icon as={CheckIcon} className={styles.icon} aria-hidden />
+        </div>
+      </div>
       {label !== undefined && (
-        <Label label={label} secondary={secondaryLabel} disabled={disabled} htmlFor={ariaProps.id} />
+        <Label
+          label={label}
+          size={mapLabelSize[size]}
+          secondary={secondaryLabel}
+          disabled={disabled}
+          htmlFor={ariaProps.id}
+        />
       )}
     </FormField>
   );
 };
 
-const CheckMark = styled('div', {
-  bc: 'transparent',
-  border: '1px solid $outline',
-  size: '$5',
-  position: 'relative',
-  transition: '0.24s ease-in-out',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  backgroundImage: 'radial-gradient(circle at center, $colors$primary 50%, transparent 50.2%)',
-  backgroundSize: '0 0',
-  backgroundPosition: 'center',
+const mapLabelSize = { sm: 'sm', md: 'sm', lg: 'md' } as const;
 
-  [`& > ${Icon}`]: {
-    transition: '0.14s ease-in-out',
-    opacity: 0,
-  },
-});
-
-const CheckboxWrapper = styled('div', {
+const checkboxCss = css({
   variants: {
     size: {
-      sm: {
-        [`& ${CheckMark}`]: {
-          size: '$5',
-        },
-      },
-      md: {
-        py: '$1',
-
-        [`& ${CheckMark}`]: {
-          size: '$6',
-        },
-      },
-      lg: {
-        py: '$2',
-
-        [`& ${CheckMark}`]: {
-          size: '$8',
-
-          [`& > ${Icon}`]: {
-            size: '$5',
-          },
-        },
-      },
+      sm: styles['checkmark--sm'],
+      md: styles['checkmark--md'],
+      lg: styles['checkmark--lg'],
     },
-  },
-  defaultVariants: {
-    size: 'sm',
-  },
-});
-
-const Input = styled('input', {
-  'position': 'absolute',
-  'display': 'block',
-  'top': 0,
-  'right': 0,
-  'bottom': 0,
-  'left': 0,
-  'width': '100%',
-  'height': '100%',
-  'bc': 'transparent',
-  'p': 0,
-  'm': 0,
-  'opacity': 0,
-  'zIndex': 1,
-  'cursor': 'default',
-  'transitionProperty': 'background-color, borderColor, color',
-  'transitionDuration': '0.24s',
-  'transitionTimingFunction': 'ease-in-out',
-
-  '@hover': {
-    [`&:where(:hover,:focus) + ${CheckMark}`]: {
-      [`& ${Icon}`]: {
-        opacity: 0.5,
-      },
-    },
-    [`&:where(:checked:hover) + ${CheckMark}`]: {
-      borderColor: '$primary',
-      [`& ${Icon}`]: {
-        opacity: 1,
-      },
-    },
-
-    [`&:where(:checked:focus) + ${CheckMark}`]: {
-      borderColor: '$surfacePrimary2',
-      [`& > ${Icon}`]: {
-        opacity: 1,
-      },
-    },
-  },
-
-  [`&:where(:focus):not(:disabled) + ${CheckMark}`]: {
-    borderColor: '$primary',
-    boxShadow: `0 0 0 4px $colors$surfacePrimary6`,
-  },
-
-  [`&:where(:checked) + ${CheckMark}`]: {
-    borderColor: '$primary',
-    backgroundSize: '200% 200%',
-    [`& ${Icon}`]: {
-      color: '$onPrimary',
-      opacity: 1,
-    },
-  },
-
-  [`&:where(:disabled,:disabled:checked) + ${CheckMark}`]: {
-    borderColor: '$disabled',
-    [`& > ${Icon}`]: {
-      opacity: 0,
-    },
-  },
-
-  [`&:where(:disabled:not(:checked)) + ${CheckMark}`]: {
-    background: '$disabled',
-  },
-
-  [`&:where(:disabled:checked) + ${CheckMark}`]: {
-    background: '$disabled',
-    [`& > ${Icon}`]: {
-      color: '$onDisabled',
-      opacity: 0.9,
-    },
-  },
-
-  'variants': {
     variant: {
-      single: {
-        [`&  + ${CheckMark}`]: {
-          br: '$md',
-        },
-      },
-      group: {
-        [`&  + ${CheckMark}`]: {
-          br: '$round',
-        },
-      },
+      single: styles['checkmark--single'],
+      group: styles['checkmark--group'],
     },
-  },
-
-  'defaultVariants': {
-    variant: 'single',
   },
 });

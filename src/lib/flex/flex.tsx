@@ -3,22 +3,6 @@ import clsx from 'clsx';
 import { ComponentProps, forwardRef } from 'react';
 import type { ForwardRefComponent } from '../utils/polymorphic';
 
-const mainAxisAlignment = {
-  'start': 'justify-start',
-  'center': 'justify-center',
-  'end': 'justify-end',
-  'space-between': 'justify-between',
-  'evenly': 'justify-evenly',
-} as const;
-
-const crossAxisAlignment = {
-  start: 'items-start',
-  center: 'items-center',
-  end: 'items-end',
-  baseline: 'items-baseline',
-  stretch: 'items-stretch',
-} as const;
-
 const gap = {
   'none': 'gap-none',
   'xs': 'gap-xs',
@@ -36,8 +20,20 @@ export const flex = css('flex', {
       flex: 'flex',
     },
     gap,
-    main: mainAxisAlignment,
-    cross: crossAxisAlignment,
+    main: {
+      'start': 'justify-start',
+      'center': 'justify-center',
+      'end': 'justify-end',
+      'space-between': 'justify-between',
+      'evenly': 'justify-evenly',
+    },
+    cross: {
+      start: 'items-start',
+      center: 'items-center',
+      end: 'items-end',
+      baseline: 'items-baseline',
+      stretch: 'items-stretch',
+    },
     flow: {
       'row': 'flex-row',
       'column': 'flex-col',
@@ -109,13 +105,13 @@ const grid = css({
       6: 'grid-rows-6',
     },
     columns: {
-      none: 'grid-columns-none',
-      1: 'grid-columns-1',
-      2: 'grid-columns-2',
-      3: 'grid-columns-3',
-      4: 'grid-columns-4',
-      5: 'grid-columns-5',
-      6: 'grid-columns-6',
+      none: 'grid-cols-none',
+      1: 'grid-cols-1',
+      2: 'grid-cols-2',
+      3: 'grid-cols-3',
+      4: 'grid-cols-4',
+      5: 'grid-cols-5',
+      6: 'grid-cols-6',
     },
     flow: {
       'row': 'grid-flow-row',
@@ -124,6 +120,9 @@ const grid = css({
       'row-dense': 'grid-flow-row-dense',
       'column-dense': 'grid-flow-col-dense',
     },
+  },
+  defaultVariants: {
+    display: 'grid',
   },
 });
 

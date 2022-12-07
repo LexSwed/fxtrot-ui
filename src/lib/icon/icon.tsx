@@ -21,7 +21,7 @@ const Icon = forwardRef<SVGSVGElement, Props>(({ color, as: Svg, className, size
 const iconCss = css('inline-block flex-shrink-0 flex-grow-0', {
   variants: {
     size: {
-      'xs': 'size-3',
+      'xs': 'size-3.5 stroke-[3px]',
       'sm': 'size-4',
       'md': 'size-5',
       'lg': 'size-6',

@@ -19,7 +19,7 @@ title: Button
 Do not use `variant="link"` with actual links, use [`LinkButton`](/components/LinkButton) component instead.
 
 ```tsx preview
-<Grid gap="lg" cross="center" main="center" columns="repeat(2, auto)" css={{ p: '$4' }}>
+<Grid gap="lg" cross="center" main="center" columns="2" placeItems="start" className="p-4">
   <Button variant="primary">Primary</Button>
   <Button disabled variant="primary">
     Primary (disabled)
@@ -48,8 +48,8 @@ Do not use `variant="link"` with actual links, use [`LinkButton`](/components/Li
 ```tsx preview
 <Column gap="xl">
   <Row gap="sm" className="px-10">
-    <Button size="xs" variant="outline">
-      Outline
+    <Button size="xs" variant="flat">
+      Flat
       <Icon as={EllipsisVerticalIcon} />
     </Button>
     <Button size="xs" variant="primary">
@@ -58,16 +58,16 @@ Do not use `variant="link"` with actual links, use [`LinkButton`](/components/Li
     <Button size="xs" variant="tonal">
       Tonal
     </Button>
-    <Button size="xs" variant="flat">
-      Flat
+    <Button size="xs" variant="outline">
+      Outline
     </Button>
     <Button size="xs" variant="link">
       Link
     </Button>
   </Row>
   <Row gap="sm" className="px-10">
-    <Button size="sm" variant="outline">
-      Outline
+    <Button size="sm" variant="flat">
+      Flat
       <Icon as={EllipsisVerticalIcon} />
     </Button>
     <Button size="sm" variant="primary">
@@ -76,16 +76,16 @@ Do not use `variant="link"` with actual links, use [`LinkButton`](/components/Li
     <Button size="sm" variant="tonal">
       Tonal
     </Button>
-    <Button size="sm" variant="flat">
-      Flat
+    <Button size="sm" variant="outline">
+      Outline
     </Button>
     <Button size="sm" variant="link">
       Link
     </Button>
   </Row>
   <Row gap="sm" className="px-10">
-    <Button size="md" variant="outline">
-      Outline
+    <Button size="md" variant="flat">
+      Flat
       <Icon as={EllipsisVerticalIcon} />
     </Button>
     <Button size="md" variant="primary">
@@ -94,15 +94,15 @@ Do not use `variant="link"` with actual links, use [`LinkButton`](/components/Li
     <Button size="md" variant="tonal">
       Tonal
     </Button>
-    <Button size="md" variant="flat">
-      Flat
+    <Button size="md" variant="outline">
+      Outline
     </Button>
     <Button size="md" variant="link">
       Link
     </Button>
   </Row>
   <Row gap="sm" className="px-10">
-    <Button size="lg" gap="sm" variant="outline">
+    <Button size="lg" gap="md">
       Outline
       <Icon as={EllipsisVerticalIcon} size="lg" />
     </Button>
@@ -112,8 +112,8 @@ Do not use `variant="link"` with actual links, use [`LinkButton`](/components/Li
     <Button size="lg" variant="tonal">
       Tonal
     </Button>
-    <Button size="lg" variant="flat">
-      Flat
+    <Button size="lg" variant="outline">
+      Outline
     </Button>
     <Button size="lg" variant="link">
       Link

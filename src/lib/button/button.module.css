@@ -2,7 +2,7 @@
 
 @layer components {
   .button {
-    @apply inline-flex shrink-0 cursor-default select-none whitespace-nowrap border-[1px] border-solid bg-transparent font-medium text-on-surface transition-[color,box-shadow,filter,border-color,background-color,background-image] duration-200 focus:outline-none focus:ring-4 focus:ring-opacity-80;
+    @apply inline-flex shrink-0 cursor-default select-none whitespace-nowrap border-2 border-solid bg-transparent font-medium text-on-surface transition-[color,box-shadow,filter,border-color,background-color,background-image] duration-200 focus:outline-none focus:ring-4 focus:ring-opacity-40;
 
     &:is(:disabled, [aria-disabled='true']) {
       @apply cursor-not-allowed border-transparent bg-disabled bg-none text-on-disabled;
@@ -18,7 +18,7 @@
   */
 
   .button--primary {
-    @apply border-transparent bg-primary bg-gradient-to-t text-on-primary focus:ring-primary/40;
+    @apply border-transparent bg-primary bg-gradient-to-t text-on-primary;
 
     &:where(:hover, :focus, :active) {
       @apply from-on-surface/20 to-on-surface/20;
@@ -28,20 +28,28 @@
       @apply from-on-surface/25 to-on-surface/25;
     }
 
+    &:where(:focus) {
+      @apply ring-primary;
+    }
+
     &:where(.button--danger) {
       @apply bg-error text-on-error;
     }
   }
 
   .button--outline {
-    @apply border-primary bg-transparent text-primary focus:ring-primary/40;
+    @apply border-primary/80 bg-transparent text-primary;
 
     &:where(:hover, :focus, :active) {
-      @apply bg-primary/10;
+      @apply border-primary bg-primary/10;
     }
 
     &:where(:active, [data-state='open']) {
       @apply bg-primary/15;
+    }
+
+    &:where(:focus) {
+      @apply ring-primary;
     }
 
     &:where(.button--danger) {
@@ -58,7 +66,7 @@
   }
 
   .button--tonal {
-    @apply border-transparent bg-primary/15 text-primary focus:ring-primary/40 focus:ring-opacity-60;
+    @apply border-transparent bg-primary/15 text-primary;
 
     &:where(:hover, :focus, :active) {
       @apply bg-primary/20;
@@ -66,6 +74,10 @@
 
     &:where(:active, [data-state='open']) {
       @apply bg-primary/25;
+    }
+
+    &:where(:focus) {
+      @apply ring-primary;
     }
 
     &:where(.button--danger) {
@@ -108,7 +120,7 @@
   } */
 
   .button--flat {
-    @apply border-transparent bg-transparent text-on-surface focus:ring-on-surface/40;
+    @apply border-transparent bg-transparent text-on-surface;
 
     &:where(:hover, :focus, :active) {
       @apply bg-on-surface/10;
@@ -120,6 +132,10 @@
 
     &:where(:active, [data-state='open']) {
       @apply border-outline/15 bg-on-surface/15;
+    }
+
+    &:where(:focus) {
+      @apply ring-outline;
     }
 
     &:where(.button--danger) {
@@ -137,10 +153,14 @@
   }
 
   .button--link {
-    @apply border-transparent bg-transparent text-primary focus:ring-primary/20;
+    @apply border-transparent bg-transparent text-primary;
 
     &:where(:hover) {
       @apply underline;
+    }
+
+    &:where(:focus) {
+      @apply ring-primary;
     }
 
     &:is(:disabled, [aria-disabled='true']) {
@@ -183,7 +203,7 @@
     }
   }
   .button--lg {
-    min-block-size: theme(spacing.10);
+    min-block-size: theme(spacing.12);
     @apply rounded-lg text-base py-2 px-6;
     &:where(.button--icon) {
       @apply px-2;
