@@ -15,7 +15,7 @@ export { Portal } from './Portal';
 export { Section } from './Section';
 export { Popover, usePopoverRef } from './Popover';
 export { Spinner } from './Spinner';
-export { Switch } from './switch-1';
+export { Switch } from './switch';
 export { Tag } from './Tag';
 export { Text } from './Text';
 export { TextArea } from './TextArea';
