@@ -1,2 +1,2 @@
 #!/bin/sh
-npm run typecheck
+npm run typecheck && npm run lint

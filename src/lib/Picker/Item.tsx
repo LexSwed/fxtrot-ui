@@ -3,7 +3,7 @@ import * as RdxSelect from '@radix-ui/react-select';
 import { type ComponentProps, type ReactElement, forwardRef } from 'react';
 
 import { Icon } from '../icon';
-import { ListItem } from '../shared/ListItem';
+import { ListItem } from '../shared/list-item';
 
 export interface Props extends ComponentProps<typeof ListItem> {
   value: string;

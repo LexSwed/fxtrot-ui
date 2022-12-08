@@ -1,0 +1,33 @@
+@layer lib, utils;
+
+@layer lib {
+  .list-item {
+    @apply w-full shrink-0 cursor-default select-none rounded-sm bg-transparent font-sans text-sm leading-none text-on-background duration-100 ease-in-out px-3;
+
+    &:where(:hover, :focus, [aria-selected='true']) {
+      @apply bg-on-surface/5;
+    }
+    &:where(:active, [data-focused='true'], [data-highlighted]) {
+      @apply bg-on-surface/10;
+    }
+    &:where(:disabled, [aria-disabled='true'], [data-disabled='true']) {
+      @apply pointer-events-none cursor-not-allowed bg-disabled text-on-disabled;
+    }
+  }
+
+  /*
+    Sizes
+  */
+  .list-item--sm {
+    min-height: theme('spacing.8');
+    padding-block: theme('spacing.1');
+  }
+  .list-item--md {
+    min-height: theme('spacing.10');
+    padding-block: theme('spacing.2');
+  }
+  .list-item--lg {
+    min-height: theme('spacing.12');
+    padding-block: theme('spacing.2');
+  }
+}

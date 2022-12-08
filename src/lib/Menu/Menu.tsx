@@ -16,7 +16,7 @@ import { Label } from '../form-field';
 import { Portal } from '../Portal';
 import type { VariantProps } from '@stitches/react';
 import { listStyles } from '../shared/FloatingList';
-import { ListItem } from '../shared/ListItem';
+import { ListItem } from '../shared/list-item';
 import { useIsomorphicLayoutEffect } from '../utils/hooks';
 import { Presence } from '../shared/Presence';
 

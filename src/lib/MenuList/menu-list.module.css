@@ -1,0 +1,41 @@
+@layer lib, utils;
+
+@layer lib {
+  .menu-list {
+    & [role='treeitem'] + [role='treeitem']:not(:first-child):not(:last-child) {
+      border-radius: 0;
+    }
+    & [role='treeitem']:first-child:not(:only-child) {
+      border-end-start-radius: 0;
+      border-end-end-radius: 0;
+    }
+    & [role='treeitem']:last-child:not(:only-child) {
+      border-start-start-radius: 0;
+      border-start-end-radius: 0;
+    }
+  }
+  .menu-item {
+    position: relative;
+    &:after {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 2px;
+      transform: scale(0.75);
+      transition: all theme('transitionDuration.150') ease-in;
+      content: '';
+    }
+    &:where([aria-selected='true']) {
+      color: theme('colors.primary');
+      &:after {
+        background-color: currentColor;
+      }
+      &:where(:focus):after {
+        transform: none;
+      }
+    }
+    &:where([aria-selected='false']):after {
+      background: transparent;
+    }
+  }
+}

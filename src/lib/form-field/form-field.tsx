@@ -2,7 +2,7 @@ import { ComponentProps, forwardRef, useMemo } from 'react';
 import { useId } from '@radix-ui/react-id';
 import { clsx } from 'clsx';
 
-import { Text } from '../Text';
+import { Text } from '../text';
 import type { ForwardRefComponent } from '../utils/polymorphic';
 import { flex, FlexVariants } from '../flex/flex';
 

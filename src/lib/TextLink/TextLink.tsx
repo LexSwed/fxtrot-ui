@@ -3,7 +3,7 @@ import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 
 import { styled } from '../stitches.config';
 import { Icon } from '../icon';
-import { Text } from '../Text';
+import { Text } from '../text';
 
 interface Props extends ComponentProps<typeof Link> {
   external?: 'icon' | true;

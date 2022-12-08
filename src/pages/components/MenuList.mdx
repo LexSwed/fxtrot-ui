@@ -6,7 +6,7 @@ title: MenuList
 
 ```tsx preview
 () => {
-  const [selected, setSelected] = React.useState('Appearance');
+  const [selected, setSelected] = React.useState('Profiles');
   return (
     <div className="w-[240px]">
       <MenuList role="navigation">
@@ -22,10 +22,22 @@ title: MenuList
             },
             {
               icon: GlobeEuropeAfricaIcon,
+              disabled: true,
               label: 'Language',
             },
-          ].map(({ icon, label }) => (
-            <MenuList.Item key={label} aria-selected={selected === label} onClick={() => setSelected(label)}>
+            {
+              icon: HeartIcon,
+              label: 'Collections',
+              className: 'text-error',
+            },
+          ].map(({ icon, label, disabled, className }) => (
+            <MenuList.Item
+              key={label}
+              selected={selected === label}
+              disabled={disabled}
+              onClick={() => setSelected(label)}
+              className={className}
+            >
               <Icon as={icon} />
               {label}
             </MenuList.Item>

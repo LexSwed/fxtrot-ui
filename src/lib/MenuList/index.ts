@@ -1,1 +1,1 @@
-export { MenuList } from './MenuList';
+export { MenuList } from './menu-list';
