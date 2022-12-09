@@ -1,4 +1,14 @@
 /* styles reset is inserted after component styles, overriding them */
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@layer tailwind.base {
+  @tailwind base;
+}
+
+@layer tailwind.components {
+  @tailwind components;
+}
+
+@layer tailwind.utilities {
+  @tailwind utilities;
+}
+
+@layer lib, utils;

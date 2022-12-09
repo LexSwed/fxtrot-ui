@@ -1,0 +1,45 @@
+@layer lib, utils;
+
+@layer lib {
+  .icon {
+    display: inline-block;
+    flex-shrink: 0;
+    flex-grow: 0;
+  }
+
+  .icon--xs {
+    @apply size-3.5;
+    stroke-width: 3px;
+  }
+  .icon--sm {
+    @apply size-4;
+  }
+  .icon--md {
+    @apply size-5;
+  }
+  .icon--lg {
+    @apply size-6;
+  }
+  .icon--xl {
+    @apply size-7;
+  }
+  .icon--2xl {
+    @apply size-8;
+  }
+  .icon--3xl {
+    @apply size-12;
+  }
+  .icon--4xl {
+    @apply size-16;
+  }
+  .icon--5xl {
+    @apply size-20;
+  }
+  .icon--6xl {
+    @apply size-24;
+  }
+  .icon--inherit {
+    block-size: 1em;
+    inline-size: 1em;
+  }
+}
