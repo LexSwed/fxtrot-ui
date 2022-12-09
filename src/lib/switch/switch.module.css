@@ -1,6 +1,6 @@
-@tailwind components;
+@layer lib, utils;
 
-@layer components {
+@layer lib {
   .toggle {
     @apply relative h-6 w-9 rounded-xl border-2 border-solid border-outline bg-transparent shadow-inner duration-240 ease-in-out;
 

@@ -1,6 +1,6 @@
-@tailwind components;
+@layer lib, utils;
 
-@layer components {
+@layer lib {
   .button {
     display: inline-flex;
     flex-shrink: 0;

@@ -1,6 +1,6 @@
-@tailwind components;
+@layer lib, utils;
 
-@layer components {
+@layer lib {
   .form-field {
     @apply w-full;
 
