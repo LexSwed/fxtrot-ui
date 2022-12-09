@@ -17,7 +17,6 @@ import { createTheme, styled } from '../stitches.config';
 import { createColorVariations } from '../theme/createColorVariations';
 import type { ThemeColors } from '../theme/default';
 import { useForkRef } from '../utils/hooks';
-import { Reset } from './Reset';
 
 type Props = {
   theme?: Theme | string | { className: string; selector: string };
@@ -52,7 +51,6 @@ const ThemeProvider = forwardRef<HTMLDivElement, Props>(({ theme, ...props }, pr
           </TooltipProvider>
         </DirectionProvider>
       </themeContext.Provider>
-      <Reset />
     </rootRefContext.Provider>
   );
 });

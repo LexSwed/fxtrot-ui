@@ -9,7 +9,7 @@ export const IconsPreview = () => {
   return (
     <Column cross="stretch" gap="md">
       <Row gap="md" cross="center">
-        <TextField css={{ flexBasis: '50%' }} value={filterText} onChange={setText} placeholder="Search for an icon" />
+        <TextField className="basis-1/2" value={filterText} onChange={setText} placeholder="Search for an icon" />
         <Switch defaultChecked onChange={setOutline} label="Show outline icons" />
       </Row>
       <Row wrap="wrap" gap="md">
@@ -32,7 +32,7 @@ const IconCopy = ({ name, icon, isOutline }: { name: string; icon: React.Element
     <IconBox key={name} title={name} onClick={handleClick}>
       <Icon as={icon} color={copied ? '$primary' : '$onSurfaceVariant'} size="xl" />
       {copied ? (
-        <Text css={{ position: 'absolute', bottom: '$2', color: '$primary' }} as="div">
+        <Text className="absolute bottom-2 text-primary" as="div">
           Copied!
         </Text>
       ) : null}

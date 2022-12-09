@@ -4,13 +4,14 @@ import { clsx } from 'clsx';
 
 import type { ForwardRefComponent } from '../utils/polymorphic';
 
-interface TextProps extends VariantProps<typeof textCss>, ComponentProps<'div'> {}
+interface TextProps extends TextVariants, ComponentProps<'div'> {}
 
 export const Text = forwardRef(({ as: As = 'span', textStyle = 'body-md', tone, align, className, ...props }, ref) => {
   return <As className={clsx(textCss({ textStyle, tone, align }), className)} {...props} ref={ref} />;
 }) as ForwardRefComponent<'span', TextProps>;
 
-const textCss = css({
+export type TextVariants = VariantProps<typeof textCss>;
+export const textCss = css({
   variants: {
     textStyle: {
       'body-sm': 'text-xs',
