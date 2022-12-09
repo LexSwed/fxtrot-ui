@@ -28,7 +28,7 @@ export const SideNav = ({ docs }: Props) => {
             return <LinksList links={links} key="index routes" />;
           }
           return (
-            <Section title={section} gap="sm" key={section}>
+            <Section title={section} gap="sm" className="mt-4" key={section}>
               <LinksList links={links} />
             </Section>
           );
@@ -45,7 +45,7 @@ const LinksList = ({ links }: { links: DocEntry[] }) => {
       {links.map((item) => {
         return (
           <Link href={item.href} passHref legacyBehavior key={item.title}>
-            <MenuList.Item aria-selected={item.href === router.pathname}>{item.title}</MenuList.Item>
+            <MenuList.Item selected={item.href === router.pathname}>{item.title}</MenuList.Item>
           </Link>
         );
       })}

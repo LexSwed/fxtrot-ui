@@ -1,3 +1,5 @@
+@layer lib, tailwind, utils;
+
 @layer tailwind.base {
   @tailwind base;
 }
@@ -9,5 +11,3 @@
 @layer tailwind.utilities {
   @tailwind utilities;
 }
-
-@layer tailwind, lib, utils;

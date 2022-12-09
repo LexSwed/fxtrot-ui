@@ -3,6 +3,7 @@ import { classed as css, VariantProps } from '@tw-classed/core';
 import { clsx } from 'clsx';
 
 import type { ForwardRefComponent } from '../utils/polymorphic';
+import styles from './text.module.css';
 
 interface TextProps extends VariantProps<typeof textCss> {}
 
@@ -13,36 +14,36 @@ export const Text = forwardRef(({ as: As = 'span', textStyle = 'body-md', tone, 
 export const textCss = css({
   variants: {
     textStyle: {
-      'body-sm': 'text-xs',
-      'body-md': 'text-sm',
-      'body-lg': 'text-md',
-      'body-xl': 'text-lg',
-      'label-sm': 'text-xs',
-      'label-md': 'text-sm font-semibold',
-      'label-lg': 'text-md font-semibold',
-      'title-sm': 'text-xl',
-      'title-md': 'text-2xl',
-      'title-lg': 'text-3xl',
-      'headline-sm': 'text-3xl font-bold',
-      'headline-md': 'text-4xl font-bold',
-      'headline-lg': 'text-5xl font-bold',
-      'overline': 'text-xs uppercase tracking-wider',
-      'mono-sm': 'font-mono text-xs',
-      'mono-md': 'font-mono text-sm',
-      'mono-lg': 'font-mono text-md',
+      'body-sm': styles['body-sm'],
+      'body-md': styles['body-md'],
+      'body-lg': styles['body-lg'],
+      'body-xl': styles['body-xl'],
+      'label-sm': styles['label-sm'],
+      'label-md': styles['label-md'],
+      'label-lg': styles['label-lg'],
+      'title-sm': styles['title-sm'],
+      'title-md': styles['title-md'],
+      'title-lg': styles['title-lg'],
+      'headline-sm': styles['headline-sm'],
+      'headline-md': styles['headline-md'],
+      'headline-lg': styles['headline-lg'],
+      'overline': styles['overline'],
+      'mono-sm': styles['mono-sm'],
+      'mono-md': styles['mono-md'],
+      'mono-lg': styles['mono-lg'],
     },
     tone: {
-      neutral: 'text-on-background',
-      accent: 'text-primary',
-      light: 'text-on-surface-variant',
-      success: 'text-success',
-      danger: 'text-error',
+      neutral: styles['tone--neutral'],
+      accent: styles['tone--accent'],
+      light: styles['tone--light'],
+      success: styles['tone--success'],
+      danger: styles['tone--danger'],
     },
     align: {
-      start: 'text-start',
-      center: 'text-center',
-      end: 'text-end',
-      justify: 'text-justify',
+      start: styles['align--start'],
+      center: styles['align--center'],
+      end: styles['align--end'],
+      justify: styles['align--justify'],
     },
   },
 });

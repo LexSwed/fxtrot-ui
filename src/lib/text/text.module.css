@@ -1,0 +1,87 @@
+@layer lib, utils;
+
+@layer lib {
+  /* textStyle */
+  .body-sm {
+    @apply text-xs;
+  }
+  .body-md {
+    @apply text-sm;
+  }
+  .body-lg {
+    @apply text-base;
+  }
+  .body-xl {
+    @apply text-lg;
+  }
+  .label-sm {
+    @apply text-xs;
+  }
+  .label-md {
+    @apply text-sm font-semibold;
+  }
+  .label-lg {
+    @apply text-base font-semibold;
+  }
+  .title-sm {
+    @apply text-xl;
+  }
+  .title-md {
+    @apply text-2xl;
+  }
+  .title-lg {
+    @apply text-3xl;
+  }
+  .headline-sm {
+    @apply text-3xl font-bold;
+  }
+  .headline-md {
+    @apply text-4xl font-bold;
+  }
+  .headline-lg {
+    @apply text-5xl font-bold;
+  }
+  .overline {
+    @apply text-xs uppercase tracking-wider;
+  }
+  .mono-sm {
+    @apply font-mono text-xs;
+  }
+  .mono-md {
+    @apply font-mono text-sm;
+  }
+  .mono-lg {
+    @apply font-mono text-base;
+  }
+
+  /* Tone */
+  .tone--neutral {
+    color: theme('colors.on-background');
+  }
+  .tone--accent {
+    color: theme('colors.primary');
+  }
+  .tone--light {
+    color: theme('colors.on-surface-variant');
+  }
+  .tone--success {
+    color: theme('colors.success');
+  }
+  .tone--danger {
+    color: theme('colors.error');
+  }
+
+  /* Align */
+  .align--start {
+    @apply text-start;
+  }
+  .align--center {
+    @apply text-center;
+  }
+  .align--end {
+    @apply text-end;
+  }
+  .align--justify {
+    @apply text-justify;
+  }
+}

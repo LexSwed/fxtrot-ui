@@ -70,7 +70,7 @@ export const components = {
   h4: (props: any) => <Heading dense={false} {...props} as="h4" level="4" />,
   h5: (props: any) => <Heading dense={false} {...props} as="h5" level="5" />,
   h6: (props: any) => <Heading dense={false} {...props} as="h6" level="6" />,
-  p: (props: any) => <Text {...props} className="mt-3 mb-4" as="p" />,
+  p: (props: any) => <Text {...props} className="mt-10 mb-6" as="p" />,
   aside: (props: any) => <Text {...props} tone="light" className="my-4" />,
   code: Code,
   pre: Pre,
