@@ -4,7 +4,7 @@ import { clsx } from 'clsx';
 
 import { ComponentProps, ForwardedRef, forwardRef, isValidElement, ReactElement, ReactNode } from 'react';
 import { ToggleButton } from '../toggle-button';
-import { flex, FlexVariants } from '../flex/flex';
+import { flexCss, FlexVariants } from '../flex/flex';
 
 import styles from './action-group.module.css';
 
@@ -25,7 +25,7 @@ export const ActionGroup = forwardRef(
       <ToggleGroup.Root
         type={type || 'single'}
         value={value}
-        className={clsx(flex({ gap, ...props }), className)}
+        className={clsx(flexCss({ gap, ...props }), className)}
         {...props}
         ref={ref}
       >

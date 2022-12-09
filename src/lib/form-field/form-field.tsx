@@ -4,7 +4,7 @@ import { clsx } from 'clsx';
 
 import { Text } from '../text';
 import type { ForwardRefComponent } from '../utils/polymorphic';
-import { flex, FlexVariants } from '../flex/flex';
+import { flexCss, FlexVariants } from '../flex/flex';
 
 import styles from './form-field.module.css';
 
@@ -13,7 +13,7 @@ export const FormField = forwardRef(
     const { as: As = 'div' } = props;
     return (
       <As
-        className={clsx(flex({ cross, flow, display, gap, ...props }), styles['form-field'], className)}
+        className={clsx(flexCss({ cross, flow, display, gap, ...props }), styles['form-field'], className)}
         {...props}
         ref={ref}
       />

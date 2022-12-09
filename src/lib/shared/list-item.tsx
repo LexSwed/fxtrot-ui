@@ -1,7 +1,7 @@
 import { classed as css, VariantProps } from '@tw-classed/core';
 import { clsx } from 'clsx';
 import { forwardRef } from 'react';
-import { flex, FlexVariants } from '../flex/flex';
+import { flexCss, FlexVariants } from '../flex/flex';
 import type { ForwardRefComponent } from '../utils/polymorphic';
 
 import styles from './list-item.module.css';
@@ -16,7 +16,7 @@ const ListItem = forwardRef(
 
 export { ListItem };
 
-const listItemCssInner = css(styles['list-item'], flex, {
+const listItemCssInner = css(styles['list-item'], flexCss, {
   variants: {
     size: {
       sm: styles['list-item--sm'],

@@ -1,4 +1,4 @@
-@layer lib,defaults;
+@layer lib, defaults;
 
 @layer lib {
   .field {
@@ -59,18 +59,20 @@
     justify-content: center;
     border: theme('borderWidth.2') solid theme('colors.outline');
     background-color: transparent;
-    background-image: radial-gradient(circle at center, theme('colors.primary') 50%, transparent 50.2%);
+    background: radial-gradient(circle at center, theme('colors.primary') 50%, transparent 50%) no-repeat;
     background-size: 0 0;
     background-position: center;
     @apply duration-240 ease-in-out;
 
     & > .icon {
       opacity: 0;
-      @apply duration-240 ease-in-out;
+      transition: 220ms 20ms ease-in-out;
+      transition-property: opacity, color;
     }
   }
 
   .input {
+    appearance: none;
     position: absolute;
     inset: 0;
     z-index: 1;

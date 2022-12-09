@@ -13,7 +13,7 @@ const gap = {
   '2xl': 'gap-2xl',
 } as const;
 
-export const flex = css('flex', {
+export const flexCss = css('flex', {
   variants: {
     display: {
       inline: 'inline-flex',
@@ -56,27 +56,30 @@ export const flex = css('flex', {
   },
 });
 
-export type FlexVariants = VariantProps<typeof flex>;
+export type FlexVariants = VariantProps<typeof flexCss>;
 
 interface FlexProps extends FlexVariants {}
 
-export const Flex = forwardRef((props, ref) => {
-  const { as: As = 'div' } = props;
-  return <As className={clsx(flex(props), props.className)} {...props} ref={ref} />;
-}) as ForwardRefComponent<'div', FlexProps>;
+export const Flex = forwardRef(
+  ({ as: As = 'div', display, gap, main, cross, flow, wrap, flex, className, ...props }, ref) => {
+    return (
+      <As className={clsx(flexCss({ display, gap, main, cross, flow, wrap, flex }), className)} {...props} ref={ref} />
+    );
+  }
+) as ForwardRefComponent<'div', FlexProps>;
 
 interface RowProps extends FlexVariants {
   flow?: Extract<FlexVariants['flow'], 'row' | 'row-reverse'>;
 }
 export const Row = forwardRef(({ as: As = 'div', flow = 'row', className, ...props }, ref) => {
-  return <As className={clsx(flex({ ...props, flow }), className)} {...props} ref={ref} />;
+  return <As className={clsx(flexCss({ ...props, flow }), className)} {...props} ref={ref} />;
 }) as ForwardRefComponent<'div', RowProps>;
 
 interface ColumnProps extends FlexVariants {
   flow?: Extract<FlexVariants['flow'], 'column' | 'column-reverse'>;
 }
 export const Column = forwardRef(({ as: As = 'div', flow = 'column', className, ...props }, ref) => {
-  return <As className={clsx(flex({ ...props, flow }), className)} {...props} ref={ref} />;
+  return <As className={clsx(flexCss({ ...props, flow }), className)} {...props} ref={ref} />;
 }) as ForwardRefComponent<'div', ColumnProps>;
 
 const grid = css({

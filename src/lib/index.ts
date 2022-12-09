@@ -4,7 +4,7 @@ export { Checkbox } from './checkbox';
 export { Collapsible } from './collapsible';
 export { Dialog, useDialogRef } from './Dialog';
 export { Flex, Column, Row, Grid } from './flex';
-export { Heading } from './Heading';
+export { Heading } from './heading-1';
 export { Icon } from './icon';
 export { Label } from './form-field';
 export { Menu, useMenuRef } from './Menu';

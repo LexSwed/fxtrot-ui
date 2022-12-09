@@ -12,17 +12,23 @@ interface Props extends ComponentProps<'a'>, VariantProps<typeof linkCss> {
   external?: 'icon' | true;
 }
 
-const TextLink = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
-  const { external, inline = true, children, className } = props;
-  const additionalProps = external ? { target: '_blank', rel: 'noreferrer' } : null;
+const TextLink = forwardRef<HTMLAnchorElement, Props>(
+  ({ textStyle, tone, align, external, inline = true, className, children, ...props }, ref) => {
+    const additionalProps = external ? { target: '_blank', rel: 'noreferrer' } : null;
 
-  return (
-    <a {...additionalProps} className={clsx(linkCss({ inline, external, ...props }), className)} {...props} ref={ref}>
-      {children}
-      {external === 'icon' ? <Icon size="inherit" as={ArrowTopRightOnSquareIcon} /> : null}
-    </a>
-  );
-});
+    return (
+      <a
+        {...additionalProps}
+        className={clsx(linkCss({ textStyle, tone, align, inline, external }), className)}
+        {...props}
+        ref={ref}
+      >
+        {children}
+        {external === 'icon' ? <Icon size="inherit" as={ArrowTopRightOnSquareIcon} /> : null}
+      </a>
+    );
+  }
+);
 
 TextLink.displayName = 'TextLink';
 

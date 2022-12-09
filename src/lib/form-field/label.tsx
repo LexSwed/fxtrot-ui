@@ -3,11 +3,11 @@ import { classed as css } from '@tw-classed/core';
 import { clsx } from 'clsx';
 import { Text } from '../text';
 import type { ForwardRefComponent } from '../utils/polymorphic';
-import { flex, FlexVariants } from '../flex/flex';
+import { flexCss, FlexVariants } from '../flex/flex';
 
 import styles from './form-field.module.css';
 
-export const labelCss = css(flex, 'text-ellipsis', 'whitespace-nowrap');
+export const labelCss = css(flexCss, 'text-ellipsis', 'whitespace-nowrap');
 
 export interface Props extends FlexVariants {
   label: ReactNode;
@@ -23,8 +23,10 @@ export const Label = forwardRef(({ label, secondary, disabled, gap = 'xs', size 
     <As className={clsx(labelCss({ gap, ...props }), styles.label, props.className)} {...props} ref={ref}>
       <Text
         textStyle={textStyle}
-        weight={500}
-        className={clsx({ 'text-on-disabled': disabled }, 'shrink-0 cursor-default select-none leading-none')}
+        className={clsx(
+          { 'text-on-disabled': disabled },
+          'shrink-0 cursor-default select-none font-medium leading-none'
+        )}
       >
         {label}
       </Text>

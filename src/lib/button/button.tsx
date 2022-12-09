@@ -2,7 +2,7 @@ import { classed as css, VariantProps } from '@tw-classed/core';
 import { Children, ComponentProps, ElementType, forwardRef, isValidElement } from 'react';
 import { clsx } from 'clsx';
 
-import { flex } from '../flex/flex';
+import { flexCss } from '../flex/flex';
 import { Icon } from '../icon';
 
 import styles from './button.module.css';
@@ -46,7 +46,7 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>((props, ref) =
   );
 });
 
-const buttonCss = css(styles.button, flex, {
+const buttonCss = css(styles.button, flexCss, {
   variants: {
     variant: {
       flat: styles['button--flat'],
