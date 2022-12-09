@@ -1,5 +1,5 @@
 export { ActionGroup } from './action-group';
-export { Button } from './button';
+export { Button, LinkButton } from './button';
 export { Checkbox } from './checkbox';
 export { Collapsible } from './collapsible';
 export { Dialog, useDialogRef } from './Dialog';
@@ -7,7 +7,6 @@ export { Flex, Column, Row, Grid } from './flex';
 export { Heading } from './Heading';
 export { Icon } from './icon';
 export { Label } from './form-field';
-export { LinkButton } from './link-button';
 export { Menu, useMenuRef } from './Menu';
 export { MenuList } from './MenuList';
 export { Picker } from './Picker';

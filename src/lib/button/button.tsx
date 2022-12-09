@@ -7,7 +7,46 @@ import { Icon } from '../icon';
 
 import styles from './button.module.css';
 
-export const buttonCss = css(styles.button, flex, {
+interface ButtonOwnProps extends VariantProps<typeof buttonCss> {
+  icon?: ElementType;
+  label?: string;
+}
+
+interface ButtonProps extends ButtonOwnProps, ComponentProps<'button'> {}
+
+const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
+  const { icon, label, type = 'button', size, disabled, children } = props;
+  return (
+    <button
+      {...props}
+      className={buttonCssWithDefaults(props)}
+      aria-label={label}
+      title={label}
+      aria-disabled={disabled}
+      type={type}
+      ref={ref}
+    >
+      {icon ? <Icon as={icon} size={size} /> : null}
+      {children}
+    </button>
+  );
+});
+
+Button.displayName = 'Button';
+
+interface LinkButtonProps extends ButtonOwnProps, ComponentProps<'a'> {}
+
+const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>((props, ref) => {
+  const { icon, label, size, children } = props;
+  return (
+    <a {...props} className={buttonCssWithDefaults(props)} aria-label={label} title={label} ref={ref}>
+      {icon ? <Icon as={icon} size={size} /> : null}
+      {children}
+    </a>
+  );
+});
+
+const buttonCss = css(styles.button, flex, {
   variants: {
     variant: {
       flat: styles['button--flat'],
@@ -28,54 +67,24 @@ export const buttonCss = css(styles.button, flex, {
   },
 });
 
-export type ButtonVariants = VariantProps<typeof buttonCss>;
+const buttonCssWithDefaults = <T extends keyof JSX.IntrinsicElements>({
+  variant = 'flat',
+  size = 'md',
+  main = 'center',
+  cross = 'center',
+  flow = 'row',
+  gap = 'sm',
+  icon,
+  className,
+  children,
+  ...props
+}: ButtonOwnProps & ComponentProps<T>) => {
+  const isIconButton = !!icon || (Children.count(children) === 1 && isValidElement(children) && children.type === Icon);
+  return clsx(
+    buttonCss({ variant, size, main, flow, gap, cross, ...props }),
+    isIconButton ? styles['button--icon'] : undefined,
+    className
+  );
+};
 
-interface Props extends ButtonVariants, ComponentProps<'button'> {
-  icon?: ElementType;
-  label?: string;
-}
-
-const Button = forwardRef<HTMLButtonElement, Props>(
-  (
-    // can't put defaultVariants for inherited flex styles(
-    {
-      type = 'button',
-      variant = 'flat',
-      size = 'md',
-      main = 'center',
-      cross = 'center',
-      flow = 'row',
-      gap = 'sm',
-      icon,
-      children,
-      label,
-      ...props
-    },
-    ref
-  ) => {
-    const isIconButton =
-      !!icon || (Children.count(children) === 1 && isValidElement(children) && children.type === Icon);
-    return (
-      <button
-        {...props}
-        className={clsx(
-          buttonCss({ variant, size, main, flow, gap, cross, ...props }),
-          isIconButton ? styles['button--icon'] : undefined,
-          props.className
-        )}
-        aria-label={label}
-        title={label}
-        aria-disabled={props.disabled}
-        type={type}
-        ref={ref}
-      >
-        {icon ? <Icon as={icon} size={size} /> : null}
-        {children}
-      </button>
-    );
-  }
-);
-
-Button.displayName = 'Button';
-
-export { Button };
+export { Button, LinkButton };
