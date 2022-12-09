@@ -1,6 +1,6 @@
 import { Title } from '@radix-ui/react-dialog';
 import type { ComponentProps } from 'react';
-import { Heading } from '../heading-1';
+import { Heading } from '../heading';
 
 interface Props extends ComponentProps<typeof Heading> {}
 
