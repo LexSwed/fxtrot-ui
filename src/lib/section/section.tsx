@@ -2,7 +2,7 @@ import { useId } from '@radix-ui/react-id';
 import type { ComponentProps } from 'react';
 import { Flex } from '../flex/flex';
 
-import { Text } from '../text-1';
+import { Text } from '../text';
 
 interface Props extends ComponentProps<typeof Flex> {
   title: string;

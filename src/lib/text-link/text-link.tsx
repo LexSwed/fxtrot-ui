@@ -4,7 +4,7 @@ import { clsx } from 'clsx';
 import { classed as css, VariantProps } from '@tw-classed/core';
 
 import { Icon } from '../icon';
-import { textCss } from '../text-1/text';
+import { textCss } from '../text/text';
 
 import styles from './text-link.module.css';
 

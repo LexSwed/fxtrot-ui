@@ -1,16 +1,15 @@
-import { ComponentProps, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { classed as css, VariantProps } from '@tw-classed/core';
 import { clsx } from 'clsx';
 
 import type { ForwardRefComponent } from '../utils/polymorphic';
 
-interface TextProps extends TextVariants, ComponentProps<'div'> {}
+interface TextProps extends VariantProps<typeof textCss> {}
 
 export const Text = forwardRef(({ as: As = 'span', textStyle = 'body-md', tone, align, className, ...props }, ref) => {
   return <As className={clsx(textCss({ textStyle, tone, align }), className)} {...props} ref={ref} />;
 }) as ForwardRefComponent<'span', TextProps>;
 
-export type TextVariants = VariantProps<typeof textCss>;
 export const textCss = css({
   variants: {
     textStyle: {

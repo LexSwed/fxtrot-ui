@@ -1,6 +1,6 @@
 import { classed as css, VariantProps } from '@tw-classed/core';
 import { clsx } from 'clsx';
-import { ComponentProps, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import type { ForwardRefComponent } from '../utils/polymorphic';
 
 const gap = {
@@ -58,7 +58,7 @@ export const flex = css('flex', {
 
 export type FlexVariants = VariantProps<typeof flex>;
 
-interface FlexProps extends FlexVariants, ComponentProps<'div'> {}
+interface FlexProps extends FlexVariants {}
 
 export const Flex = forwardRef((props, ref) => {
   const { as: As = 'div' } = props;
