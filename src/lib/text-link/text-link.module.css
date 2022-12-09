@@ -9,14 +9,14 @@
   }
 
   .text-link--inline {
-    transition: 0.1s ease-in;
-    transition-property: outline-width, background-color, text-decoration;
+    transition: 0.12s ease-in;
+    transition-property: outline-width, text-decoration;
     text-decoration: underline solid transparent 2px;
-    outline: inset 0 theme('colors.primary/0.1');
-    outline-offset: 0;
+    outline: inset theme('spacing.2') transparent;
+    outline-offset: -1em;
     &:where(:hover, :focus) {
-      background-color: theme('colors.primary/0.15');
-      outline-width: theme('spacing.1');
+      outline-color: theme('colors.primary/0.15');
+      outline-width: theme('spacing.4');
       text-decoration-color: theme('colors.primary');
     }
   }
