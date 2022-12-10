@@ -4,7 +4,7 @@ import { ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 import { styled } from '../stitches.config';
 import type { OptionType } from './Item';
 import { Icon } from '../icon';
-import { PopoverBox } from '../popover-2/popover-box';
+import { PopoverBox } from '../popover/popover-box';
 import { Portal } from '../Portal';
 import Item from './Item';
 import { PickerTrigger, PickerTriggerProps } from './Trigger';

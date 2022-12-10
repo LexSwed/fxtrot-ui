@@ -2,7 +2,7 @@ import * as RdxTooltip from '@radix-ui/react-tooltip';
 import type { ComponentProps, ReactNode } from 'react';
 import { Portal } from '../Portal';
 import { styled } from '../stitches.config';
-import { PopoverBox } from '../popover-2/popover-box';
+import { PopoverBox } from '../popover/popover-box';
 
 type Props = Pick<RdxTooltip.TooltipProps, 'children' | 'defaultOpen' | 'delayDuration' | 'disableHoverableContent'> &
   Pick<
