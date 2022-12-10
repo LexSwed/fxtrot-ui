@@ -34,7 +34,7 @@
    Variant
   */
 
-  .button--primary {
+  .variant--primary {
     background-color: theme('colors.primary');
     color: theme('colors.on-primary');
     @apply bg-gradient-to-t;
@@ -51,13 +51,13 @@
       @apply ring-primary;
     }
 
-    &:where(.button--danger) {
+    &:where(.intent--danger) {
       background-color: theme('colors.error');
       color: theme('colors.on-error');
     }
   }
 
-  .button--outline {
+  .variant--outline {
     border-color: theme('colors.primary/0.8');
     background: transparent;
     color: theme('colors.primary');
@@ -75,7 +75,7 @@
       @apply ring-primary;
     }
 
-    &:where(.button--danger) {
+    &:where(.intent--danger) {
       border-color: theme('colors.error');
       color: theme('colors.error');
 
@@ -89,7 +89,7 @@
     }
   }
 
-  .button--tonal {
+  .variant--tonal {
     border-color: transparent;
     background-color: theme('colors.primary/0.15');
     color: theme('colors.primary');
@@ -106,7 +106,7 @@
       @apply ring-primary;
     }
 
-    &:where(.button--danger) {
+    &:where(.intent--danger) {
       background-color: theme('colors.error/0.15');
       color: theme('colors.error');
 
@@ -122,7 +122,7 @@
 
   /* 
    Using secondary colors
-  .button--tonal {
+  .variant--tonal {
     @apply border-transparent bg-secondary-container bg-gradient-to-t text-on-secondary-container focus:ring-secondary/30;
 
     &:where(:hover, :focus, :active) {
@@ -133,7 +133,7 @@
       @apply from-secondary/15 to-secondary/15;
     }
 
-    &:where(.button--danger) {
+    &:where(.intent--danger) {
       @apply bg-error/15 bg-none text-error;
 
       &:where(:hover, :focus, :active) {
@@ -146,7 +146,7 @@
     }
   } */
 
-  .button--flat {
+  .variant--flat {
     border-color: transparent;
     background-color: transparent;
     color: theme('colors.on-surface');
@@ -154,7 +154,7 @@
     &:where(:hover, :focus, :active) {
       background-color: theme('colors.on-surface/0.1');
 
-      &:where(.button--danger) {
+      &:where(.intent--danger) {
         background-color: theme('colors.error/0.1');
       }
     }
@@ -168,7 +168,7 @@
       @apply ring-outline;
     }
 
-    &:where(.button--danger) {
+    &:where(.intent--danger) {
       color: theme('colors.error');
     }
 
@@ -185,7 +185,7 @@
     }
   }
 
-  .button--link {
+  .variant--link {
     border-color: transparent;
     background: transparent;
     color: theme('colors.primary');
@@ -207,14 +207,14 @@
   /*
    Intent
   */
-  .button--danger {
+  .intent--danger {
     @apply focus:ring-error/50;
   }
 
   /*
     Size
   */
-  .button--xs {
+  .size--xs {
     min-block-size: theme(spacing.6);
     border-radius: theme('borderRadius.md');
     @apply text-xs py-1 px-2;
@@ -223,7 +223,7 @@
       min-inline-size: theme(spacing.6);
     }
   }
-  .button--sm {
+  .size--sm {
     min-block-size: theme(spacing.8);
     border-radius: theme('borderRadius.md');
     @apply text-sm py-1 px-3;
@@ -232,7 +232,7 @@
       min-inline-size: theme(spacing.8);
     }
   }
-  .button--md {
+  .size--md {
     min-block-size: theme(spacing.10);
     border-radius: theme('borderRadius.lg');
     @apply text-sm py-2 px-4;
@@ -241,7 +241,7 @@
       min-inline-size: theme(spacing.10);
     }
   }
-  .button--lg {
+  .size--lg {
     min-block-size: theme(spacing.12);
     border-radius: theme('borderRadius.lg');
     @apply text-base py-2 px-6;

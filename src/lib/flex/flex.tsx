@@ -3,56 +3,56 @@ import { clsx } from 'clsx';
 import { forwardRef } from 'react';
 import type { ForwardRefComponent } from '../utils/polymorphic';
 
+import styles from './flex.module.css';
+
 const gap = {
-  'none': 'gap-none',
-  'xs': 'gap-xs',
-  'sm': 'gap-sm',
-  'md': 'gap-md',
-  'lg': 'gap-lg',
-  'xl': 'gap-xl',
-  '2xl': 'gap-2xl',
+  'none': styles['gap--none'],
+  'xs': styles['gap--xs'],
+  'sm': styles['gap--sm'],
+  'md': styles['gap--md'],
+  'lg': styles['gap--lg'],
+  'xl': styles['gap--xl'],
+  '2xl': styles['gap--2xl'],
+  '3xl': styles['gap--3xl'],
 } as const;
 
-export const flexCss = css('flex', {
+export const flexCss = css({
   variants: {
     display: {
-      inline: 'inline-flex',
-      flex: 'flex',
+      inline: styles['display--inline'],
+      flex: styles['display--flex'],
     },
     gap,
     main: {
-      'start': 'justify-start',
-      'center': 'justify-center',
-      'end': 'justify-end',
-      'space-between': 'justify-between',
-      'evenly': 'justify-evenly',
+      'start': styles['main--start'],
+      'center': styles['main--center'],
+      'end': styles['main--end'],
+      'space-between': styles['main--space-between'],
+      'evenly': styles['main--evenly'],
     },
     cross: {
-      start: 'items-start',
-      center: 'items-center',
-      end: 'items-end',
-      baseline: 'items-baseline',
-      stretch: 'items-stretch',
+      start: styles['cross--start'],
+      center: styles['cross--center'],
+      end: styles['cross--end'],
+      baseline: styles['cross--baseline'],
+      stretch: styles['cross--stretch'],
     },
     flow: {
-      'row': 'flex-row',
-      'column': 'flex-col',
-      'row-reverse': 'flex-row-reverse',
-      'column-reverse': 'flex-col-reverse',
+      'row': styles['flow--row'],
+      'column': styles['flow--column'],
+      'row-reverse': styles['flow--row-reverse'],
+      'column-reverse': styles['flow--column-reverse'],
     },
     wrap: {
-      wrap: 'flex-wrap',
-      nowrap: 'flex-nowrap',
-      reverse: 'flex-wrap-reverse',
+      wrap: styles['wrap--wrap'],
+      nowrap: styles['wrap--nowrap'],
+      reverse: styles['wrap--reverse'],
     },
     flex: {
-      auto: 'flex-auto',
-      initial: 'flex-initial',
-      none: 'flex-none',
+      auto: styles['flex--auto'],
+      initial: styles['flex--initial'],
+      none: styles['flex--none'],
     },
-  },
-  defaultVariants: {
-    display: 'flex',
   },
 });
 
@@ -61,7 +61,7 @@ export type FlexVariants = VariantProps<typeof flexCss>;
 interface FlexProps extends FlexVariants {}
 
 export const Flex = forwardRef(
-  ({ as: As = 'div', display, gap, main, cross, flow, wrap, flex, className, ...props }, ref) => {
+  ({ as: As = 'div', display = 'flex', gap, main, cross, flow, wrap, flex, className, ...props }, ref) => {
     return (
       <As className={clsx(flexCss({ display, gap, main, cross, flow, wrap, flex }), className)} {...props} ref={ref} />
     );
@@ -71,57 +71,57 @@ export const Flex = forwardRef(
 interface RowProps extends FlexVariants {
   flow?: Extract<FlexVariants['flow'], 'row' | 'row-reverse'>;
 }
-export const Row = forwardRef(({ as: As = 'div', flow = 'row', className, ...props }, ref) => {
-  return <As className={clsx(flexCss({ ...props, flow }), className)} {...props} ref={ref} />;
+export const Row = forwardRef(({ flow = 'row', ...props }, ref) => {
+  return <Flex flow={flow} {...props} ref={ref} />;
 }) as ForwardRefComponent<'div', RowProps>;
 
 interface ColumnProps extends FlexVariants {
   flow?: Extract<FlexVariants['flow'], 'column' | 'column-reverse'>;
 }
-export const Column = forwardRef(({ as: As = 'div', flow = 'column', className, ...props }, ref) => {
-  return <As className={clsx(flexCss({ ...props, flow }), className)} {...props} ref={ref} />;
+export const Column = forwardRef(({ flow = 'column', ...props }, ref) => {
+  return <Flex flow={flow} {...props} ref={ref} />;
 }) as ForwardRefComponent<'div', ColumnProps>;
 
 const grid = css({
   variants: {
     display: {
-      grid: 'grid',
-      inline: 'inline-grid',
+      grid: styles['display--grid'],
+      inline: styles['display--inline-grid'],
     },
     gap,
     rowGap: gap,
     columnGap: gap,
     placeItems: {
-      start: 'place-items-start',
-      center: 'place-items-end',
-      end: 'place-items-end',
-      baseline: 'place-items-baseline',
-      stretch: 'place-items-stretch',
+      start: styles['place-items--start'],
+      center: styles['place-items--center'],
+      end: styles['place-items--end'],
+      baseline: styles['place-items--baseline'],
+      stretch: styles['place-items--stretch'],
     },
     rows: {
-      none: 'grid-rows-none',
-      1: 'grid-rows-1',
-      2: 'grid-rows-2',
-      3: 'grid-rows-3',
-      4: 'grid-rows-4',
-      5: 'grid-rows-5',
-      6: 'grid-rows-6',
+      none: styles['rows--none'],
+      1: styles['rows--1'],
+      2: styles['rows--2'],
+      3: styles['rows--3'],
+      4: styles['rows--4'],
+      5: styles['rows--5'],
+      6: styles['rows--6'],
     },
     columns: {
-      none: 'grid-cols-none',
-      1: 'grid-cols-1',
-      2: 'grid-cols-2',
-      3: 'grid-cols-3',
-      4: 'grid-cols-4',
-      5: 'grid-cols-5',
-      6: 'grid-cols-6',
+      none: styles['columns--none'],
+      1: styles['columns--1'],
+      2: styles['columns--2'],
+      3: styles['columns--3'],
+      4: styles['columns--4'],
+      5: styles['columns--5'],
+      6: styles['columns--6'],
     },
     flow: {
-      'row': 'grid-flow-row',
-      'column': 'grid-flow-col',
-      'dense': 'grid-flow-dense',
-      'row-dense': 'grid-flow-row-dense',
-      'column-dense': 'grid-flow-col-dense',
+      'row': styles['grid-flow--row'],
+      'column': styles['grid-flow--column'],
+      'dense': styles['grid-flow--dense'],
+      'row-dense': styles['grid-flow--row-dense'],
+      'column-dense': styles['grid-flow--column-dense'],
     },
   },
   defaultVariants: {
@@ -131,6 +131,14 @@ const grid = css({
 
 interface GridProps extends VariantProps<typeof grid> {}
 
-export const Grid = forwardRef(({ as: As = 'div', className, ...props }, ref) => {
-  return <As className={clsx(grid(props), className)} {...props} ref={ref} />;
-}) as ForwardRefComponent<'div', GridProps>;
+export const Grid = forwardRef(
+  ({ as: As = 'div', display, placeItems, flow, rows, columns, columnGap, rowGap, gap, className, ...props }, ref) => {
+    return (
+      <As
+        className={clsx(grid({ display, placeItems, flow, rows, columns, columnGap, rowGap, gap }), className)}
+        {...props}
+        ref={ref}
+      />
+    );
+  }
+) as ForwardRefComponent<'div', GridProps>;

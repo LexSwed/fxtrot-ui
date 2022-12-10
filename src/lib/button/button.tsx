@@ -49,20 +49,20 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>((props, ref) =
 const buttonCss = css(styles.button, flexCss, {
   variants: {
     variant: {
-      flat: styles['button--flat'],
-      primary: styles['button--primary'],
-      tonal: styles['button--tonal'],
-      outline: styles['button--outline'],
-      link: styles['button--link'],
+      flat: styles['variant--flat'],
+      primary: styles['variant--primary'],
+      tonal: styles['variant--tonal'],
+      outline: styles['variant--outline'],
+      link: styles['variant--link'],
     },
     size: {
-      xs: styles['button--xs'],
-      sm: styles['button--sm'],
-      md: styles['button--md'],
-      lg: styles['button--lg'],
+      xs: styles['size--xs'],
+      sm: styles['size--sm'],
+      md: styles['size--md'],
+      lg: styles['size--lg'],
     },
     intent: {
-      danger: styles['button--danger'],
+      danger: styles['intent--danger'],
     },
   },
 });

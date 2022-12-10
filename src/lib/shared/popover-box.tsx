@@ -1,6 +1,6 @@
 import { clsx } from 'clsx';
 import { ComponentProps, forwardRef } from 'react';
-import { FloatingList } from '../shared/floating-list';
+import { FloatingList } from './floating-list';
 
 import styles from './popover.module.css';
 

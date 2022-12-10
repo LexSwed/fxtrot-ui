@@ -8,11 +8,9 @@ import styles from './list-item.module.css';
 
 interface ListItemProps extends ListItemVariants {}
 
-const ListItem = forwardRef(
-  ({ as: As = 'div', gap = 'sm', cross = 'center', className, size = 'md', ...props }, ref) => {
-    return <As className={clsx(listItemCss({ size }), className)} {...props} ref={ref} />;
-  }
-) as ForwardRefComponent<'div', ListItemProps>;
+const ListItem = forwardRef(({ as: As = 'div', className, ...props }, ref) => {
+  return <As className={clsx(listItemCss(props), className)} {...props} ref={ref} />;
+}) as ForwardRefComponent<'div', ListItemProps>;
 
 export { ListItem };
 
@@ -28,5 +26,11 @@ const listItemCssInner = css(styles['list-item'], flexCss, {
 
 export type ListItemVariants = VariantProps<typeof listItemCssInner> & FlexVariants;
 
-export const listItemCss = ({ flow = 'row', gap = 'sm', cross = 'center', size = 'md', ...props }: ListItemVariants) =>
-  listItemCssInner({ flow, gap, cross, size, ...props });
+export const listItemCss = ({
+  flow = 'row',
+  gap = 'sm',
+  cross = 'center',
+  size = 'md',
+  display = 'flex',
+  ...props
+}: ListItemVariants) => listItemCssInner({ flow, gap, cross, size, display, ...props });

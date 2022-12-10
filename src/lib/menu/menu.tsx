@@ -10,7 +10,7 @@ import {
 import * as RdxMenu from '@radix-ui/react-dropdown-menu';
 import { clsx } from 'clsx';
 
-import { PopoverBox } from '../popover/popover-box';
+import { PopoverBox } from '../shared/popover-box';
 import { OpenStateProvider, OpenStateRef, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { Label } from '../form-field';
 import { Portal } from '../Portal';

@@ -45,17 +45,15 @@ export const MainLayout: React.FC<Props> = ({ children, meta, docs }) => {
                     Fxtrot UI
                   </TextLink>
                 </Link>
-                <Row>
-                  <TextLink
-                    href="https://github.com/LexSwed/fxtrot-ui"
-                    external
-                    tone="neutral"
-                    title="Open the source on GitHub"
-                    inline={false}
-                  >
-                    <Icon as={GitHubIcon} size="sm" />
-                  </TextLink>
-                </Row>
+                <TextLink
+                  href="https://github.com/LexSwed/fxtrot-ui"
+                  external
+                  tone="neutral"
+                  title="Open the source on GitHub"
+                  inline={false}
+                >
+                  <Icon as={GitHubIcon} size="sm" />
+                </TextLink>
               </Row>
             </Row>
           </header>
