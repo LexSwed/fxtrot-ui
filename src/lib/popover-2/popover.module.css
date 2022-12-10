@@ -1,0 +1,64 @@
+@layer lib, utils;
+
+@layer lib {
+  .popover {
+    border-radius: theme('borderRadius.md');
+    background-color: theme('colors.surface');
+    box-shadow: theme('boxShadow.popper');
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+
+    &:where([data-state='open'], [data-state='delayed-open'], [data-state='instant-open']) {
+      animation-duration: 0.15s;
+      animation-name: move-in;
+    }
+    &:where([data-state='closed']) {
+      animation-duration: 0.1s;
+      animation-name: move-out;
+    }
+    &:where([data-side='top'], [data-side='bottom']) {
+      --direction: var(--direction, 1);
+      --y: 1;
+    }
+    &:where([data-side='right'], [data-side='left']) {
+      --direction: var(--direction, 1);
+      --x: 1;
+    }
+    &:where([data-state='closed']) {
+      animation-name: move-out;
+    }
+    &:where([data-side='top'], [data-side='left']) {
+      --direction: 1;
+    }
+    &:where([data-side='bottom'], [data-side='right']) {
+      --direction: -1;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      animation-duration: 0s;
+    }
+  }
+
+  @keyframes move-in {
+    0% {
+      opacity: 0;
+      transform: translate3d(var(--x, 0) * calc(var(--direction) * 5px), var(--y, 0) * calc(var(--direction) * 5px), 0);
+    }
+    60% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes move-out {
+    0% {
+      opacity: 1;
+      transform: none;
+    }
+    100% {
+      opacity: 0;
+      transform: translate3d(var(--x, 0) * calc(var(--direction) * 5px), var(--y, 0) * calc(var(--direction) * 5px), 0);
+    }
+  }
+}

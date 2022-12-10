@@ -5,7 +5,7 @@ import { keyframes, styled } from '../stitches.config';
 import type { CssStyles } from '..';
 import { useOpenState } from '../utils/OpenStateProvider';
 import { Portal } from '../Portal';
-import { Presence } from '../shared/Presence';
+import { Presence } from '../shared/presence';
 import { DialogClose } from './DialogClose';
 
 export interface ModalProps extends ComponentProps<'div'> {

@@ -20,8 +20,8 @@ title: Menu
       Cut
     </Menu.Item>
     <Menu.Separator />
-    <Menu.Item onSelect={() => window.alert('delete')} css={{ color: '$error' }}>
-      <Icon as={TrashIcon} color="$error" />
+    <Menu.Item onSelect={() => window.alert('delete')} className="text-error">
+      <Icon as={TrashIcon} />
       Delete
     </Menu.Item>
   </Menu.List>
@@ -32,7 +32,7 @@ You can modify `offset` from the `side` and along the `align`ment.
 
 ```tsx preview
 <Menu>
-  <Button variant="tonal" gap="md">
+  <Button variant="tonal" gap="sm">
     Open menu
     <Icon as={ChevronRightIcon} />
   </Button>
@@ -55,14 +55,14 @@ You can modify `offset` from the `side` and along the `align`ment.
   const menuRef = useMenuRef();
   return (
     <Menu ref={menuRef}>
-      <Button variant="tonal" gap="md">
-        <Icon as={ChevronDownIcon} />
+      <Button variant="tonal" gap="sm">
+        <Icon as={EllipsisVerticalIcon} />
         More
       </Button>
       <Menu.List>
         <Dialog>
           <Menu.Item
-            css={{ color: '$error' }}
+            className="text-error"
             onSelect={(event) => {
               event.preventDefault();
             }}

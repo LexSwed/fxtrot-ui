@@ -8,17 +8,17 @@ import {
   useState,
 } from 'react';
 import * as RdxMenu from '@radix-ui/react-dropdown-menu';
+import { clsx } from 'clsx';
 
-import { PopoverBox } from '../Popover/PopoverBox';
-import { styled, CssStyles } from '../stitches.config';
+import { PopoverBox } from '../popover-2/popover-box';
 import { OpenStateProvider, OpenStateRef, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { Label } from '../form-field';
 import { Portal } from '../Portal';
-import type { VariantProps } from '@stitches/react';
-import { listStyles } from '../shared/FloatingList';
-import { ListItem } from '../shared/list-item';
+import { ListItem, ListItemVariants } from '../shared/list-item';
 import { useIsomorphicLayoutEffect } from '../utils/hooks';
-import { Presence } from '../shared/Presence';
+import { Presence } from '../shared/presence';
+
+import styles from './menu.module.css';
 
 interface MenuProps {
   children: [trigger: ReactElement, menuList: ReactElement];
@@ -78,10 +78,8 @@ const List = ({ align = 'start', side = 'bottom', sideOffset = 8, ...props }: Me
 
 const MenuListContent = forwardRef<HTMLDivElement, MenuListProps>(({ style = {}, ...props }, ref) => {
   const minWidth = useTriggerWidth(props['aria-labelledby']);
-  return <MenuListBox {...props} style={{ ...style, minWidth }} ref={ref} />;
+  return <PopoverBox {...props} style={{ ...style, minWidth }} ref={ref} />;
 });
-
-const MenuListBox = styled(PopoverBox, listStyles);
 
 function useTriggerWidth(triggerElementId?: string) {
   const [width, setWidth] = useState<number>();
@@ -97,9 +95,7 @@ function useTriggerWidth(triggerElementId?: string) {
   return width;
 }
 
-interface MenuItemProps extends Omit<ComponentProps<typeof RdxMenu.Item>, 'as'>, VariantProps<typeof ListItem> {
-  css?: CssStyles;
-}
+interface MenuItemProps extends ListItemVariants, Omit<ComponentProps<typeof RdxMenu.Item>, 'asChild'> {}
 
 const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(({ onSelect, disabled, textValue, ...props }, ref) => {
   return (
@@ -109,12 +105,9 @@ const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(({ onSelect, disabled
   );
 });
 
-const Separator = styled(RdxMenu.Separator, {
-  height: 1,
-  bc: '$surfaceVariant',
-  my: '$1',
-  mx: '-$1',
-});
+export const Separator = (props: ComponentProps<'div'>) => {
+  return <div {...props} className={clsx(styles.separator, props.className)} />;
+};
 
 const MenuLabel = forwardRef((props, ref) => {
   return (

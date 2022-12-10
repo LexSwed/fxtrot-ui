@@ -5,20 +5,22 @@ import { type ComponentProps, type ElementType, forwardRef } from 'react';
 import styles from './icon.module.css';
 
 interface Props extends ComponentProps<'svg'>, VariantProps<typeof iconCss> {
-  as: ElementType;
+  as?: ElementType;
 }
 
-const Icon = forwardRef<SVGSVGElement, Props>(({ color, as: Svg, className, size = 'md', children, ...props }, ref) => {
-  return (
-    <Svg
-      {...props}
-      // aria-hidden for empty icon usage, e.g. in Dropdown Menu
-      aria-hidden={props['aria-hidden'] || !Svg}
-      ref={ref}
-      className={clsx(iconCss({ size }), className)}
-    />
-  );
-});
+const Icon = forwardRef<SVGSVGElement, Props>(
+  ({ color, as: Svg = 'svg', className, size = 'md', children, ...props }, ref) => {
+    return (
+      <Svg
+        {...props}
+        // aria-hidden for empty icon usage, e.g. in Dropdown Menu
+        aria-hidden={props['aria-hidden'] || !Svg}
+        ref={ref}
+        className={clsx(iconCss({ size }), className)}
+      />
+    );
+  }
+);
 
 const iconCss = css(styles.icon, {
   variants: {

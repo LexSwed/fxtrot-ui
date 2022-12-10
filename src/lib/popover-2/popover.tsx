@@ -1,11 +1,12 @@
-import { ComponentProps, FC, forwardRef, ForwardRefExoticComponent, ReactElement, RefAttributes, useRef } from 'react';
+import { ComponentProps, forwardRef, ForwardRefExoticComponent, ReactElement, RefAttributes, useRef } from 'react';
+import { clsx } from 'clsx';
 import * as RdxPopover from '@radix-ui/react-popover';
 
 import { OpenStateProvider, OpenStateRef, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { Portal } from '../Portal';
-import { styled } from '../stitches.config';
-import { Presence } from '../shared/Presence';
-import { PopoverBox } from './PopoverBox';
+import { Presence } from '../shared/presence';
+import { PopoverBox } from './popover-box';
+
 interface Props {
   children: [ReactElement, ReactElement<ContentProps>];
   defaultOpen?: boolean;
@@ -44,26 +45,22 @@ interface ContentProps
   extends Pick<RdxPopover.PopoverContentProps, 'side' | 'sideOffset' | 'align'>,
     ComponentProps<typeof PopoverBox> {}
 
-const Content: FC<ContentProps> = ({ children, align = 'start', side = 'bottom', sideOffset = 8, ...props }) => {
+const Content = ({ children, align = 'start', side = 'bottom', sideOffset = 8, ...props }: ContentProps) => {
   const open = useOpenState();
   return (
     <Presence present={open}>
       {({ ref: presenceRef }) => (
         <Portal radixPortal={RdxPopover.Portal} forceMount>
           <RdxPopover.Content collisionPadding={8} align={align} side={side} sideOffset={sideOffset} asChild>
-            <PopoverPopoverBox {...props} ref={presenceRef}>
+            <PopoverBox {...props} className={clsx('p-4', props.className)} ref={presenceRef}>
               {children}
-            </PopoverPopoverBox>
+            </PopoverBox>
           </RdxPopover.Content>
         </Portal>
       )}
     </Presence>
   );
 };
-
-const PopoverPopoverBox = styled(PopoverBox, {
-  p: '$4',
-});
 
 export const Popover = PopoverRoot;
 PopoverRoot.displayName = 'Popover';

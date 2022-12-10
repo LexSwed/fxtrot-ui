@@ -2,31 +2,46 @@
 
 @layer lib {
   .list-item {
-    @apply w-full shrink-0 cursor-default select-none rounded-sm bg-transparent font-sans text-sm leading-none text-on-background duration-100 ease-in-out px-3;
+    width: 100%;
+    flex-shrink: 0;
+    cursor: default;
+    user-select: none;
+    border-radius: theme('borderRadius.sm');
+    color: theme('colors.on-background');
+    background: transparent;
+    line-height: 1;
+    padding-inline: theme('spacing.3');
+    transition: background-color 100ms ease-in;
+    outline: none;
+
+    @apply text-sm;
 
     &:where(:hover, :focus, [aria-selected='true']) {
-      @apply bg-on-surface/5;
+      background-color: theme('colors.on-surface/0.05');
     }
     &:where(:active, [data-focused='true'], [data-highlighted]) {
-      @apply bg-on-surface/10;
+      background-color: theme('colors.on-surface/0.1');
     }
     &:where(:disabled, [aria-disabled='true'], [data-disabled='true']) {
-      @apply pointer-events-none cursor-not-allowed bg-disabled text-on-disabled;
+      background-color: theme('colors.disabled');
+      color: theme('colors.on-disabled');
+      cursor: not-allowed;
+      pointer-events: none;
     }
   }
 
   /*
     Sizes
   */
-  .list-item--sm {
+  .size--sm {
     min-height: theme('spacing.8');
     padding-block: theme('spacing.1');
   }
-  .list-item--md {
+  .size--md {
     min-height: theme('spacing.10');
     padding-block: theme('spacing.2');
   }
-  .list-item--lg {
+  .size--lg {
     min-height: theme('spacing.12');
     padding-block: theme('spacing.2');
   }
