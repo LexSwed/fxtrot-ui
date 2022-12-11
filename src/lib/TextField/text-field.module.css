@@ -1,0 +1,61 @@
+@layer lib, utils;
+
+@layer lib {
+  .text-field {
+    &[type='number']::-webkit-inner-spin-button,
+    &[type='number']::-webkit-outer-spin-button {
+      -webkit-appearance: inner-spin-button !important;
+      appearance: inner-spin-button !important;
+    }
+
+    &[type='date']::-webkit-calendar-picker-indicator,
+    &[type='search']::-webkit-search-cancel-button {
+      opacity: 0;
+      height: inherit;
+      /** hide native icons and set same styles as for custom ones */
+      position: absolute;
+      inset-block: 0;
+      inset-inline-end: 0;
+      width: theme('spacing.8');
+      padding-inline-end: theme('spacing.1');
+    }
+
+    &[type='date']::-webkit-calendar-picker-indicator {
+      background-image: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    &[type='search']::-webkit-search-cancel-button {
+      appearance: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    &[type='search']:placeholder-shown + .icon {
+      opacity: 0;
+    }
+  }
+
+  /** custom icon */
+  .icon {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-end: 0;
+    width: theme('spacing.8');
+    padding-inline-end: theme('spacing.1');
+    outline: none;
+    border-radius: theme('borderRadius.md');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    transition: color 0.1s ease-in;
+  }
+  .valid + .icon {
+    color: theme('colors.success');
+  }
+  .invalid + .icon {
+    color: theme('colors.error');
+  }
+}

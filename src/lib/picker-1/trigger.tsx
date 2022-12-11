@@ -1,13 +1,15 @@
 import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import * as RdxSelect from '@radix-ui/react-select';
+import type { ComponentProps } from 'react';
 
 import { styled } from '../stitches.config';
 import { Column, FlexVariants } from '../flex/flex';
-import { FormField, FormFieldProps, Hint, useFormField } from '../form-field/form-field';
+import { FormFieldWrapper, Hint, useFormField } from '../form-field/form-field';
 import { Icon } from '../icon';
 import { Label } from '../form-field';
 import { fieldBox, FieldBoxVariants } from '../TextField/shared';
-import type { ComponentProps } from 'react';
+
+import styles from './picker.module.css';
 
 export interface PickerTriggerProps
   extends FlexVariants,
@@ -19,7 +21,6 @@ export interface PickerTriggerProps
   secondaryLabel?: string;
   hint?: string;
   disabled?: boolean;
-  validity?: FormFieldProps['validity'];
 }
 
 export const PickerTrigger = ({
@@ -43,7 +44,15 @@ export const PickerTrigger = ({
 }: PickerTriggerProps) => {
   const ariaProps = useFormField({ id, hint, label });
   return (
-    <FormField main={main} cross={cross} flow={flow} display={display} gap={gap} style={style} className={className}>
+    <FormFieldWrapper
+      main={main}
+      cross={cross}
+      flow={flow}
+      display={display}
+      gap={gap}
+      style={style}
+      className={className}
+    >
       {label !== undefined && (
         <Label label={label} secondary={secondaryLabel} id={ariaProps['aria-labelledby']} disabled={disabled} />
       )}
@@ -62,7 +71,7 @@ export const PickerTrigger = ({
           </Hint>
         )}
       </Column>
-    </FormField>
+    </FormFieldWrapper>
   );
 };
 

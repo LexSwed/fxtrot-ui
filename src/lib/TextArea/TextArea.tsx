@@ -1,7 +1,7 @@
 import { ChangeEvent, ChangeEventHandler, ComponentProps, forwardRef, Ref, useEffect, useRef } from 'react';
 
 import { Column, FlexVariants } from '../flex/flex';
-import { FormField, Hint, Label, useFormField } from '../form-field';
+import { FormFieldWrapper, Hint, Label, useFormField } from '../form-field';
 import { styled, CssStyles } from '../stitches.config';
 import { fieldBox, FieldBoxVariants } from '../TextField/shared';
 import { useForkRef } from '../utils/hooks';
@@ -51,7 +51,7 @@ export const TextArea = forwardRef<HTMLDivElement, Props>(
     const refs = useForkRef(inputRef, innerRef);
 
     return (
-      <FormField
+      <FormFieldWrapper
         main={main}
         cross={cross}
         flow={flow}
@@ -86,7 +86,7 @@ export const TextArea = forwardRef<HTMLDivElement, Props>(
             </Hint>
           )}
         </Column>
-      </FormField>
+      </FormFieldWrapper>
     );
   }
 );

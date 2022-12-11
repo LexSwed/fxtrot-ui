@@ -189,10 +189,14 @@ export type FieldBoxVariants = Omit<VariantProps<typeof fieldBox>, 'fieldSize'> 
 
 const Input = styled('input', fieldBox, {
   //  throws warnings that inner-spin-button is not standartized
-  // '&[type="number"]::-webkit-inner-spin-button, &[type="number"]::-webkit-outer-spin-button': {
-  //   '-webkit-appearance': 'inner-spin-button !important',
-  //   'appearance': 'inner-spin-button !important',
-  // },
+  '&[type="number"]::-webkit-inner-spin-button, &[type="number"]::-webkit-outer-spin-button': {
+    '-webkit-appearance': 'inner-spin-button !important',
+    'appearance': 'inner-spin-button !important',
+  },
+
+  '&[type="date"]::-webkit-calendar-picker-indicator, &[type="search"]::-webkit-search-cancel-button': {
+    opacity: 0,
+  },
 
   '&[type="date"]': {
     '&::-webkit-calendar-picker-indicator': {

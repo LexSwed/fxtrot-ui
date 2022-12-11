@@ -1,10 +1,14 @@
-import { forwardRef, ChangeEvent, Ref, ElementType, useMemo } from 'react';
+import { forwardRef, ChangeEvent, Ref, ElementType, useMemo, ComponentProps } from 'react';
 import { CheckIcon, XMarkIcon, CalendarIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline';
+import { clsx } from 'clsx';
 
+import { classed } from '@tw-classed/core';
 import { Column, FlexVariants } from '../flex/flex';
 import { FormField, Hint, Label, useFormField } from '../form-field';
 import { Icon } from '../icon';
-import { InputField, IconWrapper, InputProps } from './shared';
+import { fieldBoxCss, FieldVariants } from '../form-field/form-field';
+
+import styles from './text-field.module.css';
 
 export const TextField = forwardRef<HTMLDivElement, Props>(
   (
@@ -18,7 +22,6 @@ export const TextField = forwardRef<HTMLDivElement, Props>(
       display,
       wrap,
       gap,
-      css,
       style,
       className,
       type = 'text',
@@ -72,26 +75,29 @@ export const TextField = forwardRef<HTMLDivElement, Props>(
           <Label label={label} secondary={secondaryLabel} htmlFor={ariaProps.id} disabled={disabled} />
         )}
         <Column gap="xs">
-          <InputField
-            validity={validity}
-            {...props}
-            {...ariaProps}
-            defaultValue={defaultValue ? `${defaultValue}` : defaultValue}
-            disabled={disabled}
-            value={value ? `${value}` : value}
-            onChange={handleChange}
-            inputMode={inputMode[type]}
-            type={type}
-            variant={variant}
-            inputRef={inputRef}
-            size={size}
-          >
+          <div className="relative w-full">
+            <input
+              {...props}
+              {...ariaProps}
+              defaultValue={defaultValue ? `${defaultValue}` : defaultValue}
+              disabled={disabled}
+              value={value ? `${value}` : value}
+              onChange={handleChange}
+              inputMode={inputMode[type]}
+              type={type}
+              ref={inputRef}
+              className={clsx(
+                styles['text-field'],
+                textFieldCss({ validity }),
+                fieldBoxCss({ validity, variant, size })
+              )}
+            />
             {iconRight && (
-              <IconWrapper>
-                <Icon as={iconRight} size="md" />
-              </IconWrapper>
+              <div className={styles.icon}>
+                <Icon as={iconRight} size="sm" />
+              </div>
             )}
-          </InputField>
+          </div>
           {hint && (
             <Hint id={ariaProps['aria-describedby']} validity={validity}>
               {hint}
@@ -105,14 +111,18 @@ export const TextField = forwardRef<HTMLDivElement, Props>(
 
 TextField.displayName = 'TextField';
 
-type Props = Omit<InputProps, 'onChange' | 'type' | 'value' | 'defaultValue' | 'children'> &
-  FlexVariants & {
+type InputProps = Omit<ComponentProps<'input'>, 'onChange' | 'type' | 'size' | 'value' | 'defaultValue' | 'children'>;
+
+type Props = InputProps &
+  FieldVariants &
+  FlexVariants &
+  OnChange & {
     label?: string;
     secondaryLabel?: string;
     hint?: string;
     validity?: 'valid' | 'invalid';
     inputRef?: Ref<HTMLInputElement>;
-  } & OnChange;
+  };
 
 type OnChange =
   | {
@@ -167,3 +177,12 @@ const inputMode: Record<NonNullable<Props['type']>, InputProps['inputMode']> = {
   date: undefined,
   password: undefined,
 };
+
+const textFieldCss = classed({
+  variants: {
+    validity: {
+      valid: styles.valid,
+      invalid: styles.invalid,
+    },
+  },
+});

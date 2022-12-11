@@ -2,13 +2,14 @@ import { ComponentProps, ElementType, forwardRef, useMemo } from 'react';
 import { useId } from '@radix-ui/react-id';
 import { clsx } from 'clsx';
 
+import { classed, VariantProps } from '@tw-classed/core';
 import { Text } from '../text';
 import type { PolyProps, PolyRef } from '../utils/polymorphic';
 import { Flex, FlexVariants } from '../flex/flex';
 
 import styles from './form-field.module.css';
 
-export const FormField = forwardRef(function FormField<C extends ElementType = 'div'>(
+export const FormFieldWrapper = forwardRef(function FormField<C extends ElementType = 'div'>(
   {
     cross = 'stretch',
     flow = 'column',
@@ -78,3 +79,23 @@ interface InputAriaProps {
   'aria-describedby'?: string;
   'aria-labelledby'?: string;
 }
+export type FieldVariants = VariantProps<typeof fieldBoxCss>;
+export const fieldBoxCss = classed(styles.field, {
+  variants: {
+    variant: {
+      boxed: styles['variant--boxed'],
+      flat: styles['variant--flat'],
+      underlined: styles['variant--underlined'],
+    },
+    size: {
+      sm: styles['size--sm'],
+      md: styles['size--md'],
+      lg: styles['size--lg'],
+      xl: styles['size--xl'],
+    },
+    validity: {
+      valid: styles['validity--valid'],
+      invalid: styles['validity--invalid'],
+    },
+  },
+});

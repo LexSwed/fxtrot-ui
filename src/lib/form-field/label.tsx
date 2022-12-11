@@ -15,13 +15,17 @@ interface Props extends FlexVariants {
 }
 
 export const Label = forwardRef(function Label<C extends ElementType = 'label'>(
-  { as, label, secondary, disabled, gap = 'xs', size = 'sm', ...props }: PolyProps<C, Props>,
+  { as, label, secondary, disabled, display = 'inline', gap = 'xs', size = 'sm', ...props }: PolyProps<C, Props>,
   ref: PolyRef<C>
 ) {
   const Component = as || 'label';
   const textStyle = `label-${size}` as `label-${typeof size}`;
   return (
-    <Component className={clsx(labelCss({ gap, ...props }), styles.label, props.className)} {...props} ref={ref}>
+    <Component
+      className={clsx(labelCss({ gap, display, ...props }), styles.label, props.className)}
+      {...props}
+      ref={ref}
+    >
       <Text
         textStyle={textStyle}
         className={clsx(
@@ -40,6 +44,6 @@ export const Label = forwardRef(function Label<C extends ElementType = 'label'>(
   );
 });
 
-const labelCss = css(flexCss, 'text-ellipsis', 'whitespace-nowrap');
+const labelCss = css(styles.label, flexCss);
 
 Label.displayName = 'Label';
