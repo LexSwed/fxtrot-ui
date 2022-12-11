@@ -14,7 +14,7 @@ export { Picker } from './Picker';
 export { Popover, usePopoverRef } from './popover';
 export { Portal } from './portal';
 export { Section } from './section';
-export { Spinner } from './spinner-1';
+export { Spinner } from './spinner';
 export { Switch } from './switch';
 export { Text } from './text';
 export { TextArea } from './TextArea';
