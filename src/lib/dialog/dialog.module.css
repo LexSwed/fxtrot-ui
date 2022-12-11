@@ -1,9 +1,6 @@
 @layer lib, utils;
 
 @layer lib {
-  .dialog {
-  }
-
   .overlay {
     background-color: theme('colors.on-surface/0.4');
     position: fixed;
