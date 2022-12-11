@@ -1,11 +1,4 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { stitchesConfig } from '@fxtrot/ui';
-
-const getCssAndReset = () => {
-  const css = stitchesConfig.getCssText();
-  stitchesConfig.reset();
-  return css;
-};
 
 export default class MyDocument extends Document {
   render() {
@@ -19,7 +12,6 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             key="google-font-Fira"
           />
-          <style id="fxtrot-ui" dangerouslySetInnerHTML={{ __html: getCssAndReset() }} />
         </Head>
         <body>
           <Main />
