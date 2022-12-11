@@ -10,7 +10,7 @@ export { Label } from './form-field';
 export { Menu, useMenuRef } from './menu';
 export { MenuList } from './menu-list';
 export { Picker } from './Picker';
-export { Portal } from './portal-1';
+export { Portal } from './portal';
 export { Section } from './section';
 export { Popover, usePopoverRef } from './popover';
 export { Spinner } from './Spinner';

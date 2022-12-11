@@ -1,6 +1,6 @@
 import * as RdxTooltip from '@radix-ui/react-tooltip';
 import type { ComponentProps, ReactNode } from 'react';
-import { Portal } from '../portal-1';
+import { Portal } from '../portal';
 import { styled } from '../stitches.config';
 import { PopoverBox } from '../shared/popover-box';
 

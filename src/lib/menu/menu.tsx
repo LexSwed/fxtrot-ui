@@ -13,7 +13,7 @@ import { clsx } from 'clsx';
 import { PopoverBox } from '../shared/popover-box';
 import { OpenStateProvider, OpenStateRef, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { Label } from '../form-field';
-import { Portal } from '../portal-1';
+import { Portal } from '../portal';
 import { ListItem, ListItemVariants } from '../shared/list-item';
 import { useIsomorphicLayoutEffect } from '../utils/hooks';
 import { Presence } from '../shared/presence';

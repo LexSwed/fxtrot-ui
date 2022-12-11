@@ -5,7 +5,7 @@ import { styled } from '../stitches.config';
 import type { OptionType } from './Item';
 import { Icon } from '../icon';
 import { PopoverBox } from '../shared/popover-box';
-import { Portal } from '../portal-1';
+import { Portal } from '../portal';
 import Item from './Item';
 import { PickerTrigger, PickerTriggerProps } from './Trigger';
 
