@@ -2,7 +2,7 @@ import { ComponentProps, ElementType, forwardRef, useMemo } from 'react';
 import { useId } from '@radix-ui/react-id';
 import { clsx } from 'clsx';
 
-import { classed, VariantProps } from '@tw-classed/core';
+import { classed as css, VariantProps } from '@tw-classed/core';
 import { Text } from '../text';
 import type { PolyProps, PolyRef } from '../utils/polymorphic';
 import { Flex, FlexVariants } from '../flex/flex';
@@ -49,7 +49,6 @@ interface HintProps extends ComponentProps<typeof Text> {
 export const Hint = ({ validity, className, children, ...props }: HintProps) => {
   return (
     <Text
-      textStyle="body-sm"
       title={typeof children === 'string' ? children : undefined}
       tone={validity ? tonesMap[validity] : 'light'}
       aria-live="polite"
@@ -80,7 +79,7 @@ interface InputAriaProps {
   'aria-labelledby'?: string;
 }
 export type FieldVariants = VariantProps<typeof fieldBoxCss>;
-export const fieldBoxCss = classed(styles.field, {
+export const fieldBoxCss = css(styles.field, {
   variants: {
     variant: {
       boxed: styles['variant--boxed'],

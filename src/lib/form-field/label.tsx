@@ -22,21 +22,14 @@ export const Label = forwardRef(function Label<C extends ElementType = 'label'>(
   const textStyle = `label-${size}` as `label-${typeof size}`;
   return (
     <Component
+      aria-disabled={disabled}
       className={clsx(labelCss({ gap, display, ...props }), styles.label, props.className)}
       {...props}
       ref={ref}
     >
-      <Text
-        textStyle={textStyle}
-        className={clsx(
-          { 'text-on-disabled': disabled },
-          'shrink-0 cursor-default select-none font-medium leading-none'
-        )}
-      >
-        {label}
-      </Text>
+      <Text textStyle={textStyle}>{label}</Text>
       {secondary && (
-        <Text textStyle={textStyle} tone="light" className="leading-none">
+        <Text textStyle={textStyle} tone="light">
           {secondary}
         </Text>
       )}

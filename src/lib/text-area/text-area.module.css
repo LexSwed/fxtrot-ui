@@ -1,0 +1,30 @@
+@layer lib, utils;
+
+@layer lib {
+  .text-area {
+    resize: none;
+    height: auto;
+    max-height: 10em;
+  }
+
+  .size--sm {
+    min-height: theme('spacing.6');
+    padding: theme('spacing.1');
+    line-height: 1.2em;
+  }
+  .size--md {
+    min-height: theme('spacing.10');
+    padding-block: theme('spacing.2');
+    line-height: 1.5em;
+  }
+  .size--lg {
+    min-height: theme('spacing.12');
+    padding-block: theme('spacing.2');
+    line-height: 1.5em;
+  }
+  .size--xl {
+    min-height: auto;
+    padding-block: theme('spacing.2');
+    line-height: 1.5em;
+  }
+}

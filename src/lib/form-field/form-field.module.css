@@ -31,6 +31,7 @@
   }
   .hint {
     padding-inline-start: theme('spacing.1');
+    @apply text-xs;
   }
 
   .field {
@@ -75,10 +76,10 @@
     background-color: theme('colors.surface');
     background-image: linear-gradient(to top, var(--border-color) 2px, transparent 2px);
     background-repeat: no-repeat;
-    background-size: 100% calc(100% + 1px);
+    background-size: 100% calc(100% + 2px);
     border-top-left-radius: theme('borderRadius.md');
     border-top-right-radius: theme('borderRadius.md');
-    border: none;
+    border-inline: 0;
 
     &:hover {
       --border-color: theme('colors.primary');
@@ -86,7 +87,7 @@
     }
     &:where(:focus, [aria-expanded='true']) {
       --border-color: theme('colors.primary');
-      background-size: 100% 100%;
+      background-size: 100% calc(100% + 1px);
       background-color: theme('colors.on-surface/0.1');
     }
     &:disabled {

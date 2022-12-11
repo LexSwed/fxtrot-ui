@@ -2,7 +2,7 @@ import { forwardRef, ChangeEvent, Ref, ElementType, useMemo, ComponentProps } fr
 import { CheckIcon, XMarkIcon, CalendarIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline';
 import { clsx } from 'clsx';
 
-import { classed } from '@tw-classed/core';
+import { classed as css } from '@tw-classed/core';
 import { Column, FlexVariants } from '../flex/flex';
 import { FormFieldWrapper, Hint, Label, useFormField } from '../form-field';
 import { Icon } from '../icon';
@@ -178,7 +178,7 @@ const inputMode: Record<NonNullable<Props['type']>, InputProps['inputMode']> = {
   password: undefined,
 };
 
-const textFieldCss = classed({
+const textFieldCss = css({
   variants: {
     validity: {
       valid: styles.valid,

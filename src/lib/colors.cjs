@@ -27,7 +27,7 @@ module.exports = {
   'surface': 'hsl(260 100% 99.4%)',
   'on-surface': 'hsl(0 0% 10.6%)',
   'surface-variant': 'hsl(217 5% 90%)',
-  'on-surface-variant': 'hsl(215 8% 28%)',
+  'on-surface-variant': 'hsl(215 6% 40%)',
   'inverse-surface': 'hsl(225 4.1% 19.2%)',
   'inverse-on-surface': 'hsl(255 15.4% 94.9%)',
   'disabled': 'hsla(0 0% 12% / 0.15)',

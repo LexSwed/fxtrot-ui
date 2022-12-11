@@ -1,10 +1,13 @@
 import { ChangeEvent, ChangeEventHandler, ComponentProps, forwardRef, Ref, useEffect, useRef } from 'react';
+import { classed as css } from '@tw-classed/core';
+import { clsx } from 'clsx';
 
 import { Column, FlexVariants } from '../flex/flex';
 import { FormFieldWrapper, Hint, Label, useFormField } from '../form-field';
-import { styled, CssStyles } from '../stitches.config';
-import { fieldBox, FieldBoxVariants } from '../TextField/shared';
+import { fieldBoxCss, FieldVariants } from '../form-field/form-field';
 import { useForkRef } from '../utils/hooks';
+
+import styles from './text-area.module.css';
 
 export const TextArea = forwardRef<HTMLDivElement, Props>(
   (
@@ -66,19 +69,16 @@ export const TextArea = forwardRef<HTMLDivElement, Props>(
           <Label label={label} secondary={secondaryLabel} htmlFor={ariaProps.id} disabled={disabled} />
         )}
         <Column>
-          <TextAreaField
+          <textarea
             rows={1}
-            validity={validity}
             {...props}
             {...ariaProps}
             defaultValue={defaultValue}
             disabled={disabled}
             value={value}
             onChange={handleChange}
-            variant={variant}
             ref={refs}
-            fieldSize={size}
-            size={size}
+            className={clsx(fieldBoxCss({ validity, size, variant }), textfieldCss({ size }))}
           />
           {hint && (
             <Hint id={ariaProps['aria-describedby']} validity={validity}>
@@ -93,51 +93,27 @@ export const TextArea = forwardRef<HTMLDivElement, Props>(
 
 TextArea.displayName = 'TextArea';
 
-interface Props extends FlexVariants, FieldBoxVariants, Omit<ComponentProps<'textarea'>, 'wrap' | 'onChange'> {
+interface Props extends FlexVariants, FieldVariants, Omit<ComponentProps<'textarea'>, 'wrap' | 'onChange'> {
   label?: string;
   secondaryLabel?: string;
   hint?: string;
   validity?: 'valid' | 'invalid';
   inputRef?: Ref<HTMLTextAreaElement>;
   onChange?: (value: string, event: ChangeEvent<HTMLTextAreaElement>) => void;
-  css?: CssStyles;
 }
-
-const TextAreaField = styled('textarea', fieldBox, {
-  resize: 'none',
-  height: 'auto',
-  maxHeight: '10em',
-
-  variants: {
-    size: {
-      sm: {
-        minHeight: '$6',
-        p: '$1',
-        lineHeight: '1.2em',
-      },
-      md: {
-        minHeight: '$base',
-        py: '$2',
-        lineHeight: '1.5em',
-      },
-      lg: {
-        minHeight: '$12',
-        py: '$2',
-        lineHeight: '1.5em',
-      },
-      xl: {
-        minHeight: 'auto',
-        py: '$2',
-        lineHeight: '1.5em',
-      },
-    },
-  },
-  defaultVariants: {
-    size: 'md',
-  },
-});
 
 function autosize(el: HTMLTextAreaElement) {
   el.style.height = 'auto';
   el.style.height = `${el.scrollHeight + 2}px`;
 }
+
+const textfieldCss = css(styles['text-area'], {
+  variants: {
+    size: {
+      sm: styles['size--sm'],
+      md: styles['size--md'],
+      lg: styles['size--lg'],
+      xl: styles['size--xl'],
+    },
+  },
+});
