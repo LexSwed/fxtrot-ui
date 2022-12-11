@@ -256,4 +256,7 @@
   */
   .button--icon {
   }
+  .icon {
+    color: inherit;
+  }
 }

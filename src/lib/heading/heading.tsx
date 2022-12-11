@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 import { classed as css, VariantProps } from '@tw-classed/core';
 import { clsx } from 'clsx';
 
-import type { ForwardRefComponent } from '../utils/polymorphic';
+import type { PolyProps, PolyRef } from '../utils/polymorphic';
 
 import styles from './heading.module.css';
 
@@ -10,11 +10,15 @@ export type HeadingVariants = VariantProps<typeof headingCss>;
 
 interface HeadingProps extends HeadingVariants {}
 
-export const Heading = forwardRef(
-  ({ as: As = 'h1', variant = 'default', level = '1', dense = true, className, ...props }, ref) => {
-    return <As className={clsx(headingCss({ variant, level, dense }), className)} {...props} ref={ref} />;
-  }
-) as ForwardRefComponent<'h1', HeadingProps>;
+type HeadingElement = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+
+export const Heading = forwardRef(function Heading<C extends HeadingElement = 'h1'>(
+  { as, variant = 'default', level = '1', dense = true, className, ...props }: PolyProps<C, HeadingProps>,
+  ref: PolyRef<C>
+) {
+  const Component = as || 'h1';
+  return <Component className={clsx(headingCss({ variant, level, dense }), className)} {...props} ref={ref} />;
+});
 
 const headingCss = css(styles.heading, {
   variants: {

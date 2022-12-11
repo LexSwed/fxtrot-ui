@@ -26,7 +26,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
       type={type}
       ref={ref}
     >
-      {icon ? <Icon as={icon} size={size} /> : null}
+      {icon ? <Icon as={icon} size={size} className={styles.icon} /> : null}
       {children}
     </button>
   );

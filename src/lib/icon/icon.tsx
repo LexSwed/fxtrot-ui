@@ -10,11 +10,12 @@ interface Props extends ComponentProps<'svg'>, VariantProps<typeof iconCss> {
 
 const Icon = forwardRef<SVGSVGElement, Props>(
   ({ color, as: Svg = 'svg', className, size = 'md', children, ...props }, ref) => {
+    const hidden = props['aria-hidden'] || !Svg || !(props['aria-label'] || props['aria-labelledby']);
     return (
       <Svg
         {...props}
         // aria-hidden for empty icon usage, e.g. in Dropdown Menu
-        aria-hidden={props['aria-hidden'] || !Svg}
+        aria-hidden={hidden}
         ref={ref}
         className={clsx(iconCss({ size }), className)}
       />

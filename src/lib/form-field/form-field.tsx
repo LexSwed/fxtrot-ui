@@ -1,29 +1,40 @@
-import { ComponentProps, forwardRef, useMemo } from 'react';
+import { ComponentProps, ElementType, forwardRef, useMemo } from 'react';
 import { useId } from '@radix-ui/react-id';
 import { clsx } from 'clsx';
 
 import { Text } from '../text';
-import type { ForwardRefComponent } from '../utils/polymorphic';
-import { flexCss, FlexVariants } from '../flex/flex';
+import type { PolyProps, PolyRef } from '../utils/polymorphic';
+import { Flex, FlexVariants } from '../flex/flex';
 
 import styles from './form-field.module.css';
 
-export const FormField = forwardRef(
-  ({ cross = 'stretch', flow = 'column', display = 'inline', gap = 'xs', className, ...props }, ref) => {
-    const { as: As = 'div' } = props;
-    return (
-      <As
-        className={clsx(flexCss({ cross, flow, display, gap, ...props }), styles['form-field'], className)}
-        {...props}
-        ref={ref}
-      />
-    );
-  }
-) as ForwardRefComponent<'div', FlexVariants>;
+export const FormField = forwardRef(function FormField<C extends ElementType = 'div'>(
+  {
+    cross = 'stretch',
+    flow = 'column',
+    display = 'inline',
+    gap = 'xs',
+    className,
+    ...props
+  }: PolyProps<C, FlexVariants>,
+  ref: PolyRef<C>
+) {
+  return (
+    <Flex
+      cross={cross}
+      flow={flow}
+      display={display}
+      gap={gap}
+      className={clsx(styles['form-field'], className)}
+      {...props}
+      ref={ref}
+    />
+  );
+});
 
-export interface FormFieldProps extends ComponentProps<typeof FormField> {
+export type FormFieldValidity = {
   validity?: keyof typeof tonesMap;
-}
+};
 
 const tonesMap: Record<'valid' | 'invalid', ComponentProps<typeof Text>['tone']> = {
   valid: 'success',
@@ -31,7 +42,7 @@ const tonesMap: Record<'valid' | 'invalid', ComponentProps<typeof Text>['tone']>
 };
 
 interface HintProps extends ComponentProps<typeof Text> {
-  validity?: FormFieldProps['validity'];
+  validity?: FormFieldValidity['validity'];
 }
 
 export const Hint = ({ validity, className, children, ...props }: HintProps) => {

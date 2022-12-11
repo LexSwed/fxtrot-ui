@@ -1,16 +1,20 @@
 import { classed as css, VariantProps } from '@tw-classed/core';
 import { clsx } from 'clsx';
-import { forwardRef } from 'react';
+import { ElementType, forwardRef } from 'react';
 import { flexCss, FlexVariants } from '../flex/flex';
-import type { ForwardRefComponent } from '../utils/polymorphic';
+import type { PolyProps, PolyRef } from '../utils/polymorphic';
 
 import styles from './list-item.module.css';
 
 interface ListItemProps extends ListItemVariants {}
 
-const ListItem = forwardRef(({ as: As = 'div', className, ...props }, ref) => {
-  return <As className={clsx(listItemCss(props), className)} {...props} ref={ref} />;
-}) as ForwardRefComponent<'div', ListItemProps>;
+const ListItem = forwardRef(function ListItem<C extends ElementType = 'div'>(
+  { as, className, ...props }: PolyProps<C, ListItemProps>,
+  ref: PolyRef<C>
+) {
+  const Component = as || 'div';
+  return <Component className={clsx(listItemCss(props), className)} {...props} ref={ref} />;
+});
 
 export { ListItem };
 
