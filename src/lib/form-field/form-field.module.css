@@ -2,20 +2,40 @@
 
 @layer lib {
   .form-field {
-    @apply w-full;
-  }
-  .hint {
-    padding-inline-start: theme('spacing.1');
+    width: 100%;
+
+    &:has(.size--sm) {
+      & :where(.label, .hint) {
+        padding-inline-start: theme('spacing.1');
+      }
+    }
+    &:has(.size--md) {
+      & :where(.label, .hint) {
+        padding-inline-start: theme('spacing.2');
+      }
+    }
+    &:has(.size--lg) {
+      & :where(.label, .hint) {
+        padding-inline-start: theme('spacing.3');
+      }
+    }
+    &:has(.size--xl) {
+      & :where(.label, .hint) {
+        padding-inline-start: theme('spacing.3');
+      }
+    }
   }
   .label {
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+  .hint {
+    padding-inline-start: theme('spacing.1');
+  }
 
   .field {
     width: 100%;
     color: theme('colors.on-background');
-    padding-inline: theme('spacing.2');
     display: inline-flex;
     transition: 0.24s ease-in-out;
     transition-property: background-color, background-size, border-color, box-shadow;
@@ -25,7 +45,7 @@
     border: 1px solid transparent;
 
     &::placeholder {
-      color: theme('colors.on-surface/0.6');
+      color: theme('colors.on-surface-variant');
     }
     &:where(:focus) {
       outline: none;
@@ -41,7 +61,6 @@
   .variant--boxed {
     border-radius: theme('borderRadius.md');
     border-color: theme('colors.outline');
-    border-width: 1;
     &:hover {
       border-color: theme('colors.on-background');
     }
@@ -99,15 +118,18 @@
   }
   .size--md {
     height: theme('spacing.10');
+    padding-inline: theme('spacing.2');
     @apply text-sm;
   }
   .size--lg {
     height: theme('spacing.12');
+    padding-inline: theme('spacing.3');
     @apply text-lg;
   }
   .size--xl {
     height: auto;
     padding-block: theme('spacing.1');
+    padding-inline: theme('spacing.3');
     font-weight: 800;
     @apply text-2xl;
   }

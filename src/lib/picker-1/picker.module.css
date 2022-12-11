@@ -11,58 +11,49 @@
   .trigger {
     position: relative;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: theme('fontSize.sm');
+
+    &[data-placeholder] {
+      color: theme('colors.on-surface-variant');
+    }
+
+    /* radix select value */
+    & > span:first-of-type {
+      min-width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
   }
 
   .trigger-icon {
+    padding-inline-start: theme('spacing.1');
+  }
+
+  .size--sm {
+    & > .trigger-icon {
+      @apply size-4;
+      stroke-width: 1.5;
+    }
+  }
+  .size--md {
+    & > .trigger-icon {
+      @apply size-6;
+      stroke-width: 1.5;
+    }
+  }
+  .size--lg {
+    & > .trigger-icon {
+      @apply size-6;
+      stroke-width: 1.8;
+    }
+  }
+  .size--xl {
+    & > .trigger-icon {
+      @apply size-8;
+      stroke-width: 1.8;
+    }
   }
 }
-
-/* 'position': 'relative',
-  'display': 'flex',
-  'alignItems': 'center',
-  'justifyContent': 'space-between',
-  'fontSize': '$sm',
-
-  '&[data-placeholder]': {
-    color: '$onSurfaceVariant',
-  },
-
-  '& > span:first-of-type': {
-    minWidth: 0,
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-    textOverflow: 'ellipsis',
-  },
-
-  [`& > ${Icon}`]: {
-    pl: '$1',
-  },
-
-  'variants': {
-    fieldSize: {
-      sm: {
-        [`& > ${Icon}`]: {
-          size: '$4',
-          strokeWidth: 1.5,
-        },
-      },
-      md: {
-        [`& > ${Icon}`]: {
-          size: '$6',
-          strokeWidth: 1.5,
-        },
-      },
-      lg: {
-        [`& > ${Icon}`]: {
-          size: '$6',
-          strokeWidth: 1.8,
-        },
-      },
-      xl: {
-        [`& > ${Icon}`]: {
-          size: '$8',
-          strokeWidth: 1.8,
-        },
-      },
-    },
-  }, */

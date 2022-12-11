@@ -4,7 +4,7 @@ import { clsx } from 'clsx';
 
 import { classed } from '@tw-classed/core';
 import { Column, FlexVariants } from '../flex/flex';
-import { FormField, Hint, Label, useFormField } from '../form-field';
+import { FormFieldWrapper, Hint, Label, useFormField } from '../form-field';
 import { Icon } from '../icon';
 import { fieldBoxCss, FieldVariants } from '../form-field/form-field';
 
@@ -60,7 +60,7 @@ export const TextField = forwardRef<HTMLDivElement, Props>(
     const iconRight = icons[validity || type];
 
     return (
-      <FormField
+      <FormFieldWrapper
         main={main}
         cross={cross}
         flow={flow}
@@ -104,7 +104,7 @@ export const TextField = forwardRef<HTMLDivElement, Props>(
             </Hint>
           )}
         </Column>
-      </FormField>
+      </FormFieldWrapper>
     );
   }
 );

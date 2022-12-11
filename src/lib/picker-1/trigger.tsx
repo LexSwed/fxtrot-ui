@@ -1,19 +1,19 @@
 import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import * as RdxSelect from '@radix-ui/react-select';
+import { classed as css } from '@tw-classed/core';
+import { clsx } from 'clsx';
 import type { ComponentProps } from 'react';
 
-import { styled } from '../stitches.config';
 import { Column, FlexVariants } from '../flex/flex';
-import { FormFieldWrapper, Hint, useFormField } from '../form-field/form-field';
+import { FormFieldWrapper, Hint, useFormField, fieldBoxCss, FieldVariants } from '../form-field/form-field';
 import { Icon } from '../icon';
 import { Label } from '../form-field';
-import { fieldBox, FieldBoxVariants } from '../TextField/shared';
 
 import styles from './picker.module.css';
 
 export interface PickerTriggerProps
   extends FlexVariants,
-    FieldBoxVariants,
+    FieldVariants,
     Omit<ComponentProps<'button'>, 'validity' | 'type' | 'value' | 'size' | 'ref'> {
   id?: string;
   placeholder?: string;
@@ -39,7 +39,7 @@ export const PickerTrigger = ({
   disabled,
   placeholder,
   variant = 'boxed',
-  size,
+  size = 'md',
   ...props
 }: PickerTriggerProps) => {
   const ariaProps = useFormField({ id, hint, label });
@@ -58,12 +58,16 @@ export const PickerTrigger = ({
       )}
       <Column gap="xs">
         <RdxSelect.Trigger asChild>
-          <TriggerButton validity={validity} variant={variant} {...ariaProps} {...props} fieldSize={size}>
+          <button
+            {...ariaProps}
+            {...props}
+            className={clsx(triggerButtonCss({ size }), fieldBoxCss({ variant, size, validity }))}
+          >
             <RdxSelect.Value placeholder={placeholder} />
             <RdxSelect.Icon asChild>
-              <Icon as={ChevronUpDownIcon} />
+              <Icon as={ChevronUpDownIcon} className={styles['trigger-icon']} />
             </RdxSelect.Icon>
-          </TriggerButton>
+          </button>
         </RdxSelect.Trigger>
         {hint && (
           <Hint id={ariaProps['aria-describedby']} validity={validity}>
@@ -75,54 +79,13 @@ export const PickerTrigger = ({
   );
 };
 
-const TriggerButton = styled('button', fieldBox, {
-  'position': 'relative',
-  'display': 'flex',
-  'alignItems': 'center',
-  'justifyContent': 'space-between',
-  'fontSize': '$sm',
-
-  '&[data-placeholder]': {
-    color: '$onSurfaceVariant',
-  },
-
-  '& > span:first-of-type': {
-    minWidth: 0,
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-    textOverflow: 'ellipsis',
-  },
-
-  [`& > ${Icon}`]: {
-    pl: '$1',
-  },
-
-  'variants': {
-    fieldSize: {
-      sm: {
-        [`& > ${Icon}`]: {
-          size: '$4',
-          strokeWidth: 1.5,
-        },
-      },
-      md: {
-        [`& > ${Icon}`]: {
-          size: '$6',
-          strokeWidth: 1.5,
-        },
-      },
-      lg: {
-        [`& > ${Icon}`]: {
-          size: '$6',
-          strokeWidth: 1.8,
-        },
-      },
-      xl: {
-        [`& > ${Icon}`]: {
-          size: '$8',
-          strokeWidth: 1.8,
-        },
-      },
+const triggerButtonCss = css(styles.trigger, {
+  variants: {
+    size: {
+      sm: styles['size--sm'],
+      md: styles['size--md'],
+      lg: styles['size--lg'],
+      xl: styles['size--xl'],
     },
   },
 });
