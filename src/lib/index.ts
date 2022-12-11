@@ -2,7 +2,7 @@ export { ActionGroup } from './action-group';
 export { Button, LinkButton } from './button';
 export { Checkbox } from './checkbox';
 export { Collapsible } from './collapsible';
-export { Dialog, useDialogRef } from './Dialog';
+export { Dialog, useDialogRef } from './dialog-1';
 export { Flex, Column, Row, Grid } from './flex';
 export { Heading } from './heading';
 export { Icon } from './icon';
