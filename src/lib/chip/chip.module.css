@@ -1,0 +1,84 @@
+@layer lib, utils;
+
+@layer lib {
+  .chip {
+    transition: 0.2s ease-in-out;
+    transition-property: color, background-color, border-color;
+    border: 1px solid transparent;
+    border-radius: theme('borderRadius.md');
+    white-space: nowrap;
+    min-width: theme('spacing.16');
+    background-color: transparent;
+    color: theme('colors.on-surface');
+    border-color: theme('colors.on-surface/0.5');
+
+    &:where([role='option']) {
+      outline: none;
+      cursor: default;
+      user-select: none;
+      &:where(:hover, :focus) {
+        background-color: theme('colors.on-surface/0.1');
+      }
+      &:where(:active) {
+        border-color: theme('colors.outline/0.15');
+        background-color: theme('colors.on-surface/0.15');
+      }
+      &:focus {
+        @apply outline-none ring-4 ring-opacity-20;
+      }
+    }
+    &:where([aria-selected='false']) {
+      &:focus {
+        @apply ring-outline ring-opacity-20;
+      }
+    }
+
+    &:where([aria-selected='true']) {
+      color: theme('colors.primary');
+      background-color: theme('colors.primary/0.1');
+      border-color: theme('colors.primary/0.1');
+
+      &:where(:hover, :focus, :active) {
+        background-color: theme('colors.primary/0.15');
+        border-color: theme('colors.primary/0.6');
+      }
+
+      &:where(:active) {
+        background-color: theme('colors.primary/0.25');
+      }
+
+      &:where(:focus) {
+        @apply ring-primary;
+      }
+    }
+  }
+
+  /* Size */
+  .size--sm {
+    height: theme('spacing.6');
+    font-size: theme('fontSize.xs');
+    font-weight: 400;
+    padding-inline: theme('spacing.1');
+  }
+  .size--md {
+    @apply text-xs;
+    height: theme('spacing.8');
+    font-weight: 400;
+    padding-inline: theme('spacing.2');
+  }
+  .size--lg {
+    @apply text-base;
+    height: theme('spacing.12');
+    padding-inline: theme('spacing.3');
+    font-weight: 500;
+  }
+}
+
+/*
+
+  [`& > ${Icon}:first-child:last-child`]: {
+    ml: '-$1',
+    mr: '-$1',
+  },
+
+  }, */
