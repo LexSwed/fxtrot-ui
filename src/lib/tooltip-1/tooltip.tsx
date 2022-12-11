@@ -1,15 +1,18 @@
 import * as RdxTooltip from '@radix-ui/react-tooltip';
-import type { ComponentProps, ReactNode } from 'react';
+import { clsx } from 'clsx';
+import type { ComponentPropsWithoutRef, ReactNode } from 'react';
+
 import { Portal } from '../portal';
-import { styled } from '../stitches.config';
 import { PopoverBox } from '../shared/popover-box';
+
+import styles from './tooltip.module.css';
 
 type Props = Pick<RdxTooltip.TooltipProps, 'children' | 'defaultOpen' | 'delayDuration' | 'disableHoverableContent'> &
   Pick<
     RdxTooltip.TooltipContentProps,
     'side' | 'sideOffset' | 'align' | 'alignOffset' | 'sticky' | 'hideWhenDetached'
   > &
-  ComponentProps<typeof Content> & {
+  ComponentPropsWithoutRef<'div'> & {
     content?: ReactNode;
   };
 
@@ -20,6 +23,12 @@ export const Tooltip = ({
   delayDuration,
   disableHoverableContent,
   sideOffset = 8,
+  side,
+  align,
+  alignOffset,
+  sticky,
+  hideWhenDetached,
+  className,
   ...props
 }: Props) => {
   return (
@@ -30,25 +39,21 @@ export const Tooltip = ({
     >
       <RdxTooltip.Trigger asChild>{children}</RdxTooltip.Trigger>
       <Portal radixPortal={RdxTooltip.Portal}>
-        <Content {...props} sideOffset={sideOffset}>
-          {content}
-          <Arrow />
-        </Content>
+        <RdxTooltip.Content
+          asChild
+          sideOffset={sideOffset}
+          side={side}
+          align={align}
+          alignOffset={alignOffset}
+          sticky={sticky}
+          hideWhenDetached={hideWhenDetached}
+        >
+          <PopoverBox className={clsx(styles.content, className)} {...props}>
+            {content}
+            <RdxTooltip.Arrow className={styles.arrow} />
+          </PopoverBox>
+        </RdxTooltip.Content>
       </Portal>
     </RdxTooltip.Root>
   );
 };
-
-const Content = styled(RdxTooltip.Content, PopoverBox, {
-  overflow: 'unset',
-  p: '$2',
-  maxWidth: '220px',
-});
-
-const Arrow = styled(RdxTooltip.Arrow, {
-  fill: '$surface',
-  width: 11,
-  height: 5,
-  filter: 'drop-shadow(0 0 2px $colors$surface3)',
-  clipPath: 'inset(0 -2px -2px -2px)',
-});

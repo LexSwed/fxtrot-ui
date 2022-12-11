@@ -22,7 +22,7 @@ export { TextField } from './TextField';
 export { TextLink } from './text-link';
 export { ThemeProvider, Reset, type Theme } from './ThemeProvider';
 export { ToggleButton } from './toggle-button';
-export { Tooltip } from './Tooltip';
+export { Tooltip } from './tooltip-1';
 export { VisuallyHidden } from './visually-hidden';
 
 export type { OpenStateRef } from './utils/OpenStateProvider';
