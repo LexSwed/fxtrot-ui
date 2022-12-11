@@ -3,7 +3,8 @@
 @layer lib {
   .content {
     overflow: unset;
-    pad: theme('spacing.2');
+    padding-block: theme('spacing.1');
+    padding-inline: theme('spacing.2');
     max-width: theme(space.60);
   }
   .arrow {

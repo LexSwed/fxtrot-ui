@@ -1,6 +1,9 @@
 @layer lib, utils;
 
 @layer lib {
+  .text {
+    display: inline-block;
+  }
   /* textStyle */
   .body-sm {
     @apply text-xs;

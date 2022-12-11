@@ -15,7 +15,7 @@ export const Text = forwardRef(function Text<C extends ElementType = 'span'>(
   return <Component className={clsx(textCss({ textStyle, tone, align }), className)} {...props} ref={ref} />;
 });
 
-export const textCss = css({
+export const textCss = css(styles.text, {
   variants: {
     textStyle: {
       'body-sm': styles['body-sm'],
