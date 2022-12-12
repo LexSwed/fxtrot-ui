@@ -1,13 +1,13 @@
 import { NextSeo } from 'next-seo';
 import Link from 'next/link';
 import { BsGithub } from 'react-icons/bs';
-import { Column, Heading, Icon, LinkButton, Row, styled, Text, TextLink } from '@fxtrot/ui';
+import { Column, Heading, Icon, LinkButton, Row, Text, TextLink } from '@fxtrot/ui';
 
 const App = () => {
   return (
     <>
       <NextSeo title="Fxtrot UI" description="A component library for React projects." />
-      <Wrapper>
+      <div className="flex h-[100lvh] max-w-7xl flex-col px-4 pb-16 mx-auto lg:px-16">
         <div className="py-8">
           <Row as="header" main="space-between" cross="center">
             <Heading as="h1" level="2">
@@ -38,10 +38,6 @@ const App = () => {
             </Column>
             <Text>
               Built with{' '}
-              <TextLink href="https://stitches.dev/" external="icon">
-                Stitches
-              </TextLink>
-              ,{' '}
               <TextLink href="https://www.radix-ui.com/" external="icon">
                 Radix
               </TextLink>{' '}
@@ -52,22 +48,9 @@ const App = () => {
             </Text>
           </Column>
         </div>
-      </Wrapper>
+      </div>
     </>
   );
 };
 
 export default App;
-
-const Wrapper = styled('div', {
-  'px': '$4',
-  'pb': '$16',
-  'height': '100vh',
-  'display': 'flex',
-  'flexFlow': 'column nowrap',
-  'maxWidth': '1280px',
-  'm': '0 auto',
-  '@desktop': {
-    px: '$16',
-  },
-});

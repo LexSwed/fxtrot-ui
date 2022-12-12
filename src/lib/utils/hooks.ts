@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useCallback, useEffect, useLayoutEffect, useState, useRef } from 'react';
-import { stitchesConfig } from '../stitches.config';
 
 type PossibleRef<T> = React.Ref<T> | ((instance: T | null) => void) | null | undefined;
 
@@ -189,40 +188,3 @@ export function useCopyToClipboard() {
 }
 
 export const useId = React.useId;
-
-type MediaQueries = keyof typeof stitchesConfig['config']['media'];
-/* eslint-disable react-hooks/rules-of-hooks */
-export function useMediaQuery(query: MediaQueries): boolean {
-  if (isServer) {
-    // eslint-disable-next-line no-console
-    console.warn('useMediaQuery hooks was used on the server, it will likelly cause hydration to fail');
-    return false;
-  }
-  const mediaQuery = stitchesConfig.config.media[query];
-  const [matches, setMatches] = useState<boolean>(isServer ? false : window.matchMedia(mediaQuery).matches);
-
-  useEffect(() => {
-    const mediaQueryList = window.matchMedia(mediaQuery);
-    const documentChangeHandler = () => setMatches(!!mediaQueryList.matches);
-
-    try {
-      mediaQueryList.addEventListener('change', documentChangeHandler);
-    } catch (e) {
-      // Safari isn't supporting mediaQueryList.addEventListener
-      mediaQueryList.addListener(documentChangeHandler);
-    }
-
-    documentChangeHandler();
-    return () => {
-      try {
-        mediaQueryList.removeEventListener('change', documentChangeHandler);
-      } catch (e) {
-        // Safari isn't supporting mediaQueryList.removeEventListener
-        mediaQueryList.removeListener(documentChangeHandler);
-      }
-    };
-  }, [mediaQuery]);
-
-  return matches;
-}
-/* eslint-enable react-hooks/rules-of-hooks */

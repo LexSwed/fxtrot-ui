@@ -20,14 +20,12 @@ export { Text } from './text';
 export { TextArea } from './text-area';
 export { TextField } from './text-field';
 export { TextLink } from './text-link';
-export { ThemeProvider, Reset, type Theme } from './ThemeProvider';
+export { ThemeProvider } from './theme-provider';
 export { ToggleButton } from './toggle-button';
 export { Tooltip } from './tooltip';
 export { VisuallyHidden } from './visually-hidden';
 
 export type { OpenStateRef } from './utils/OpenStateProvider';
-export { stitchesConfig, styled, css, keyframes, createTheme } from './stitches.config';
-export type { CssStyles } from './stitches.config';
 export {
   useAllHandlers,
   useCopyToClipboard,
@@ -37,6 +35,5 @@ export {
   useIsomorphicLayoutEffect,
   useKeyboardHandles,
   useLatest,
-  useMediaQuery,
   useOnClickOutside,
 } from './utils/hooks';

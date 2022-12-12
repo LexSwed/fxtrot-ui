@@ -12,5 +12,5 @@ Yet another React component library with an aim to be a design system for `fxtro
 Install this library with required peer dependencies:
 
 ```bash
-npm install @fxtrot/ui @stitches/react @heroicons/react
+npm install @fxtrot/ui @heroicons/react
 ```

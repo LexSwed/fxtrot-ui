@@ -22,7 +22,6 @@ module.exports = defineConfig({
         globals: {
           'react': 'React',
           'react-dom': 'ReactDOM',
-          '@stitches/react': 'stitches',
         },
       },
     },

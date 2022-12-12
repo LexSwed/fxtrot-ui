@@ -7,10 +7,9 @@ title: Installation and setup
 Install component library in your React project
 
 ```bash
-npm install @fxtrot/ui @stitches/react @heroicons/react
+npm install @fxtrot/ui @heroicons/react
 ```
 
-- [`@stitches/react`](https://stitches.dev/) is a CSS-in-JS library with best of class Developer Experience. The consumer of the `@fxtrot/ui` is expected to use the same library.
 - [`@heroicons/react`](https://github.com/tailwindlabs/heroicons) is a collection of high quality icons
 
 # Setup
@@ -24,8 +23,6 @@ const App = () => <ThemeProvider>{/* Your application here */}</ThemeProvider>;
 ```
 
 `ThemeProvider` makes sure all portals are rendered in correct place and themed appropriately.
-
-For Server Side Rendering use [`@stitches/react` recommendations](https://stitches.dev/docs/server-side-rendering).
 
 `@fxtrot/ui` does not ship fonts, so you should install them yourself, for example including `link` into `<head>` using Google Fonts:
 

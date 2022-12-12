@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { BsTypeBold, BsTypeItalic, BsTypeUnderline } from 'react-icons/bs';
 import * as Icons from '@heroicons/react/24/outline';
 import Link from 'next/link';
+import clsx from 'clsx';
 import * as FxtrotUI from '@fxtrot/ui';
 
 import { Heading, Text, TextLink } from '@fxtrot/ui';
@@ -13,7 +14,6 @@ import { MultilineCode } from '../pages-helpers/MultilineCode';
 import { MainLayout } from './MainLayout';
 import { Code } from './Code';
 import { Playground } from './Playground';
-import { Li, Ul } from './List';
 
 const Pre: React.FC<{ preview: boolean; children?: React.ReactNode }> = ({ children, preview = false }) => {
   if (!(React.Children.only(children) && React.isValidElement<{ children: string; className?: string }>(children))) {
@@ -29,13 +29,13 @@ const Pre: React.FC<{ preview: boolean; children?: React.ReactNode }> = ({ child
 
 const AnchoredHeading = ({ id, children, ...props }: any) => {
   return (
-    <Heading className="group [scroll-margin-block-start:100px]" dense={false} {...props} id={id}>
+    <Heading className="group/heading [scroll-margin-block-start:100px] " dense={false} {...props} id={id}>
       {children}{' '}
       {id && (
         <Link
           href={`#${id}`}
           replace
-          className="text-[0.8em] no-underline transition-opacity duration-300 group-hover:opacity-100 md:opacity-0"
+          className="text-[0.8em] no-underline transition-opacity duration-300 focus:opacity-100 group-hover/heading:opacity-100 md:opacity-0"
         >
           #
         </Link>
@@ -78,8 +78,10 @@ export const components = {
   wrapper: (props: any) => {
     return <MainLayout {...props} />;
   },
-  li: (props: any) => <Li {...props} />,
-  ul: (props: any) => <Ul {...props} />,
+  li: (props: any) => <li {...props} className={clsx('list-inside', props.className)} />,
+  ul: (props: any) => (
+    <ul {...props} className={clsx('flex list-inside flex-col flex-nowrap gap-2 pl-4', props.className)} />
+  ),
 };
 
 export const MdxProvider: React.FC<{ children?: React.ReactNode }> = ({ children }) => {

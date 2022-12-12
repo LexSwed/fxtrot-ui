@@ -1,6 +1,6 @@
 import * as RdxPortal from '@radix-ui/react-portal';
 import { type ReactNode, type ComponentType, forwardRef, useContext, createContext } from 'react';
-import { ContextThemeProvider, useFxtrotRootRef } from '../ThemeProvider/ThemeProvider';
+import { useFxtrotRootRef } from '../theme-provider/theme-provider';
 
 type PortalProps = RdxPortal.PortalProps & { forceMount?: true };
 interface Props {
@@ -28,18 +28,12 @@ export const Portal = forwardRef<HTMLDivElement, Props>(
 
     return (
       <zIndexCounterContext.Provider value={counter + 1}>
-        <ContextThemeProvider>
-          <Root {...portalProps}>
-            <ContextThemeProvider
-              {...props}
-              style={{ zIndex: counter || 'auto', position: 'relative', display: 'block' }}
-              ref={ref}
-            />
-          </Root>
-        </ContextThemeProvider>
+        <Root {...portalProps}>
+          <span {...props} style={{ zIndex: counter || 'auto', position: 'relative', display: 'block' }} ref={ref} />
+        </Root>
       </zIndexCounterContext.Provider>
     );
   }
 );
 
-const zIndexCounterContext = createContext(500);
+const zIndexCounterContext = createContext(200);
