@@ -14,9 +14,10 @@
     text-decoration: underline solid transparent 2px;
     outline: inset theme('spacing.2') transparent;
     outline-offset: -1em;
+    line-height: 1em;
     &:where(:hover, :focus) {
-      outline-color: theme('colors.primary/0.15');
-      outline-width: theme('spacing.4');
+      outline-color: theme('colors.primary/0.1');
+      outline-width: theme('spacing.5');
       text-decoration-color: theme('colors.primary');
     }
   }
@@ -27,9 +28,6 @@
     @media (any-hover: hover) {
       outline: 0px inset theme('colors.inverse-surface');
       outline-offset: 2px;
-      &:focus-visible {
-        outline-width: 2px;
-      }
       &:where(:hover, :focus) {
         text-decoration-color: theme('colors.primary');
       }
@@ -37,6 +35,9 @@
   }
 
   .text-link--external-icon {
+    display: inline-flex;
+    align-items: baseline;
+    gap: theme('spacing[0.5]');
     & > .icon {
       margin-inline-start: theme('spacing.1');
     }

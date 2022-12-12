@@ -18,7 +18,7 @@
     @apply text-lg;
   }
   .label-sm {
-    @apply text-xs;
+    @apply text-xs font-medium;
   }
   .label-md {
     @apply text-sm font-semibold;
@@ -76,15 +76,15 @@
 
   /* Align */
   .align--start {
-    @apply text-start;
+    text-align: start;
   }
   .align--center {
-    @apply text-center;
+    text-align: center;
   }
   .align--end {
-    @apply text-end;
+    text-align: end;
   }
   .align--justify {
-    @apply text-justify;
+    text-align: justify;
   }
 }

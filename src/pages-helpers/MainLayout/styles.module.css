@@ -28,7 +28,7 @@
   }
   .content {
     grid-column: 2;
-    grid-area: 'content';
+    grid-area: content;
     min-width: 0;
   }
   .mobile-menu-button-wrapper {
@@ -39,7 +39,7 @@
     }
   }
   .nav-panel {
-    grid-area: 'sidepanel';
+    grid-area: sidepanel;
     display: none;
     @screen lg {
       display: initial;

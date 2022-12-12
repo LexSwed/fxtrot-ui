@@ -68,7 +68,7 @@ export const TextArea = forwardRef<HTMLDivElement, Props>(
         {label !== undefined && (
           <Label label={label} secondary={secondaryLabel} htmlFor={ariaProps.id} disabled={disabled} />
         )}
-        <Column>
+        <Column gap="xs">
           <textarea
             rows={1}
             {...props}

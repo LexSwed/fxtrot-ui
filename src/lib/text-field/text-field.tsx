@@ -94,7 +94,7 @@ export const TextField = forwardRef<HTMLDivElement, Props>(
             />
             {iconRight && (
               <div className={styles.icon}>
-                <Icon as={iconRight} size="sm" />
+                <Icon as={iconRight} size={size} />
               </div>
             )}
           </div>

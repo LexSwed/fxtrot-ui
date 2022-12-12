@@ -28,10 +28,13 @@
   .label {
     text-overflow: ellipsis;
     white-space: nowrap;
+    line-height: 1;
   }
   .hint {
     padding-inline-start: theme('spacing.1');
-    @apply text-xs;
+    font-size: theme('fontSize.xs');
+    line-height: 1;
+    color: theme('colors.on-surface-variant');
   }
 
   .field {
@@ -41,9 +44,6 @@
     transition: 0.24s ease-in-out;
     transition-property: background-color, background-size, border-color, box-shadow;
     background-color: theme('colors.background');
-    border-color: theme('colors.background');
-    /* for all inputs to have same inner padding */
-    border: 1px solid transparent;
 
     &::placeholder {
       color: theme('colors.on-surface-variant');
@@ -61,33 +61,33 @@
 
   .variant--boxed {
     border-radius: theme('borderRadius.md');
-    border-color: theme('colors.outline');
-    &:hover {
+    border: 2px solid theme('colors.outline');
+    &:where(:hover) {
       border-color: theme('colors.on-background');
     }
-    &:focus {
+    &:where(:active, :focus, :active, [aria-expanded='true'], [data-state='open']) {
       border-color: theme('colors.on-background');
-      box-shadow: 0 0 0 1px theme('colors.outline') inset;
+      @apply ring-4 ring-outline ring-opacity-40;
     }
   }
 
   .variant--underlined {
     --border-color: theme('colors.outline');
+    --border-size: 3px;
     background-color: theme('colors.surface');
-    background-image: linear-gradient(to top, var(--border-color) 2px, transparent 2px);
+    background-image: linear-gradient(to top, var(--border-color) var(--border-size), transparent var(--border-size));
     background-repeat: no-repeat;
-    background-size: 100% calc(100% + 2px);
+    background-size: 100% calc(100% + (var(--border-size) / 3));
     border-top-left-radius: theme('borderRadius.md');
     border-top-right-radius: theme('borderRadius.md');
-    border-inline: 0;
 
-    &:hover {
+    &:where(:hover) {
       --border-color: theme('colors.primary');
       background-color: theme('colors.on-surface/0.1');
     }
-    &:where(:focus, [aria-expanded='true']) {
+    &:where(:active, :focus, :active, [aria-expanded='true'], [data-state='open']) {
       --border-color: theme('colors.primary');
-      background-size: 100% calc(100% + 1px);
+      background-size: 100% 100%;
       background-color: theme('colors.on-surface/0.1');
     }
     &:disabled {
@@ -98,16 +98,15 @@
 
   .variant--flat {
     background-color: transparent;
-    border-color: theme('colors.surface');
     padding-inline: theme('spacing.3');
     border-radius: theme('borderRadius.md');
 
-    &:where(:hover, :focus, :active, [data-state='open']) {
+    &:where(:hover) {
       background-color: theme('colors.on-surface/0.1');
     }
-    &:where(:active, :focus, [data-state='open']) {
-      border-color: theme('colors.on-surface/0.8');
-      background-color: theme('colors.surface');
+    &:where(:active, :focus, :active, [aria-expanded='true'], [data-state='open']) {
+      background-color: theme('colors.background');
+      @apply ring-2 ring-outline;
     }
   }
 
@@ -146,14 +145,16 @@
 
   .field {
     &:where(.variant--boxed, .variant--flat).size--sm {
-      border-radius: calc(theme('borderRadius.md') / 2);
+      border-width: 1px;
+      border-radius: calc(theme('borderRadius.md') / 1.2);
     }
     &:where(.variant--boxed, .variant--flat):where(.size--lg, .size--xl) {
       border-radius: theme('borderRadius.lg');
     }
     &:where(:where(.variant--underlined).size--sm) {
-      border-top-left-radius: calc(theme('borderRadius.md') / 2);
-      border-top-right-radius: calc(theme('borderRadius.md') / 2);
+      border-top-left-radius: calc(theme('borderRadius.md') / 1.2);
+      border-top-right-radius: calc(theme('borderRadius.md') / 1.2);
+      --border-size: 2px;
     }
     &:where(.variant--boxed.validity--invalid) {
       border-color: theme('colors.error');

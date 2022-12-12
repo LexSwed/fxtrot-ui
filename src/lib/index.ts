@@ -18,7 +18,7 @@ export { Spinner } from './spinner';
 export { Switch } from './switch';
 export { Text } from './text';
 export { TextArea } from './text-area';
-export { TextField } from './TextField';
+export { TextField } from './text-field';
 export { TextLink } from './text-link';
 export { ThemeProvider, Reset, type Theme } from './ThemeProvider';
 export { ToggleButton } from './toggle-button';
