@@ -7,8 +7,13 @@ type Props = { text: string; color: React.ComponentProps<typeof Icon>['color']; 
 export const CopyButton = ({ text, color, label = 'Copy code' }: Props) => {
   const [copied, copy] = useCopyToClipboard();
   return (
-    <Button label={label} onClick={() => copy(text)} variant="flat" size="sm">
-      <Icon className={`text-${color}`} size="sm" as={copied ? CheckIcon : ClipboardIcon} />
-    </Button>
+    <Button
+      label={label}
+      style={{ color }}
+      icon={copied ? CheckIcon : ClipboardIcon}
+      onClick={() => copy(text)}
+      variant="flat"
+      size="sm"
+    />
   );
 };

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { BsTypeBold, BsTypeItalic, BsTypeUnderline } from 'react-icons/bs';
 import * as Icons from '@heroicons/react/24/outline';
 import Link from 'next/link';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import * as FxtrotUI from '@fxtrot/ui';
 
 import { Heading, Text, TextLink } from '@fxtrot/ui';

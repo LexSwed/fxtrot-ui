@@ -7,7 +7,7 @@ import { flexCss, FlexVariants } from '../flex/flex';
 
 import styles from './form-field.module.css';
 
-interface Props extends FlexVariants {
+export interface Props extends FlexVariants {
   label: ReactNode;
   secondary?: ReactNode;
   disabled?: boolean;

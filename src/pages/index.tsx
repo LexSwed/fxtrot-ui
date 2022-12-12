@@ -27,7 +27,7 @@ const App = () => {
         <div className="grid h-full place-items-center p-8">
           <Column className="gap-16" cross="center">
             <Column className="gap-14" cross="center">
-              <Heading as="h1" level="4">
+              <Heading as="h1" level="3">
                 React component library for Fxtrot project
               </Heading>
               <Link href="/installation" passHref legacyBehavior>

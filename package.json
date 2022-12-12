@@ -11,7 +11,8 @@
       "import": "./dist/fxtrot-ui.es.js",
       "require": "./dist/fxtrot-ui.umd.js",
       "types": "./dist/types/index.d.ts"
-    }
+    },
+    "./dist/style.css": "./dist/style.css"
   },
   "sideEffects": false,
   "repository": {
@@ -64,13 +65,15 @@
     "@mdx-js/mdx": "^2.1.3",
     "@mdx-js/react": "^2.1.3",
     "@next/mdx": "^13.0.6",
+    "@stitches/react": "^1.2.8",
     "@types/glob": "^8.0.0",
     "@types/jest": "^29.2.4",
-    "@types/node": "^18.11.12",
+    "@types/node": "^18.11.13",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
-    "@typescript-eslint/eslint-plugin": "^5.46.0",
-    "@typescript-eslint/parser": "^5.46.0",
+    "@typescript-eslint/eslint-plugin": "^5.46.1",
+    "@typescript-eslint/parser": "^5.46.1",
+    "@vitejs/plugin-react": "^3.0.0",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.29.0",
     "eslint-config-next": "^13.0.6",
@@ -89,7 +92,7 @@
     "next": "^13.0.6",
     "next-seo": "^5.15.0",
     "pinst": "^3.0.0",
-    "postcss": "^8.4.19",
+    "postcss": "^8.4.20",
     "postcss-preset-env": "^7.8.3",
     "prettier": "^2.8.1",
     "prettier-eslint": "^15.0.1",
@@ -107,10 +110,11 @@
     "tailwindcss": "^3.2.4",
     "typescript": "^4.9.4",
     "typescript-plugin-css-modules": "^4.1.1",
-    "vite": "^3.2.5"
+    "vite": "^4.0.1"
   },
   "peerDependencies": {
     "@heroicons/react": "^2.0.0",
+    "@stitches/react": "^1.2.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },

@@ -1,9 +1,12 @@
 const path = require('path');
 const { defineConfig } = require('vite');
+const react = require('@vitejs/plugin-react');
 const pkg = require('./package.json');
 
+/** @type {import('vite').UserConfig} */
 module.exports = defineConfig({
   publicDir: false,
+  plugins: [react()],
   esbuild: {
     target: ['chrome105', 'safari16'],
   },

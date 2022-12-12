@@ -21,10 +21,19 @@
     "baseUrl": ".",
     "isolatedModules": true,
     "paths": {
-      "@fxtrot/ui": ["src/lib"]
+      "@fxtrot/ui": ["./"]
     },
     "incremental": true,
-    "plugins": [{ "name": "typescript-plugin-css-modules" }]
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules",
+        "options": {
+          "postcssOptions": {
+            "useConfig": true
+          }
+        }
+      }
+    ]
   },
   "include": ["docs", "src", "public"],
   "exclude": ["node_modules"]
