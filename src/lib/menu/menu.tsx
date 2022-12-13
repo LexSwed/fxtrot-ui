@@ -16,7 +16,7 @@ import { Label } from '../form-field';
 import { Portal } from '../portal';
 import { ListItem, ListItemVariants } from '../shared/list-item';
 import { useIsomorphicLayoutEffect } from '../utils/hooks';
-import { Presence } from '../shared/presence-1';
+import { Presence } from '../shared/presence';
 
 import styles from './menu.module.css';
 

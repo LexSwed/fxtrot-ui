@@ -4,7 +4,7 @@ import * as RdxPopover from '@radix-ui/react-popover';
 
 import { OpenStateProvider, OpenStateRef, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { Portal } from '../portal';
-import { Presence } from '../shared/presence-1';
+import { Presence } from '../shared/presence';
 import { PopoverBox } from '../shared/popover-box';
 
 interface Props {

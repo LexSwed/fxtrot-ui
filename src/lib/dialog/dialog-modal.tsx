@@ -4,7 +4,7 @@ import { ComponentProps, forwardRef } from 'react';
 import { classed as css, VariantProps } from '@tw-classed/core';
 import { useOpenState } from '../utils/OpenStateProvider';
 import { Portal } from '../portal';
-import { Presence } from '../shared/presence-1';
+import { Presence } from '../shared/presence';
 import { DialogClose } from './dialog-close';
 
 import styles from './dialog.module.css';
