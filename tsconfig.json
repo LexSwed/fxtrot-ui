@@ -21,7 +21,7 @@
     "baseUrl": ".",
     "isolatedModules": true,
     "paths": {
-      "@fxtrot/ui": ["./"]
+      "@fxtrot/ui": ["src/lib"]
     },
     "incremental": true,
     "plugins": [
