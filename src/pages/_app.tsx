@@ -1,5 +1,4 @@
 import './globals.css';
-import '@fxtrot/ui/dist/style.css';
 
 import { NextSeo } from 'next-seo';
 import { ThemeProvider } from '@fxtrot/ui';
