@@ -1,6 +1,5 @@
-module.exports = {
-  'transparent': 'transparent',
-  'current': 'currentColor',
+/** @type {import('./colors').ThemeColors} */
+const lightColors = {
   'primary': 'hsl(202 100% 30.6%)',
   'on-primary': 'hsl(0 0% 100%)',
   'primary-container': 'hsl(212 100% 90%)',
@@ -30,6 +29,10 @@ module.exports = {
   'on-surface-variant': 'hsl(215 6% 40%)',
   'inverse-surface': 'hsl(225 4.1% 19.2%)',
   'inverse-on-surface': 'hsl(255 15.4% 94.9%)',
-  'disabled': 'hsla(0 0% 12% / 0.15)',
+  'disabled': 'hsl(0deg 0% 90%)',
   'on-disabled': 'hsl(204 9.1% 30%)',
+};
+
+module.exports = {
+  lightColors,
 };

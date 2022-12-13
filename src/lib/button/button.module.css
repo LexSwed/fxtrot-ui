@@ -7,12 +7,12 @@
     cursor: default;
     user-select: none;
     white-space: nowrap;
-    border: theme('borderWidth.2') solid transparent;
+    border: 2px solid transparent;
     background: transparent;
     font-weight: theme('fontWeight.medium');
     color: theme('colors.on-surface');
     transition-property: color, box-shadow, filter, border-color, background-color, background-image;
-    transition-duration: theme('transitionDuration.200');
+    transition-duration: 200ms;
 
     &:focus {
       @apply outline-none ring-4 ring-opacity-40;

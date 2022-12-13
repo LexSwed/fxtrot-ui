@@ -1,0 +1,10 @@
+@layer lib, utils;
+
+@layer lib {
+  .fxtrot-ui-theme {
+    display: contents;
+    color: theme('colors.on-background');
+    font-family: theme('fontFamily.sans');
+    font-size: theme('fontSize.base');
+  }
+}

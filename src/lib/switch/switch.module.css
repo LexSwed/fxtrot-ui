@@ -2,15 +2,24 @@
 
 @layer lib {
   .toggle {
-    @apply relative h-6 w-9 rounded-xl border-2 border-solid border-outline bg-transparent shadow-inner duration-240 ease-in-out;
+    @apply relative h-6 w-9 rounded-xl border-2 border-solid border-outline shadow-inner;
+    transition: 240ms ease-in-out;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
 
     &:before {
-      @apply block aspect-square h-full origin-center scale-75 rounded-full bg-outline text-center text-xs font-black leading-5 text-transparent duration-240 content-['✓'];
+      transition: 240ms ease-in-out;
+      transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+      color: transparent;
+      @apply block aspect-square h-full origin-center scale-75 rounded-full bg-outline text-center text-xs font-black leading-5 content-['✓'];
     }
   }
 
   .input {
-    @apply absolute inset-0 z-[1] m-0 h-full w-full cursor-default bg-transparent p-0 opacity-0 duration-240 ease-in-out;
+    transition: 240ms ease-in-out;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    background: transparent;
+
+    @apply absolute inset-0 z-[1] m-0 h-full w-full cursor-default p-0 opacity-0;
 
     &:where(:not(:checked)) {
       &:hover + .toggle {
@@ -47,7 +56,8 @@
       @apply cursor-not-allowed;
 
       & + .toggle {
-        @apply border-transparent bg-disabled shadow-xs;
+        border-color: transparent;
+        @apply bg-disabled shadow-xs;
         &:before {
           @apply bg-on-surface/40;
         }

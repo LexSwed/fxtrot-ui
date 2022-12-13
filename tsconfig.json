@@ -13,6 +13,7 @@
     "useDefineForClassFields": true,
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
+    "checkJs": true,
     "jsx": "preserve",
     "noEmit": true,
     "moduleResolution": "node",

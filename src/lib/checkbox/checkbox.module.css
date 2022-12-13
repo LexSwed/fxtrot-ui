@@ -57,12 +57,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: theme('borderWidth.2') solid theme('colors.outline');
+    border: 2px solid theme('colors.outline');
     background-color: transparent;
     background: radial-gradient(circle at center, theme('colors.primary') 50%, transparent 50%) no-repeat;
     background-size: 0 0;
     background-position: center;
-    @apply duration-240 ease-in-out;
+    transition: 240ms ease-in-out;
 
     & > .icon {
       opacity: 0;
@@ -82,7 +82,8 @@
     background-color: transparent;
     padding: 0;
     outline: none;
-    @apply transition-colors duration-240 ease-in-out;
+    transition: 240ms ease-in-out;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
 
     &:where(:hover, :focus) + .checkmark-icon {
       & > .icon {

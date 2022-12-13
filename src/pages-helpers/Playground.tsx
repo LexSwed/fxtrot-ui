@@ -8,8 +8,6 @@ import type { Language } from 'prism-react-renderer';
 import type React from 'react';
 import { components } from './MdxProvider';
 
-import styles from './Playground.module.css';
-
 type Props = {
   code: string;
   language: string;
@@ -25,7 +23,7 @@ export const Playground = ({ code, language }: Props) => {
             Component={Preview}
           />
           <Content asChild>
-            <div className={styles.editor}>
+            <div className="border-outline/40 border-t-2 border-solid">
               <LiveEditor />
             </div>
           </Content>
@@ -38,7 +36,7 @@ export const Playground = ({ code, language }: Props) => {
 
 const Preview: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <div className="rounded-md bg-surface">
+    <div className="bg-surface rounded-md">
       <Column>
         <div className="overflow-auto p-4">{children}</div>
         <Trigger asChild>

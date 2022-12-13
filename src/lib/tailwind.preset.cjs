@@ -1,50 +1,13 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 const plugin = require('tailwindcss/plugin');
-const colors = require('./colors.cjs');
-
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
-  theme: {
-    extend: {
-      opacity: {
-        15: '0.15',
-      },
-      boxShadow: {
-        xs: '0 0 0 1px rgba(0, 0, 0, 0.05)',
-        popper: `0 0 2px rgb(0 0 0 / 0.3), ${defaultTheme.boxShadow.xl}`,
-      },
-      transitionDuration: {
-        240: '240ms',
-      },
-    },
-    spacing: {
-      ...defaultTheme.spacing,
-      none: defaultTheme.spacing['0'],
-      xs: defaultTheme.spacing['1'],
-      sm: defaultTheme.spacing['2'],
-      md: defaultTheme.spacing['6'],
-      lg: defaultTheme.spacing['8'],
-      xl: defaultTheme.spacing['10'],
-      base: defaultTheme.spacing['10'],
-    },
-    fontFamily: {
-      sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'sans-serif'],
-      mono: ['Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
-    },
-    colors,
-    data: {
-      'state-open': 'state~="open"',
-      'state-closed': 'state~="closed"',
-    },
-  },
-  plugins: [plugin(logicalPropertiesPlugin)],
-};
+const { lightColors } = require('./theme-provider/theme/colors.cjs');
+const { createTailwindColors } = require('./theme-provider/theme/utils.cjs');
 
 /**
  * Overrides default -top, -bottom, etc with CSS Logical Properties
  * @type {import('tailwindcss/plugin')} */
-function logicalPropertiesPlugin({ matchUtilities, theme }) {
+// @ts-ignore
+const logicalPropertiesPlugin = plugin(({ matchUtilities, theme }) => {
   matchUtilities(
     {
       pt: (value) => ({
@@ -100,4 +63,43 @@ function logicalPropertiesPlugin({ matchUtilities, theme }) {
     },
     { values: theme('height') }
   );
-}
+});
+
+console.log(createTailwindColors(lightColors));
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  theme: {
+    opacity: {
+      ...defaultTheme.opacity,
+      15: '0.15',
+    },
+    boxShadow: {
+      ...defaultTheme.boxShadow,
+      xs: '0 0 0 1px rgba(0, 0, 0, 0.05)',
+      popper: `0 0 2px rgb(0 0 0 / 0.3), ${defaultTheme.boxShadow.xl}`,
+    },
+    spacing: {
+      ...defaultTheme.spacing,
+      none: defaultTheme.spacing['0'],
+      xs: defaultTheme.spacing['1'],
+      sm: defaultTheme.spacing['2'],
+      md: defaultTheme.spacing['6'],
+      lg: defaultTheme.spacing['8'],
+      xl: defaultTheme.spacing['10'],
+      base: defaultTheme.spacing['10'],
+    },
+    fontFamily: {
+      sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'sans-serif'],
+      mono: ['Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
+    },
+    /** @type {import('./theme-provider/theme/colors').TailwindVariables} */
+    colors: createTailwindColors(lightColors),
+    data: {
+      'state-open': 'state~="open"',
+      'state-closed': 'state~="closed"',
+    },
+  },
+  plugins: [logicalPropertiesPlugin],
+};

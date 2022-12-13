@@ -1,4 +1,4 @@
-import { scales } from '../theme/scales';
+import { scales } from '../theme-provider/theme/scales.cjs';
 
 export const gaps = createScale('gap');
 export const rowGaps = createScale('rowGap');

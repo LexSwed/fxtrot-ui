@@ -22,7 +22,7 @@
       display: block;
       width: 2px;
       transform: scale(0.75);
-      transition: all theme('transitionDuration.150') ease-in;
+      transition: all 150ms ease-in;
       content: '';
     }
     &:where([aria-selected='true']) {
