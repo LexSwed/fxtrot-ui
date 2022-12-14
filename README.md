@@ -7,10 +7,14 @@
 
 Yet another React component library with an aim to be a design system for `fxtrot` products.
 
+## Documentation
+
+See the docs with live playground: [fxtrot-ui.vercel.com](https://fxtrot-ui.vercel.app/).
+
 ## Installation
 
 Install this library with required peer dependencies:
 
 ```bash
-npm install @fxtrot/ui @heroicons/react
+npm install @fxtrot/ui
 ```

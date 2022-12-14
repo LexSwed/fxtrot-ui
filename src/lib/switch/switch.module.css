@@ -2,24 +2,45 @@
 
 @layer lib {
   .toggle {
-    @apply relative h-6 w-9 rounded-xl border-2 border-solid border-outline shadow-inner;
+    position: relative;
+    height: theme('spacing.6');
+    width: theme('spacing.9');
+    border-radius: theme('borderRadius.xl');
+    border: 2px solid theme('colors.outline');
+    box-shadow: theme('boxShadow.inner');
     transition: 240ms ease-in-out;
-    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-property: border-color, background-color;
 
     &:before {
-      transition: 240ms ease-in-out;
-      transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+      content: '';
+      display: block;
       color: transparent;
-      @apply block aspect-square h-full origin-center scale-75 rounded-full bg-outline text-center text-xs font-black leading-5 content-['✓'];
+      height: 100%;
+      transform-origin: center;
+      scale: 0.75;
+      border-radius: theme('borderRadius.full');
+      background-color: theme('colors.outline');
+      text-align: center;
+      font-size: theme('fontSize.xs');
+      font-weight: 900;
+      line-height: theme('spacing.6');
+      aspect-ratio: 1 / 1;
+      transition: 240ms ease-in-out;
+      transition-property: transform, translate, scale, box-shadow, color, background-color, border-color;
     }
   }
 
   .input {
-    transition: 240ms ease-in-out;
-    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    cursor: pointer;
     background: transparent;
-
-    @apply absolute inset-0 z-[1] m-0 h-full w-full cursor-default p-0 opacity-0;
 
     &:where(:not(:checked)) {
       &:hover + .toggle {
@@ -30,21 +51,26 @@
       }
 
       &:focus + .toggle:before {
-        @apply bg-on-surface ring-4 ring-outline ring-opacity-40;
+        background-color: theme('colors.on-surface');
+        @apply ring-4 ring-outline ring-opacity-40;
       }
     }
 
     &:where(:checked) {
       & + .toggle {
-        @apply border-primary/60 bg-primary;
+        background-color: theme('colors.primary');
+        border-color: theme('colors.primary/0.6');
 
         &:before {
-          @apply translate-x-3 scale-[0.85] bg-on-primary text-primary;
+          translate: theme('spacing.3');
+          scale: 0.85;
+          background-color: theme('colors.on-primary');
+          color: theme('colors.primary');
         }
       }
       &:hover + .toggle {
         &:before {
-          @apply scale-[0.87];
+          scale: 0.87;
         }
       }
       &:focus + .toggle:before {
@@ -53,19 +79,22 @@
     }
 
     &:disabled {
-      @apply cursor-not-allowed;
+      cursor: not-allowed;
 
       & + .toggle {
         border-color: transparent;
-        @apply bg-disabled shadow-xs;
+        background-color: theme('colors.disabled');
+        box-shadow: theme('boxShadow.xs');
         &:before {
-          @apply bg-on-surface/40;
+          background-color: theme('colors.on-surface/0.4');
         }
       }
 
       &:checked + .toggle {
         &:before {
-          @apply bg-surface text-on-surface/60 shadow-xs;
+          background-color: theme('colors.surface');
+          color: theme('colors.on-surface/0.6');
+          box-shadow: theme('boxShadow.xs');
         }
       }
     }

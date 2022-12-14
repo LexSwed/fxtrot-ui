@@ -31,9 +31,6 @@ module.exports = defineConfig({
     rollupOptions: {
       external: Object.keys(pkg.peerDependencies),
       output: {
-        preserveModules: false,
-        // Provide global variables to use in the UMD build
-        // for externalized deps
         globals: {
           'react': 'React',
           'react-dom': 'ReactDOM',
