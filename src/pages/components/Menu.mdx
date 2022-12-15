@@ -50,6 +50,8 @@ You can modify `offset` from the `side` and along the `align`ment.
 
 ## With Dialog
 
+This example shows how to use `useMenuRef` to close the `Menu` manually when necessary.
+
 ```tsx preview
 () => {
   const menuRef = useMenuRef();
@@ -72,20 +74,32 @@ You can modify `offset` from the `side` and along the `align`ment.
           </Menu.Item>
           {(close) => (
             <Dialog.Modal>
-              <Dialog.Title level={3}>Delete topic?</Dialog.Title>
-              <form
-                onChange={(e) => {
-                  setTimeout(() => {
+              <Column gap="lg">
+                <Dialog.Title level={3}>Delete topic</Dialog.Title>
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    const form = new FormData(e.target);
+                    alert(`Delete ${form.get('item')}`);
                     close();
-                    menuRef.current.close();
-                  }, 250);
-                }}
-              >
-                <Picker defaultValue="2">
-                  <Picker.Item label="Item 1" value="1" />
-                  <Picker.Item label="Item 2" value="2" />
-                </Picker>
-              </form>
+                    setTimeout(() => {
+                      menuRef.current.close();
+                    }, 250);
+                  }}
+                >
+                  <Column gap="lg">
+                    <Picker defaultValue="2" name="item">
+                      <Picker.Item label="Item 1" value="1" />
+                      <Picker.Item label="Item 2" value="2" />
+                    </Picker>
+                    <Row flow="row-reverse">
+                      <Button type="submit" variant="primary">
+                        Submit
+                      </Button>
+                    </Row>
+                  </Column>
+                </form>
+              </Column>
             </Dialog.Modal>
           )}
         </Dialog>
