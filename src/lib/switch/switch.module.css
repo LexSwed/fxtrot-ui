@@ -26,10 +26,7 @@
       display: grid;
       place-items: center;
       transform-origin: center;
-      scale: 0.7;
       border-radius: theme('borderRadius.full');
-      background-color: theme('colors.outline');
-      color: transparent;
       text-align: center;
       font-size: theme('fontSize.xs');
       font-weight: 900;
@@ -50,6 +47,12 @@
     cursor: pointer;
     background: transparent;
 
+    & + .toggle:before {
+      color: transparent;
+      scale: 0.7;
+      background-color: theme('colors.outline');
+    }
+
     &:where(:not(:checked)) {
       &:hover + .toggle {
         background-color: theme('colors.primary/0.1');
@@ -60,7 +63,7 @@
 
       &:focus + .toggle:before {
         background-color: theme('colors.on-surface');
-        @apply ring-4 ring-outline ring-opacity-40;
+        @apply ring-4 ring-outline ring-opacity-50;
       }
     }
 
@@ -74,11 +77,6 @@
           scale: 0.85;
           background-color: theme('colors.on-primary');
           color: theme('colors.primary');
-        }
-      }
-      &:where(:not(:disabled):hover) + .toggle {
-        &:before {
-          scale: 0.87;
         }
       }
       &:focus + .toggle:before {

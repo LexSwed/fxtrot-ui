@@ -29,7 +29,7 @@ export const DialogModal = forwardRef<HTMLDivElement, ModalProps>(
             <Portal radixPortal={RdxDialog.Portal} forceMount>
               <div className={containerCss({ placement })}>
                 <RdxDialog.Overlay className={styles.overlay} ref={presenceRef} />
-                <RdxDialog.Content className={windowCss({ placement })} {...props} ref={ref}>
+                <RdxDialog.Content {...props} className={windowCss({ placement, class: props.className })} ref={ref}>
                   {children}
                   {hasCloseButton && (
                     <div className={styles['dialog-close']}>

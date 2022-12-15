@@ -50,12 +50,11 @@ Do not use `variant="link"` with actual links, use [`LinkButton`](/components/Li
   <Row gap="sm" className="px-10">
     <Button size="xs" variant="flat">
       Flat
-      <Icon as={EllipsisVerticalIcon} />
     </Button>
     <Button size="xs" variant="primary">
       Primary
     </Button>
-    <Button size="xs" variant="tonal">
+    <Button size="xs" icon={EllipsisVerticalIcon} variant="tonal">
       Tonal
     </Button>
     <Button size="xs" variant="outline">
@@ -68,12 +67,11 @@ Do not use `variant="link"` with actual links, use [`LinkButton`](/components/Li
   <Row gap="sm" className="px-10">
     <Button size="sm" variant="flat">
       Flat
-      <Icon as={EllipsisVerticalIcon} />
     </Button>
     <Button size="sm" variant="primary">
       Primary
     </Button>
-    <Button size="sm" variant="tonal">
+    <Button size="sm" icon={EllipsisVerticalIcon} variant="tonal">
       Tonal
     </Button>
     <Button size="sm" variant="outline">
@@ -86,12 +84,11 @@ Do not use `variant="link"` with actual links, use [`LinkButton`](/components/Li
   <Row gap="sm" className="px-10">
     <Button size="md" variant="flat">
       Flat
-      <Icon as={EllipsisVerticalIcon} />
     </Button>
     <Button size="md" variant="primary">
       Primary
     </Button>
-    <Button size="md" variant="tonal">
+    <Button size="md" icon={EllipsisVerticalIcon} variant="tonal">
       Tonal
     </Button>
     <Button size="md" variant="outline">
@@ -104,12 +101,11 @@ Do not use `variant="link"` with actual links, use [`LinkButton`](/components/Li
   <Row gap="sm" className="px-10">
     <Button size="lg" gap="md">
       Outline
-      <Icon as={EllipsisVerticalIcon} size="lg" />
     </Button>
     <Button size="lg" variant="primary">
       Primary
     </Button>
-    <Button size="lg" variant="tonal">
+    <Button size="lg" icon={EllipsisVerticalIcon} variant="tonal">
       Tonal
     </Button>
     <Button size="lg" variant="outline">
@@ -147,10 +143,18 @@ Icon Button allows to easily set up a Button with [Icon](/components/Icon) only 
     <Button icon={ChevronRightIcon} aria-label="Move right" size="md" variant="flat"></Button>
   </Row>
   <Row gap="md" className="px-10">
-    <Button icon={ChevronRightIcon} aria-label="Move right" size="lg" variant="primary"></Button>
-    <Button icon={ChevronRightIcon} aria-label="Move right" size="lg" variant="outline"></Button>
-    <Button icon={ChevronRightIcon} aria-label="Move right" size="lg" variant="tonal"></Button>
-    <Button icon={ChevronRightIcon} aria-label="Move right" size="lg" variant="flat"></Button>
+    <Button aria-label="Move right" size="lg" variant="primary">
+      <Icon as={ChevronRightIcon} size="lg" />
+    </Button>
+    <Button aria-label="Move right" size="lg" variant="outline">
+      <Icon as={ChevronRightIcon} size="lg" />
+    </Button>
+    <Button aria-label="Move right" size="lg" variant="tonal">
+      <Icon as={ChevronRightIcon} size="lg" />
+    </Button>
+    <Button aria-label="Move right" size="lg" variant="flat">
+      <Icon as={ChevronRightIcon} size="lg" />
+    </Button>
   </Row>
 </Column>
 ```

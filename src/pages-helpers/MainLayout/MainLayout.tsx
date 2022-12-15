@@ -30,7 +30,7 @@ export const MainLayout: React.FC<Props> = ({ children, meta, docs }) => {
                     <Icon as={Bars3Icon} size="lg" />
                   </Button>
                   {() => (
-                    <Dialog.Modal placement="side">
+                    <Dialog.Modal className="max-w-[200px]" placement="side">
                       <Column gap="md">
                         <Dialog.Title>Menu</Dialog.Title>
                         <SideNav docs={docs} />

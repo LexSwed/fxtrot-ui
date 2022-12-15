@@ -6,10 +6,7 @@ title: Menu
 
 ```tsx preview
 <Menu>
-  <Button>
-    Open menu
-    <Icon as={ChevronDownIcon} />
-  </Button>
+  <Button icon={ChevronDownIcon}>Open menu</Button>
   <Menu.List>
     <Menu.Item onSelect={() => window.alert('copy')}>
       <Icon />
@@ -32,9 +29,8 @@ You can modify `offset` from the `side` and along the `align`ment.
 
 ```tsx preview
 <Menu>
-  <Button variant="tonal" gap="sm">
+  <Button variant="tonal" icon={ChevronRightIcon} gap="sm">
     Open menu
-    <Icon as={ChevronRightIcon} />
   </Button>
   <Menu.List sideOffset={12} side="right" align="start">
     {Array(20)
@@ -57,14 +53,14 @@ This example shows how to use `useMenuRef` to close the `Menu` manually when nec
   const menuRef = useMenuRef();
   return (
     <Menu ref={menuRef}>
-      <Button variant="tonal" gap="md">
-        <Icon as={EllipsisVerticalIcon} />
+      <Button variant="tonal" gap="md" icon={EllipsisVerticalIcon}>
         More
       </Button>
       <Menu.List>
         <Dialog>
           <Menu.Item
             className="text-error"
+            size="sm"
             onSelect={(event) => {
               event.preventDefault();
             }}

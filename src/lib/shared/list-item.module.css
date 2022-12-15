@@ -6,7 +6,7 @@
     flex-shrink: 0;
     cursor: default;
     user-select: none;
-    border-radius: theme('borderRadius.sm');
+    border-radius: calc(theme('borderRadius.md') - theme('borderRadius.sm'));
     color: theme('colors.on-background');
     background: transparent;
     line-height: 1;
