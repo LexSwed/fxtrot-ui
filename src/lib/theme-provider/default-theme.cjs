@@ -1,4 +1,4 @@
-/** @type {import('./types').Theme} */
+/** @satisfies {import('./types').Theme} */
 const defaultTheme = {
   colors: {
     'primary': 'hsl(202 100% 30.6%)',
@@ -83,23 +83,18 @@ const defaultTheme = {
     80: '20rem',
     96: '24rem',
     get xs() {
-      // @ts-expect-error
       return defaultTheme.spacing['1'];
     },
     get sm() {
-      // @ts-expect-error
       return defaultTheme.spacing['2'];
     },
     get md() {
-      // @ts-expect-error
       return defaultTheme.spacing['6'];
     },
     get lg() {
-      // @ts-expect-error
       return defaultTheme.spacing['8'];
     },
     get xl() {
-      // @ts-expect-error
       return defaultTheme.spacing['10'];
     },
   },

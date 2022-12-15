@@ -69,15 +69,15 @@ export type Theme = {
   colors?: Partial<ThemeColors>;
   // Tailwind default + xs and popper
   boxShadow?: {
-    'sm': string;
-    'md': string;
-    'lg': string;
-    'xl': string;
-    '2xl': string;
-    'inner': string;
-    'none': string;
-    'xs': string;
-    'popper': string;
+    'sm'?: string;
+    'md'?: string;
+    'lg'?: string;
+    'xl'?: string;
+    '2xl'?: string;
+    'inner'?: string;
+    'none'?: string;
+    'xs'?: string;
+    'popper'?: string;
   };
   // Tailwind default + xs, sm, md, etc
   spacing?: {

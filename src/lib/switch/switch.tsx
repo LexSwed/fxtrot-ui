@@ -1,7 +1,7 @@
 import { ChangeEvent, ComponentProps, useMemo } from 'react';
 import { clsx } from 'clsx';
 
-import { FormFieldWrapper, useFormField } from '../form-field/form-field';
+import { FormFieldWrapper } from '../form-field/form-field';
 import { Label } from '../form-field';
 import type { FlexVariants } from '../flex/flex';
 

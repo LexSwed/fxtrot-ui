@@ -37,6 +37,7 @@ const ThemeProvider = forwardRef<HTMLDivElement, Props>(({ theme = defaultTheme,
         <TooltipProvider delayDuration={400}>
           <div
             {...props}
+            // @ts-expect-error
             style={{ ...Object.fromEntries(createThemeVariables(theme)), ...props.style }}
             className={clsx(styles['fxtrot-ui-theme'], className)}
             ref={refs}

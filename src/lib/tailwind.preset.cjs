@@ -69,6 +69,7 @@ module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      // @ts-expect-error
       ...createTailwindVariables(fxtrotTheme),
       opacity: {
         15: '0.15',

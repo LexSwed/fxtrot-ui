@@ -1,5 +1,6 @@
 import { Column, Text, Row } from '@fxtrot/ui';
-import colors from '../lib/colors.cjs';
+import defaultTheme from 'src/lib/theme-provider/default-theme.cjs';
+import type { Theme } from 'src/lib/theme-provider/types';
 import { CopyButton } from './CopyButton';
 
 type Props = {
@@ -14,8 +15,8 @@ export const Palette = ({ children }: Props) => {
 };
 
 type ColorBoxProps = {
-  color: keyof typeof colors;
-  textColor: keyof typeof colors;
+  color: keyof Theme['colors'];
+  textColor: keyof Theme['colors'];
   className?: string;
 };
 export const ColorBox = ({ color, textColor, className }: ColorBoxProps) => {
@@ -25,7 +26,7 @@ export const ColorBox = ({ color, textColor, className }: ColorBoxProps) => {
         <Text textStyle="label-sm" weight={600}>
           {color}
         </Text>
-        <Text textStyle="mono-sm">{colors[color]}</Text>
+        <Text textStyle="mono-sm">{defaultTheme.colors[color]}</Text>
         <div className="self-end mt-auto">
           <CopyButton label="Copy color token" text={color} color={`$${textColor}`} />
         </div>
