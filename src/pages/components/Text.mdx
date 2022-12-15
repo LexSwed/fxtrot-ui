@@ -35,7 +35,7 @@ title: Text
 
 `Text` component doesn't allow to change the size diectly, and instead offers to use `textStyle` prop for consistent styling.
 
-<Column gap="4" cross="stretch">
+<Column gap="md" cross="stretch">
   {[
     'body-sm',
     'body-md',
@@ -64,13 +64,22 @@ title: Text
 Example:
 
 ```tsx preview
-<Text textStyle="body2">This is a normal text rendered as paragraph</Text>
+<div>
+  <Text textStyle="body-md" as="p">
+    This is a normal text rendered as paragraph
+  </Text>
+  <div className="bg-primary-container p-8">
+    <Text textStyle="body-md" as="p" className="text-on-primary-container">
+      This is a normal text rendered as paragraph
+    </Text>
+  </div>
+</div>
 ```
 
-You can still change the size through `css` prop, but this is discouraged:
+You can still change the size through styles, but this is discouraged:
 
 ```tsx preview
-<Text textStyle="body1" css={{ textSize: '$xs' }}>
+<Text textStyle="headline-md" className="text-xs">
   body1 but smaller
 </Text>
 ```
@@ -88,24 +97,24 @@ Trysail Sail ho Corsair red ensign hulk smartly boom jib rum gangway. Case shot 
 `;
   return (
     <Column gap="md" cross="stretch">
-      <Box bc="$surface--elevated" p="$2" br="$base" height={160} width={300} overflow="hidden">
+      <div className="h-[1em * 2] bg-secondary-container text-on-secondary-container w-[300px] overflow-hidden rounded-md p-2">
         <Text lineClamp={1}>{loremIpsum}</Text>
-      </Box>
-      <Box bc="$surface--elevated" p="$2" br="$base" height={160} width={300} overflow="hidden">
+      </div>
+      <div className="h-[2em * 2] bg-secondary-container text-on-secondary-container w-[300px] overflow-hidden rounded-md p-2">
         <Text lineClamp={2}>{loremIpsum}</Text>
-      </Box>
-      <Box bc="$surface--elevated" p="$2" br="$base" height={160} width={300} overflow="hidden">
+      </div>
+      <div className="h-[3em * 2] bg-secondary-container text-on-secondary-container w-[300px] overflow-hidden rounded-md p-2">
         <Text lineClamp={3}>{loremIpsum}</Text>
-      </Box>
-      <Box bc="$surface--elevated" p="$2" br="$base" height={160} width={300} overflow="hidden">
+      </div>
+      <div className="h-[4em * 2] bg-secondary-container text-on-secondary-container w-[300px] overflow-hidden rounded-md p-2">
         <Text lineClamp={4}>{loremIpsum}</Text>
-      </Box>
-      <Box bc="$surface--elevated" p="$2" br="$base" height={160} width={300} overflow="hidden">
+      </div>
+      <div className="h-[5em * 2] bg-secondary-container text-on-secondary-container w-[300px] overflow-hidden rounded-md p-2">
         <Text lineClamp={5}>{loremIpsum}</Text>
-      </Box>
-      <Box bc="$surface--elevated" p="$2" br="$base" height={160} width={300} overflow="hidden">
+      </div>
+      <div className="h-[6em * 2] bg-secondary-container text-on-secondary-container w-[300px] overflow-hidden rounded-md p-2">
         <Text lineClamp={6}>{loremIpsum}</Text>
-      </Box>
+      </div>
     </Column>
   );
 };

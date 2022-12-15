@@ -1,0 +1,41 @@
+---
+title: Chip
+---
+
+## Variant
+
+```tsx preview
+<Column gap="xl">
+  <Row gap="xl">
+    <Chip icon={InformationCircleIcon}>Assist</Chip>
+    <Chip>
+      <Icon as={InformationCircleIcon} />
+      Assist
+    </Chip>
+  </Row>
+  <Row gap="md" role="group">
+    <Chip aria-selected="false" icon={CheckCircleIcon}>
+      Select
+    </Chip>
+    <Chip aria-selected="true" icon={CheckCircleIcon}>
+      Selected
+    </Chip>
+  </Row>
+</Column>
+```
+
+## Size
+
+```tsx preview
+<Row gap="xl">
+  <Chip size="sm" icon={InformationCircleIcon}>
+    Assist
+  </Chip>
+  <Chip size="md" icon={InformationCircleIcon}>
+    Assist
+  </Chip>
+  <Chip size="lg" icon={InformationCircleIcon}>
+    Assist
+  </Chip>
+</Row>
+```

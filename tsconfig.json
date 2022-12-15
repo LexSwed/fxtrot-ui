@@ -13,6 +13,7 @@
     "useDefineForClassFields": true,
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
+    "checkJs": true,
     "jsx": "preserve",
     "noEmit": true,
     "moduleResolution": "node",
@@ -23,7 +24,17 @@
     "paths": {
       "@fxtrot/ui": ["src/lib"]
     },
-    "incremental": true
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules",
+        "options": {
+          "postcssOptions": {
+            "useConfig": true
+          }
+        }
+      }
+    ]
   },
   "include": ["docs", "src", "public"],
   "exclude": ["node_modules"]

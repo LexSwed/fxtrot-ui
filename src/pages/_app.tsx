@@ -1,8 +1,10 @@
-import type { AppProps } from 'next/dist/shared/lib/router/router';
-import { ThemeProvider } from '@fxtrot/ui';
+import './globals.css';
+
 import { NextSeo } from 'next-seo';
+import { ThemeProvider } from '@fxtrot/ui';
 
 import { MdxProvider } from 'src/pages-helpers/MdxProvider';
+import type { AppProps } from 'next/dist/shared/lib/router/router';
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;

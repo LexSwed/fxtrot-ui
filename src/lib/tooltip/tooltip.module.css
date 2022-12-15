@@ -1,0 +1,17 @@
+@layer lib, utils;
+
+@layer lib {
+  .content {
+    overflow: unset;
+    padding-block: theme('spacing.1');
+    padding-inline: theme('spacing.2');
+    max-width: theme(space.60);
+  }
+  .arrow {
+    fill: theme('colors.surface');
+    width: 11px;
+    height: 5px;
+    filter: drop-shadow(0 0 1px theme('colors.on-surface/0.3'));
+    clip-path: inset(0 -2px -2px -2px);
+  }
+}

@@ -1,0 +1,132 @@
+@layer lib, defaults;
+
+@layer lib {
+  .field {
+    position: relative;
+  }
+
+  .checkmark {
+  }
+
+  .checkmark--single {
+    & .checkmark-icon {
+      border-radius: theme('borderRadius.md');
+    }
+  }
+
+  .checkmark--group {
+    & .checkmark-icon {
+      border-radius: theme('borderRadius.full');
+    }
+  }
+
+  .checkmark--sm {
+    & .checkmark-icon {
+      @apply size-5;
+
+      & .icon {
+        stroke-width: 3px;
+        @apply size-3.5;
+      }
+    }
+  }
+  .checkmark--md {
+    @apply py-1;
+
+    & .checkmark-icon {
+      @apply size-6;
+      & .icon {
+        @apply stroke-2 size-4;
+      }
+    }
+  }
+  .checkmark--lg {
+    @apply py-2;
+
+    & .checkmark-icon {
+      @apply size-8;
+
+      & .icon {
+        @apply stroke-2 size-5;
+      }
+    }
+  }
+
+  .checkmark-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid theme('colors.outline');
+    background-color: transparent;
+    background: radial-gradient(circle at center, theme('colors.primary') 50%, transparent 50%) no-repeat;
+    background-size: 0 0;
+    background-position: center;
+    transition: 240ms ease-in-out;
+
+    & > .icon {
+      opacity: 0;
+      transition: 220ms 20ms ease-in-out;
+      transition-property: opacity, color;
+    }
+  }
+
+  .input {
+    appearance: none;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    cursor: default;
+    background-color: transparent;
+    padding: 0;
+    outline: none;
+    transition: 240ms ease-in-out;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+
+    &:where(:hover, :focus) + .checkmark-icon {
+      & > .icon {
+        opacity: 0.5;
+      }
+    }
+
+    &:where(:checked:hover, :checked:focus) + .checkmark-icon {
+      border-color: theme('colors.primary/0.6');
+      & > .icon {
+        opacity: 1;
+      }
+    }
+
+    &:where(:focus):not(:disabled) + .checkmark-icon {
+      border-color: theme('colors.primary');
+      @apply ring-4 ring-primary ring-opacity-40;
+    }
+
+    &:where(:checked) + .checkmark-icon {
+      border-color: theme('colors.primary');
+      background-size: 200% 200%;
+      & > .icon {
+        color: theme('colors.on-primary');
+        opacity: 1;
+      }
+    }
+
+    &:where(:disabled) + .checkmark-icon {
+      border-color: theme('colors.disabled');
+      background: none;
+      background-color: theme('colors.disabled');
+
+      & > .icon {
+        opacity: 0;
+      }
+    }
+
+    &:where(:disabled:checked) + .checkmark-icon {
+      & > .icon {
+        color: theme('colors.on-disabled');
+        opacity: 0.5;
+      }
+    }
+  }
+}

@@ -1,0 +1,108 @@
+@layer lib, utils;
+
+@layer lib {
+  .label {
+    position: relative;
+    min-height: theme('spacing.10');
+    margin-block: calc(-1 * theme('spacing.2'));
+  }
+
+  .toggle {
+    position: relative;
+    height: theme('spacing.6');
+    width: theme('spacing.9');
+    border-radius: theme('borderRadius.xl');
+    border: 2px solid theme('colors.outline');
+    box-shadow: theme('boxShadow.inner');
+    transition: 240ms ease-in-out;
+    transition-property: border-color, background-color;
+
+    &:before {
+      position: absolute;
+      inset: 0;
+      content: '✓';
+      height: 100%;
+      aspect-ratio: 1 / 1;
+      display: grid;
+      place-items: center;
+      transform-origin: center;
+      border-radius: theme('borderRadius.full');
+      text-align: center;
+      font-size: theme('fontSize.xs');
+      font-weight: 900;
+      transition: 240ms ease-in-out;
+      transition-property: transform, translate, scale, box-shadow, color, background-color, border-color;
+    }
+  }
+
+  .input {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    cursor: pointer;
+    background: transparent;
+
+    & + .toggle:before {
+      color: transparent;
+      scale: 0.7;
+      background-color: theme('colors.outline');
+    }
+
+    &:where(:not(:checked)) {
+      &:hover + .toggle {
+        background-color: theme('colors.primary/0.1');
+        &:before {
+          box-shadow: theme('boxShadow.xs'), theme('boxShadow.sm');
+        }
+      }
+
+      &:focus + .toggle:before {
+        background-color: theme('colors.on-surface');
+        @apply ring-4 ring-outline ring-opacity-50;
+      }
+    }
+
+    &:where(:checked) {
+      & + .toggle {
+        background-color: theme('colors.primary');
+        border-color: theme('colors.primary/0.6');
+
+        &:before {
+          translate: theme('spacing.3');
+          scale: 0.85;
+          background-color: theme('colors.on-primary');
+          color: theme('colors.primary');
+        }
+      }
+      &:focus + .toggle:before {
+        @apply ring-[0.5rem] ring-primary ring-opacity-50;
+      }
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      & + .toggle {
+        opacity: 0.8;
+        border-color: transparent;
+        background-color: theme('colors.disabled');
+        box-shadow: theme('boxShadow.xs');
+        &:before {
+          background-color: theme('colors.on-surface/0.6');
+        }
+      }
+
+      &:checked + .toggle {
+        &:before {
+          background-color: theme('colors.primary/0.75');
+          color: theme('colors.on-primary');
+          box-shadow: theme('boxShadow.xs');
+        }
+      }
+    }
+  }
+}

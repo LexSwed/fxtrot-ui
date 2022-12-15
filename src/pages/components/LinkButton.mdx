@@ -7,7 +7,7 @@ Link element that looks like a button.
 ## Variant
 
 ```tsx preview
-<Grid gap="lg" cross="center" main="center" columns="repeat(2, auto)">
+<Grid gap="lg" cross="center" main="center" columns="2" placeItems="start" className="p-4">
   <LinkButton href="#" variant="primary">
     Primary
   </LinkButton>
@@ -45,7 +45,7 @@ Link element that looks like a button.
 
 ```tsx preview
 <Column gap="xl">
-  <Row gap="sm" css={{ px: '$10' }}>
+  <Row gap="sm" className="px-10">
     <LinkButton href="#" size="xs" variant="primary">
       Primary
     </LinkButton>
@@ -62,7 +62,7 @@ Link element that looks like a button.
       Link
     </LinkButton>
   </Row>
-  <Row gap="sm" css={{ px: '$10' }}>
+  <Row gap="sm" className="px-10">
     <LinkButton href="#" size="sm" variant="primary">
       Primary
     </LinkButton>
@@ -79,7 +79,7 @@ Link element that looks like a button.
       Link
     </LinkButton>
   </Row>
-  <Row gap="sm" css={{ px: '$10' }}>
+  <Row gap="sm" className="px-10">
     <LinkButton href="#" size="md" variant="primary">
       Primary
     </LinkButton>
@@ -96,7 +96,7 @@ Link element that looks like a button.
       Link
     </LinkButton>
   </Row>
-  <Row gap="sm" css={{ px: '$10' }}>
+  <Row gap="sm" className="px-10">
     <LinkButton href="#" size="lg" variant="primary">
       Primary
     </LinkButton>
@@ -116,93 +116,11 @@ Link element that looks like a button.
 </Column>
 ```
 
-## Theming
-
-Use `ThemeProvider` component to change the primary color of the LinkButton.
-
-```tsx preview
-() => {
-  const theme = {
-    colors: {
-      primary: 'hsl(228 100% 85.5%)',
-      onPrimary: 'hsl(223 100% 26.1%)',
-      primaryContainer: 'hsl(221 100% 35.5%)',
-      onPrimaryContainer: 'hsl(0 0% 0%)',
-      secondary: 'hsl(203 100% 74.9%)',
-      onSecondary: 'hsl(165 100% 11%)',
-      secondaryContainer: 'hsl(167 100% 15.9%)',
-      onSecondaryContainer: 'hsl(162 89.9% 72.9%)',
-      tertiary: 'hsl(191 100% 58.6%)',
-      onTertiary: 'hsl(192 100% 12.9%)',
-      tertiaryContainer: 'hsl(191 100% 18.8%)',
-      onTertiaryContainer: 'hsl(195 100% 84.7%)',
-      success: 'hsl(163 63.5% 61.4%)',
-      onSuccess: 'hsl(165 100% 11%)',
-      successContainer: 'hsl(167 100% 15.9%)',
-      onSuccessContainer: 'hsl(162 89.9% 72.9%)',
-      error: 'hsl(348 100% 84.9%)',
-      onError: 'hsl(338 100% 20%)',
-      errorContainer: 'hsl(337 100% 28.2%)',
-      onErrorContainer: 'hsl(351 100% 92.5%)',
-      outline: 'hsl(264deg 5% 58%)',
-      background: 'hsl(204 9.1% 10.8%)',
-      onBackground: 'hsl(210 7.1% 89%)',
-      surface: 'hsl(204 10% 25%)',
-      onSurface: 'hsl(210 7.1% 89%)',
-      surfaceVariant: 'hsl(264 7% 56%)',
-      onSurfaceVariant: 'hsl(270 11.3% 79.2%)',
-      inverseSurface: 'hsl(210 7.1% 89%)',
-      inverseOnSurface: 'hsl(204 9.1% 10.8%)',
-      disabled: 'hsl(0 0% 89% / 8%)',
-      onDisabled: 'hsl(210 5% 75%)',
-    },
-  };
-  return (
-    <ThemeProvider theme={theme} css={{ colorScheme: 'dark' }}>
-      <Column gap="xl" css={{ bc: '$surface', p: '$4' }}>
-        <Row gap="sm" css={{ px: '$10' }}>
-          <LinkButton href="#" variant="primary">
-            Primary
-          </LinkButton>
-          <LinkButton href="#" disabled variant="primary">
-            Primary (disabled)
-          </LinkButton>
-        </Row>
-        <Row gap="sm" css={{ px: '$10' }}>
-          <LinkButton href="#" variant="tonal">
-            Secondary
-          </LinkButton>
-          <LinkButton href="#" variant="tonal" disabled>
-            Secondary (disabled)
-          </LinkButton>
-        </Row>
-        <Row gap="sm" css={{ px: '$10' }}>
-          <LinkButton href="#" variant="flat">
-            Flat
-          </LinkButton>
-          <LinkButton href="#" variant="flat" disabled>
-            Flat (disabled)
-          </LinkButton>
-        </Row>
-        <Row gap="sm" css={{ px: '$10' }}>
-          <LinkButton href="#" variant="link">
-            Link
-          </LinkButton>
-          <LinkButton href="#" variant="link" disabled>
-            Link (disabled)
-          </LinkButton>
-        </Row>
-      </Column>
-    </ThemeProvider>
-  );
-};
-```
-
 ## With elements
 
 ```tsx preview
 <Column cross="start" gap="xl">
-  <LinkButton href="#" variant="primary" gap="2">
+  <LinkButton href="#" variant="primary" gap="sm">
     <Icon as={EllipsisVerticalIcon} />
     More
   </LinkButton>

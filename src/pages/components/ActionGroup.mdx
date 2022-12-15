@@ -9,15 +9,9 @@ title: ActionGroup
   const [fontStyle, setFontStyle] = React.useState(null);
   return (
     <ActionGroup value={fontStyle} onValueChange={setFontStyle}>
-      <ToggleButton value="bold">
-        <Icon as={BsTypeBold} />
-      </ToggleButton>
-      <ToggleButton value="italic">
-        <Icon as={BsTypeItalic} />
-      </ToggleButton>
-      <ToggleButton value="underline">
-        <Icon as={BsTypeUnderline} />
-      </ToggleButton>
+      <ToggleButton icon={BsTypeBold} label="bold" value="bold" />
+      <ToggleButton icon={BsTypeItalic} label="italic" value="italic" />
+      <ToggleButton icon={BsTypeUnderline} label="underline" value="underline" />
     </ActionGroup>
   );
 };
@@ -30,15 +24,9 @@ title: ActionGroup
   const [fontStyle, setFontStyle] = React.useState([]);
   return (
     <ActionGroup value={fontStyle} onValueChange={setFontStyle} type="multiple">
-      <ToggleButton value="bold" size="sm">
-        <Icon as={BsTypeBold} />
-      </ToggleButton>
-      <ToggleButton value="italic" size="sm">
-        <Icon as={BsTypeItalic} />
-      </ToggleButton>
-      <ToggleButton value="underline" size="sm">
-        <Icon as={BsTypeUnderline} />
-      </ToggleButton>
+      <ToggleButton icon={BsTypeBold} label="bold" value="bold" size="sm" />
+      <ToggleButton icon={BsTypeItalic} label="italic" value="italic" size="sm" />
+      <ToggleButton icon={BsTypeUnderline} label="underline" value="underline" size="sm" />
     </ActionGroup>
   );
 };

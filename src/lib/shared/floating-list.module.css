@@ -1,0 +1,14 @@
+@layer lib, utils;
+
+@layer lib {
+  .floating-list {
+    width: 100%;
+    margin: 0;
+    padding: theme('spacing.1');
+    overflow-y: auto;
+    max-height: theme('spacing.60');
+    &:empty {
+      display: none;
+    }
+  }
+}

@@ -3,12 +3,12 @@ title: Column
 ---
 
 Renders its children in a row.
-Use [`Flex`](/components/Flex) when you need to change content alignment on different screen sizes, using [responsive props](https://stitches.dev/docs/responsive-styles).
+Use [`Flex`](/components/Flex) when you need to dynamically change content alignment.
 
 # Column
 
 ```tsx preview
-<Column css={{ width: '400px', height: '240px', bc: '$surfacePrimary1' }} gap="md" cross="center" main="end">
+<Column className="bg-primary/10 h-[240px] w-[400px]" gap="md" cross="center" main="end">
   <ExampleBox width={100} />
   <ExampleBox width={200} />
   <ExampleBox width={150} />

@@ -3,15 +3,13 @@ title: Button
 ---
 
 ```tsx preview
-<Button flow="column" cross="start" gap="0">
-  <Row cross="center" gap="2">
-    <Icon as={DocumentPlusIcon} size="lg" />
-    <Text textStyle="label-lg" weight={500}>
-      Create
-    </Text>
+<Button variant="primary" flow="column" cross="start" gap="sm">
+  <Row cross="center" gap="sm">
+    <Icon as={DocumentPlusIcon} size="md" />
+    <Text textStyle="label-md">Create new document</Text>
   </Row>
   <Row>
-    <Text textStyle="label-sm">Create a new document with the default template</Text>
+    <Text textStyle="label-sm">Create a document with default template</Text>
   </Row>
 </Button>
 ```
@@ -21,7 +19,7 @@ title: Button
 Do not use `variant="link"` with actual links, use [`LinkButton`](/components/LinkButton) component instead.
 
 ```tsx preview
-<Grid gap="lg" cross="center" main="center" columns="repeat(2, auto)" css={{ p: '$4' }}>
+<Grid gap="lg" cross="center" main="center" columns="2" placeItems="start" className="p-4">
   <Button variant="primary">Primary</Button>
   <Button disabled variant="primary">
     Primary (disabled)
@@ -49,73 +47,69 @@ Do not use `variant="link"` with actual links, use [`LinkButton`](/components/Li
 
 ```tsx preview
 <Column gap="xl">
-  <Row gap="sm" css={{ px: '$10' }}>
-    <Button size="xs" variant="outline">
-      Outline
-      <Icon as={EllipsisVerticalIcon} />
+  <Row gap="sm" className="px-10">
+    <Button size="xs" variant="flat">
+      Flat
     </Button>
     <Button size="xs" variant="primary">
       Primary
     </Button>
-    <Button size="xs" variant="tonal">
+    <Button size="xs" icon={EllipsisVerticalIcon} variant="tonal">
       Tonal
     </Button>
-    <Button size="xs" variant="flat">
-      Flat
+    <Button size="xs" variant="outline">
+      Outline
     </Button>
     <Button size="xs" variant="link">
       Link
     </Button>
   </Row>
-  <Row gap="sm" css={{ px: '$10' }}>
-    <Button size="sm" variant="outline">
-      Outline
-      <Icon as={EllipsisVerticalIcon} />
+  <Row gap="sm" className="px-10">
+    <Button size="sm" variant="flat">
+      Flat
     </Button>
     <Button size="sm" variant="primary">
       Primary
     </Button>
-    <Button size="sm" variant="tonal">
+    <Button size="sm" icon={EllipsisVerticalIcon} variant="tonal">
       Tonal
     </Button>
-    <Button size="sm" variant="flat">
-      Flat
+    <Button size="sm" variant="outline">
+      Outline
     </Button>
     <Button size="sm" variant="link">
       Link
     </Button>
   </Row>
-  <Row gap="sm" css={{ px: '$10' }}>
-    <Button size="md" variant="outline">
-      Outline
-      <Icon as={EllipsisVerticalIcon} />
+  <Row gap="sm" className="px-10">
+    <Button size="md" variant="flat">
+      Flat
     </Button>
     <Button size="md" variant="primary">
       Primary
     </Button>
-    <Button size="md" variant="tonal">
+    <Button size="md" icon={EllipsisVerticalIcon} variant="tonal">
       Tonal
     </Button>
-    <Button size="md" variant="flat">
-      Flat
+    <Button size="md" variant="outline">
+      Outline
     </Button>
     <Button size="md" variant="link">
       Link
     </Button>
   </Row>
-  <Row gap="sm" css={{ px: '$10' }}>
-    <Button size="lg" gap="2" variant="outline">
+  <Row gap="sm" className="px-10">
+    <Button size="lg" gap="md">
       Outline
-      <Icon as={EllipsisVerticalIcon} size="lg" />
     </Button>
     <Button size="lg" variant="primary">
       Primary
     </Button>
-    <Button size="lg" variant="tonal">
+    <Button size="lg" icon={EllipsisVerticalIcon} variant="tonal">
       Tonal
     </Button>
-    <Button size="lg" variant="flat">
-      Flat
+    <Button size="lg" variant="outline">
+      Outline
     </Button>
     <Button size="lg" variant="link">
       Link
@@ -124,75 +118,43 @@ Do not use `variant="link"` with actual links, use [`LinkButton`](/components/Li
 </Column>
 ```
 
-## Theming
+## Icon Button
 
-Use `ThemeProvider` component to change the primary color of the button.
+Icon Button allows to easily set up a Button with [Icon](/components/Icon) only as a child.
 
 ```tsx preview
-() => {
-  const theme = {
-    colors: {
-      primary: 'hsl(228 100% 85.5%)',
-      onPrimary: 'hsl(223 100% 26.1%)',
-      primaryContainer: 'hsl(221 100% 35.5%)',
-      onPrimaryContainer: 'hsl(0 0% 0%)',
-      secondary: 'hsl(203 100% 74.9%)',
-      onSecondary: 'hsl(165 100% 11%)',
-      secondaryContainer: 'hsl(167 100% 15.9%)',
-      onSecondaryContainer: 'hsl(162 89.9% 72.9%)',
-      tertiary: 'hsl(191 100% 58.6%)',
-      onTertiary: 'hsl(192 100% 12.9%)',
-      tertiaryContainer: 'hsl(191 100% 18.8%)',
-      onTertiaryContainer: 'hsl(195 100% 84.7%)',
-      success: 'hsl(163 63.5% 61.4%)',
-      onSuccess: 'hsl(165 100% 11%)',
-      successContainer: 'hsl(167 100% 15.9%)',
-      onSuccessContainer: 'hsl(162 89.9% 72.9%)',
-      error: 'hsl(348 100% 84.9%)',
-      onError: 'hsl(338 100% 20%)',
-      errorContainer: 'hsl(337 100% 28.2%)',
-      onErrorContainer: 'hsl(351 100% 92.5%)',
-      outline: 'hsl(264deg 5% 58%)',
-      background: 'hsl(204 9.1% 10.8%)',
-      onBackground: 'hsl(210 7.1% 89%)',
-      surface: 'hsl(204 10% 25%)',
-      onSurface: 'hsl(210 7.1% 89%)',
-      surfaceVariant: 'hsl(264 7% 56%)',
-      onSurfaceVariant: 'hsl(270 11.3% 79.2%)',
-      inverseSurface: 'hsl(210 7.1% 89%)',
-      inverseOnSurface: 'hsl(204 9.1% 10.8%)',
-      disabled: 'hsl(0 0% 89% / 8%)',
-      onDisabled: 'hsl(210 5% 75%)',
-    },
-  };
-  return (
-    <ThemeProvider theme={theme} css={{ colorScheme: 'dark' }}>
-      <Grid gap="lg" cross="center" main="center" columns="repeat(2, auto)" css={{ p: '$4', bc: '$background' }}>
-        <Button variant="primary" gap="2">
-          Outline
-          <Icon as={EllipsisVerticalIcon} size="lg" />
-        </Button>
-        <Button disabled variant="primary">
-          Primary (disabled)
-        </Button>
-        <Button variant="outline">Outline</Button>
-        <Button variant="outline" disabled>
-          Outline (disabled)
-        </Button>
-        <Button variant="tonal">Tonal</Button>
-        <Button variant="tonal" disabled>
-          Tonal (disabled)
-        </Button>
-        <Button variant="flat">Flat</Button>
-        <Button variant="flat" disabled>
-          Flat (disabled)
-        </Button>
-        <Button variant="link">Link</Button>
-        <Button variant="link" disabled>
-          Link (disabled)
-        </Button>
-      </Grid>
-    </ThemeProvider>
-  );
-};
+<Column gap="lg">
+  <Row gap="md" className="px-10">
+    <Button icon={ChevronRightIcon} aria-label="Move right" size="xs" variant="primary"></Button>
+    <Button icon={ChevronRightIcon} aria-label="Move right" size="xs" variant="outline"></Button>
+    <Button icon={ChevronRightIcon} aria-label="Move right" size="xs" variant="tonal"></Button>
+    <Button icon={ChevronRightIcon} aria-label="Move right" size="xs" variant="flat"></Button>
+  </Row>
+  <Row gap="md" className="px-10">
+    <Button icon={ChevronRightIcon} aria-label="Move right" size="sm" variant="primary"></Button>
+    <Button icon={ChevronRightIcon} aria-label="Move right" size="sm" variant="outline"></Button>
+    <Button icon={ChevronRightIcon} aria-label="Move right" size="sm" variant="tonal"></Button>
+    <Button icon={ChevronRightIcon} aria-label="Move right" size="sm" variant="flat"></Button>
+  </Row>
+  <Row gap="md" className="px-10">
+    <Button icon={ChevronRightIcon} aria-label="Move right" size="md" variant="primary"></Button>
+    <Button icon={ChevronRightIcon} aria-label="Move right" size="md" variant="outline"></Button>
+    <Button icon={ChevronRightIcon} aria-label="Move right" size="md" variant="tonal"></Button>
+    <Button icon={ChevronRightIcon} aria-label="Move right" size="md" variant="flat"></Button>
+  </Row>
+  <Row gap="md" className="px-10">
+    <Button aria-label="Move right" size="lg" variant="primary">
+      <Icon as={ChevronRightIcon} size="lg" />
+    </Button>
+    <Button aria-label="Move right" size="lg" variant="outline">
+      <Icon as={ChevronRightIcon} size="lg" />
+    </Button>
+    <Button aria-label="Move right" size="lg" variant="tonal">
+      <Icon as={ChevronRightIcon} size="lg" />
+    </Button>
+    <Button aria-label="Move right" size="lg" variant="flat">
+      <Icon as={ChevronRightIcon} size="lg" />
+    </Button>
+  </Row>
+</Column>
 ```

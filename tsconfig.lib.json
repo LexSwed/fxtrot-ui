@@ -2,12 +2,10 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "noEmit": false,
-    "module": "esnext",
-    "target": "esnext",
     "declaration": true,
     "outDir": "dist/types",
     "emitDeclarationOnly": true
   },
-  "include": ["src/lib"],
+  "include": ["src/lib", "src/types"],
   "exclude": ["node_modules"]
 }

@@ -10,20 +10,15 @@ title: Dialog
   {(close) => (
     <Dialog.Modal>
       <Dialog.Title>Create new workspace</Dialog.Title>
-      <Box
-        css={{
-          'pt': '$4',
-          '@initial': { minWidth: 400 },
-          '@mobile': { minWidth: 320 },
-        }}
-        as="form"
+      <form
+        className="w-[320px] pt-4 md:w-[400px]"
         onSubmit={(e) => {
           e.preventDefault();
           window.alert(e.currentTarget['workspace-name'].value);
           close();
         }}
       >
-        <Column gap="2">
+        <Column gap="sm">
           <TextField placeholder="Carefive" name="workspace-name" label="Workspace name" autoFocus />
           <Picker defaultValue="2">
             <Picker.Item label="Item 1" value="1" />
@@ -32,8 +27,8 @@ title: Dialog
             <Picker.Item label="Item 4" value="4" />
           </Picker>
         </Column>
-        <Box pb="$10" />
-        <Row flow="reverse" gap="sm">
+        <div className="pb-10" />
+        <Row flow="row-reverse" gap="sm">
           <Button type="submit" variant="primary">
             Create
           </Button>
@@ -41,7 +36,7 @@ title: Dialog
             Cancel
           </Button>
         </Row>
-      </Box>
+      </form>
     </Dialog.Modal>
   )}
 </Dialog>
@@ -51,7 +46,7 @@ title: Dialog
 
 ```tsx preview
 <Dialog>
-  <Button gap="2">
+  <Button>
     Open menu <Icon as={Bars3Icon} size="md" />
   </Button>
   {(close) => (
@@ -88,9 +83,8 @@ It also shows how you can manipulate the dialog open state outside its modal, vi
           {(close) => (
             <Dialog.Modal>
               <Dialog.Title>Create new workspace</Dialog.Title>
-              <Box
-                pt="$4"
-                as="form"
+              <form
+                className="pt-4"
                 onSubmit={(e) => {
                   e.preventDefault();
                   window.alert(e.currentTarget['workspace-name'].value);
@@ -98,7 +92,7 @@ It also shows how you can manipulate the dialog open state outside its modal, vi
                 }}
               >
                 <TextField placeholder="Carefive" name="workspace-name" label="Workspace name" />
-                <Box pb="$10" />
+                <div className="pb-10" />
                 <Flex flow="row-reverse" gap="sm">
                   <Button type="submit" variant="primary">
                     Create
@@ -107,7 +101,7 @@ It also shows how you can manipulate the dialog open state outside its modal, vi
                     Cancel
                   </Button>
                 </Flex>
-              </Box>
+              </form>
             </Dialog.Modal>
           )}
         </Dialog>

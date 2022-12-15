@@ -21,14 +21,14 @@ export const SideNav = ({ docs }: Props) => {
     }
   );
   return (
-    <Column gap="12" as="nav">
+    <Column className="gap-12" as="nav">
       <MenuList>
         {Object.entries(groupped).map(([section, links]) => {
           if (!section) {
             return <LinksList links={links} key="index routes" />;
           }
           return (
-            <Section title={section} gap="3" key={section}>
+            <Section title={section} gap="sm" className="mt-4" key={section}>
               <LinksList links={links} />
             </Section>
           );
@@ -45,7 +45,9 @@ const LinksList = ({ links }: { links: DocEntry[] }) => {
       {links.map((item) => {
         return (
           <Link href={item.href} passHref legacyBehavior key={item.title}>
-            <MenuList.Item aria-selected={item.href === router.pathname}>{item.title}</MenuList.Item>
+            <MenuList.Item selected={item.href === router.pathname} as="a">
+              {item.title}
+            </MenuList.Item>
           </Link>
         );
       })}

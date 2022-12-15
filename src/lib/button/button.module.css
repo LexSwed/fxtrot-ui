@@ -1,0 +1,261 @@
+@layer lib, utils;
+
+@layer lib {
+  .button {
+    display: inline-flex;
+    flex-shrink: 0;
+    cursor: default;
+    user-select: none;
+    white-space: nowrap;
+    background: transparent;
+    font-weight: theme('fontWeight.medium');
+    color: theme('colors.on-surface');
+    transition-property: color, box-shadow, filter, border-color, background-color, background-image;
+    transition-duration: 200ms;
+
+    &:focus {
+      @apply outline-none ring-4 ring-opacity-40;
+    }
+
+    &:is(:disabled, [aria-disabled='true']) {
+      cursor: not-allowed;
+      border-color: transparent;
+      background: theme('colors.disabled');
+      color: theme('colors.on-disabled');
+
+      &:where(.button--danger) {
+        color: theme('colors.error/0.8');
+      }
+    }
+  }
+
+  /*
+   Variant
+  */
+
+  .variant--primary {
+    background-color: theme('colors.primary');
+    color: theme('colors.on-primary');
+    @apply bg-gradient-to-t;
+
+    &:where(:hover, :focus, :active) {
+      @apply from-on-surface/20 to-on-surface/20;
+    }
+
+    &:where(:active, [data-state='open']) {
+      @apply from-on-surface/25 to-on-surface/25;
+    }
+
+    &:where(:focus) {
+      @apply ring-primary;
+    }
+
+    &:where(.intent--danger) {
+      background-color: theme('colors.error');
+      color: theme('colors.on-error');
+    }
+  }
+
+  .variant--outline {
+    background: transparent;
+    color: theme('colors.primary');
+    border: 2px solid theme('colors.primary/0.8');
+
+    &:where(:hover, :focus, :active) {
+      border-color: theme('colors.primary');
+      background-color: theme('colors.primary/0.1');
+    }
+
+    &:where(:active, [data-state='open']) {
+      background-color: theme('colors.primary/0.15');
+    }
+
+    &:where(:focus) {
+      @apply ring-primary;
+    }
+
+    &:where(.intent--danger) {
+      border-color: theme('colors.error');
+      color: theme('colors.error');
+
+      &:where(:hover, :focus, :active) {
+        background-color: theme('colors.error/0.1');
+      }
+
+      &:where(:active, [data-state='open']) {
+        background-color: theme('colors.error/0.15');
+      }
+    }
+  }
+
+  .variant--tonal {
+    border-color: transparent;
+    background-color: theme('colors.primary/0.15');
+    color: theme('colors.primary');
+
+    &:where(:hover, :focus, :active) {
+      background-color: theme('colors.primary/0.2');
+    }
+
+    &:where(:active, [data-state='open']) {
+      background-color: theme('colors.primary/0.25');
+    }
+
+    &:where(:focus) {
+      @apply ring-primary;
+    }
+
+    &:where(.intent--danger) {
+      background-color: theme('colors.error/0.15');
+      color: theme('colors.error');
+
+      &:where(:hover, :focus, :active) {
+        background-color: theme('colors.error/0.2');
+      }
+
+      &:where(:active, [data-state='open']) {
+        background-color: theme('colors.error/0.25');
+      }
+    }
+  }
+
+  /* 
+   Using secondary colors
+  .variant--tonal {
+    @apply border-transparent bg-secondary-container bg-gradient-to-t text-on-secondary-container focus:ring-secondary/30;
+
+    &:where(:hover, :focus, :active) {
+      @apply from-secondary/10 to-secondary/10;
+    }
+
+    &:where(:active, [data-state='open']) {
+      @apply from-secondary/15 to-secondary/15;
+    }
+
+    &:where(.intent--danger) {
+      @apply bg-error/15 bg-none text-error;
+
+      &:where(:hover, :focus, :active) {
+        @apply bg-error/20;
+      }
+
+      &:where(:active, [data-state='open']) {
+        @apply bg-error/25;
+      }
+    }
+  } */
+
+  .variant--flat {
+    border-color: transparent;
+    background-color: transparent;
+    color: theme('colors.on-surface');
+
+    &:where(:hover, :focus, :active) {
+      background-color: theme('colors.on-surface/0.1');
+
+      &:where(.intent--danger) {
+        background-color: theme('colors.error/0.1');
+      }
+    }
+
+    &:where(:active, [data-state='open']) {
+      border-color: theme('colors.outline/0.15');
+      background-color: theme('colors.on-surface/0.15');
+    }
+
+    &:where(:focus) {
+      @apply ring-outline;
+    }
+
+    &:where(.intent--danger) {
+      color: theme('colors.error');
+    }
+
+    /* ToggleButton */
+    &:where([data-state='on']) {
+      border-color: theme('colors.primary/0.4');
+      background-color: theme('colors.primary/0.1');
+      color: theme('colors.primary');
+
+      &:where(:hover, :focus, :active) {
+        border-color: theme('colors.primary/0.5');
+        background-color: theme('colors.primary/0.15');
+      }
+    }
+  }
+
+  .variant--link {
+    border-color: transparent;
+    background: transparent;
+    color: theme('colors.primary');
+
+    &:where(:hover) {
+      text-decoration: underline;
+    }
+
+    &:where(:focus) {
+      @apply ring-primary;
+    }
+
+    &:is(:disabled, [aria-disabled='true']) {
+      background: transparent;
+      text-decoration: none;
+    }
+  }
+
+  /*
+   Intent
+  */
+  .intent--danger {
+    @apply focus:ring-error/50;
+  }
+
+  /*
+    Size
+  */
+  .size--xs {
+    min-block-size: theme(spacing.6);
+    border-radius: theme('borderRadius.md');
+    @apply text-xs py-1 px-2;
+    &:where(.button--icon) {
+      @apply px-1;
+      min-inline-size: theme(spacing.6);
+    }
+  }
+  .size--sm {
+    min-block-size: theme(spacing.8);
+    border-radius: theme('borderRadius.md');
+    @apply text-sm py-1 px-3;
+    &:where(.button--icon) {
+      @apply px-1;
+      min-inline-size: theme(spacing.8);
+    }
+  }
+  .size--md {
+    min-block-size: theme(spacing.10);
+    border-radius: theme('borderRadius.lg');
+    @apply text-sm py-2 px-4;
+    &:where(.button--icon) {
+      @apply px-2;
+      min-inline-size: theme(spacing.10);
+    }
+  }
+  .size--lg {
+    min-block-size: theme(spacing.12);
+    border-radius: theme('borderRadius.lg');
+    @apply text-base py-2 px-6;
+    &:where(.button--icon) {
+      @apply px-2;
+      min-inline-size: theme(spacing.12);
+    }
+  }
+
+  /*
+    Utils
+  */
+  .button--icon {
+  }
+  .icon {
+    color: inherit;
+  }
+}

@@ -1,0 +1,45 @@
+@layer lib, utils;
+
+@layer lib {
+  .text-link {
+    box-sizing: border-box;
+    cursor: pointer;
+    font-weight: theme('fontWeight.semibold');
+    color: initial;
+  }
+
+  .text-link--inline {
+    transition: 0.12s ease-in;
+    transition-property: outline-width, text-decoration;
+    text-decoration: underline solid transparent 2px;
+    outline: inset theme('spacing.2') transparent;
+    outline-offset: -1em;
+    line-height: 1em;
+    &:where(:hover, :focus) {
+      outline-color: theme('colors.primary/0.1');
+      outline-width: theme('spacing.5');
+      text-decoration-color: theme('colors.primary');
+    }
+  }
+
+  .text-link--standalone {
+    transition: text-decoration 0.1s ease-in;
+    text-decoration: underline solid transparent 2px;
+    @media (any-hover: hover) {
+      outline: 0px inset theme('colors.inverse-surface');
+      outline-offset: 2px;
+      &:where(:hover, :focus) {
+        text-decoration-color: theme('colors.primary');
+      }
+    }
+  }
+
+  .text-link--external-icon {
+    display: inline-flex;
+    align-items: baseline;
+    gap: theme('spacing[0.5]');
+    & > .icon {
+      margin-inline-start: theme('spacing.1');
+    }
+  }
+}

@@ -1,5 +1,5 @@
-import { Column, Text, useIsomorphicLayoutEffect } from '@fxtrot/ui';
 import { type ComponentProps, useRef, useState } from 'react';
+import { Column, Text, useIsomorphicLayoutEffect } from '@fxtrot/ui';
 
 type Styles = {
   fontSize: string;
@@ -28,7 +28,7 @@ export const TextWithComputedStyle = ({ textStyle = 'body-md' }: ComponentProps<
   }, []);
 
   return (
-    <Column gap="2">
+    <Column gap="sm">
       <Text textStyle={textStyle} ref={ref}>
         {textStyle as string}
       </Text>

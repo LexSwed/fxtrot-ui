@@ -1,49 +1,43 @@
 import { NextSeo } from 'next-seo';
-import { Box, Column, Heading, Icon, IconButton, LinkButton, Row, styled, Text, TextLink } from '@fxtrot/ui';
 import Link from 'next/link';
-
 import { BsGithub } from 'react-icons/bs';
+import { Column, Heading, Icon, LinkButton, Row, Text, TextLink } from '@fxtrot/ui';
 
 const App = () => {
   return (
     <>
       <NextSeo title="Fxtrot UI" description="A component library for React projects." />
-      <Wrapper>
-        <Box py="$8">
+      <div className="flex h-[100lvh] max-w-7xl flex-col px-4 pb-16 mx-auto lg:px-16">
+        <div className="py-8">
           <Row as="header" main="space-between" cross="center">
             <Heading as="h1" level="2">
               Fxtrot
             </Heading>
-            <a href="https://github.com/LexSwed/fxtrot-ui" target="_blank" rel="noreferrer">
-              <IconButton label="Source code" variant="flat">
-                <Icon as={BsGithub} size="2xl" />
-              </IconButton>
-            </a>
+            <LinkButton
+              href="https://github.com/LexSwed/fxtrot-ui"
+              target="_blank"
+              rel="noreferrer"
+              label="Source code"
+              variant="flat"
+            >
+              <Icon as={BsGithub} size="2xl" />
+            </LinkButton>
           </Row>
-        </Box>
-        <Box
-          height="100%"
-          p="$8"
-          css={{
-            display: 'grid',
-            placeItems: 'center',
-          }}
-        >
-          <Column gap="12" cross="center">
-            <Column gap="4" cross="center">
-              <Heading as="h1" level="5">
-                React component library for Fxtrot projects
+        </div>
+        <div className="grid h-full place-items-center p-8">
+          <Column className="gap-16" cross="center">
+            <Column className="gap-14" cross="center">
+              <Heading as="h1" level="3">
+                React component library for Fxtrot project
               </Heading>
               <Link href="/installation" passHref legacyBehavior>
-                <LinkButton variant="primary">Documentation</LinkButton>
+                <LinkButton variant="primary" size="lg">
+                  Documentation
+                </LinkButton>
               </Link>
             </Column>
             <Text>
               Built with{' '}
-              <TextLink href="https://stitches.dev/" external="icon">
-                Stitches
-              </TextLink>
-              ,{' '}
               <TextLink href="https://www.radix-ui.com/" external="icon">
                 Radix
               </TextLink>{' '}
@@ -53,23 +47,10 @@ const App = () => {
               </TextLink>
             </Text>
           </Column>
-        </Box>
-      </Wrapper>
+        </div>
+      </div>
     </>
   );
 };
 
 export default App;
-
-const Wrapper = styled('div', {
-  'px': '$4',
-  'pb': '$16',
-  'height': '100vh',
-  'display': 'flex',
-  'flexFlow': 'column nowrap',
-  'maxWidth': '1280px',
-  'm': '0 auto',
-  '@desktop': {
-    px: '$16',
-  },
-});

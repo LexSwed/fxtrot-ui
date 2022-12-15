@@ -4,7 +4,7 @@ title: Flex
 
 # Flex
 
-`Flex` is a parent reusable component for many other primitives, like `Button`, that allows to easily align the content. However, for layouts it is recommended to use [Row](/components/Row) or [Column](/components/Column) as they are faster to understand. Use `Flex` when you need to change content alignment on different screen sizes, using [responsive props](https://stitches.dev/docs/responsive-styles).
+`Flex` is a parent reusable component for many other primitives, like `Button`, that allows to easily align the content. However, for layouts it is recommended to use [Row](/components/Row) or [Column](/components/Column) as they are faster to understand. Use `Flex` when you need to change content alignment dynamically.
 
 ## Space
 
@@ -89,12 +89,12 @@ across main axis or cross axis.
 
 ```tsx preview
 <React.Fragment>
-  <Flex css={{ width: '400px', bc: '$surfacePrimary1' }} flow="column" gap="md" main="start">
+  <Flex className="bg-primary/10 w-[400px]" flow="column" gap="md" main="start">
     <ExampleBox width={100} />
     <ExampleBox width={150} />
     <ExampleBox width={200} />
   </Flex>
-  <Flex css={{ width: '400px', bc: '$surfacePrimary1', mt: '$8' }} flow="row" gap="md" main="start">
+  <Flex className="bg-primary/10 mt-8 w-[400px]" flow="row" gap="md" main="start">
     <ExampleBox width={100} />
     <ExampleBox width={150} />
     <ExampleBox width={200} />
@@ -106,12 +106,12 @@ across main axis or cross axis.
 
 ```tsx preview
 <React.Fragment>
-  <Flex css={{ height: '220px', bc: '$surfacePrimary1' }} gap="md" flow="column" main="center">
+  <Flex className="bg-primary/10 h-[220px]" gap="md" flow="column" main="center">
     <ExampleBox width={100} />
     <ExampleBox width={150} />
     <ExampleBox width={200} />
   </Flex>
-  <Flex css={{ width: '400px', bc: '$surfacePrimary1', mt: '$8' }} gap="md" flow="row" main="center">
+  <Flex className="bg-primary/10 mt-8 w-[400px]" gap="md" flow="row" main="center">
     <ExampleBox width={100} />
     <ExampleBox width={150} />
     <ExampleBox width={200} />
@@ -123,12 +123,12 @@ across main axis or cross axis.
 
 ```tsx preview
 <React.Fragment>
-  <Flex css={{ width: '400px', height: '240px', bc: '$surfacePrimary1' }} gap="md" flow="column" main="end">
+  <Flex className="bg-primary/10 h-[240px] w-[400px]" gap="md" flow="column" main="end">
     <ExampleBox width={100} />
     <ExampleBox width={150} />
     <ExampleBox width={200} />
   </Flex>
-  <Flex css={{ width: '400px', bc: '$surfacePrimary1', mt: '$8' }} gap="md" flow="row" main="end">
+  <Flex className="bg-primary/10 mt-8 w-[400px]" gap="md" flow="row" main="end">
     <ExampleBox width={100} />
     <ExampleBox width={150} />
     <ExampleBox width={200} />
@@ -140,12 +140,12 @@ across main axis or cross axis.
 
 ```tsx preview
 <React.Fragment>
-  <Flex css={{ width: '400px', height: '240px', bc: '$surfacePrimary1' }} flow="column" main="space-between">
+  <Flex className="bg-primary/10 h-[240px] w-[400px]" flow="column" main="space-between">
     <ExampleBox width={100} />
     <ExampleBox width={150} />
     <ExampleBox width={200} />
   </Flex>
-  <Flex css={{ width: '400px', bc: '$surfacePrimary1', mt: '$8' }} flow="row" main="space-between">
+  <Flex className="bg-primary/10 mt-8 w-[400px]" flow="row" main="space-between">
     <ExampleBox width={100} />
     <ExampleBox width={150} />
     <ExampleBox width={200} />
@@ -157,22 +157,12 @@ across main axis or cross axis.
 
 ```tsx preview
 <React.Fragment>
-  <Flex
-    css={{ width: '400px', height: '240px', bc: '$surfacePrimary1' }}
-    flow="column"
-    cross="center"
-    main="space-between"
-  >
+  <Flex className="bg-primary/10 h-[240px] w-[400px]" flow="column" cross="center" main="space-between">
     <ExampleBox width={100} />
     <ExampleBox width={150} />
     <ExampleBox width={200} />
   </Flex>
-  <Flex
-    css={{ width: '400px', bc: '$surfacePrimary1', height: '100px', mt: '$8' }}
-    flow="row"
-    cross="center"
-    main="space-between"
-  >
+  <Flex className="bg-primary/10 mt-8 h-[240px] w-[400px]" flow="row" cross="center" main="space-between">
     <ExampleBox width={100} />
     <ExampleBox width={150} />
     <ExampleBox width={200} />
@@ -207,13 +197,11 @@ And `row-reverse`
 Control content wrapping via `wrap` property:
 
 ```tsx preview
-<Box css={{ width: 50 * 4 + (4 - 1) * 8 }}>
-  <Flex flow="row-reverse" wrap="wrap-reverse" gap="sm">
-    {Array(16)
-      .fill(0)
-      .map((el, i) => (
-        <ExampleBox key={i}>{i + 1}</ExampleBox>
-      ))}
-  </Flex>
-</Box>
+<Flex flow="row-reverse" wrap="wrap-reverse" gap="sm" className="w-[224px]">
+  {Array.from({ length: 14 }).map((el, i) => (
+    <ExampleBox className="basis-[50px]" key={i}>
+      {i + 1}
+    </ExampleBox>
+  ))}
+</Flex>
 ```

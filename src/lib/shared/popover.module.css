@@ -1,0 +1,63 @@
+@layer lib, utils;
+
+@layer lib {
+  .popover {
+    border-radius: theme('borderRadius.md');
+    background-color: theme('colors.surface');
+    box-shadow: theme('boxShadow.popper');
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+    animation-duration: 0.15s;
+    --translate-offset: 5px;
+    --translate: calc(var(--translate-x, 0) * var(--translate-offset)),
+      calc(var(--translate-y, 0) * var(--translate-offset));
+
+    &:where([data-state='open']) {
+      animation-duration: 0.15s;
+      animation-name: slide-in;
+    }
+    &:where([data-state='closed']) {
+      animation-duration: 0.1s;
+      animation-name: slide-out;
+    }
+    &:where([data-side='top']) {
+      --translate-y: 1;
+    }
+    &:where([data-side='bottom']) {
+      --translate-y: -1;
+    }
+    &:where([data-side='right']) {
+      --translate-x: -1;
+    }
+    &:where([data-side='left']) {
+      --translate-x: 1;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      animation-duration: 0s;
+    }
+  }
+
+  @keyframes slide-in {
+    0% {
+      opacity: 0;
+      transform: translate3d(var(--translate), 0);
+    }
+    60% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes slide-out {
+    0% {
+      opacity: 1;
+      transform: none;
+    }
+    100% {
+      opacity: 0;
+      transform: translate3d(var(--translate), 0);
+    }
+  }
+}

@@ -1,0 +1,92 @@
+---
+title: Theming
+---
+
+# Theming
+
+`ThemeProvider` allows to override default theme used by components.
+
+```tsx preview
+() => {
+  const theme = {
+    colors: {
+      'primary': 'hsl(228 100% 85.5%)',
+      'on-primary': 'hsl(223 100% 26.1%)',
+      'primary-container': 'hsl(221 100% 35.5%)',
+      'on-primary-container': 'hsl(0 0% 0%)',
+      'secondary': 'hsl(203 100% 74.9%)',
+      'on-secondary': 'hsl(165 100% 11%)',
+      'secondary-container': 'hsl(167 100% 15.9%)',
+      'on-secondary-container': 'hsl(162 89.9% 72.9%)',
+      'tertiary': 'hsl(191 100% 58.6%)',
+      'on-tertiary': 'hsl(192 100% 12.9%)',
+      'tertiary-container': 'hsl(191 100% 18.8%)',
+      'on-tertiary-container': 'hsl(195 100% 84.7%)',
+      'success': 'hsl(163 63.5% 61.4%)',
+      'on-success': 'hsl(165 100% 11%)',
+      'success-container': 'hsl(167 100% 15.9%)',
+      'on-success-container': 'hsl(162 89.9% 72.9%)',
+      'error': 'hsl(348 100% 84.9%)',
+      'on-error': 'hsl(338 100% 20%)',
+      'error-container': 'hsl(337 100% 28.2%)',
+      'on-error-container': 'hsl(351 100% 92.5%)',
+      'outline': 'hsl(264deg 5% 58%)',
+      'background': 'hsl(204 9.1% 10.8%)',
+      'on-background': 'hsl(210 7.1% 89%)',
+      'surface': 'hsl(204 10% 25%)',
+      'on-surface': 'hsl(210 7.1% 89%)',
+      'surface-variant': 'hsl(264 7% 56%)',
+      'on-surface-variant': 'hsl(270 11.3% 79.2%)',
+      'inverse-surface': 'hsl(210 7.1% 89%)',
+      'inverse-on-surface': 'hsl(204 9.1% 10.8%)',
+      'disabled': 'hsl(210 5% 35%)',
+      'on-disabled': 'hsl(210 5% 70%)',
+    },
+  };
+  return (
+    <ThemeProvider theme={theme}>
+      <Column gap="xl">
+        <Grid gap="lg" cross="center" main="center" columns="2" placeItems="start" className="bg-background p-4">
+          <Button variant="primary" gap="2">
+            Outline
+            <Icon as={EllipsisVerticalIcon} size="lg" />
+          </Button>
+          <Button disabled variant="primary">
+            Primary (disabled)
+          </Button>
+          <Button variant="outline">Outline</Button>
+          <Button variant="outline" disabled>
+            Outline (disabled)
+          </Button>
+          <Button variant="tonal">Tonal</Button>
+          <Button variant="tonal" disabled>
+            Tonal (disabled)
+          </Button>
+          <Button variant="flat">Flat</Button>
+          <Button variant="flat" disabled>
+            Flat (disabled)
+          </Button>
+          <Button variant="link">Link</Button>
+          <Button variant="link" disabled>
+            Link (disabled)
+          </Button>
+        </Grid>
+        <Grid
+          gap="lg"
+          rowGap="xl"
+          cross="center"
+          main="center"
+          columns="2"
+          placeItems="start"
+          className="bg-background p-4"
+        >
+          <Switch label="Default" />
+          <Switch label="Default" defaultChecked />
+          <Switch label="Disabled" disabled />
+          <Switch label="Checked disabled" disabled defaultChecked />
+        </Grid>
+      </Column>
+    </ThemeProvider>
+  );
+};
+```

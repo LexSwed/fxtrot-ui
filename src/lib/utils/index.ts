@@ -1,1 +1,1 @@
-export const isServer = typeof document === 'undefined';
+export * from './hooks';

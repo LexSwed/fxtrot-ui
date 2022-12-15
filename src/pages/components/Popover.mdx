@@ -10,10 +10,10 @@ title: Popover
   return (
     <Popover ref={ref}>
       <Button variant="primary">Create</Button>
-      <Popover.Content css={{ minWidth: 300 }} side="left" sideOffset={12}>
-        <Flex gap="4" flow="column">
+      <Popover.Content className="min-w-[300px]" side="right" sideOffset={12}>
+        <Flex gap="md" flow="column">
           <TextField label="Full name" placeholder="Ahsoka Tano" />
-          <Flex gap="2" main="end">
+          <Flex gap="sm" main="end">
             <Button
               onClick={() => {
                 ref.current.close();
@@ -21,7 +21,7 @@ title: Popover
             >
               Cancel
             </Button>
-            <Button variant="primary" css={{ alignSelf: 'flex-end' }}>
+            <Button variant="primary" className="self-end">
               Submit
             </Button>
           </Flex>

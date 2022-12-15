@@ -1,0 +1,48 @@
+@layer lib, utils;
+
+@layer lib {
+  .list-item {
+    width: 100%;
+    flex-shrink: 0;
+    cursor: default;
+    user-select: none;
+    border-radius: calc(theme('borderRadius.md') - theme('borderRadius.sm'));
+    color: theme('colors.on-background');
+    background: transparent;
+    line-height: 1;
+    padding-inline: theme('spacing.3');
+    transition: background-color 100ms ease-in;
+    outline: none;
+
+    @apply text-sm;
+
+    &:where(:hover, :focus, [aria-selected='true']) {
+      background-color: theme('colors.on-surface/0.05');
+    }
+    &:where(:active, [data-focused='true'], [data-highlighted]) {
+      background-color: theme('colors.on-surface/0.1');
+    }
+    &:where(:disabled, [aria-disabled='true'], [data-disabled='true']) {
+      background-color: theme('colors.disabled');
+      color: theme('colors.on-disabled');
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+
+  /*
+    Sizes
+  */
+  .size--sm {
+    min-height: theme('spacing.8');
+    padding-block: theme('spacing.1');
+  }
+  .size--md {
+    min-height: theme('spacing.10');
+    padding-block: theme('spacing.2');
+  }
+  .size--lg {
+    min-height: theme('spacing.12');
+    padding-block: theme('spacing.2');
+  }
+}

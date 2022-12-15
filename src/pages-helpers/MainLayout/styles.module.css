@@ -1,0 +1,48 @@
+@tailwind components;
+
+@layer components {
+  .main {
+    display: grid;
+    grid-template-areas:
+      'header header'
+      'sidepanel content';
+    align-items: flex-start;
+    gap: 0;
+    grid-template-columns: 0 1fr;
+    padding-inline: theme('spacing.8');
+
+    @screen lg {
+      grid-template-columns: 220px 1fr;
+      column-gap: theme('spacing.16');
+    }
+  }
+  .header {
+    grid-area: header;
+    backdrop-filter: blur(10px);
+    background: hsla(0, 0%, 100%, 0.8);
+    position: sticky;
+    top: 0;
+    margin-inline: calc(-1 * theme('spacing.4'));
+    padding: theme('spacing.4');
+    z-index: 10;
+  }
+  .content {
+    grid-column: 2;
+    grid-area: content;
+    min-width: 0;
+  }
+  .mobile-menu-button-wrapper {
+    display: contents;
+    margin-inline-start: calc(-1 * theme('spacing.2'));
+    @screen lg {
+      display: none;
+    }
+  }
+  .nav-panel {
+    grid-area: sidepanel;
+    display: none;
+    @screen lg {
+      display: initial;
+    }
+  }
+}

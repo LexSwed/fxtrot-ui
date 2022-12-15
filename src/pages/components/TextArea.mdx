@@ -9,8 +9,8 @@ title: TextArea
 ```tsx preview
 <Row gap="md">
   <TextArea label="Enter your name" placeholder="John Doe" />
-  <TextArea label="Enter your name" placeholder="John Doe" disabled />
-  <TextArea label="Enter your name" placeholder="John Doe" readOnly />
+  <TextArea label="Enter your name" placeholder="John Doe" secondaryLabel="(disabled)" disabled />
+  <TextArea label="Enter your name" placeholder="John Doe" secondaryLabel="(read only)" readOnly />
 </Row>
 ```
 
@@ -113,21 +113,4 @@ title: TextArea
     </Row>
   );
 };
-```
-
-## Label alignment
-
-Since input is wrapped in `Flex` component, you can easily pass any props `Flex` supports,
-for example to specify flow direction:
-
-```tsx preview
-<Box css={{ 'width': '420px', '@tablet': { width: '300px' } }}>
-  <TextArea
-    label="Enter your name"
-    flow={{ '@desktop': 'row', '@tablet': 'column' }}
-    gap={{ '@desktop': '6', '@initial': '2' }}
-    placeholder="John Doe"
-    hint="Real name will help your friends to find you!"
-  />
-</Box>
 ```

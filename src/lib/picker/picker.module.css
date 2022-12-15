@@ -1,0 +1,59 @@
+@layer lib, utils;
+
+@layer lib {
+  .scroll-direction-arrow {
+    padding-block: theme('spacing.1');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .trigger {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: theme('fontSize.sm');
+
+    &[data-placeholder] {
+      color: theme('colors.on-surface-variant');
+    }
+
+    /* radix select value */
+    & > span:first-of-type {
+      min-width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .trigger-icon {
+    padding-inline-start: theme('spacing.1');
+  }
+
+  .size--sm {
+    & > .trigger-icon {
+      @apply size-4;
+      stroke-width: 1.5;
+    }
+  }
+  .size--md {
+    & > .trigger-icon {
+      @apply size-6;
+      stroke-width: 1.5;
+    }
+  }
+  .size--lg {
+    & > .trigger-icon {
+      @apply size-6;
+      stroke-width: 1.8;
+    }
+  }
+  .size--xl {
+    & > .trigger-icon {
+      @apply size-8;
+      stroke-width: 1.8;
+    }
+  }
+}

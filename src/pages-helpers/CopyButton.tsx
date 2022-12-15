@@ -1,14 +1,18 @@
-import type React from 'react';
-import { Icon, IconButton, useCopyToClipboard } from '@fxtrot/ui';
 import { CheckIcon, ClipboardIcon } from '@heroicons/react/24/outline';
+import { Button, useCopyToClipboard } from '@fxtrot/ui';
 
-type Props = { text: string; color: React.ComponentProps<typeof Icon>['color']; label?: string };
+type Props = { text: string; label?: string };
 
-export const CopyButton = ({ text, color, label = 'Copy code' }: Props) => {
+export const CopyButton = ({ text, label = 'Copy code' }: Props) => {
   const [copied, copy] = useCopyToClipboard();
   return (
-    <IconButton label={label} onClick={() => copy(text)} variant="flat" size="sm">
-      <Icon color={color} size="sm" as={copied ? CheckIcon : ClipboardIcon} />
-    </IconButton>
+    <Button
+      label={label}
+      style={{ color: 'inherit' }}
+      icon={copied ? CheckIcon : ClipboardIcon}
+      onClick={() => copy(text)}
+      variant="flat"
+      size="sm"
+    />
   );
 };

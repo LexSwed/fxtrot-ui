@@ -1,0 +1,46 @@
+@layer lib, utils;
+
+@layer lib {
+  .spinner {
+    animation: rotate 2s linear infinite;
+  }
+  .circle {
+    stroke: currentColor;
+    stroke-linecap: round;
+    animation: circle 1.5s ease-in-out infinite;
+  }
+
+  .size--sm {
+    @apply size-5;
+  }
+  .size--md {
+    @apply size-8;
+  }
+  .size--lg {
+    @apply size-16;
+  }
+  .size--xl {
+    @apply size-24;
+  }
+
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes circle {
+    0% {
+      stroke-dasharray: 1, 150;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -35;
+    }
+    100% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -124;
+    }
+  }
+}
