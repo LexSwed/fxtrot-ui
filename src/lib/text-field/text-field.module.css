@@ -39,6 +39,11 @@
     }
   }
 
+  .input-icon-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
   /** custom icon */
   .icon {
     position: absolute;

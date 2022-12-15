@@ -75,7 +75,7 @@ export const TextField = forwardRef<HTMLDivElement, Props>(
           <Label label={label} secondary={secondaryLabel} htmlFor={ariaProps.id} disabled={disabled} />
         )}
         <Column gap="xs">
-          <div className="relative w-full">
+          <div className={styles['input-icon-wrapper']}>
             <input
               {...props}
               {...ariaProps}
