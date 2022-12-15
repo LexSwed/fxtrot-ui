@@ -40,7 +40,7 @@ export const Switch = ({
   return (
     <FormFieldWrapper
       display={display}
-      className={clsx('min-h-10 relative -my-2', className)}
+      className={clsx(styles.label, className)}
       style={style}
       gap={gap}
       flow={flow}

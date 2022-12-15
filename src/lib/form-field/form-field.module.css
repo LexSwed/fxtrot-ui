@@ -29,6 +29,9 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     line-height: 1;
+    &[aria-disabled='true'] {
+      color: theme('colors.on-surface/0.8');
+    }
   }
   .hint {
     padding-inline-start: theme('spacing.1');

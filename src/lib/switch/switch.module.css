@@ -1,6 +1,12 @@
 @layer lib, utils;
 
 @layer lib {
+  .label {
+    position: relative;
+    min-height: theme('spacing.10');
+    margin-block: calc(-1 * theme('spacing.2'));
+  }
+
   .toggle {
     position: relative;
     height: theme('spacing.6');
@@ -70,7 +76,7 @@
           color: theme('colors.primary');
         }
       }
-      &:hover + .toggle {
+      &:where(:not(:disabled):hover) + .toggle {
         &:before {
           scale: 0.87;
         }
@@ -82,21 +88,20 @@
 
     &:disabled {
       cursor: not-allowed;
-
       & + .toggle {
         opacity: 0.8;
         border-color: transparent;
         background-color: theme('colors.disabled');
         box-shadow: theme('boxShadow.xs');
         &:before {
-          background-color: theme('colors.on-surface/0.4');
+          background-color: theme('colors.on-surface/0.6');
         }
       }
 
       &:checked + .toggle {
         &:before {
-          background-color: theme('colors.surface/0.8');
-          color: theme('colors.on-disabled/0.8');
+          background-color: theme('colors.primary/0.75');
+          color: theme('colors.on-primary');
           box-shadow: theme('boxShadow.xs');
         }
       }

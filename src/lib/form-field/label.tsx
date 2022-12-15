@@ -15,7 +15,20 @@ export interface Props extends FlexVariants {
 }
 
 export const Label = forwardRef(function Label<C extends ElementType = 'label'>(
-  { as, label, secondary, disabled, display = 'inline', gap = 'xs', size = 'sm', ...props }: PolyProps<C, Props>,
+  {
+    as,
+    label,
+    secondary,
+    disabled,
+    display = 'inline',
+    gap = 'xs',
+    size = 'sm',
+    main,
+    cross,
+    flow,
+    wrap,
+    ...props
+  }: PolyProps<C, Props>,
   ref: PolyRef<C>
 ) {
   const Component = as || 'label';
@@ -23,7 +36,7 @@ export const Label = forwardRef(function Label<C extends ElementType = 'label'>(
   return (
     <Component
       aria-disabled={disabled}
-      className={clsx(labelCss({ gap, display, ...props }), styles.label, props.className)}
+      className={clsx(labelCss({ gap, display, main, cross, flow, wrap }), styles.label, props.className)}
       {...props}
       ref={ref}
     >

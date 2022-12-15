@@ -14,8 +14,15 @@ interface ButtonOwnProps extends VariantProps<typeof buttonCss> {
 
 interface ButtonProps extends ButtonOwnProps, ComponentProps<'button'> {}
 
+const mapIconSize: Record<NonNullable<ButtonOwnProps['size']>, ComponentProps<typeof Icon>['size']> = {
+  xs: 'xs',
+  sm: 'xs',
+  md: 'sm',
+  lg: 'md',
+};
+
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
-  const { icon, label, type = 'button', size, disabled, children } = props;
+  const { icon, label, type = 'button', size = 'md', disabled, children } = props;
   return (
     <button
       {...props}
@@ -26,7 +33,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
       type={type}
       ref={ref}
     >
-      {icon ? <Icon as={icon} size={size} className={styles.icon} /> : null}
+      {icon ? <Icon as={icon} size={size ? mapIconSize[size] : undefined} className={styles.icon} /> : null}
       {children}
     </button>
   );
@@ -37,7 +44,7 @@ Button.displayName = 'Button';
 interface LinkButtonProps extends ButtonOwnProps, ComponentProps<'a'> {}
 
 const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>((props, ref) => {
-  const { icon, label, size, children } = props;
+  const { icon, label, size = 'md', children } = props;
   return (
     <a {...props} className={buttonCssWithDefaults(props)} aria-label={label} title={label} ref={ref}>
       {icon ? <Icon as={icon} size={size} /> : null}
