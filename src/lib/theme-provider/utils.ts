@@ -30,6 +30,13 @@ function extractChannel(color: ThemeColor): string | null {
   return null;
 }
 
+function createThemeFontSizes(fontSize: NonNullable<Theme['fontSize']>) {
+  return Object.entries(fontSize).flatMap(([token, [fontSize, lineHeight]]) => [
+    [toToken('fontSize', token), fontSize],
+    [toToken('lineHeight', token), lineHeight],
+  ]);
+}
+
 export function createThemeVariables(theme: Theme): ThemeVariableEntry[] {
   const variablesEntries = Object.keys(theme).flatMap((configKey) => {
     switch (configKey) {
@@ -37,6 +44,12 @@ export function createThemeVariables(theme: Theme): ThemeVariableEntry[] {
         const config = theme[configKey];
         if (config) {
           return createThemeColors(config);
+        }
+        break;
+      }
+      case 'fontSize': {
+        if (theme.fontSize) {
+          return createThemeFontSizes(theme.fontSize);
         }
         break;
       }
@@ -50,6 +63,7 @@ export function createThemeVariables(theme: Theme): ThemeVariableEntry[] {
     }
     return [];
   });
+
   return variablesEntries as ThemeVariableEntry[];
 }
 

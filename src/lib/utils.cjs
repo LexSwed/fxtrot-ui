@@ -16,19 +16,22 @@ function createTailwindColorVariables(colors) {
   return Object.fromEntries(colorEntries);
 }
 
-// function createFontSizeVariables(fontSizes) {
-//   return Object.entries(fontSizes).reduce(
-//     (res, [token, [fontSize, lineHeight]]) => {
-//       res.fontSize[token] = fontSize;
-//       res.fontSize[token] = lineHeight;
-//       return res;
-//     },
-//     {
-//       fontSize: {},
-//       lineHeight: {},
-//     }
-//   );
-// }
+/** @type {import('./theme-provider/types').createTailwindFontVariables} */
+function createFontSizeVariables(fontSizes) {
+  return Object.entries(fontSizes).reduce(
+    (res, [token, [fontSize, lineHeight]]) => {
+      // @ts-expect-error
+      res.fontSize[token] = fontSize;
+      // @ts-expect-error
+      res.lineHeight[token] = lineHeight;
+      return res;
+    },
+    {
+      fontSize: {},
+      lineHeight: {},
+    }
+  );
+}
 
 /** @type {import('./theme-provider/types').createTailwindVariables} */
 function createTailwindVariables(theme) {
@@ -44,12 +47,14 @@ function createTailwindVariables(theme) {
         }
         break;
       }
-      // case 'fontSize': {
-      //   const { fontSize, lineHeight } = createFontSizeVariables(theme.fontSize);
-      //   tailwindTheme.fontSize = fontSize;
-      //   tailwindTheme.lineHeight = lineHeight;
-      //   break;
-      // }
+      case 'fontSize': {
+        if (theme.fontSize) {
+          const { fontSize, lineHeight } = createFontSizeVariables(theme.fontSize);
+          tailwindTheme.fontSize = fontSize;
+          tailwindTheme.lineHeight = lineHeight;
+        }
+        break;
+      }
       default: {
         // @ts-expect-error
         const variables = Object.keys(theme[configKey]).map((token) => [token, `var(${toToken(configKey, token)})`]);
@@ -57,7 +62,6 @@ function createTailwindVariables(theme) {
       }
     }
   });
-  console.log(tailwindTheme);
   // @ts-expect-error can't really type this in cjs
   return tailwindTheme;
 }

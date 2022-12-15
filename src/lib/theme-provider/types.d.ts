@@ -1,7 +1,11 @@
 type ColorChannel = `${number} ${number}% ${number}%` | `${number}deg ${number}% ${number}%`;
 export type ThemeColor = ColorChannel | `hsl(${ColorChannel})` | `rgb(${ColorChannel})`;
 
-export function createTailwindColorVariables(colors: ThemeColors): TailwindVariables;
+export function createTailwindColorVariables(colors: ThemeColors): TailwindColorVariables;
+export function createTailwindFontVariables(fontSize: NonNullable<Theme['fontSize']>): {
+  fontSize: Record<keyof Theme['fontSize'], string>;
+  lineHeight: Record<keyof Theme['fontSize'], string>;
+};
 
 export function createTailwindVariables(theme: Theme): import('tailwindcss').Config;
 
@@ -61,7 +65,7 @@ export interface ThemeColors {
   'on-disabled': ThemeColor;
 }
 
-export type TailwindVariables = {
+export type TailwindColorVariables = {
   [token in keyof ThemeColors]: `hsl(var(--fx-color-${token}-hsl) / <alpha-value>)`;
 };
 
@@ -128,19 +132,19 @@ export type Theme = {
     mono?: string;
   };
   /** fontSize + lineHeight */
-  // fontSize?: {
-  //   'xs'?: ['0.75rem', '1rem'];
-  //   'sm'?: ['0.875rem', '1.25rem'];
-  //   'base'?: ['1rem', '1.5rem'];
-  //   'lg'?: ['1.125rem', '1.75rem'];
-  //   'xl'?: ['1.25rem', '1.75rem'];
-  //   '2xl'?: ['1.5rem', '2rem'];
-  //   '3xl'?: ['1.875rem', '2.25rem'];
-  //   '4xl'?: ['2.25rem', '2.5rem'];
-  //   '5xl'?: ['3rem', '1'];
-  //   '6xl'?: ['3.75rem', '1'];
-  //   '7xl'?: ['4.5rem', '1'];
-  //   '8xl'?: ['6rem', '1'];
-  //   '9xl'?: ['8rem', '1'];
-  // };
+  fontSize?: {
+    'xs'?: ['0.75rem', '1rem'];
+    'sm'?: ['0.875rem', '1.25rem'];
+    'base'?: ['1rem', '1.5rem'];
+    'lg'?: ['1.125rem', '1.75rem'];
+    'xl'?: ['1.25rem', '1.75rem'];
+    '2xl'?: ['1.5rem', '2rem'];
+    '3xl'?: ['1.875rem', '2.25rem'];
+    '4xl'?: ['2.25rem', '2.5rem'];
+    '5xl'?: ['3rem', '1'];
+    '6xl'?: ['3.75rem', '1'];
+    '7xl'?: ['4.5rem', '1'];
+    '8xl'?: ['6rem', '1'];
+    '9xl'?: ['8rem', '1'];
+  };
 };
