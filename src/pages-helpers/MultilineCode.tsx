@@ -28,8 +28,8 @@ export const MultilineCode = ({ code, language }: Props) => {
               );
             })}
           </pre>
-          <div className="absolute top-2 right-2 opacity-0 transition-opacity delay-500 duration-240 group-hover/code-wrapper:opacity-100 group-hover/code-wrapper:delay-[0s]">
-            <CopyButton text={code} color="#fff" />
+          <div className="duration-240 absolute top-2 right-2 text-inverse-on-surface opacity-0 transition-opacity delay-500 group-hover/code-wrapper:opacity-100 group-hover/code-wrapper:delay-[0s]">
+            <CopyButton text={code} />
           </div>
         </section>
       )}

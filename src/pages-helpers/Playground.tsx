@@ -23,7 +23,7 @@ export const Playground = ({ code, language }: Props) => {
             Component={Preview}
           />
           <Content asChild>
-            <div className="border-outline/40 border-t-2 border-solid">
+            <div className="border-t-2 border-solid border-outline/40">
               <LiveEditor />
             </div>
           </Content>
@@ -36,7 +36,7 @@ export const Playground = ({ code, language }: Props) => {
 
 const Preview: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <div className="bg-surface rounded-md">
+    <div className="rounded-md bg-surface">
       <Column>
         <div className="overflow-auto p-4">{children}</div>
         <Trigger asChild>
