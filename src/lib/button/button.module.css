@@ -7,7 +7,6 @@
     cursor: default;
     user-select: none;
     white-space: nowrap;
-    border: 2px solid transparent;
     background: transparent;
     font-weight: theme('fontWeight.medium');
     color: theme('colors.on-surface');
@@ -58,9 +57,9 @@
   }
 
   .variant--outline {
-    border-color: theme('colors.primary/0.8');
     background: transparent;
     color: theme('colors.primary');
+    border: 2px solid theme('colors.primary/0.8');
 
     &:where(:hover, :focus, :active) {
       border-color: theme('colors.primary');
