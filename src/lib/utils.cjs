@@ -4,7 +4,7 @@
  * @return {string}
  */
 function toToken(themeConfig, name) {
-  return `--fx-${themeConfig}-${name.replaceAll('.', '\\.')}`;
+  return `--fx-${themeConfig}-${name.split('.').join('\\.')}`;
 }
 
 /** @type {import('./theme-provider/types').createTailwindColorVariables} */
