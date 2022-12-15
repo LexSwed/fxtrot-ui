@@ -45,7 +45,9 @@ const LinksList = ({ links }: { links: DocEntry[] }) => {
       {links.map((item) => {
         return (
           <Link href={item.href} passHref legacyBehavior key={item.title}>
-            <MenuList.Item selected={item.href === router.pathname}>{item.title}</MenuList.Item>
+            <MenuList.Item selected={item.href === router.pathname} as="a">
+              {item.title}
+            </MenuList.Item>
           </Link>
         );
       })}

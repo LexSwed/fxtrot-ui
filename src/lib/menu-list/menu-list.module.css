@@ -25,16 +25,16 @@
       transition: all 150ms ease-in;
       content: '';
     }
-    &:where([aria-selected='true']) {
+    &[aria-selected='true'] {
       color: theme('colors.primary');
       &:after {
         background-color: currentColor;
       }
-      &:where(:focus):after {
+      &:focus:after {
         transform: none;
       }
     }
-    &:where([aria-selected='false']):after {
+    &[aria-selected='false']:after {
       background: transparent;
     }
   }

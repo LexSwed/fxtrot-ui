@@ -8,15 +8,13 @@ import styles from './list-item.module.css';
 
 interface ListItemProps extends ListItemVariants {}
 
-const ListItem = forwardRef(function ListItem<C extends ElementType = 'div'>(
+export const ListItem = forwardRef(function ListItem<C extends ElementType = 'div'>(
   { as, className, ...props }: PolyProps<C, ListItemProps>,
   ref: PolyRef<C>
 ) {
   const Component = as || 'div';
   return <Component className={clsx(listItemCss(props), className)} {...props} ref={ref} />;
 });
-
-export { ListItem };
 
 const listItemCssInner = css(styles['list-item'], flexCss, {
   variants: {
