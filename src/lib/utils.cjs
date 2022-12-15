@@ -16,29 +16,50 @@ function createTailwindColorVariables(colors) {
   return Object.fromEntries(colorEntries);
 }
 
+// function createFontSizeVariables(fontSizes) {
+//   return Object.entries(fontSizes).reduce(
+//     (res, [token, [fontSize, lineHeight]]) => {
+//       res.fontSize[token] = fontSize;
+//       res.fontSize[token] = lineHeight;
+//       return res;
+//     },
+//     {
+//       fontSize: {},
+//       lineHeight: {},
+//     }
+//   );
+// }
+
 /** @type {import('./theme-provider/types').createTailwindVariables} */
 function createTailwindVariables(theme) {
-  const entries = Object.keys(theme).map((configKey) => {
+  /** @type {import('tailwindcss').Config['theme']} */
+  const tailwindTheme = {};
+
+  Object.keys(theme).forEach((configKey) => {
     switch (configKey) {
       case 'colors': {
         if (theme.colors) {
           // @ts-expect-error
-          return [configKey, createTailwindColorVariables(theme.colors)];
+          tailwindTheme.colors = createTailwindColorVariables(theme.colors);
         }
         break;
       }
-      case 'fontSize': {
-        break;
-      }
+      // case 'fontSize': {
+      //   const { fontSize, lineHeight } = createFontSizeVariables(theme.fontSize);
+      //   tailwindTheme.fontSize = fontSize;
+      //   tailwindTheme.lineHeight = lineHeight;
+      //   break;
+      // }
       default: {
         // @ts-expect-error
         const variables = Object.keys(theme[configKey]).map((token) => [token, `var(${toToken(configKey, token)})`]);
-        return [configKey, Object.fromEntries(variables)];
+        tailwindTheme[configKey] = Object.fromEntries(variables);
       }
     }
   });
+  console.log(tailwindTheme);
   // @ts-expect-error can't really type this in cjs
-  return Object.fromEntries(entries);
+  return tailwindTheme;
 }
 
 module.exports = {

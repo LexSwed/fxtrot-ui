@@ -5,13 +5,13 @@
     line-height: 1;
   }
   .level--1 {
-    @apply text-4xl;
-  }
-  .level--2 {
     @apply text-3xl;
   }
-  .level--3 {
+  .level--2 {
     @apply text-2xl;
+  }
+  .level--3 {
+    @apply text-xl;
   }
   .level--4 {
     @apply text-xl;
@@ -35,7 +35,7 @@
     margin-block: 0;
   }
   .sparse {
-    margin-block-start: 1.2em;
-    margin-block-end: 0.6em;
+    margin-block-start: 0.8em;
+    margin-block-end: 0.4em;
   }
 }

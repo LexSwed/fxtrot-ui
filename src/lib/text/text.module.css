@@ -2,7 +2,6 @@
 
 @layer lib {
   .text {
-    display: inline-block;
   }
   /* textStyle */
   .body-sm {

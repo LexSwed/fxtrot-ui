@@ -4,7 +4,7 @@ import { toToken } from '../utils.cjs';
 /**
  * Transforms passed theme colors into CSS variables map that are consumed by the components.
  */
-export function createThemeColors(colors: NonNullable<Theme['colors']>) {
+function createThemeColors(colors: NonNullable<Theme['colors']>) {
   const colorEntries = Object.entries(colors).flatMap(([name, color]) => {
     const hsl = extractChannel(color);
     if (hsl) {
@@ -40,16 +40,10 @@ export function createThemeVariables(theme: Theme): ThemeVariableEntry[] {
         }
         break;
       }
-      case 'fontSize': {
-        if (theme.fontSize) {
-        }
-        break;
-      }
       default: {
         const config = theme[configKey as keyof typeof theme];
         if (config) {
-          const entries = Object.entries(config).map(([token, value]) => [toToken(configKey, token), value]);
-          return entries;
+          return Object.entries(config).map(([token, value]) => [toToken(configKey, token), value]);
         }
         break;
       }

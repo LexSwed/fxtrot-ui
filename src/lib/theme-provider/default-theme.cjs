@@ -100,6 +100,7 @@ const defaultTheme = {
   },
   fontFamily: {
     sans: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif',
+    serif: 'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
     mono: 'Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace',
   },
   // fontSize: {
