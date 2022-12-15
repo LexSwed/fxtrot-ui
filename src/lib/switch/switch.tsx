@@ -1,7 +1,7 @@
 import { ChangeEvent, ComponentProps, useMemo } from 'react';
 import { clsx } from 'clsx';
 
-import { FormFieldWrapper } from '../form-field/form-field';
+import { FormFieldWrapper, useFormField } from '../form-field/form-field';
 import { Label } from '../form-field';
 import type { FlexVariants } from '../flex/flex';
 
@@ -28,6 +28,7 @@ export const Switch = ({
   display = 'inline',
   cross = 'center',
   disabled,
+  id,
   ...props
 }: Props) => {
   const handleChange = useMemo(() => {
@@ -44,6 +45,7 @@ export const Switch = ({
       gap={gap}
       flow={flow}
       cross={cross}
+      as="label"
     >
       <div>
         <input

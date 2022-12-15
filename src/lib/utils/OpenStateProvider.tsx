@@ -1,7 +1,7 @@
 import { createContext, useContext, useMemo, useState, useImperativeHandle, forwardRef, ReactNode } from 'react';
 
-const menuStateContext = createContext(false);
-const menuStateControlsContext = createContext<MenuControlFunctions>({} as MenuControlFunctions);
+const openStateContext = createContext(false);
+const openStateControlsContext = createContext<MenuControlFunctions>({} as MenuControlFunctions);
 
 export interface OpenStateRef extends MenuControlFunctions {}
 
@@ -29,9 +29,9 @@ export const OpenStateProvider = forwardRef<OpenStateRef, { defaultOpen?: boolea
     useImperativeHandle(ref, () => controls, [controls]);
 
     return (
-      <menuStateControlsContext.Provider value={controls}>
-        <menuStateContext.Provider value={isOpen}>{children}</menuStateContext.Provider>
-      </menuStateControlsContext.Provider>
+      <openStateControlsContext.Provider value={controls}>
+        <openStateContext.Provider value={isOpen}>{children}</openStateContext.Provider>
+      </openStateControlsContext.Provider>
     );
   }
 );
@@ -39,10 +39,10 @@ export const OpenStateProvider = forwardRef<OpenStateRef, { defaultOpen?: boolea
 OpenStateProvider.displayName = 'OpenStateProvider';
 
 export function useOpenState() {
-  return useContext(menuStateContext);
+  return useContext(openStateContext);
 }
 export function useOpenStateControls() {
-  return useContext(menuStateControlsContext);
+  return useContext(openStateControlsContext);
 }
 interface MenuControlFunctions {
   open: () => void;

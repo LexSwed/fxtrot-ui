@@ -18,11 +18,7 @@ const Trigger = forwardRef<HTMLButtonElement, TriggerProps>(
       <Rdx.Trigger asChild>
         <Button flow={flow} cross={cross} main={main} className={clsx('group/trigger', className)} {...props} ref={ref}>
           {children}
-          <Icon
-            className="transition-transform duration-150 group-data-state-open/trigger:rotate-180"
-            size={props.size}
-            as={ChevronDownIcon}
-          />
+          <Icon className={styles['trigger-icon']} size={props.size} as={ChevronDownIcon} />
         </Button>
       </Rdx.Trigger>
     );

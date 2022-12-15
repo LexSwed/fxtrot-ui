@@ -4,7 +4,6 @@ import { NextSeo } from 'next-seo';
 import { ThemeProvider } from '@fxtrot/ui';
 
 import { MdxProvider } from 'src/pages-helpers/MdxProvider';
-import { lightColors } from 'src/lib/theme-provider/theme/colors.cjs';
 import type { AppProps } from 'next/dist/shared/lib/router/router';
 
 export default function App(props: AppProps) {
@@ -40,7 +39,7 @@ export default function App(props: AppProps) {
           },
         ]}
       />
-      <ThemeProvider theme={{ colors: lightColors }}>
+      <ThemeProvider>
         <MdxProvider>
           <Component {...pageProps} />
         </MdxProvider>

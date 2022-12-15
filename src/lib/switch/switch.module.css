@@ -12,19 +12,21 @@
     transition-property: border-color, background-color;
 
     &:before {
-      content: '';
-      display: block;
-      color: transparent;
+      position: absolute;
+      inset: 0;
+      content: '✓';
       height: 100%;
+      aspect-ratio: 1 / 1;
+      display: grid;
+      place-items: center;
       transform-origin: center;
-      scale: 0.75;
+      scale: 0.7;
       border-radius: theme('borderRadius.full');
       background-color: theme('colors.outline');
+      color: transparent;
       text-align: center;
       font-size: theme('fontSize.xs');
       font-weight: 900;
-      line-height: theme('spacing.6');
-      aspect-ratio: 1 / 1;
       transition: 240ms ease-in-out;
       transition-property: transform, translate, scale, box-shadow, color, background-color, border-color;
     }
@@ -44,7 +46,7 @@
 
     &:where(:not(:checked)) {
       &:hover + .toggle {
-        @apply bg-primary/10;
+        background-color: theme('colors.primary/0.1');
         &:before {
           box-shadow: theme('boxShadow.xs'), theme('boxShadow.sm');
         }
@@ -82,6 +84,7 @@
       cursor: not-allowed;
 
       & + .toggle {
+        opacity: 0.8;
         border-color: transparent;
         background-color: theme('colors.disabled');
         box-shadow: theme('boxShadow.xs');
@@ -92,8 +95,8 @@
 
       &:checked + .toggle {
         &:before {
-          background-color: theme('colors.surface');
-          color: theme('colors.on-surface/0.6');
+          background-color: theme('colors.surface/0.8');
+          color: theme('colors.on-disabled/0.8');
           box-shadow: theme('boxShadow.xs');
         }
       }
