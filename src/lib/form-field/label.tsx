@@ -7,7 +7,7 @@ import { flexCss, FlexVariants } from '../flex/flex';
 
 import styles from './form-field.module.css';
 
-type LabelProps<C extends ElementType> = PolyProps<
+export type LabelProps<C extends ElementType> = PolyProps<
   C,
   FlexVariants & {
     label: ReactNode;
@@ -16,7 +16,7 @@ type LabelProps<C extends ElementType> = PolyProps<
     size?: 'sm' | 'md' | 'lg';
   }
 >;
-type LabelComponent = <C extends ElementType = 'label'>(props: LabelProps<C>) => ReactElement | null;
+export type LabelComponent = <C extends ElementType = 'label'>(props: LabelProps<C>) => ReactElement | null;
 
 export const Label: LabelComponent = forwardRef(
   <C extends ElementType = 'label'>(
