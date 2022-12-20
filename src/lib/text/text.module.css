@@ -5,55 +5,83 @@
   }
   /* textStyle */
   .body-sm {
-    @apply text-xs;
+    font-size: theme('fontSize.xs');
+    line-height: theme('lineHeight.xs');
   }
   .body-md {
-    @apply text-sm;
+    font-size: theme('fontSize.sm');
+    line-height: theme('lineHeight.sm');
   }
   .body-lg {
-    @apply text-base;
+    font-size: theme('fontSize.md');
+    line-height: theme('lineHeight.md');
   }
   .body-xl {
-    @apply text-lg;
+    font-size: theme('fontSize.lg');
+    line-height: theme('lineHeight.lg');
   }
   .label-sm {
-    @apply text-xs font-medium;
+    font-size: theme('fontSize.xs');
+    line-height: theme('lineHeight.xs');
+    font-weight: theme('fontWeight.medium');
   }
   .label-md {
-    @apply text-sm font-semibold;
+    font-size: theme('fontSize.sm');
+    line-height: theme('lineHeight.sm');
+    font-weight: theme('fontWeight.semibold');
   }
   .label-lg {
-    @apply text-base font-semibold;
+    font-size: theme('fontSize.md');
+    line-height: theme('lineHeight.md');
+    font-weight: theme('fontWeight.semibold');
   }
   .title-sm {
-    @apply text-xl;
+    font-size: theme('fontSize.xl');
+    line-height: theme('lineHeight.xl');
   }
   .title-md {
-    @apply text-2xl;
+    font-size: theme('fontSize.2xl');
+    line-height: theme('lineHeight.2xl');
   }
   .title-lg {
-    @apply text-3xl;
+    font-size: theme('fontSize.3xl');
+    line-height: theme('lineHeight.3xl');
   }
   .headline-sm {
-    @apply text-3xl font-bold;
+    font-size: theme('fontSize.3xl');
+    line-height: theme('lineHeight.3xl');
+    font-weight: theme('fontWeight.bold');
   }
   .headline-md {
-    @apply text-4xl font-bold;
+    font-size: theme('fontSize.4xl');
+    line-height: theme('lineHeight.4xl');
+    font-weight: theme('fontWeight.bold');
   }
   .headline-lg {
-    @apply text-5xl font-bold;
+    font-size: theme('fontSize.5xl');
+    line-height: theme('lineHeight.5xl');
+    font-weight: theme('fontWeight.bold');
   }
   .overline {
-    @apply text-xs uppercase tracking-wider;
+    font-size: theme('fontSize.xs');
+    line-height: theme('lineHeight.xs');
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
   .mono-sm {
-    @apply font-mono text-xs;
+    font-size: theme('fontSize.xs');
+    line-height: theme('lineHeight.xs');
+    font-family: theme('fontFamily.mono');
   }
   .mono-md {
-    @apply font-mono text-sm;
+    font-size: theme('fontSize.sm');
+    line-height: theme('lineHeight.sm');
+    font-family: theme('fontFamily.mono');
   }
   .mono-lg {
-    @apply font-mono text-base;
+    font-size: theme('fontSize.md');
+    line-height: theme('lineHeight.md');
+    font-family: theme('fontFamily.mono');
   }
 
   /* Tone */
@@ -85,5 +113,14 @@
   }
   .align--justify {
     text-align: justify;
+  }
+
+  /* Line clamp */
+
+  .line-clamp {
+    display: -webkit-inline-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: var(--fx-text-lineClamp);
   }
 }

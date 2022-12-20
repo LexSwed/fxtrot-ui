@@ -16,7 +16,7 @@ const Trigger = forwardRef<HTMLButtonElement, TriggerProps>(
   ({ children, flow = 'row', cross = 'center', main = 'space-between', className, ...props }, ref) => {
     return (
       <Rdx.Trigger asChild>
-        <Button flow={flow} cross={cross} main={main} className={clsx('group/trigger', className)} {...props} ref={ref}>
+        <Button flow={flow} cross={cross} main={main} className={clsx(styles.trigger, className)} {...props} ref={ref}>
           {children}
           <Icon className={styles['trigger-icon']} size={props.size} as={ChevronDownIcon} />
         </Button>

@@ -25,7 +25,7 @@
       transition: all 150ms ease-in;
       content: '';
     }
-    &[aria-selected='true'] {
+    &[aria-current='true'] {
       color: theme('colors.primary');
       &:after {
         background-color: currentColor;
@@ -34,7 +34,7 @@
         transform: none;
       }
     }
-    &[aria-selected='false']:after {
+    &[aria-current='false']:after {
       background: transparent;
     }
   }

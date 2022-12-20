@@ -13,7 +13,7 @@ interface Props extends ComponentProps<'a'>, VariantProps<typeof linkCss> {
 }
 
 const TextLink = forwardRef<HTMLAnchorElement, Props>(
-  ({ textStyle, tone, align, external, inline = true, className, children, ...props }, ref) => {
+  ({ textStyle = 'body-md', tone, align, external, inline = true, className, children, ...props }, ref) => {
     const additionalProps = external ? { target: '_blank', rel: 'noreferrer' } : null;
 
     return (
@@ -24,7 +24,7 @@ const TextLink = forwardRef<HTMLAnchorElement, Props>(
         ref={ref}
       >
         {children}
-        {external === 'icon' ? <Icon size="inherit" as={ArrowTopRightOnSquareIcon} /> : null}
+        {external === 'icon' ? <Icon size="inherit" as={ArrowTopRightOnSquareIcon} className={styles.icon} /> : null}
       </a>
     );
   }

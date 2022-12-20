@@ -104,7 +104,7 @@ const defaultTheme = {
     mono: 'Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace',
   },
   fontSize: {
-    'xs': ['0.75rem', '1rem'],
+    'xs': ['0.75rem', '0.875rem'],
     'sm': ['0.875rem', '1.25rem'],
     'md': ['1rem', '1.5rem'],
     'lg': ['1.125rem', '1.75rem'],

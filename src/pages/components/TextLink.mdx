@@ -18,7 +18,7 @@ title: TextLink
 ### External
 
 ```tsx preview
-<Column gap="lg" cross="start" className="w-1/2">
+<Column gap="lg" cross="start" className="w-[300px]">
   <TextLink href="https://random.dog/" external>
     Just external
   </TextLink>
@@ -27,8 +27,8 @@ title: TextLink
   </TextLink>
   <p>
     Within text:
-    <br /> The quick brown fox jumps over the lazy <TextLink href="https://random.dog/" external="icon">
-      dog
+    <br /> The quick brown fox jumps over the <TextLink href="https://random.dog/" external="icon">
+      lazy dog
     </TextLink>, but can't make it, or maybe can but we just don't know. And here's a wrapped link:
     <TextLink href="https://random.dog/" external>
       Is it really a long link?

@@ -6,16 +6,20 @@
     will-change: transform, height, opacity;
     &:where([data-state='open']) {
       animation: 300ms open ease-in forwards;
-      & > .trigger-icon {
-        rotate: 180deg;
-      }
     }
     &:where([data-state='closed']) {
       animation: 240ms close ease-out forwards;
     }
   }
+  .trigger {
+    &:where([data-state='open']) {
+      & > .trigger-icon {
+        rotate: 180deg;
+      }
+    }
+  }
   .trigger-icon {
-    transition: transform 150ms ease-in-out;
+    transition: rotate 150ms ease-in-out;
   }
 
   @keyframes open {

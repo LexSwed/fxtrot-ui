@@ -1,20 +1,20 @@
+import { ElementType, forwardRef, ReactElement } from 'react';
 import { classed as css, VariantProps } from '@tw-classed/core';
 import { clsx } from 'clsx';
-import { ElementType, forwardRef } from 'react';
 import { flexCss, FlexVariants } from '../flex/flex';
 import type { PolyProps, PolyRef } from '../utils/polymorphic';
 
 import styles from './list-item.module.css';
 
-interface ListItemProps extends ListItemVariants {}
+type ListItemProps<C extends ElementType> = PolyProps<C, ListItemVariants>;
+type ListItemComponent = <C extends ElementType = 'span'>(props: ListItemProps<C>) => ReactElement | null;
 
-export const ListItem = forwardRef(function ListItem<C extends ElementType = 'div'>(
-  { as, className, ...props }: PolyProps<C, ListItemProps>,
-  ref: PolyRef<C>
-) {
-  const Component = as || 'div';
-  return <Component className={clsx(listItemCss(props), className)} {...props} ref={ref} />;
-});
+export const ListItem: ListItemComponent = forwardRef(
+  <C extends ElementType = 'div'>({ as, className, ...props }: ListItemProps<C>, ref: PolyRef<C>) => {
+    const Component = as || 'div';
+    return <Component className={clsx(listItemCss(props), className)} {...props} ref={ref} />;
+  }
+);
 
 const listItemCssInner = css(styles['list-item'], flexCss, {
   variants: {

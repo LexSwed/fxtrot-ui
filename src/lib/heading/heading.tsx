@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { ElementType, forwardRef } from 'react';
 import { classed as css, VariantProps } from '@tw-classed/core';
 import { clsx } from 'clsx';
 
@@ -6,20 +6,20 @@ import type { PolyProps, PolyRef } from '../utils/polymorphic';
 
 import styles from './heading.module.css';
 
-export type HeadingVariants = VariantProps<typeof headingCss>;
+type HeadingProps<C extends ElementType = 'h1'> = PolyProps<C, HeadingVariants & { disabled?: boolean }>;
+type HeadingComponent = <C extends ElementType = 'h1'>(props: HeadingProps<C>) => React.ReactElement | null;
 
-interface HeadingProps extends HeadingVariants {}
+export const Heading: HeadingComponent = forwardRef(
+  <C extends ElementType = 'h1'>(
+    { as, variant = 'default', level = '1', dense = true, className, ...props }: HeadingProps<C>,
+    ref: PolyRef<C>
+  ) => {
+    const Component = as || 'h1';
+    return <Component className={clsx(headingCss({ variant, level, dense }), className)} {...props} ref={ref} />;
+  }
+);
 
-type HeadingElement = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-
-export const Heading = forwardRef(function Heading<C extends HeadingElement = 'h1'>(
-  { as, variant = 'default', level = '1', dense = true, className, ...props }: PolyProps<C, HeadingProps>,
-  ref: PolyRef<C>
-) {
-  const Component = as || 'h1';
-  return <Component className={clsx(headingCss({ variant, level, dense }), className)} {...props} ref={ref} />;
-});
-
+type HeadingVariants = VariantProps<typeof headingCss>;
 const headingCss = css(styles.heading, {
   variants: {
     level: {

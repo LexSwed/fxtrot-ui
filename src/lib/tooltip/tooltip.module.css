@@ -3,12 +3,13 @@
 @layer lib {
   .content {
     overflow: unset;
-    padding-block: theme('spacing.1');
-    padding-inline: theme('spacing.2');
+    padding: theme('spacing.2');
     max-width: theme(space.60);
+    background-color: theme('colors.inverse-surface');
+    color: theme('colors.inverse-on-surface');
   }
   .arrow {
-    fill: theme('colors.surface');
+    fill: theme('colors.inverse-surface');
     width: 11px;
     height: 5px;
     filter: drop-shadow(0 0 1px theme('colors.on-surface/0.3'));

@@ -9,15 +9,12 @@
   }
 
   .text-link--inline {
-    transition: 0.12s ease-in;
-    transition-property: outline-width, text-decoration;
+    transition: 0.14s ease-in-out;
+    transition-property: box-shadow, text-decoration;
     text-decoration: underline solid transparent 2px;
-    outline: inset theme('spacing.2') transparent;
-    outline-offset: -1em;
     line-height: 1em;
     &:where(:hover, :focus) {
-      outline-color: theme('colors.primary/0.1');
-      outline-width: theme('spacing.5');
+      box-shadow: 0 0 0 6px theme('colors.primary/0.1'), 0 0 0 1em theme('colors.primary/0.1') inset;
       text-decoration-color: theme('colors.primary');
     }
   }
@@ -35,11 +32,9 @@
   }
 
   .text-link--external-icon {
-    display: inline-flex;
-    align-items: baseline;
-    gap: theme('spacing[0.5]');
     & > .icon {
       margin-inline-start: theme('spacing.1');
+      vertical-align: baseline;
     }
   }
 }

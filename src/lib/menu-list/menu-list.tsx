@@ -1,7 +1,7 @@
 import * as RovingFocusGroup from '@radix-ui/react-roving-focus';
 
 import { clsx } from 'clsx';
-import { ComponentProps, ElementType, forwardRef } from 'react';
+import { ComponentProps, ElementType, forwardRef, ReactElement } from 'react';
 
 import { Flex } from '../flex';
 import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
@@ -20,38 +20,35 @@ export const MenuList = ({ flow = 'column', className, ...props }: MenuListProps
   );
 };
 
-export interface MenuListItemProps extends ListItemVariants {
-  disabled?: boolean;
-  selected?: boolean;
-}
+type MenuListItemProps<C extends ElementType> = PolyProps<C, ListItemVariants & { disabled?: boolean }>;
+type MenuListItemComponent = <C extends ElementType = 'span'>(props: MenuListItemProps<C>) => ReactElement | null;
 
-export const Item = forwardRef(function MenuListItem<C extends ElementType = 'button'>(
-  { as, className, selected, disabled, onKeyDown, ...props }: PolyProps<C, MenuListItemProps>,
-  ref: PolyRef<C>
-) {
-  const Component = as || 'button';
-  const onKeyDownHandler = useKeyboardHandles({
-    'Enter': (e) => e.currentTarget.click?.(),
-    ' ': (e) => e.currentTarget.click?.(),
-  });
-  const handleKeyDown = useAllHandlers(onKeyDown, onKeyDownHandler);
+export const Item: MenuListItemComponent = forwardRef(
+  <C extends ElementType = 'a'>(
+    { as, className, disabled, onKeyDown, 'aria-current': active, ...props }: MenuListItemProps<C>,
+    ref: PolyRef<C>
+  ) => {
+    const Component = as || 'a';
+    const onKeyDownHandler = useKeyboardHandles({
+      'Enter': (e) => e.currentTarget.click?.(),
+      ' ': (e) => e.currentTarget.click?.(),
+    });
+    const handleKeyDown = useAllHandlers(onKeyDown, onKeyDownHandler);
 
-  return (
-    <RovingFocusGroup.Item asChild focusable={!disabled} active={selected}>
-      <Component
-        {...props}
-        className={clsx(listItemCss(props), styles['menu-item'], className)}
-        aria-selected={selected}
-        aria-disabled={disabled}
-        role="treeitem"
-        onKeyDown={handleKeyDown}
-        ref={ref}
-      />
-    </RovingFocusGroup.Item>
-  );
-});
+    return (
+      <RovingFocusGroup.Item asChild focusable={!disabled} active={active}>
+        <Component
+          {...props}
+          className={clsx(listItemCss(props), styles['menu-item'], className)}
+          aria-disabled={disabled}
+          aria-current={active}
+          role="treeitem"
+          onKeyDown={handleKeyDown}
+          ref={ref}
+        />
+      </RovingFocusGroup.Item>
+    );
+  }
+);
 
-Item.displayName = 'MenuListItem';
-
-MenuList.displayName = 'MenuList';
 MenuList.Item = Item;

@@ -19,11 +19,11 @@ function createTailwindColorVariables(colors) {
 /** @type {import('./theme-provider/types').createTailwindFontVariables} */
 function createFontSizeVariables(fontSizes) {
   return Object.entries(fontSizes).reduce(
-    (res, [token, [fontSize, lineHeight]]) => {
+    (res, [token]) => {
       // @ts-expect-error
-      res.fontSize[token] = fontSize;
+      res.fontSize[token] = `var(${toToken('fontSize', token)})`;
       // @ts-expect-error
-      res.lineHeight[token] = lineHeight;
+      res.lineHeight[token] = `var(${toToken('lineHeight', token)})`;
       return res;
     },
     {

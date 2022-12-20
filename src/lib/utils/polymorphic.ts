@@ -1,9 +1,5 @@
 import type * as React from 'react';
 
-/**
- * Infers the JSX.IntrinsicElement if E is a ForwardRefExoticComponentWithAs
- */
-
 type PolymorphicRef<C extends React.ElementType> = React.ComponentPropsWithRef<C>['ref'];
 
 type AsProp<C extends React.ElementType> = {

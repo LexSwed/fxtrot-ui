@@ -78,9 +78,9 @@ export const components = {
   wrapper: (props: any) => {
     return <MainLayout {...props} />;
   },
-  li: (props: any) => <li {...props} className={clsx('list-inside', props.className)} />,
+  li: (props: any) => <Text as="li" {...props} />,
   ul: (props: any) => (
-    <ul {...props} className={clsx('flex list-inside flex-col flex-nowrap gap-2 pl-4', props.className)} />
+    <ul {...props} className={clsx('flex list-inside list-disc flex-col flex-nowrap gap-2 pl-4', props.className)} />
   ),
 };
 

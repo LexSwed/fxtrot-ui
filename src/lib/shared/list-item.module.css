@@ -16,7 +16,7 @@
 
     @apply text-sm;
 
-    &:where(:hover, :focus, [aria-selected='true']) {
+    &:where(:hover, :focus, [aria-selected='true'], [aria-current='true']) {
       background-color: theme('colors.on-surface/0.05');
     }
     &:where(:active, [data-focused='true'], [data-highlighted]) {

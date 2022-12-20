@@ -9,29 +9,36 @@ import { Flex, FlexVariants } from '../flex/flex';
 
 import styles from './form-field.module.css';
 
-export const FormFieldWrapper = forwardRef(function FormField<C extends ElementType = 'div'>(
-  {
-    cross = 'stretch',
-    flow = 'column',
-    display = 'inline',
-    gap = 'xs',
-    className,
-    ...props
-  }: PolyProps<C, FlexVariants>,
-  ref: PolyRef<C>
-) {
-  return (
-    <Flex
-      cross={cross}
-      flow={flow}
-      display={display}
-      gap={gap}
-      className={clsx(styles['form-field'], className)}
-      {...props}
-      ref={ref}
-    />
-  );
-});
+type FormFieldWrapperProps<C extends ElementType> = PolyProps<C, FlexVariants>;
+type FormFieldWrapperComponent = <C extends ElementType = 'div'>(
+  props: FormFieldWrapperProps<C>
+) => React.ReactElement | null;
+
+export const FormFieldWrapper: FormFieldWrapperComponent = forwardRef(
+  <C extends ElementType = 'div'>(
+    {
+      cross = 'stretch',
+      flow = 'column',
+      display = 'inline',
+      gap = 'xs',
+      className,
+      ...props
+    }: FormFieldWrapperProps<C>,
+    ref: PolyRef<C>
+  ) => {
+    return (
+      <Flex
+        cross={cross}
+        flow={flow}
+        display={display}
+        gap={gap}
+        className={clsx(styles['form-field'], className)}
+        {...props}
+        ref={ref}
+      />
+    );
+  }
+);
 
 export type FormFieldValidity = {
   validity?: keyof typeof tonesMap;
