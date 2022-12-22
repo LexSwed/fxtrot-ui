@@ -1,6 +1,6 @@
 import { Column, Text, Row } from '@fxtrot/ui';
 import defaultTheme from 'src/lib/theme-provider/default-theme.cjs';
-import type { Theme } from 'src/lib/theme-provider/types';
+import type { Theme } from '@fxtrot/ui';
 import { CopyButton } from './CopyButton';
 
 type Props = {

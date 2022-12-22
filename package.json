@@ -4,27 +4,29 @@
   "version": "0.0.1",
   "license": "Apache-2.0",
   "type": "module",
-  "types": "dist/types/index.d.ts",
-  "main": "./dist/fxtrot-ui.umd.js",
+  "source": "src/lib/index.ts",
+  "types": "dist/index.d.ts",
+  "main": "./dist/fxtrot-ui.js",
   "module": "./dist/fxtrot-ui.es.js",
   "exports": {
     ".": {
       "import": "./dist/fxtrot-ui.es.js",
-      "require": "./dist/fxtrot-ui.umd.js",
-      "types": "./dist/types/index.d.ts"
+      "require": "./dist/fxtrot-ui.js",
+      "types": "./dist/index.d.ts"
     },
     "./tailwind.cjs": "./dist/tailwind.preset.cjs",
     "./dist/style.css": "./dist/style.css"
   },
-  "sideEffects": false,
+  "sideEffects": [
+    "*.css"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/LexSwed/fxtrot-ui"
   },
   "scripts": {
-    "build": "rm -rf ./dist && npm run build:lib && npm run build:types",
-    "build:lib": "vite build --mode production",
-    "build:types": "tsc --project tsconfig.lib.json",
+    "build": "rm -rf ./dist && npm run build:lib && cp src/lib/tailwind.preset.cjs dist/tailwind.preset.cjs",
+    "build:lib": "parcel build .",
     "dev": "npm run docs:dev",
     "lint": "next lint --dir pages --dir src",
     "typecheck": "tsc --noEmit",
@@ -52,6 +54,7 @@
     "@radix-ui/react-id": "1.0.0",
     "@radix-ui/react-popover": "^1.0.2",
     "@radix-ui/react-portal": "^1.0.1",
+    "@radix-ui/react-presence": "^1.0.0",
     "@radix-ui/react-roving-focus": "^1.0.1",
     "@radix-ui/react-select": "^1.1.2",
     "@radix-ui/react-toggle": "^1.0.1",
@@ -63,10 +66,16 @@
     "react-keyed-flatten-children": "^1.3.0"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.18.6",
     "@mdx-js/loader": "^2.2.1",
     "@mdx-js/mdx": "^2.2.1",
     "@mdx-js/react": "^2.2.1",
     "@next/mdx": "^13.0.7",
+    "@parcel/packager-ts": "^2.8.2",
+    "@parcel/transformer-typescript-tsc": "^2.8.2",
+    "@parcel/transformer-typescript-types": "^2.8.2",
     "@stitches/react": "^1.2.8",
     "@types/glob": "^8.0.0",
     "@types/jest": "^29.2.4",
@@ -75,7 +84,6 @@
     "@types/react-dom": "^18.0.9",
     "@typescript-eslint/eslint-plugin": "^5.47.0",
     "@typescript-eslint/parser": "^5.47.0",
-    "@vitejs/plugin-react": "^3.0.0",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.30.0",
     "eslint-config-next": "^13.0.7",
@@ -93,9 +101,8 @@
     "lint-staged": "^13.1.0",
     "next": "^13.0.7",
     "next-seo": "^5.15.0",
+    "parcel": "^2.8.2",
     "pinst": "^3.0.0",
-    "postcss": "^8.4.20",
-    "postcss-preset-env": "^7.8.3",
     "prettier": "^2.8.1",
     "prettier-eslint": "^15.0.1",
     "prettier-plugin-tailwindcss": "^0.2.1",
@@ -111,9 +118,7 @@
     "remark-mdx-frontmatter": "^2.0.3",
     "tailwindcss": "^3.2.4",
     "typescript": "^4.9.4",
-    "typescript-plugin-css-modules": "^4.1.1",
-    "vite": "^4.0.2",
-    "vite-plugin-static-copy": "^0.13.0"
+    "typescript-plugin-css-modules": "^4.1.1"
   },
   "peerDependencies": {
     "react": "^18.0.0",
@@ -141,9 +146,11 @@
     "printWidth": 120,
     "quoteProps": "consistent"
   },
-  "browserslist": [
-    "> 2%"
-  ],
+  "@parcel/transformer-css": {
+    "drafts": {
+      "nesting": true
+    }
+  },
   "release": {
     "branches": [
       "+([0-9])?(.{+([0-9]),x}).x",

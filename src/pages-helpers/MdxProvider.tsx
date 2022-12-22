@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { MDXProvider } from '@mdx-js/react';
 import Image from 'next/image';
-import { BsTypeBold, BsTypeItalic, BsTypeUnderline } from 'react-icons/bs';
 import * as Icons from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { clsx } from 'clsx';
@@ -49,10 +48,6 @@ export const components = {
   ...helpers,
   ...FxtrotUI,
   ...Icons,
-  // used by ActionGroup docs
-  BsTypeBold,
-  BsTypeItalic,
-  BsTypeUnderline,
   a: ({ href, ...props }: any) => {
     if (href.startsWith('/')) {
       return (

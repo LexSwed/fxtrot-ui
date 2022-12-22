@@ -1,3 +1,5 @@
+/// <reference path="../types/css.d.ts" />
+
 export { ActionGroup } from './action-group';
 export { Button, LinkButton } from './button';
 export { Checkbox } from './checkbox';
@@ -37,3 +39,4 @@ export {
   useLatest,
   useOnClickOutside,
 } from './utils/hooks';
+export { type Theme } from './theme-provider/types';
