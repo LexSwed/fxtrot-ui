@@ -17,7 +17,7 @@ export const MultilineCode = ({ code, language }: Props) => {
             {tokens.map((line, i) => {
               const lineProps = getLineProps({ line, key: i });
               return (
-                <line {...lineProps} className={clsx('table-row text-sm', lineProps.className)} key={i}>
+                <line {...lineProps} className={clsx('table-row text-sm', lineProps.className)}>
                   <span className="table-cell select-none text-end opacity-50 pr-4">{i + 1}</span>
                   <span className="table-cell">
                     {line.map((token, key) => (

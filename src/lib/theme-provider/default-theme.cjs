@@ -31,7 +31,7 @@ const defaultTheme = {
     'inverse-surface': 'hsl(225 4.1% 19.2%)',
     'inverse-on-surface': 'hsl(255 15.4% 94.9%)',
     'disabled': 'hsl(0deg 0% 90%)',
-    'on-disabled': 'hsl(204 9.1% 30%)',
+    'on-disabled': 'hsl(204 9.1% 26%)',
   },
   // Tailwind default + xs and popper
   boxShadow: {

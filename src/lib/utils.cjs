@@ -1,7 +1,5 @@
 /**
- * @param {string} themeConfig - Type of the token: color, scale, fontSize
- * @param {string} name - Name of the token
- * @return {string}
+ * @type {import('./theme-provider/types').toToken}
  */
 function toToken(themeConfig, name) {
   return `--fx-${themeConfig}-${name.split('.').join('\\.')}`;

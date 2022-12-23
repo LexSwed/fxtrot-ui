@@ -1,10 +1,17 @@
 import './globals.css';
+import localFont from '@next/font/local';
 
 import { NextSeo } from 'next-seo';
 import { ThemeProvider } from '@fxtrot/ui';
 
 import { MdxProvider } from 'src/pages-helpers/MdxProvider';
 import type { AppProps } from 'next/dist/shared/lib/router/router';
+
+const Inter = localFont({
+  src: '../../public/fonts/Inter-VariableFont_slnt,wght.ttf',
+  fallback: ['-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif'],
+  weight: 'variable',
+});
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
@@ -39,7 +46,7 @@ export default function App(props: AppProps) {
           },
         ]}
       />
-      <ThemeProvider>
+      <ThemeProvider theme={{ fontFamily: { sans: Inter.style.fontFamily } }}>
         <MdxProvider>
           <Component {...pageProps} />
         </MdxProvider>
