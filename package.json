@@ -3,7 +3,6 @@
   "description": "UI library for Fxtrot initiatives",
   "version": "0.0.1",
   "license": "Apache-2.0",
-  "type": "module",
   "types": "dist/types/index.d.ts",
   "main": "./dist/fxtrot-ui.umd.js",
   "module": "./dist/fxtrot-ui.es.js",

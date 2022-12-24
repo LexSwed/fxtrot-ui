@@ -22,6 +22,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
       className={buttonCssWithDefaults(props)}
       aria-label={label}
       title={label}
+      disabled={disabled}
       aria-disabled={disabled}
       type={type}
       ref={ref}
