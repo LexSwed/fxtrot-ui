@@ -11,6 +11,13 @@ const Inter = localFont({
   src: '../../public/fonts/Inter-VariableFont_slnt,wght.ttf',
   fallback: ['-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif'],
   weight: 'variable',
+  variable: '--fxtrot-fontFamily-sans',
+});
+const FiraCode = localFont({
+  src: '../../public/fonts/FiraCode-VariableFont_wght.ttf',
+  fallback: ['Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace'],
+  weight: 'variable',
+  variable: '--fxtrot-fontFamily-mono',
 });
 
 export default function App(props: AppProps) {
@@ -46,7 +53,10 @@ export default function App(props: AppProps) {
           },
         ]}
       />
-      <ThemeProvider theme={{ fontFamily: { sans: Inter.style.fontFamily } }}>
+      <ThemeProvider
+        className={[Inter.variable, FiraCode.variable].join(' ')}
+        theme={{ fontFamily: { sans: Inter.style.fontFamily, mono: FiraCode.style.fontFamily } }}
+      >
         <MdxProvider>
           <Component {...pageProps} />
         </MdxProvider>
