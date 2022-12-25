@@ -9,6 +9,7 @@
     white-space: nowrap;
     background: transparent;
     font-weight: theme('fontWeight.medium');
+    line-height: theme('lineHeight.none');
     color: theme('colors.on-surface');
     transition-property: color, box-shadow, filter, border-color, background-color, background-image;
     transition-duration: 200ms;
@@ -214,18 +215,20 @@
     Size
   */
   .size--xs {
-    min-block-size: theme(spacing.6);
+    min-block-size: theme(spacing.7);
     border-radius: theme('borderRadius.md');
-    @apply text-xs py-1 px-2;
+    font-size: theme('fontSize.xs');
+    @apply py-1 px-2;
     &:where(.button--icon) {
       @apply px-1;
-      min-inline-size: theme(spacing.6);
+      min-inline-size: theme(spacing.7);
     }
   }
   .size--sm {
     min-block-size: theme(spacing.8);
     border-radius: theme('borderRadius.md');
-    @apply text-sm py-1 px-3;
+    font-size: theme('fontSize.sm');
+    @apply py-1 px-3;
     &:where(.button--icon) {
       @apply px-1;
       min-inline-size: theme(spacing.8);
@@ -234,7 +237,8 @@
   .size--md {
     min-block-size: theme(spacing.10);
     border-radius: theme('borderRadius.lg');
-    @apply text-sm py-2 px-4;
+    font-size: theme('fontSize.sm');
+    @apply py-2 px-4;
     &:where(.button--icon) {
       @apply px-2;
       min-inline-size: theme(spacing.10);
@@ -243,7 +247,8 @@
   .size--lg {
     min-block-size: theme(spacing.12);
     border-radius: theme('borderRadius.lg');
-    @apply text-base py-2 px-6;
+    font-size: theme('fontSize.md');
+    @apply py-2 px-6;
     &:where(.button--icon) {
       @apply px-2;
       min-inline-size: theme(spacing.12);

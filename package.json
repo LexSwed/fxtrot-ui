@@ -3,19 +3,18 @@
   "description": "UI library for Fxtrot initiatives",
   "version": "0.0.1",
   "license": "Apache-2.0",
-  "type": "module",
   "source": "src/lib/index.ts",
   "types": "dist/index.d.ts",
-  "main": "./dist/fxtrot-ui.js",
+  "main": "./dist/fxtrot-ui.umd.js",
   "module": "./dist/fxtrot-ui.es.js",
   "exports": {
     ".": {
       "import": "./dist/fxtrot-ui.es.js",
-      "require": "./dist/fxtrot-ui.js",
+      "require": "./dist/fxtrot-ui.umd.js",
       "types": "./dist/index.d.ts"
     },
     "./tailwind.cjs": "./dist/tailwind.preset.cjs",
-    "./dist/style.css": "./dist/style.css"
+    "./styles.css": "./dist/styles.css"
   },
   "sideEffects": [
     "*.css"
@@ -72,6 +71,7 @@
     "@mdx-js/loader": "^2.2.1",
     "@mdx-js/mdx": "^2.2.1",
     "@mdx-js/react": "^2.2.1",
+    "@next/font": "^13.1.1",
     "@next/mdx": "^13.0.7",
     "@parcel/packager-ts": "^2.8.2",
     "@parcel/transformer-typescript-tsc": "^2.8.2",
@@ -81,12 +81,12 @@
     "@types/jest": "^29.2.4",
     "@types/node": "^18.11.17",
     "@types/react": "^18.0.26",
-    "@types/react-dom": "^18.0.9",
+    "@types/react-dom": "^18.0.10",
     "@typescript-eslint/eslint-plugin": "^5.47.0",
     "@typescript-eslint/parser": "^5.47.0",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.30.0",
-    "eslint-config-next": "^13.0.7",
+    "eslint-config-next": "^13.1.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-import": "^2.26.0",
@@ -99,7 +99,7 @@
     "husky": "^8.0.1",
     "jest": "^29.0.3",
     "lint-staged": "^13.1.0",
-    "next": "^13.0.7",
+    "next": "^13.1.1",
     "next-seo": "^5.15.0",
     "parcel": "^2.8.2",
     "pinst": "^3.0.0",

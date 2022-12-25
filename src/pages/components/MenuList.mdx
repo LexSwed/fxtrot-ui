@@ -33,7 +33,7 @@ title: MenuList
           ].map(({ icon, label, disabled, className }) => (
             <MenuList.Item
               key={label}
-              selected={selected === label}
+              active={selected === label}
               disabled={disabled}
               onClick={() => setSelected(label)}
               className={className}

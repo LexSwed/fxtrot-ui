@@ -1,10 +1,24 @@
 import './globals.css';
+import localFont from '@next/font/local';
 
 import { NextSeo } from 'next-seo';
 import { ThemeProvider } from '@fxtrot/ui';
 
 import { MdxProvider } from 'src/pages-helpers/MdxProvider';
 import type { AppProps } from 'next/dist/shared/lib/router/router';
+
+const Inter = localFont({
+  src: '../../public/fonts/Inter-VariableFont_slnt,wght.ttf',
+  fallback: ['-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif'],
+  weight: 'variable',
+  variable: '--fxtrot-fontFamily-sans',
+});
+const FiraCode = localFont({
+  src: '../../public/fonts/FiraCode-VariableFont_wght.ttf',
+  fallback: ['Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace'],
+  weight: 'variable',
+  variable: '--fxtrot-fontFamily-mono',
+});
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
@@ -39,7 +53,10 @@ export default function App(props: AppProps) {
           },
         ]}
       />
-      <ThemeProvider>
+      <ThemeProvider
+        className={[Inter.variable, FiraCode.variable].join(' ')}
+        theme={{ fontFamily: { sans: Inter.style.fontFamily, mono: FiraCode.style.fontFamily } }}
+      >
         <MdxProvider>
           <Component {...pageProps} />
         </MdxProvider>

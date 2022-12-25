@@ -1,5 +1,6 @@
 import type { ThemeColor, Theme } from './types';
 import { toToken } from '../utils.cjs';
+import defaultTheme from './default-theme.cjs';
 
 /**
  * Transforms passed theme colors into CSS variables map that are consumed by the components.
@@ -68,3 +69,27 @@ export function createThemeVariables(theme: Theme): ThemeVariableEntry[] {
 }
 
 type ThemeVariableEntry = [`--fxtrot-${string}-${string}`, string];
+
+/**
+ * Takes partial theme and merges it with the default one.
+ */
+export function mergeTheme(theme: Theme): DeepRequired<Theme> {
+  const resultingTheme = { ...defaultTheme };
+  Object.keys(theme).forEach((themeKey) => {
+    const themeConfig = theme[themeKey as ThemeKey];
+    if (!themeConfig) return;
+    // @ts-expect-error 2022 can't type Object.keys properly in TypeScript :/
+    resultingTheme[themeKey] = { ...defaultTheme[themeKey] };
+    Object.keys(themeConfig).forEach((configKey) => {
+      // @ts-expect-error
+      resultingTheme[themeKey][configKey] = themeConfig[configKey];
+    });
+  });
+  // @ts-expect-error defaultTheme has colors as strings and not HSL, as JSDoc doesn't support @satisfies yet
+  return resultingTheme;
+}
+
+type ThemeKey = NonNullable<keyof Theme>;
+type DeepRequired<T> = {
+  [K in keyof T]: Required<DeepRequired<T[K]>>;
+};

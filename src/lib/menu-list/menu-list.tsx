@@ -20,12 +20,15 @@ export const MenuList = ({ flow = 'column', className, ...props }: MenuListProps
   );
 };
 
-type MenuListItemProps<C extends ElementType> = PolyProps<C, ListItemVariants & { disabled?: boolean }>;
+type MenuListItemProps<C extends ElementType> = PolyProps<
+  C,
+  ListItemVariants & { disabled?: boolean; active?: boolean }
+>;
 type MenuListItemComponent = <C extends ElementType = 'span'>(props: MenuListItemProps<C>) => ReactElement | null;
 
 export const Item: MenuListItemComponent = forwardRef(
   <C extends ElementType = 'a'>(
-    { as, className, disabled, onKeyDown, 'aria-current': active, ...props }: MenuListItemProps<C>,
+    { as, className, disabled, onKeyDown, active, ...props }: MenuListItemProps<C>,
     ref: PolyRef<C>
   ) => {
     const Component = as || 'a';
