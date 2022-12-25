@@ -24,7 +24,6 @@ export const TextArea = forwardRef<HTMLDivElement, Props>(
       style,
       className,
       onChange,
-      validity,
       value,
       disabled,
       variant = 'boxed',
@@ -78,13 +77,9 @@ export const TextArea = forwardRef<HTMLDivElement, Props>(
             value={value}
             onChange={handleChange}
             ref={refs}
-            className={clsx(fieldBoxCss({ validity, size, variant }), textfieldCss({ size }))}
+            className={clsx(fieldBoxCss({ size, variant }), textfieldCss({ size }))}
           />
-          {hint && (
-            <Hint id={ariaProps['aria-describedby']} validity={validity}>
-              {hint}
-            </Hint>
-          )}
+          {hint && <Hint id={ariaProps['aria-describedby']}>{hint}</Hint>}
         </Column>
       </FormFieldWrapper>
     );
@@ -97,7 +92,6 @@ interface Props extends FlexVariants, FieldVariants, Omit<ComponentProps<'textar
   label?: string;
   secondaryLabel?: string;
   hint?: string;
-  validity?: 'valid' | 'invalid';
   inputRef?: Ref<HTMLTextAreaElement>;
   onChange?: (value: string, event: ChangeEvent<HTMLTextAreaElement>) => void;
 }

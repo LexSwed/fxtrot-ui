@@ -1,4 +1,4 @@
-@layer lib, defaults;
+@import '../root.css';
 
 @layer lib {
   .field {

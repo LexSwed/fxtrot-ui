@@ -1,7 +1,16 @@
-@layer lib, utils;
+@import '../root.css';
 
 @layer lib {
+  .input-icon-wrapper {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template: 1fr / 1fr theme('spacing.8');
+    align-items: center;
+  }
+
   .text-field {
+    grid-area: 1 / 1 / -1 / -1;
     &[type='number']::-webkit-inner-spin-button,
     &[type='number']::-webkit-outer-spin-button {
       -webkit-appearance: inner-spin-button !important;
@@ -39,27 +48,18 @@
     }
   }
 
-  .input-icon-wrapper {
-    position: relative;
-    width: 100%;
-  }
-
   /** custom icon */
   .icon {
-    position: absolute;
-    inset-block: 0;
-    inset-inline-end: 0;
+    grid-area: 1 / 2;
     width: theme('spacing.8');
     padding-inline-end: theme('spacing.1');
     outline: none;
     border-radius: theme('borderRadius.md');
-    display: flex;
-    justify-content: center;
-    align-items: center;
     pointer-events: none;
     transition: color 0.1s ease-in;
   }
   .valid + .icon {
+    stroke-width: 0.15rem;
     color: theme('colors.success');
   }
   .invalid + .icon {

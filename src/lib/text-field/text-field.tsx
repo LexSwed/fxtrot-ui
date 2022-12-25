@@ -92,11 +92,7 @@ export const TextField = forwardRef<HTMLDivElement, Props>(
                 fieldBoxCss({ validity, variant, size })
               )}
             />
-            {iconRight && (
-              <div className={styles.icon}>
-                <Icon as={iconRight} size={size} />
-              </div>
-            )}
+            {iconRight && <Icon as={iconRight} size={iconSizeMap[size]} className={styles.icon} />}
           </div>
           {hint && (
             <Hint id={ariaProps['aria-describedby']} validity={validity}>
@@ -108,6 +104,13 @@ export const TextField = forwardRef<HTMLDivElement, Props>(
     );
   }
 );
+
+const iconSizeMap = {
+  sm: 'xs',
+  md: 'sm',
+  lg: 'md',
+  xl: 'lg',
+} satisfies Record<NonNullable<Props['size']>, NonNullable<ComponentProps<typeof Icon>['size']>>;
 
 TextField.displayName = 'TextField';
 

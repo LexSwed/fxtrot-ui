@@ -5,16 +5,16 @@
   "license": "Apache-2.0",
   "source": "src/lib/index.ts",
   "types": "dist/index.d.ts",
-  "main": "./dist/fxtrot-ui.umd.js",
+  "main": "./dist/fxtrot-ui.js",
   "module": "./dist/fxtrot-ui.es.js",
   "exports": {
     ".": {
       "import": "./dist/fxtrot-ui.es.js",
-      "require": "./dist/fxtrot-ui.umd.js",
+      "require": "./dist/fxtrot-ui.js",
       "types": "./dist/index.d.ts"
     },
-    "./tailwind.cjs": "./dist/tailwind.preset.cjs",
-    "./styles.css": "./dist/styles.css"
+    "./fxtrot-tailwind-preset.cjs": "./dist/tailwind.preset.cjs",
+    "./styles.css": "./dist/fxtrot-ui.es.css"
   },
   "sideEffects": [
     "*.css"
@@ -103,6 +103,8 @@
     "next-seo": "^5.15.0",
     "parcel": "^2.8.2",
     "pinst": "^3.0.0",
+    "postcss": "^8.4.20",
+    "postcss-preset-env": "^7.8.3",
     "prettier": "^2.8.1",
     "prettier-eslint": "^15.0.1",
     "prettier-plugin-tailwindcss": "^0.2.1",

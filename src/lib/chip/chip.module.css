@@ -1,4 +1,4 @@
-@layer lib, utils;
+@import '../root.css';
 
 @layer lib {
   .chip {
