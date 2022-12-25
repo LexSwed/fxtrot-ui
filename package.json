@@ -13,7 +13,7 @@
       "types": "./dist/types/index.d.ts"
     },
     "./tailwind.cjs": "./dist/tailwind.preset.cjs",
-    "./dist/style.css": "./dist/style.css"
+    "./style.css": "./dist/style.css"
   },
   "sideEffects": false,
   "repository": {
