@@ -57,7 +57,7 @@ export const components = {
     if (href.startsWith('/')) {
       return (
         <Link href={href} passHref legacyBehavior>
-          <TextLink {...props} />
+          <TextLink {...props} inline />
         </Link>
       );
     }
@@ -73,6 +73,7 @@ export const components = {
   p: (props: any) => <Text {...props} className="mt-3 mb-2" as="p" />,
   aside: (props: any) => <Text {...props} tone="light" className="my-4" />,
   code: Code,
+  MultilineCode,
   pre: Pre,
   strong: (props: any) => <Text {...props} as="strong" />,
   wrapper: (props: any) => {

@@ -1,24 +1,24 @@
-@layer lib, utils;
+@import '../root.css';
 
 @layer lib {
   .text {
   }
   /* textStyle */
   .body-sm {
-    font-size: theme('fontSize.xs');
-    line-height: theme('lineHeight.xs');
-  }
-  .body-md {
     font-size: theme('fontSize.sm');
     line-height: theme('lineHeight.sm');
   }
-  .body-lg {
+  .body-md {
     font-size: theme('fontSize.md');
     line-height: theme('lineHeight.md');
   }
-  .body-xl {
+  .body-lg {
     font-size: theme('fontSize.lg');
     line-height: theme('lineHeight.lg');
+  }
+  .body-xl {
+    font-size: theme('fontSize.xl');
+    line-height: theme('lineHeight.xl');
   }
   .label-sm {
     font-size: theme('fontSize.xs');

@@ -1,4 +1,4 @@
-@layer lib, utils;
+@import '../root.css';
 
 @layer lib {
   .button {
@@ -147,7 +147,6 @@
   } */
 
   .variant--flat {
-    border-color: transparent;
     background-color: transparent;
     color: theme('colors.on-surface');
 
@@ -160,7 +159,6 @@
     }
 
     &:where(:active, [data-state='open']) {
-      border-color: theme('colors.outline/0.15');
       background-color: theme('colors.on-surface/0.15');
     }
 
@@ -170,18 +168,6 @@
 
     &:where(.intent--danger) {
       color: theme('colors.error');
-    }
-
-    /* ToggleButton */
-    &:where([data-state='on']) {
-      border-color: theme('colors.primary/0.4');
-      background-color: theme('colors.primary/0.1');
-      color: theme('colors.primary');
-
-      &:where(:hover, :focus, :active) {
-        border-color: theme('colors.primary/0.5');
-        background-color: theme('colors.primary/0.15');
-      }
     }
   }
 

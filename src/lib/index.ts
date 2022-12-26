@@ -16,6 +16,7 @@ export { Portal } from './portal';
 export { Section } from './section';
 export { Spinner } from './spinner';
 export { Switch } from './switch';
+export { Tabs } from './tabs';
 export { Text } from './text';
 export { TextArea } from './text-area';
 export { TextField } from './text-field';

@@ -1,0 +1,41 @@
+---
+title: Tabs
+---
+
+# Tabs
+
+A set of layered sections of content—known as tab panels—that are displayed one at a time.
+
+```tsx preview
+<Tabs defaultValue="npm">
+  <Tabs.List>
+    <Tabs.Trigger value="npm">NPM</Tabs.Trigger>
+    <Tabs.Trigger value="yarn">Yarn</Tabs.Trigger>
+  </Tabs.List>
+  <Tabs.Content value="npm">
+    <MultilineCode code="npm install @fxtrot/ui" language="bash" lineNumber={false} />
+  </Tabs.Content>
+  <Tabs.Content value="yarn">
+    <MultilineCode code="yarn add @fxtrot/ui" language="bash" lineNumber={false} />
+  </Tabs.Content>
+</Tabs>
+```
+
+## Orientation
+
+Control the orientation of tabs with [Flex](/components/Flex)'s `flow` prop:
+
+```tsx preview
+<Tabs defaultValue="npm" flow="row">
+  <Tabs.List className="max-w-md">
+    <Tabs.Trigger value="npm">NPM</Tabs.Trigger>
+    <Tabs.Trigger value="yarn">Yarn</Tabs.Trigger>
+  </Tabs.List>
+  <Tabs.Content value="npm">
+    <MultilineCode code="npm install @fxtrot/ui" language="bash" lineNumber={false} />
+  </Tabs.Content>
+  <Tabs.Content value="yarn">
+    <MultilineCode code="yarn add @fxtrot/ui" language="bash" lineNumber={false} />
+  </Tabs.Content>
+</Tabs>
+```

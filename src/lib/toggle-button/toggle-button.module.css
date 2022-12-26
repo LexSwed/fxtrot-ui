@@ -1,0 +1,17 @@
+@import '../root.css';
+
+@layer lib {
+  .variant--flat {
+    &:where([aria-pressed='true'], [aria-expanded='true']) {
+      background-color: theme('colors.primary/0.1');
+      color: theme('colors.primary');
+
+      &:where(:hover, :focus, :active) {
+        background-color: theme('colors.primary/0.15');
+      }
+      &:where(:focus) {
+        @apply ring-primary;
+      }
+    }
+  }
+}

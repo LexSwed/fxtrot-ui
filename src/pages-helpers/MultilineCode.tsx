@@ -6,19 +6,20 @@ import { CopyButton } from './CopyButton';
 type Props = {
   code: string;
   language: string;
+  lineNumber?: boolean;
 };
 
-export const MultilineCode = ({ code, language }: Props) => {
+export const MultilineCode = ({ code, language, lineNumber = true }: Props) => {
   return (
     <Highlight {...defaultProps} theme={theme} code={code} language={language as Language}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <section className="group/code-wrapper relative">
-          <pre className={clsx('overflow-scroll rounded-sm p-4 text-start my-1', className)} style={style}>
+          <pre className={clsx('overflow-scroll rounded-sm p-3 text-start my-1', className)} style={style}>
             {tokens.map((line, i) => {
               const lineProps = getLineProps({ line, key: i });
               return (
                 <line {...lineProps} className={clsx('table-row text-sm', lineProps.className)}>
-                  <span className="table-cell select-none text-end opacity-50 pr-4">{i + 1}</span>
+                  {lineNumber && <span className="table-cell select-none text-end opacity-50 pr-4">{i + 1}</span>}
                   <span className="table-cell">
                     {line.map((token, key) => (
                       <span key={key} {...getTokenProps({ token, key })} />

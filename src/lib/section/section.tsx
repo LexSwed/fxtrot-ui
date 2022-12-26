@@ -12,7 +12,7 @@ const Section = ({ title, children, cross = 'stretch', flow = 'column', gap = 'm
   const id = useId(propId);
   return (
     <Flex cross={cross} flow={flow} gap={gap} {...props}>
-      <Text id={id} textStyle="overline" tone="light" className="pr-2">
+      <Text id={id} textStyle="overline" tone="light">
         {title}
       </Text>
       <div role="group" aria-labelledby={id}>

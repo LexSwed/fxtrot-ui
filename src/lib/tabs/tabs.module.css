@@ -1,0 +1,87 @@
+@import '../root.css';
+
+@layer lib {
+  .list {
+    display: inline-flex;
+    &[data-orientation='vertical'] {
+      flex-flow: column;
+      border-inline-end: 2px solid theme('colors.outline/0.2');
+    }
+    &[data-orientation='horizontal'] {
+      flex-flow: row;
+      border-block-end: 2px solid theme('colors.outline/0.2');
+    }
+  }
+
+  .trigger {
+    padding: theme('spacing[1.5]');
+    outline: none;
+    position: relative;
+    transition: background-color 0.24s ease-in-out;
+    border-start-end-radius: theme('borderRadius.md');
+    border-start-start-radius: theme('borderRadius.md');
+
+    &::after {
+      --scale: 0.4;
+      position: absolute;
+      display: block;
+      content: '';
+      background-color: transparent;
+      transition: 0.14s ease-in-out;
+    }
+
+    &[data-orientation='horizontal']:after {
+      inset-inline-start: 0;
+      inset-block-end: 0;
+      transform-origin: bottom;
+      width: 100%;
+      height: 2px;
+      scale: var(--scale) 1;
+      translate: 0 100%;
+    }
+    &[data-orientation='vertical']:after {
+      inset-block-end: 0;
+      inset-inline-end: 0;
+      width: 2px;
+      height: 100%;
+      transform-origin: end;
+      scale: 1 calc(var(--scale) * 0.8);
+      translate: 100% 0;
+    }
+
+    &:where(:not([aria-selected='true'])) {
+      &:hover {
+        & > .trigger-inner {
+          background-color: theme('colors.on-surface/0.1');
+        }
+      }
+    }
+    &:where([aria-selected='true']) {
+      color: theme('colors.primary');
+      & > .trigger-inner {
+        background-color: theme('colors.primary/0.1');
+      }
+      &:after {
+        --scale: 0.6;
+        background-color: theme('colors.primary');
+      }
+      &:where(:hover, :focus) {
+        & > .trigger-inner {
+          background-color: theme('colors.primary/0.15');
+        }
+      }
+    }
+  }
+
+  .trigger-inner {
+    padding-inline: theme('spacing.3');
+    border-radius: theme('borderRadius.md');
+    transition: background-color 0.14s ease-in-out;
+    font-size: theme('fontSize.sm');
+    line-height: theme('lineHeight.xl');
+  }
+
+  .content {
+    flex: 2;
+  }
+}
