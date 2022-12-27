@@ -15,16 +15,20 @@ import { MainLayout } from './MainLayout';
 import { Code } from './Code';
 import { Playground } from './Playground';
 
-const Pre: React.FC<{ preview: boolean; children?: React.ReactNode }> = ({ children, preview = false }) => {
+const Pre: React.FC<{ preview: boolean; children?: React.ReactNode; filename?: string }> = ({
+  children,
+  filename,
+  preview = false,
+}) => {
   if (!(React.Children.only(children) && React.isValidElement<{ children: string; className?: string }>(children))) {
     return null;
   }
   const code = children.props.children.trim();
   const language = children.props.className?.replace('language-', '') || '';
   if (preview) {
-    return <Playground code={code} language={language} />;
+    return <Playground code={code} language={language} fileName={filename} />;
   }
-  return <MultilineCode code={code} language={language} />;
+  return <MultilineCode code={code} language={language} fileName={filename} />;
 };
 
 const AnchoredHeading = ({ id, children, ...props }: any) => {

@@ -12,7 +12,6 @@ export const CopyButton = ({ text, label = 'Copy code' }: Props) => {
       icon={copied ? CheckIcon : ClipboardIcon}
       onClick={() => copy(text)}
       variant="flat"
-      size="sm"
     />
   );
 };

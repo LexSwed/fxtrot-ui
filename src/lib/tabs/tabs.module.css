@@ -11,6 +11,30 @@
       flex-flow: row;
       border-block-end: 2px solid theme('colors.outline/0.2');
     }
+    /* position: relative;
+    &:after {
+      position: absolute;
+      content: '';
+      background-color: theme('colors.outline/0.2');
+    }
+    &[data-orientation='vertical'] {
+      flex-flow: column;
+      &:after {
+        width: 2px;
+        height: calc(100% - theme('spacing.2'));
+        inset-block-start: theme('spacing.2');
+        inset-inline-end: 0;
+      }
+    }
+    &[data-orientation='horizontal'] {
+      flex-flow: row;
+      &:after {
+        height: 2px;
+        width: calc(100% - theme('spacing.2') * 2);
+        inset-block-end: 0;
+        inset-inline-start: theme('spacing.2');
+      }
+    } */
   }
 
   .trigger {
@@ -28,25 +52,32 @@
       content: '';
       background-color: transparent;
       transition: 0.14s ease-in-out;
+      transform-origin: center;
     }
 
-    &[data-orientation='horizontal']:after {
-      inset-inline-start: 0;
-      inset-block-end: 0;
-      transform-origin: bottom;
-      width: 100%;
-      height: 2px;
-      scale: var(--scale) 1;
-      translate: 0 100%;
+    &[data-orientation='horizontal'] {
+      &:first-child {
+        margin-inline-start: calc(-1 * theme('spacing[1.5]'));
+      }
+      &:after {
+        inset-inline-start: 0;
+        inset-block-end: -2px;
+        width: 100%;
+        height: 2px;
+        scale: var(--scale) 1;
+      }
     }
-    &[data-orientation='vertical']:after {
-      inset-block-end: 0;
-      inset-inline-end: 0;
-      width: 2px;
-      height: 100%;
-      transform-origin: end;
-      scale: 1 calc(var(--scale) * 0.8);
-      translate: 100% 0;
+    &[data-orientation='vertical'] {
+      &:first-child {
+        margin-block-start: calc(-1 * theme('spacing[1.5]'));
+      }
+      &:after {
+        inset-block-end: 0;
+        inset-inline-end: -2px;
+        width: 2px;
+        height: 100%;
+        scale: 1 calc(var(--scale) * 0.8);
+      }
     }
 
     &:where(:not([aria-selected='true'])) {

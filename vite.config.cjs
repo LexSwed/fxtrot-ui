@@ -23,9 +23,11 @@ module.exports = defineConfig({
   },
   build: {
     minify: false,
+    target: 'esnext',
     lib: {
       entry: path.resolve(__dirname, './src/lib/index.ts'),
       name: pkg.name,
+      formats: ['cjs', 'es'],
       fileName: (format) => `fxtrot-ui.${format}.js`,
     },
     rollupOptions: {

@@ -38,3 +38,4 @@ export {
   useLatest,
   useOnClickOutside,
 } from './utils/hooks';
+export type { Theme } from './theme-provider/types';

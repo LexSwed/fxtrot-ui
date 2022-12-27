@@ -53,10 +53,7 @@ export default function App(props: AppProps) {
           },
         ]}
       />
-      <ThemeProvider
-        className={[Inter.variable, FiraCode.variable].join(' ')}
-        theme={{ fontFamily: { sans: Inter.style.fontFamily, mono: FiraCode.style.fontFamily } }}
-      >
+      <ThemeProvider theme={{ fontFamily: { sans: Inter.style.fontFamily, mono: FiraCode.style.fontFamily } }}>
         <MdxProvider>
           <Component {...pageProps} />
         </MdxProvider>

@@ -11,6 +11,7 @@ import { components } from './MdxProvider';
 type Props = {
   code: string;
   language: string;
+  fileName?: string;
 };
 
 export const Playground = ({ code, language }: Props) => {
