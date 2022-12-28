@@ -13,6 +13,8 @@
     color: theme('colors.on-surface');
     transition-property: color, box-shadow, filter, border-color, background-color, background-image;
     transition-duration: 200ms;
+    border: none;
+    background: none;
 
     &:focus {
       @apply outline-none ring-4 ring-opacity-40;

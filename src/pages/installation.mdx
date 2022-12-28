@@ -93,7 +93,7 @@ export default function App() {
   </Tabs.Content>
 </Tabs>
 
-In addition to providing the default theme, `ThemeProvider` ensures all components get necessary context parameters.
+In addition to providing the default theme, `ThemeProvider` ensures all components get necessary context parameters. See [theming](/theming) to see how `ThemeProvider` can change the appearance of the component designs.
 
 ## Usage
 
@@ -103,4 +103,17 @@ Use components in your app.
 import { Button } from '@fxtrot/ui';
 
 <Button variant="outline">Start</Button>;
+```
+
+## Usage with Tailwind CSS
+
+[Tailwind CSS](https://tailwindcss.com/) is utility-first CSS framework. This UI lib is built using Tailwind and exposes the setup to work with Fxtrot UI variables.
+Just import the [preset in your Tailwind config](https://tailwindcss.com/docs/presets):
+
+```js filename="tailwind.config.cjs"
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ['./src/**/*.{js,jsx,ts,tsx,md,mdx}'],
+  presets: [require('@fxtrot/ui/tailwind.preset.cjs')],
+};
 ```

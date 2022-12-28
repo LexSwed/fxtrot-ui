@@ -17,6 +17,7 @@ import { useForkRef, useId } from '../utils/hooks';
 import type { Theme } from './types';
 
 import styles from './theme-provider.module.css';
+
 import { createThemeVariables, mergeTheme } from './utils';
 
 type Props = {

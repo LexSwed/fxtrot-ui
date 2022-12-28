@@ -4,14 +4,14 @@
   .text-link {
     box-sizing: border-box;
     cursor: pointer;
-    font-weight: theme('fontWeight.semibold');
+    font-weight: theme('fontWeight.medium');
     color: initial;
   }
 
   .text-link--inline {
     transition: 0.14s ease-in-out;
     transition-property: box-shadow, text-decoration;
-    text-decoration: underline solid transparent 2px;
+    text-decoration: underline solid theme('colors.outline') 2px;
     line-height: 1em;
     &:where(:hover, :focus) {
       box-shadow: 0 0 0 6px theme('colors.primary/0.1'), 0 0 0 1em theme('colors.primary/0.1') inset;
@@ -35,6 +35,7 @@
     & > .icon {
       margin-inline-start: theme('spacing.1');
       vertical-align: baseline;
+      stroke-width: 2px;
     }
   }
 }
