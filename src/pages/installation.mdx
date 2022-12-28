@@ -117,3 +117,31 @@ module.exports = {
   presets: [require('@fxtrot/ui/tailwind.preset.cjs')],
 };
 ```
+
+Next, in your global CSS, where you enable Tailwind rules, specify the order in which the browser should treat the `layers` ([MDN - CSS Cascade Layers](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer)):
+
+```css filename="globals.css"
+@layer reset, tailwind-base, lib, tailwind-components, tailwind-utilities, utils;
+
+@layer tailwind-base {
+  @tailwind base;
+}
+
+@layer tailwind-components {
+  @tailwind components;
+}
+
+@layer tailwind-utilities {
+  @tailwind utilities;
+}
+```
+
+Fxtrot UI needs `reset` layer (minimal CSS reset) to come before Tailwind reset. But `@layer lib` should come after all the resets.
+
+You will see a warning message:
+
+```
+Nested @tailwind rules were detected, but are not supported.
+```
+
+It should be ignored for now until better fix from Tailwind team. Follow this discussion if you want to know more: [tailwindcss/Dealing with cascade layers](https://github.com/tailwindlabs/tailwindcss/discussions/6694)

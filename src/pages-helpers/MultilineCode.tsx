@@ -17,7 +17,7 @@ export const MultilineCode = ({ code, language, fileName, lineNumber = true }: P
     <ThemeProvider theme={codeTheme}>
       <Highlight {...defaultProps} theme={theme} code={code} language={language as Language}>
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
-          <section className="group/code-wrapper relative overflow-scroll rounded-sm my-1">
+          <section className="group/code-wrapper relative overflow-hidden rounded-sm my-1">
             {fileName ? (
               <Row style={style} main="start" className="sticky top-0">
                 <Row cross="center" gap="sm" className="border-t-2 border-t-primary bg-surface p-2">
@@ -26,7 +26,7 @@ export const MultilineCode = ({ code, language, fileName, lineNumber = true }: P
                 </Row>
               </Row>
             ) : null}
-            <pre className={clsx('p-3 text-start font-mono', className)} style={style}>
+            <pre className={clsx('overflow-auto p-3 text-start font-mono', className)} style={style}>
               {tokens.map((line, i) => {
                 const lineProps = getLineProps({ line, key: i });
                 return (
