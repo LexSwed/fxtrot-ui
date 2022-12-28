@@ -1,4 +1,4 @@
-@layer tailwind-base, lib, tailwind-components, tailwind-utilities, utils;
+@layer reset, tailwind-base, lib, tailwind-components, tailwind-utilities, utils;
 
 @layer tailwind-base {
   @tailwind base;

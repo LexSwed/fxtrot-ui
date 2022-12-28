@@ -37,4 +37,8 @@ export default withMDX({
     scrollRestoration: true,
     esmExternals: true,
   },
+  i18n: {
+    locales: ['en'],
+    defaultLocale: 'en',
+  },
 });

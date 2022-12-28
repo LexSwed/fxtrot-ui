@@ -42,9 +42,9 @@
     animation-fill-mode: forwards;
   }
   .content--side {
-    height: 100lvh;
+    height: 100dvh;
     max-width: 420px;
-    overflow-y: overlay;
+    overflow-y: auto;
     &[data-state='open'] {
       animation-duration: 0.3s;
       animation-name: slide-in;
@@ -58,7 +58,7 @@
     border-radius: theme('borderRadius.md');
     margin-inline: theme('spacing.2');
     @screen lg {
-      max-width: 80vw;
+      max-width: 80dvw;
     }
 
     &[data-state='open'] {
