@@ -1,6 +1,5 @@
 import {
   ComponentProps,
-  ElementType,
   forwardRef,
   ForwardRefExoticComponent,
   ReactElement,
@@ -19,8 +18,6 @@ import { ListItem, ListItemVariants } from '../shared/list-item';
 import { useIsomorphicLayoutEffect } from '../utils/hooks';
 import { Presence } from '../shared/presence';
 
-import type { LabelComponent, LabelProps } from '../form-field/label';
-import type { PolyRef } from '../utils/polymorphic';
 import styles from './menu.module.css';
 
 interface MenuProps {
@@ -112,15 +109,13 @@ export const Separator = (props: ComponentProps<'div'>) => {
   return <div {...props} className={clsx(styles.separator, props.className)} />;
 };
 
-const MenuLabel: LabelComponent = forwardRef(
-  <C extends ElementType = 'label'>(props: LabelProps<C>, ref: PolyRef<C>) => {
-    return (
-      <RdxMenu.Label asChild>
-        <Label {...props} ref={ref} />
-      </RdxMenu.Label>
-    );
-  }
-);
+const MenuLabel = forwardRef((props, ref) => {
+  return (
+    <RdxMenu.Label asChild>
+      <Label {...props} ref={ref} />
+    </RdxMenu.Label>
+  );
+}) as typeof Label;
 
 MenuRoot.List = List;
 MenuRoot.Item = MenuItem;

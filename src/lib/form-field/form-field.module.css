@@ -19,11 +19,6 @@
         padding-inline-start: theme('spacing.3');
       }
     }
-    &:has(.size--xl) {
-      & :where(.label, .hint) {
-        padding-inline-start: theme('spacing.3');
-      }
-    }
   }
   .label {
     text-overflow: ellipsis;
@@ -129,12 +124,6 @@
     padding-inline: theme('spacing.3');
     line-height: theme('spacing.12');
     @apply text-lg;
-  }
-  .size--xl {
-    padding-block: theme('spacing.1');
-    padding-inline: theme('spacing.3');
-    font-weight: 800;
-    @apply text-2xl;
   }
 
   /* Validity */

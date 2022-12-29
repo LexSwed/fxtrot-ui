@@ -23,7 +23,7 @@ export const Chip = forwardRef(function Chip<T>(
   const selectable = typeof props['aria-selected'] !== 'undefined';
   return (
     <Flex
-      {...props}
+      {...(props as any)}
       main={main}
       cross={cross}
       gap={gap}

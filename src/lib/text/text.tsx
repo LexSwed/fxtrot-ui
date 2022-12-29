@@ -1,29 +1,26 @@
-import { ElementType, forwardRef, ReactElement } from 'react';
+import { CSSProperties, forwardRef } from 'react';
 import { classed as css, VariantProps } from '@tw-classed/core';
 import { clsx } from 'clsx';
 
-import type { PolyProps, PolyRef } from '../utils/polymorphic';
+import type { ForwardRefComponent } from '../utils/polymorphic';
 import styles from './text.module.css';
 
-type TextProps<C extends ElementType> = PolyProps<C, VariantProps<typeof textCss> & { lineClamp?: number }>;
-type TextComponent = <C extends ElementType = 'span'>(props: TextProps<C>) => ReactElement | null;
+interface TextProps extends VariantProps<typeof textCss> {
+  lineClamp?: number;
+}
 
-export const Text: TextComponent = forwardRef(
-  <C extends ElementType = 'span'>(
-    { as, textStyle, tone, align, lineClamp, className, style, ...props }: TextProps<C>,
-    ref: PolyRef<C>
-  ) => {
-    const Component = as || 'span';
+export const Text = forwardRef(
+  ({ as: Component = 'span', textStyle, tone, align, lineClamp, className, style, ...props }, ref) => {
     return (
       <Component
         className={clsx(textCss({ textStyle, tone, align }), lineClamp && styles['line-clamp'], className)}
-        style={lineClamp ? { ...style, '--fx-text-lineClamp': lineClamp } : style}
+        style={lineClamp ? ({ ...style, '--fx-text-lineClamp': lineClamp } as CSSProperties) : style}
         {...props}
         ref={ref}
       />
     );
   }
-);
+) as ForwardRefComponent<'span', TextProps>;
 
 export const textCss = css(styles.text, {
   variants: {

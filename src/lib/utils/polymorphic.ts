@@ -7,21 +7,6 @@
 
 import type * as React from 'react';
 
-type PolymorphicRef<C extends React.ElementType> = React.ComponentPropsWithRef<C>['ref'];
-
-type AsProp<C extends React.ElementType> = {
-  as?: C;
-};
-
-type PropsToOmit<C extends React.ElementType, P> = keyof (AsProp<C> & P);
-
-type PolymorphicComponentProp<C extends React.ElementType, Props = {}> = React.PropsWithChildren<Props & AsProp<C>> &
-  Omit<React.ComponentPropsWithoutRef<C>, PropsToOmit<C, Props>>;
-
-type PolymorphicComponentPropWithRef<C extends React.ElementType, Props = {}> = PolymorphicComponentProp<C, Props> & {
-  ref?: PolymorphicRef<C>;
-};
-
 type Merge<P1 = {}, P2 = {}> = Omit<P1, keyof P2> & P2;
 
 type ForwardRefExoticComponent<E, OwnProps> = React.ForwardRefExoticComponent<
@@ -71,4 +56,4 @@ interface ForwardRefComponent<
   ): React.ReactElement | null;
 }
 
-export type { PolymorphicComponentPropWithRef as PolyProps, PolymorphicRef as PolyRef, ForwardRefComponent };
+export type { ForwardRefComponent };
