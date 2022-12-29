@@ -44,7 +44,7 @@ const CollapsibleInner = ({ children, className, ...props }: Props) => {
   const controls = useOpenStateControls();
   return (
     <Rdx.Root open={open} onOpenChange={controls.switch} asChild>
-      <div {...props} className={clsx('contents rounded-sm', className)}>
+      <div {...props} className={clsx(styles.root, className)}>
         {children}
       </div>
     </Rdx.Root>

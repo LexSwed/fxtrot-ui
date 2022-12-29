@@ -1,9 +1,13 @@
 @import '../root.css';
 
 @layer lib {
+  .root {
+    display: contents;
+  }
   .content {
     overflow: hidden;
     will-change: transform, height, opacity;
+
     &:where([data-state='open']) {
       animation: 300ms open ease-in forwards;
     }
@@ -30,7 +34,7 @@
     }
     100% {
       opacity: 1;
-      transform: none;
+      transform: translateY(theme('spacing.3'));
       height: var(--radix-collapsible-content-height);
     }
   }
@@ -38,7 +42,7 @@
   @keyframes close {
     0% {
       opacity: 1;
-      transform: none;
+      transform: translateY(theme('spacing.3'));
       height: var(--radix-collapsible-content-height);
     }
     100% {
