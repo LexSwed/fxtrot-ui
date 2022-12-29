@@ -3,8 +3,8 @@ import { CheckIcon } from '@heroicons/react/24/outline';
 import { clsx } from 'clsx';
 import { classed as css, VariantProps } from '@tw-classed/core';
 
-import type { FlexVariants } from '../flex/flex';
-import { FormFieldWrapper, useFormField, Label } from '../form-field';
+import { Flex, FlexVariants } from '../flex/flex';
+import { useFormField, Label } from '../form-field';
 import { Icon } from '../icon';
 
 import styles from './checkbox.module.css';
@@ -29,16 +29,16 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
       onChange,
       style,
       className,
+      cross = 'center',
+      main,
       flow = 'row',
+      display = 'flex',
+      gap = 'sm',
       label,
       secondaryLabel,
-      display,
-      main,
-      cross = 'center',
       disabled,
       id,
       size = 'sm',
-      gap = 'sm',
       variant = 'single',
       inputRef,
       ...props
@@ -54,7 +54,7 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
     }, [onChange]);
 
     return (
-      <FormFieldWrapper
+      <Flex
         className={clsx(styles['field'], className)}
         style={style}
         display={display}
@@ -83,13 +83,13 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
         {label !== undefined && (
           <Label
             label={label}
-            size={mapLabelSize[size]}
             secondary={secondaryLabel}
             disabled={disabled}
             htmlFor={ariaProps.id}
+            size={mapLabelSize[size]}
           />
         )}
-      </FormFieldWrapper>
+      </Flex>
     );
   }
 );

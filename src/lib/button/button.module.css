@@ -153,7 +153,7 @@
     color: theme('colors.on-surface');
 
     &:where(:hover, :focus, :active) {
-      background-color: theme('colors.on-surface/0.1');
+      background-color: theme('colors.on-surface/0.05');
 
       &:where(.intent--danger) {
         background-color: theme('colors.error/0.1');
@@ -161,7 +161,7 @@
     }
 
     &:where(:active, [data-state='open']) {
-      background-color: theme('colors.on-surface/0.15');
+      background-color: theme('colors.on-surface/0.1');
     }
 
     &:where(:focus) {

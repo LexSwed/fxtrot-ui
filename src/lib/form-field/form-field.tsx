@@ -1,31 +1,18 @@
-import { ComponentProps, ElementType, forwardRef, useMemo } from 'react';
+import { ComponentProps, forwardRef, useMemo } from 'react';
 import { useId } from '@radix-ui/react-id';
 import { clsx } from 'clsx';
 
 import { classed as css, VariantProps } from '@tw-classed/core';
 import { Text } from '../text';
-import type { PolyProps, PolyRef } from '../utils/polymorphic';
+import type { ForwardRefComponent } from '../utils/polymorphic';
 import { Flex, FlexVariants } from '../flex/flex';
 
 import styles from './form-field.module.css';
 
-type FormFieldWrapperProps<C extends ElementType> = PolyProps<C, FlexVariants>;
-type FormFieldWrapperComponent = <C extends ElementType = 'div'>(
-  props: FormFieldWrapperProps<C>
-) => React.ReactElement | null;
+interface FormFieldProps extends FlexVariants {}
 
-export const FormFieldWrapper: FormFieldWrapperComponent = forwardRef(
-  <C extends ElementType = 'div'>(
-    {
-      cross = 'stretch',
-      flow = 'column',
-      display = 'inline',
-      gap = 'xs',
-      className,
-      ...props
-    }: FormFieldWrapperProps<C>,
-    ref: PolyRef<C>
-  ) => {
+export const FormFieldWrapper = forwardRef(
+  ({ cross = 'stretch', flow = 'column', display = 'inline', gap = 'xs', as = 'div', className, ...props }, ref) => {
     return (
       <Flex
         cross={cross}
@@ -33,12 +20,13 @@ export const FormFieldWrapper: FormFieldWrapperComponent = forwardRef(
         display={display}
         gap={gap}
         className={clsx(styles['form-field'], className)}
+        as={as}
         {...props}
         ref={ref}
       />
     );
   }
-);
+) as ForwardRefComponent<'div', FormFieldProps>;
 
 export type FormFieldValidity = {
   validity?: keyof typeof tonesMap;

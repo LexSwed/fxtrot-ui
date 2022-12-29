@@ -2,11 +2,11 @@
 
 @layer lib {
   .text-field {
-    /* &[type='number']::-webkit-inner-spin-button,
+    &[type='number']::-webkit-inner-spin-button,
     &[type='number']::-webkit-outer-spin-button {
-      -webkit-appearance: inner-spin-button !important;
-      appearance: inner-spin-button !important;
-    } */
+      height: 2em;
+      align-self: center;
+    }
 
     /** set same sizing/position styles as for custom ones */
     &[type='date']::-webkit-calendar-picker-indicator,

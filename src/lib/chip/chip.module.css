@@ -11,17 +11,17 @@
     background-color: transparent;
     color: theme('colors.on-surface');
     border-color: theme('colors.on-surface/0.5');
+    line-height: 1;
 
     &:where([role='option']) {
       outline: none;
       cursor: default;
       user-select: none;
       &:where(:hover, :focus) {
-        background-color: theme('colors.on-surface/0.1');
+        background-color: theme('colors.on-surface/0.05');
       }
       &:where(:active) {
-        border-color: theme('colors.outline/0.15');
-        background-color: theme('colors.on-surface/0.15');
+        background-color: theme('colors.on-surface/0.1');
       }
       &:focus {
         @apply outline-none ring-4 ring-opacity-20;

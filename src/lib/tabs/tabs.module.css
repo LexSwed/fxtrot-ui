@@ -83,7 +83,7 @@
     &:where(:not([aria-selected='true'])) {
       &:hover {
         & > .trigger-inner {
-          background-color: theme('colors.on-surface/0.1');
+          background-color: theme('colors.on-surface/0.05');
         }
       }
     }

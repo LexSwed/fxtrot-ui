@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import { Root, Content, Trigger, CollapsibleTriggerProps } from '@radix-ui/react-collapsible';
 import prismTheme from 'prism-react-renderer/themes/github';
@@ -5,7 +6,6 @@ import prismTheme from 'prism-react-renderer/themes/github';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import { Column, Icon, Text, ToggleButton } from '@fxtrot/ui';
 import type { Language } from 'prism-react-renderer';
-import type React from 'react';
 import { components } from './MdxProvider';
 
 type Props = {
@@ -48,13 +48,13 @@ const Preview: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   );
 };
 
-const CodeToggleButton = (props: CollapsibleTriggerProps) => {
+const CodeToggleButton = React.forwardRef<HTMLButtonElement, CollapsibleTriggerProps>((props, ref) => {
   return (
-    <ToggleButton size="sm" className="rounded-none p-2" {...props}>
+    <ToggleButton size="sm" className="rounded-none p-2" {...props} ref={ref}>
       <Icon as={ChevronUpDownIcon} size="lg" />
       <Text className="w-[80px]" textStyle="label-md">
         {props['aria-expanded'] ? 'Hide code' : 'Show code'}
       </Text>
     </ToggleButton>
   );
-};
+});

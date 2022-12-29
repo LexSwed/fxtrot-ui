@@ -10,7 +10,7 @@ type TextComponent = <C extends ElementType = 'span'>(props: TextProps<C>) => Re
 
 export const Text: TextComponent = forwardRef(
   <C extends ElementType = 'span'>(
-    { as, textStyle = 'body-md', tone, align, lineClamp, className, style, ...props }: TextProps<C>,
+    { as, textStyle, tone, align, lineClamp, className, style, ...props }: TextProps<C>,
     ref: PolyRef<C>
   ) => {
     const Component = as || 'span';

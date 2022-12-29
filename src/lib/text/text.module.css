@@ -2,6 +2,7 @@
 
 @layer lib {
   .text {
+    font-family: theme('fontFamily.sans');
   }
   /* textStyle */
   .body-sm {

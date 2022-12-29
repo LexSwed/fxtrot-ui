@@ -1,7 +1,7 @@
 import { classed as css, VariantProps } from '@tw-classed/core';
 import { clsx } from 'clsx';
-import { forwardRef, ElementType, ReactElement } from 'react';
-import type { PolyProps, PolyRef } from '../utils/polymorphic';
+import { forwardRef } from 'react';
+import type { ForwardRefComponent } from '../utils/polymorphic';
 
 import styles from './flex.module.css';
 
@@ -58,17 +58,8 @@ export const flexCss = css({
 
 export type FlexVariants = VariantProps<typeof flexCss>;
 
-type FlexProps<C extends ElementType> = PolyProps<C, FlexVariants>;
-
-type FlexComponent = <C extends ElementType = 'div'>(props: FlexProps<C>) => ReactElement | null;
-
-export const Flex: FlexComponent = forwardRef(
-  <C extends ElementType = 'div'>(
-    { as, display = 'flex', gap, main, cross, flow, wrap, flex, className, ...props }: FlexProps<C>,
-    ref: PolyRef<C>
-  ) => {
-    const Component = as || 'div';
-
+export const Flex = forwardRef(
+  ({ as: Component = 'div', display = 'flex', gap, main, cross, flow, wrap, flex, className, ...props }, ref) => {
     return (
       <Component
         className={clsx(flexCss({ display, gap, main, cross, flow, wrap, flex }), className)}
@@ -77,26 +68,15 @@ export const Flex: FlexComponent = forwardRef(
       />
     );
   }
-);
+) as ForwardRefComponent<'div', FlexVariants>;
 
-type RowProps<C extends ElementType> = PolyProps<
-  C,
-  FlexVariants & { flow?: Extract<FlexVariants['flow'], 'row' | 'row-reverse'> }
->;
-type RowComponent = <C extends ElementType = 'div'>(props: RowProps<C>) => ReactElement | null;
-
-export const Row: RowComponent = forwardRef(<C extends ElementType = 'div'>(props: RowProps<C>, ref: PolyRef<C>) => {
+export const Row = forwardRef((props, ref) => {
   return <Flex {...props} flow={props.flow || 'row'} ref={ref} />;
-});
+}) as ForwardRefComponent<'div', FlexVariants & { flow?: Extract<FlexVariants['flow'], 'row' | 'row-reverse'> }>;
 
-type ColumnProps<C extends ElementType> = PolyProps<C, FlexVariants & { flow?: 'column' | 'column-reverse' }>;
-type ColumnComponent = <C extends ElementType = 'div'>(props: ColumnProps<C>) => ReactElement | null;
-
-export const Column: ColumnComponent = forwardRef(
-  <C extends ElementType = 'div'>(props: ColumnProps<C>, ref: PolyRef<C>) => {
-    return <Flex {...props} flow={props.flow || 'column'} ref={ref} />;
-  }
-);
+export const Column = forwardRef((props, ref) => {
+  return <Flex {...props} flow={props.flow || 'column'} ref={ref} />;
+}) as ForwardRefComponent<'div', FlexVariants & { flow?: 'column' | 'column-reverse' }>;
 
 const grid = css({
   variants: {
@@ -147,23 +127,10 @@ const grid = css({
 
 interface GridProps extends VariantProps<typeof grid> {}
 
-export const Grid = forwardRef(function Grid<C extends ElementType = 'div'>(
-  {
-    as,
-    display,
-    placeItems,
-    flow,
-    rows,
-    columns,
-    columnGap,
-    rowGap,
-    gap,
-    className,
-    ...props
-  }: PolyProps<C, GridProps>,
-  ref: PolyRef<C>
+export const Grid = forwardRef(function Grid(
+  { as: Component = 'div', display, placeItems, flow, rows, columns, columnGap, rowGap, gap, className, ...props },
+  ref
 ) {
-  const Component = as || 'div';
   return (
     <Component
       className={clsx(grid({ display, placeItems, flow, rows, columns, columnGap, rowGap, gap }), className)}
@@ -171,4 +138,4 @@ export const Grid = forwardRef(function Grid<C extends ElementType = 'div'>(
       ref={ref}
     />
   );
-});
+}) as ForwardRefComponent<'div', GridProps>;

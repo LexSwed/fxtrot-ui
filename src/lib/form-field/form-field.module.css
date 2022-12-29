@@ -6,7 +6,7 @@
 
     &:has(.size--sm) {
       & :where(.label, .hint) {
-        padding-inline-start: theme('spacing.1');
+        padding-inline-start: theme('spacing.2');
       }
     }
     &:has(.size--md) {
@@ -103,9 +103,10 @@
     background-color: transparent;
     padding-inline: theme('spacing.3');
     border-radius: theme('borderRadius.md');
+    border: none;
 
     &:where(:hover) {
-      background-color: theme('colors.on-surface/0.1');
+      background-color: theme('colors.on-surface/0.05');
     }
     &:where(:active, :focus, :active, [aria-expanded='true'], [data-state='open']) {
       background-color: theme('colors.background');
@@ -115,22 +116,21 @@
 
   /* Size */
   .size--sm {
-    padding-inline: theme('spacing.1');
-    height: theme('spacing.6');
+    padding-inline: theme('spacing.2');
+    line-height: theme('spacing.8');
     @apply text-xs;
   }
   .size--md {
-    height: theme('spacing.10');
     padding-inline: theme('spacing.2');
+    line-height: theme('spacing.10');
     @apply text-sm;
   }
   .size--lg {
-    height: theme('spacing.12');
     padding-inline: theme('spacing.3');
+    line-height: theme('spacing.12');
     @apply text-lg;
   }
   .size--xl {
-    height: auto;
     padding-block: theme('spacing.1');
     padding-inline: theme('spacing.3');
     font-weight: 800;

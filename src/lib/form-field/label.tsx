@@ -1,27 +1,23 @@
-import { ElementType, forwardRef, ReactElement, ReactNode } from 'react';
+import * as React from 'react';
 import { classed as css } from '@tw-classed/core';
 import { clsx } from 'clsx';
 import { Text } from '../text';
-import type { PolyProps, PolyRef } from '../utils/polymorphic';
+import type { ForwardRefComponent } from '../utils/polymorphic';
 import { flexCss, FlexVariants } from '../flex/flex';
 
 import styles from './form-field.module.css';
 
-export type LabelProps<C extends ElementType> = PolyProps<
-  C,
-  FlexVariants & {
-    label: ReactNode;
-    secondary?: ReactNode;
-    disabled?: boolean;
-    size?: 'sm' | 'md' | 'lg';
-  }
->;
-export type LabelComponent = <C extends ElementType = 'label'>(props: LabelProps<C>) => ReactElement | null;
+export interface LabelProps extends FlexVariants {
+  label: React.ReactNode;
+  secondary?: React.ReactNode;
+  disabled?: boolean;
+  size?: 'sm' | 'md' | 'lg';
+}
 
-export const Label: LabelComponent = forwardRef(
-  <C extends ElementType = 'label'>(
+export const Label = React.forwardRef(
+  (
     {
-      as,
+      as: Component = 'label',
       label,
       secondary,
       disabled,
@@ -33,10 +29,9 @@ export const Label: LabelComponent = forwardRef(
       flow,
       wrap,
       ...props
-    }: LabelProps<C>,
-    ref: PolyRef<C>
+    },
+    ref
   ) => {
-    const Component = as || 'label';
     const textStyle = `label-${size}` as `label-${typeof size}`;
     return (
       <Component
@@ -54,6 +49,6 @@ export const Label: LabelComponent = forwardRef(
       </Component>
     );
   }
-);
+) as ForwardRefComponent<'label', LabelProps>;
 
 const labelCss = css(styles.label, flexCss);

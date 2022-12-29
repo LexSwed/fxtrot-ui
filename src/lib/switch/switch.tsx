@@ -1,9 +1,8 @@
 import { ChangeEvent, ComponentProps, useMemo } from 'react';
 import { clsx } from 'clsx';
 
-import { FormFieldWrapper } from '../form-field/form-field';
 import { Label } from '../form-field';
-import type { FlexVariants } from '../flex/flex';
+import { Flex, FlexVariants } from '../flex/flex';
 
 import styles from './switch.module.css';
 
@@ -38,7 +37,7 @@ export const Switch = ({
   }, [onChange]);
 
   return (
-    <FormFieldWrapper
+    <Flex
       display={display}
       className={clsx(styles.label, className)}
       style={style}
@@ -61,6 +60,6 @@ export const Switch = ({
         <div className={styles.toggle} />
       </div>
       {label && <Label label={label} secondary={secondaryLabel} disabled={disabled} size="sm" as="span" />}
-    </FormFieldWrapper>
+    </Flex>
   );
 };
