@@ -1,23 +1,12 @@
 const path = require('path');
 const { defineConfig } = require('vite');
 const react = require('@vitejs/plugin-react');
-const { viteStaticCopy } = require('vite-plugin-static-copy');
 const pkg = require('./package.json');
 
 /** @type {import('vite').UserConfig} */
 module.exports = defineConfig({
   publicDir: false,
-  plugins: [
-    react(),
-    viteStaticCopy({
-      targets: [
-        {
-          src: path.resolve(__dirname, './src/lib/tailwind.preset.cjs'),
-          dest: path.resolve(__dirname, './dist'),
-        },
-      ],
-    }),
-  ],
+  plugins: [react()],
   esbuild: {
     target: ['chrome105', 'safari16'],
   },

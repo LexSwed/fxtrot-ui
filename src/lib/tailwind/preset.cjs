@@ -1,5 +1,5 @@
 const plugin = require('tailwindcss/plugin');
-const fxtrotTheme = require('./theme-provider/default-theme.cjs');
+const fxtrotTheme = require('./default-theme.cjs');
 const { createTailwindVariables } = require('./utils.cjs');
 
 /**

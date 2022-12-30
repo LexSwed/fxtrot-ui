@@ -22,9 +22,10 @@
     "url": "https://github.com/LexSwed/fxtrot-ui"
   },
   "scripts": {
-    "build": "rm -rf ./dist && npm run build:lib && npm run build:types",
+    "build": "npm run build:lib && npm run build:types && npm run build:preset",
     "build:lib": "vite build --mode production",
     "build:types": "tsc --project tsconfig.lib.json",
+    "build:preset": "vite build --config vite.tailwind-preset-config.cjs",
     "dev": "npm run docs:dev",
     "lint": "next lint --dir pages --dir src",
     "typecheck": "tsc --noEmit",
@@ -114,8 +115,7 @@
     "tailwindcss": "^3.2.4",
     "typescript": "^4.9.4",
     "typescript-plugin-css-modules": "^4.1.1",
-    "vite": "^4.0.3",
-    "vite-plugin-static-copy": "^0.13.0"
+    "vite": "^4.0.3"
   },
   "peerDependencies": {
     "react": "^18.0.0",

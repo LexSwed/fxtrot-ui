@@ -1,11 +1,11 @@
 /**
- * @type {import('./theme-provider/types').toToken}
+ * @type {import('../theme-provider/types').toToken}
  */
 function toToken(themeConfig, name) {
   return `--fx-${themeConfig}-${name.split('.').join('\\.')}`;
 }
 
-/** @type {import('./theme-provider/types').createTailwindColorVariables} */
+/** @type {import('../theme-provider/types').createTailwindColorVariables} */
 function createTailwindColorVariables(colors) {
   const colorEntries = Object.keys(colors).map((token) => {
     return [token, `hsl(var(${toToken('colors', token)}-hsl)  / <alpha-value>)`];
@@ -14,7 +14,7 @@ function createTailwindColorVariables(colors) {
   return Object.fromEntries(colorEntries);
 }
 
-/** @type {import('./theme-provider/types').createTailwindFontVariables} */
+/** @type {import('../theme-provider/types').createTailwindFontVariables} */
 function createFontSizeVariables(fontSizes) {
   return Object.entries(fontSizes).reduce(
     (res, [token]) => {
@@ -31,7 +31,7 @@ function createFontSizeVariables(fontSizes) {
   );
 }
 
-/** @type {import('./theme-provider/types').createTailwindVariables} */
+/** @type {import('../theme-provider/types').createTailwindVariables} */
 function createTailwindVariables(theme) {
   /** @type {import('tailwindcss').Config['theme']} */
   const tailwindTheme = {};

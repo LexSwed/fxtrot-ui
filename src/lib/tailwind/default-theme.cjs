@@ -1,4 +1,5 @@
-/** @satisfies {import('./types').Theme} */
+const tailwindTheme = require('tailwindcss/defaultTheme');
+/** @satisfies {import('../theme-provider/types').Theme} */
 const defaultTheme = {
   colors: {
     'primary': 'hsl(202 100% 30.6%)',
@@ -33,70 +34,16 @@ const defaultTheme = {
     'disabled': 'hsl(0deg 0% 91%)',
     'on-disabled': 'hsl(204 9.1% 41%)',
   },
-  // Tailwind default + xs and popper
   boxShadow: {
-    'sm': '0 1px 2px 0 rgb(0 0 0 / 0.05)',
-    'md': '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
-    'lg': '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
-    'xl': '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
-    '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.25)',
-    'inner': 'inset 0 2px 4px 0 rgb(0 0 0 / 0.05)',
-    'none': 'none',
-    'xs': '0 0 0 1px rgba(0, 0, 0, 0.05)',
-    'popper': `0 0 2px rgb(0 0 0 / 0.3), 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)`,
+    xs: '0 0 0 1px rgba(0, 0, 0, 0.05)',
+    popper: `0 0 2px rgb(0 0 0 / 0.3), 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)`,
   },
-  // Tailwind default + xs, sm, md, etc
   spacing: {
-    px: '1px',
-    0: '0px',
-    0.5: '0.125rem',
-    1: '0.25rem',
-    1.5: '0.375rem',
-    2: '0.5rem',
-    2.5: '0.625rem',
-    3: '0.75rem',
-    3.5: '0.875rem',
-    4: '1rem',
-    5: '1.25rem',
-    6: '1.5rem',
-    7: '1.75rem',
-    8: '2rem',
-    9: '2.25rem',
-    10: '2.5rem',
-    11: '2.75rem',
-    12: '3rem',
-    14: '3.5rem',
-    16: '4rem',
-    20: '5rem',
-    24: '6rem',
-    28: '7rem',
-    32: '8rem',
-    36: '9rem',
-    40: '10rem',
-    44: '11rem',
-    48: '12rem',
-    52: '13rem',
-    56: '14rem',
-    60: '15rem',
-    64: '16rem',
-    72: '18rem',
-    80: '20rem',
-    96: '24rem',
-    get xs() {
-      return defaultTheme.spacing['1'];
-    },
-    get sm() {
-      return defaultTheme.spacing['2'];
-    },
-    get md() {
-      return defaultTheme.spacing['6'];
-    },
-    get lg() {
-      return defaultTheme.spacing['8'];
-    },
-    get xl() {
-      return defaultTheme.spacing['10'];
-    },
+    xs: tailwindTheme.spacing['1'],
+    sm: tailwindTheme.spacing['2'],
+    md: tailwindTheme.spacing['6'],
+    lg: tailwindTheme.spacing['8'],
+    xl: tailwindTheme.spacing['10'],
   },
   fontFamily: {
     sans: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif',
@@ -117,6 +64,18 @@ const defaultTheme = {
     '7xl': ['4.5rem', '1'],
     '8xl': ['6rem', '1'],
     '9xl': ['8rem', '1'],
+  },
+  // tailwind defaults
+  borderRadius: {
+    'none': '0px',
+    'sm': '0.125rem',
+    'DEFAULT': '0.25rem',
+    'md': '0.375rem',
+    'lg': '0.5rem',
+    'xl': '0.75rem',
+    '2xl': '1rem',
+    '3xl': '1.5rem',
+    'full': '9999px',
   },
 };
 

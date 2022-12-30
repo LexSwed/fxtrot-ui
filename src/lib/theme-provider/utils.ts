@@ -1,6 +1,6 @@
 import type { ThemeColor, Theme } from './types';
-import { toToken } from '../utils.cjs';
-import defaultTheme from './default-theme.cjs';
+import defaultTheme from '../tailwind/default-theme.cjs';
+import { toToken } from '../tailwind/utils.cjs';
 
 /**
  * Transforms passed theme colors into CSS variables map that are consumed by the components.
