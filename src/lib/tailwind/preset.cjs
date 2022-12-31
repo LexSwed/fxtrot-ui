@@ -55,6 +55,22 @@ const logicalPropertiesPlugin = plugin(({ matchUtilities, theme }) => {
   );
   matchUtilities(
     {
+      'size-y': (value) => ({
+        blockSize: value,
+      }),
+    },
+    { values: theme('height') }
+  );
+  matchUtilities(
+    {
+      'size-x': (value) => ({
+        inlineSize: value,
+      }),
+    },
+    { values: theme('width') }
+  );
+  matchUtilities(
+    {
       size: (value) => ({
         blockSize: value,
         inlineSize: value,
