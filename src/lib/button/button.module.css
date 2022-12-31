@@ -204,31 +204,34 @@
   */
   .size--xs {
     min-block-size: theme(spacing.7);
-    border-radius: theme('borderRadius.md');
+    border-radius: theme('borderRadius.sm');
     font-size: theme('fontSize.xs');
-    @apply py-1 px-2;
+    padding-inline: theme('spacing.2');
+    padding-block: theme('spacing.1');
     &:where(.button--icon) {
-      @apply px-1;
+      padding-inline: theme('spacing.1');
       min-inline-size: theme(spacing.7);
     }
   }
   .size--sm {
     min-block-size: theme(spacing.8);
-    border-radius: theme('borderRadius.md');
+    border-radius: theme('borderRadius.sm');
     font-size: theme('fontSize.sm');
-    @apply py-1 px-3;
+    padding-inline: theme('spacing.3');
+    padding-block: theme('spacing.1');
     &:where(.button--icon) {
-      @apply px-1;
+      padding-inline: theme('spacing.1');
       min-inline-size: theme(spacing.8);
     }
   }
   .size--md {
     min-block-size: theme(spacing.10);
-    border-radius: theme('borderRadius.lg');
+    border-radius: theme('borderRadius.md');
     font-size: theme('fontSize.sm');
-    @apply py-2 px-4;
+    padding-inline: theme('spacing.4');
+    padding-block: theme('spacing.2');
     &:where(.button--icon) {
-      @apply px-2;
+      padding-inline: theme('spacing.2');
       min-inline-size: theme(spacing.10);
     }
   }
@@ -236,9 +239,10 @@
     min-block-size: theme(spacing.12);
     border-radius: theme('borderRadius.lg');
     font-size: theme('fontSize.md');
-    @apply py-2 px-6;
+    padding-inline: theme('spacing.6');
+    padding-block: theme('spacing.2');
     &:where(.button--icon) {
-      @apply px-2;
+      padding-inline: theme('spacing.2');
       min-inline-size: theme(spacing.12);
     }
   }

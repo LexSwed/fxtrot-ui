@@ -68,8 +68,8 @@ const defaultTheme = {
   // tailwind defaults
   borderRadius: {
     'none': '0px',
-    'sm': '0.125rem',
-    'DEFAULT': '0.25rem',
+    'sm': '0.275rem',
+    'DEFAULT': '0.375rem',
     'md': '0.375rem',
     'lg': '0.5rem',
     'xl': '0.75rem',
