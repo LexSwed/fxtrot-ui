@@ -13,8 +13,8 @@
       "require": "./dist/fxtrot-ui.cjs",
       "types": "./dist/types/index.d.ts"
     },
-    "./tailwind.preset.cjs": "./dist/tailwind.preset.cjs",
-    "./style.css": "./dist/style.css"
+    "./dist/tailwind.preset.cjs": "./dist/tailwind.preset.cjs",
+    "./dist/style.css": "./dist/style.css"
   },
   "sideEffects": false,
   "repository": {
