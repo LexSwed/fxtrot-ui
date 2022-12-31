@@ -25,6 +25,7 @@ export const Text = forwardRef(
 export const textCss = css(styles.text, {
   variants: {
     textStyle: {
+      'body-xs': styles['body-xs'],
       'body-sm': styles['body-sm'],
       'body-md': styles['body-md'],
       'body-lg': styles['body-lg'],

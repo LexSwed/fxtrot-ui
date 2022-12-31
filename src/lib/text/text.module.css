@@ -5,6 +5,10 @@
     font-family: theme('fontFamily.sans');
   }
   /* textStyle */
+  .body-xs {
+    font-size: theme('fontSize.xs');
+    line-height: theme('lineHeight.xs');
+  }
   .body-sm {
     font-size: theme('fontSize.sm');
     line-height: theme('lineHeight.sm');
