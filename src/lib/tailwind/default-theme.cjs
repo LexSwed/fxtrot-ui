@@ -35,6 +35,7 @@ const defaultTheme = {
     'on-disabled': 'hsl(204 9.1% 41%)',
   },
   boxShadow: {
+    ...tailwindTheme.boxShadow,
     xs: '0 0 0 1px rgba(0, 0, 0, 0.05)',
     popper: `0 0 2px rgb(0 0 0 / 0.3), 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)`,
   },
