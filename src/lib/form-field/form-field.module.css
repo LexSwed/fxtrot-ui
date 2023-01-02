@@ -112,18 +112,18 @@
   /* Size */
   .size--sm {
     padding-inline: theme('spacing.2');
-    line-height: theme('spacing.8');
-    @apply text-xs;
+    block-size: theme('spacing.8');
+    font-size: theme('fontSize.xs');
   }
   .size--md {
     padding-inline: theme('spacing.2');
-    line-height: theme('spacing.10');
-    @apply text-sm;
+    block-size: theme('spacing.10');
+    font-size: theme('fontSize.sm');
   }
   .size--lg {
     padding-inline: theme('spacing.3');
-    line-height: theme('spacing.12');
-    @apply text-lg;
+    block-size: theme('spacing.12');
+    font-size: theme('fontSize.md');
   }
 
   /* Validity */
