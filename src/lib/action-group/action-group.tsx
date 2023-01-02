@@ -12,16 +12,10 @@ type Props = FlexVariants &
   Omit<ToggleGroup.ToggleGroupSingleProps | ToggleGroup.ToggleGroupMultipleProps, 'direction' | 'rovingFocus' | 'as'>;
 
 export const ActionGroup = forwardRef(
-  ({ children, type, gap = 'none', value, className, ...props }: Props, ref: ForwardedRef<HTMLDivElement>) => {
+  ({ children, type = 'single', gap = 'none', className, ...props }: Props, ref: ForwardedRef<HTMLDivElement>) => {
     return (
-      // @ts-expect-error 🤷‍♂️
-      <ToggleGroup.Root
-        type={type}
-        value={value}
-        className={clsx(flexCss({ gap, ...props }), className)}
-        {...props}
-        ref={ref}
-      >
+      // @ts-expect-error tough kid
+      <ToggleGroup.Root type={type} className={clsx(flexCss({ gap, ...props }), className)} {...props} ref={ref}>
         {flattenChildren(children).map((child, i) => {
           if (isValidElement(child) && child.type === ToggleButton) {
             return (

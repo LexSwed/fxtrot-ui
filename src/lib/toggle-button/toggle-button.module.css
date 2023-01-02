@@ -2,7 +2,7 @@
 
 @layer lib {
   .variant--flat {
-    &:where([aria-pressed='true'], [aria-expanded='true']) {
+    &:where([aria-pressed='true'], [aria-checked='true'], [aria-expanded='true']) {
       background-color: theme('colors.primary/0.1');
       color: theme('colors.primary');
 
