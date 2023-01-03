@@ -17,7 +17,16 @@ type Props<T> = VariantProps<typeof chipCss> &
   };
 
 export const Chip = forwardRef(function Chip<T>(
-  { size = 'md', main = 'center', cross = 'center', gap = 'sm', className, children, icon, ...props }: Props<T>,
+  {
+    size = 'md',
+    main = 'center',
+    cross = 'center',
+    gap = size === 'sm' ? 'xs' : 'sm',
+    className,
+    children,
+    icon,
+    ...props
+  }: Props<T>,
   ref: Props<T>['ref']
 ) {
   const selectable = typeof props['aria-selected'] !== 'undefined';

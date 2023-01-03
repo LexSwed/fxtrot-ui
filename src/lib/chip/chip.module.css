@@ -13,6 +13,10 @@
     border-color: theme('colors.on-surface/0.5');
     line-height: 1;
 
+    &:focus {
+      @apply outline-none ring-4 ring-outline ring-opacity-20;
+    }
+
     &:where([role='option']) {
       outline: none;
       cursor: default;
@@ -22,14 +26,6 @@
       }
       &:where(:active) {
         background-color: theme('colors.on-surface/0.1');
-      }
-      &:focus {
-        @apply outline-none ring-4 ring-opacity-20;
-      }
-    }
-    &:where([aria-selected='false']) {
-      &:focus {
-        @apply ring-outline ring-opacity-20;
       }
     }
 
