@@ -5,7 +5,7 @@ const { createTailwindVariables } = require('./utils.cjs');
 /**
  * Overrides default -top, -bottom, etc with CSS Logical Properties
  * @type {import('tailwindcss/plugin')} */
-// @ts-ignore
+// @ts-expect-error
 const logicalPropertiesPlugin = plugin(({ matchUtilities, theme }) => {
   matchUtilities(
     {

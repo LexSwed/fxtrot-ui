@@ -58,11 +58,11 @@
 
     &:where(:hover, :focus, :active) {
       border-color: theme('colors.primary');
-      background-color: theme('colors.primary/0.1');
+      background-color: theme('colors.primary/0.05');
     }
 
     &:where(:active, [data-state='open']) {
-      background-color: theme('colors.primary/0.15');
+      background-color: theme('colors.primary/0.1');
     }
 
     &:where(:focus) {
