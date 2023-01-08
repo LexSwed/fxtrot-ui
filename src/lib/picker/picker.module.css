@@ -1,6 +1,4 @@
-@import '../root.css';
-
-@layer lib {
+@layer fxtrot-ui {
   .scroll-direction-arrow {
     padding-block: theme('spacing.1');
     display: flex;

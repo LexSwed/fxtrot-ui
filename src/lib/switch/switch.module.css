@@ -1,6 +1,4 @@
-@import '../root.css';
-
-@layer lib {
+@layer fxtrot-ui {
   .label {
     position: relative;
     min-height: theme('spacing.10');

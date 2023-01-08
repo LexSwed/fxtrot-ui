@@ -1,6 +1,4 @@
-@import '../root.css';
-
-@layer lib {
+@layer fxtrot-ui {
   .content {
     overflow: unset;
     padding: theme('spacing.2');

@@ -1,6 +1,4 @@
-@import '../root.css';
-
-@layer lib {
+@layer fxtrot-ui {
   .list {
     display: inline-flex;
     &[data-orientation='vertical'] {

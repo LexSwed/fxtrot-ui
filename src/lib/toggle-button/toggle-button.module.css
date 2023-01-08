@@ -1,6 +1,4 @@
-@import '../root.css';
-
-@layer lib {
+@layer fxtrot-ui {
   .variant--flat {
     &:where([aria-pressed='true'], [aria-checked='true'], [aria-expanded='true']) {
       background-color: theme('colors.primary/0.1');

@@ -1,6 +1,4 @@
-@import '../root.css';
-
-@layer lib {
+@layer fxtrot-ui {
   .chip {
     transition: 0.2s ease-in-out;
     transition-property: color, background-color, border-color;

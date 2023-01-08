@@ -1,6 +1,4 @@
-@import '../root.css';
-
-@layer lib {
+@layer fxtrot-ui {
   .text {
     font-family: theme('fontFamily.sans');
   }

@@ -1,6 +1,4 @@
-@import '../root.css';
-
-@layer lib {
+@layer fxtrot-ui {
   .text-link {
     box-sizing: border-box;
     cursor: pointer;

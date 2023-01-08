@@ -69,6 +69,7 @@ const buttonCss = css(styles.button, flexCss, {
 });
 
 const buttonCssWithDefaults = <T extends keyof JSX.IntrinsicElements>({
+  display = 'inline',
   variant = 'flat',
   size = 'md',
   main = 'center',
@@ -84,7 +85,7 @@ const buttonCssWithDefaults = <T extends keyof JSX.IntrinsicElements>({
     (Children.count(children) === 1 && isValidElement(children) && children.type === Icon) ||
     (Children.count(children) === 0 && !!icon);
   return clsx(
-    buttonCss({ variant, size, main, flow, gap, cross, ...props }),
+    buttonCss({ variant, size, main, flow, gap, cross, display, ...props }),
     isIconButton ? styles['button--icon'] : undefined,
     className
   );

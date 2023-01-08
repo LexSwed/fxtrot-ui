@@ -1,20 +1,13 @@
-@import '../root.css';
-
-@layer lib {
+@layer fxtrot-ui {
   .button {
-    display: inline-flex;
     flex-shrink: 0;
     cursor: default;
     user-select: none;
     white-space: nowrap;
-    background: transparent;
-    font-weight: theme('fontWeight.medium');
     line-height: theme('lineHeight.none');
     color: theme('colors.on-surface');
     transition-property: color, box-shadow, filter, border-color, background-color, background-image;
     transition-duration: 200ms;
-    border: none;
-    background: none;
 
     &:focus {
       @apply outline-none ring-4 ring-opacity-40;
@@ -35,7 +28,6 @@
   /*
    Variant
   */
-
   .variant--primary {
     background-color: theme('colors.primary');
     color: theme('colors.on-primary');
@@ -204,8 +196,9 @@
   */
   .size--xs {
     min-block-size: theme(spacing.7);
-    border-radius: theme('borderRadius.sm');
+    border-radius: theme('borderRadius.md');
     font-size: theme('fontSize.xs');
+    font-weight: theme('fontWeight.medium');
     padding-inline: theme('spacing.2');
     padding-block: theme('spacing.1');
     &:where(.button--icon) {
@@ -215,8 +208,9 @@
   }
   .size--sm {
     min-block-size: theme(spacing.8);
-    border-radius: theme('borderRadius.sm');
+    border-radius: theme('borderRadius.md');
     font-size: theme('fontSize.sm');
+    font-weight: theme('fontWeight.medium');
     padding-inline: theme('spacing.3');
     padding-block: theme('spacing.1');
     &:where(.button--icon) {
@@ -228,6 +222,7 @@
     min-block-size: theme(spacing.10);
     border-radius: theme('borderRadius.md');
     font-size: theme('fontSize.sm');
+    font-weight: theme('fontWeight.medium');
     padding-inline: theme('spacing.4');
     padding-block: theme('spacing.2');
     &:where(.button--icon) {
@@ -239,6 +234,7 @@
     min-block-size: theme(spacing.12);
     border-radius: theme('borderRadius.lg');
     font-size: theme('fontSize.md');
+    font-weight: theme('fontWeight.medium');
     padding-inline: theme('spacing.6');
     padding-block: theme('spacing.2');
     &:where(.button--icon) {

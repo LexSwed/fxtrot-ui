@@ -1,6 +1,4 @@
-@import '../root.css';
-
-@layer lib {
+@layer fxtrot-ui {
   .icon {
     display: inline-block;
     flex-shrink: 0;

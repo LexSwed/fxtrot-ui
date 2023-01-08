@@ -1,6 +1,4 @@
-@import '../root.css';
-
-@layer lib {
+@layer fxtrot-ui {
   .action-group-item--no-gap {
     &:where(:not(:first-child):not(:last-child)) {
       border-radius: 0;

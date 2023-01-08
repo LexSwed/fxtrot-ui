@@ -1,6 +1,4 @@
-@import '../root.css';
-
-@layer lib {
+@layer fxtrot-ui {
   .menu-list {
     & [role='treeitem'] + [role='treeitem']:not(:first-child):not(:last-child) {
       border-radius: 0;

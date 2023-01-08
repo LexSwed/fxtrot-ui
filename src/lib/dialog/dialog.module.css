@@ -1,6 +1,4 @@
-@import '../root.css';
-
-@layer lib {
+@layer fxtrot-ui {
   .overlay {
     background-color: theme('colors.on-surface/0.4');
     position: fixed;
