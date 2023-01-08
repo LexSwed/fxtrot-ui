@@ -1,38 +1,30 @@
 @layer fxtrot-ui {
   .list {
+    --border-size: theme('spacing[0.5]');
+    --border-color: theme('colors.outline/0.2');
+    --gradient-dir: to top;
     display: inline-flex;
-    &[data-orientation='vertical'] {
-      flex-flow: column;
-      border-inline-end: 2px solid theme('colors.outline/0.2');
-    }
+    scrollbar-width: 0;
+    box-sizing: border-box;
+    background: linear-gradient(
+      var(--gradient-dir),
+      var(--border-color) var(--border-size),
+      transparent var(--border-size),
+      transparent 100%
+    );
     &[data-orientation='horizontal'] {
       flex-flow: row;
-      border-block-end: 2px solid theme('colors.outline/0.2');
-    }
-    /* position: relative;
-    &:after {
-      position: absolute;
-      content: '';
-      background-color: theme('colors.outline/0.2');
+      overflow: auto visible;
     }
     &[data-orientation='vertical'] {
+      --gradient-dir: to left;
       flex-flow: column;
-      &:after {
-        width: 2px;
-        height: calc(100% - theme('spacing.2'));
-        inset-block-start: theme('spacing.2');
-        inset-inline-end: 0;
-      }
+      overflow: visible auto;
+      min-width: fit-content;
     }
-    &[data-orientation='horizontal'] {
-      flex-flow: row;
-      &:after {
-        height: 2px;
-        width: calc(100% - theme('spacing.2') * 2);
-        inset-block-end: 0;
-        inset-inline-start: theme('spacing.2');
-      }
-    } */
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   .trigger {
@@ -42,6 +34,7 @@
     transition: background-color 0.24s ease-in-out;
     border-start-end-radius: theme('borderRadius.md');
     border-start-start-radius: theme('borderRadius.md');
+    white-space: nowrap;
 
     &::after {
       --scale: 0.4;
@@ -54,25 +47,27 @@
     }
 
     &[data-orientation='horizontal'] {
+      padding-block-end: theme('spacing.2');
       &:first-child {
         margin-inline-start: calc(-1 * theme('spacing[1.5]'));
       }
       &:after {
         inset-inline-start: 0;
-        inset-block-end: -2px;
+        inset-block-end: 0;
         width: 100%;
-        height: 2px;
+        height: var(--border-size);
         scale: var(--scale) 1;
       }
     }
     &[data-orientation='vertical'] {
+      padding-inline-end: theme('spacing.2');
       &:first-child {
         margin-block-start: calc(-1 * theme('spacing[1.5]'));
       }
       &:after {
         inset-block-end: 0;
-        inset-inline-end: -2px;
-        width: 2px;
+        inset-inline-end: 0;
+        width: var(--border-size);
         height: 100%;
         scale: 1 calc(var(--scale) * 0.8);
       }
@@ -103,7 +98,8 @@
   }
 
   .trigger-inner {
-    padding-inline: theme('spacing.3');
+    padding-block: theme('spacing.1');
+    padding-inline: theme('spacing.4');
     border-radius: theme('borderRadius.md');
     transition: background-color 0.14s ease-in-out;
     font-size: theme('fontSize.sm');
