@@ -6,7 +6,7 @@
   "type": "module",
   "types": "dist/types/index.d.ts",
   "main": "./dist/fxtrot-ui.cjs",
-  "module": "./dist/fxtrot-ui.es.js",
+  "module": "./dist/fxtrot-ui.js",
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
