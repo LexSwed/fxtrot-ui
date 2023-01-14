@@ -17,7 +17,16 @@ module.exports = defineConfig({
       entry: path.resolve(__dirname, './src/lib/index.ts'),
       name: pkg.name,
       formats: ['cjs', 'es'],
-      fileName: (format) => `fxtrot-ui.${format}.js`,
+      fileName: (format) => {
+        switch (format) {
+          case 'cjs':
+            return `fxtrot-ui.${format}`;
+          case 'es':
+            return `fxtrot-ui.js`;
+          default:
+            return `fxtrot-ui.${format}.js`;
+        }
+      },
     },
     rollupOptions: {
       external: Object.keys(pkg.peerDependencies),
