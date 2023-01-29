@@ -49,7 +49,6 @@ const AnchoredHeading = ({ id, children, ...props }: any) => {
 };
 
 export const components = {
-  React,
   ...helpers,
   ...FxtrotUI,
   ...Icons,
