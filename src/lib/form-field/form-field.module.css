@@ -123,6 +123,11 @@
     block-size: theme('spacing.12');
     font-size: theme('fontSize.md');
   }
+  .size--xl {
+    padding-inline: theme('spacing.4');
+    block-size: theme('spacing.12');
+    font-size: theme('fontSize.lg');
+  }
 
   /* Validity */
   .validity--valid {

@@ -11,46 +11,37 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: theme('fontSize.sm');
 
     &[data-placeholder] {
       color: theme('colors.on-surface-variant');
     }
-
-    /* radix select value */
-    & > span:first-of-type {
-      min-width: 0;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-  }
-
-  .trigger-icon {
-    padding-inline-start: theme('spacing.1');
   }
 
   .size--sm {
+    column-gap: theme('spacing.1');
     & > .trigger-icon {
       @apply size-4;
       stroke-width: 1.5;
     }
   }
   .size--md {
+    column-gap: theme('spacing.1');
     & > .trigger-icon {
       @apply size-6;
       stroke-width: 1.5;
     }
   }
   .size--lg {
+    column-gap: theme('spacing.2');
     & > .trigger-icon {
       @apply size-6;
       stroke-width: 1.8;
     }
   }
   .size--xl {
+    column-gap: theme('spacing.3');
     & > .trigger-icon {
-      @apply size-8;
+      @apply size-6;
       stroke-width: 1.8;
     }
   }

@@ -85,6 +85,7 @@ export const fieldBoxCss = css(styles.field, {
       sm: styles['size--sm'],
       md: styles['size--md'],
       lg: styles['size--lg'],
+      xl: styles['size--xl'],
     },
     validity: {
       valid: styles['validity--valid'],

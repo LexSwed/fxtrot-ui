@@ -31,7 +31,6 @@ export const PickerTrigger = ({
   cross,
   flow,
   display,
-  gap,
   style,
   className,
   id,
@@ -40,6 +39,7 @@ export const PickerTrigger = ({
   placeholder,
   variant = 'boxed',
   size = 'md',
+  gap,
   ...props
 }: PickerTriggerProps) => {
   const ariaProps = useFormField({ id, hint, label });
