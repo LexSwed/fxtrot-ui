@@ -10,7 +10,6 @@
     "forceConsistentCasingInFileNames": true,
     "strictFunctionTypes": true,
     "useDefineForClassFields": true,
-    "verbatimModuleSyntax": true,
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "checkJs": true,
@@ -33,7 +32,8 @@
           }
         }
       }
-    ]
+    ],
+    "isolatedModules": true
   },
   "include": ["docs", "src", "public"],
   "exclude": ["node_modules"]

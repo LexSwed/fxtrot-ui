@@ -28,7 +28,7 @@
     "build:preset": "vite build --config vite.tailwind-preset-config.mjs",
     "dev": "npm run docs:dev",
     "lint": "next lint --dir pages --dir src",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit --project ./tsconfig.without-next-modifications.json",
     "docs:dev": "next dev -p 3001",
     "docs:build": "next build",
     "docs:start": "next start",
