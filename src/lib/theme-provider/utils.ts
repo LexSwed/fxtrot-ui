@@ -1,6 +1,6 @@
 import type { ThemeColor, Theme } from './types';
-import defaultTheme from '../tailwind/default-theme.cjs';
-import { toToken } from '../tailwind/utils.cjs';
+import defaultTheme from '../tailwind/default-theme.mjs';
+import { toToken } from '../tailwind/utils.mjs';
 
 /**
  * Transforms passed theme colors into CSS variables map that are consumed by the components.
@@ -78,14 +78,11 @@ export function mergeTheme(theme: Theme): DeepRequired<Theme> {
   Object.keys(theme).forEach((themeKey) => {
     const themeConfig = theme[themeKey as ThemeKey];
     if (!themeConfig) return;
-    // @ts-expect-error 2022 can't type Object.keys properly in TypeScript :/
     resultingTheme[themeKey] = { ...defaultTheme[themeKey] };
     Object.keys(themeConfig).forEach((configKey) => {
-      // @ts-expect-error
       resultingTheme[themeKey][configKey] = themeConfig[configKey];
     });
   });
-  // @ts-expect-error defaultTheme has colors as strings and not HSL, as JSDoc doesn't support @satisfies yet
   return resultingTheme;
 }
 

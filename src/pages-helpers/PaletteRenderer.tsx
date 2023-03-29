@@ -1,5 +1,5 @@
 import { Column, Text, Row } from '@fxtrot/ui';
-import defaultTheme from 'src/lib/tailwind/default-theme.cjs';
+import defaultTheme from 'src/lib/tailwind/default-theme.mjs';
 import type { Theme } from 'src/lib/theme-provider/types';
 import { CopyButton } from './CopyButton';
 
@@ -24,7 +24,7 @@ export const ColorBox = ({ color, className }: ColorBoxProps) => {
       <Column className="h-full">
         <Text textStyle="label-sm">{color}</Text>
         <Text textStyle="mono-sm">{defaultTheme.colors[color]}</Text>
-        <div className="self-end mt-auto">
+        <div className="mt-auto self-end">
           <CopyButton label="Copy color token" text={color} />
         </div>
       </Column>

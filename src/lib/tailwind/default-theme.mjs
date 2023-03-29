@@ -1,4 +1,5 @@
-const tailwindTheme = require('tailwindcss/defaultTheme');
+import tailwindTheme from 'tailwindcss/defaultTheme';
+
 /** @satisfies {import('../theme-provider/types').Theme} */
 const defaultTheme = {
   colors: {
@@ -80,4 +81,4 @@ const defaultTheme = {
   },
 };
 
-module.exports = defaultTheme;
+export default defaultTheme;

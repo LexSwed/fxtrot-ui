@@ -2,13 +2,14 @@ import * as React from 'react';
 import { MDXProvider } from '@mdx-js/react';
 import Image from 'next/image';
 import { BsTypeBold, BsTypeItalic, BsTypeUnderline } from 'react-icons/bs';
-import * as Icons from '@heroicons/react/24/outline';
+// Eslint is lying – there's default export
+// eslint-disable-next-line
+import HeroIcons from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { clsx } from 'clsx';
 import * as FxtrotUI from '@fxtrot/ui';
 
 import { Heading, Text, TextLink } from '@fxtrot/ui';
-
 import * as helpers from '../pages-helpers';
 import { MultilineCode } from '../pages-helpers/MultilineCode';
 import { MainLayout } from './MainLayout';
@@ -51,7 +52,7 @@ const AnchoredHeading = ({ id, children, ...props }: any) => {
 export const components = {
   ...helpers,
   ...FxtrotUI,
-  ...Icons,
+  ...HeroIcons,
   // used by ActionGroup docs
   BsTypeBold,
   BsTypeItalic,
@@ -73,7 +74,7 @@ export const components = {
   h4: (props: any) => <Heading dense={false} {...props} as="h5" level="4" />,
   h5: (props: any) => <Heading dense={false} {...props} as="h6" level="5" />,
   h6: (props: any) => <Heading dense={false} {...props} as="h6" level="6" />,
-  p: (props: any) => <Text {...props} className="mt-3 mb-2" as="p" />,
+  p: (props: any) => <Text {...props} className="mb-2 mt-3" as="p" />,
   aside: (props: any) => <Text {...props} tone="light" className="my-4" />,
   code: Code,
   MultilineCode,

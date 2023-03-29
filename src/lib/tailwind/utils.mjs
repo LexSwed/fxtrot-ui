@@ -1,7 +1,7 @@
 /**
  * @type {import('../theme-provider/types').toToken}
  */
-function toToken(themeConfig, name) {
+export function toToken(themeConfig, name) {
   return `--fx-${themeConfig}-${name.split('.').join('\\.')}`;
 }
 
@@ -32,7 +32,7 @@ function createFontSizeVariables(fontSizes) {
 }
 
 /** @type {import('../theme-provider/types').createTailwindVariables} */
-function createTailwindVariables(theme) {
+export function createTailwindVariables(theme) {
   /** @type {import('tailwindcss').Config['theme']} */
   const tailwindTheme = {};
 
@@ -60,11 +60,6 @@ function createTailwindVariables(theme) {
       }
     }
   });
-  // @ts-expect-error can't really type this in cjs
+
   return tailwindTheme;
 }
-
-module.exports = {
-  createTailwindVariables,
-  toToken,
-};

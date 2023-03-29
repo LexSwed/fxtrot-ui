@@ -1,11 +1,10 @@
-const plugin = require('tailwindcss/plugin');
-const fxtrotTheme = require('./default-theme.cjs');
-const { createTailwindVariables } = require('./utils.cjs');
+import plugin from 'tailwindcss/plugin';
+import fxtrotTheme from './default-theme.mjs';
+import { createTailwindVariables } from './utils.mjs';
 
 /**
  * Overrides default -top, -bottom, etc with CSS Logical Properties
- * @type {import('tailwindcss/plugin')} */
-// @ts-expect-error
+ *  */
 const logicalPropertiesPlugin = plugin(({ matchUtilities, theme }) => {
   matchUtilities(
     {
@@ -81,11 +80,10 @@ const logicalPropertiesPlugin = plugin(({ matchUtilities, theme }) => {
 });
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const fxtrotPlugin = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
-      // @ts-expect-error
       ...createTailwindVariables(fxtrotTheme),
       opacity: {
         15: '0.15',
@@ -94,3 +92,5 @@ module.exports = {
   },
   plugins: [logicalPropertiesPlugin],
 };
+
+export default fxtrotPlugin;

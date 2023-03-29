@@ -1,8 +1,8 @@
-const path = require('path');
-const { defineConfig } = require('vite');
+import path from 'path';
+import { defineConfig } from 'vite';
 
 /** @type {import('vite').UserConfig} */
-module.exports = defineConfig({
+export default defineConfig({
   publicDir: false,
   esbuild: {
     target: ['node'],

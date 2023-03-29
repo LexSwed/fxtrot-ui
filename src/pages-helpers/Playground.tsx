@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
-import { Root, Content, Trigger, CollapsibleTriggerProps } from '@radix-ui/react-collapsible';
+import { Root, Content, Trigger } from '@radix-ui/react-collapsible';
 import prismTheme from 'prism-react-renderer/themes/github';
 
 import { LiveProvider, LiveEditor, LivePreview, withLive } from 'react-live';
 import { Column, Icon, Text, ToggleButton } from '@fxtrot/ui';
+import type { CollapsibleTriggerProps } from '@radix-ui/react-collapsible';
 import type { Language } from 'prism-react-renderer';
 import { components } from './MdxProvider';
 
@@ -25,7 +26,7 @@ export const Playground = ({ code, language }: Props) => {
       code={code}
       language={language as Language}
     >
-      <div className="rounded-md shadow-popper mt-4 mb-6">
+      <div className="shadow-popper mb-6 mt-4 rounded-md">
         <Root>
           <LivePreview
             // @ts-expect-error
@@ -45,7 +46,7 @@ export const Playground = ({ code, language }: Props) => {
 
 const Preview: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <div className="rounded-md bg-surface">
+    <div className="bg-surface rounded-md">
       <Column>
         <div className="overflow-auto p-4">{children}</div>
         <Trigger asChild>
@@ -69,5 +70,5 @@ const CodeToggleButton = React.forwardRef<HTMLButtonElement, CollapsibleTriggerP
 
 const ErrorRenderer = withLive(({ live }: any) => {
   if (!live.error) return null;
-  return <div className="rounded-br-md rounded-bl-md bg-error/10 p-4 text-sm text-error">{live.error}</div>;
+  return <div className="bg-error/10 text-error rounded-bl-md rounded-br-md p-4 text-sm">{live.error}</div>;
 });

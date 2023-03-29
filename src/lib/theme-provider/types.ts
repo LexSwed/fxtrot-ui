@@ -8,7 +8,7 @@ export type createTailwindFontVariables = (fontSize: NonNullable<Theme['fontSize
 };
 export type toToken = (themeConfig: string, name: string) => `--fx-${string}-${string}`;
 
-export type createTailwindVariables = (theme: Theme) => import('tailwindcss').Config;
+export type createTailwindVariables = (theme: Theme) => import('tailwindcss').Config['theme'];
 
 export interface ThemeColors {
   // Primary color

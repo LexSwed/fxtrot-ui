@@ -7,7 +7,7 @@ const App = () => {
   return (
     <>
       <NextSeo title="Fxtrot UI" description="A component library for React projects." />
-      <div className="flex h-[100lvh] max-w-7xl flex-col px-4 pb-16 mx-auto lg:px-16">
+      <div className="mx-auto flex h-[100lvh] max-w-7xl flex-col px-4 pb-16 lg:px-16">
         <div className="py-8">
           <Row as="header" main="space-between" cross="center">
             <Heading as="h1" level="2">
@@ -37,7 +37,7 @@ const App = () => {
               </Link>
             </Column>
             <Row gap="sm" wrap="wrap" as="ul">
-              <li className="w-[16rem] rounded-md bg-primary/5 p-4">
+              <li className="bg-primary/5 w-[16rem] rounded-md p-4">
                 SSR and Server Components compatible, works with{' '}
                 <TextLink href="https://remix.run/" external="icon">
                   Remix
@@ -47,10 +47,10 @@ const App = () => {
                   Next.js
                 </TextLink>
               </li>
-              <li className="w-[16rem] rounded-md bg-primary/5 p-4">
+              <li className="bg-primary/5 w-[16rem] rounded-md p-4">
                 Fully typed – autocomplete support for properties with TypeScript
               </li>
-              <li className="w-[16rem] rounded-md bg-primary/5 p-4">
+              <li className="bg-primary/5 w-[16rem] rounded-md p-4">
                 RTL support through extensive usage of{' '}
                 <TextLink
                   href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Logical_Properties"
@@ -59,19 +59,19 @@ const App = () => {
                   CSS Logical Properties
                 </TextLink>
               </li>
-              <li className="w-[16rem] rounded-md bg-primary/5 p-4">
+              <li className="bg-primary/5 w-[16rem] rounded-md p-4">
                 Satisfying accessibility provided by{' '}
                 <TextLink href="https://www.radix-ui.com/" external="icon">
                   Radix
                 </TextLink>
               </li>
-              <li className="w-[16rem] rounded-md bg-primary/5 p-4">
+              <li className="bg-primary/5 w-[16rem] rounded-md p-4">
                 Customizable{' '}
                 <Link href="/theming" passHref legacyBehavior>
                   <TextLink inline={false}>theming with great Tailwind defaults</TextLink>
                 </Link>
               </li>
-              <li className="w-[16rem] rounded-md bg-primary/5 p-4">
+              <li className="bg-primary/5 w-[16rem] rounded-md p-4">
                 Overridable styles, with{' '}
                 <TextLink href="https://developer.mozilla.org/en-US/docs/Web/CSS/@layer" external="icon">
                   CSS Cascade Layers

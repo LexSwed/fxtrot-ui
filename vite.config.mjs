@@ -1,10 +1,10 @@
-const path = require('path');
-const { defineConfig } = require('vite');
-const react = require('@vitejs/plugin-react');
-const pkg = require('./package.json');
+import path from 'path';
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import pkg from './package.json';
 
 /** @type {import('vite').UserConfig} */
-module.exports = defineConfig({
+export default defineConfig({
   publicDir: false,
   plugins: [react()],
   esbuild: {
