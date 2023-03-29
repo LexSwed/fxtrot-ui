@@ -1,7 +1,7 @@
 import { type ComponentProps, forwardRef } from 'react';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 import { clsx } from 'clsx';
-import { classed as css, VariantProps } from '@tw-classed/core';
+import { classed as css, type VariantProps } from '@tw-classed/core';
 
 import { Icon } from '../icon';
 import { textCss } from '../text/text';

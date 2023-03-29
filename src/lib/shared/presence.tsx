@@ -1,5 +1,5 @@
 import * as RdxPresence from '@radix-ui/react-presence';
-import { forwardRef, RefCallback, ReactElement } from 'react';
+import { forwardRef, type RefCallback, type ReactElement } from 'react';
 
 interface Props<T> {
   present: boolean;

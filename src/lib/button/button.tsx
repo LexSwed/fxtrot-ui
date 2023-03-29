@@ -1,5 +1,5 @@
-import { classed as css, VariantProps } from '@tw-classed/core';
-import { Children, ComponentProps, ElementType, forwardRef, isValidElement } from 'react';
+import { classed as css, type VariantProps } from '@tw-classed/core';
+import { Children, type ComponentProps, type ElementType, forwardRef, isValidElement } from 'react';
 import { clsx } from 'clsx';
 
 import { flexCss } from '../flex/flex';

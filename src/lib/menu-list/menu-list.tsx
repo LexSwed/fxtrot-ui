@@ -1,11 +1,11 @@
 import * as RovingFocusGroup from '@radix-ui/react-roving-focus';
 
 import { clsx } from 'clsx';
-import { ComponentProps, forwardRef } from 'react';
+import { type ComponentProps, forwardRef } from 'react';
 
 import { Flex } from '../flex';
 import { useAllHandlers, useKeyboardHandles } from '../utils/hooks';
-import { listItemCss, ListItemVariants } from '../shared/list-item';
+import { listItemCss, type ListItemVariants } from '../shared/list-item';
 
 import type { ForwardRefComponent } from '../utils/polymorphic';
 import styles from './menu-list.module.css';

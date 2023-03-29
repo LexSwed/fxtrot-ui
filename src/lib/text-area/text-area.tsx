@@ -1,10 +1,18 @@
-import { ChangeEvent, ChangeEventHandler, ComponentProps, forwardRef, Ref, useEffect, useRef } from 'react';
+import {
+  type ChangeEvent,
+  type ChangeEventHandler,
+  type ComponentProps,
+  forwardRef,
+  type Ref,
+  useEffect,
+  useRef,
+} from 'react';
 import { classed as css } from '@tw-classed/core';
 import { clsx } from 'clsx';
 
-import { Column, FlexVariants } from '../flex/flex';
+import { Column, type FlexVariants } from '../flex/flex';
 import { FormFieldWrapper, Hint, Label, useFormField } from '../form-field';
-import { fieldBoxCss, FieldVariants } from '../form-field/form-field';
+import { fieldBoxCss, type FieldVariants } from '../form-field/form-field';
 import { useForkRef } from '../utils/hooks';
 
 import styles from './text-area.module.css';

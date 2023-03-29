@@ -4,8 +4,8 @@ import { classed as css } from '@tw-classed/core';
 import { clsx } from 'clsx';
 import type { ComponentProps } from 'react';
 
-import { Column, FlexVariants } from '../flex/flex';
-import { FormFieldWrapper, Hint, useFormField, fieldBoxCss, FieldVariants } from '../form-field/form-field';
+import { Column, type FlexVariants } from '../flex/flex';
+import { FormFieldWrapper, Hint, useFormField, fieldBoxCss, type FieldVariants } from '../form-field/form-field';
 import { Icon } from '../icon';
 import { Label } from '../form-field';
 

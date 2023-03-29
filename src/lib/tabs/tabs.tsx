@@ -1,6 +1,6 @@
 import * as RdxTabs from '@radix-ui/react-tabs';
 import { clsx } from 'clsx';
-import { Flex, FlexVariants } from '../flex/flex';
+import { Flex, type FlexVariants } from '../flex/flex';
 
 import styles from './tabs.module.css';
 

@@ -1,16 +1,16 @@
 import {
-  ComponentProps,
+  type ComponentProps,
   forwardRef,
-  ForwardRefExoticComponent,
-  ReactElement,
-  ReactNode,
-  RefAttributes,
+  type ForwardRefExoticComponent,
+  type ReactElement,
+  type ReactNode,
+  type RefAttributes,
   useRef,
 } from 'react';
 import * as RdxModal from '@radix-ui/react-dialog';
 
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { OpenStateProvider, OpenStateRef, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
+import { OpenStateProvider, type OpenStateRef, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { Button } from '../button';
 import { Heading } from '../heading';
 import { DialogModal } from './dialog-modal';

@@ -2,9 +2,9 @@ import * as ToggleGroup from '@radix-ui/react-toggle-group';
 import flattenChildren from 'react-keyed-flatten-children';
 import { clsx } from 'clsx';
 
-import { ComponentProps, ForwardedRef, forwardRef, isValidElement, ReactElement } from 'react';
+import { type ComponentProps, type ForwardedRef, forwardRef, isValidElement, type ReactElement } from 'react';
 import { ToggleButton } from '../toggle-button';
-import { flexCss, FlexVariants } from '../flex/flex';
+import { flexCss, type FlexVariants } from '../flex/flex';
 
 import styles from './action-group.module.css';
 

@@ -1,7 +1,7 @@
 import * as RdxDialog from '@radix-ui/react-dialog';
 
-import { ComponentProps, forwardRef } from 'react';
-import { classed as css, VariantProps } from '@tw-classed/core';
+import { type ComponentProps, forwardRef } from 'react';
+import { classed as css, type VariantProps } from '@tw-classed/core';
 import { useOpenState } from '../utils/OpenStateProvider';
 import { Portal } from '../portal';
 import { Presence } from '../shared/presence';

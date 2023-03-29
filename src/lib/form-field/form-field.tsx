@@ -1,11 +1,11 @@
-import { ComponentProps, forwardRef, useMemo } from 'react';
+import { type ComponentProps, forwardRef, useMemo } from 'react';
 import { useId } from '@radix-ui/react-id';
 import { clsx } from 'clsx';
 
-import { classed as css, VariantProps } from '@tw-classed/core';
+import { classed as css, type VariantProps } from '@tw-classed/core';
 import { Text } from '../text';
 import type { ForwardRefComponent } from '../utils/polymorphic';
-import { Flex, FlexVariants } from '../flex/flex';
+import { Flex, type FlexVariants } from '../flex/flex';
 
 import styles from './form-field.module.css';
 

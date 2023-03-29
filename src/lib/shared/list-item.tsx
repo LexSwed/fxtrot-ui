@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
-import { classed as css, VariantProps } from '@tw-classed/core';
+import { classed as css, type VariantProps } from '@tw-classed/core';
 import { clsx } from 'clsx';
-import { flexCss, FlexVariants } from '../flex/flex';
+import { flexCss, type FlexVariants } from '../flex/flex';
 import type { ForwardRefComponent } from '../utils/polymorphic';
 
 import styles from './list-item.module.css';

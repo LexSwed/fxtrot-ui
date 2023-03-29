@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo, useState, useImperativeHandle, forwardRef, ReactNode } from 'react';
+import { createContext, useContext, useMemo, useState, useImperativeHandle, forwardRef, type ReactNode } from 'react';
 
 const openStateContext = createContext(false);
 const openStateControlsContext = createContext<MenuControlFunctions>({} as MenuControlFunctions);

@@ -11,9 +11,18 @@ export default defineConfig({
     minify: false,
     emptyOutDir: false,
     lib: {
-      entry: path.resolve(__dirname, './src/lib/tailwind/preset.cjs'),
-      formats: ['cjs'],
-      fileName: () => `tailwind.preset.cjs`,
+      entry: path.resolve(__dirname, './src/lib/tailwind/preset.mjs'),
+      formats: ['cjs', 'esm'],
+      fileName: (format) => {
+        switch (format) {
+          case 'esm':
+            return `tailwind.preset.mjs`;
+          case 'cjs':
+            return `tailwind.preset.${format}`;
+          default:
+            return `tailwind.preset.js`;
+        }
+      },
     },
     rollupOptions: {
       external: ['tailwindcss/plugin', 'tailwindcss/defaultTheme'],

@@ -1,8 +1,15 @@
-import { ComponentProps, forwardRef, ForwardRefExoticComponent, ReactElement, RefAttributes, useRef } from 'react';
+import {
+  type ComponentProps,
+  forwardRef,
+  type ForwardRefExoticComponent,
+  type ReactElement,
+  type RefAttributes,
+  useRef,
+} from 'react';
 import { clsx } from 'clsx';
 import * as RdxPopover from '@radix-ui/react-popover';
 
-import { OpenStateProvider, OpenStateRef, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
+import { OpenStateProvider, type OpenStateRef, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { Portal } from '../portal';
 import { Presence } from '../shared/presence';
 import { PopoverBox } from '../shared/popover-box';

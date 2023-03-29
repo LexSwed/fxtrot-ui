@@ -1,15 +1,15 @@
 import {
-  ComponentProps,
+  type ComponentProps,
   createContext,
   forwardRef,
-  ReactNode,
-  RefObject,
+  type ReactNode,
+  type RefObject,
   useContext,
   useEffect,
   useRef,
   useState,
 } from 'react';
-import { Direction, DirectionProvider } from '@radix-ui/react-direction';
+import { type Direction, DirectionProvider } from '@radix-ui/react-direction';
 import { TooltipProvider } from '@radix-ui/react-tooltip';
 import { clsx } from 'clsx';
 

@@ -1,5 +1,5 @@
 import { clsx } from 'clsx';
-import { ComponentProps, forwardRef } from 'react';
+import { type ComponentProps, forwardRef } from 'react';
 
 import styles from './floating-list.module.css';
 

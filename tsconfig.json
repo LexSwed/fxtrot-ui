@@ -5,13 +5,20 @@
     "sourceMap": true,
     "strict": true,
     "esModuleInterop": true,
-    "types": ["react", "node"],
+    "types": [
+      "react",
+      "node"
+    ],
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "strictFunctionTypes": true,
-    "importsNotUsedAsValues": "error",
     "useDefineForClassFields": true,
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "verbatimModuleSyntax": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "checkJs": true,
     "jsx": "preserve",
@@ -20,9 +27,10 @@
     "resolveJsonModule": true,
     "importHelpers": true,
     "baseUrl": ".",
-    "isolatedModules": true,
     "paths": {
-      "@fxtrot/ui": ["src/lib"]
+      "@fxtrot/ui": [
+        "src/lib"
+      ]
     },
     "incremental": true,
     "plugins": [
@@ -34,8 +42,15 @@
           }
         }
       }
-    ]
+    ],
+    "isolatedModules": true
   },
-  "include": ["docs", "src", "public"],
-  "exclude": ["node_modules"]
+  "include": [
+    "docs",
+    "src",
+    "public"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

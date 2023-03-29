@@ -1,7 +1,7 @@
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import * as RdxDialog from '@radix-ui/react-dialog';
 
-import { ComponentProps, forwardRef } from 'react';
+import { type ComponentProps, forwardRef } from 'react';
 import { Button } from '../button';
 
 interface CloseButtonProps extends ComponentProps<typeof Button> {}

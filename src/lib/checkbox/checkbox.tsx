@@ -1,9 +1,9 @@
-import { ChangeEvent, ComponentProps, forwardRef, Ref, useMemo } from 'react';
+import { type ChangeEvent, type ComponentProps, forwardRef, type Ref, useMemo } from 'react';
 import { CheckIcon } from '@heroicons/react/24/outline';
 import { clsx } from 'clsx';
-import { classed as css, VariantProps } from '@tw-classed/core';
+import { classed as css, type VariantProps } from '@tw-classed/core';
 
-import { Flex, FlexVariants } from '../flex/flex';
+import { Flex, type FlexVariants } from '../flex/flex';
 import { useFormField, Label } from '../form-field';
 import { Icon } from '../icon';
 

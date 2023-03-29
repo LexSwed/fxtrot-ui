@@ -1,9 +1,9 @@
 import {
-  ComponentProps,
+  type ComponentProps,
   forwardRef,
-  ForwardRefExoticComponent,
-  ReactElement,
-  RefAttributes,
+  type ForwardRefExoticComponent,
+  type ReactElement,
+  type RefAttributes,
   useRef,
   useState,
 } from 'react';
@@ -11,10 +11,10 @@ import * as RdxMenu from '@radix-ui/react-dropdown-menu';
 import { clsx } from 'clsx';
 
 import { PopoverBox } from '../shared/popover-box';
-import { OpenStateProvider, OpenStateRef, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
+import { OpenStateProvider, type OpenStateRef, useOpenState, useOpenStateControls } from '../utils/OpenStateProvider';
 import { Label } from '../form-field';
 import { Portal } from '../portal';
-import { ListItem, ListItemVariants } from '../shared/list-item';
+import { ListItem, type ListItemVariants } from '../shared/list-item';
 import { useIsomorphicLayoutEffect } from '../utils/hooks';
 import { Presence } from '../shared/presence';
 

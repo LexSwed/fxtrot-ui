@@ -1,5 +1,5 @@
-import { AriaAttributes, ComponentProps, ElementType, forwardRef } from 'react';
-import { classed as css, VariantProps } from '@tw-classed/core';
+import { type AriaAttributes, type ComponentProps, type ElementType, forwardRef } from 'react';
+import { classed as css, type VariantProps } from '@tw-classed/core';
 import { clsx } from 'clsx';
 
 import { Flex } from '../flex';

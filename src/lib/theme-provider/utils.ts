@@ -78,9 +78,11 @@ export function mergeTheme(theme: Theme): DeepRequired<Theme> {
   Object.keys(theme).forEach((themeKey) => {
     const themeConfig = theme[themeKey as ThemeKey];
     if (!themeConfig) return;
-    resultingTheme[themeKey] = { ...defaultTheme[themeKey] };
+    // @ts-expect-error
+    resultingTheme[themeKey as ThemeKey] = { ...defaultTheme[themeKey as ThemeKey] };
     Object.keys(themeConfig).forEach((configKey) => {
-      resultingTheme[themeKey][configKey] = themeConfig[configKey];
+      // @ts-expect-error
+      resultingTheme[themeKey as ThemeKey][configKey] = themeConfig[configKey as ThemeKey];
     });
   });
   return resultingTheme;

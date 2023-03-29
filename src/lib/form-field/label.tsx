@@ -3,7 +3,7 @@ import { classed as css } from '@tw-classed/core';
 import { clsx } from 'clsx';
 import { Text } from '../text';
 import type { ForwardRefComponent } from '../utils/polymorphic';
-import { flexCss, FlexVariants } from '../flex/flex';
+import { flexCss, type FlexVariants } from '../flex/flex';
 
 import styles from './form-field.module.css';
 

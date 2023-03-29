@@ -1,9 +1,16 @@
-import { ComponentProps, forwardRef, ForwardRefExoticComponent, ReactNode, RefAttributes, useRef } from 'react';
+import {
+  type ComponentProps,
+  forwardRef,
+  type ForwardRefExoticComponent,
+  type ReactNode,
+  type RefAttributes,
+  useRef,
+} from 'react';
 import * as Rdx from '@radix-ui/react-collapsible';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { clsx } from 'clsx';
 
-import { OpenStateProvider, useOpenState, OpenStateRef, useOpenStateControls } from '../utils/OpenStateProvider';
+import { OpenStateProvider, useOpenState, type OpenStateRef, useOpenStateControls } from '../utils/OpenStateProvider';
 
 import { Icon } from '../icon';
 import { Button } from '../button';

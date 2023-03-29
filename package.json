@@ -25,7 +25,7 @@
     "build": "npm run build:lib && npm run build:types && npm run build:preset",
     "build:lib": "vite build --mode production",
     "build:types": "tsc --project tsconfig.lib.json",
-    "build:preset": "vite build --config vite.tailwind-preset-config.cjs",
+    "build:preset": "vite build --config vite.tailwind-preset-config.mjs",
     "dev": "npm run docs:dev",
     "lint": "next lint --dir pages --dir src",
     "typecheck": "tsc --noEmit",

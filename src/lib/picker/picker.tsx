@@ -7,7 +7,7 @@ import { Portal } from '../portal';
 
 import type { OptionType } from './item';
 import Item from './item';
-import { PickerTrigger, PickerTriggerProps } from './trigger';
+import { PickerTrigger, type PickerTriggerProps } from './trigger';
 
 import styles from './picker.module.css';
 
