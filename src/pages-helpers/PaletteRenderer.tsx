@@ -24,7 +24,7 @@ export const ColorBox = ({ color, className }: ColorBoxProps) => {
       <Column className="h-full">
         <Text textStyle="label-sm">{color}</Text>
         <Text textStyle="mono-sm">{defaultTheme.colors[color]}</Text>
-        <div className="mt-auto self-end">
+        <div className="self-end mt-auto">
           <CopyButton label="Copy color token" text={color} />
         </div>
       </Column>

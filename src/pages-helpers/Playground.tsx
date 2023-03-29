@@ -26,7 +26,7 @@ export const Playground = ({ code, language }: Props) => {
       code={code}
       language={language as Language}
     >
-      <div className="shadow-popper mb-6 mt-4 rounded-md">
+      <div className="rounded-md shadow-popper mb-6 mt-4">
         <Root>
           <LivePreview
             // @ts-expect-error
@@ -46,7 +46,7 @@ export const Playground = ({ code, language }: Props) => {
 
 const Preview: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <div className="bg-surface rounded-md">
+    <div className="rounded-md bg-surface">
       <Column>
         <div className="overflow-auto p-4">{children}</div>
         <Trigger asChild>
@@ -70,5 +70,5 @@ const CodeToggleButton = React.forwardRef<HTMLButtonElement, CollapsibleTriggerP
 
 const ErrorRenderer = withLive(({ live }: any) => {
   if (!live.error) return null;
-  return <div className="bg-error/10 text-error rounded-bl-md rounded-br-md p-4 text-sm">{live.error}</div>;
+  return <div className="rounded-bl-md rounded-br-md bg-error/10 p-4 text-sm text-error">{live.error}</div>;
 });
