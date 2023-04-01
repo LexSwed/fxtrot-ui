@@ -5,13 +5,13 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   publicDir: false,
   esbuild: {
-    target: ['node'],
+    target: ['node18'],
   },
   build: {
     minify: false,
     emptyOutDir: false,
     lib: {
-      entry: path.resolve(__dirname, './src/lib/tailwind/preset.mjs'),
+      entry: path.resolve(__dirname, './src/lib/tailwind/preset.ts'),
       formats: ['cjs', 'esm'],
       fileName: (format) => {
         switch (format) {
