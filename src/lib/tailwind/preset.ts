@@ -1,6 +1,6 @@
 import plugin from 'tailwindcss/plugin';
-import fxtrotTheme from './default-theme.mjs';
-import { createTailwindVariables } from './utils.mjs';
+import fxtrotTheme from './default-theme';
+import { createTailwindVariables } from './utils';
 
 /**
  * Overrides default -top, -bottom, etc with CSS Logical Properties

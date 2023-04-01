@@ -1,6 +1,6 @@
 import tailwindTheme from 'tailwindcss/defaultTheme';
+import { Theme } from '../theme-provider/types';
 
-/** @satisfies {import('../theme-provider/types').Theme} */
 const defaultTheme = {
   colors: {
     'primary': 'hsl(202 100% 30.6%)',
@@ -79,6 +79,6 @@ const defaultTheme = {
     '3xl': '1.5rem',
     'full': '9999px',
   },
-};
+} satisfies Theme;
 
 export default defaultTheme;

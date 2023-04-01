@@ -1,5 +1,5 @@
 import { Column, Text, Row } from '@fxtrot/ui';
-import defaultTheme from 'src/lib/tailwind/default-theme.mjs';
+import defaultTheme from 'src/lib/tailwind/default-theme.js';
 import type { Theme } from 'src/lib/theme-provider/types';
 import { CopyButton } from './CopyButton';
 

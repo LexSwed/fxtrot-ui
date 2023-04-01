@@ -1,15 +1,6 @@
 type ColorChannel = `${number} ${number}% ${number}%` | `${number}deg ${number}% ${number}%`;
 export type ThemeColor = ColorChannel | `hsl(${ColorChannel})` | `rgb(${ColorChannel})`;
 
-export type createTailwindColorVariables = (colors: ThemeColors) => TailwindColorVariables;
-export type createTailwindFontVariables = (fontSize: NonNullable<Theme['fontSize']>) => {
-  fontSize: Record<keyof Theme['fontSize'], string>;
-  lineHeight: Record<keyof Theme['fontSize'], string>;
-};
-export type toToken = (themeConfig: string, name: string) => `--fx-${string}-${string}`;
-
-export type createTailwindVariables = (theme: Theme) => import('tailwindcss').Config['theme'];
-
 export interface ThemeColors {
   // Primary color
   'primary': ThemeColor;

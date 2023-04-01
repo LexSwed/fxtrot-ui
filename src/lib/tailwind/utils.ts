@@ -1,12 +1,11 @@
-/**
- * @type {import('../theme-provider/types').toToken}
- */
-export function toToken(themeConfig, name) {
+import type { Config } from 'tailwindcss';
+import type { ThemeColors, TailwindColorVariables, Theme } from '../theme-provider/types';
+
+export function toToken(themeConfig: string, name: string) {
   return `--fx-${themeConfig}-${name.split('.').join('\\.')}`;
 }
 
-/** @type {import('../theme-provider/types').createTailwindColorVariables} */
-function createTailwindColorVariables(colors) {
+function createTailwindColorVariables(colors: ThemeColors): TailwindColorVariables {
   const colorEntries = Object.keys(colors).map((token) => {
     return [token, `hsl(var(${toToken('colors', token)}-hsl)  / <alpha-value>)`];
   });
@@ -14,8 +13,10 @@ function createTailwindColorVariables(colors) {
   return Object.fromEntries(colorEntries);
 }
 
-/** @type {import('../theme-provider/types').createTailwindFontVariables} */
-function createFontSizeVariables(fontSizes) {
+function createFontSizeVariables(fontSizes: NonNullable<Theme['fontSize']>): {
+  fontSize: Record<keyof Theme['fontSize'], string>;
+  lineHeight: Record<keyof Theme['fontSize'], string>;
+} {
   return Object.entries(fontSizes).reduce(
     (res, [token]) => {
       // @ts-expect-error
@@ -31,10 +32,8 @@ function createFontSizeVariables(fontSizes) {
   );
 }
 
-/** @type {import('../theme-provider/types').createTailwindVariables} */
-export function createTailwindVariables(theme) {
-  /** @type {import('tailwindcss').Config['theme']} */
-  const tailwindTheme = {};
+export function createTailwindVariables(theme: Theme) {
+  const tailwindTheme: Config['theme'] = {};
 
   Object.keys(theme).forEach((configKey) => {
     switch (configKey) {
