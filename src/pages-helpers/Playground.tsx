@@ -17,15 +17,7 @@ type Props = {
 
 export const Playground = ({ code, language }: Props) => {
   return (
-    <LiveProvider
-      theme={prismTheme}
-      scope={components}
-      onError={(e) => {
-        console.error(e);
-      }}
-      code={code}
-      language={language as Language}
-    >
+    <LiveProvider theme={prismTheme} scope={components} code={code} language={language as Language}>
       <div className="rounded-md shadow-popper mb-6 mt-4">
         <Root>
           <LivePreview

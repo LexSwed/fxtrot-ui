@@ -1,5 +1,5 @@
 import tailwindTheme from 'tailwindcss/defaultTheme';
-import { Theme } from '../theme-provider/types';
+import { type Theme } from '../theme-provider/types';
 
 const defaultTheme = {
   colors: {
