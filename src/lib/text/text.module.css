@@ -117,13 +117,4 @@
   .align--justify {
     text-align: justify;
   }
-
-  /* Line clamp */
-
-  .line-clamp {
-    display: -webkit-inline-box;
-    overflow: hidden;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: var(--fx-text-lineClamp);
-  }
 }

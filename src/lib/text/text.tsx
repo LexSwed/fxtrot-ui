@@ -1,24 +1,15 @@
-import { type CSSProperties, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { classed as css, type VariantProps } from '@tw-classed/core';
 import { clsx } from 'clsx';
 
 import type { ForwardRefComponent } from '../utils/polymorphic';
 import styles from './text.module.css';
 
-interface TextProps extends VariantProps<typeof textCss> {
-  lineClamp?: number;
-}
+interface TextProps extends VariantProps<typeof textCss> {}
 
 export const Text = forwardRef(
-  ({ as: Component = 'span', textStyle, tone, align, lineClamp, className, style, ...props }, ref) => {
-    return (
-      <Component
-        className={clsx(textCss({ textStyle, tone, align }), lineClamp && styles['line-clamp'], className)}
-        style={lineClamp ? ({ ...style, '--fx-text-lineClamp': lineClamp } as CSSProperties) : style}
-        {...props}
-        ref={ref}
-      />
-    );
+  ({ as: Component = 'span', textStyle, tone, align, className, style, ...props }, ref) => {
+    return <Component className={clsx(textCss({ textStyle, tone, align }), className)} {...props} ref={ref} />;
   }
 ) as ForwardRefComponent<'span', TextProps>;
 

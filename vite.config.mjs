@@ -14,7 +14,7 @@ export default defineConfig({
     minify: false,
     target: 'esnext',
     lib: {
-      entry: path.resolve(__dirname, './src/lib/index.ts'),
+      entry: { lib: path.resolve(__dirname, './src/lib/index.ts') },
       name: pkg.name,
       formats: ['cjs', 'es'],
       fileName: (format) => {
@@ -22,7 +22,7 @@ export default defineConfig({
           case 'cjs':
             return `fxtrot-ui.${format}`;
           case 'es':
-            return `fxtrot-ui.js`;
+            return `fxtrot-ui.mjs`;
           default:
             return `fxtrot-ui.${format}.js`;
         }
