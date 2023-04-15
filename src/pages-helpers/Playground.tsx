@@ -64,3 +64,5 @@ const ErrorRenderer = withLive(({ live }: any) => {
   if (!live.error) return null;
   return <div className="rounded-bl-md rounded-br-md bg-error/10 p-4 text-sm text-error">{live.error}</div>;
 });
+
+export default Playground;

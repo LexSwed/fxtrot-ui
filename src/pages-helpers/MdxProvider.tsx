@@ -2,19 +2,18 @@ import * as React from 'react';
 import { MDXProvider } from '@mdx-js/react';
 import Image from 'next/image';
 import { BsTypeBold, BsTypeItalic, BsTypeUnderline } from 'react-icons/bs';
-// Eslint is lying – there's default export
-// eslint-disable-next-line
-import HeroIcons from '@heroicons/react/24/outline';
+import * as HeroIcons from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { clsx } from 'clsx';
 import * as FxtrotUI from '@fxtrot/ui';
 
 import { Heading, Text, TextLink } from '@fxtrot/ui';
 import * as helpers from '../pages-helpers';
-import { MultilineCode } from '../pages-helpers/MultilineCode';
 import { MainLayout } from './MainLayout';
 import { Code } from './Code';
-import { Playground } from './Playground';
+
+const MultilineCode = React.lazy(() => import(/* webpackChunkName: "MultilineCode" */ './MultilineCode'));
+const Playground = React.lazy(() => import(/* webpackChunkName: "CodePlayground" */ './Playground'));
 
 const Pre: React.FC<{ preview: boolean; children?: React.ReactNode; filename?: string }> = ({
   children,

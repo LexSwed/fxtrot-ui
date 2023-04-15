@@ -51,6 +51,8 @@ export const MultilineCode = ({ code, language, fileName, lineNumber = true }: P
   );
 };
 
+export default MultilineCode;
+
 const codeTheme: Theme = {
   colors: {
     'primary': 'hsl(221deg 100% 75%)',
