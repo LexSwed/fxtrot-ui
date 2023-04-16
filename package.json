@@ -18,7 +18,7 @@
       "import": "./dist/tailwind.preset.mjs",
       "require": "./dist/tailwind.preset.cjs"
     },
-    "./styles.css": "./dist/styles.css"
+    "./style.css": "./dist/style.css"
   },
   "sideEffects": false,
   "repository": {
