@@ -26,6 +26,8 @@ export { ToggleButton } from './toggle-button';
 export { Tooltip } from './tooltip';
 export { VisuallyHidden } from './visually-hidden';
 
+export { PopoverBox } from './shared/popover-box';
+
 export type { OpenStateRef } from './utils/OpenStateProvider';
 export {
   useAllHandlers,
