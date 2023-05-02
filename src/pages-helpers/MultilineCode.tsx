@@ -1,6 +1,5 @@
-import Highlight, { defaultProps, type Language } from 'prism-react-renderer';
+import { Highlight, themes } from 'prism-react-renderer';
 import { clsx } from 'clsx';
-import theme from 'prism-react-renderer/themes/nightOwl';
 import { DiReact } from 'react-icons/di';
 import { Icon, Row, Text, ThemeProvider, type Theme } from '@fxtrot/ui';
 import { CopyButton } from './CopyButton';
@@ -15,7 +14,7 @@ type Props = {
 export const MultilineCode = ({ code, language, fileName, lineNumber = true }: Props) => {
   return (
     <ThemeProvider theme={codeTheme}>
-      <Highlight {...defaultProps} theme={theme} code={code} language={language as Language}>
+      <Highlight theme={themes.vsDark} code={code} language={language}>
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <section className="group/code-wrapper relative overflow-hidden rounded-sm my-1">
             {fileName ? (

@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import { Root, Content, Trigger } from '@radix-ui/react-collapsible';
-import prismTheme from 'prism-react-renderer/themes/github';
-
+import { themes } from 'prism-react-renderer';
 import { LiveProvider, LiveEditor, LivePreview, withLive } from 'react-live';
 import { Column, Icon, Text, ToggleButton } from '@fxtrot/ui';
 import type { CollapsibleTriggerProps } from '@radix-ui/react-collapsible';
-import type { Language } from 'prism-react-renderer';
 import { components } from './MdxProvider';
 
 type Props = {
@@ -17,7 +15,7 @@ type Props = {
 
 export const Playground = ({ code, language }: Props) => {
   return (
-    <LiveProvider theme={prismTheme} scope={components} code={code} language={language as Language}>
+    <LiveProvider theme={themes.github} scope={components} code={code} language={language as Language}>
       <div className="rounded-md shadow-popper mb-6 mt-4">
         <Root>
           <LivePreview
