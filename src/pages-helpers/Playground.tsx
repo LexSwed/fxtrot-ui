@@ -15,7 +15,7 @@ type Props = {
 
 export const Playground = ({ code, language }: Props) => {
   return (
-    <LiveProvider theme={themes.github} scope={components} code={code} language={language as Language}>
+    <LiveProvider theme={themes.github} scope={components} code={code} language={language}>
       <div className="rounded-md shadow-popper mb-6 mt-4">
         <Root>
           <LivePreview

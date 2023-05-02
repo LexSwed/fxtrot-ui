@@ -14,7 +14,7 @@ type Props = {
 export const MultilineCode = ({ code, language, fileName, lineNumber = true }: Props) => {
   return (
     <ThemeProvider theme={codeTheme}>
-      <Highlight theme={themes.vsDark} code={code} language={language}>
+      <Highlight theme={themes.nightOwl} code={code} language={language}>
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <section className="group/code-wrapper relative overflow-hidden rounded-sm my-1">
             {fileName ? (
