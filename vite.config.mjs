@@ -30,8 +30,9 @@ export default defineConfig({
       },
     },
     rollupOptions: {
-      external: Object.keys(pkg.peerDependencies),
+      external: [...Object.keys(pkg.dependencies), ...Object.keys(pkg.peerDependencies)],
       output: {
+        preserveModules: true,
         globals: {
           'react': 'React',
           'react-dom': 'ReactDOM',
