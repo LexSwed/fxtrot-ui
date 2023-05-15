@@ -1,8 +1,7 @@
 import { classed as css, type VariantProps } from '@tw-classed/core';
-import { Children, type ComponentProps, type ElementType, forwardRef, isValidElement } from 'react';
-import { clsx } from 'clsx';
+import { type ComponentProps, type ElementType, forwardRef } from 'react';
 
-import { flexCss } from '../flex/flex';
+import { flexCss, FlexVariants } from '../flex/flex';
 import { Icon } from '../icon';
 
 import styles from './button.module.css';
@@ -19,7 +18,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
   return (
     <button
       {...rest}
-      className={buttonCssWithDefaults(props)}
+      className={buttonCss(props)}
       aria-label={label}
       title={label}
       disabled={disabled}
@@ -40,7 +39,7 @@ interface LinkButtonProps extends ButtonOwnProps, ComponentProps<'a'> {}
 const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>((props, ref) => {
   const { icon, label, size = 'md', children, ...rest } = props;
   return (
-    <a {...rest} className={buttonCssWithDefaults(props)} aria-label={label} title={label} ref={ref}>
+    <a {...rest} className={buttonCss(props)} aria-label={label} title={label} ref={ref}>
       {icon ? <Icon as={icon} size={size} /> : null}
       {children}
     </a>
@@ -66,29 +65,19 @@ const buttonCss = css(styles.button, flexCss, {
       danger: styles['intent--danger'],
     },
   },
+  defaultVariants: {
+    ...{
+      ...({
+        display: 'inline',
+        main: 'center',
+        cross: 'center',
+        flow: 'row',
+        gap: 'sm',
+      } satisfies FlexVariants),
+    },
+    variant: 'flat',
+    size: 'md',
+  },
 });
-
-const buttonCssWithDefaults = <T extends keyof JSX.IntrinsicElements>({
-  display = 'inline',
-  variant = 'flat',
-  size = 'md',
-  main = 'center',
-  cross = 'center',
-  flow = 'row',
-  gap = 'sm',
-  icon,
-  className,
-  children,
-  ...props
-}: ButtonOwnProps & ComponentProps<T>) => {
-  const isIconButton =
-    (Children.count(children) === 1 && isValidElement(children) && children.type === Icon) ||
-    (Children.count(children) === 0 && !!icon);
-  return clsx(
-    buttonCss({ variant, size, main, flow, gap, cross, display, ...props }),
-    isIconButton ? styles['button--icon'] : undefined,
-    className
-  );
-};
 
 export { Button, LinkButton };
