@@ -18,10 +18,8 @@ export const Playground = ({ code, language }: Props) => {
     <LiveProvider theme={themes.github} scope={components} code={code} language={language}>
       <div className="rounded-md shadow-popper mb-6 mt-4">
         <Root>
-          <LivePreview
-            // @ts-expect-error
-            Component={Preview}
-          />
+          {/* @ts-expect-error */}
+          <LivePreview Component={Preview} />
           <Content asChild>
             <div>
               <LiveEditor />

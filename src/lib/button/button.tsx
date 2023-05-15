@@ -1,7 +1,7 @@
 import { classed as css, type VariantProps } from '@tw-classed/core';
 import { type ComponentProps, type ElementType, forwardRef } from 'react';
 
-import { flexCss, FlexVariants } from '../flex/flex';
+import { flexCss, type FlexVariants } from '../flex/flex';
 import { Icon } from '../icon';
 
 import styles from './button.module.css';
