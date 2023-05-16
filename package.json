@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "license": "Apache-2.0",
   "type": "module",
-  "types": "./dist/types/tailwind/preset.d.ts",
+  "types": "./dist/types/index.d.ts",
   "main": "./dist/cjs/lib.cjs",
   "module": "./dist/esm/lib.mjs",
   "exports": {
