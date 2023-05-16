@@ -10,8 +10,8 @@ import type { AppProps } from 'next/dist/shared/lib/router/router';
 const MdxProvider = lazy(
   () =>
     import(
-      /*  webpackPrefetch: true */
-      /* webpackChunkName: "my-chunk-name" */
+      /* webpackPrefetch: true */
+      /* webpackChunkName: "MDXProvider" */
       'src/pages-helpers/MdxProvider'
     )
 );
