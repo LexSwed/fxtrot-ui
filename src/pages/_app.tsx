@@ -2,10 +2,19 @@ import './globals.css';
 import localFont from 'next/font/local';
 
 import { NextSeo } from 'next-seo';
+import { lazy } from 'react';
 import { ThemeProvider } from '@fxtrot/ui';
 
-import { MdxProvider } from 'src/pages-helpers/MdxProvider';
 import type { AppProps } from 'next/dist/shared/lib/router/router';
+
+const MdxProvider = lazy(
+  () =>
+    import(
+      /*  webpackPrefetch: true */
+      /* webpackChunkName: "my-chunk-name" */
+      'src/pages-helpers/MdxProvider'
+    )
+);
 
 const Inter = localFont({
   src: '../../public/fonts/Inter-VariableFont_slnt,wght.ttf',

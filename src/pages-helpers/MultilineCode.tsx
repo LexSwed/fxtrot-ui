@@ -29,14 +29,14 @@ export const MultilineCode = ({ code, language, fileName, lineNumber = true }: P
               {tokens.map((line, i) => {
                 const lineProps = getLineProps({ line, key: i });
                 return (
-                  <line {...lineProps} className={clsx('table-row text-sm', lineProps.className)}>
+                  <div {...lineProps} className={clsx('table-row text-sm', lineProps.className)}>
                     {lineNumber && <span className="table-cell select-none text-end opacity-50 pr-4">{i + 1}</span>}
                     <span className="table-cell">
                       {line.map((token, key) => (
                         <span key={key} {...getTokenProps({ token, key })} />
                       ))}
                     </span>
-                  </line>
+                  </div>
                 );
               })}
             </pre>

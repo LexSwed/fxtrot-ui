@@ -4,7 +4,8 @@
     "noEmit": false,
     "declaration": true,
     "outDir": "dist/types",
-    "emitDeclarationOnly": true
+    "emitDeclarationOnly": true,
+    "verbatimModuleSyntax": true
   },
   "include": ["src/lib", "src/types"],
   "exclude": ["node_modules"]

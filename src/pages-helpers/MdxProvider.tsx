@@ -89,6 +89,8 @@ export const components = {
   ),
 };
 
-export const MdxProvider: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
+const MdxProvider: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
   return <MDXProvider components={components as any}>{children}</MDXProvider>;
 };
+
+export default MdxProvider;
