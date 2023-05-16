@@ -4,9 +4,9 @@
   "version": "0.0.1",
   "license": "Apache-2.0",
   "type": "module",
-  "types": "dist/types/index.d.ts",
-  "main": "./dist/cjs/fxtrot-ui.cjs",
-  "module": "./dist/esm/fxtrot-ui.mjs",
+  "types": "./dist/types/tailwind/preset.d.ts",
+  "main": "./dist/cjs/lib.cjs",
+  "module": "./dist/esm/lib.mjs",
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
