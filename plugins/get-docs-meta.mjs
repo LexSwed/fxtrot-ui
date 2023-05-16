@@ -1,13 +1,13 @@
 import fs from 'fs';
 import path from 'path';
-import glob from 'glob';
+import { sync } from 'glob';
 import matter from 'gray-matter';
 
 const ROOT_PATH = process.cwd();
 const DOCS_PATH = path.join(ROOT_PATH, 'src/pages');
 
 export const getDocsMeta = () => {
-  const paths = glob.sync(`${DOCS_PATH}/**/*.mdx`);
+  const paths = sync(`${DOCS_PATH}/**/*.mdx`);
 
   return paths.map((filePath) => {
     const source = fs.readFileSync(path.join(filePath), 'utf8');

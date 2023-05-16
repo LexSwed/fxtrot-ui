@@ -3,6 +3,6 @@
     height: 1px;
     background-color: theme('colors.surface-variant');
     margin-block: theme('spacing.1');
-    margin-inline: calac(-1 * theme('spacing.1'));
+    margin-inline: calc(-1 * theme('spacing.1'));
   }
 }

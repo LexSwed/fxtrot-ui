@@ -118,7 +118,7 @@
     "remark-mdx-frontmatter": "^3.0.0",
     "typescript": "^5.0.4",
     "typescript-plugin-css-modules": "^5.0.1",
-    "vite": "^4.3.6"
+    "vite": "^4.3.7"
   },
   "peerDependencies": {
     "@heroicons/react": "^2.0.16",
