@@ -201,7 +201,7 @@
     font-weight: theme('fontWeight.medium');
     padding-inline: theme('spacing.2');
     padding-block: theme('spacing.1');
-    &:has(> svg:only-child) {
+    &.button--icon {
       padding-inline: theme('spacing.1');
       min-inline-size: theme(spacing.7);
     }
@@ -213,7 +213,7 @@
     font-weight: theme('fontWeight.medium');
     padding-inline: theme('spacing.3');
     padding-block: theme('spacing.1');
-    &:has(> svg:only-child) {
+    &.button--icon {
       padding-inline: theme('spacing.1');
       min-inline-size: theme(spacing.8);
     }
@@ -225,7 +225,7 @@
     font-weight: theme('fontWeight.medium');
     padding-inline: theme('spacing.4');
     padding-block: theme('spacing.2');
-    &:has(> svg:only-child) {
+    &.button--icon {
       padding-inline: theme('spacing.2');
       min-inline-size: theme(spacing.10);
     }
@@ -237,7 +237,7 @@
     font-weight: theme('fontWeight.medium');
     padding-inline: theme('spacing.6');
     padding-block: theme('spacing.2');
-    &:has(> svg:only-child) {
+    &.button--icon {
       padding-inline: theme('spacing.2');
       min-inline-size: theme(spacing.12);
     }
@@ -246,7 +246,7 @@
   /*
     Utils
   */
-  .icon {
+  .button--icon svg {
     color: inherit;
   }
 }

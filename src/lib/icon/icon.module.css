@@ -11,6 +11,7 @@
   }
   .icon--sm {
     @apply size-4;
+    stroke-width: 2px;
   }
   .icon--md {
     @apply size-5;
